@@ -172,6 +172,9 @@ func _on_GamesList_item_selected(index: int) -> void:
 	$Main/Tabs.current_tab = 0
 	apply_game_choice()
 	_refresh_currently_installed()
+	
+	$Mods.refresh_installed()
+	$Mods.refresh_available()
 
 
 func _on_RBtnStable_toggled(button_pressed: bool) -> void:
