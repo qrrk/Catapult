@@ -118,12 +118,11 @@ margin_bottom = 91.0
 ]]
 margin_top = 97.0
 margin_right = 784.0
-margin_bottom = 503.0
+margin_bottom = 418.0
 tab_align = 0
 script = ExtResource( 16 )
 
 [node name="Game" type="VBoxContainer" parent="Main/Tabs"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -568,13 +567,14 @@ current_dir = "/mnt/data/Godot/Catapult"
 current_path = "/mnt/data/Godot/Catapult/"
 
 [node name="Settings" type="VBoxContainer" parent="Main/Tabs"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
 margin_top = 38.5
 margin_right = -7.5
 margin_bottom = -7.5
-custom_constants/separation = 8
+custom_constants/separation = 6
 script = ExtResource( 8 )
 
 [node name="ShowGameDesc" type="CheckButton" parent="Main/Tabs/Settings"]
@@ -585,34 +585,44 @@ under the Game list."
 text = "Show game description"
 
 [node name="PrintTips" type="CheckButton" parent="Main/Tabs/Settings"]
-margin_top = 37.0
+margin_top = 35.0
 margin_right = 769.0
-margin_bottom = 66.0
+margin_bottom = 64.0
 hint_tooltip = "Print a random tip in the log pane
 when the launcher starts."
 text = "Print tips of the day on startup"
 
 [node name="UpdateToSame" type="CheckButton" parent="Main/Tabs/Settings"]
-margin_top = 74.0
+margin_top = 70.0
 margin_right = 769.0
-margin_bottom = 103.0
+margin_bottom = 99.0
 hint_tooltip = "Allow starting the update procedure even when
 the selected release is the same as currently installed."
 text = "Allow \"updating\" to the same build as installed"
 
-[node name="ShowDebug" type="CheckButton" parent="Main/Tabs/Settings"]
-margin_top = 111.0
+[node name="ShortenNames" type="CheckButton" parent="Main/Tabs/Settings"]
+margin_top = 105.0
 margin_right = 769.0
-margin_bottom = 140.0
+margin_bottom = 134.0
+hint_tooltip = "Shorten release names to just the date and number
+(e.g. \"2021-09-08-1927\" instead of
+\"Cataclysm-DDA experimental build 2021-09-08-1927\").
+Short names save screen space but may be less clear."
+text = "Shorten names of experimental releases"
+
+[node name="ShowDebug" type="CheckButton" parent="Main/Tabs/Settings"]
+margin_top = 140.0
+margin_right = 769.0
+margin_bottom = 169.0
 hint_tooltip = "Shows the Debug tab with some testing functions
 and enables debug messages in the log pane.
 The latter may be useful for troubleshooting."
 text = "Debug mode (requires restart)"
 
 [node name="NumReleases" type="HBoxContainer" parent="Main/Tabs/Settings"]
-margin_top = 148.0
+margin_top = 175.0
 margin_right = 769.0
-margin_bottom = 177.0
+margin_bottom = 204.0
 hint_tooltip = "How many latest  releases will be requested
 from GitHub after starting the launcher, choosing
 the game or clicking  Refresh."
@@ -632,9 +642,9 @@ value = 30.0
 rounded = true
 
 [node name="ScaleOverride" type="HBoxContainer" parent="Main/Tabs/Settings"]
-margin_top = 185.0
+margin_top = 210.0
 margin_right = 769.0
-margin_bottom = 214.0
+margin_bottom = 239.0
 hint_tooltip = "Use this if the automatically inferred UI scale
 looks too large or too small on your system.
 (Automatic scale relies on system-reported
@@ -670,14 +680,14 @@ editable = false
 suffix = "%"
 
 [node name="HSeparator" type="HSeparator" parent="Main/Tabs/Settings"]
-margin_top = 222.0
+margin_top = 245.0
 margin_right = 769.0
-margin_bottom = 230.0
+margin_bottom = 253.0
 
 [node name="Migration" type="VBoxContainer" parent="Main/Tabs/Settings"]
-margin_top = 238.0
+margin_top = 259.0
 margin_right = 769.0
-margin_bottom = 360.0
+margin_bottom = 381.0
 hint_tooltip = "Choose which types of game data to carry over
 into the new game version when updating."
 
@@ -825,7 +835,7 @@ size_flags_horizontal = 4
 text = "Print a random Tip of the Day"
 
 [node name="Log" type="RichTextLabel" parent="Main"]
-margin_top = 509.0
+margin_top = 424.0
 margin_right = 784.0
 margin_bottom = 984.0
 focus_mode = 2
@@ -919,6 +929,7 @@ __meta__ = {
 [connection signal="toggled" from="Main/Tabs/Settings/ShowGameDesc" to="Main/Tabs/Settings" method="_on_ShowGameDesc_toggled"]
 [connection signal="toggled" from="Main/Tabs/Settings/PrintTips" to="Main/Tabs/Settings" method="_on_PrintTips_toggled"]
 [connection signal="toggled" from="Main/Tabs/Settings/UpdateToSame" to="Main/Tabs/Settings" method="_on_UpdateToSame_toggled"]
+[connection signal="toggled" from="Main/Tabs/Settings/ShortenNames" to="Main/Tabs/Settings" method="_on_ShortenNames_toggled"]
 [connection signal="toggled" from="Main/Tabs/Settings/ShowDebug" to="Main/Tabs/Settings" method="_on_ShowDebug_toggled"]
 [connection signal="value_changed" from="Main/Tabs/Settings/NumReleases/sbNumReleases" to="Main/Tabs/Settings" method="_on_sbNumReleases_value_changed"]
 [connection signal="toggled" from="Main/Tabs/Settings/ScaleOverride/cbScaleOverrideEnable" to="Main/Tabs/Settings" method="_on_cbScaleOverrideEnable_toggled"]

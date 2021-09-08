@@ -194,6 +194,8 @@ func _parse_builds(data: PoolByteArray, write_to: Array, filter: Dictionary) -> 
 	for rec in json:
 		var build = {}
 		build["name"] = rec["name"]
+		if _settings.read("shorten_release_names"):
+			build["name"] = build["name"].split(" ")[-1]
 		build["url"] = ""
 		
 		for asset in rec["assets"]:
