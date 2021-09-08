@@ -63,6 +63,7 @@ text = "Game: "
 margin_left = 71.0
 margin_right = 784.0
 margin_bottom = 29.0
+hint_tooltip = "Choose which game to manage or play."
 size_flags_horizontal = 3
 text = "Cataclysm: Dark Days Ahead"
 items = [ "Cataclysm: Dark Days Ahead", null, false, 0, null, "Cataclysm: Bright Nights", null, false, 1, null ]
@@ -117,11 +118,12 @@ margin_bottom = 91.0
 ]]
 margin_top = 97.0
 margin_right = 784.0
-margin_bottom = 418.0
+margin_bottom = 503.0
 tab_align = 0
 script = ExtResource( 16 )
 
 [node name="Game" type="VBoxContainer" parent="Main/Tabs"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -150,6 +152,7 @@ margin_bottom = 64.0
 ]]
 margin_right = 81.0
 margin_bottom = 29.0
+hint_tooltip = "Stable release channel (DDA only)."
 group = SubResource( 1 )
 text = "Stable"
 
@@ -160,6 +163,7 @@ text = "Stable"
 margin_left = 87.0
 margin_right = 221.0
 margin_bottom = 29.0
+hint_tooltip = "Experimental release channel."
 pressed = true
 group = SubResource( 1 )
 text = "Experimental"
@@ -181,6 +185,7 @@ text = "Available builds:"
 margin_left = 139.0
 margin_right = 687.0
 margin_bottom = 29.0
+hint_tooltip = "Choose which release of the game to install or update to."
 size_flags_horizontal = 3
 clip_text = true
 
@@ -191,7 +196,7 @@ clip_text = true
 margin_left = 693.0
 margin_right = 769.0
 margin_bottom = 29.0
-hint_tooltip = "Re-retrieve the list of available game builds
+hint_tooltip = "Re-retrieve the list of available game releases
 from GitHub (only for experimental releases)."
 text = "Refresh"
 
@@ -204,7 +209,8 @@ margin_top = 109.0
 margin_right = 474.0
 margin_bottom = 141.0
 rect_min_size = Vector2( 180, 32 )
-hint_tooltip = "Install selected game release (DDA and BN are managed separately and can co-exist)."
+hint_tooltip = "Install selected game release (DDA and BN
+are managed separately and can co-exist)."
 size_flags_horizontal = 4
 text = "Install Selected"
 icon = ExtResource( 2 )
@@ -298,7 +304,7 @@ margin_left = 127.0
 margin_top = 241.0
 margin_right = 246.0
 margin_bottom = 270.0
-hint_tooltip = "Show mods from data/mods on the list."
+hint_tooltip = "Show mods from data/mods on this list."
 size_flags_horizontal = 4
 text = "Show stock"
 
@@ -352,6 +358,8 @@ margin_left = 86.0
 margin_top = 241.0
 margin_right = 289.0
 margin_bottom = 270.0
+hint_tooltip = "Show already installed mods on this list
+in case you want to re-install them."
 size_flags_horizontal = 4
 text = "Show already installed"
 
@@ -560,7 +568,6 @@ current_dir = "/mnt/data/Godot/Catapult"
 current_path = "/mnt/data/Godot/Catapult/"
 
 [node name="Settings" type="VBoxContainer" parent="Main/Tabs"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -573,30 +580,42 @@ script = ExtResource( 8 )
 [node name="ShowGameDesc" type="CheckButton" parent="Main/Tabs/Settings"]
 margin_right = 769.0
 margin_bottom = 29.0
+hint_tooltip = "Show a description for the chosen game
+under the Game list."
 text = "Show game description"
 
 [node name="PrintTips" type="CheckButton" parent="Main/Tabs/Settings"]
 margin_top = 37.0
 margin_right = 769.0
 margin_bottom = 66.0
+hint_tooltip = "Print a random tip in the log pane
+when the launcher starts."
 text = "Print tips of the day on startup"
 
 [node name="UpdateToSame" type="CheckButton" parent="Main/Tabs/Settings"]
 margin_top = 74.0
 margin_right = 769.0
 margin_bottom = 103.0
+hint_tooltip = "Allow starting the update procedure even when
+the selected release is the same as currently installed."
 text = "Allow \"updating\" to the same build as installed"
 
 [node name="ShowDebug" type="CheckButton" parent="Main/Tabs/Settings"]
 margin_top = 111.0
 margin_right = 769.0
 margin_bottom = 140.0
+hint_tooltip = "Shows the Debug tab with some testing functions
+and enables debug messages in the log pane.
+The latter may be useful for troubleshooting."
 text = "Debug mode (requires restart)"
 
 [node name="NumReleases" type="HBoxContainer" parent="Main/Tabs/Settings"]
 margin_top = 148.0
 margin_right = 769.0
 margin_bottom = 177.0
+hint_tooltip = "How many latest  releases will be requested
+from GitHub after starting the launcher, choosing
+the game or clicking  Refresh."
 
 [node name="Label" type="Label" parent="Main/Tabs/Settings/NumReleases"]
 margin_right = 248.0
@@ -616,6 +635,10 @@ rounded = true
 margin_top = 185.0
 margin_right = 769.0
 margin_bottom = 214.0
+hint_tooltip = "Use this if the automatically inferred UI scale
+looks too large or too small on your system.
+(Automatic scale relies on system-reported
+display DPI, which may not work on all systems.)"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -655,6 +678,8 @@ margin_bottom = 230.0
 margin_top = 238.0
 margin_right = 769.0
 margin_bottom = 360.0
+hint_tooltip = "Choose which types of game data to carry over
+into the new game version when updating."
 
 [node name="Label" type="Label" parent="Main/Tabs/Settings/Migration"]
 margin_right = 769.0
@@ -800,7 +825,7 @@ size_flags_horizontal = 4
 text = "Print a random Tip of the Day"
 
 [node name="Log" type="RichTextLabel" parent="Main"]
-margin_top = 424.0
+margin_top = 509.0
 margin_right = 784.0
 margin_bottom = 984.0
 focus_mode = 2
@@ -863,8 +888,8 @@ __meta__ = {
 }
 
 [connection signal="meta_clicked" from="Main/GameInfo/Description" to="." method="_on_Description_meta_clicked"]
-[connection signal="tab_changed" from="Main/Tabs" to="Main/Tabs/Soundpacks" method="_on_Tabs_tab_changed"]
 [connection signal="tab_changed" from="Main/Tabs" to="Main/Tabs/Mods" method="_on_Tabs_tab_changed"]
+[connection signal="tab_changed" from="Main/Tabs" to="Main/Tabs/Soundpacks" method="_on_Tabs_tab_changed"]
 [connection signal="item_selected" from="Main/Tabs/Game/Builds/BuildsList" to="." method="_on_BuildsList_item_selected"]
 [connection signal="pressed" from="Main/Tabs/Game/Builds/BtnRefresh" to="." method="_on_BtnRefresh_pressed"]
 [connection signal="pressed" from="Main/Tabs/Game/BtnInstall" to="." method="_on_BtnInstall_pressed"]
