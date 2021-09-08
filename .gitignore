@@ -1,0 +1,9 @@
+/.import
+export_presets.cfg
+Catapult.x86_64
+Catapult.exe
+
+# Godot Git plugin
+/bin
+git_api.gdnlib
+git_api.gdns

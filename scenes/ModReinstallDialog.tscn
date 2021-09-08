@@ -1,0 +1,90 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/ModReinstallDialog.gd" type="Script" id=1]
+
+[node name="ModReinstallDialog" type="WindowDialog"]
+visible = true
+anchor_right = 1.0
+anchor_bottom = 0.268
+size_flags_horizontal = 3
+size_flags_vertical = 3
+window_title = "Confirm Mod Reinstall"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Panel" type="PanelContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Margin" type="MarginContainer" parent="Panel"]
+margin_left = 14.0
+margin_top = 14.0
+margin_right = 786.0
+margin_bottom = 254.0
+custom_constants/margin_right = 16
+custom_constants/margin_top = 16
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="Panel/Margin"]
+margin_left = 16.0
+margin_top = 65.0
+margin_right = 756.0
+margin_bottom = 174.0
+size_flags_vertical = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Panel/Margin/VBox"]
+margin_right = 740.0
+margin_bottom = 56.0
+text = "(this text is assigned at runtime)
+(this text is assigned at runtime)"
+align = 1
+autowrap = true
+
+[node name="Spacer" type="Control" parent="Panel/Margin/VBox"]
+margin_top = 64.0
+margin_right = 740.0
+margin_bottom = 64.0
+
+[node name="HBox" type="HBoxContainer" parent="Panel/Margin/VBox"]
+margin_left = 214.0
+margin_top = 72.0
+margin_right = 525.0
+margin_bottom = 109.0
+size_flags_horizontal = 4
+custom_constants/separation = 16
+
+[node name="BtnYes" type="Button" parent="Panel/Margin/VBox/HBox"]
+margin_right = 115.0
+margin_bottom = 37.0
+size_flags_horizontal = 4
+text = "Reinstall"
+
+[node name="BtnNo" type="Button" parent="Panel/Margin/VBox/HBox"]
+margin_left = 131.0
+margin_right = 200.0
+margin_bottom = 37.0
+size_flags_horizontal = 4
+text = "Skip"
+
+[node name="BtnCancel" type="Button" parent="Panel/Margin/VBox/HBox"]
+margin_left = 216.0
+margin_right = 311.0
+margin_bottom = 37.0
+size_flags_horizontal = 4
+text = "Cancel"
+
+[connection signal="pressed" from="Panel/Margin/VBox/HBox/BtnYes" to="." method="_on_BtnYes_pressed"]
+[connection signal="pressed" from="Panel/Margin/VBox/HBox/BtnNo" to="." method="_on_BtnNo_pressed"]
+[connection signal="pressed" from="Panel/Margin/VBox/HBox/BtnCancel" to="." method="_on_BtnCancel_pressed"]
