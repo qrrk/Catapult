@@ -204,7 +204,8 @@ func extract(path: String, dest_dir: String) -> void:
 	oew.execute(command["name"], command["args"])
 	yield(oew, "process_exited")
 	if oew.exit_code:
-		emit_signal("status_message", "extract: Command exited with an error (exit code: %s)" % oew.exit_code, Enums.MSG_ERROR)
+		emit_signal("status_message", "Archive extraction command exited with an error (exit code: %s)"
+				% oew.exit_code, Enums.MSG_ERROR)
 		emit_signal("status_message", "Failed command: " + str(command), Enums.MSG_DEBUG)
 		emit_signal("status_message", "Output: " + oew.output[0], Enums.MSG_DEBUG)
 	emit_signal("extract_done")

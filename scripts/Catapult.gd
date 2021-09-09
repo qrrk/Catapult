@@ -11,8 +11,7 @@ const _GAME_DESC = {
 
 onready var _settings = $"/root/SettingsManager"
 onready var _geom = $"/root/WindowGeometry"
-
-var _debug_mode: bool = false
+onready var _debug_ui = $Main/Tabs/Debug
 
 var _disable_savestate = {}
 var _ui_staring_sizes = {}  # For UI scaling on the fly
@@ -27,7 +26,6 @@ func _ready() -> void:
 	if _settings.read("print_tips_of_the_day"):
 		welcome_msg += "\n\n[u]Tip of the day:[/u]\n" + $TOTD.get_tip() + "\n"
 	print_msg(welcome_msg)
-	_debug_mode = _settings.read("debug_mode")
 	setup_ui()
 
 
@@ -115,7 +113,7 @@ func print_msg(msg: String, msg_type = Enums.MSG_INFO) -> void:
 			bb_text += " [color=#ff3333][error][/color] " + msg
 			push_error(text)
 		Enums.MSG_DEBUG:
-			if not _debug_mode:
+			if not _settings.read("debug_mode"):
 				return
 			bb_text += " [color=#999999][debug] %s[/color]" % msg
 	
@@ -283,9 +281,8 @@ func _get_release_key() -> String:
 func setup_ui() -> void:
 
 	$Main/GameInfo.visible = _settings.read("show_game_desc")
-	
 	if not _settings.read("debug_mode"):
-		$Main/Tabs/Debug.queue_free()
+		$Main/Tabs.remove_child(_debug_ui)
 	
 	apply_game_choice()
 	

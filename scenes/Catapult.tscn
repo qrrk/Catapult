@@ -118,11 +118,12 @@ margin_bottom = 91.0
 ]]
 margin_top = 97.0
 margin_right = 784.0
-margin_bottom = 418.0
+margin_bottom = 524.0
 tab_align = 0
 script = ExtResource( 16 )
 
 [node name="Game" type="VBoxContainer" parent="Main/Tabs"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -567,7 +568,6 @@ current_dir = "/mnt/data/Godot/Catapult"
 current_path = "/mnt/data/Godot/Catapult/"
 
 [node name="Settings" type="VBoxContainer" parent="Main/Tabs"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -615,9 +615,8 @@ margin_top = 140.0
 margin_right = 769.0
 margin_bottom = 169.0
 hint_tooltip = "Shows the Debug tab with some testing functions
-and enables debug messages in the log pane.
-The latter may be useful for troubleshooting."
-text = "Debug mode (requires restart)"
+and enables debug messages in the status  pane (useful for troubleshooting)."
+text = "Debug mode"
 
 [node name="NumReleases" type="HBoxContainer" parent="Main/Tabs/Settings"]
 margin_top = 175.0
@@ -834,7 +833,7 @@ size_flags_horizontal = 4
 text = "Print a random Tip of the Day"
 
 [node name="Log" type="RichTextLabel" parent="Main"]
-margin_top = 424.0
+margin_top = 530.0
 margin_right = 784.0
 margin_bottom = 984.0
 focus_mode = 2

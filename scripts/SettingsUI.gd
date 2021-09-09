@@ -4,6 +4,8 @@ extends VBoxContainer
 onready var _geom = $"/root/WindowGeometry"
 onready var _settings = $"/root/SettingsManager"
 onready var _root = $"/root/Catapult"
+onready var _tabs = $"/root/Catapult/Main/Tabs"
+onready var _debug_ui = $"/root/Catapult/Main/Tabs/Debug"
 
 onready var _migration = {
 	"savegames": $Migration/Grid/Savegames,
@@ -63,6 +65,11 @@ func _on_ShortenNames_toggled(button_pressed: bool) -> void:
 func _on_ShowDebug_toggled(button_pressed: bool) -> void:
 	
 	_settings.store("debug_mode", button_pressed)
+	
+	if button_pressed:
+		_tabs.add_child(_debug_ui)
+	else:
+		_tabs.remove_child(_debug_ui)
 
 
 func _on_sbNumReleases_value_changed(value: float) -> void:
