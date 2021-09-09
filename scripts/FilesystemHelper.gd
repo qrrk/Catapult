@@ -27,7 +27,13 @@ func list_dir(path: String, recursive := false) -> Array:
 	
 	var d = Directory.new()
 	d.open(path)
-	d.list_dir_begin(true)
+	
+	var error = d.list_dir_begin(true)
+	if error:
+		emit_signal("status_message", "Failed to list directory %s. Error code: %s."
+				% [path, error], Enums.MSG_ERROR)
+		return []
+	
 	var result = []
 	
 	while true:
@@ -52,12 +58,22 @@ func _copy_dir_internal(data: Array) -> void:
 	
 	var dir = abs_path.get_file()
 	var d = Directory.new()
-	d.make_dir_recursive(dest_dir.plus_file(dir))
+	
+	var error = d.make_dir_recursive(dest_dir.plus_file(dir))
+	if error:
+		emit_signal("status_message", "Could not create target directory %s. Error code: %s."
+				% [dest_dir.plus_file(dir), error], Enums.MSG_ERROR)
+		return
 	
 	for item in list_dir(abs_path):
 		var path = abs_path.plus_file(item)
 		if d.file_exists(path):
-			d.copy(path, dest_dir.plus_file(dir).plus_file(item))
+			error = d.copy(path, dest_dir.plus_file(dir).plus_file(item))
+			if error:
+				emit_signal("status_message", "Failed to copy file \"%s\". Error code: %s."
+						% [item, error], Enums.MSG_ERROR)
+				emit_signal("status_message", "[u]Source path:[/u] %s, [u]destination path:[/u] %s."
+						% [path, dest_dir.plus_file(dir).plus_file(item)])
 		elif d.dir_exists(path):
 			_copy_dir_internal([path, dest_dir.plus_file(dir), update_only])
 
@@ -76,14 +92,23 @@ func _rm_dir_internal(data: Array) -> void:
 	
 	var abs_path = data[0]
 	var d = Directory.new()
+	var error
+	
 	for item in list_dir(abs_path):
 		var path = abs_path.plus_file(item)
 		if d.file_exists(path):
-			d.remove(path)
+			error = d.remove(path)
+			if error:
+				emit_signal("status_message", "Failed to remove file \"%s\". Error code: %s."
+						% [item, error], Enums.MSG_ERROR)
+				emit_signal("status_message", "[u]Full path:[/u] %s." % path, Enums.MSG_DEBUG)
 		elif d.dir_exists(path):
 			_rm_dir_internal([path])
 	
-	d.remove(abs_path)
+	error = d.remove(abs_path)
+	if error:
+		emit_signal("status_message", "Failed to remove directory %s. Error code: %s."
+				% [abs_path, error], Enums.MSG_ERROR)
 
 
 func rm_dir(abs_path: String) -> void:
@@ -102,16 +127,29 @@ func _move_dir_internal(data: Array) -> void:
 	var abs_dest: String = data[1]
 	
 	var d = Directory.new()
-	d.make_dir_recursive(abs_dest)
+	var error = d.make_dir_recursive(abs_dest)
+	if error:
+		emit_signal("status_message", "Could not create target directory %s. Error code: %s."
+				% [abs_dest, error], Enums.MSG_ERROR)
+		return
 	
 	for item in list_dir(abs_path):
 		var path = abs_path.plus_file(item)
+		var dest = abs_dest.plus_file(item)
 		if d.file_exists(path):
-			d.rename(path, abs_dest.plus_file(item))
+			error = d.rename(path, abs_dest.plus_file(item))
+			if error:
+				emit_signal("status_message", "Failed to move file \"%s\". Error code: %s."
+						% [item, error], Enums.MSG_ERROR)
+				emit_signal("status_message", "[u]Source path:[/u] %s, [u]destination path:[/u] %s."
+						% [path, dest])
 		elif d.dir_exists(path):
 			_move_dir_internal([path, abs_dest.plus_file(item)])
 	
-	d.remove(abs_path)
+	error = d.remove(abs_path)
+	if error:
+		emit_signal("status_message", "Could not remove source directory %s. Error code: %s."
+				% [abs_path, error], Enums.MSG_ERROR)
 
 
 func move_dir(abs_path: String, abs_dest: String) -> void:

@@ -105,7 +105,6 @@ func print_msg(msg: String, msg_type = Enums.MSG_INFO) -> void:
 	
 	match msg_type:
 		Enums.MSG_INFO:
-			text += " " + msg
 			bb_text += " " + msg
 		Enums.MSG_WARN:
 			text += " [warning] " + msg
@@ -118,12 +117,9 @@ func print_msg(msg: String, msg_type = Enums.MSG_INFO) -> void:
 		Enums.MSG_DEBUG:
 			if not _debug_mode:
 				return
-			text += " [debug] " + msg
 			bb_text += " [color=#999999][debug] %s[/color]" % msg
 	
 	bb_text += "\n"
-	
-	print(text)
 	$Main/Log.append_bbcode(bb_text)
 
 

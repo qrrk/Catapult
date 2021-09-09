@@ -29,33 +29,35 @@ func install_release(release_info: Dictionary, game: String, update: bool = fals
 	_downloader.download_file(release_info["url"], _workdir, release_info["filename"])
 	yield(_downloader, "download_finished")
 	
-	_fshelper.extract(_workdir + "/" + release_info["filename"], tmpdir)
-	yield(_fshelper, "extract_done")
-	Directory.new().remove(_workdir + "/" + release_info["filename"])
-	
-	var extracted_root
-	match OS.get_name():
-		"X11":
-			extracted_root = tmpdir + "/" + _fshelper.list_dir(tmpdir)[0]
-		"Windows":
-			extracted_root = tmpdir
-	
-	_probe.create_info_file(extracted_root, release_info["name"])
-	
-	if update:
-		if len(_settings.read("game_data_to_migrate")) > 0:
-			_migrate_game_data(gamedir, extracted_root)
-			yield(self, "_migration_finished")
-		_fshelper.rm_dir(gamedir)
-		yield(_fshelper, "rm_dir_done")
-	
-	_fshelper.move_dir(extracted_root, gamedir)
-	yield(_fshelper, "move_dir_done")
-	
-	if update:
-		emit_signal("status_message", "Update finished.")
-	else:
-		emit_signal("status_message", "Installation finished.")
+	if Directory.new().file_exists(_workdir.plus_file(release_info["filename"])):
+		
+		_fshelper.extract(_workdir + "/" + release_info["filename"], tmpdir)
+		yield(_fshelper, "extract_done")
+		Directory.new().remove(_workdir + "/" + release_info["filename"])
+		
+		var extracted_root
+		match OS.get_name():
+			"X11":
+				extracted_root = tmpdir + "/" + _fshelper.list_dir(tmpdir)[0]
+			"Windows":
+				extracted_root = tmpdir
+		
+		_probe.create_info_file(extracted_root, release_info["name"])
+		
+		if update:
+			if len(_settings.read("game_data_to_migrate")) > 0:
+				_migrate_game_data(gamedir, extracted_root)
+				yield(self, "_migration_finished")
+			_fshelper.rm_dir(gamedir)
+			yield(_fshelper, "rm_dir_done")
+		
+		_fshelper.move_dir(extracted_root, gamedir)
+		yield(_fshelper, "move_dir_done")
+		
+		if update:
+			emit_signal("status_message", "Update finished.")
+		else:
+			emit_signal("status_message", "Installation finished.")
 	
 	emit_signal("installation_finished")
 

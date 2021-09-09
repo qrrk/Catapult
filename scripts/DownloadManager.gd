@@ -13,6 +13,7 @@ const _PROGRESS_AFTER_BYTES = 1024 * 1024 * 5
 
 
 var _current_filename: String = ""
+var _current_file_path: String = ""
 var _download_ongoing: bool = false
 
 
@@ -21,6 +22,7 @@ func download_file(url: String, target_dir: String, target_filename: String) -> 
 	emit_signal("status_message", "Downloading %s..." % target_filename)
 	emit_signal("download_started")
 	_current_filename = target_filename
+	_current_file_path = target_dir.plus_file(target_filename)
 	$HTTPRequest.download_file = target_dir + "/" + target_filename
 	$HTTPRequest.request(url)
 	_download_ongoing = true
@@ -54,7 +56,7 @@ func _get_progress_string(downloaded: int, total: int,
 	if (downloaded > 1024*1024):
 		amount_str = "%.1f MB" % (downloaded / 1048576.0)
 	else:
-# warning-ignore:integer_division
+		# warning-ignore:integer_division
 		amount_str = "%s KB" % (downloaded / 1024)
 		
 	var percent_str = ""
@@ -76,7 +78,14 @@ func _on_HTTPRequest_request_completed(_result: int, _response_code: int,
 		_headers: PoolStringArray, _body: PoolByteArray) -> void:
 	
 	_download_ongoing = false
-	emit_signal("status_message", "Finished downloading %s." % _current_filename)
+	emit_signal("status_message", "[b]HTTPRequest info:[/b]\n[u]Result:[/u] %s\n[u]Response code:[/u] %s\n[u]Headers:[/u] %s" %
+			[_result, _response_code, _headers], Enums.MSG_DEBUG)
+			
+	if Directory.new().file_exists(_current_file_path):
+		emit_signal("status_message", "Finished downloading %s." % _current_filename)
+	else:
+		emit_signal("status_message", "Failed to download %s." % _current_filename, Enums.MSG_ERROR)
+	
 	emit_signal("download_finished")
 
 

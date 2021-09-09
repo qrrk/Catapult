@@ -161,8 +161,11 @@ func _request_bn() -> void:
 func _on_request_completed_dda(result: int, response_code: int,
 		headers: PoolStringArray, body: PoolByteArray) -> void:
 	
+	emit_signal("status_message", "[b]HTTPRequest info:[/b]\n[u]Result:[/u] %s\n[u]Response code:[/u] %s\n[u]Headers:[/u] %s" %
+			[result, response_code, headers], Enums.MSG_DEBUG)
+	
 	if result:
-		emit_signal("status_message", "Request failed. Do you have internet connection? Result code: %s" % result, Enums.MSG_WARN)
+		emit_signal("status_message", "Request failed. Do you have internet connection?", Enums.MSG_WARN)
 	else:
 		_parse_builds(body, releases["dda-experimental"], _ASSET_FILTERS["dda-experimental-" + _platform])
 	
@@ -172,8 +175,11 @@ func _on_request_completed_dda(result: int, response_code: int,
 func _on_request_completed_bn(result: int, response_code: int,
 		headers: PoolStringArray, body: PoolByteArray) -> void:
 	
+	emit_signal("status_message", "[b]HTTPRequest info:[/b]\n[u]Result:[/u] %s\n[u]Response code:[/u] %s\n[u]Headers:[/u] %s" %
+			[result, response_code, headers], Enums.MSG_DEBUG)
+	
 	if result:
-		emit_signal("status_message", "Request failed. Do you have internet connection? Result code: %s" % result, Enums.MSG_WARN)
+		emit_signal("status_message", "Request failed. Do you have internet connection?", Enums.MSG_WARN)
 	else:
 		_parse_builds(body, releases["bn-experimental"], _ASSET_FILTERS["bn-experimental-" + _platform])
 	
