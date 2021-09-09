@@ -153,6 +153,11 @@ func _is_selected_game_installed() -> bool:
 	return (game in info)
 
 
+func _on_Tabs_tab_changed(tab: int) -> void:
+	
+	_refresh_currently_installed()
+
+
 func _on_GamesList_item_selected(index: int) -> void:
 	
 	match index:
@@ -193,6 +198,7 @@ func _on_Releases_done_fetching_releases() -> void:
 	
 	_smart_reenable_controls("disable_while_fetching_releases")
 	reload_builds_list()
+	_refresh_currently_installed()
 
 
 func _on_ReleaseInstaller_installation_started() -> void:
@@ -361,7 +367,8 @@ func _refresh_currently_installed() -> void:
 		btn_install.text = "Update to Selected"
 		btn_play.disabled = false
 		if (list.selected != -1) and (list.selected < len(releases)):
-			btn_install.disabled = (releases[list.selected]["name"] == info[game]["name"])
+				if not _settings.read("update_to_same_build_allowed"):
+					btn_install.disabled = (releases[list.selected]["name"] == info[game]["name"])
 		else:
 			btn_install.disabled = true
 		

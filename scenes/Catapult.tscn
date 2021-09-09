@@ -615,7 +615,8 @@ margin_top = 140.0
 margin_right = 769.0
 margin_bottom = 169.0
 hint_tooltip = "Shows the Debug tab with some testing functions
-and enables debug messages in the status  pane (useful for troubleshooting)."
+and enables debug messages in the status  pane
+(useful for troubleshooting)."
 text = "Debug mode"
 
 [node name="NumReleases" type="HBoxContainer" parent="Main/Tabs/Settings"]
@@ -896,6 +897,7 @@ __meta__ = {
 }
 
 [connection signal="meta_clicked" from="Main/GameInfo/Description" to="." method="_on_Description_meta_clicked"]
+[connection signal="tab_changed" from="Main/Tabs" to="." method="_on_Tabs_tab_changed"]
 [connection signal="tab_changed" from="Main/Tabs" to="Main/Tabs/Mods" method="_on_Tabs_tab_changed"]
 [connection signal="tab_changed" from="Main/Tabs" to="Main/Tabs/Soundpacks" method="_on_Tabs_tab_changed"]
 [connection signal="item_selected" from="Main/Tabs/Game/Builds/BuildsList" to="." method="_on_BuildsList_item_selected"]
