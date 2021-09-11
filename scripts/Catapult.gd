@@ -8,10 +8,30 @@ const _GAME_DESC = {
 		"[b]Cataclysm: Bright Nights[/b]. Reject pedantry, embrace [color=#ff3300]!!fun!![/color]. This fork takes the game back to its sci-fi rougelike roots and reverts many controversial changes by the DDA team (pockets, proficiencies, freezing, and [color=#3b93f7][url=https://github.com/cataclysmbnteam/Cataclysm-BN/wiki/Changes-so-far]more[/url][/color]). Special attention is paid to combat, game balance and pacing.",
 }
 
-
 onready var _settings = $"/root/SettingsManager"
 onready var _geom = $"/root/WindowGeometry"
+onready var _self = $"."
 onready var _debug_ui = $Main/Tabs/Debug
+onready var _log = $Main/Log
+onready var _totd = $TOTD
+onready var _game_info = $Main/GameInfo
+onready var _game_desc = $Main/GameInfo/Description
+onready var _mod_info = $Main/Tabs/Mods/ModInfo
+onready var _inst_probe = $InstallProbe
+onready var _tabs = $Main/Tabs
+onready var _mods = $Mods
+onready var _releases = $Releases
+onready var _fshelper = $FSHelper
+onready var _installer = $ReleaseInstaller
+onready var _btn_install = $Main/Tabs/Game/BtnInstall
+onready var _btn_refresh = $Main/Tabs/Game/Builds/BtnRefresh
+onready var _btn_play = $Main/Tabs/Game/CurrentInstall/BtnPlay
+onready var _lst_builds = $Main/Tabs/Game/Builds/BuildsList
+onready var _lst_games = $Main/GameChoice/GamesList
+onready var _rbtn_stable = $Main/Tabs/Game/Channel/Group/RBtnStable
+onready var _rbtn_exper = $Main/Tabs/Game/Channel/Group/RBtnExperimental
+onready var _lbl_build = $Main/Tabs/Game/CurrentInstall/Build
+
 
 var _disable_savestate = {}
 var _ui_staring_sizes = {}  # For UI scaling on the fly
@@ -21,10 +41,10 @@ func _ready() -> void:
 	
 	OS.set_window_title("Catapult — a launcher for Cataclysm: DDA and BN")
 	
-	$Main/Log.text = ""
+	_log.text = ""
 	var welcome_msg = "Welcome to Catapult!"
 	if _settings.read("print_tips_of_the_day"):
-		welcome_msg += "\n\n[u]Tip of the day:[/u]\n" + $TOTD.get_tip() + "\n"
+		welcome_msg += "\n\n[u]Tip of the day:[/u]\n" + _totd.get_tip() + "\n"
 	print_msg(welcome_msg)
 	setup_ui()
 
@@ -32,9 +52,9 @@ func _ready() -> void:
 func apply_ui_scale() -> void:
 	# Scale all kinds of fixed sizes with DPI.
 	
-	$".".get_font("DynamicFont").size = 14.0 * _geom.scale
+	_self.get_font("DynamicFont").size = 14.0 * _geom.scale
 	
-	for node in [$Main/GameInfo/Description, $Main/Log, $Main/Tabs/Mods/ModInfo]:
+	for node in [_game_desc, _log, _mod_info]:
 		for font_prop in [
 			"custom_fonts/normal_font",
 			"custom_fonts/italics_font",
@@ -50,7 +70,7 @@ func apply_ui_scale() -> void:
 				]:
 			_try_scale_property(node, property, _geom.scale)
 			
-	var theme = $".".theme
+	var theme = _self.theme
 	for node_type in ["CheckButton", "CheckBox", "SpinBox"]:
 		for icon in theme.get_icon_list(node_type):
 			_try_scale_property(theme.get_icon(icon, node_type), "size", _geom.scale)
@@ -118,7 +138,9 @@ func print_msg(msg: String, msg_type = Enums.MSG_INFO) -> void:
 			bb_text += " [color=#999999][debug] %s[/color]" % msg
 	
 	bb_text += "\n"
-	$Main/Log.append_bbcode(bb_text)
+	
+	if _log:
+		_log.append_bbcode(bb_text)
 
 
 func _smart_disable_controls(group_name: String) -> void:
@@ -148,7 +170,7 @@ func _smart_reenable_controls(group_name: String) -> void:
 
 func _is_selected_game_installed() -> bool:
 	
-	var info = $InstallProbe.probe_installed_games()
+	var info = _inst_probe.probe_installed_games()
 	var game = _settings.read("game")
 	return (game in info)
 
@@ -163,17 +185,17 @@ func _on_GamesList_item_selected(index: int) -> void:
 	match index:
 		0:
 			_settings.store("game", "dda")
-			$Main/GameInfo/Description.bbcode_text = _GAME_DESC["dda"]
+			_game_desc.bbcode_text = _GAME_DESC["dda"]
 		1:
 			_settings.store("game", "bn")
-			$Main/GameInfo/Description.bbcode_text = _GAME_DESC["bn"]
+			_game_desc.bbcode_text = _GAME_DESC["bn"]
 	
-	$Main/Tabs.current_tab = 0
+	_tabs.current_tab = 0
 	apply_game_choice()
 	_refresh_currently_installed()
 	
-	$Mods.refresh_installed()
-	$Mods.refresh_available()
+	_mods.refresh_installed()
+	_mods.refresh_available()
 
 
 func _on_RBtnStable_toggled(button_pressed: bool) -> void:
@@ -239,21 +261,20 @@ func _on_Description_meta_clicked(meta) -> void:
 
 func _on_BtnRefresh_pressed() -> void:
 	
-	$Releases.fetch(_get_release_key())
+	_releases.fetch(_get_release_key())
 
 
 func _on_BuildsList_item_selected(index: int) -> void:
 	
-	var info = $InstallProbe.probe_installed_games()
+	var info = _inst_probe.probe_installed_games()
 	var game = _settings.read("game")
-	var btn = $Main/Tabs/Game/BtnInstall
 	
 	if (not _settings.read("update_to_same_build_allowed")) \
 			and (game in info) \
-			and (info[game]["name"] == $Releases.releases[_get_release_key()][index]["name"]):
-		btn.disabled = true
+			and (info[game]["name"] == _releases.releases[_get_release_key()][index]["name"]):
+		_btn_install.disabled = true
 	else:
-		btn.disabled = false
+		_btn_install.disabled = false
 
 
 func _on_status_message(msg: String, msg_type: int = Enums.MSG_INFO) -> void:
@@ -263,10 +284,10 @@ func _on_status_message(msg: String, msg_type: int = Enums.MSG_INFO) -> void:
 
 func _on_BtnInstall_pressed() -> void:
 	
-	var index = $Main/Tabs/Game/Builds/BuildsList.selected
-	var release = $Releases.releases[_get_release_key()][index]
-	var update = _settings.read("game") in $InstallProbe.probe_installed_games()
-	$ReleaseInstaller.install_release(release, _settings.read("game"), update)
+	var index = _lst_builds.selected
+	var release = _releases.releases[_get_release_key()][index]
+	var update = _settings.read("game") in _inst_probe.probe_installed_games()
+	_installer.install_release(release, _settings.read("game"), update)
 
 
 func _get_release_key() -> String:
@@ -286,14 +307,14 @@ func _get_release_key() -> String:
 
 func setup_ui() -> void:
 
-	$Main/GameInfo.visible = _settings.read("show_game_desc")
+	_game_info.visible = _settings.read("show_game_desc")
 	if not _settings.read("debug_mode"):
-		$Main/Tabs.remove_child(_debug_ui)
+		_tabs.remove_child(_debug_ui)
 	
 	apply_game_choice()
 	
-	$Main/GameChoice/GamesList.connect("item_selected", self, "_on_GamesList_item_selected")
-	$Main/Tabs/Game/Channel/Group/RBtnStable.connect("toggled", self, "_on_RBtnStable_toggled")
+	_lst_games.connect("item_selected", self, "_on_GamesList_item_selected")
+	_rbtn_stable.connect("toggled", self, "_on_RBtnStable_toggled")
 	# Had to leave these signals unconnected in the editor and only connect
 	# them now from code to avoid cyclic calls of apply_game_choice.
 	
@@ -302,10 +323,9 @@ func setup_ui() -> void:
 
 func reload_builds_list() -> void:
 	
-	var list = $Main/Tabs/Game/Builds/BuildsList
-	list.clear()
-	for rec in $Releases.releases[_get_release_key()]:
-			list.add_item(rec["name"])
+	_lst_builds.clear()
+	for rec in _releases.releases[_get_release_key()]:
+			_lst_builds.add_item(rec["name"])
 	_refresh_currently_installed()
 
 
@@ -318,32 +338,32 @@ func apply_game_choice() -> void:
 
 	match game:
 		"dda":
-			$Main/GameChoice/GamesList.select(0)
-			$Main/Tabs/Game/Channel/Group/RBtnExperimental.disabled = false
-			$Main/Tabs/Game/Channel/Group/RBtnStable.disabled = false
+			_lst_games.select(0)
+			_rbtn_exper.disabled = false
+			_rbtn_stable.disabled = false
 			if channel == "stable":
-				$Main/Tabs/Game/Channel/Group/RBtnStable.pressed = true
-				$Main/Tabs/Game/Builds/BtnRefresh.disabled = true
+				_rbtn_stable.pressed = true
+				_btn_refresh.disabled = true
 			else:
-				$Main/Tabs/Game/Builds/BtnRefresh.disabled = false
+				_btn_refresh.disabled = false
 		"bn":
-			$Main/GameChoice/GamesList.select(1)
-			$Main/Tabs/Game/Channel/Group/RBtnExperimental.pressed = true
-			$Main/Tabs/Game/Channel/Group/RBtnExperimental.disabled = true
-			$Main/Tabs/Game/Channel/Group/RBtnStable.disabled = true
-			$Main/Tabs/Game/Builds/BtnRefresh.disabled = false
+			_lst_games.select(1)
+			_rbtn_exper.pressed = true
+			_rbtn_exper.disabled = true
+			_rbtn_stable.disabled = true
+			_btn_refresh.disabled = false
 			
-	$Main/GameInfo/Description.bbcode_text = _GAME_DESC[game]
+	_game_desc.bbcode_text = _GAME_DESC[game]
 	
-	if len($Releases.releases[_get_release_key()]) == 0:
-		$Releases.fetch(_get_release_key())
+	if len(_releases.releases[_get_release_key()]) == 0:
+		_releases.fetch(_get_release_key())
 	else:
 		reload_builds_list()
 
 
 func _on_BtnPlay_pressed() -> void:
 	
-	var exec_path = $FSHelper.get_own_dir().plus_file(_settings.read("game")).plus_file("current")
+	var exec_path = _fshelper.get_own_dir().plus_file(_settings.read("game")).plus_file("current")
 	match OS.get_name():
 		"X11":
 			OS.execute(exec_path.plus_file("cataclysm-launcher"), [], false)
@@ -354,29 +374,25 @@ func _on_BtnPlay_pressed() -> void:
 
 func _refresh_currently_installed() -> void:
 	
-	var info = $InstallProbe.probe_installed_games()
+	var info = _inst_probe.probe_installed_games()
 	var game = _settings.read("game")
-	var list = $Main/Tabs/Game/Builds/BuildsList
-	var label = $Main/Tabs/Game/CurrentInstall/Build
-	var btn_install = $Main/Tabs/Game/BtnInstall
-	var btn_play = $Main/Tabs/Game/CurrentInstall/BtnPlay
-	var releases = $Releases.releases[_get_release_key()]
+	var releases = _releases.releases[_get_release_key()]
 	
 	if _is_selected_game_installed():
-		label.text = info[game]["name"]
-		btn_install.text = "Update to Selected"
-		btn_play.disabled = false
-		if (list.selected != -1) and (list.selected < len(releases)):
+		_lbl_build.text = info[game]["name"]
+		_btn_install.text = "Update to Selected"
+		_btn_play.disabled = false
+		if (_lst_builds.selected != -1) and (_lst_builds.selected < len(releases)):
 				if not _settings.read("update_to_same_build_allowed"):
-					btn_install.disabled = (releases[list.selected]["name"] == info[game]["name"])
+					_btn_install.disabled = (releases[_lst_builds.selected]["name"] == info[game]["name"])
 		else:
-			btn_install.disabled = true
+			_btn_install.disabled = true
 		
 	else:
-		label.text = "None"
-		btn_install.text = "Install Selected"
-		btn_install.disabled = false
-		btn_play.disabled = true
+		_lbl_build.text = "None"
+		_btn_install.text = "Install Selected"
+		_btn_install.disabled = false
+		_btn_play.disabled = true
 		
 	for i in [1, 2]:
-		$Main/Tabs.set_tab_disabled(i, not _is_selected_game_installed())
+		_tabs.set_tab_disabled(i, not _is_selected_game_installed())

@@ -67,9 +67,10 @@ func _on_ShowDebug_toggled(button_pressed: bool) -> void:
 	_settings.store("debug_mode", button_pressed)
 	
 	if button_pressed:
-		_tabs.add_child(_debug_ui)
-	else:
-		_tabs.remove_child(_debug_ui)
+		if _debug_ui.get_parent() != _tabs:
+			_tabs.call_deferred("add_child", _debug_ui)
+	elif _debug_ui.get_parent() == _tabs:
+		_tabs.call_deferred("remove_child", _debug_ui)
 
 
 func _on_sbNumReleases_value_changed(value: float) -> void:

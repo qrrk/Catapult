@@ -10,6 +10,7 @@ onready var _btn_install = $HBox/Downloadable/BtnInstall
 onready var _dlg_confirm_del = $ConfirmDelete
 onready var _dlg_manual_dl = $ConfirmManualDownload
 onready var _dlg_file = $InstallFromFileDialog
+onready var _cbox_stock = $HBox/Installed/ShowStock
 
 onready var _workdir = OS.get_executable_path().get_base_dir()
 
@@ -71,7 +72,7 @@ func _on_Tabs_tab_changed(tab: int) -> void:
 		return
 		
 	_gamedir = _workdir + "/" + _settings.read("game") + "/current"
-	$HBox/Installed/ShowStock.pressed = _settings.read("show_stock_sound")
+	_cbox_stock.pressed = _settings.read("show_stock_sound")
 	
 	_btn_delete.disabled = true
 	_btn_install.disabled = true

@@ -5,16 +5,16 @@ signal status_message
 signal download_started
 signal download_finished
 
-
 # Give progress update after this time or this amount downloaded,
 # whichever comes first.
 const _PROGRESS_AFTER_MSECS = 2000
 const _PROGRESS_AFTER_BYTES = 1024 * 1024 * 5
 
-
 var _current_filename: String = ""
 var _current_file_path: String = ""
 var _download_ongoing: bool = false
+
+onready var _http = $HTTPRequest
 
 
 func download_file(url: String, target_dir: String, target_filename: String) -> void:
@@ -23,16 +23,16 @@ func download_file(url: String, target_dir: String, target_filename: String) -> 
 	emit_signal("download_started")
 	_current_filename = target_filename
 	_current_file_path = target_dir.plus_file(target_filename)
-	$HTTPRequest.download_file = target_dir + "/" + target_filename
-	$HTTPRequest.request(url)
+	_http.download_file = target_dir + "/" + target_filename
+	_http.request(url)
 	_download_ongoing = true
 	var last_progress_time = OS.get_system_time_msecs()
 	var last_progress_bytes = 0
 	
 	while _download_ongoing:
 		
-		var downloaded = $HTTPRequest.get_downloaded_bytes()
-		var total = $HTTPRequest.get_body_size()
+		var downloaded = _http.get_downloaded_bytes()
+		var total = _http.get_body_size()
 		
 		if downloaded < 1:
 			yield(get_tree(), "idle_frame")
