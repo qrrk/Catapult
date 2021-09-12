@@ -25,12 +25,13 @@ onready var _fshelper = $FSHelper
 onready var _installer = $ReleaseInstaller
 onready var _btn_install = $Main/Tabs/Game/BtnInstall
 onready var _btn_refresh = $Main/Tabs/Game/Builds/BtnRefresh
+onready var _btn_game_dir = $Main/Tabs/Game/CurrentInstall/Build/GameDir
 onready var _btn_play = $Main/Tabs/Game/CurrentInstall/BtnPlay
 onready var _lst_builds = $Main/Tabs/Game/Builds/BuildsList
 onready var _lst_games = $Main/GameChoice/GamesList
 onready var _rbtn_stable = $Main/Tabs/Game/Channel/Group/RBtnStable
 onready var _rbtn_exper = $Main/Tabs/Game/Channel/Group/RBtnExperimental
-onready var _lbl_build = $Main/Tabs/Game/CurrentInstall/Build
+onready var _lbl_build = $Main/Tabs/Game/CurrentInstall/Build/Name
 
 
 var _disable_savestate = {}
@@ -319,6 +320,13 @@ func _get_release_key() -> String:
 	return key
 
 
+func _on_GameDir_pressed() -> void:
+	
+	var gamedir = _fshelper.get_own_dir().plus_file(_settings.read("game")).plus_file("current")
+	if Directory.new().dir_exists(gamedir):
+		OS.shell_open(gamedir)
+
+
 func setup_ui() -> void:
 
 	_game_info.visible = _settings.read("show_game_desc")
@@ -396,6 +404,7 @@ func _refresh_currently_installed() -> void:
 		_lbl_build.text = info[game]["name"]
 		_btn_install.text = "Update to Selected"
 		_btn_play.disabled = false
+		_btn_game_dir.visible = true
 		if (_lst_builds.selected != -1) and (_lst_builds.selected < len(releases)):
 				if not _settings.read("update_to_same_build_allowed"):
 					_btn_install.disabled = (releases[_lst_builds.selected]["name"] == info[game]["name"])
@@ -407,6 +416,7 @@ func _refresh_currently_installed() -> void:
 		_btn_install.text = "Install Selected"
 		_btn_install.disabled = false
 		_btn_play.disabled = true
+		_btn_game_dir.visible = false
 		
 	for i in [1, 2]:
 		_tabs.set_tab_disabled(i, not _is_selected_game_installed())
