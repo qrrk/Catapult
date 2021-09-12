@@ -62,7 +62,6 @@ func _copy_dir_internal(data: Array) -> void:
 	
 	var abs_path: String = data[0]
 	var dest_dir: String = data[1]
-	var update_only: bool = data[2]
 	
 	var dir = abs_path.get_file()
 	var d = Directory.new()
@@ -83,14 +82,14 @@ func _copy_dir_internal(data: Array) -> void:
 				emit_signal("status_message", "[u]Source path:[/u] %s, [u]destination path:[/u] %s."
 						% [path, dest_dir.plus_file(dir).plus_file(item)])
 		elif d.dir_exists(path):
-			_copy_dir_internal([path, dest_dir.plus_file(dir), update_only])
+			_copy_dir_internal([path, dest_dir.plus_file(dir)])
 
 
-func copy_dir(abs_path: String, dest_dir: String, update_only := false) -> void:
+func copy_dir(abs_path: String, dest_dir: String) -> void:
 	# Recursively copies a directory *into* a new location.
 	
 	var tfe = ThreadedFuncExecutor.new()
-	tfe.execute(self, "_copy_dir_internal", [abs_path, dest_dir, update_only])
+	tfe.execute(self, "_copy_dir_internal", [abs_path, dest_dir])
 	yield(tfe, "func_returned")
 	tfe.collect()
 	emit_signal("copy_dir_done")

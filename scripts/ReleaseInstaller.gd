@@ -92,7 +92,7 @@ func _migrate_game_data(from_dir: String, to_dir: String) -> void:
 		
 	if "tilesets" in datatypes:
 		emit_signal("status_message", "Copying tilesets...")
-		_fshelper.copy_dir(from_dir + "/gfx", to_dir, true)
+		_fshelper.copy_dir(from_dir + "/gfx", to_dir)
 		yield(_fshelper, "copy_dir_done")
 		
 	if "soundpacks" in datatypes:
