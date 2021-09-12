@@ -8,7 +8,10 @@ signal move_dir_done
 signal extract_done
 
 
-var _platform = ""
+var _platform: String = ""
+
+var last_extract_result: int = 0 setget , _get_last_extract_result
+# Stores the exit code of the last extract operation (0 if successful).
 
 
 func _enter_tree() -> void:
@@ -20,6 +23,11 @@ func get_own_dir() -> String:
 	# Returns the absolute path to the directory with the executable.
 	
 	return OS.get_executable_path().get_base_dir()
+
+
+func _get_last_extract_result() -> int:
+	
+	return last_extract_result
 
 
 func list_dir(path: String, recursive := false) -> Array:
@@ -164,7 +172,10 @@ func move_dir(abs_path: String, abs_dest: String) -> void:
 
 
 func extract(path: String, dest_dir: String) -> void:
-	# Extracts a .zip or .tar.gz archive using the system utilities.
+	# Extracts a .zip or .tar.gz archive using the system utilities on Linux
+	# and bundled unzip.exe from InfoZip on Windows.
+	
+	var unzip_exe = get_own_dir().plus_file("utils").plus_file("unzip.exe")
 	
 	var command_linux_zip = {
 		"name": "unzip",
@@ -177,9 +188,8 @@ func extract(path: String, dest_dir: String) -> void:
 				# Godot can't operate on symlinks just yet, so we have to avoid them.
 	}
 	var command_windows = {
-		"name": "powershell",
-		"args": ["-NoP", "-NonI", "-Command",
-				 "\"Expand-Archive -Force '%s' '%s'\"" % [path, dest_dir]]
+		"name": unzip_exe,
+		"args": ["-o", "\"\"%s\"\"" % path, "-d", "\"\"%s\"\"" % dest_dir]
 	}
 	var command
 	
@@ -203,13 +213,10 @@ func extract(path: String, dest_dir: String) -> void:
 	var oew = OSExecWrapper.new()
 	oew.execute(command["name"], command["args"])
 	yield(oew, "process_exited")
+	last_extract_result = oew.exit_code
 	if oew.exit_code:
 		emit_signal("status_message", "Archive extraction command exited with an error (exit code: %s)"
 				% oew.exit_code, Enums.MSG_ERROR)
 		emit_signal("status_message", "Failed command: " + str(command), Enums.MSG_DEBUG)
 		emit_signal("status_message", "Output: " + oew.output[0], Enums.MSG_DEBUG)
 	emit_signal("extract_done")
-
-# if you're on Windows 7 or 10 with powershell you can use: powershell.exe -NoP -NonI -Command "Expand-Archive '.\file.zip' '.\unziped\'" – AK_ Mar 17 '18 at 21:11
-# powershell -NoP -NonI -Command "Expand-Archive -Force 'test.zip' 'asdf'"
-

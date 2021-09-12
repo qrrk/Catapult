@@ -40,13 +40,27 @@ var _ui_staring_sizes = {}  # For UI scaling on the fly
 func _ready() -> void:
 	
 	OS.set_window_title("Catapult — a launcher for Cataclysm: DDA and BN")
-	
 	_log.text = ""
+	
 	var welcome_msg = "Welcome to Catapult!"
 	if _settings.read("print_tips_of_the_day"):
 		welcome_msg += "\n\n[u]Tip of the day:[/u]\n" + _totd.get_tip() + "\n"
 	print_msg(welcome_msg)
+	
+	_unpack_utils()
 	setup_ui()
+
+
+func _unpack_utils() -> void:
+	
+	var d = Directory.new()
+	var utils_dir = _fshelper.get_own_dir().plus_file("utils")
+	if not d.dir_exists(utils_dir):
+		d.make_dir(utils_dir)
+	var unzip_exe = utils_dir.plus_file("unzip.exe")
+	if (OS.get_name() == "Windows") and (not d.file_exists(unzip_exe)):
+		print_msg("Unpacking unzip.exe...")
+		d.copy("res://utils/unzip.exe", unzip_exe)
 
 
 func apply_ui_scale() -> void:
