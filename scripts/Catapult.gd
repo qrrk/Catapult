@@ -56,10 +56,10 @@ func _unpack_utils() -> void:
 	
 	var d = Directory.new()
 	var utils_dir = _fshelper.get_own_dir().plus_file("utils")
-	if not d.dir_exists(utils_dir):
-		d.make_dir(utils_dir)
 	var unzip_exe = utils_dir.plus_file("unzip.exe")
 	if (OS.get_name() == "Windows") and (not d.file_exists(unzip_exe)):
+		if not d.dir_exists(utils_dir):
+			d.make_dir(utils_dir)
 		print_msg("Unpacking unzip.exe...")
 		d.copy("res://utils/unzip.exe", unzip_exe)
 
