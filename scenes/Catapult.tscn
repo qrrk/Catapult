@@ -580,8 +580,8 @@ window_title = "Open a File"
 mode = 0
 access = 2
 filters = PoolStringArray( "*.zip" )
-current_dir = "/mnt/data/Godot/Catapult/Project"
-current_path = "/mnt/data/Godot/Catapult/Project/"
+current_dir = "/Godot/Catapult/Project"
+current_path = "/Godot/Catapult/Project/"
 
 [node name="Settings" type="VBoxContainer" parent="Main/Tabs"]
 visible = false

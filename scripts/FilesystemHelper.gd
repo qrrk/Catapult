@@ -187,8 +187,8 @@ func extract(path: String, dest_dir: String) -> void:
 				# Godot can't operate on symlinks just yet, so we have to avoid them.
 	}
 	var command_windows = {
-		"name": unzip_exe,
-		"args": ["-o", "\"\"%s\"\"" % path, "-d", "\"\"%s\"\"" % dest_dir]
+		"name": "cmd",
+		"args": ["/C", "\"%s\" -o \"%s\" -d \"%s\"" % [unzip_exe, path, dest_dir]]
 	}
 	var command
 	
