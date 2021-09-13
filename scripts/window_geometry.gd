@@ -25,7 +25,7 @@ func _apply_scale() -> void:
 func calculate_scale_from_dpi() -> float:
 	
 	var ratio = OS.get_screen_dpi() / 96.0
-	return ceil(ratio / 0.25) * 0.25
+	return round(ratio / 0.125) * 0.125
 
 
 func _on_SceneTree_idle():
