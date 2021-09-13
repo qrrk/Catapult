@@ -8,30 +8,27 @@
 
 - Automatic game download and installation (stable or experimental releases).
 - Updating the game while preserving user data (saved games, settings, mods, etc).
-- Mod management: Kenan Modpack download and complete or selective installation.
+- Mod management: [Kenan Modpack](https://github.com/Kenan2000/CDDA-Kenan-Modpack) download and complete or selective installation.
 - Automatic download and installation of soundpacks.
+- Fully portable and can be carried on a removable drive.
 - Good support for HiDPI displays: UI is automatically scaled with screen DPI, with ability to adjust the scale manually.
 
 ## Installation
 
-None required. The launcher is a single, self-contained executable. Just [download](https://github.com/qrrk/Catapult/releases) it to a separate folder and run!
+None required. The launcher is a single, self-contained executable. Just [download](https://github.com/qrrk/Catapult/releases) it to a separate folder and run. *Be sure you have write permission in that folder!*
 
 ## System requirements
 
-- OS: Windows 7+ or Linux, 64 bit.
+- 64-bit operating system.
+- Windows 7+ or Linux/X11.
 - OpenGL 2.1 support.
-
-## Known issues/limitations
-
-- The Windows version relies on PowerShell to extract archives, which is kinda slow.
-- When attempting to run the Windows version from a USB stick, the files are not created alongside the executable, but god knows where. A "security" feature of Windows, I suppose. My knowledge of Windows is rusty, so I don't know if there is any workaround for this.
-- The Windows executable has to have the default Godot icon, since you can't have a custom icon and a self-contained executable at the same time.
 
 ## Future plans
 
 These are tentative. They may or may not come to fruition.
 
 - Translations.
+- Setting in-game font from the launcher.
 - Backups for savegames, settings, maybe the whole game.
   (Backing up at least the current installation before updating will be a good failsafe.)
 - Multiple UI themes (with at least one light theme).
@@ -55,4 +52,4 @@ I was almost desperate enough to use Electron, but then I remembered about my ol
 
 Once I confirmed that Godot was a good fit, I moved the project to it and started fleshing it out. I worked in secret, since I have a nasty habit of burning out and losing interest half-way though projects, so I didn't want to announce anything until some kind of MVP was achieved. Therefore, the first public release of the launcher is already in a fairly finished state.
 
-I am an amateur, and developing something for the public and with a clear practical purpose is new to me, so feedback and criticism are welcome (constructive or not, I can bear it).
+I am an amateur, and developing something for the public and with a clear practical purpose is new to me, so feedback and criticism are welcome (constructive or not, I can take it).
