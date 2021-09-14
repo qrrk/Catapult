@@ -808,7 +808,7 @@ margin_top = 56.0
 margin_right = 496.0
 margin_bottom = 85.0
 size_flags_horizontal = 6
-text = "Test mod directory pasring"
+text = "Test mod directory parsing"
 
 [node name="Button2" type="Button" parent="Main/Tabs/Debug"]
 margin_left = 266.0
@@ -816,7 +816,7 @@ margin_top = 91.0
 margin_right = 502.0
 margin_bottom = 120.0
 size_flags_horizontal = 6
-text = "Test sound directory pasring"
+text = "Test sound directory parsing"
 
 [node name="Button3" type="Button" parent="Main/Tabs/Debug"]
 margin_left = 201.0
