@@ -18,6 +18,7 @@ const _HARDCODED_DEFAULTS = {
 	"show_stock_mods": false,
 	"show_installed_mods_in_available": false,
 	"show_stock_sound": false,
+	"font_preview_cyrillic": false,
 	"show_game_desc": true,
 	"debug_mode": false,
 	"game_data_to_migrate": [
