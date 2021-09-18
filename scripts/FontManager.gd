@@ -66,6 +66,14 @@ func load_available_fonts() -> void:
 	available_fonts = json_result.result
 
 
+func font_config_file_exists() -> bool:
+	
+	var config_file: String = _workdir.plus_file(_settings.read("game")).\
+			plus_file("current").plus_file("config").plus_file("fonts.json")
+			
+	return Directory.new().file_exists(config_file)
+
+
 func load_font_config() -> void:
 	
 	var result: Dictionary = {}
@@ -87,9 +95,17 @@ func load_font_config() -> void:
 			emit_signal("status_message", "Could not open font config file %s (error code: %s)."
 					% [config_file, err], Enums.MSG_ERROR)
 	else:
-		emit_signal("status_message", "Font config file %s is not found!", Enums.MSG_ERROR)
+		emit_signal("status_message", "Font config file %s is not found!" % config_file, Enums.MSG_ERROR)
 	
 	font_config = result
+
+
+func options_file_exists() -> bool:
+	
+	var options_file: String = _workdir.plus_file(_settings.read("game")).\
+		plus_file("current").plus_file("config").plus_file("options.json")
+		
+	return Directory.new().file_exists(options_file)
 
 
 func load_game_options() -> void:
@@ -112,7 +128,7 @@ func load_game_options() -> void:
 			emit_signal("status_message", "Could not open game options file %s (error code: %s)."
 					% [options_file, err], Enums.MSG_ERROR)
 	else:
-		emit_signal("status_message", "Game options file %s is not found!", Enums.MSG_ERROR)
+		emit_signal("status_message", "Game options file %s is not found!" % options_file, Enums.MSG_ERROR)
 
 
 func _write_font_config() -> void:

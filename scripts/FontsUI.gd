@@ -55,6 +55,7 @@ const _PREVIEW_TEXT_NUM := "1234567890 !@#$ %^&* ()[]{}"
 
 onready var _rng := RandomNumberGenerator.new()
 onready var _geom := $"/root/WindowGeometry"
+onready var _tabs := $".."
 onready var _settings := $"/root/SettingsManager"
 onready var _fonts := $"/root/Catapult/Fonts"
 onready var _list := $FontSelection/RightPane/FontsList
@@ -127,6 +128,16 @@ func _on_Tabs_tab_changed(tab: int) -> void:
 	if tab != 3:
 		return
 	
+	if not _fonts.font_config_file_exists():
+		emit_signal("status_message", "Can't manage fonts at this time: font config file does not exist. Make sure you've started the game at least once to create it.", Enums.MSG_WARN)
+		_tabs.current_tab = 0
+		return
+	
+	if not _fonts.options_file_exists():
+		emit_signal("status_message", "Can't manage fonts at this time: options file does not exist. Make sure you've started the game at least once to create it.", Enums.MSG_WARN)
+		_tabs.current_tab = 0
+		return
+		
 	_fonts.load_available_fonts()
 	_fonts.load_font_config()
 	
