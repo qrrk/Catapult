@@ -1,0 +1,96 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://fonts/OpenSans-Regular.tres" type="DynamicFont" id=1]
+[ext_resource path="res://fonts/OpenSans-SemiboldItalic.tres" type="DynamicFont" id=2]
+[ext_resource path="res://fonts/OpenSans-Italic.tres" type="DynamicFont" id=3]
+[ext_resource path="res://fonts/OpenSans-Semibold.tres" type="DynamicFont" id=4]
+[ext_resource path="res://scripts/FontSizeHelpDialog.gd" type="Script" id=5]
+
+[node name="FontSizeHelpDialog" type="WindowDialog"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="PanelContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Margin" type="MarginContainer" parent="Panel"]
+margin_left = 14.0
+margin_top = 14.0
+margin_right = 786.0
+margin_bottom = 986.0
+custom_constants/margin_top = 8
+custom_constants/margin_bottom = 8
+
+[node name="VBox" type="VBoxContainer" parent="Panel/Margin"]
+margin_top = 8.0
+margin_right = 772.0
+margin_bottom = 964.0
+custom_constants/separation = 16
+
+[node name="Help" type="RichTextLabel" parent="Panel/Margin/VBox"]
+margin_right = 772.0
+margin_bottom = 919.0
+size_flags_vertical = 3
+custom_fonts/bold_italics_font = ExtResource( 2 )
+custom_fonts/italics_font = ExtResource( 3 )
+custom_fonts/bold_font = ExtResource( 4 )
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+bbcode_text = "As you've probably already noticed, you can set a separate font for game UI, map and overmap. Additionally, each of these three fonts in Cataclysm has three size parameters that define how it is drawn. They can be set in the game under [i]Settings > Graphics > Font Settings[/i].
+
+IMG_1
+
+[b]Font Height[/b] and [b]Font Width[/b] define the pixel size of the rectangle the game reserves for each character. If this rectangle is too small, the letters will be clipped. If it is too large, they will be far apart and appear undersized.
+
+IMG_2
+
+[b]Font Size[/b] is the actual size at which font glyphs will always be rendered, whether they fit into reserved space or not.
+
+For the default Cataclysm fonts, [i]Terminus[/i] and [i]Unifont[/i], these values have a very simple relationship: Font Height should be the same as Font Size, and Font Width should be half that for UI, and equal to Height for everything else (so that tiles are square).
+
+These ratios also work for many 3rd party fonts one may decide to use, but for some fonts a bit of tinkering is required to figure out a good-looking combination of font height, width and size.
+
+Fortunately, Catapult already knows good size ratios for the fonts it offers, so you only need to specify the desired [b]Font Size[/b], and it will calculate and apply the other two values automatically. They are also applied when you set a custom font in the left pane without changing the size.
+
+It is also recommended to turn on [b]Font Blending[/b] for smoother font rendering.
+
+
+"
+text = "As you've probably already noticed, you can set a separate font for game UI, map and overmap. Additionally, each of these three fonts in Cataclysm has three size parameters that define how it is drawn. They can be set in the game under Settings > Graphics > Font Settings.
+
+IMG_1
+
+Font Height and Font Width define the pixel size of the rectangle the game reserves for each character. If this rectangle is too small, the letters will be clipped. If it is too large, they will be far apart and appear undersized.
+
+IMG_2
+
+Font Size is the actual size at which font glyphs will always be rendered, whether they fit into reserved space or not.
+
+For the default Cataclysm fonts, Terminus and Unifont, these values have a very simple relationship: Font Height should be the same as Font Size, and Font Width should be half that for UI, and equal to Height for everything else (so that tiles are square).
+
+These ratios also work for many 3rd party fonts one may decide to use, but for some fonts a bit of tinkering is required to figure out a good-looking combination of font height, width and size.
+
+Fortunately, Catapult already knows good size ratios for the fonts it offers, so you only need to specify the desired Font Size, and it will calculate and apply the other two values automatically. They are also applied when you set a custom font in the left pane without changing the size.
+
+It is also recommended to turn on Font Blending for smoother font rendering.
+
+
+"
+
+[node name="BtnOK" type="Button" parent="Panel/Margin/VBox"]
+margin_left = 345.0
+margin_top = 935.0
+margin_right = 427.0
+margin_bottom = 972.0
+size_flags_horizontal = 4
+text = "Close"
+
+[connection signal="pressed" from="Panel/Margin/VBox/BtnOK" to="." method="_on_BtnOK_pressed"]

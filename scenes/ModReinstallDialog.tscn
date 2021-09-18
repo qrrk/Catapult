@@ -3,7 +3,6 @@
 [ext_resource path="res://scripts/ModReinstallDialog.gd" type="Script" id=1]
 
 [node name="ModReinstallDialog" type="WindowDialog"]
-visible = true
 anchor_right = 1.0
 anchor_bottom = 0.268
 size_flags_horizontal = 3

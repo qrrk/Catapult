@@ -69,6 +69,7 @@ onready var _sb_font_ui := $FontSelection/LeftPane/FontSizeUI/sbFontSizeUI
 onready var _sb_font_map := $FontSelection/LeftPane/FontSizeMap/sbFontSizeMap
 onready var _sb_font_om := $FontSelection/LeftPane/FontSizeOvermap/sbFontSizeOM
 onready var _cbtn_blending := $FontSelection/LeftPane/FontBlending
+onready var _help_dlg := $FontSizeHelpDialog
 
 
 func _make_preview_string(cyrillic: bool = false) -> String:
@@ -200,3 +201,8 @@ func _on_BtnSaveFontOptions_pressed() -> void:
 	
 	_fonts.set_game_option("FONT_BLENDING", str(_cbtn_blending.pressed))
 	_fonts.write_game_options()
+
+
+func _on_HelpIcon_pressed() -> void:
+	
+	_help_dlg.open()
