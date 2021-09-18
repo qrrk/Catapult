@@ -124,7 +124,7 @@ margin_bottom = 91.0
 ]]
 margin_top = 97.0
 margin_right = 784.0
-margin_bottom = 682.0
+margin_bottom = 675.0
 tab_align = 0
 script = ExtResource( 16 )
 
@@ -451,7 +451,6 @@ dialog_text = "(this text is assigned at runtime)"
 dialog_autowrap = true
 
 [node name="ModReinstallDialog" parent="Main/Tabs/Mods" instance=ExtResource( 20 )]
-visible = false
 margin_left = 112.5
 margin_top = 149.34
 margin_right = 97.5
@@ -640,18 +639,22 @@ columns = 2
 [node name="BtnSetFontUI" type="Button" parent="Main/Tabs/Fonts/FontSelection/RightPane/Buttons/Grid"]
 margin_right = 142.0
 margin_bottom = 29.0
+hint_tooltip = "Use selected font for menus/dialogs/etc."
 text = "Set for Game UI"
 
 [node name="BtnSetFontMap" type="Button" parent="Main/Tabs/Fonts/FontSelection/RightPane/Buttons/Grid"]
 margin_left = 148.0
 margin_right = 253.0
 margin_bottom = 29.0
+hint_tooltip = "Use selected font for game world
+(when not using tiles)."
 text = "Set for Map"
 
 [node name="BtnSetFontOvermap" type="Button" parent="Main/Tabs/Fonts/FontSelection/RightPane/Buttons/Grid"]
 margin_top = 35.0
 margin_right = 142.0
 margin_bottom = 64.0
+hint_tooltip = "Use selected font for world map view a.k.a overmap."
 text = "Set for Overmap"
 
 [node name="BtnSetFontAll" type="Button" parent="Main/Tabs/Fonts/FontSelection/RightPane/Buttons/Grid"]
@@ -659,6 +662,7 @@ margin_left = 148.0
 margin_top = 35.0
 margin_right = 253.0
 margin_bottom = 64.0
+hint_tooltip = "Use selected font for everyhting."
 text = "Set for All"
 
 [node name="BtnResetFont" type="Button" parent="Main/Tabs/Fonts/FontSelection/RightPane/Buttons"]
@@ -666,6 +670,7 @@ margin_left = 85.0
 margin_top = 70.0
 margin_right = 213.0
 margin_bottom = 99.0
+hint_tooltip = "Return default fonts (Terminus => Unifont)."
 size_flags_horizontal = 4
 text = "Reset All Fonts"
 
@@ -705,6 +710,7 @@ margin_left = 109.0
 margin_top = 197.0
 margin_right = 340.0
 margin_bottom = 226.0
+hint_tooltip = "Show a pangram in Russian."
 size_flags_horizontal = 4
 text = "Preview Cyrillic characters"
 
@@ -741,12 +747,15 @@ margin_top = 4.0
 margin_right = 146.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 20, 20 )
+hint_tooltip = "View detailed description of these settings."
 texture_normal = ExtResource( 30 )
 
 [node name="FontSizeUI" type="HBoxContainer" parent="Main/Tabs/Fonts/FontSelection/LeftPane"]
 margin_top = 271.0
 margin_right = 450.0
 margin_bottom = 300.0
+hint_tooltip = "Font size value for menus/dialogs/etc.
+Font width and height will be set automatically."
 size_flags_vertical = 6
 
 [node name="Label" type="Label" parent="Main/Tabs/Fonts/FontSelection/LeftPane/FontSizeUI"]
@@ -767,6 +776,8 @@ value = 8.0
 margin_top = 304.0
 margin_right = 450.0
 margin_bottom = 333.0
+hint_tooltip = "Font size for game world (when not using tiles).
+Font width and height will be set automatically."
 size_flags_vertical = 6
 
 [node name="Label" type="Label" parent="Main/Tabs/Fonts/FontSelection/LeftPane/FontSizeMap"]
@@ -787,6 +798,8 @@ value = 8.0
 margin_top = 337.0
 margin_right = 450.0
 margin_bottom = 366.0
+hint_tooltip = "Font size for world map view a.k.a overmap.
+Font width and height will be set automatically."
 size_flags_vertical = 6
 
 [node name="Label" type="Label" parent="Main/Tabs/Fonts/FontSelection/LeftPane/FontSizeOvermap"]
@@ -807,6 +820,7 @@ value = 8.0
 margin_top = 370.0
 margin_right = 450.0
 margin_bottom = 399.0
+hint_tooltip = "Smoother font rendering."
 text = "Font blending"
 
 [node name="BtnSaveFontOptions" type="Button" parent="Main/Tabs/Fonts/FontSelection/LeftPane"]
@@ -814,6 +828,9 @@ margin_left = 198.0
 margin_top = 403.0
 margin_right = 251.0
 margin_bottom = 432.0
+hint_tooltip = "Click to save these settings to options.json.
+They are also saved automatically when
+setting a font."
 size_flags_horizontal = 4
 text = "Save"
 
@@ -1117,7 +1134,7 @@ size_flags_horizontal = 4
 text = "Print a random Tip of the Day"
 
 [node name="Log" type="RichTextLabel" parent="Main"]
-margin_top = 688.0
+margin_top = 681.0
 margin_right = 784.0
 margin_bottom = 984.0
 focus_mode = 2
@@ -1186,8 +1203,8 @@ __meta__ = {
 }
 
 [connection signal="meta_clicked" from="Main/GameInfo/Description" to="." method="_on_Description_meta_clicked"]
-[connection signal="tab_changed" from="Main/Tabs" to="Main/Tabs/Fonts" method="_on_Tabs_tab_changed"]
 [connection signal="tab_changed" from="Main/Tabs" to="Main/Tabs/Mods" method="_on_Tabs_tab_changed"]
+[connection signal="tab_changed" from="Main/Tabs" to="Main/Tabs/Fonts" method="_on_Tabs_tab_changed"]
 [connection signal="tab_changed" from="Main/Tabs" to="Main/Tabs/Soundpacks" method="_on_Tabs_tab_changed"]
 [connection signal="tab_changed" from="Main/Tabs" to="." method="_on_Tabs_tab_changed"]
 [connection signal="item_selected" from="Main/Tabs/Game/Builds/BuildsList" to="." method="_on_BuildsList_item_selected"]

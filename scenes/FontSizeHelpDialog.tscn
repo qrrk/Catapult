@@ -48,7 +48,7 @@ bbcode_text = "As you've probably already noticed, you can set a separate font f
 
 IMG_1
 
-[b]Font Height[/b] and [b]Font Width[/b] define the pixel size of the rectangle the game reserves for each character. If this rectangle is too small, the letters will be clipped. If it is too large, they will be far apart and appear undersized.
+[b]Font Height[/b] and [b]Font Width[/b] define the pixel size of the rectangle reserved for each character. If this rectangle is too small, the letters will be clipped. If it is too large, they will be far apart and appear undersized.
 
 IMG_2
 
@@ -68,7 +68,7 @@ text = "As you've probably already noticed, you can set a separate font for game
 
 IMG_1
 
-Font Height and Font Width define the pixel size of the rectangle the game reserves for each character. If this rectangle is too small, the letters will be clipped. If it is too large, they will be far apart and appear undersized.
+Font Height and Font Width define the pixel size of the rectangle reserved for each character. If this rectangle is too small, the letters will be clipped. If it is too large, they will be far apart and appear undersized.
 
 IMG_2
 
