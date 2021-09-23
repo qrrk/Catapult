@@ -124,12 +124,11 @@ margin_bottom = 91.0
 ]]
 margin_top = 97.0
 margin_right = 784.0
-margin_bottom = 675.0
+margin_bottom = 418.0
 tab_align = 0
 script = ExtResource( 16 )
 
 [node name="Game" type="VBoxContainer" parent="Main/Tabs"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -588,6 +587,7 @@ current_dir = "/mnt/data/Godot/Catapult/Project"
 current_path = "/mnt/data/Godot/Catapult/Project/"
 
 [node name="Fonts" type="VBoxContainer" parent="Main/Tabs"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -910,19 +910,28 @@ hint_tooltip = "Shorten release names to just the date and number
 Short names save screen space but may be less clear."
 text = "Shorten names of experimental releases"
 
-[node name="ShowDebug" type="CheckButton" parent="Main/Tabs/Settings"]
+[node name="ShowObsoleteMods" type="CheckButton" parent="Main/Tabs/Settings"]
 margin_top = 140.0
 margin_right = 769.0
 margin_bottom = 169.0
+hint_tooltip = "Show mods that come with the game but are marked
+as \"obsolete\". Normally, such mods are not considered
+as installed."
+text = "List obsolete mods in installed"
+
+[node name="ShowDebug" type="CheckButton" parent="Main/Tabs/Settings"]
+margin_top = 175.0
+margin_right = 769.0
+margin_bottom = 204.0
 hint_tooltip = "Shows the Debug tab with some testing functions
 and enables debug messages in the status  pane
 (useful for troubleshooting)."
 text = "Debug mode"
 
 [node name="NumReleases" type="HBoxContainer" parent="Main/Tabs/Settings"]
-margin_top = 175.0
+margin_top = 210.0
 margin_right = 769.0
-margin_bottom = 204.0
+margin_bottom = 239.0
 hint_tooltip = "How many latest  releases will be requested
 from GitHub after starting the launcher, choosing
 the game or clicking  Refresh."
@@ -942,9 +951,9 @@ value = 30.0
 rounded = true
 
 [node name="ScaleOverride" type="HBoxContainer" parent="Main/Tabs/Settings"]
-margin_top = 210.0
+margin_top = 245.0
 margin_right = 769.0
-margin_bottom = 239.0
+margin_bottom = 274.0
 hint_tooltip = "Use this if the automatically inferred UI scale
 looks too large or too small on your system.
 (Automatic scale relies on system-reported
@@ -979,14 +988,14 @@ editable = false
 suffix = "%"
 
 [node name="HSeparator" type="HSeparator" parent="Main/Tabs/Settings"]
-margin_top = 245.0
+margin_top = 280.0
 margin_right = 769.0
-margin_bottom = 253.0
+margin_bottom = 288.0
 
 [node name="Migration" type="VBoxContainer" parent="Main/Tabs/Settings"]
-margin_top = 259.0
+margin_top = 294.0
 margin_right = 769.0
-margin_bottom = 381.0
+margin_bottom = 416.0
 hint_tooltip = "Choose which types of game data to carry over
 into the new game version when updating."
 
@@ -1134,7 +1143,7 @@ size_flags_horizontal = 4
 text = "Print a random Tip of the Day"
 
 [node name="Log" type="RichTextLabel" parent="Main"]
-margin_top = 681.0
+margin_top = 424.0
 margin_right = 784.0
 margin_bottom = 984.0
 focus_mode = 2
@@ -1203,10 +1212,10 @@ __meta__ = {
 }
 
 [connection signal="meta_clicked" from="Main/GameInfo/Description" to="." method="_on_Description_meta_clicked"]
-[connection signal="tab_changed" from="Main/Tabs" to="Main/Tabs/Mods" method="_on_Tabs_tab_changed"]
-[connection signal="tab_changed" from="Main/Tabs" to="Main/Tabs/Fonts" method="_on_Tabs_tab_changed"]
-[connection signal="tab_changed" from="Main/Tabs" to="Main/Tabs/Soundpacks" method="_on_Tabs_tab_changed"]
 [connection signal="tab_changed" from="Main/Tabs" to="." method="_on_Tabs_tab_changed"]
+[connection signal="tab_changed" from="Main/Tabs" to="Main/Tabs/Mods" method="_on_Tabs_tab_changed"]
+[connection signal="tab_changed" from="Main/Tabs" to="Main/Tabs/Soundpacks" method="_on_Tabs_tab_changed"]
+[connection signal="tab_changed" from="Main/Tabs" to="Main/Tabs/Fonts" method="_on_Tabs_tab_changed"]
 [connection signal="item_selected" from="Main/Tabs/Game/Builds/BuildsList" to="." method="_on_BuildsList_item_selected"]
 [connection signal="pressed" from="Main/Tabs/Game/Builds/BtnRefresh" to="." method="_on_BtnRefresh_pressed"]
 [connection signal="pressed" from="Main/Tabs/Game/BtnInstall" to="." method="_on_BtnInstall_pressed"]
@@ -1248,6 +1257,7 @@ __meta__ = {
 [connection signal="toggled" from="Main/Tabs/Settings/PrintTips" to="Main/Tabs/Settings" method="_on_PrintTips_toggled"]
 [connection signal="toggled" from="Main/Tabs/Settings/UpdateToSame" to="Main/Tabs/Settings" method="_on_UpdateToSame_toggled"]
 [connection signal="toggled" from="Main/Tabs/Settings/ShortenNames" to="Main/Tabs/Settings" method="_on_ShortenNames_toggled"]
+[connection signal="toggled" from="Main/Tabs/Settings/ShowObsoleteMods" to="Main/Tabs/Settings" method="_on_ShowObsoleteMods_toggled"]
 [connection signal="toggled" from="Main/Tabs/Settings/ShowDebug" to="Main/Tabs/Settings" method="_on_ShowDebug_toggled"]
 [connection signal="value_changed" from="Main/Tabs/Settings/NumReleases/sbNumReleases" to="Main/Tabs/Settings" method="_on_sbNumReleases_value_changed"]
 [connection signal="toggled" from="Main/Tabs/Settings/ScaleOverride/cbScaleOverrideEnable" to="Main/Tabs/Settings" method="_on_cbScaleOverrideEnable_toggled"]

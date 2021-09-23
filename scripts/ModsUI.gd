@@ -20,21 +20,22 @@ onready var _lbl_repo = $HBox/Available/Label
 onready var _dlg_reinstall = $ModReinstallDialog
 onready var _dlg_del_multiple = $DeleteMultipleDialog
 
-var _gamedir = ""
-var _installed_mods_view = []
-var _available_mods_view = []
+var _gamedir := ""
+var _installed_mods_view := []
+var _available_mods_view := []
 
-var _mods_to_delete = []
-var _mods_to_install = []
-var _ids_to_install = []
-var _ids_to_reinstall = []
+var _mods_to_delete := []
+var _mods_to_install := []
+var _ids_to_delete := []
+var _ids_to_install := []
+var _ids_to_reinstall := []
 
 
 func _populate_list_with_mods(mods_array: Array, list: ItemList) -> void:
 	
 	list.clear()
 	for mod in mods_array:
-		list.add_item(mod["modinfo"]["name"])
+		list.add_item(mod["name"])
 		if "location" in mod:
 			var tooltip = "Location: " + mod["location"]
 			list.set_item_tooltip(list.get_item_count() - 1, tooltip)
@@ -44,16 +45,39 @@ func reload_installed() -> void:
 	
 	var hidden_mods = 0
 	var show_stock = _settings.read("show_stock_mods")
+	var show_obsolete = _settings.read("show_obsolete_mods")
 	
-	if show_stock:
-		_installed_mods_view = _mods.installed
-	else:
-		_installed_mods_view.clear()
-		for mod in _mods.installed:
-			if not mod["is_stock"]:
-				_installed_mods_view.append(mod)
-			else:
+	_installed_mods_view.clear()
+	
+	for id in _mods.installed:
+		
+		var mod = _mods.installed[id]
+		var show: bool
+		
+		var status = _mods.mod_status(id)
+		if status in [0, 1]:
+			show = true
+		elif status in [3, 4]:
+			if show_obsolete:
+				if show_stock:
+					show = true
+				else:
+					hidden_mods += 1
+		elif status == 2:
+			show = show_stock
+			if !show:
 				hidden_mods += 1
+		
+		if show:
+			_installed_mods_view.append({
+				"id": id,
+				"name": mod["modinfo"]["name"],
+				"location": mod["location"]
+			})
+			if (show_obsolete) and (status == 3):
+				_installed_mods_view[-1]["name"] += " [obsolete]"
+	
+	_installed_mods_view.sort_custom(self, "_sorting_comparison")
 	
 	_btn_delete.disabled = true
 	
@@ -64,28 +88,40 @@ func reload_installed() -> void:
 		hidden_str = " (%s hidden)" % hidden_mods
 	_lbl_installed.text = "Installed%s:" % hidden_str
 	
-	if show_stock:
-		for i in len(_installed_mods_view):
-			if _installed_mods_view[i]["is_stock"]:
-				_installed_list.set_item_custom_fg_color(i, Color(0.5, 0.5, 0.5))
-				# TODO: Get color from the theme instead.
+	for i in len(_installed_mods_view):
+		var id = _installed_mods_view[i]["id"]
+		if _mods.installed[id]["is_stock"]:
+			_installed_list.set_item_custom_fg_color(i, Color(0.5, 0.5, 0.5))
+			# TODO: Get color from the theme instead.
 
 
 func reload_available() -> void:
 	
 	var include_installed = _settings.read("show_installed_mods_in_available")
 	var hidden_mods = 0
+
+	_available_mods_view.clear()
 	
-	if include_installed:
-		_available_mods_view = _mods.available
-	else:
-		_available_mods_view.clear()
-		for mod in _mods.available:
-			if not _is_mod_installed(mod["modinfo"]):
-				_available_mods_view.append(mod)
-			else:
-				hidden_mods += 1
+	for id in _mods.available:
+		var mod = _mods.available[id]
+		var show: bool
 		
+		if _mods.mod_status(id) in [0, 3]:
+			show = true
+		else:
+			show = include_installed
+	
+		if show:
+			_available_mods_view.append({
+				"id": id,
+				"name": mod["modinfo"]["name"],
+				"location": mod["location"]
+			})
+		else:
+			hidden_mods += 1
+	
+	_available_mods_view.sort_custom(self, "_sorting_comparison")
+	
 	var hidden_str = ""
 	if hidden_mods > 0:
 		hidden_str = " (%s hidden)" % hidden_mods
@@ -94,10 +130,10 @@ func reload_available() -> void:
 	
 	_populate_list_with_mods(_available_mods_view, _available_list)
 	
-	if include_installed:
-		for i in len(_available_mods_view):
-			if _is_mod_installed(_available_mods_view[i]["modinfo"]):
-				_available_list.set_item_custom_fg_color(i, Color(0.5, 0.5, 0.5))
+	for i in len(_available_mods_view):
+		var id = _available_mods_view[i]["id"]
+		if _mods.mod_status(id) in [1, 2, 4]:
+			_available_list.set_item_custom_fg_color(i, Color(0.5, 0.5, 0.5))
 				
 	if _available_list.get_item_count() == 0:
 		_btn_add_all.disabled = true
@@ -106,18 +142,9 @@ func reload_available() -> void:
 		_btn_add_all.disabled = false
 
 
-func _is_mod_installed(modinfo: Dictionary) -> int:
-	# Returns 0 if the mod is not installed, 1 if installed,
-	# and 2 if it is a stock mod.
+func _sorting_comparison(a: Dictionary, b: Dictionary) -> bool:
 	
-	for mod in _mods.installed:
-		if mod["modinfo"]["id"] == modinfo["id"]:
-			if mod["is_stock"]:
-				return 2
-			else:
-				return 1
-			
-	return 0
+	return (a["name"].nocasecmp_to(b["name"]) == -1)
 
 
 func _array_to_text_list(array) -> String:
@@ -200,12 +227,14 @@ func _on_InstalledList_multi_selected(index: int, selected: bool) -> void:
 	elif len(selection) > 0:
 		active_idx = selection.max()
 	
-	_lbl_mod_info.bbcode_text = _make_mod_info_string(_installed_mods_view[active_idx])
+	var active_id = _installed_mods_view[active_idx]["id"]
+	_lbl_mod_info.bbcode_text = _make_mod_info_string(_mods.installed[active_id])
 	_lbl_mod_info.scroll_to_line(0)
 	
 	var only_stock_selected = true
 	for idx in selection:
-		if not _installed_mods_view[idx]["is_stock"]:
+		var mod_id = _installed_mods_view[idx]["id"]
+		if not _mods.installed[mod_id]["is_stock"]:
 			only_stock_selected = false
 			break
 			
@@ -224,19 +253,21 @@ func _on_AvailableList_multi_selected(index: int, selected: bool) -> void:
 	elif len(selection) > 0:
 		active_idx = selection.max()
 	
-	var only_stock_selected = true
+	var active_id = _available_mods_view[active_idx]["id"]
+	_lbl_mod_info.bbcode_text = _make_mod_info_string(_mods.available[active_id])
+	_lbl_mod_info.scroll_to_line(0)
+	
+	var only_non_installable_selected = true
 	for idx in selection:
-		if not _is_mod_installed(_available_mods_view[idx]["modinfo"]) == 2:
-			only_stock_selected = false
+		var mod_id = _available_mods_view[idx]["id"]
+		if (not mod_id in _mods.installed) or (_mods.installed[mod_id]["is_obsolete"]):
+			only_non_installable_selected = false
 			break
 			
-	if (len(selection) == 0) or (only_stock_selected):
+	if (len(selection) == 0) or (only_non_installable_selected):
 		_btn_add.disabled = true
 	else:
 		_btn_add.disabled = false
-	
-	_lbl_mod_info.bbcode_text = _make_mod_info_string(_available_mods_view[active_idx])
-	_lbl_mod_info.scroll_to_line(0)
 
 
 func _on_BtnDownloadKenan_pressed() -> void:
@@ -253,8 +284,9 @@ func _on_BtnDelete_pressed() -> void:
 	var skipped_mods = 0
 	
 	for index in selection:
-		if not _installed_mods_view[index]["is_stock"]:
-			_mods_to_delete.append(_installed_mods_view[index]["modinfo"]["id"])
+		var id = _installed_mods_view[index]["id"]
+		if not _mods.installed[id]["is_stock"]:
+			_mods_to_delete.append(id)
 		else:
 			skipped_mods += 1
 	
@@ -290,28 +322,35 @@ func _on_BtnAddSelectedMod_pressed() -> void:
 	var selection = _available_list.get_selected_items()
 	_mods_to_install = []
 	var num_stock = 0
-	
+
 	for index in selection:
-		var mod = _available_mods_view[index]
-		var status = _is_mod_installed(mod["modinfo"])
+		var id = _available_mods_view[index]["id"]
+		var status = _mods.mod_status(id)
 		if status == 2:
 				num_stock += 1
-		_mods_to_install.append({"id": mod["modinfo"]["id"], "installed_status": status})
-	
+		else:
+			_mods_to_install.append(id)
+
 	if num_stock == 1:
 		emit_signal("status_message", "One mod already comes with the game, so it will not be installed.")
 	elif num_stock > 1:
 		emit_signal("status_message", "%s mods already come with the game, so they will not be installed." % num_stock)
-	
-	_ids_to_install = []
-	_ids_to_reinstall = []
-	for item in _mods_to_install:
-		match item["installed_status"]:
-			0:
-				_ids_to_install.append(item["id"])
-			1:
-				_ids_to_reinstall.append(item["id"])
-	
+
+	_ids_to_install = []	# What to install from scratch.
+	_ids_to_delete = []		# What to delete before reinstalling.
+	_ids_to_reinstall = []	# What to install again after deleteion.
+	for mod_id in _mods_to_install:
+		
+		var status = _mods.mod_status(mod_id)
+		if status == 4:
+			_ids_to_delete.append(mod_id + "__")
+			_ids_to_reinstall.append(mod_id)
+		elif status == 1:
+			_ids_to_delete.append(mod_id)
+			_ids_to_reinstall.append(mod_id)
+		elif status in [0, 3]:
+			_ids_to_install.append(mod_id)
+		
 	if len(_ids_to_reinstall) > 0:
 		_dlg_reinstall.open(len(_ids_to_reinstall))
 	else:
@@ -328,7 +367,7 @@ func _on_BtnAddAllMods_pressed() -> void:
 
 func _do_mod_installation() -> void:
 	
-	if len(_ids_to_reinstall) > 0:
+	if len(_ids_to_delete) > 0:
 		_mods.delete_mods(_ids_to_reinstall)
 		yield(_mods, "mod_deletion_finished")
 		_mods.install_mods(_ids_to_install + _ids_to_reinstall)

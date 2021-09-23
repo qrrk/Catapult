@@ -34,32 +34,32 @@ onready var _downloader = $"../Downloader"
 onready var _workdir = OS.get_executable_path().get_base_dir()
 
 
-var installed: Array = [] setget , _get_installed
-var available: Array = [] setget , _get_available
+var installed: Dictionary = {} setget , _get_installed
+var available: Dictionary = {} setget , _get_available
 
 
-func _get_installed() -> Array:
+func _get_installed() -> Dictionary:
 	
-	if installed == []:
+	if len(installed) == 0:
 		refresh_installed()
 		
 	return installed
 
 
-func _get_available() -> Array:
+func _get_available() -> Dictionary:
 	
-	if available == []:
+	if len(available) == 0:
 		refresh_available()
 	
 	return available
 
 
-func parse_mods_dir(mods_dir: String) -> Array:
+func parse_mods_dir(mods_dir: String) -> Dictionary:
 	
 	if not Directory.new().dir_exists(mods_dir):
-		return []
+		return {}
 		
-	var result = []
+	var result = {}
 	
 	for subdir in _fshelper.list_dir(mods_dir):
 		var f = File.new()
@@ -90,10 +90,10 @@ func parse_mods_dir(mods_dir: String) -> Array:
 						else:
 							info["id"] = info["name"]
 					
-					result.append({
+					result[info["id"]] = {
 						"location": mods_dir + "/" + subdir,
 						"modinfo": info
-					})
+					}
 					break
 					
 			f.close()
@@ -113,41 +113,63 @@ func _strip_html_tags(text: String) -> String:
 		s = s.replace(m.get_string(), "")
 		
 	return s
+
+
+func mod_status(id: String) -> int:
 	
-
-
-func _sorting_comparison(a: Dictionary, b: Dictionary) -> bool:
+	# Returns mod installed status:
+	# 0 - not installed;
+	# 1 - installed;
+	# 2 - stock mod;
+	# 3 - stock mod but obsolete;
+	# 4 - installed with modified ID.
 	
-	return (a["modinfo"]["name"].nocasecmp_to(b["modinfo"]["name"]) == -1)
+	if id + "__" in installed:
+		return 4
+	elif id in installed:
+		if installed[id]["is_stock"]:
+			if installed[id]["is_obsolete"]:
+				return 3
+			else:
+				return 2
+		else:
+			return 1
+	else:
+		return 0
 
 
-func refresh_installed(sort_by_name = true):
+func refresh_installed():
 	
 	var gamedir = _workdir + "/" + _settings.read("game") + "/current"
-	installed = []
+	installed = {}
 	
+	var non_stock := {}
 	if Directory.new().dir_exists(gamedir + "/mods"):
-		var non_stock = parse_mods_dir(gamedir + "/mods")
-		for mod in non_stock:
-			mod["is_stock"] = false
-		installed.append_array(non_stock)
+		non_stock = parse_mods_dir(gamedir + "/mods")
+		for id in non_stock:
+			non_stock[id]["is_stock"] = false
 			
-	var stock = parse_mods_dir(gamedir + "/data/mods")
-	for mod in stock:
-		mod["is_stock"] = true
-	installed.append_array(stock)
+	var stock := parse_mods_dir(gamedir + "/data/mods")
+	for id in stock:
+		stock[id]["is_stock"] = true
+		if ("obsolete" in stock[id]["modinfo"]) and (stock[id]["modinfo"]["obsolete"] == true):
+			stock[id]["is_obsolete"] = true
+		else:
+			stock[id]["is_obsolete"] = false
+			
+	for id in non_stock:
+		installed[id] = non_stock[id]
+		installed[id]["is_stock"] = false
+		installed[id]["is_obsolete"] = false
 		
-	if sort_by_name:
-		installed.sort_custom(self, "_sorting_comparison")
+	for id in stock:
+		installed[id] = stock[id]
 
 
-func refresh_available(sort_by_name = true):
+func refresh_available():
 	
 	var mod_repo = _workdir + "/" + _settings.read("game") + "/mod_repo"
 	available = parse_mods_dir(mod_repo)
-	
-	if sort_by_name:
-		available.sort_custom(self, "_sorting_comparison")
 
 
 func _delete_mod(mod_id: String) -> void:
@@ -156,13 +178,8 @@ func _delete_mod(mod_id: String) -> void:
 	# Have to introduce an artificial delay, otherwise the engine becomes very
 	# crash-happy when processing large numbers of mods.
 	
-	var mod = null
-	for item in installed:
-		if item["modinfo"]["id"] == mod_id:
-			mod = item
-			break
-	
-	if mod:
+	if mod_id in installed:
+		var mod = installed[mod_id]
 		_fshelper.rm_dir(mod["location"])
 		yield(_fshelper, "rm_dir_done")
 		emit_signal("status_message", "Deleted %s" % mod["modinfo"]["name"])
@@ -183,7 +200,10 @@ func delete_mods(mod_ids: Array) -> void:
 	emit_signal("mod_deletion_started")
 	
 	for id in mod_ids:
-		_delete_mod(id)
+		if mod_status(id) == 4:
+			_delete_mod(id + "__")
+		else:
+			_delete_mod(id)
 		yield(self, "_done_deleting_mod")
 	
 	refresh_installed()
@@ -197,15 +217,22 @@ func _install_mod(mod_id: String) -> void:
 
 	var mods_dir = _workdir + "/" + _settings.read("game") + "/current/mods"
 	
-	var mod = null
-	for item in available:
-		if item["modinfo"]["id"] == mod_id:
-			mod = item
-			break
-	
-	if mod:
+	if mod_id in available:
+		var mod = available[mod_id]
+		
 		_fshelper.copy_dir(mod["location"], mods_dir)
 		yield(_fshelper, "copy_dir_done")
+		
+		if (mod_id in installed) and (installed[mod_id]["is_obsolete"] == true):
+			emit_signal("status_message", "There is already an obsoleted mod with ID %s. [i]%s[/i] will be installed with modified ID and name to avoid collisions."
+					% [mod_id, mod["modinfo"]["name"]])
+			var modinfo = mod["modinfo"].duplicate()
+			modinfo["id"] += "__"
+			modinfo["name"] += "*"
+			var f = File.new()
+			f.open(mods_dir.plus_file(mod["location"].get_file()).plus_file("modinfo.json"), File.WRITE)
+			f.store_string(JSON.print(modinfo, "    "))
+					
 		emit_signal("status_message", "Installed %s" % mod["modinfo"]["name"])
 	else:
 		emit_signal("status_message", "Could not find mod with ID \"%s\"" % mod_id, Enums.MSG_ERROR)
