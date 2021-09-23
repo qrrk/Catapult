@@ -17,6 +17,7 @@ const _HARDCODED_DEFAULTS = {
 	"ui_scale_override_enabled": false,
 	"show_stock_mods": false,
 	"show_installed_mods_in_available": false,
+	"show_obsolete_mods": false,
 	"show_stock_sound": false,
 	"font_preview_cyrillic": false,
 	"show_game_desc": true,

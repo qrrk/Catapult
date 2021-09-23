@@ -26,6 +26,7 @@ func _ready() -> void:
 	$PrintTips.pressed = _settings.read("print_tips_of_the_day")
 	$UpdateToSame.pressed = _settings.read("update_to_same_build_allowed")
 	$ShortenNames.pressed = _settings.read("shorten_release_names")
+	$ShowObsoleteMods.pressed = _settings.read("show_obsolete_mods")
 	$ShowDebug.pressed = _settings.read("debug_mode")
 	$NumReleases/sbNumReleases.value = _settings.read("num_releases_to_request") as int
 	
@@ -60,6 +61,11 @@ func _on_UpdateToSame_toggled(button_pressed: bool) -> void:
 func _on_ShortenNames_toggled(button_pressed: bool) -> void:
 	
 	_settings.store("shorten_release_names", button_pressed)
+
+
+func _on_ShowObsoleteMods_toggled(button_pressed: bool) -> void:
+	
+	_settings.store("show_obsolete_mods", button_pressed)
 
 
 func _on_ShowDebug_toggled(button_pressed: bool) -> void:
