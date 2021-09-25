@@ -63,6 +63,8 @@ margin_bottom = 29.0
 text = "Game: "
 
 [node name="GamesList" type="OptionButton" parent="Main/GameChoice" groups=[
+"disable_during_mod_operations",
+"disable_during_soundpack_operations",
 "disable_while_fetching_releases",
 "disable_while_installing_game",
 ]]
