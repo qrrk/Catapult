@@ -25,6 +25,11 @@ func install_release(release_info: Dictionary, game: String, update: bool = fals
 	
 	var gamedir = _workdir + "/" + game + "/current"
 	var tmpdir = _workdir + "/" + game + "/tmp"
+
+	var basegamedir = gamedir
+	
+	if OS.get_name() == "OSX":
+		gamedir += "/Cataclysm.app"
 	
 	
 	_downloader.download_file(release_info["url"], _workdir, release_info["filename"])
@@ -36,6 +41,7 @@ func install_release(release_info: Dictionary, game: String, update: bool = fals
 		yield(_fshelper, "extract_done")
 		Directory.new().remove(_workdir + "/" + release_info["filename"])
 		
+		print(_fshelper.last_extract_result)
 		if _fshelper.last_extract_result == 0:
 		
 			var extracted_root
@@ -45,10 +51,8 @@ func install_release(release_info: Dictionary, game: String, update: bool = fals
 				"Windows":
 					extracted_root = tmpdir
 				"OSX":
-					extracted_root = tmpdir
+					extracted_root = tmpdir + "/Cataclysm.app"
 					
-			_probe.create_info_file(extracted_root, release_info["name"])			
-			
 			
 			if update:
 				if len(_settings.read("game_data_to_migrate")) > 0:
@@ -57,8 +61,15 @@ func install_release(release_info: Dictionary, game: String, update: bool = fals
 				_fshelper.rm_dir(gamedir)
 				yield(_fshelper, "rm_dir_done")
 			
-			_fshelper.move_dir(extracted_root, gamedir)
-			yield(_fshelper, "move_dir_done")
+			if OS.get_name() != "OSX":
+				_fshelper.move_dir(extracted_root, gamedir)
+				yield(_fshelper, "move_dir_done")				
+			else:
+				var output = []
+				var args = ["-i", "-c", 'chmod -R u+w "%s" "%s"; mkdir -p "%s"; cp -r "%s" "%s"' % [gamedir, basegamedir, extracted_root, extracted_root, gamedir]]
+				OS.execute("zsh", args, true, output, true)
+			
+			_probe.create_info_file(basegamedir, release_info["name"])
 			
 			if update:
 				emit_signal("status_message", "Update finished.")

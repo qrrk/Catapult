@@ -192,10 +192,11 @@ func extract(path: String, dest_dir: String) -> void:
 	}
 	# https://stackoverflow.com/a/22940943
 	# https://unix.stackexchange.com/questions/338000/bash-assign-output-of-pipe-to-a-variable/338003
-	var command_dmg = {
-		"name": "eval",
-		"args": ["`echo $(hdiutil mount \'%s\' | awk 'END {$1=\"\"; print}') | { read MOUNTDIR; cp -r \"$MOUNTDIR/Cataclysm.app\" \'%s/Cataclysm.app\' }`" % [path, dest_dir]]
+	var command_dmg_mount = {
+		"name": "zsh",
+		"args": ["-c", 'hdiutil mount -noverify %s' % path]
 	}
+
 	var command
 	
 	if (_platform == "X11" or _platform == "OSX") and (path.to_lower().ends_with(".tar.gz")):
@@ -205,7 +206,7 @@ func extract(path: String, dest_dir: String) -> void:
 	elif (_platform == "Windows") and (path.to_lower().ends_with(".zip")):
 		command = command_windows
 	elif (_platform == "OSX") and (path.to_lower().ends_with(".dmg")):
-		command = command_dmg
+		command = command_dmg_mount
 	else:
 		emit_signal("status_message", "Unsupported platform or archive format (file: %s)" % path.get_file(), Enums.MSG_ERROR)
 		emit_signal("extract_done")
@@ -220,10 +221,25 @@ func extract(path: String, dest_dir: String) -> void:
 	var oew = OSExecWrapper.new()
 	oew.execute(command["name"], command["args"])
 	yield(oew, "process_exited")
+	
+	if OS.get_name() == "OSX":
+		var volume_path = "/Volumes" + oew.output[0].split("/Volumes")[1]
+		volume_path = volume_path.rstrip('\n').replace(" ", "\\ ")
+		var command_dmg_copy = {
+			"name": "zsh",
+			"args": ["-c", 'cp -r %s/Cataclysm.app "%s"' % [volume_path, dest_dir]]
+		}
+		var command_unmount = {
+			"name": "zsh",
+			"args": ["-c", 'hdiutil unmount %s -force' % volume_path]
+		}
+		OS.execute(command_dmg_copy["name"], command_dmg_copy["args"])
+		OS.execute(command_unmount["name"], command_unmount["args"])
+			
 	last_extract_result = oew.exit_code
 	if oew.exit_code:
 		emit_signal("status_message", "Archive extraction command exited with an error (exit code: %s)"
 				% oew.exit_code, Enums.MSG_ERROR)
-		emit_signal("status_message", "Failed command: " + str(command), Enums.MSG_DEBUG)
-		emit_signal("status_message", "Output: " + oew.output[0], Enums.MSG_DEBUG)
+		emit_signal("status_message", "Failed command: " + str(command), Enums.MSG_ERROR)
+		emit_signal("status_message", "Output: " + oew.output[0], Enums.MSG_ERROR)
 	emit_signal("extract_done")
