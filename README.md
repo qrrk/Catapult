@@ -14,6 +14,7 @@
 - Updating the game while preserving user data (saved games, settings, mods, etc).
 - Mod management: [Kenan Modpack](https://github.com/Kenan2000/CDDA-Kenan-Modpack) download and complete or selective installation.
 - Automatic download and installation of soundpacks.
+- Customization of game fonts.
 - Fully portable and can be carried on a removable drive.
 - Good support for HiDPI displays: UI is automatically scaled with screen DPI, with ability to adjust the scale manually.
 
@@ -32,14 +33,13 @@ None required. The launcher is a single, self-contained executable. Just [downlo
 These are tentative. They may or may not come to fruition.
 
 - Translations.
-- Setting in-game font from the launcher.
-- Backups for savegames, settings, maybe the whole game.
-  (Backing up at least the current installation before updating will be a good failsafe.)
-- Multiple UI themes (with at least one light theme).
+- ~~Setting in-game font from the launcher.~~ *Done!*
+- Backups for user data.
+- Multiple launcher UI themes.
 - Download and installation of tilesets?
   (Only if there are at least a couple of finished tilesets out there that don't already come with both games.)
+- Some kind of built-in knowledge base similar to Chezzo's [Item Browser](http://www.cdda-trunk.chezzo.com/).
 - *Maybe* an OSX version some day.
-  (The main obstacle here is that I don't have a Mac and don't want one for anything other than this project. However, the amount of porting work should be minimal, so maybe I can get an IRL buddy to help me.)
 
 ## A bit of history
 
