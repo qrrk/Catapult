@@ -96,6 +96,10 @@ func parse_sound_dir(sound_dir: String) -> Array:
 func get_installed(include_stock = false) -> Array:
 	
 	var gamedir = _workdir + "/" + _settings.read("game") + "/current"
+	
+	if OS.get_name() == "OSX":
+		gamedir += "/Cataclysm.app/Contents/Resources"
+	
 	var packs = []
 	
 	if Directory.new().dir_exists(gamedir + "/sound"):
@@ -130,7 +134,13 @@ func install_pack(soundpack_index: int, from_file = null, reinstall = false, kee
 	
 	var pack = SOUNDPACKS[soundpack_index]
 	var game = _settings.read("game")
-	var sound_dir = _workdir + "/" + game + "/current/sound"
+	var sound_dir = _workdir + "/" + game + "/current"
+	
+	if OS.get_name() == "OSX":
+		sound_dir += "/Cataclysm.app/Contents/Resources/data"
+	
+	sound_dir += "/sound"
+	
 	var tmp_dir = _workdir + "/" + game + "/tmp/" + pack["name"]
 	var archive = ""
 			
