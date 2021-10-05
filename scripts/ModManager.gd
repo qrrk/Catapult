@@ -141,6 +141,10 @@ func mod_status(id: String) -> int:
 func refresh_installed():
 	
 	var gamedir = _workdir + "/" + _settings.read("game") + "/current"
+	
+	if OS.get_name() == "OSX":
+		gamedir += "/Cataclysm.app/Contents/Resources"
+	
 	installed = {}
 	
 	var non_stock := {}
@@ -157,6 +161,14 @@ func refresh_installed():
 		else:
 			stock[id]["is_obsolete"] = false
 			
+	# In OSX, mods should place in /data/mods folder.
+	# It's no difference between stock and non_stock.
+	# for temporarily fix, assign stock -> non_stock when OSX.
+	if OS.get_name() == "OSX":
+		non_stock = stock
+		stock = {}
+	
+	
 	for id in non_stock:
 		installed[id] = non_stock[id]
 		installed[id]["is_stock"] = false
@@ -215,7 +227,12 @@ func _install_mod(mod_id: String) -> void:
 	yield(get_tree().create_timer(0.05), "timeout")
 	# For stability; see above.
 
-	var mods_dir = _workdir + "/" + _settings.read("game") + "/current/mods"
+	var mods_dir = _workdir + "/" + _settings.read("game") + "/current"
+	
+	if OS.get_name() == "OSX":
+		mods_dir += "/Cataclysm.app/Contents/Resources/data"
+	
+	mods_dir += "/mods"
 	
 	if mod_id in available:
 		var mod = available[mod_id]
