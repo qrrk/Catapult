@@ -237,8 +237,12 @@ func _on_InstalledList_multi_selected(index: int, selected: bool) -> void:
 		if not _mods.installed[mod_id]["is_stock"]:
 			only_stock_selected = false
 			break
-			
-	if (len(selection) == 0) or (only_stock_selected):
+	
+
+	# In OSX, mods should place in /data/mods folder.
+	# so, mods must be stock.
+	# for temporarily fix, stock mods can be deleted in OSX.
+	if (len(selection) == 0) or (only_stock_selected and OS.get_name() != "OSX"):
 		_btn_delete.disabled = true
 	else:
 		_btn_delete.disabled = false
@@ -285,7 +289,8 @@ func _on_BtnDelete_pressed() -> void:
 	
 	for index in selection:
 		var id = _installed_mods_view[index]["id"]
-		if not _mods.installed[id]["is_stock"]:
+		# OSX same reason
+		if OS.get_name() == "OSX" or not _mods.installed[id]["is_stock"]:
 			_mods_to_delete.append(id)
 		else:
 			skipped_mods += 1

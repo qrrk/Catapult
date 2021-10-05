@@ -160,14 +160,6 @@ func refresh_installed():
 			stock[id]["is_obsolete"] = true
 		else:
 			stock[id]["is_obsolete"] = false
-			
-	# In OSX, mods should place in /data/mods folder.
-	# It's no difference between stock and non_stock.
-	# for temporarily fix, assign stock -> non_stock when OSX.
-	if OS.get_name() == "OSX":
-		non_stock = stock
-		stock = {}
-	
 	
 	for id in non_stock:
 		installed[id] = non_stock[id]
@@ -220,7 +212,6 @@ func delete_mods(mod_ids: Array) -> void:
 	
 	refresh_installed()
 	emit_signal("mod_deletion_finished")
-
 
 func _install_mod(mod_id: String) -> void:
 	
