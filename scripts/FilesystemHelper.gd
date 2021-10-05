@@ -190,6 +190,12 @@ func extract(path: String, dest_dir: String) -> void:
 		"name": "cmd",
 		"args": ["/C", "\"%s\" -o \"%s\" -d \"%s\"" % [unzip_exe, path, dest_dir]]
 	}
+	# https://stackoverflow.com/a/22940943
+	# https://unix.stackexchange.com/questions/338000/bash-assign-output-of-pipe-to-a-variable/338003
+	var command_dmg = {
+		"name": "eval",
+		"args": ["`echo $(hdiutil mount \'%s\' | awk 'END {$1=\"\"; print}') | { read MOUNTDIR; cp -r \"$MOUNTDIR/Cataclysm.app\" \'%s/Cataclysm.app\' }`" % [path, dest_dir]]
+	}
 	var command
 	
 	if (_platform == "X11") and (path.to_lower().ends_with(".tar.gz")):
@@ -198,6 +204,8 @@ func extract(path: String, dest_dir: String) -> void:
 		command = command_linux_zip
 	elif (_platform == "Windows") and (path.to_lower().ends_with(".zip")):
 		command = command_windows
+	elif (_platform == "OSX") and (path.to_lower().ends_with(".dmg")):
+		command = command_dmg
 	else:
 		emit_signal("status_message", "Unsupported platform or archive format (file: %s)" % path.get_file(), Enums.MSG_ERROR)
 		emit_signal("extract_done")
@@ -208,7 +216,7 @@ func extract(path: String, dest_dir: String) -> void:
 		d.make_dir_recursive(dest_dir)
 		
 	emit_signal("status_message", "Extracting %s..." % path.get_file())
-		
+	
 	var oew = OSExecWrapper.new()
 	oew.execute(command["name"], command["args"])
 	yield(oew, "process_exited")

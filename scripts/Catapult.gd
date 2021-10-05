@@ -324,7 +324,10 @@ func _on_GameDir_pressed() -> void:
 	
 	var gamedir = _fshelper.get_own_dir().plus_file(_settings.read("game")).plus_file("current")
 	if Directory.new().dir_exists(gamedir):
-		OS.shell_open(gamedir)
+		if OS.get_name() != "OSX":
+			OS.shell_open(gamedir)
+		else:
+			OS.execute("open", [gamedir])
 
 
 func setup_ui() -> void:
@@ -392,6 +395,9 @@ func _on_BtnPlay_pressed() -> void:
 		"Windows":
 			var command = "cd /d %s && start cataclysm-tiles.exe" % exec_path
 			OS.execute("cmd", ["/C", command], false)
+		"OSX":
+			var app_path = exec_path + "/Cataclysm.app"
+			OS.execute("open", ["-a", app_path])
 
 
 func _refresh_currently_installed() -> void:

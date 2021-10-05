@@ -4,7 +4,7 @@ extends Node
 signal status_message
 
 
-const _INFO_FILENAME = "catapult_install_info.json"
+var _INFO_FILENAME = "catapult_install_info.json" if OS.get_name() != "OSX" else "Cataclysm.app/catapult_install_info.json"
 
 
 var _workdir = ""
@@ -48,6 +48,7 @@ func probe_installed_games() -> Dictionary:
 	
 	var result = {}
 	var d = Directory.new()
+	
 	
 	var path_dda = _workdir + "/dda/current/" + _INFO_FILENAME
 	if d.file_exists(path_dda):

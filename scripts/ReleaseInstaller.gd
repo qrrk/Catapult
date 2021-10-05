@@ -26,6 +26,9 @@ func install_release(release_info: Dictionary, game: String, update: bool = fals
 	var gamedir = _workdir + "/" + game + "/current"
 	var tmpdir = _workdir + "/" + game + "/tmp"
 	
+	if OS.get_name() == "OSX":
+		gamedir += "/Cataclysm.app"
+	
 	_downloader.download_file(release_info["url"], _workdir, release_info["filename"])
 	yield(_downloader, "download_finished")
 	
@@ -43,6 +46,8 @@ func install_release(release_info: Dictionary, game: String, update: bool = fals
 					extracted_root = tmpdir + "/" + _fshelper.list_dir(tmpdir)[0]
 				"Windows":
 					extracted_root = tmpdir
+				"OSX":
+					extracted_root = tmpdir + "/Cataclysm.app"
 			
 			_probe.create_info_file(extracted_root, release_info["name"])
 			
