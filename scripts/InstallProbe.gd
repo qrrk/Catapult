@@ -4,7 +4,7 @@ extends Node
 signal status_message
 
 
-var _INFO_FILENAME = "catapult_install_info.json" if OS.get_name() != "OSX" else "Cataclysm.app/catapult_install_info.json"
+const _INFO_FILENAME = "catapult_install_info.json"
 
 
 var _workdir = ""
