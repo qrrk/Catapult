@@ -14,6 +14,9 @@ var _game_options: Array = []
 var available_fonts: Array = [] setget , _get_available_fonts
 var font_config: Dictionary = {} setget , _get_font_config
 
+var config_folder = _workdir.plus_file(_settings.read("game")).plus_file("current").plus_file("config") \
+if OS.get_name() != "OSX" else "~/Library/Application Support/Cataclysm/config"
+# But in OSX, rx permission of parent folder denied
 
 func _get_available_fonts() -> Array:
 	
@@ -68,8 +71,8 @@ func load_available_fonts() -> void:
 
 func font_config_file_exists() -> bool:
 	
-	var config_file: String = _workdir.plus_file(_settings.read("game")).\
-			plus_file("current").plus_file("config").plus_file("fonts.json")
+	var config_file: String = config_folder.plus_file("fonts.json")
+
 			
 	return Directory.new().file_exists(config_file)
 
@@ -77,8 +80,7 @@ func font_config_file_exists() -> bool:
 func load_font_config() -> void:
 	
 	var result: Dictionary = {}
-	var config_file: String = _workdir.plus_file(_settings.read("game")).\
-			plus_file("current").plus_file("config").plus_file("fonts.json")
+	var config_file: String = config_folder.plus_file("fonts.json")
 	
 	if Directory.new().file_exists(config_file):
 		var f := File.new()
@@ -102,16 +104,14 @@ func load_font_config() -> void:
 
 func options_file_exists() -> bool:
 	
-	var options_file: String = _workdir.plus_file(_settings.read("game")).\
-		plus_file("current").plus_file("config").plus_file("options.json")
+	var options_file: String = config_folder.plus_file("options.json")
 		
 	return Directory.new().file_exists(options_file)
 
 
 func load_game_options() -> void:
 	
-	var options_file: String = _workdir.plus_file(_settings.read("game")).\
-			plus_file("current").plus_file("config").plus_file("options.json")
+	var options_file: String = config_folder.plus_file("options.json")
 
 	if Directory.new().file_exists(options_file):
 		var f := File.new()
@@ -133,8 +133,7 @@ func load_game_options() -> void:
 
 func _write_font_config() -> void:
 	
-	var config_file: String = _workdir.plus_file(_settings.read("game")).\
-			plus_file("current").plus_file("config").plus_file("fonts.json")
+	var config_file: String = config_folder.plus_file("fonts.json")
 	
 	var f = File.new()
 	var err = f.open(config_file, File.WRITE)
@@ -149,8 +148,7 @@ func _write_font_config() -> void:
 
 func write_game_options() -> void:
 	
-	var options_file: String = _workdir.plus_file(_settings.read("game")).\
-			plus_file("current").plus_file("config").plus_file("options.json")
+	var options_file: String = config_folder.plus_file("options.json")
 	
 	var f = File.new()
 	var err = f.open(options_file, File.WRITE)

@@ -24,7 +24,7 @@ func download_file(url: String, target_dir: String, target_filename: String) -> 
 	_current_filename = target_filename
 	_current_file_path = target_dir.plus_file(target_filename)
 	_http.download_file = target_dir + "/" + target_filename
-	print(_http.download_file)
+
 	_http.request(url)
 	_download_ongoing = true
 	var last_progress_time = OS.get_system_time_msecs()
