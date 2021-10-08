@@ -41,7 +41,6 @@ func install_release(release_info: Dictionary, game: String, update: bool = fals
 		yield(_fshelper, "extract_done")
 		Directory.new().remove(_workdir + "/" + release_info["filename"])
 		
-		print(_fshelper.last_extract_result)
 		if _fshelper.last_extract_result == 0:
 		
 			var extracted_root
@@ -66,8 +65,9 @@ func install_release(release_info: Dictionary, game: String, update: bool = fals
 				yield(_fshelper, "move_dir_done")				
 			else:
 				var output = []
-				var args = ["-i", "-c", 'chmod -R u+w "%s" "%s"; mkdir -p "%s"; cp -r "%s" "%s"' % [gamedir, basegamedir, extracted_root, extracted_root, gamedir]]
+				var args = ["-i", "-c", 'mkdir -p "%s"; chmod -R u+w "%s" "%s"; mv "%s" "%s"' % [basegamedir, basegamedir, extracted_root, extracted_root, gamedir]]
 				OS.execute("zsh", args, true, output, true)
+				print(output)
 			
 			_probe.create_info_file(basegamedir, release_info["name"])
 			
