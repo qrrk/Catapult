@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://icons/info.svg" type="Texture" id=1]
 [ext_resource path="res://icons/download.svg" type="Texture" id=2]
@@ -30,6 +30,7 @@
 [ext_resource path="res://scripts/FontManager.gd" type="Script" id=28]
 [ext_resource path="res://scenes/FontSizeHelpDialog.tscn" type="PackedScene" id=29]
 [ext_resource path="res://icons/help.svg" type="Texture" id=30]
+[ext_resource path="res://scripts/PathHelper.gd" type="Script" id=31]
 
 [sub_resource type="ButtonGroup" id=1]
 
@@ -126,11 +127,12 @@ margin_bottom = 91.0
 ]]
 margin_top = 97.0
 margin_right = 784.0
-margin_bottom = 418.0
+margin_bottom = 438.0
 tab_align = 0
 script = ExtResource( 16 )
 
 [node name="Game" type="VBoxContainer" parent="Main/Tabs"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -1080,7 +1082,6 @@ pressed = true
 text = "Graveyard"
 
 [node name="Debug" type="VBoxContainer" parent="Main/Tabs"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -1144,8 +1145,16 @@ margin_bottom = 260.0
 size_flags_horizontal = 4
 text = "Print a random Tip of the Day"
 
+[node name="Button7" type="Button" parent="Main/Tabs/Debug"]
+margin_left = 245.0
+margin_top = 266.0
+margin_right = 524.0
+margin_bottom = 295.0
+size_flags_horizontal = 4
+text = "Test path resolution in PathHelper"
+
 [node name="Log" type="RichTextLabel" parent="Main"]
-margin_top = 424.0
+margin_top = 444.0
 margin_right = 784.0
 margin_bottom = 984.0
 focus_mode = 2
@@ -1211,6 +1220,12 @@ __meta__ = {
 script = ExtResource( 28 )
 __meta__ = {
 "_editor_description_": "Installs fonts from launcher's internal storage to the game directory, reads, manipulates and saves font-related settings."
+}
+
+[node name="PathHelper" type="Node" parent="."]
+script = ExtResource( 31 )
+__meta__ = {
+"_editor_description_": "The centralized location for all path resolutions in the launcher."
 }
 
 [connection signal="meta_clicked" from="Main/GameInfo/Description" to="." method="_on_Description_meta_clicked"]
@@ -1280,6 +1295,7 @@ __meta__ = {
 [connection signal="pressed" from="Main/Tabs/Debug/Button4" to="Main/Tabs/Debug" method="_on_Button4_pressed"]
 [connection signal="pressed" from="Main/Tabs/Debug/Button5" to="Main/Tabs/Debug" method="_on_Button5_pressed"]
 [connection signal="pressed" from="Main/Tabs/Debug/Button6" to="Main/Tabs/Debug" method="_on_Button6_pressed"]
+[connection signal="pressed" from="Main/Tabs/Debug/Button7" to="Main/Tabs/Debug" method="_on_Button7_pressed"]
 [connection signal="done_fetching_releases" from="Releases" to="." method="_on_Releases_done_fetching_releases"]
 [connection signal="started_fetching_releases" from="Releases" to="." method="_on_Releases_started_fetching_releases"]
 [connection signal="status_message" from="Releases" to="." method="_on_status_message"]
@@ -1305,3 +1321,4 @@ __meta__ = {
 [connection signal="soundpack_installation_started" from="Sound" to="." method="_on_soundpack_operation_started"]
 [connection signal="status_message" from="Sound" to="." method="_on_status_message"]
 [connection signal="status_message" from="Fonts" to="." method="_on_status_message"]
+[connection signal="status_message" from="PathHelper" to="." method="_on_status_message"]

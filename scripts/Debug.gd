@@ -6,6 +6,7 @@ signal status_message
 
 onready var _settings = $"/root/SettingsManager"
 onready var _fshelper = $"/root/Catapult/FSHelper"
+onready var _path = $"/root/Catapult/PathHelper"
 onready var _mods = $"../../../Mods"
 onready var _sound = $"../../../Sound"
 onready var _totd = $"/root/Catapult/TOTD"
@@ -108,3 +109,15 @@ func _on_Button5_pressed() -> void:
 func _on_Button6_pressed() -> void:
 	
 	emit_signal("status_message", "Random tip of the day (debug):\n%s\n" % _totd.get_tip())
+
+
+func _on_Button7_pressed() -> void:
+	
+	var msg = "Paths provided by PathHelper:"
+	
+	for prop in _path.get_property_list():
+		var name = prop["name"]
+		if (prop["type"] == 4) and ("dir" in name):
+			msg += "\n%s: %s" % [name, _path.get(name)]
+	
+	emit_signal("status_message", msg, Enums.MSG_DEBUG)
