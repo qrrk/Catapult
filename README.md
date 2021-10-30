@@ -20,7 +20,10 @@
 
 ## Installation
 
-None required. The launcher is a single, self-contained executable. Just [download](https://github.com/qrrk/Catapult/releases) it to a separate folder and run. *Be sure you have write permission in that folder!*
+None required. The launcher is a single, self-contained executable. Just [download](https://github.com/qrrk/Catapult/releases/latest) it to a separate folder and run.
+
+- Be sure you have write permission in that folder.
+- On Linux, [make the file executable](https://askubuntu.com/a/485001) before running it.
 
 ## System requirements
 
