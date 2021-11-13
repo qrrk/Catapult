@@ -18,13 +18,13 @@ const _MODPACKS = {
 		"name": "CDDA Kenan Modpack",
 		"url": "https://github.com/Kenan2000/CDDA-Kenan-Modpack/archive/refs/heads/master.zip",
 		"filename": "CDDA-Kenan-Modpack-master.zip",
-		"internal_path": "CDDA-Kenan-Modpack-master/Kenan-Modpack"
+		"internal_path": "CDDA-Structured-Kenan-Modpack-master/Kenan-Structured-Modpack"
 	},
 	"kenan-bn": {
 		"name": "BN Kenan Modpack",
 		"url": "https://github.com/Kenan2000/Bright-Nights-Kenan-Mod-Pack/archive/refs/heads/master.zip",
 		"filename": "Bright-Nights-Kenan-Mod-Pack-master.zip",
-		"internal_path": "Bright-Nights-Kenan-Mod-Pack-master/Kenan-BrightNights-Modpack"
+		"internal_path": "BrightNights-Structured-Kenan-Modpack-master/Kenan-BrightNights-Structured-Modpack"
 	}
 }
 
