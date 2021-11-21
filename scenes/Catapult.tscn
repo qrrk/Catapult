@@ -127,11 +127,12 @@ margin_bottom = 91.0
 ]]
 margin_top = 97.0
 margin_right = 784.0
-margin_bottom = 418.0
+margin_bottom = 594.0
 tab_align = 0
 script = ExtResource( 16 )
 
 [node name="Game" type="VBoxContainer" parent="Main/Tabs"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -870,7 +871,6 @@ margin_right = 769.0
 margin_bottom = 539.0
 
 [node name="Settings" type="VBoxContainer" parent="Main/Tabs"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -922,19 +922,28 @@ as \"obsolete\". Normally, such mods are not considered
 as installed."
 text = "List obsolete mods in installed"
 
-[node name="ShowDebug" type="CheckButton" parent="Main/Tabs/Settings"]
+[node name="InstallArchivedMods" type="CheckButton" parent="Main/Tabs/Settings"]
 margin_top = 175.0
 margin_right = 769.0
 margin_bottom = 204.0
+hint_tooltip = "When installing Kenan modpack, also include *archived*
+mods. These mods are no longer maintained by Kenan
+and may be outdated."
+text = "Include archived mods when installing Kenan modpack"
+
+[node name="ShowDebug" type="CheckButton" parent="Main/Tabs/Settings"]
+margin_top = 210.0
+margin_right = 769.0
+margin_bottom = 239.0
 hint_tooltip = "Shows the Debug tab with some testing functions
 and enables debug messages in the status  pane
 (useful for troubleshooting)."
 text = "Debug mode"
 
 [node name="NumReleases" type="HBoxContainer" parent="Main/Tabs/Settings"]
-margin_top = 210.0
+margin_top = 245.0
 margin_right = 769.0
-margin_bottom = 239.0
+margin_bottom = 274.0
 hint_tooltip = "How many latest  releases will be requested
 from GitHub after starting the launcher, choosing
 the game or clicking  Refresh."
@@ -954,9 +963,9 @@ value = 30.0
 rounded = true
 
 [node name="ScaleOverride" type="HBoxContainer" parent="Main/Tabs/Settings"]
-margin_top = 245.0
+margin_top = 280.0
 margin_right = 769.0
-margin_bottom = 274.0
+margin_bottom = 309.0
 hint_tooltip = "Use this if the automatically inferred UI scale
 looks too large or too small on your system.
 (Automatic scale relies on system-reported
@@ -991,14 +1000,14 @@ editable = false
 suffix = "%"
 
 [node name="HSeparator" type="HSeparator" parent="Main/Tabs/Settings"]
-margin_top = 280.0
+margin_top = 315.0
 margin_right = 769.0
-margin_bottom = 288.0
+margin_bottom = 323.0
 
 [node name="Migration" type="VBoxContainer" parent="Main/Tabs/Settings"]
-margin_top = 294.0
+margin_top = 329.0
 margin_right = 769.0
-margin_bottom = 416.0
+margin_bottom = 451.0
 hint_tooltip = "Choose which types of game data to carry over
 into the new game version when updating."
 
@@ -1154,7 +1163,7 @@ size_flags_horizontal = 4
 text = "Test path resolution in PathHelper"
 
 [node name="Log" type="RichTextLabel" parent="Main"]
-margin_top = 424.0
+margin_top = 600.0
 margin_right = 784.0
 margin_bottom = 984.0
 focus_mode = 2
@@ -1275,6 +1284,7 @@ __meta__ = {
 [connection signal="toggled" from="Main/Tabs/Settings/UpdateToSame" to="Main/Tabs/Settings" method="_on_UpdateToSame_toggled"]
 [connection signal="toggled" from="Main/Tabs/Settings/ShortenNames" to="Main/Tabs/Settings" method="_on_ShortenNames_toggled"]
 [connection signal="toggled" from="Main/Tabs/Settings/ShowObsoleteMods" to="Main/Tabs/Settings" method="_on_ShowObsoleteMods_toggled"]
+[connection signal="toggled" from="Main/Tabs/Settings/InstallArchivedMods" to="Main/Tabs/Settings" method="_on_InstallArchivedMods_toggled"]
 [connection signal="toggled" from="Main/Tabs/Settings/ShowDebug" to="Main/Tabs/Settings" method="_on_ShowDebug_toggled"]
 [connection signal="value_changed" from="Main/Tabs/Settings/NumReleases/sbNumReleases" to="Main/Tabs/Settings" method="_on_sbNumReleases_value_changed"]
 [connection signal="toggled" from="Main/Tabs/Settings/ScaleOverride/cbScaleOverrideEnable" to="Main/Tabs/Settings" method="_on_cbScaleOverrideEnable_toggled"]

@@ -21,6 +21,7 @@ const _MODPACKS = {
 		"internal_paths": [
 			"CDDA-Structured-Kenan-Modpack-master/Kenan-Structured-Modpack/High-Maintenance-Huge-Mods",
 			],
+		"archived_path": "CDDA-Structured-Kenan-Modpack-master/Kenan-Structured-Modpack/Archived-Mods",
 	},
 	"kenan-bn": {
 		"name": "BN Kenan Modpack",
@@ -30,6 +31,7 @@ const _MODPACKS = {
 			"BrightNights-Structured-Kenan-Modpack-master/Kenan-BrightNights-Structured-Modpack/High-Maintenance-Huge-Mods",
 			"BrightNights-Structured-Kenan-Modpack-master/Kenan-BrightNights-Structured-Modpack/Medium-Maintenance-Small-Mods",
 			],
+		"archived_path": "BrightNights-Structured-Kenan-Modpack-master/Kenan-BrightNights-Structured-Modpack/Archived-Mods",
 	}
 }
 
@@ -290,6 +292,11 @@ func retrieve_kenan_pack() -> void:
 		emit_signal("status_message", "Adding mods from the pack to repository...")
 		for int_path in pack["internal_paths"]:
 			_fshelper.move_dir(_tmp_dir + "/" + int_path, _modrepo_dir)
+			yield(_fshelper, "move_dir_done")
+		
+		if _settings.read("install_archived_mods"):
+			emit_signal("status_message", "Adding archived mods to repository...")
+			_fshelper.move_dir(_tmp_dir + "/" + pack["archived_path"], _modrepo_dir)
 			yield(_fshelper, "move_dir_done")
 		
 		emit_signal("status_message", "Cleaning up...")
