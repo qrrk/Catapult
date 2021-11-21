@@ -891,7 +891,7 @@ text = "Show game description"
 margin_top = 35.0
 margin_right = 769.0
 margin_bottom = 64.0
-hint_tooltip = "Print a random tip in the log pane
+hint_tooltip = "Print a random tip in the status pane
 when the launcher starts."
 text = "Print tips of the day on startup"
 
@@ -909,8 +909,7 @@ margin_right = 769.0
 margin_bottom = 134.0
 hint_tooltip = "Shorten release names to just the date and number
 (e.g. \"2021-09-08-1927\" instead of
-\"Cataclysm-DDA experimental build 2021-09-08-1927\").
-Short names save screen space but may be less clear."
+\"Cataclysm-DDA experimental build 2021-09-08-1927\")."
 text = "Shorten names of experimental releases"
 
 [node name="ShowObsoleteMods" type="CheckButton" parent="Main/Tabs/Settings"]
@@ -944,9 +943,9 @@ text = "Debug mode"
 margin_top = 245.0
 margin_right = 769.0
 margin_bottom = 274.0
-hint_tooltip = "How many latest  releases will be requested
+hint_tooltip = "How many latest releases will be requested
 from GitHub after starting the launcher, choosing
-the game or clicking  Refresh."
+the game or clicking Refresh."
 
 [node name="Label" type="Label" parent="Main/Tabs/Settings/NumReleases"]
 margin_right = 248.0
@@ -969,7 +968,9 @@ margin_bottom = 309.0
 hint_tooltip = "Use this if the automatically inferred UI scale
 looks too large or too small on your system.
 (Automatic scale relies on system-reported
-display DPI, which may not work on all systems.)"
+display DPI, which may not work on all systems,
+or give inadequate results when the resolution
+is too low.)"
 __meta__ = {
 "_edit_use_anchors_": false
 }
