@@ -18,13 +18,18 @@ const _MODPACKS = {
 		"name": "CDDA Kenan Modpack",
 		"url": "https://github.com/Kenan2000/CDDA-Kenan-Modpack/archive/refs/heads/master.zip",
 		"filename": "CDDA-Kenan-Modpack-master.zip",
-		"internal_path": "CDDA-Structured-Kenan-Modpack-master/Kenan-Structured-Modpack"
+		"internal_paths": [
+			"CDDA-Structured-Kenan-Modpack-master/Kenan-Structured-Modpack/High-Maintenance-Huge-Mods",
+			],
 	},
 	"kenan-bn": {
 		"name": "BN Kenan Modpack",
 		"url": "https://github.com/Kenan2000/Bright-Nights-Kenan-Mod-Pack/archive/refs/heads/master.zip",
 		"filename": "Bright-Nights-Kenan-Mod-Pack-master.zip",
-		"internal_path": "BrightNights-Structured-Kenan-Modpack-master/Kenan-BrightNights-Structured-Modpack"
+		"internal_paths": [
+			"BrightNights-Structured-Kenan-Modpack-master/Kenan-BrightNights-Structured-Modpack/High-Maintenance-Huge-Mods",
+			"BrightNights-Structured-Kenan-Modpack-master/Kenan-BrightNights-Structured-Modpack/Medium-Maintenance-Small-Mods",
+			],
 	}
 }
 
@@ -276,15 +281,21 @@ func retrieve_kenan_pack() -> void:
 		_fshelper.extract(archive, _tmp_dir)
 		yield(_fshelper, "extract_done")
 		Directory.new().remove(archive)
+		
 		emit_signal("status_message", "Wiping the repository...")
 		if (Directory.new().dir_exists(_modrepo_dir)):
 			_fshelper.rm_dir(_modrepo_dir)
 			yield(_fshelper, "rm_dir_done")
+		
 		emit_signal("status_message", "Adding mods from the pack to repository...")
-		_fshelper.move_dir(_tmp_dir + "/" + pack["internal_path"], _modrepo_dir)
-		yield(_fshelper, "move_dir_done")
-		_fshelper.rm_dir(_tmp_dir + "/" + pack["internal_path"].split("/")[0])
+		for int_path in pack["internal_paths"]:
+			_fshelper.move_dir(_tmp_dir + "/" + int_path, _modrepo_dir)
+			yield(_fshelper, "move_dir_done")
+		
+		emit_signal("status_message", "Cleaning up...")
+		_fshelper.rm_dir(_tmp_dir + "/" + pack["internal_paths"][0].split("/")[0])
 		yield(_fshelper, "rm_dir_done")
+		
 		emit_signal("status_message", "All finished.")
 	
 	refresh_available()
