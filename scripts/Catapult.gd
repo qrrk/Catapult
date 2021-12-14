@@ -22,10 +22,10 @@ onready var _tabs = $Main/Tabs
 onready var _mods = $Mods
 onready var _releases = $Releases
 onready var _fshelper = $FSHelper
-onready var _changelogger = $Changelogger
 onready var _installer = $ReleaseInstaller
 onready var _btn_install = $Main/Tabs/Game/BtnInstall
 onready var _btn_refresh = $Main/Tabs/Game/Builds/BtnRefresh
+onready var _btn_changelog = $Main/Tabs/Game/BtnChangelog
 onready var _btn_game_dir = $Main/Tabs/Game/CurrentInstall/Build/GameDir
 onready var _btn_play = $Main/Tabs/Game/CurrentInstall/BtnPlay
 onready var _lst_builds = $Main/Tabs/Game/Builds/BuildsList
@@ -307,6 +307,11 @@ func _on_BtnInstall_pressed() -> void:
 
 func _on_BtnChangelog_pressed() -> void:
 	var changesToCheck = _settings.read("game")
+	var _changelogger = $Changelogger
+	$ChangelogPopup.popup()
+	
+func _on_BtnCloseChangelog_pressed():
+	$ChangelogPanel.hide()
 
 func _get_release_key() -> String:
 	# Compiles a string looking like "dda-stable" or "bn-experimental"
@@ -369,8 +374,11 @@ func apply_game_choice() -> void:
 			if channel == "stable":
 				_rbtn_stable.pressed = true
 				_btn_refresh.disabled = true
+				_btn_changelog.disabled = true
 			else:
 				_btn_refresh.disabled = false
+				_btn_changelog.disabled = false
+				
 		"bn":
 			_lst_games.select(1)
 			_rbtn_exper.pressed = true

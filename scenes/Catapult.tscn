@@ -76,17 +76,16 @@ selected = 0
 [node name="GameInfo" type="HBoxContainer" parent="Main"]
 margin_top = 35.0
 margin_right = 784.0
-margin_bottom = 85.0
+margin_bottom = 67.0
 custom_constants/separation = 8
 
 [node name="Spacer" type="Control" parent="Main/GameInfo"]
-margin_bottom = 50.0
+margin_bottom = 32.0
 
 [node name="Icon" type="TextureRect" parent="Main/GameInfo"]
 margin_left = 8.0
-margin_top = 9.0
 margin_right = 40.0
-margin_bottom = 41.0
+margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -97,7 +96,7 @@ stretch_mode = 6
 [node name="Description" type="RichTextLabel" parent="Main/GameInfo"]
 margin_left = 48.0
 margin_right = 784.0
-margin_bottom = 50.0
+margin_bottom = 31.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
 custom_fonts/bold_italics_font = ExtResource( 24 )
@@ -110,14 +109,14 @@ text = "Game Title is a game in which... and other stuff about the game. This is
 fit_content_height = true
 
 [node name="Spacer" type="Control" parent="Main"]
-margin_top = 91.0
+margin_top = 73.0
 margin_right = 784.0
-margin_bottom = 91.0
+margin_bottom = 73.0
 
 [node name="Tabs" type="TabContainer" parent="Main" groups=["disable_during_mod_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases", "disable_while_installing_game"]]
-margin_top = 97.0
+margin_top = 79.0
 margin_right = 784.0
-margin_bottom = 458.0
+margin_bottom = 440.0
 tab_align = 0
 script = ExtResource( 16 )
 
@@ -1124,7 +1123,7 @@ size_flags_horizontal = 4
 text = "Test path resolution in PathHelper"
 
 [node name="Log" type="RichTextLabel" parent="Main"]
-margin_top = 464.0
+margin_top = 446.0
 margin_right = 784.0
 margin_bottom = 984.0
 focus_mode = 2
@@ -1198,6 +1197,33 @@ __meta__ = {
 "_editor_description_": "The centralized location for all path resolutions in the launcher."
 }
 
+[node name="ChangelogPopup" type="PopupDialog" parent="."]
+visible = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -240.0
+margin_top = -160.0
+margin_right = 240.0
+margin_bottom = 160.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BtnCloseChangelog" type="Button" parent="ChangelogPopup"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -55.5
+margin_top = -32.0
+margin_right = 55.5
+text = "Close"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="meta_clicked" from="Main/GameInfo/Description" to="." method="_on_Description_meta_clicked"]
 [connection signal="tab_changed" from="Main/Tabs" to="." method="_on_Tabs_tab_changed"]
 [connection signal="tab_changed" from="Main/Tabs" to="Main/Tabs/Mods" method="_on_Tabs_tab_changed"]
@@ -1206,6 +1232,7 @@ __meta__ = {
 [connection signal="item_selected" from="Main/Tabs/Game/Builds/BuildsList" to="." method="_on_BuildsList_item_selected"]
 [connection signal="pressed" from="Main/Tabs/Game/Builds/BtnRefresh" to="." method="_on_BtnRefresh_pressed"]
 [connection signal="pressed" from="Main/Tabs/Game/BtnInstall" to="." method="_on_BtnInstall_pressed"]
+[connection signal="pressed" from="Main/Tabs/Game/BtnChangelog" to="." method="_on_BtnChangelog_pressed"]
 [connection signal="pressed" from="Main/Tabs/Game/CurrentInstall/Build/GameDir" to="." method="_on_GameDir_pressed"]
 [connection signal="pressed" from="Main/Tabs/Game/CurrentInstall/BtnPlay" to="." method="_on_BtnPlay_pressed"]
 [connection signal="status_message" from="Main/Tabs/Mods" to="." method="_on_status_message"]
@@ -1293,3 +1320,4 @@ __meta__ = {
 [connection signal="status_message" from="Sound" to="." method="_on_status_message"]
 [connection signal="status_message" from="Fonts" to="." method="_on_status_message"]
 [connection signal="status_message" from="PathHelper" to="." method="_on_status_message"]
+[connection signal="pressed" from="ChangelogPopup/BtnCloseChangelog" to="." method="_on_BtnCloseChangelog_pressed"]

@@ -1,4 +1,6 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://fonts/OpenSans-Regular.tres" type="DynamicFont" id=1]
 
 [node name="Panel" type="Panel"]
 margin_right = 640.0
@@ -14,6 +16,7 @@ margin_top = 16.0
 margin_right = 624.0
 margin_bottom = 400.0
 rect_min_size = Vector2( 608, 384 )
+custom_fonts/mono_font = ExtResource( 1 )
 bbcode_enabled = true
 __meta__ = {
 "_edit_use_anchors_": false
