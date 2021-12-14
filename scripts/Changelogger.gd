@@ -16,8 +16,10 @@ func _ready():
 	pass
 
 func download_pull_requests():
-	_ddaPullRequest.request(_ddaPRUrl + str(1),["user-agent: GodotApp"])
-	_bnPullRequest.request(_bnPRUrl + str(1),["user-agent: GodotApp"])
+	if _ddaPRData == null:
+		_ddaPullRequest.request(_ddaPRUrl + str(1),["user-agent: GodotApp"])
+	#if _bnPRData == null:
+		#_bnPullRequest.request(_bnPRUrl + str(1),["user-agent: GodotApp"])
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -25,8 +27,14 @@ func download_pull_requests():
 
 
 func _on_DDAPullRequests_request_completed(result, response_code, headers, body):
-	_changelogTextBox.set_text(body.get_string_from_utf8())
+	_ddaPRData = process_pr_data(parse_json(body.get_string_from_utf8()))
 
 
 func _on_BNPullRequests_request_completed(result, response_code, headers, body):
-	print(parse_json(body.get_string_from_utf8()))
+	_bnPRData = process_pr_data(parse_json(body.get_string_from_utf8()))
+	
+func process_pr_data(prData):
+	var currentDate = OS.get_datetime(true)
+	var rVal = ""
+	for json in prData:
+		pass
