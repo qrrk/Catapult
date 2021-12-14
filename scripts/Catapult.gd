@@ -33,7 +33,7 @@ onready var _lst_games = $Main/GameChoice/GamesList
 onready var _rbtn_stable = $Main/Tabs/Game/Channel/Group/RBtnStable
 onready var _rbtn_exper = $Main/Tabs/Game/Channel/Group/RBtnExperimental
 onready var _lbl_build = $Main/Tabs/Game/CurrentInstall/Build/Name
-
+onready var _changelogger = $ChangelogPopup/Changelogger
 
 var _disable_savestate = {}
 var _ui_staring_sizes = {}  # For UI scaling on the fly
@@ -307,8 +307,8 @@ func _on_BtnInstall_pressed() -> void:
 
 func _on_BtnChangelog_pressed() -> void:
 	var changesToCheck = _settings.read("game")
-	var _changelogger = $Changelogger
 	$ChangelogPopup.popup()
+	_changelogger.download_pull_requests()
 	
 func _on_BtnCloseChangelog_pressed():
 	$ChangelogPopup.hide()

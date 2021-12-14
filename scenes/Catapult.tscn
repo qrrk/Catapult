@@ -1244,9 +1244,9 @@ __meta__ = {
 [node name="Changelogger" type="Node" parent="ChangelogPopup"]
 script = ExtResource( 32 )
 
-[node name="DDAPullRequests" type="HTTPRequest" parent="ChangelogPopup"]
+[node name="DDAPullRequests" type="HTTPRequest" parent="ChangelogPopup/Changelogger"]
 
-[node name="BNPullRequests" type="HTTPRequest" parent="ChangelogPopup"]
+[node name="BNPullRequests" type="HTTPRequest" parent="ChangelogPopup/Changelogger"]
 
 [connection signal="meta_clicked" from="Main/GameInfo/Description" to="." method="_on_Description_meta_clicked"]
 [connection signal="tab_changed" from="Main/Tabs" to="." method="_on_Tabs_tab_changed"]
@@ -1345,3 +1345,5 @@ script = ExtResource( 32 )
 [connection signal="status_message" from="Fonts" to="." method="_on_status_message"]
 [connection signal="status_message" from="PathHelper" to="." method="_on_status_message"]
 [connection signal="pressed" from="ChangelogPopup/BtnCloseChangelog" to="." method="_on_BtnCloseChangelog_pressed"]
+[connection signal="request_completed" from="ChangelogPopup/Changelogger/DDAPullRequests" to="ChangelogPopup/Changelogger" method="_on_DDAPullRequests_request_completed"]
+[connection signal="request_completed" from="ChangelogPopup/Changelogger/BNPullRequests" to="ChangelogPopup/Changelogger" method="_on_BNPullRequests_request_completed"]
