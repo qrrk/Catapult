@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://icons/info.svg" type="Texture" id=1]
 [ext_resource path="res://icons/download.svg" type="Texture" id=2]
@@ -32,6 +32,7 @@
 [ext_resource path="res://icons/help.svg" type="Texture" id=30]
 [ext_resource path="res://scripts/PathHelper.gd" type="Script" id=31]
 [ext_resource path="res://scripts/Changelogger.gd" type="Script" id=32]
+[ext_resource path="res://scenes/ChangelogPopup.gd" type="Script" id=33]
 
 [sub_resource type="ButtonGroup" id=1]
 
@@ -1070,13 +1071,13 @@ autowrap = true
 [node name="Button" type="Button" parent="Main/Tabs/Debug"]
 margin_left = 273.0
 margin_top = 56.0
-margin_right = 496.0
+margin_right = 495.0
 margin_bottom = 85.0
 size_flags_horizontal = 6
 text = "Test mod directory parsing"
 
 [node name="Button2" type="Button" parent="Main/Tabs/Debug"]
-margin_left = 266.0
+margin_left = 267.0
 margin_top = 91.0
 margin_right = 502.0
 margin_bottom = 120.0
@@ -1084,7 +1085,7 @@ size_flags_horizontal = 6
 text = "Test sound directory parsing"
 
 [node name="Button3" type="Button" parent="Main/Tabs/Debug"]
-margin_left = 201.0
+margin_left = 202.0
 margin_top = 126.0
 margin_right = 567.0
 margin_bottom = 155.0
@@ -1094,13 +1095,13 @@ text = "Test passing of arguments to shell commands"
 [node name="Button4" type="Button" parent="Main/Tabs/Debug"]
 margin_left = 228.0
 margin_top = 161.0
-margin_right = 541.0
+margin_right = 540.0
 margin_bottom = 190.0
 size_flags_horizontal = 6
 text = "Test different types of status messages"
 
 [node name="Button5" type="Button" parent="Main/Tabs/Debug"]
-margin_left = 261.0
+margin_left = 262.0
 margin_top = 196.0
 margin_right = 507.0
 margin_bottom = 225.0
@@ -1118,7 +1119,7 @@ text = "Print a random Tip of the Day"
 [node name="Button7" type="Button" parent="Main/Tabs/Debug"]
 margin_left = 245.0
 margin_top = 266.0
-margin_right = 524.0
+margin_right = 523.0
 margin_bottom = 295.0
 size_flags_horizontal = 4
 text = "Test path resolution in PathHelper"
@@ -1199,7 +1200,6 @@ __meta__ = {
 }
 
 [node name="ChangelogPopup" type="PopupDialog" parent="."]
-visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1208,6 +1208,7 @@ margin_left = -240.0
 margin_top = -160.0
 margin_right = 240.0
 margin_bottom = 160.0
+script = ExtResource( 33 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1226,6 +1227,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Changelogger" type="Node" parent="ChangelogPopup"]
+script = ExtResource( 32 )
+
+[node name="DDAPullRequests" type="HTTPRequest" parent="ChangelogPopup/Changelogger"]
+
+[node name="BNPullRequests" type="HTTPRequest" parent="ChangelogPopup/Changelogger"]
+
 [node name="ChangelogText" type="RichTextLabel" parent="ChangelogPopup"]
 anchor_left = 0.5
 anchor_right = 0.5
@@ -1240,13 +1248,6 @@ text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Changelogger" type="Node" parent="ChangelogPopup"]
-script = ExtResource( 32 )
-
-[node name="DDAPullRequests" type="HTTPRequest" parent="ChangelogPopup/Changelogger"]
-
-[node name="BNPullRequests" type="HTTPRequest" parent="ChangelogPopup/Changelogger"]
 
 [connection signal="meta_clicked" from="Main/GameInfo/Description" to="." method="_on_Description_meta_clicked"]
 [connection signal="tab_changed" from="Main/Tabs" to="." method="_on_Tabs_tab_changed"]

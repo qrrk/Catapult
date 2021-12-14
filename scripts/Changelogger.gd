@@ -3,6 +3,7 @@ extends Node
 onready var _settings = $"/root/SettingsManager"
 onready var _ddaPullRequest = $DDAPullRequests
 onready var _bnPullRequest = $BNPullRequests
+onready var _changelogTextBox = $"../ChangelogText"
 
 var _ddaPRUrl = "https://api.github.com/repos/cleverraven/cataclysm-dda/pulls?state=closed&sort=updated&direction=desc&per_page=100&page="
 var _bnPRUrl = "https://api.github.com/repos/cataclysmbnteam/Cataclysm-BN/pulls?state=closed&sort=updated&direction=desc&per_page=100&page="
@@ -24,7 +25,7 @@ func download_pull_requests():
 
 
 func _on_DDAPullRequests_request_completed(result, response_code, headers, body):
-	print(parse_json(body.get_string_from_utf8()))
+	_changelogTextBox.set_text(body.get_string_from_utf8())
 
 
 func _on_BNPullRequests_request_completed(result, response_code, headers, body):
