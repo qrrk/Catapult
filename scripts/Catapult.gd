@@ -22,6 +22,7 @@ onready var _tabs = $Main/Tabs
 onready var _mods = $Mods
 onready var _releases = $Releases
 onready var _fshelper = $FSHelper
+onready var _changelogger = $Changelogger
 onready var _installer = $ReleaseInstaller
 onready var _btn_install = $Main/Tabs/Game/BtnInstall
 onready var _btn_refresh = $Main/Tabs/Game/Builds/BtnRefresh
@@ -304,6 +305,8 @@ func _on_BtnInstall_pressed() -> void:
 	var update = _settings.read("game") in _inst_probe.probe_installed_games()
 	_installer.install_release(release, _settings.read("game"), update)
 
+func _on_BtnChangelog_pressed() -> void:
+	var changesToCheck = _settings.read("game")
 
 func _get_release_key() -> String:
 	# Compiles a string looking like "dda-stable" or "bn-experimental"
