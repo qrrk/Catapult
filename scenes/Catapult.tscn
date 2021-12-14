@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://icons/info.svg" type="Texture" id=1]
 [ext_resource path="res://icons/download.svg" type="Texture" id=2]
@@ -31,6 +31,7 @@
 [ext_resource path="res://scenes/FontSizeHelpDialog.tscn" type="PackedScene" id=29]
 [ext_resource path="res://icons/help.svg" type="Texture" id=30]
 [ext_resource path="res://scripts/PathHelper.gd" type="Script" id=31]
+[ext_resource path="res://scripts/Changelogger.gd" type="Script" id=32]
 
 [sub_resource type="ButtonGroup" id=1]
 
@@ -1217,12 +1218,35 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -55.5
-margin_top = -32.0
+margin_top = -36.0
 margin_right = 55.5
+margin_bottom = -4.0
 text = "Close"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ChangelogText" type="RichTextLabel" parent="ChangelogPopup"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -240.0
+margin_right = 240.0
+margin_bottom = 280.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/mono_font = ExtResource( 7 )
+bbcode_enabled = true
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Changelogger" type="Node" parent="ChangelogPopup"]
+script = ExtResource( 32 )
+
+[node name="DDAPullRequests" type="HTTPRequest" parent="ChangelogPopup"]
+
+[node name="BNPullRequests" type="HTTPRequest" parent="ChangelogPopup"]
 
 [connection signal="meta_clicked" from="Main/GameInfo/Description" to="." method="_on_Description_meta_clicked"]
 [connection signal="tab_changed" from="Main/Tabs" to="." method="_on_Tabs_tab_changed"]

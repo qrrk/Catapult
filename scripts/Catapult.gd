@@ -311,7 +311,7 @@ func _on_BtnChangelog_pressed() -> void:
 	$ChangelogPopup.popup()
 	
 func _on_BtnCloseChangelog_pressed():
-	$ChangelogPanel.hide()
+	$ChangelogPopup.hide()
 
 func _get_release_key() -> String:
 	# Compiles a string looking like "dda-stable" or "bn-experimental"
