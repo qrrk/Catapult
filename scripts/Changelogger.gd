@@ -60,8 +60,8 @@ func process_pr_data(pr_data):
 	var latest_year = now["year"]
 	var latest_month = now["month"]
 	var latest_day = now["day"]
-	var mon_str = format_two_digit(str(latest_month))
-	var day_str = format_two_digit(str(latest_day))
+	var mon_str = PullRequest.format_two_digit(str(latest_month))
+	var day_str = PullRequest.format_two_digit(str(latest_day))
 	var r_val ="--- " + str(latest_year) + "-" + str(latest_month) + "-" + str(latest_day) + " ---\n"
 	for pr in pr_array:
 		#print(str(pr.get_year()) + "-" + str(pr.get_month()) + "-" + str(pr.get_day()))
@@ -73,16 +73,11 @@ func process_pr_data(pr_data):
 			latest_year = pr.get_year()
 			latest_month = pr.get_month()
 			latest_day = pr.get_day()
-			mon_str = format_two_digit(str(latest_month))
-			day_str = format_two_digit(str(latest_day))
+			mon_str = PullRequest.format_two_digit(str(latest_month))
+			day_str = PullRequest.format_two_digit(str(latest_day))
 			r_val = r_val + "\n--- " + str(latest_year) + "-" + mon_str+ "-" + day_str + " ---\n"
 		r_val = r_val + " * [url=" + pr.get_link() + "]" + pr.get_summary() + "[/url]\n"
 	return r_val
-
-func format_two_digit(time):
-	if (time.length() == 1):
-		return "0" + time
-	return time
 
 func _on_ChangelogText_meta_clicked(meta):
 	OS.shell_open(str(meta))
@@ -121,6 +116,25 @@ class PullRequest:
 	func get_link():
 		return link
 	
+	# A shortcut for comparison
+	func to_int():
+		var r_val = str(year)
+		r_val += format_two_digit(month)
+		r_val += format_two_digit(day)
+		r_val += format_two_digit(hour)
+		r_val += format_two_digit(minute)
+		r_val += format_two_digit(second)
+		return int(r_val)
+	
+	static func format_two_digit(time):
+		if (str(time).length() == 1):
+			return "0" + str(time)
+		return str(time)
+	
+	# Sorts dates in descending order (that is, the latest date comes first).
+	static func compare_to(a, b):
+		return a.to_int() > b.to_int()
+	
 	#We just need to get Github API strings. Nothing else.
 	static func pullrequest_from_datestring(date, sum, link):
 		var r_val = PullRequest.new(
@@ -134,18 +148,7 @@ class PullRequest:
 			link)
 		return r_val
 	
-	# Sorts dates in descending order (that is, the latest date comes first).
-	static func compare_to(a, b):
-		var a_more_than_b = a.year > b.year
-		if a.year == b.year:
-			a_more_than_b = a.get_julian_date() > b.get_julian_date()
-			if a.get_julian_date() == b.get_julian_date():
-				a_more_than_b = a.hour > b.hour
-				if a.hour == b.hour:
-					a_more_than_b = a.minute > b.minute
-					if a.minute == b.minute:
-						a_more_than_b = a.second > b.second
-		return a_more_than_b
+
 	
 	func _init(y, mo, d, h, mi, s, sum, url):
 		year = y
@@ -157,18 +160,7 @@ class PullRequest:
 		summary = sum
 		link = url
 	
-	func get_julian_date():
-		var days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-
-		#Yes, this will cause 2100 to be a leap year. We will deal with that when it becomes relevant.
-		if year % 4 == 0:
-			days_in_month[1] = 29
-		if month == 1:
-			return day
-		var julian = day
-		for n in (month - 1):
-			julian = julian + days_in_month[n]
-		return julian
+	
 	
 	func print_date():
 		return str(year) + "-" + str(month) + "-" + str(day)
