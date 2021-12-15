@@ -83,6 +83,7 @@ func _on_ChangelogText_meta_clicked(meta):
 	OS.shell_open(str(meta))
 
 class PullRequest:
+	var timestring setget set_timestring,get_timestring
 	var year setget ,get_year
 	var month setget ,get_month
 	var day setget ,get_day
@@ -116,15 +117,11 @@ class PullRequest:
 	func get_link():
 		return link
 	
-	# A shortcut for comparison
-	func to_int():
-		var r_val = str(year)
-		r_val += format_two_digit(month)
-		r_val += format_two_digit(day)
-		r_val += format_two_digit(hour)
-		r_val += format_two_digit(minute)
-		r_val += format_two_digit(second)
-		return int(r_val)
+	func set_timestring(t):
+		timestring = t
+	
+	func get_timestring():
+		return timestring
 	
 	static func format_two_digit(time):
 		if (str(time).length() == 1):
@@ -133,7 +130,7 @@ class PullRequest:
 	
 	# Sorts dates in descending order (that is, the latest date comes first).
 	static func compare_to(a, b):
-		return a.to_int() > b.to_int()
+		return a.timestring > b.timestring
 	
 	#We just need to get Github API strings. Nothing else.
 	static func pullrequest_from_datestring(date, sum, link):
@@ -146,6 +143,7 @@ class PullRequest:
 			int(date.substr(16,2)),
 			sum,
 			link)
+		r_val.set_timestring(date)
 		return r_val
 	
 
