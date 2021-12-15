@@ -16,10 +16,16 @@ func download_pull_requests():
 	var game_selected = _settings.read("game")
 	var dda_pr_url = "https://api.github.com/repos/cleverraven/cataclysm-dda/pulls?state=closed&sort=updated&direction=desc&per_page=100"
 	var bn_pr_url = "https://api.github.com/repos/cataclysmbnteam/Cataclysm-BN/pulls?state=closed&sort=updated&direction=desc&per_page=100"
-	if _dda_pr_data.length() < 60 and game_selected == "dda":
-		_ddaPullRequests.request(dda_pr_url,["Authorization: token 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", "user-agent: GodotApp"])
-	if _bn_pr_data.length() < 60 and game_selected == "bn":
-		_bnPullRequests.request(bn_pr_url,["Authorization: token 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", "user-agent: GodotApp"])
+	if _dda_pr_data.length() < 65 and game_selected == "dda":
+		_dda_pr_data = "Downloading recent DDA PRs. Please wait..."
+		_ddaPullRequests.request(dda_pr_url,["user-agent: GodotApp"])
+		_changelogTextBox.clear()
+		_changelogTextBox.append_bbcode(_dda_pr_data)
+	if _bn_pr_data.length() < 65 and game_selected == "bn":
+		_bn_pr_data = "Downloading recent BN PRs. Please wait..."
+		_bnPullRequests.request(bn_pr_url,["user-agent: GodotApp"])
+		_changelogTextBox.clear()
+		_changelogTextBox.append_bbcode(_bn_pr_data)
 	_changelogTextBox.clear()
 	if game_selected == "dda":
 		_changelogTextBox.append_bbcode(_dda_pr_data)
