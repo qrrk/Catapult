@@ -16,9 +16,9 @@ func download_pull_requests():
 	var game_selected = _settings.read("game")
 	var dda_pr_url = "https://api.github.com/repos/cleverraven/cataclysm-dda/pulls?state=closed&sort=updated&direction=desc&per_page=100"
 	var bn_pr_url = "https://api.github.com/repos/cataclysmbnteam/Cataclysm-BN/pulls?state=closed&sort=updated&direction=desc&per_page=100"
-	if _dda_pr_data.length() < 45 and game_selected == "dda":
+	if _dda_pr_data.length() < 60 and game_selected == "dda":
 		_ddaPullRequests.request(dda_pr_url,["Authorization: token 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", "user-agent: GodotApp"])
-	if _bn_pr_data.length() < 45 and game_selected == "bn":
+	if _bn_pr_data.length() < 60 and game_selected == "bn":
 		_bnPullRequests.request(bn_pr_url,["Authorization: token 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", "user-agent: GodotApp"])
 	_changelogTextBox.clear()
 	if game_selected == "dda":
@@ -54,8 +54,11 @@ func process_pr_data(pr_data):
 	var latest_year = now["year"]
 	var latest_month = now["month"]
 	var latest_day = now["day"]
+	var mon_str = format_two_digit(str(latest_month))
+	var day_str = format_two_digit(str(latest_day))
 	var r_val ="--- " + str(latest_year) + "-" + str(latest_month) + "-" + str(latest_day) + " ---\n"
 	for pr in pr_array:
+		#print(str(pr.get_year()) + "-" + str(pr.get_month()) + "-" + str(pr.get_day()))
 		var switch_date = false
 		switch_date = switch_date or (pr.get_year() < latest_year)
 		switch_date = switch_date or (pr.get_month() < latest_month)
@@ -64,9 +67,16 @@ func process_pr_data(pr_data):
 			latest_year = pr.get_year()
 			latest_month = pr.get_month()
 			latest_day = pr.get_day()
-			r_val = r_val + "\n--- " + str(latest_year) + "-" + str(latest_month) + "-" + str(latest_day) + " ---\n"
+			mon_str = format_two_digit(str(latest_month))
+			day_str = format_two_digit(str(latest_day))
+			r_val = r_val + "\n--- " + str(latest_year) + "-" + mon_str+ "-" + day_str + " ---\n"
 		r_val = r_val + " * [url=" + pr.get_link() + "]" + pr.get_summary() + "[/url]\n"
 	return r_val
+
+func format_two_digit(time):
+	if (time.length() == 1):
+		return "0" + time
+	return time
 
 func _on_ChangelogText_meta_clicked(meta):
 	OS.shell_open(str(meta))
@@ -120,19 +130,16 @@ class PullRequest:
 	
 	# Sorts dates in descending order (that is, the latest date comes first).
 	static func compare_to(a, b):
-		if a.year < b.year:
-			return false
-		if a.month < b.month:
-			return false
-		if a.day < b.day:
-			return false
-		if a.hour < b.hour:
-			return false
-		if a.minute < b.minute:
-			return false
-		if a.second < b.second:
-			return false
-		return true
+		var a_more_than_b = a.year > b.year
+		if a.year == b.year:
+			a_more_than_b = a.get_julian_date() > b.get_julian_date()
+			if a.get_julian_date() == b.get_julian_date():
+				a_more_than_b = a.hour > b.hour
+				if a.hour == b.hour:
+					a_more_than_b = a.minute > b.minute
+					if a.minute == b.minute:
+						a_more_than_b = a.second > b.second
+		return a_more_than_b
 	
 	func _init(y, mo, d, h, mi, s, sum, url):
 		year = y
@@ -143,6 +150,19 @@ class PullRequest:
 		second = s
 		summary = sum
 		link = url
+	
+	func get_julian_date():
+		var days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+		#Yes, this will cause 2100 to be a leap year. We will deal with that when it becomes relevant.
+		if year % 4 == 0:
+			days_in_month[1] = 29
+		if month == 1:
+			return day
+		var julian = day
+		for n in (month - 1):
+			julian = julian + days_in_month[n]
+		return julian
 	
 	func print_date():
 		return str(year) + "-" + str(month) + "-" + str(day)

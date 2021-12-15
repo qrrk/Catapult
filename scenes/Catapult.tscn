@@ -205,7 +205,9 @@ margin_top = 149.0
 margin_right = 474.0
 margin_bottom = 181.0
 rect_min_size = Vector2( 180, 32 )
-hint_tooltip = "Use the Github API to view a list of recent changes for the selected game. (Requires an internet connection)"
+hint_tooltip = "Use the Github API to view a list of
+recent changes for the selected game.
+(Requires an internet connection)"
 size_flags_horizontal = 4
 text = "View Recent Changes"
 __meta__ = {
