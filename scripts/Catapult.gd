@@ -306,7 +306,6 @@ func _on_BtnInstall_pressed() -> void:
 	_installer.install_release(release, _settings.read("game"), update)
 
 func _on_BtnChangelog_pressed() -> void:
-	var changesToCheck = _settings.read("game")
 	$ChangelogPopup.popup()
 	_changelogger.download_pull_requests()
 	
