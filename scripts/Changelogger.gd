@@ -17,34 +17,31 @@ func download_pull_requests():
 	var dda_pr_url = "https://api.github.com/repos/cleverraven/cataclysm-dda/pulls?state=closed&sort=updated&direction=desc&per_page=100"
 	var bn_pr_url = "https://api.github.com/repos/cataclysmbnteam/Cataclysm-BN/pulls?state=closed&sort=updated&direction=desc&per_page=100"
 	if _dda_pr_data.length() < 45 and game_selected == "dda":
-		_ddaPullRequests.request(dda_pr_url,["Authorization: token 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", "user-agent: GodotApp"])
+		_ddaPullRequests.request(dda_pr_url,["Authorization: token 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", "user-agent: GodotApp"])
 	if _bn_pr_data.length() < 45 and game_selected == "bn":
-		_bnPullRequests.request(bn_pr_url,["Authorization: token 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", "user-agent: GodotApp"])
+		_bnPullRequests.request(bn_pr_url,["Authorization: token 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", "user-agent: GodotApp"])
+	_changelogTextBox.clear()
 	if game_selected == "dda":
-		_changelogTextBox.set_text(_dda_pr_data)
+		_changelogTextBox.append_bbcode(_dda_pr_data)
 	else:
-		_changelogTextBox.set_text(_bn_pr_data)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
+		_changelogTextBox.append_bbcode(_bn_pr_data)
 
 func _on_DDAPullRequests_request_completed(result, response_code, headers, body):
 	if response_code != 200:
-		_dda_pr_data = "Error retrieving data from the GitHub API."
+		_dda_pr_data = "Error retrieving data from the GitHub API. (Response code: " + str(response_code) + ")"
 	else:
 		_dda_pr_data = process_pr_data(parse_json(body.get_string_from_utf8()))
-	_changelogTextBox.set_text(_dda_pr_data)
-
+	_changelogTextBox.clear()
+	_changelogTextBox.append_bbcode(_dda_pr_data)
 
 func _on_BNPullRequests_request_completed(result, response_code, headers, body):
 	if response_code != 200:
-		_bn_pr_data = "Error retrieving data from the GitHub API."
+		_bn_pr_data = "Error retrieving data from the GitHub API. (Response code: " + str(response_code) + ")"
 	else:
 		_bn_pr_data = process_pr_data(parse_json(body.get_string_from_utf8()))
-	_changelogTextBox.set_text(_bn_pr_data)
-	
+	_changelogTextBox.clear()
+	_changelogTextBox.append_bbcode(_bn_pr_data)
+
 func process_pr_data(pr_data):
 	var pr_array = []
 	for json in pr_data:
@@ -57,7 +54,7 @@ func process_pr_data(pr_data):
 	var latest_year = now["year"]
 	var latest_month = now["month"]
 	var latest_day = now["day"]
-	var r_val = str(latest_year) + "-" + str(latest_month) + "-" + str(latest_day) + ":\n"
+	var r_val ="--- " + str(latest_year) + "-" + str(latest_month) + "-" + str(latest_day) + " ---\n"
 	for pr in pr_array:
 		var switch_date = false
 		switch_date = switch_date or (pr.get_year() < latest_year)
@@ -67,9 +64,12 @@ func process_pr_data(pr_data):
 			latest_year = pr.get_year()
 			latest_month = pr.get_month()
 			latest_day = pr.get_day()
-			r_val = r_val + "\n" + str(latest_year) + "-" + str(latest_month) + "-" + str(latest_day) + ":\n"
-		r_val = r_val + pr.get_summary() + "\n"
+			r_val = r_val + "\n--- " + str(latest_year) + "-" + str(latest_month) + "-" + str(latest_day) + " ---\n"
+		r_val = r_val + " * [url=" + pr.get_link() + "]" + pr.get_summary() + "[/url]\n"
 	return r_val
+
+func _on_ChangelogText_meta_clicked(meta):
+	OS.shell_open(str(meta))
 
 class PullRequest:
 	var year setget ,get_year
