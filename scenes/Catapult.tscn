@@ -117,11 +117,12 @@ margin_bottom = 73.0
 [node name="Tabs" type="TabContainer" parent="Main" groups=["disable_during_mod_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases", "disable_while_installing_game"]]
 margin_top = 79.0
 margin_right = 784.0
-margin_bottom = 440.0
+margin_bottom = 674.0
 tab_align = 0
 script = ExtResource( 16 )
 
 [node name="Game" type="VBoxContainer" parent="Main/Tabs"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -832,7 +833,6 @@ margin_right = 769.0
 margin_bottom = 539.0
 
 [node name="Settings" type="VBoxContainer" parent="Main/Tabs"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -923,10 +923,70 @@ min_value = 1.0
 value = 30.0
 rounded = true
 
-[node name="ScaleOverride" type="HBoxContainer" parent="Main/Tabs/Settings"]
+[node name="CLSeparatorTop" type="HSeparator" parent="Main/Tabs/Settings"]
 margin_top = 280.0
 margin_right = 769.0
-margin_bottom = 309.0
+margin_bottom = 288.0
+
+[node name="NumPrs" type="HBoxContainer" parent="Main/Tabs/Settings"]
+margin_top = 294.0
+margin_right = 769.0
+margin_bottom = 323.0
+hint_tooltip = "How many latest releases will be requested
+from GitHub after starting the launcher, choosing
+the game or clicking Refresh."
+
+[node name="Label" type="Label" parent="Main/Tabs/Settings/NumPrs"]
+margin_right = 429.0
+margin_bottom = 29.0
+text = "Number of pull requests to download in the changelog:"
+
+[node name="sbNumPRs" type="SpinBox" parent="Main/Tabs/Settings/NumPrs"]
+margin_left = 639.0
+margin_right = 769.0
+margin_bottom = 29.0
+size_flags_horizontal = 10
+min_value = 10.0
+step = 10.0
+value = 100.0
+rounded = true
+
+[node name="GitPAT" type="HBoxContainer" parent="Main/Tabs/Settings"]
+margin_top = 329.0
+margin_right = 769.0
+margin_bottom = 358.0
+hint_tooltip = "How many latest releases will be requested
+from GitHub after starting the launcher, choosing
+the game or clicking Refresh."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PATLabel" type="Label" parent="Main/Tabs/Settings/GitPAT"]
+margin_right = 204.0
+margin_bottom = 29.0
+text = "Github API PAT (optional):"
+
+[node name="lePATUse" type="LineEdit" parent="Main/Tabs/Settings/GitPAT"]
+anchor_left = -0.0208062
+anchor_right = -0.0208062
+margin_left = 370.0
+margin_right = 769.0
+margin_bottom = 29.0
+size_flags_horizontal = 10
+
+[node name="CLSeparatorBottom" type="HSeparator" parent="Main/Tabs/Settings"]
+margin_top = 364.0
+margin_right = 769.0
+margin_bottom = 372.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScaleOverride" type="HBoxContainer" parent="Main/Tabs/Settings"]
+margin_top = 378.0
+margin_right = 769.0
+margin_bottom = 407.0
 hint_tooltip = "Use this if the automatically inferred UI scale
 looks too large or too small on your system.
 (Automatic scale relies on system-reported
@@ -963,14 +1023,14 @@ editable = false
 suffix = "%"
 
 [node name="HSeparator" type="HSeparator" parent="Main/Tabs/Settings"]
-margin_top = 315.0
+margin_top = 413.0
 margin_right = 769.0
-margin_bottom = 323.0
+margin_bottom = 421.0
 
 [node name="Migration" type="VBoxContainer" parent="Main/Tabs/Settings"]
-margin_top = 329.0
+margin_top = 427.0
 margin_right = 769.0
-margin_bottom = 451.0
+margin_bottom = 549.0
 hint_tooltip = "Choose which types of game data to carry over
 into the new game version when updating."
 
@@ -1126,7 +1186,7 @@ size_flags_horizontal = 4
 text = "Test path resolution in PathHelper"
 
 [node name="Log" type="RichTextLabel" parent="Main"]
-margin_top = 446.0
+margin_top = 680.0
 margin_right = 784.0
 margin_bottom = 984.0
 focus_mode = 2
@@ -1300,6 +1360,8 @@ __meta__ = {
 [connection signal="toggled" from="Main/Tabs/Settings/InstallArchivedMods" to="Main/Tabs/Settings" method="_on_InstallArchivedMods_toggled"]
 [connection signal="toggled" from="Main/Tabs/Settings/ShowDebug" to="Main/Tabs/Settings" method="_on_ShowDebug_toggled"]
 [connection signal="value_changed" from="Main/Tabs/Settings/NumReleases/sbNumReleases" to="Main/Tabs/Settings" method="_on_sbNumReleases_value_changed"]
+[connection signal="value_changed" from="Main/Tabs/Settings/NumPrs/sbNumPRs" to="Main/Tabs/Settings" method="_on_sbNumReleases_value_changed"]
+[connection signal="text_changed" from="Main/Tabs/Settings/GitPAT/lePATUse" to="Main/Tabs/Settings" method="_on_lePATUse_text_changed"]
 [connection signal="toggled" from="Main/Tabs/Settings/ScaleOverride/cbScaleOverrideEnable" to="Main/Tabs/Settings" method="_on_cbScaleOverrideEnable_toggled"]
 [connection signal="value_changed" from="Main/Tabs/Settings/ScaleOverride/sbScaleOverride" to="Main/Tabs/Settings" method="_on_sbScaleOverride_value_changed"]
 [connection signal="toggled" from="Main/Tabs/Settings/Migration/Grid/Savegames" to="Main/Tabs/Settings" method="_on_any_migration_checkbox_toggled"]

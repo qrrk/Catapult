@@ -16,14 +16,18 @@ func download_pull_requests():
 	var game_selected = _settings.read("game")
 	var dda_pr_url = "https://api.github.com/repos/cleverraven/cataclysm-dda/pulls?state=closed&sort=updated&direction=desc&per_page=100"
 	var bn_pr_url = "https://api.github.com/repos/cataclysmbnteam/Cataclysm-BN/pulls?state=closed&sort=updated&direction=desc&per_page=100"
+	var headers = ["user-agent: GodotApp"]
+	var pat = _settings.read("github_pat")
+	if (pat.length() == 40):
+		headers.push_back("Authorization: token " + pat)
 	if _dda_pr_data.length() < 65 and game_selected == "dda":
 		_dda_pr_data = "Downloading recent DDA PRs. Please wait..."
-		_ddaPullRequests.request(dda_pr_url,["user-agent: GodotApp"])
+		_ddaPullRequests.request(dda_pr_url, headers)
 		_changelogTextBox.clear()
 		_changelogTextBox.append_bbcode(_dda_pr_data)
 	if _bn_pr_data.length() < 65 and game_selected == "bn":
 		_bn_pr_data = "Downloading recent BN PRs. Please wait..."
-		_bnPullRequests.request(bn_pr_url,["user-agent: GodotApp"])
+		_bnPullRequests.request(bn_pr_url, headers)
 		_changelogTextBox.clear()
 		_changelogTextBox.append_bbcode(_bn_pr_data)
 	_changelogTextBox.clear()
@@ -57,12 +61,12 @@ func process_pr_data(pr_data):
 		pr_array.push_back(pr)
 	pr_array.sort_custom(PullRequest, "compare_to")
 	var now = OS.get_datetime(true)
-	var latest_year = now["year"]
+	var latest_year = now["year"] + 1
 	var latest_month = now["month"]
 	var latest_day = now["day"]
 	var mon_str = PullRequest.format_two_digit(str(latest_month))
 	var day_str = PullRequest.format_two_digit(str(latest_day))
-	var r_val ="--- " + str(latest_year) + "-" + str(latest_month) + "-" + str(latest_day) + " ---\n"
+	var r_val =""
 	for pr in pr_array:
 		#print(str(pr.get_year()) + "-" + str(pr.get_month()) + "-" + str(pr.get_day()))
 		var switch_date = false
@@ -73,8 +77,8 @@ func process_pr_data(pr_data):
 			latest_year = pr.get_year()
 			latest_month = pr.get_month()
 			latest_day = pr.get_day()
-			mon_str = PullRequest.format_two_digit(str(latest_month))
-			day_str = PullRequest.format_two_digit(str(latest_day))
+			mon_str = PullRequest.format_two_digit(latest_month)
+			day_str = PullRequest.format_two_digit(latest_day)
 			r_val = r_val + "\n--- " + str(latest_year) + "-" + mon_str+ "-" + day_str + " ---\n"
 		r_val = r_val + " * [url=" + pr.get_link() + "]" + pr.get_summary() + "[/url]\n"
 	return r_val
@@ -132,7 +136,7 @@ class PullRequest:
 	static func compare_to(a, b):
 		return a.timestring > b.timestring
 	
-	#We just need to get Github API strings. Nothing else.
+	# We just need to get Github API strings. Nothing else.
 	static func pullrequest_from_datestring(date, sum, link):
 		var r_val = PullRequest.new(
 			int(date.substr(0,4)),

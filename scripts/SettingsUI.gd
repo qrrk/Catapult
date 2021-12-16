@@ -30,6 +30,8 @@ func _ready() -> void:
 	$InstallArchivedMods.pressed = _settings.read("install_archived_mods")
 	$ShowDebug.pressed = _settings.read("debug_mode")
 	$NumReleases/sbNumReleases.value = _settings.read("num_releases_to_request") as int
+	$NumPrs/sbNumPRs.value = _settings.read("num_prs_to_request") as int
+	$GitPAT/lePATUse.text = _settings.read("github_pat")
 	
 	$ScaleOverride/cbScaleOverrideEnable.pressed = _settings.read("ui_scale_override_enabled")
 	$ScaleOverride/sbScaleOverride.editable = _settings.read("ui_scale_override_enabled")
@@ -87,6 +89,10 @@ func _on_sbNumReleases_value_changed(value: float) -> void:
 	
 	_settings.store("num_releases_to_request", str(value))
 
+func _on_sbNumPRs_value_changed(value: float) -> void:
+	
+	_settings.store("num_prs_to_request", str(value))
+
 
 func _on_cbScaleOverrideEnable_toggled(button_pressed: bool) -> void:
 	
@@ -116,3 +122,8 @@ func _on_any_migration_checkbox_toggled(_asdf: bool) -> void:
 			data_types.append(type)
 	
 	_settings.store("game_data_to_migrate", data_types)
+
+
+func _on_lePATUse_text_changed(new_text):
+	if (new_text.length() == 40 or new_text.length() == 0):
+		_settings.store("github_pat", new_text)
