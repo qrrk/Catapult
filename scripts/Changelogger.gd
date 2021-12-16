@@ -17,7 +17,7 @@ func download_pull_requests():
 	var prs = _settings.read("num_prs_to_request")
 	var dda_pr_url = "https://api.github.com/repos/cleverraven/cataclysm-dda/pulls?state=closed&sort=updated&direction=desc&per_page=" + prs
 	var bn_pr_url = "https://api.github.com/repos/cataclysmbnteam/Cataclysm-BN/pulls?state=closed&sort=updated&direction=desc&per_page=" + prs
-	var headers = ["user-agent: GodotApp"]
+	var headers = ["user-agent: CatapultGodotApp"]
 	var pat = _settings.read("github_pat")
 	if (pat.length() == 40):
 		headers.push_back("Authorization: token " + pat)
