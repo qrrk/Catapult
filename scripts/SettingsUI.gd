@@ -31,7 +31,6 @@ func _ready() -> void:
 	$ShowDebug.pressed = _settings.read("debug_mode")
 	$NumReleases/sbNumReleases.value = _settings.read("num_releases_to_request") as int
 	$NumPrs/sbNumPRs.value = _settings.read("num_prs_to_request") as int
-	$GitPAT/lePATUse.text = _settings.read("github_pat")
 	
 	$ScaleOverride/cbScaleOverrideEnable.pressed = _settings.read("ui_scale_override_enabled")
 	$ScaleOverride/sbScaleOverride.editable = _settings.read("ui_scale_override_enabled")
