@@ -971,6 +971,10 @@ text = "Github API Personal Access Token (optional):"
 margin_left = 354.0
 margin_right = 769.0
 margin_bottom = 29.0
+hint_tooltip = "Unauthenticated requests against the
+GitHub API are unreliable. Create a GitHub
+Personal Access Token if you're getting
+5xx errors when trying to view the changelog."
 size_flags_horizontal = 11
 
 [node name="CLSeparatorBottom" type="HSeparator" parent="Main/Tabs/Settings"]
@@ -1358,7 +1362,7 @@ __meta__ = {
 [connection signal="toggled" from="Main/Tabs/Settings/InstallArchivedMods" to="Main/Tabs/Settings" method="_on_InstallArchivedMods_toggled"]
 [connection signal="toggled" from="Main/Tabs/Settings/ShowDebug" to="Main/Tabs/Settings" method="_on_ShowDebug_toggled"]
 [connection signal="value_changed" from="Main/Tabs/Settings/NumReleases/sbNumReleases" to="Main/Tabs/Settings" method="_on_sbNumReleases_value_changed"]
-[connection signal="value_changed" from="Main/Tabs/Settings/NumPrs/sbNumPRs" to="Main/Tabs/Settings" method="_on_sbNumReleases_value_changed"]
+[connection signal="value_changed" from="Main/Tabs/Settings/NumPrs/sbNumPRs" to="Main/Tabs/Settings" method="_on_sbNumPRs_value_changed"]
 [connection signal="text_changed" from="Main/Tabs/Settings/GitPAT/lePATUse" to="Main/Tabs/Settings" method="_on_lePATUse_text_changed"]
 [connection signal="toggled" from="Main/Tabs/Settings/ScaleOverride/cbScaleOverrideEnable" to="Main/Tabs/Settings" method="_on_cbScaleOverrideEnable_toggled"]
 [connection signal="value_changed" from="Main/Tabs/Settings/ScaleOverride/sbScaleOverride" to="Main/Tabs/Settings" method="_on_sbScaleOverride_value_changed"]
