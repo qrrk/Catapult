@@ -1,12 +1,17 @@
 extends WindowDialog
 
+
+const _PR_URL = {
+	"dda": "https://api.github.com/repos/cleverraven/cataclysm-dda/pulls",
+	"bn": "https://api.github.com/repos/cataclysmbnteam/Cataclysm-BN/pulls",
+}
+
+
 onready var _settings = $"/root/SettingsManager"
-onready var _ddaPullRequests = $DDAPullRequests
-onready var _bnPullRequests = $BNPullRequests
+onready var _pullRequests = $PullRequests
 onready var _changelogTextBox = $Panel/Margin/VBox/ChangelogText
 
-var _dda_pr_data = ""
-var _bn_pr_data = ""
+var _pr_data = ""
 
 
 func open() -> void:
@@ -20,50 +25,32 @@ func open() -> void:
 func download_pull_requests():
 	var game_selected = _settings.read("game")
 	var prs = _settings.read("num_prs_to_request")
-	var dda_pr_url = "https://api.github.com/repos/cleverraven/cataclysm-dda/pulls?state=closed&sort=updated&direction=desc&per_page=" + prs
-	var bn_pr_url = "https://api.github.com/repos/cataclysmbnteam/Cataclysm-BN/pulls?state=closed&sort=updated&direction=desc&per_page=" + prs
+	var url = _PR_URL[_settings.read("game")]
+	url += "?state=closed&sort=updated&direction=desc&per_page=" + prs
 	var headers = ["user-agent: CatapultGodotApp"]
 	var pat = _settings.read("github_pat")
 	if (pat.length() == 40):
 		headers.push_back("Authorization: token " + pat)
-	if _dda_pr_data.length() < 65 and game_selected == "dda":
-		_dda_pr_data = "Downloading recent DDA PRs. Please wait..."
-		_ddaPullRequests.request(dda_pr_url, headers)
-		_changelogTextBox.clear()
-		_changelogTextBox.append_bbcode(_dda_pr_data)
-	if _bn_pr_data.length() < 65 and game_selected == "bn":
-		_bn_pr_data = "Downloading recent BN PRs. Please wait..."
-		_bnPullRequests.request(bn_pr_url, headers)
-		_changelogTextBox.clear()
-		_changelogTextBox.append_bbcode(_bn_pr_data)
+	_pr_data = "Downloading recent PRs. Please wait..."
+	_pullRequests.request(url, headers)
 	_changelogTextBox.clear()
-	if game_selected == "dda":
-		_changelogTextBox.append_bbcode(_dda_pr_data)
-	else:
-		_changelogTextBox.append_bbcode(_bn_pr_data)
+	_changelogTextBox.append_bbcode(_pr_data)
+	_changelogTextBox.clear()
+	_changelogTextBox.append_bbcode(_pr_data)
 
 
-func _on_DDAPullRequests_request_completed(result, response_code, headers, body):
+func _on_PullRequests_request_completed(result, response_code, headers, body):
 	if response_code != 200:
-		_dda_pr_data = "Error retrieving data from the GitHub API. (Response code: " + str(response_code) + ")"
+		_pr_data = "Error retrieving data from the GitHub API. (Response code: " + str(response_code) + ")"
 	else:
-		_dda_pr_data = process_pr_data(parse_json(body.get_string_from_utf8()))
+		_pr_data = process_pr_data(parse_json(body.get_string_from_utf8()))
 	_changelogTextBox.clear()
-	_changelogTextBox.append_bbcode(_dda_pr_data)
+	_changelogTextBox.append_bbcode(_pr_data)
 
 
-func _on_BNPullRequests_request_completed(result, response_code, headers, body):
-	if response_code != 200:
-		_bn_pr_data = "Error retrieving data from the GitHub API. (Response code: " + str(response_code) + ")"
-	else:
-		_bn_pr_data = process_pr_data(parse_json(body.get_string_from_utf8()))
-	_changelogTextBox.clear()
-	_changelogTextBox.append_bbcode(_bn_pr_data)
-
-
-func process_pr_data(pr_data):
+func process_pr_data(data):
 	var pr_array = []
-	for json in pr_data:
+	for json in data:
 		if json["merged_at"] == null or json["merged_at"] == "null" :
 			continue
 		var pr = PullRequest.pullrequest_from_datestring(json["merged_at"], json["title"], json["html_url"])

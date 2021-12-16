@@ -73,10 +73,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DDAPullRequests" type="HTTPRequest" parent="."]
-
-[node name="BNPullRequests" type="HTTPRequest" parent="."]
+[node name="PullRequests" type="HTTPRequest" parent="."]
 
 [connection signal="pressed" from="Panel/Margin/VBox/BtnCloseChangelog" to="." method="_on_BtnCloseChangelog_pressed"]
-[connection signal="request_completed" from="DDAPullRequests" to="." method="_on_DDAPullRequests_request_completed"]
-[connection signal="request_completed" from="BNPullRequests" to="." method="_on_BNPullRequests_request_completed"]
+[connection signal="request_completed" from="PullRequests" to="." method="_on_PullRequests_request_completed"]
