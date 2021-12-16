@@ -963,17 +963,15 @@ __meta__ = {
 }
 
 [node name="PATLabel" type="Label" parent="Main/Tabs/Settings/GitPAT"]
-margin_right = 204.0
+margin_right = 348.0
 margin_bottom = 29.0
-text = "Github API PAT (optional):"
+text = "Github API Personal Access Token (optional):"
 
 [node name="lePATUse" type="LineEdit" parent="Main/Tabs/Settings/GitPAT"]
-anchor_left = -0.0208062
-anchor_right = -0.0208062
-margin_left = 370.0
+margin_left = 354.0
 margin_right = 769.0
 margin_bottom = 29.0
-size_flags_horizontal = 10
+size_flags_horizontal = 11
 
 [node name="CLSeparatorBottom" type="HSeparator" parent="Main/Tabs/Settings"]
 margin_top = 364.0
