@@ -128,11 +128,12 @@ margin_bottom = 91.0
 ]]
 margin_top = 97.0
 margin_right = 784.0
-margin_bottom = 418.0
+margin_bottom = 629.0
 tab_align = 0
 script = ExtResource( 16 )
 
 [node name="Game" type="VBoxContainer" parent="Main/Tabs"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -873,7 +874,6 @@ margin_right = 769.0
 margin_bottom = 539.0
 
 [node name="Settings" type="VBoxContainer" parent="Main/Tabs"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -968,14 +968,14 @@ rounded = true
 margin_top = 280.0
 margin_right = 769.0
 margin_bottom = 309.0
-hint_tooltip = "How many latest releases will be requested
-from GitHub after starting the launcher, choosing
-the game or clicking Refresh."
+hint_tooltip = "How many recent pull requests (code additions)
+will be requested from GitHub to form the changelog.
+High numbers may lead to slow responses and failures."
 
 [node name="Label" type="Label" parent="Main/Tabs/Settings/NumPrs"]
-margin_right = 429.0
+margin_right = 390.0
 margin_bottom = 29.0
-text = "Number of pull requests to download in the changelog:"
+text = "Number of results to download for the changelog:"
 
 [node name="sbNumPRs" type="SpinBox" parent="Main/Tabs/Settings/NumPrs"]
 margin_left = 639.0
@@ -1190,7 +1190,7 @@ size_flags_horizontal = 4
 text = "Test path resolution in PathHelper"
 
 [node name="Log" type="RichTextLabel" parent="Main"]
-margin_top = 424.0
+margin_top = 635.0
 margin_right = 784.0
 margin_bottom = 984.0
 focus_mode = 2

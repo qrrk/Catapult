@@ -74,6 +74,8 @@ __meta__ = {
 }
 
 [node name="PullRequests" type="HTTPRequest" parent="."]
+timeout = 20
 
+[connection signal="meta_clicked" from="Panel/Margin/VBox/ChangelogText" to="." method="_on_ChangelogText_meta_clicked"]
 [connection signal="pressed" from="Panel/Margin/VBox/BtnCloseChangelog" to="." method="_on_BtnCloseChangelog_pressed"]
 [connection signal="request_completed" from="PullRequests" to="." method="_on_PullRequests_request_completed"]

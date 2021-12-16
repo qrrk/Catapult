@@ -31,7 +31,7 @@ func download_pull_requests():
 	var pat = _settings.read("github_pat")
 	if (pat.length() == 40):
 		headers.push_back("Authorization: token " + pat)
-	_pr_data = "Downloading recent PRs. Please wait..."
+	_pr_data = "Fetching recent changes from GitHub. Please wait..."
 	_pullRequests.request(url, headers)
 	_changelogTextBox.clear()
 	_changelogTextBox.append_bbcode(_pr_data)
@@ -43,9 +43,10 @@ func _on_PullRequests_request_completed(result, response_code, headers, body):
 	var json = parse_json(body.get_string_from_utf8())
 	if response_code != 200:
 		_pr_data = "Error retrieving data from GitHub API."
-		_pr_data += "\nHTTP response code: " + str(response_code)
-		if "message" in json:
+		_pr_data += "\n\nHTTP response code: " + str(response_code)
+		if (json) and ("message" in json):
 			_pr_data += "\nGitHub says: [i]%s[/i]" % json["message"]
+		_pr_data += "\n\nIf you keep getting errors for no apparent reason, try reducing the number of results in the Settings."
 	else:
 		_pr_data = process_pr_data(json)
 	_changelogTextBox.clear()
@@ -66,9 +67,20 @@ func process_pr_data(data):
 	var latest_day = now["day"]
 	var mon_str = PullRequest.format_two_digit(str(latest_month))
 	var day_str = PullRequest.format_two_digit(str(latest_day))
-	var r_val =""
+	
+	var game_title = ""
+	match _settings.read("game"):
+		"dda":
+			game_title = "Cataclysm: Dark Days Ahead"
+		"bn":
+			game_title = "Cataclysm: Bright Nights"
+		_:
+			game_title = "{BUG!!}"
+	
+	var r_val = ("Showing the last [b]%s[/b] completed pull requests (code additions) to [b]%s[/b].\n\nThe chronology may be slightly off due to GitHub API limitations.\n\nYou can click on any item to view the corresponding PR on GitHub and learn more about the change.\n"
+		% [_settings.read("num_prs_to_request"), game_title])
+	
 	for pr in pr_array:
-		#print(str(pr.get_year()) + "-" + str(pr.get_month()) + "-" + str(pr.get_day()))
 		var switch_date = false
 		switch_date = switch_date or (pr.get_year() < latest_year)
 		switch_date = switch_date or (pr.get_month() < latest_month)
