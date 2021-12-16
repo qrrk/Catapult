@@ -128,7 +128,7 @@ margin_bottom = 91.0
 ]]
 margin_top = 97.0
 margin_right = 784.0
-margin_bottom = 458.0
+margin_bottom = 418.0
 tab_align = 0
 script = ExtResource( 16 )
 
@@ -225,30 +225,15 @@ text = "Install Selected"
 icon = ExtResource( 2 )
 expand_icon = true
 
-[node name="BtnChangelog" type="Button" parent="Main/Tabs/Game"]
-margin_left = 294.0
-margin_top = 149.0
-margin_right = 474.0
-margin_bottom = 181.0
-rect_min_size = Vector2( 180, 32 )
-hint_tooltip = "Use the Github API to view a list of
-recent changes for the selected game.
-(Requires an internet connection)"
-size_flags_horizontal = 4
-text = "View Recent Changes"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="HSeparator" type="HSeparator" parent="Main/Tabs/Game"]
-margin_top = 189.0
+margin_top = 149.0
 margin_right = 769.0
-margin_bottom = 197.0
+margin_bottom = 157.0
 
 [node name="CurrentInstall" type="VBoxContainer" parent="Main/Tabs/Game"]
-margin_top = 205.0
+margin_top = 165.0
 margin_right = 769.0
-margin_bottom = 307.0
+margin_bottom = 267.0
 
 [node name="Label" type="Label" parent="Main/Tabs/Game/CurrentInstall"]
 margin_right = 769.0
@@ -293,12 +278,11 @@ icon = ExtResource( 3 )
 expand_icon = true
 
 [node name="Spacer" type="Control" parent="Main/Tabs/Game"]
-margin_top = 315.0
+margin_top = 275.0
 margin_right = 769.0
-margin_bottom = 315.0
+margin_bottom = 275.0
 
 [node name="ChangelogDialog" parent="Main/Tabs/Game" instance=ExtResource( 32 )]
-visible = false
 
 [node name="Mods" type="VBoxContainer" parent="Main/Tabs"]
 visible = false
@@ -1206,7 +1190,7 @@ size_flags_horizontal = 4
 text = "Test path resolution in PathHelper"
 
 [node name="Log" type="RichTextLabel" parent="Main"]
-margin_top = 464.0
+margin_top = 424.0
 margin_right = 784.0
 margin_bottom = 984.0
 focus_mode = 2
@@ -1288,7 +1272,6 @@ __meta__ = {
 [connection signal="item_selected" from="Main/Tabs/Game/Builds/BuildsList" to="." method="_on_BuildsList_item_selected"]
 [connection signal="pressed" from="Main/Tabs/Game/Builds/BtnRefresh" to="." method="_on_BtnRefresh_pressed"]
 [connection signal="pressed" from="Main/Tabs/Game/BtnInstall" to="." method="_on_BtnInstall_pressed"]
-[connection signal="pressed" from="Main/Tabs/Game/BtnChangelog" to="." method="_on_BtnChangelog_pressed"]
 [connection signal="pressed" from="Main/Tabs/Game/CurrentInstall/Build/GameDir" to="." method="_on_GameDir_pressed"]
 [connection signal="pressed" from="Main/Tabs/Game/CurrentInstall/BtnPlay" to="." method="_on_BtnPlay_pressed"]
 [connection signal="status_message" from="Main/Tabs/Mods" to="." method="_on_status_message"]
