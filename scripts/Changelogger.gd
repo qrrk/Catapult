@@ -80,8 +80,8 @@ func process_pr_data(pr_data):
 			latest_day = pr.get_day()
 			mon_str = PullRequest.format_two_digit(latest_month)
 			day_str = PullRequest.format_two_digit(latest_day)
-			r_val = r_val + "\n--- " + str(latest_year) + "-" + mon_str+ "-" + day_str + " ---\n"
-		r_val = r_val + " * [url=" + pr.get_link() + "]" + pr.get_summary() + "[/url]\n"
+			r_val = r_val + "\n[b]" + str(latest_year) + "-" + mon_str+ "-" + day_str + "[/b]\n"
+		r_val = r_val + "[indent]• [url=" + pr.get_link() + "]" + pr.get_summary() + "[/url][/indent]\n"
 	return r_val
 
 func _on_ChangelogText_meta_clicked(meta):
