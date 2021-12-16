@@ -128,12 +128,11 @@ margin_bottom = 91.0
 ]]
 margin_top = 97.0
 margin_right = 784.0
-margin_bottom = 629.0
+margin_bottom = 418.0
 tab_align = 0
 script = ExtResource( 16 )
 
 [node name="Game" type="VBoxContainer" parent="Main/Tabs"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -874,6 +873,7 @@ margin_right = 769.0
 margin_bottom = 539.0
 
 [node name="Settings" type="VBoxContainer" parent="Main/Tabs"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -1190,7 +1190,7 @@ size_flags_horizontal = 4
 text = "Test path resolution in PathHelper"
 
 [node name="Log" type="RichTextLabel" parent="Main"]
-margin_top = 635.0
+margin_top = 424.0
 margin_right = 784.0
 margin_bottom = 984.0
 focus_mode = 2

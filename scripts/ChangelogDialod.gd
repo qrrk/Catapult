@@ -46,7 +46,7 @@ func _on_PullRequests_request_completed(result, response_code, headers, body):
 		_pr_data += "\n\nHTTP response code: " + str(response_code)
 		if (json) and ("message" in json):
 			_pr_data += "\nGitHub says: [i]%s[/i]" % json["message"]
-		_pr_data += "\n\nIf you keep getting errors for no apparent reason, try reducing the number of results in the Settings."
+		_pr_data += "\n\nSometimes, requests will fail repeatedly due to excessive load on the server, especially for DDA. This may depend on the time of day, your location, etc. There's little anyone can do about this. If you are registered on GitHub, you can add your PAT (Personal Access Token) to Catapult config file to increase the priority of your requests or bypass rate limits."
 	else:
 		_pr_data = process_pr_data(json)
 	_changelogTextBox.clear()
