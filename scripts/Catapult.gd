@@ -306,7 +306,9 @@ func _on_BtnInstall_pressed() -> void:
 	_installer.install_release(release, _settings.read("game"), update)
 
 func _on_BtnChangelog_pressed() -> void:
-	$ChangelogPopup.popup()
+	$ChangelogPopup.rect_min_size = get_tree().root.size * Vector2(0.9, 0.9)
+	$ChangelogPopup.set_as_minsize()
+	$ChangelogPopup.popup_centered()
 	_changelogger.download_pull_requests()
 	
 func _on_BtnCloseChangelog_pressed():

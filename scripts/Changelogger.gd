@@ -3,7 +3,7 @@ extends Node
 onready var _settings = $"/root/SettingsManager"
 onready var _ddaPullRequests = $DDAPullRequests
 onready var _bnPullRequests = $BNPullRequests
-onready var _changelogTextBox = $"../ChangelogText"
+onready var _changelogTextBox = $"../Panel/Margin/VBox/ChangelogText"
 
 var _dda_pr_data = "Downloading recent DDA PRs. Please wait..."
 var _bn_pr_data = "Downloading recent BN PRs. Please wait..."

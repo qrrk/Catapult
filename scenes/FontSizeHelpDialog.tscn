@@ -37,7 +37,7 @@ custom_constants/separation = 16
 
 [node name="Help" type="RichTextLabel" parent="Panel/Margin/VBox"]
 margin_right = 772.0
-margin_bottom = 919.0
+margin_bottom = 903.0
 size_flags_vertical = 3
 custom_fonts/bold_italics_font = ExtResource( 2 )
 custom_fonts/italics_font = ExtResource( 3 )
@@ -87,9 +87,9 @@ It is also recommended to turn on Font Blending for smoother font rendering.
 
 [node name="BtnOK" type="Button" parent="Panel/Margin/VBox"]
 margin_left = 345.0
-margin_top = 935.0
+margin_top = 919.0
 margin_right = 427.0
-margin_bottom = 972.0
+margin_bottom = 956.0
 size_flags_horizontal = 4
 text = "Close"
 

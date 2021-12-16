@@ -64,7 +64,12 @@ margin_right = 65.0
 margin_bottom = 29.0
 text = "Game: "
 
-[node name="GamesList" type="OptionButton" parent="Main/GameChoice" groups=["disable_during_mod_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases", "disable_while_installing_game"]]
+[node name="GamesList" type="OptionButton" parent="Main/GameChoice" groups=[
+"disable_during_mod_operations",
+"disable_during_soundpack_operations",
+"disable_while_fetching_releases",
+"disable_while_installing_game",
+]]
 margin_left = 71.0
 margin_right = 784.0
 margin_bottom = 29.0
@@ -77,16 +82,17 @@ selected = 0
 [node name="GameInfo" type="HBoxContainer" parent="Main"]
 margin_top = 35.0
 margin_right = 784.0
-margin_bottom = 67.0
+margin_bottom = 85.0
 custom_constants/separation = 8
 
 [node name="Spacer" type="Control" parent="Main/GameInfo"]
-margin_bottom = 32.0
+margin_bottom = 50.0
 
 [node name="Icon" type="TextureRect" parent="Main/GameInfo"]
 margin_left = 8.0
+margin_top = 9.0
 margin_right = 40.0
-margin_bottom = 32.0
+margin_bottom = 41.0
 rect_min_size = Vector2( 32, 32 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -97,7 +103,7 @@ stretch_mode = 6
 [node name="Description" type="RichTextLabel" parent="Main/GameInfo"]
 margin_left = 48.0
 margin_right = 784.0
-margin_bottom = 31.0
+margin_bottom = 50.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
 custom_fonts/bold_italics_font = ExtResource( 24 )
@@ -110,19 +116,23 @@ text = "Game Title is a game in which... and other stuff about the game. This is
 fit_content_height = true
 
 [node name="Spacer" type="Control" parent="Main"]
-margin_top = 73.0
+margin_top = 91.0
 margin_right = 784.0
-margin_bottom = 73.0
+margin_bottom = 91.0
 
-[node name="Tabs" type="TabContainer" parent="Main" groups=["disable_during_mod_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases", "disable_while_installing_game"]]
-margin_top = 79.0
+[node name="Tabs" type="TabContainer" parent="Main" groups=[
+"disable_during_mod_operations",
+"disable_during_soundpack_operations",
+"disable_while_fetching_releases",
+"disable_while_installing_game",
+]]
+margin_top = 97.0
 margin_right = 784.0
-margin_bottom = 674.0
+margin_bottom = 458.0
 tab_align = 0
 script = ExtResource( 16 )
 
 [node name="Game" type="VBoxContainer" parent="Main/Tabs"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -145,14 +155,20 @@ margin_top = 35.0
 margin_right = 769.0
 margin_bottom = 64.0
 
-[node name="RBtnStable" type="CheckBox" parent="Main/Tabs/Game/Channel/Group" groups=["disable_while_fetching_releases", "disable_while_installing_game"]]
+[node name="RBtnStable" type="CheckBox" parent="Main/Tabs/Game/Channel/Group" groups=[
+"disable_while_fetching_releases",
+"disable_while_installing_game",
+]]
 margin_right = 81.0
 margin_bottom = 29.0
 hint_tooltip = "Stable release channel (DDA only)."
 group = SubResource( 1 )
 text = "Stable"
 
-[node name="RBtnExperimental" type="CheckBox" parent="Main/Tabs/Game/Channel/Group" groups=["disable_while_fetching_releases", "disable_while_installing_game"]]
+[node name="RBtnExperimental" type="CheckBox" parent="Main/Tabs/Game/Channel/Group" groups=[
+"disable_while_fetching_releases",
+"disable_while_installing_game",
+]]
 margin_left = 87.0
 margin_right = 221.0
 margin_bottom = 29.0
@@ -171,7 +187,10 @@ margin_right = 133.0
 margin_bottom = 29.0
 text = "Available builds:"
 
-[node name="BuildsList" type="OptionButton" parent="Main/Tabs/Game/Builds" groups=["disable_while_fetching_releases", "disable_while_installing_game"]]
+[node name="BuildsList" type="OptionButton" parent="Main/Tabs/Game/Builds" groups=[
+"disable_while_fetching_releases",
+"disable_while_installing_game",
+]]
 margin_left = 139.0
 margin_right = 687.0
 margin_bottom = 29.0
@@ -179,7 +198,10 @@ hint_tooltip = "Choose which release of the game to install or update to."
 size_flags_horizontal = 3
 clip_text = true
 
-[node name="BtnRefresh" type="Button" parent="Main/Tabs/Game/Builds" groups=["disable_while_fetching_releases", "disable_while_installing_game"]]
+[node name="BtnRefresh" type="Button" parent="Main/Tabs/Game/Builds" groups=[
+"disable_while_fetching_releases",
+"disable_while_installing_game",
+]]
 margin_left = 693.0
 margin_right = 769.0
 margin_bottom = 29.0
@@ -187,7 +209,10 @@ hint_tooltip = "Re-retrieve the list of available game releases
 from GitHub (only for experimental releases)."
 text = "Refresh"
 
-[node name="BtnInstall" type="Button" parent="Main/Tabs/Game" groups=["disable_while_fetching_releases", "disable_while_installing_game"]]
+[node name="BtnInstall" type="Button" parent="Main/Tabs/Game" groups=[
+"disable_while_fetching_releases",
+"disable_while_installing_game",
+]]
 margin_left = 294.0
 margin_top = 109.0
 margin_right = 474.0
@@ -253,7 +278,9 @@ margin_bottom = 23.0
 hint_tooltip = "Open game directory."
 texture_normal = ExtResource( 25 )
 
-[node name="BtnPlay" type="Button" parent="Main/Tabs/Game/CurrentInstall" groups=["disable_while_installing_game"]]
+[node name="BtnPlay" type="Button" parent="Main/Tabs/Game/CurrentInstall" groups=[
+"disable_while_installing_game",
+]]
 margin_left = 344.0
 margin_top = 70.0
 margin_right = 424.0
@@ -295,7 +322,9 @@ margin_bottom = 29.0
 text = "Installed:"
 align = 1
 
-[node name="InstalledList" type="ItemList" parent="Main/Tabs/Mods/HBox/Installed" groups=["disable_during_mod_operations"]]
+[node name="InstalledList" type="ItemList" parent="Main/Tabs/Mods/HBox/Installed" groups=[
+"disable_during_mod_operations",
+]]
 margin_top = 35.0
 margin_right = 374.0
 margin_bottom = 235.0
@@ -307,7 +336,9 @@ allow_reselect = true
 same_column_width = true
 script = ExtResource( 17 )
 
-[node name="ShowStock" type="CheckBox" parent="Main/Tabs/Mods/HBox/Installed" groups=["disable_during_mod_operations"]]
+[node name="ShowStock" type="CheckBox" parent="Main/Tabs/Mods/HBox/Installed" groups=[
+"disable_during_mod_operations",
+]]
 margin_left = 127.0
 margin_top = 241.0
 margin_right = 246.0
@@ -316,7 +347,9 @@ hint_tooltip = "Show mods from data/mods on this list."
 size_flags_horizontal = 4
 text = "Show stock"
 
-[node name="BtnDelete" type="Button" parent="Main/Tabs/Mods/HBox/Installed" groups=["disable_during_mod_operations"]]
+[node name="BtnDelete" type="Button" parent="Main/Tabs/Mods/HBox/Installed" groups=[
+"disable_during_mod_operations",
+]]
 margin_left = 119.0
 margin_top = 276.0
 margin_right = 254.0
@@ -343,7 +376,9 @@ margin_bottom = 29.0
 text = "Local repository:"
 align = 1
 
-[node name="AvailableList" type="ItemList" parent="Main/Tabs/Mods/HBox/Available" groups=["disable_during_mod_operations"]]
+[node name="AvailableList" type="ItemList" parent="Main/Tabs/Mods/HBox/Available" groups=[
+"disable_during_mod_operations",
+]]
 margin_top = 35.0
 margin_right = 375.0
 margin_bottom = 235.0
@@ -355,7 +390,9 @@ allow_reselect = true
 same_column_width = true
 script = ExtResource( 17 )
 
-[node name="ShowInstalled" type="CheckBox" parent="Main/Tabs/Mods/HBox/Available" groups=["disable_during_mod_operations"]]
+[node name="ShowInstalled" type="CheckBox" parent="Main/Tabs/Mods/HBox/Available" groups=[
+"disable_during_mod_operations",
+]]
 margin_left = 86.0
 margin_top = 241.0
 margin_right = 289.0
@@ -371,7 +408,9 @@ margin_right = 375.0
 margin_bottom = 305.0
 alignment = 1
 
-[node name="BtnAddSelectedMod" type="Button" parent="Main/Tabs/Mods/HBox/Available/VBox" groups=["disable_during_mod_operations"]]
+[node name="BtnAddSelectedMod" type="Button" parent="Main/Tabs/Mods/HBox/Available/VBox" groups=[
+"disable_during_mod_operations",
+]]
 margin_left = 91.0
 margin_right = 207.0
 margin_bottom = 29.0
@@ -379,14 +418,18 @@ hint_tooltip = "Add selected mods to your game installation."
 size_flags_horizontal = 4
 text = "Add Selected"
 
-[node name="BtnAddAllMods" type="Button" parent="Main/Tabs/Mods/HBox/Available/VBox" groups=["disable_during_mod_operations"]]
+[node name="BtnAddAllMods" type="Button" parent="Main/Tabs/Mods/HBox/Available/VBox" groups=[
+"disable_during_mod_operations",
+]]
 margin_left = 213.0
 margin_right = 283.0
 margin_bottom = 29.0
 hint_tooltip = "Add all listed mods to your game installation."
 text = "Add All"
 
-[node name="BtnDownloadKenan" type="Button" parent="Main/Tabs/Mods/HBox/Available" groups=["disable_during_mod_operations"]]
+[node name="BtnDownloadKenan" type="Button" parent="Main/Tabs/Mods/HBox/Available" groups=[
+"disable_during_mod_operations",
+]]
 margin_left = 102.0
 margin_top = 311.0
 margin_right = 272.0
@@ -406,11 +449,11 @@ margin_right = 769.0
 margin_bottom = 480.0
 rect_min_size = Vector2( 0, 120 )
 focus_mode = 2
-custom_constants/line_separation = 4
 custom_fonts/bold_italics_font = ExtResource( 24 )
 custom_fonts/italics_font = ExtResource( 23 )
 custom_fonts/bold_font = ExtResource( 22 )
 custom_fonts/normal_font = ExtResource( 7 )
+custom_constants/line_separation = 4
 bbcode_enabled = true
 bbcode_text = "Mod info will appear here."
 text = "Mod info will appear here."
@@ -457,7 +500,9 @@ margin_bottom = 29.0
 text = "Installed:"
 align = 1
 
-[node name="InstalledList" type="ItemList" parent="Main/Tabs/Soundpacks/HBox/Installed" groups=["disable_during_soundpack_operations"]]
+[node name="InstalledList" type="ItemList" parent="Main/Tabs/Soundpacks/HBox/Installed" groups=[
+"disable_during_soundpack_operations",
+]]
 margin_top = 35.0
 margin_right = 374.0
 margin_bottom = 235.0
@@ -467,7 +512,9 @@ items = [ "Item 0", null, false, "Item 1", null, false, "Item 2", null, false, "
 same_column_width = true
 script = ExtResource( 17 )
 
-[node name="ShowStock" type="CheckBox" parent="Main/Tabs/Soundpacks/HBox/Installed" groups=["disable_during_soundpack_operations"]]
+[node name="ShowStock" type="CheckBox" parent="Main/Tabs/Soundpacks/HBox/Installed" groups=[
+"disable_during_soundpack_operations",
+]]
 margin_left = 127.0
 margin_top = 241.0
 margin_right = 246.0
@@ -476,7 +523,9 @@ hint_tooltip = "Show soundpacks from data/sound on the list."
 size_flags_horizontal = 4
 text = "Show stock"
 
-[node name="BtnDelete" type="Button" parent="Main/Tabs/Soundpacks/HBox/Installed" groups=["disable_during_soundpack_operations"]]
+[node name="BtnDelete" type="Button" parent="Main/Tabs/Soundpacks/HBox/Installed" groups=[
+"disable_during_soundpack_operations",
+]]
 margin_left = 119.0
 margin_top = 276.0
 margin_right = 254.0
@@ -503,7 +552,9 @@ margin_bottom = 29.0
 text = "Downloadable:"
 align = 1
 
-[node name="AvailableList" type="ItemList" parent="Main/Tabs/Soundpacks/HBox/Downloadable" groups=["disable_during_soundpack_operations"]]
+[node name="AvailableList" type="ItemList" parent="Main/Tabs/Soundpacks/HBox/Downloadable" groups=[
+"disable_during_soundpack_operations",
+]]
 margin_top = 35.0
 margin_right = 375.0
 margin_bottom = 235.0
@@ -513,7 +564,9 @@ items = [ "Item 0", null, false, "Item 1", null, false, "Item 2", null, false, "
 same_column_width = true
 script = ExtResource( 17 )
 
-[node name="BtnInstall" type="Button" parent="Main/Tabs/Soundpacks/HBox/Downloadable" groups=["disable_during_soundpack_operations"]]
+[node name="BtnInstall" type="Button" parent="Main/Tabs/Soundpacks/HBox/Downloadable" groups=[
+"disable_during_soundpack_operations",
+]]
 margin_left = 122.0
 margin_top = 241.0
 margin_right = 253.0
@@ -549,8 +602,8 @@ window_title = "Open a File"
 mode = 0
 access = 2
 filters = PoolStringArray( "*.zip" )
-current_dir = "/Catapult"
-current_path = "/Catapult/"
+current_dir = "/mnt/data/Godot/Catapult/Changelog"
+current_path = "/mnt/data/Godot/Catapult/Changelog/"
 
 [node name="Fonts" type="VBoxContainer" parent="Main/Tabs"]
 visible = false
@@ -833,6 +886,7 @@ margin_right = 769.0
 margin_bottom = 539.0
 
 [node name="Settings" type="VBoxContainer" parent="Main/Tabs"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -1188,7 +1242,7 @@ size_flags_horizontal = 4
 text = "Test path resolution in PathHelper"
 
 [node name="Log" type="RichTextLabel" parent="Main"]
-margin_top = 680.0
+margin_top = 464.0
 margin_right = 784.0
 margin_bottom = 984.0
 focus_mode = 2
@@ -1262,7 +1316,8 @@ __meta__ = {
 "_editor_description_": "The centralized location for all path resolutions in the launcher."
 }
 
-[node name="ChangelogPopup" type="PopupDialog" parent="."]
+[node name="ChangelogPopup" type="WindowDialog" parent="."]
+visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1271,19 +1326,52 @@ margin_left = -240.0
 margin_top = -160.0
 margin_right = 240.0
 margin_bottom = 160.0
+
+[node name="Panel" type="PanelContainer" parent="ChangelogPopup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BtnCloseChangelog" type="Button" parent="ChangelogPopup"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -55.5
-margin_top = -36.0
-margin_right = 55.5
-margin_bottom = -4.0
+[node name="Margin" type="MarginContainer" parent="ChangelogPopup/Panel"]
+margin_left = 9.0
+margin_top = 6.0
+margin_right = 471.0
+margin_bottom = 314.0
+custom_constants/margin_top = 8
+custom_constants/margin_bottom = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="ChangelogPopup/Panel/Margin"]
+margin_top = 8.0
+margin_right = 462.0
+margin_bottom = 300.0
+custom_constants/separation = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ChangelogText" type="RichTextLabel" parent="ChangelogPopup/Panel/Margin/VBox"]
+margin_right = 462.0
+margin_bottom = 255.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/mono_font = ExtResource( 7 )
+bbcode_enabled = true
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BtnCloseChangelog" type="Button" parent="ChangelogPopup/Panel/Margin/VBox"]
+margin_left = 201.0
+margin_top = 263.0
+margin_right = 260.0
+margin_bottom = 292.0
+size_flags_horizontal = 4
 text = "Close"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1295,21 +1383,6 @@ script = ExtResource( 32 )
 [node name="DDAPullRequests" type="HTTPRequest" parent="ChangelogPopup/Changelogger"]
 
 [node name="BNPullRequests" type="HTTPRequest" parent="ChangelogPopup/Changelogger"]
-
-[node name="ChangelogText" type="RichTextLabel" parent="ChangelogPopup"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -240.0
-margin_right = 240.0
-margin_bottom = 280.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_fonts/mono_font = ExtResource( 7 )
-bbcode_enabled = true
-text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [connection signal="meta_clicked" from="Main/GameInfo/Description" to="." method="_on_Description_meta_clicked"]
 [connection signal="tab_changed" from="Main/Tabs" to="." method="_on_Tabs_tab_changed"]
@@ -1409,7 +1482,7 @@ __meta__ = {
 [connection signal="status_message" from="Sound" to="." method="_on_status_message"]
 [connection signal="status_message" from="Fonts" to="." method="_on_status_message"]
 [connection signal="status_message" from="PathHelper" to="." method="_on_status_message"]
-[connection signal="pressed" from="ChangelogPopup/BtnCloseChangelog" to="." method="_on_BtnCloseChangelog_pressed"]
+[connection signal="meta_clicked" from="ChangelogPopup/Panel/Margin/VBox/ChangelogText" to="ChangelogPopup/Changelogger" method="_on_ChangelogText_meta_clicked"]
+[connection signal="pressed" from="ChangelogPopup/Panel/Margin/VBox/BtnCloseChangelog" to="." method="_on_BtnCloseChangelog_pressed"]
 [connection signal="request_completed" from="ChangelogPopup/Changelogger/DDAPullRequests" to="ChangelogPopup/Changelogger" method="_on_DDAPullRequests_request_completed"]
 [connection signal="request_completed" from="ChangelogPopup/Changelogger/BNPullRequests" to="ChangelogPopup/Changelogger" method="_on_BNPullRequests_request_completed"]
-[connection signal="meta_clicked" from="ChangelogPopup/ChangelogText" to="ChangelogPopup/Changelogger" method="_on_ChangelogText_meta_clicked"]
