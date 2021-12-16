@@ -40,10 +40,14 @@ func download_pull_requests():
 
 
 func _on_PullRequests_request_completed(result, response_code, headers, body):
+	var json = parse_json(body.get_string_from_utf8())
 	if response_code != 200:
-		_pr_data = "Error retrieving data from the GitHub API. (Response code: " + str(response_code) + ")"
+		_pr_data = "Error retrieving data from GitHub API."
+		_pr_data += "\nHTTP response code: " + str(response_code)
+		if "message" in json:
+			_pr_data += "\nGitHub says: [i]%s[/i]" % json["message"]
 	else:
-		_pr_data = process_pr_data(parse_json(body.get_string_from_utf8()))
+		_pr_data = process_pr_data(json)
 	_changelogTextBox.clear()
 	_changelogTextBox.append_bbcode(_pr_data)
 
