@@ -25,6 +25,7 @@ onready var _fshelper = $FSHelper
 onready var _installer = $ReleaseInstaller
 onready var _btn_install = $Main/Tabs/Game/BtnInstall
 onready var _btn_refresh = $Main/Tabs/Game/Builds/BtnRefresh
+onready var changelog = $Main/Tabs/Game/ChangelogDialog
 onready var _btn_changelog = $Main/Tabs/Game/BtnChangelog
 onready var _btn_game_dir = $Main/Tabs/Game/CurrentInstall/Build/GameDir
 onready var _btn_play = $Main/Tabs/Game/CurrentInstall/BtnPlay
@@ -33,7 +34,6 @@ onready var _lst_games = $Main/GameChoice/GamesList
 onready var _rbtn_stable = $Main/Tabs/Game/Channel/Group/RBtnStable
 onready var _rbtn_exper = $Main/Tabs/Game/Channel/Group/RBtnExperimental
 onready var _lbl_build = $Main/Tabs/Game/CurrentInstall/Build/Name
-onready var _changelogger = $ChangelogPopup/Changelogger
 
 var _disable_savestate = {}
 var _ui_staring_sizes = {}  # For UI scaling on the fly
@@ -305,14 +305,11 @@ func _on_BtnInstall_pressed() -> void:
 	var update = _settings.read("game") in _inst_probe.probe_installed_games()
 	_installer.install_release(release, _settings.read("game"), update)
 
+
 func _on_BtnChangelog_pressed() -> void:
-	$ChangelogPopup.rect_min_size = get_tree().root.size * Vector2(0.9, 0.9)
-	$ChangelogPopup.set_as_minsize()
-	$ChangelogPopup.popup_centered()
-	_changelogger.download_pull_requests()
 	
-func _on_BtnCloseChangelog_pressed():
-	$ChangelogPopup.hide()
+	changelog.open()
+
 
 func _get_release_key() -> String:
 	# Compiles a string looking like "dda-stable" or "bn-experimental"

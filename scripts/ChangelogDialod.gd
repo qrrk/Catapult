@@ -1,16 +1,21 @@
-extends Node
+extends WindowDialog
 
 onready var _settings = $"/root/SettingsManager"
 onready var _ddaPullRequests = $DDAPullRequests
 onready var _bnPullRequests = $BNPullRequests
-onready var _changelogTextBox = $"../Panel/Margin/VBox/ChangelogText"
+onready var _changelogTextBox = $Panel/Margin/VBox/ChangelogText
 
-var _dda_pr_data = "Downloading recent DDA PRs. Please wait..."
-var _bn_pr_data = "Downloading recent BN PRs. Please wait..."
+var _dda_pr_data = ""
+var _bn_pr_data = ""
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
+
+func open() -> void:
+	
+	download_pull_requests()
+	rect_min_size = get_tree().root.size * Vector2(0.9, 0.9)
+	set_as_minsize()
+	popup_centered()
+
 
 func download_pull_requests():
 	var game_selected = _settings.read("game")
@@ -37,6 +42,7 @@ func download_pull_requests():
 	else:
 		_changelogTextBox.append_bbcode(_bn_pr_data)
 
+
 func _on_DDAPullRequests_request_completed(result, response_code, headers, body):
 	if response_code != 200:
 		_dda_pr_data = "Error retrieving data from the GitHub API. (Response code: " + str(response_code) + ")"
@@ -45,6 +51,7 @@ func _on_DDAPullRequests_request_completed(result, response_code, headers, body)
 	_changelogTextBox.clear()
 	_changelogTextBox.append_bbcode(_dda_pr_data)
 
+
 func _on_BNPullRequests_request_completed(result, response_code, headers, body):
 	if response_code != 200:
 		_bn_pr_data = "Error retrieving data from the GitHub API. (Response code: " + str(response_code) + ")"
@@ -52,6 +59,7 @@ func _on_BNPullRequests_request_completed(result, response_code, headers, body):
 		_bn_pr_data = process_pr_data(parse_json(body.get_string_from_utf8()))
 	_changelogTextBox.clear()
 	_changelogTextBox.append_bbcode(_bn_pr_data)
+
 
 func process_pr_data(pr_data):
 	var pr_array = []
@@ -84,8 +92,10 @@ func process_pr_data(pr_data):
 		r_val = r_val + "[indent]• [url=" + pr.get_link() + "]" + pr.get_summary() + "[/url][/indent]\n"
 	return r_val
 
+
 func _on_ChangelogText_meta_clicked(meta):
 	OS.shell_open(str(meta))
+
 
 class PullRequest:
 	var timestring setget set_timestring,get_timestring
@@ -150,9 +160,7 @@ class PullRequest:
 			link)
 		r_val.set_timestring(date)
 		return r_val
-	
 
-	
 	func _init(y, mo, d, h, mi, s, sum, url):
 		year = y
 		month = mo
@@ -162,8 +170,10 @@ class PullRequest:
 		second = s
 		summary = sum
 		link = url
-	
-	
-	
+
 	func print_date():
 		return str(year) + "-" + str(month) + "-" + str(day)
+
+
+func _on_BtnCloseChangelog_pressed() -> void:
+	hide()

@@ -31,7 +31,7 @@
 [ext_resource path="res://scenes/FontSizeHelpDialog.tscn" type="PackedScene" id=29]
 [ext_resource path="res://icons/help.svg" type="Texture" id=30]
 [ext_resource path="res://scripts/PathHelper.gd" type="Script" id=31]
-[ext_resource path="res://scripts/Changelogger.gd" type="Script" id=32]
+[ext_resource path="res://scenes/ChangelogDialog.tscn" type="PackedScene" id=32]
 
 [sub_resource type="ButtonGroup" id=1]
 
@@ -128,12 +128,11 @@ margin_bottom = 91.0
 ]]
 margin_top = 97.0
 margin_right = 784.0
-margin_bottom = 629.0
+margin_bottom = 458.0
 tab_align = 0
 script = ExtResource( 16 )
 
 [node name="Game" type="VBoxContainer" parent="Main/Tabs"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -297,6 +296,9 @@ expand_icon = true
 margin_top = 315.0
 margin_right = 769.0
 margin_bottom = 315.0
+
+[node name="ChangelogDialog" parent="Main/Tabs/Game" instance=ExtResource( 32 )]
+visible = false
 
 [node name="Mods" type="VBoxContainer" parent="Main/Tabs"]
 visible = false
@@ -887,6 +889,7 @@ margin_right = 769.0
 margin_bottom = 539.0
 
 [node name="Settings" type="VBoxContainer" parent="Main/Tabs"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -1203,7 +1206,7 @@ size_flags_horizontal = 4
 text = "Test path resolution in PathHelper"
 
 [node name="Log" type="RichTextLabel" parent="Main"]
-margin_top = 635.0
+margin_top = 464.0
 margin_right = 784.0
 margin_bottom = 984.0
 focus_mode = 2
@@ -1276,76 +1279,6 @@ script = ExtResource( 31 )
 __meta__ = {
 "_editor_description_": "The centralized location for all path resolutions in the launcher."
 }
-
-[node name="ChangelogPopup" type="WindowDialog" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -240.0
-margin_top = -160.0
-margin_right = 240.0
-margin_bottom = 160.0
-
-[node name="Panel" type="PanelContainer" parent="ChangelogPopup"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Margin" type="MarginContainer" parent="ChangelogPopup/Panel"]
-margin_left = 9.0
-margin_top = 6.0
-margin_right = 471.0
-margin_bottom = 314.0
-custom_constants/margin_top = 8
-custom_constants/margin_bottom = 8
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VBox" type="VBoxContainer" parent="ChangelogPopup/Panel/Margin"]
-margin_top = 8.0
-margin_right = 462.0
-margin_bottom = 300.0
-custom_constants/separation = 8
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ChangelogText" type="RichTextLabel" parent="ChangelogPopup/Panel/Margin/VBox"]
-margin_right = 462.0
-margin_bottom = 255.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_fonts/bold_italics_font = ExtResource( 24 )
-custom_fonts/italics_font = ExtResource( 23 )
-custom_fonts/bold_font = ExtResource( 22 )
-custom_fonts/normal_font = ExtResource( 7 )
-bbcode_enabled = true
-text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="BtnCloseChangelog" type="Button" parent="ChangelogPopup/Panel/Margin/VBox"]
-margin_left = 201.0
-margin_top = 263.0
-margin_right = 260.0
-margin_bottom = 292.0
-size_flags_horizontal = 4
-text = "Close"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Changelogger" type="Node" parent="ChangelogPopup"]
-script = ExtResource( 32 )
-
-[node name="DDAPullRequests" type="HTTPRequest" parent="ChangelogPopup/Changelogger"]
-
-[node name="BNPullRequests" type="HTTPRequest" parent="ChangelogPopup/Changelogger"]
 
 [connection signal="meta_clicked" from="Main/GameInfo/Description" to="." method="_on_Description_meta_clicked"]
 [connection signal="tab_changed" from="Main/Tabs" to="." method="_on_Tabs_tab_changed"]
@@ -1444,7 +1377,3 @@ script = ExtResource( 32 )
 [connection signal="status_message" from="Sound" to="." method="_on_status_message"]
 [connection signal="status_message" from="Fonts" to="." method="_on_status_message"]
 [connection signal="status_message" from="PathHelper" to="." method="_on_status_message"]
-[connection signal="meta_clicked" from="ChangelogPopup/Panel/Margin/VBox/ChangelogText" to="ChangelogPopup/Changelogger" method="_on_ChangelogText_meta_clicked"]
-[connection signal="pressed" from="ChangelogPopup/Panel/Margin/VBox/BtnCloseChangelog" to="." method="_on_BtnCloseChangelog_pressed"]
-[connection signal="request_completed" from="ChangelogPopup/Changelogger/DDAPullRequests" to="ChangelogPopup/Changelogger" method="_on_DDAPullRequests_request_completed"]
-[connection signal="request_completed" from="ChangelogPopup/Changelogger/BNPullRequests" to="ChangelogPopup/Changelogger" method="_on_BNPullRequests_request_completed"]
