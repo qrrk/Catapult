@@ -3,9 +3,9 @@ extends Node
 
 const _GAME_DESC = {
 	"dda":
-		"[b]Cataclysm: Dark Days Ahead[/b] is a turn-based survival game set in a post-apocalyptic world. Scavenge, explore, craft, build, farm, repair and modify vehicles, install bionics, mutate, defend against [color=#009900]zombies[/color] and countless other monstrosities — all in a limitless, procedurally generated world!",
+		"[b]Cataclysm: Dark Days Ahead[/b] is a turn-based survival game set in a post-apocalyptic world. Scavenge, explore, craft, build, farm, repair and modify vehicles, install bionics, mutate, defend against [color=#009900]zombies[/color] and countless other monstrosities — all in a limitless, procedurally generated world! [color=#3b93f7][url=CHANGELOG]View Changelog[/url][/color]",
 	"bn":
-		"[b]Cataclysm: Bright Nights[/b]. Reject pedantry, embrace [color=#ff3300]!!fun!![/color]. This fork takes the game back to its sci-fi roguelike roots and reverts many controversial changes by the DDA team (pockets, proficiencies, freezing, and [color=#3b93f7][url=https://github.com/cataclysmbnteam/Cataclysm-BN/wiki/Changes-so-far]more[/url][/color]). Special attention is paid to combat, game balance and pacing.",
+		"[b]Cataclysm: Bright Nights[/b]. Reject pedantry, embrace [color=#ff3300]!!fun!![/color]. This fork takes the game back to its sci-fi roguelike roots and reverts many controversial changes by the DDA team (pockets, proficiencies, freezing, and [color=#3b93f7][url=https://github.com/cataclysmbnteam/Cataclysm-BN/wiki/Changes-so-far]more[/url][/color]). Special attention is paid to combat, game balance and pacing. [color=#3b93f7][url=CHANGELOG]View Changelog[/url][/color]",
 }
 
 onready var _settings = $"/root/SettingsManager"
@@ -25,6 +25,7 @@ onready var _fshelper = $FSHelper
 onready var _installer = $ReleaseInstaller
 onready var _btn_install = $Main/Tabs/Game/BtnInstall
 onready var _btn_refresh = $Main/Tabs/Game/Builds/BtnRefresh
+onready var _changelog = $Main/Tabs/Game/ChangelogDialog
 onready var _btn_game_dir = $Main/Tabs/Game/CurrentInstall/Build/GameDir
 onready var _btn_play = $Main/Tabs/Game/CurrentInstall/BtnPlay
 onready var _lst_builds = $Main/Tabs/Game/Builds/BuildsList
@@ -32,7 +33,6 @@ onready var _lst_games = $Main/GameChoice/GamesList
 onready var _rbtn_stable = $Main/Tabs/Game/Channel/Group/RBtnStable
 onready var _rbtn_exper = $Main/Tabs/Game/Channel/Group/RBtnExperimental
 onready var _lbl_build = $Main/Tabs/Game/CurrentInstall/Build/Name
-
 
 var _disable_savestate = {}
 var _ui_staring_sizes = {}  # For UI scaling on the fly
@@ -271,7 +271,10 @@ func _on_soundpack_operation_finished() -> void:
 
 func _on_Description_meta_clicked(meta) -> void:
 	
-	OS.shell_open(meta)
+	if meta == "CHANGELOG":
+		_changelog.open()
+	else:
+		OS.shell_open(meta)
 
 
 func _on_BtnRefresh_pressed() -> void:
@@ -368,6 +371,7 @@ func apply_game_choice() -> void:
 				_btn_refresh.disabled = true
 			else:
 				_btn_refresh.disabled = false
+				
 		"bn":
 			_lst_games.select(1)
 			_rbtn_exper.pressed = true

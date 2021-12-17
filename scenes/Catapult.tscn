@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://icons/info.svg" type="Texture" id=1]
 [ext_resource path="res://icons/download.svg" type="Texture" id=2]
@@ -31,6 +31,7 @@
 [ext_resource path="res://scenes/FontSizeHelpDialog.tscn" type="PackedScene" id=29]
 [ext_resource path="res://icons/help.svg" type="Texture" id=30]
 [ext_resource path="res://scripts/PathHelper.gd" type="Script" id=31]
+[ext_resource path="res://scenes/ChangelogDialog.tscn" type="PackedScene" id=32]
 
 [sub_resource type="ButtonGroup" id=1]
 
@@ -127,12 +128,11 @@ margin_bottom = 91.0
 ]]
 margin_top = 97.0
 margin_right = 784.0
-margin_bottom = 594.0
+margin_bottom = 418.0
 tab_align = 0
 script = ExtResource( 16 )
 
 [node name="Game" type="VBoxContainer" parent="Main/Tabs"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -281,6 +281,8 @@ expand_icon = true
 margin_top = 275.0
 margin_right = 769.0
 margin_bottom = 275.0
+
+[node name="ChangelogDialog" parent="Main/Tabs/Game" instance=ExtResource( 32 )]
 
 [node name="Mods" type="VBoxContainer" parent="Main/Tabs"]
 visible = false
@@ -587,8 +589,8 @@ window_title = "Open a File"
 mode = 0
 access = 2
 filters = PoolStringArray( "*.zip" )
-current_dir = "/mnt/data/Godot/Catapult/Project"
-current_path = "/mnt/data/Godot/Catapult/Project/"
+current_dir = "/mnt/data/Godot/Catapult/Changelog"
+current_path = "/mnt/data/Godot/Catapult/Changelog/"
 
 [node name="Fonts" type="VBoxContainer" parent="Main/Tabs"]
 visible = false
@@ -871,6 +873,7 @@ margin_right = 769.0
 margin_bottom = 539.0
 
 [node name="Settings" type="VBoxContainer" parent="Main/Tabs"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -961,10 +964,33 @@ min_value = 1.0
 value = 30.0
 rounded = true
 
-[node name="ScaleOverride" type="HBoxContainer" parent="Main/Tabs/Settings"]
+[node name="NumPrs" type="HBoxContainer" parent="Main/Tabs/Settings"]
 margin_top = 280.0
 margin_right = 769.0
 margin_bottom = 309.0
+hint_tooltip = "How many recent pull requests (code additions)
+will be requested from GitHub to form the changelog.
+High numbers may lead to slow responses and failures."
+
+[node name="Label" type="Label" parent="Main/Tabs/Settings/NumPrs"]
+margin_right = 390.0
+margin_bottom = 29.0
+text = "Number of results to download for the changelog:"
+
+[node name="sbNumPRs" type="SpinBox" parent="Main/Tabs/Settings/NumPrs"]
+margin_left = 639.0
+margin_right = 769.0
+margin_bottom = 29.0
+size_flags_horizontal = 10
+min_value = 10.0
+step = 10.0
+value = 100.0
+rounded = true
+
+[node name="ScaleOverride" type="HBoxContainer" parent="Main/Tabs/Settings"]
+margin_top = 315.0
+margin_right = 769.0
+margin_bottom = 344.0
 hint_tooltip = "Use this if the automatically inferred UI scale
 looks too large or too small on your system.
 (Automatic scale relies on system-reported
@@ -1001,14 +1027,14 @@ editable = false
 suffix = "%"
 
 [node name="HSeparator" type="HSeparator" parent="Main/Tabs/Settings"]
-margin_top = 315.0
+margin_top = 350.0
 margin_right = 769.0
-margin_bottom = 323.0
+margin_bottom = 358.0
 
 [node name="Migration" type="VBoxContainer" parent="Main/Tabs/Settings"]
-margin_top = 329.0
+margin_top = 364.0
 margin_right = 769.0
-margin_bottom = 451.0
+margin_bottom = 486.0
 hint_tooltip = "Choose which types of game data to carry over
 into the new game version when updating."
 
@@ -1110,13 +1136,13 @@ autowrap = true
 [node name="Button" type="Button" parent="Main/Tabs/Debug"]
 margin_left = 273.0
 margin_top = 56.0
-margin_right = 496.0
+margin_right = 495.0
 margin_bottom = 85.0
 size_flags_horizontal = 6
 text = "Test mod directory parsing"
 
 [node name="Button2" type="Button" parent="Main/Tabs/Debug"]
-margin_left = 266.0
+margin_left = 267.0
 margin_top = 91.0
 margin_right = 502.0
 margin_bottom = 120.0
@@ -1124,7 +1150,7 @@ size_flags_horizontal = 6
 text = "Test sound directory parsing"
 
 [node name="Button3" type="Button" parent="Main/Tabs/Debug"]
-margin_left = 201.0
+margin_left = 202.0
 margin_top = 126.0
 margin_right = 567.0
 margin_bottom = 155.0
@@ -1134,13 +1160,13 @@ text = "Test passing of arguments to shell commands"
 [node name="Button4" type="Button" parent="Main/Tabs/Debug"]
 margin_left = 228.0
 margin_top = 161.0
-margin_right = 541.0
+margin_right = 540.0
 margin_bottom = 190.0
 size_flags_horizontal = 6
 text = "Test different types of status messages"
 
 [node name="Button5" type="Button" parent="Main/Tabs/Debug"]
-margin_left = 261.0
+margin_left = 262.0
 margin_top = 196.0
 margin_right = 507.0
 margin_bottom = 225.0
@@ -1158,13 +1184,13 @@ text = "Print a random Tip of the Day"
 [node name="Button7" type="Button" parent="Main/Tabs/Debug"]
 margin_left = 245.0
 margin_top = 266.0
-margin_right = 524.0
+margin_right = 523.0
 margin_bottom = 295.0
 size_flags_horizontal = 4
 text = "Test path resolution in PathHelper"
 
 [node name="Log" type="RichTextLabel" parent="Main"]
-margin_top = 600.0
+margin_top = 424.0
 margin_right = 784.0
 margin_bottom = 984.0
 focus_mode = 2
@@ -1288,6 +1314,7 @@ __meta__ = {
 [connection signal="toggled" from="Main/Tabs/Settings/InstallArchivedMods" to="Main/Tabs/Settings" method="_on_InstallArchivedMods_toggled"]
 [connection signal="toggled" from="Main/Tabs/Settings/ShowDebug" to="Main/Tabs/Settings" method="_on_ShowDebug_toggled"]
 [connection signal="value_changed" from="Main/Tabs/Settings/NumReleases/sbNumReleases" to="Main/Tabs/Settings" method="_on_sbNumReleases_value_changed"]
+[connection signal="value_changed" from="Main/Tabs/Settings/NumPrs/sbNumPRs" to="Main/Tabs/Settings" method="_on_sbNumPRs_value_changed"]
 [connection signal="toggled" from="Main/Tabs/Settings/ScaleOverride/cbScaleOverrideEnable" to="Main/Tabs/Settings" method="_on_cbScaleOverrideEnable_toggled"]
 [connection signal="value_changed" from="Main/Tabs/Settings/ScaleOverride/sbScaleOverride" to="Main/Tabs/Settings" method="_on_sbScaleOverride_value_changed"]
 [connection signal="toggled" from="Main/Tabs/Settings/Migration/Grid/Savegames" to="Main/Tabs/Settings" method="_on_any_migration_checkbox_toggled"]
