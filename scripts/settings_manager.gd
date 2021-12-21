@@ -14,7 +14,6 @@ const _HARDCODED_DEFAULTS = {
 	"shorten_release_names": false,
 	"num_releases_to_request": 10,
 	"num_prs_to_request": 50,
-	"github_pat": "",
 	"ui_scale_override": 1.0,
 	"ui_scale_override_enabled": false,
 	"show_stock_mods": false,

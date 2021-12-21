@@ -2,8 +2,8 @@ extends WindowDialog
 
 
 const _PR_URL = {
-	"dda": "https://api.github.com/repos/cleverraven/cataclysm-dda/pulls",
-	"bn": "https://api.github.com/repos/cataclysmbnteam/Cataclysm-BN/pulls",
+	"dda": "https://api.github.com/search/issues?q=repo%3Acleverraven/Cataclysm-DDA",
+	"bn": "https://api.github.com/search/issues?q=repo%3Acataclysmbnteam/Cataclysm-BN",
 }
 
 
@@ -26,11 +26,8 @@ func download_pull_requests():
 	var game_selected = _settings.read("game")
 	var prs = _settings.read("num_prs_to_request")
 	var url = _PR_URL[_settings.read("game")]
-	url += "?state=closed&sort=updated&direction=desc&per_page=" + prs
+	url += "+is%3Apr+is%3Amerged&per_page=" + prs
 	var headers = ["user-agent: CatapultGodotApp"]
-	var pat = _settings.read("github_pat")
-	if (pat.length() == 40):
-		headers.push_back("Authorization: token " + pat)
 	_pr_data = "Fetching recent changes from GitHub. Please wait..."
 	_pullRequests.request(url, headers)
 	_changelogTextBox.clear()
@@ -46,7 +43,7 @@ func _on_PullRequests_request_completed(result, response_code, headers, body):
 		_pr_data += "\n\nHTTP response code: " + str(response_code)
 		if (json) and ("message" in json):
 			_pr_data += "\nGitHub says: [i]%s[/i]" % json["message"]
-		_pr_data += "\n\nSometimes, requests will fail repeatedly due to excessive load on the server, especially for DDA. This may depend on the time of day, your location, etc. There's little anyone can do about this. If you are registered on GitHub, you can add your [url=https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token]PAT (Personal Access Token)[/url] to Catapult config file to increase the priority of your requests or bypass rate limits."
+		_pr_data += "\n\nPlease try again later."
 	else:
 		_pr_data = process_pr_data(json)
 	_changelogTextBox.clear()
@@ -55,10 +52,8 @@ func _on_PullRequests_request_completed(result, response_code, headers, body):
 
 func process_pr_data(data):
 	var pr_array = []
-	for json in data:
-		if json["merged_at"] == null or json["merged_at"] == "null" :
-			continue
-		var pr = PullRequest.pullrequest_from_datestring(json["merged_at"], json["title"], json["html_url"])
+	for json in data["items"]:
+		var pr = PullRequest.pullrequest_from_datestring(json["closed_at"], json["title"], json["html_url"])
 		pr_array.push_back(pr)
 	pr_array.sort_custom(PullRequest, "compare_to")
 	var now = OS.get_datetime(true)
