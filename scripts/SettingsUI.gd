@@ -121,8 +121,3 @@ func _on_any_migration_checkbox_toggled(_asdf: bool) -> void:
 			data_types.append(type)
 	
 	_settings.store("game_data_to_migrate", data_types)
-
-
-func _on_lePATUse_text_changed(new_text):
-	if (new_text.length() == 40 or new_text.length() == 0):
-		_settings.store("github_pat", new_text)

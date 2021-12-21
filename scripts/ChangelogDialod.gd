@@ -28,9 +28,6 @@ func download_pull_requests():
 	var url = _PR_URL[_settings.read("game")]
 	url += "+is%3Apr+is%3Amerged&per_page=" + prs
 	var headers = ["user-agent: CatapultGodotApp"]
-	var pat = _settings.read("github_pat")
-	if (pat.length() == 40):
-		headers.push_back("Authorization: token " + pat)
 	_pr_data = "Fetching recent changes from GitHub. Please wait..."
 	_pullRequests.request(url, headers)
 	_changelogTextBox.clear()
@@ -46,7 +43,7 @@ func _on_PullRequests_request_completed(result, response_code, headers, body):
 		_pr_data += "\n\nHTTP response code: " + str(response_code)
 		if (json) and ("message" in json):
 			_pr_data += "\nGitHub says: [i]%s[/i]" % json["message"]
-		_pr_data += "\n\nSometimes, requests will fail repeatedly due to excessive load on the server, especially for DDA. This may depend on the time of day, your location, etc. There's little anyone can do about this. If you are registered on GitHub, you can add your [url=https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token]PAT (Personal Access Token)[/url] to Catapult config file to increase the priority of your requests or bypass rate limits."
+		_pr_data += "\n\nPlease try again later."
 	else:
 		_pr_data = process_pr_data(json)
 	_changelogTextBox.clear()
