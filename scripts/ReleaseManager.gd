@@ -82,6 +82,11 @@ const _DDA_STABLE_LINUX = [
 
 const _DDA_STABLE_WIN = [
 	{
+		"name": "0.F-3 Frank-3",
+		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.F-3/cataclysmdda-0.F-Windows_x64-Tiles-0.F-3.zip",
+		"filename": "cataclysmdda-0.F-Windows_x64-Tiles-0.F-3.zip"
+	},	
+	{
 		"name": "0.F-2 Frank-2",
 		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.F-2/cataclysmdda-0.F-Windows_x64-Tiles-0.F-2.zip",
 		"filename": "cataclysmdda-0.F-Windows_x64-Tiles-0.F-2.zip"
