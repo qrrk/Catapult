@@ -64,12 +64,7 @@ margin_right = 65.0
 margin_bottom = 29.0
 text = "Game: "
 
-[node name="GamesList" type="OptionButton" parent="Main/GameChoice" groups=[
-"disable_during_mod_operations",
-"disable_during_soundpack_operations",
-"disable_while_fetching_releases",
-"disable_while_installing_game",
-]]
+[node name="GamesList" type="OptionButton" parent="Main/GameChoice" groups=["disable_during_mod_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases", "disable_while_installing_game"]]
 margin_left = 71.0
 margin_right = 784.0
 margin_bottom = 29.0
@@ -120,12 +115,7 @@ margin_top = 91.0
 margin_right = 784.0
 margin_bottom = 91.0
 
-[node name="Tabs" type="TabContainer" parent="Main" groups=[
-"disable_during_mod_operations",
-"disable_during_soundpack_operations",
-"disable_while_fetching_releases",
-"disable_while_installing_game",
-]]
+[node name="Tabs" type="TabContainer" parent="Main" groups=["disable_during_mod_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases", "disable_while_installing_game"]]
 margin_top = 97.0
 margin_right = 784.0
 margin_bottom = 418.0
@@ -155,20 +145,14 @@ margin_top = 35.0
 margin_right = 769.0
 margin_bottom = 64.0
 
-[node name="RBtnStable" type="CheckBox" parent="Main/Tabs/Game/Channel/Group" groups=[
-"disable_while_fetching_releases",
-"disable_while_installing_game",
-]]
+[node name="RBtnStable" type="CheckBox" parent="Main/Tabs/Game/Channel/Group" groups=["disable_while_fetching_releases", "disable_while_installing_game"]]
 margin_right = 81.0
 margin_bottom = 29.0
 hint_tooltip = "Stable release channel (DDA only)."
 group = SubResource( 1 )
 text = "Stable"
 
-[node name="RBtnExperimental" type="CheckBox" parent="Main/Tabs/Game/Channel/Group" groups=[
-"disable_while_fetching_releases",
-"disable_while_installing_game",
-]]
+[node name="RBtnExperimental" type="CheckBox" parent="Main/Tabs/Game/Channel/Group" groups=["disable_while_fetching_releases", "disable_while_installing_game"]]
 margin_left = 87.0
 margin_right = 221.0
 margin_bottom = 29.0
@@ -187,10 +171,7 @@ margin_right = 133.0
 margin_bottom = 29.0
 text = "Available builds:"
 
-[node name="BuildsList" type="OptionButton" parent="Main/Tabs/Game/Builds" groups=[
-"disable_while_fetching_releases",
-"disable_while_installing_game",
-]]
+[node name="BuildsList" type="OptionButton" parent="Main/Tabs/Game/Builds" groups=["disable_while_fetching_releases", "disable_while_installing_game"]]
 margin_left = 139.0
 margin_right = 687.0
 margin_bottom = 29.0
@@ -198,10 +179,7 @@ hint_tooltip = "Choose which release of the game to install or update to."
 size_flags_horizontal = 3
 clip_text = true
 
-[node name="BtnRefresh" type="Button" parent="Main/Tabs/Game/Builds" groups=[
-"disable_while_fetching_releases",
-"disable_while_installing_game",
-]]
+[node name="BtnRefresh" type="Button" parent="Main/Tabs/Game/Builds" groups=["disable_while_fetching_releases", "disable_while_installing_game"]]
 margin_left = 693.0
 margin_right = 769.0
 margin_bottom = 29.0
@@ -209,10 +187,7 @@ hint_tooltip = "Re-retrieve the list of available game releases
 from GitHub (only for experimental releases)."
 text = "Refresh"
 
-[node name="BtnInstall" type="Button" parent="Main/Tabs/Game" groups=[
-"disable_while_fetching_releases",
-"disable_while_installing_game",
-]]
+[node name="BtnInstall" type="Button" parent="Main/Tabs/Game" groups=["disable_while_fetching_releases", "disable_while_installing_game"]]
 margin_left = 294.0
 margin_top = 109.0
 margin_right = 474.0
@@ -263,9 +238,7 @@ margin_bottom = 23.0
 hint_tooltip = "Open game directory."
 texture_normal = ExtResource( 25 )
 
-[node name="BtnPlay" type="Button" parent="Main/Tabs/Game/CurrentInstall" groups=[
-"disable_while_installing_game",
-]]
+[node name="BtnPlay" type="Button" parent="Main/Tabs/Game/CurrentInstall" groups=["disable_while_installing_game"]]
 margin_left = 344.0
 margin_top = 70.0
 margin_right = 424.0
@@ -309,9 +282,7 @@ margin_bottom = 29.0
 text = "Installed:"
 align = 1
 
-[node name="InstalledList" type="ItemList" parent="Main/Tabs/Mods/HBox/Installed" groups=[
-"disable_during_mod_operations",
-]]
+[node name="InstalledList" type="ItemList" parent="Main/Tabs/Mods/HBox/Installed" groups=["disable_during_mod_operations"]]
 margin_top = 35.0
 margin_right = 374.0
 margin_bottom = 235.0
@@ -323,9 +294,7 @@ allow_reselect = true
 same_column_width = true
 script = ExtResource( 17 )
 
-[node name="ShowStock" type="CheckBox" parent="Main/Tabs/Mods/HBox/Installed" groups=[
-"disable_during_mod_operations",
-]]
+[node name="ShowStock" type="CheckBox" parent="Main/Tabs/Mods/HBox/Installed" groups=["disable_during_mod_operations"]]
 margin_left = 127.0
 margin_top = 241.0
 margin_right = 246.0
@@ -334,9 +303,7 @@ hint_tooltip = "Show mods from data/mods on this list."
 size_flags_horizontal = 4
 text = "Show stock"
 
-[node name="BtnDelete" type="Button" parent="Main/Tabs/Mods/HBox/Installed" groups=[
-"disable_during_mod_operations",
-]]
+[node name="BtnDelete" type="Button" parent="Main/Tabs/Mods/HBox/Installed" groups=["disable_during_mod_operations"]]
 margin_left = 119.0
 margin_top = 276.0
 margin_right = 254.0
@@ -363,9 +330,7 @@ margin_bottom = 29.0
 text = "Local repository:"
 align = 1
 
-[node name="AvailableList" type="ItemList" parent="Main/Tabs/Mods/HBox/Available" groups=[
-"disable_during_mod_operations",
-]]
+[node name="AvailableList" type="ItemList" parent="Main/Tabs/Mods/HBox/Available" groups=["disable_during_mod_operations"]]
 margin_top = 35.0
 margin_right = 375.0
 margin_bottom = 235.0
@@ -377,9 +342,7 @@ allow_reselect = true
 same_column_width = true
 script = ExtResource( 17 )
 
-[node name="ShowInstalled" type="CheckBox" parent="Main/Tabs/Mods/HBox/Available" groups=[
-"disable_during_mod_operations",
-]]
+[node name="ShowInstalled" type="CheckBox" parent="Main/Tabs/Mods/HBox/Available" groups=["disable_during_mod_operations"]]
 margin_left = 86.0
 margin_top = 241.0
 margin_right = 289.0
@@ -395,9 +358,7 @@ margin_right = 375.0
 margin_bottom = 305.0
 alignment = 1
 
-[node name="BtnAddSelectedMod" type="Button" parent="Main/Tabs/Mods/HBox/Available/VBox" groups=[
-"disable_during_mod_operations",
-]]
+[node name="BtnAddSelectedMod" type="Button" parent="Main/Tabs/Mods/HBox/Available/VBox" groups=["disable_during_mod_operations"]]
 margin_left = 91.0
 margin_right = 207.0
 margin_bottom = 29.0
@@ -405,18 +366,14 @@ hint_tooltip = "Add selected mods to your game installation."
 size_flags_horizontal = 4
 text = "Add Selected"
 
-[node name="BtnAddAllMods" type="Button" parent="Main/Tabs/Mods/HBox/Available/VBox" groups=[
-"disable_during_mod_operations",
-]]
+[node name="BtnAddAllMods" type="Button" parent="Main/Tabs/Mods/HBox/Available/VBox" groups=["disable_during_mod_operations"]]
 margin_left = 213.0
 margin_right = 283.0
 margin_bottom = 29.0
 hint_tooltip = "Add all listed mods to your game installation."
 text = "Add All"
 
-[node name="BtnDownloadKenan" type="Button" parent="Main/Tabs/Mods/HBox/Available" groups=[
-"disable_during_mod_operations",
-]]
+[node name="BtnDownloadKenan" type="Button" parent="Main/Tabs/Mods/HBox/Available" groups=["disable_during_mod_operations"]]
 margin_left = 102.0
 margin_top = 311.0
 margin_right = 272.0
@@ -436,11 +393,11 @@ margin_right = 769.0
 margin_bottom = 480.0
 rect_min_size = Vector2( 0, 120 )
 focus_mode = 2
+custom_constants/line_separation = 4
 custom_fonts/bold_italics_font = ExtResource( 24 )
 custom_fonts/italics_font = ExtResource( 23 )
 custom_fonts/bold_font = ExtResource( 22 )
 custom_fonts/normal_font = ExtResource( 7 )
-custom_constants/line_separation = 4
 bbcode_enabled = true
 bbcode_text = "Mod info will appear here."
 text = "Mod info will appear here."
@@ -487,9 +444,7 @@ margin_bottom = 29.0
 text = "Installed:"
 align = 1
 
-[node name="InstalledList" type="ItemList" parent="Main/Tabs/Soundpacks/HBox/Installed" groups=[
-"disable_during_soundpack_operations",
-]]
+[node name="InstalledList" type="ItemList" parent="Main/Tabs/Soundpacks/HBox/Installed" groups=["disable_during_soundpack_operations"]]
 margin_top = 35.0
 margin_right = 374.0
 margin_bottom = 235.0
@@ -499,9 +454,7 @@ items = [ "Item 0", null, false, "Item 1", null, false, "Item 2", null, false, "
 same_column_width = true
 script = ExtResource( 17 )
 
-[node name="ShowStock" type="CheckBox" parent="Main/Tabs/Soundpacks/HBox/Installed" groups=[
-"disable_during_soundpack_operations",
-]]
+[node name="ShowStock" type="CheckBox" parent="Main/Tabs/Soundpacks/HBox/Installed" groups=["disable_during_soundpack_operations"]]
 margin_left = 127.0
 margin_top = 241.0
 margin_right = 246.0
@@ -510,9 +463,7 @@ hint_tooltip = "Show soundpacks from data/sound on the list."
 size_flags_horizontal = 4
 text = "Show stock"
 
-[node name="BtnDelete" type="Button" parent="Main/Tabs/Soundpacks/HBox/Installed" groups=[
-"disable_during_soundpack_operations",
-]]
+[node name="BtnDelete" type="Button" parent="Main/Tabs/Soundpacks/HBox/Installed" groups=["disable_during_soundpack_operations"]]
 margin_left = 119.0
 margin_top = 276.0
 margin_right = 254.0
@@ -539,9 +490,7 @@ margin_bottom = 29.0
 text = "Downloadable:"
 align = 1
 
-[node name="AvailableList" type="ItemList" parent="Main/Tabs/Soundpacks/HBox/Downloadable" groups=[
-"disable_during_soundpack_operations",
-]]
+[node name="AvailableList" type="ItemList" parent="Main/Tabs/Soundpacks/HBox/Downloadable" groups=["disable_during_soundpack_operations"]]
 margin_top = 35.0
 margin_right = 375.0
 margin_bottom = 235.0
@@ -551,9 +500,7 @@ items = [ "Item 0", null, false, "Item 1", null, false, "Item 2", null, false, "
 same_column_width = true
 script = ExtResource( 17 )
 
-[node name="BtnInstall" type="Button" parent="Main/Tabs/Soundpacks/HBox/Downloadable" groups=[
-"disable_during_soundpack_operations",
-]]
+[node name="BtnInstall" type="Button" parent="Main/Tabs/Soundpacks/HBox/Downloadable" groups=["disable_during_soundpack_operations"]]
 margin_left = 122.0
 margin_top = 241.0
 margin_right = 253.0
