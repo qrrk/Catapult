@@ -60,38 +60,37 @@ func restore(backup_name: String) -> void:
 	var source_dir = game_dir.plus_file(_BACKUPS_SUBDIR).plus_file(backup_name)
 	var dest_dir = game_dir.plus_file("current").plus_file("save")
 	
-	if not Directory.new().dir_exists(source_dir):
-		emit_signal("status_message", "Backup \"%s\" not found." % backup_name, Enums.MSG_ERROR)
-		return
-	
 	emit_signal("backup_restoration_started")
 
-	if Directory.new().dir_exists(dest_dir):
-		_fshelper.rm_dir(dest_dir)
-		yield(_fshelper, "rm_dir_done")
-		
-	_fshelper.copy_dir(source_dir, temp_dir)
-	yield(_fshelper, "copy_dir_done")
+	if Directory.new().dir_exists(source_dir):
+		if Directory.new().dir_exists(dest_dir):
+			_fshelper.rm_dir(dest_dir)
+			yield(_fshelper, "rm_dir_done")
+			
+		_fshelper.copy_dir(source_dir, temp_dir)
+		yield(_fshelper, "copy_dir_done")
 
-	_fshelper.move_dir(temp_dir.plus_file(backup_name), dest_dir)
-	yield(_fshelper, "move_dir_done")
+		_fshelper.move_dir(temp_dir.plus_file(backup_name), dest_dir)
+		yield(_fshelper, "move_dir_done")
+		
+		emit_signal("status_message", "Backup restored.")
+	else:
+		emit_signal("status_message", "Backup \"%s\" not found." % backup_name, Enums.MSG_ERROR)
 	
 	emit_signal("backup_restoration_finished")
-	emit_signal("status_message", "Backup restored.")
 
 
 func delete(backup_name: String) -> void:
 	# Delete a backup.
 	
 	var target_dir = _workdir.plus_file(_settings.read("game")).plus_file(_BACKUPS_SUBDIR).plus_file(backup_name)
-	if not Directory.new().dir_exists(target_dir):
-		return
-	
-	emit_signal("status_message", "Deleting backup \"%s\"..." % backup_name)
 	emit_signal("backup_deletion_started")
+
+	if Directory.new().dir_exists(target_dir):
+		emit_signal("status_message", "Deleting backup \"%s\"..." % backup_name)
 	
-	_fshelper.rm_dir(target_dir)
-	yield(_fshelper, "rm_dir_done")
-	
+		_fshelper.rm_dir(target_dir)
+		yield(_fshelper, "rm_dir_done")
+		emit_signal("status_message", "Backup deleted.")
+
 	emit_signal("backup_deletion_finished")
-	emit_signal("status_message", "Backup deleted.")
