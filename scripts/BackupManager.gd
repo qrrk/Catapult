@@ -30,14 +30,18 @@ func backup_current(backup_name: String) -> void:
 	var source_dir = game_dir.plus_file("current").plus_file("save")
 	var dest_dir = game_dir.plus_file(_BACKUPS_SUBDIR).plus_file(backup_name)
 	
-	_fshelper.copy_dir(source_dir, temp_dir)
-	yield(_fshelper, "copy_dir_done")
+	if not Directory.new().dir_exists(dest_dir):
+		_fshelper.copy_dir(source_dir, temp_dir)
+		yield(_fshelper, "copy_dir_done")
+		
+		_fshelper.move_dir(temp_dir.plus_file("save"), dest_dir)
+		yield(_fshelper, "move_dir_done")
+		
+		emit_signal("status_message", "Backup created.")
+	else:
+		emit_signal("status_message", "A backup named \"%s\" already exists." % backup_name, Enums.MSG_ERROR)
 
-	_fshelper.move_dir(temp_dir.plus_file("save"), dest_dir)
-	yield(_fshelper, "move_dir_done")
-	
 	emit_signal("backup_creation_finished")
-	emit_signal("status_message", "Backup complete.")
 
 
 func get_available() -> Array:
