@@ -6,6 +6,8 @@ signal backup_creation_started
 signal backup_creation_finished
 signal backup_restoration_started
 signal backup_restoration_finished
+signal backup_deletion_started
+signal backup_deletion_finished
 
 
 const _BACKUPS_SUBDIR = "save_backups"
@@ -76,3 +78,20 @@ func restore(backup_name: String) -> void:
 	
 	emit_signal("backup_restoration_finished")
 	emit_signal("status_message", "Backup restored.")
+
+
+func delete(backup_name: String) -> void:
+	# Delete a backup.
+	
+	var target_dir = _workdir.plus_file(_settings.read("game")).plus_file(_BACKUPS_SUBDIR).plus_file(backup_name)
+	if not Directory.new().dir_exists(target_dir):
+		return
+	
+	emit_signal("status_message", "Deleting backup \"%s\"..." % backup_name)
+	emit_signal("backup_deletion_started")
+	
+	_fshelper.rm_dir(target_dir)
+	yield(_fshelper, "rm_dir_done")
+	
+	emit_signal("backup_deletion_finished")
+	emit_signal("status_message", "Backup deleted.")

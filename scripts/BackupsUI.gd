@@ -46,3 +46,16 @@ func _on_BtnRestore_pressed():
 	var selection = _list_backups.get_item_text(_list_backups.get_selected_items()[0])
 	if selection != "":
 		_backups.restore(selection)
+
+
+func _on_BtnDelete_pressed():
+	
+	if not _list_backups.is_anything_selected():
+		return
+	
+	var selection = _list_backups.get_item_text(_list_backups.get_selected_items()[0])
+
+	if selection != "":
+		_backups.delete(selection)
+		yield(_backups, "backup_deletion_finished")
+		_refresh_available()
