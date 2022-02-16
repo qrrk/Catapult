@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://icons/info.svg" type="Texture" id=1]
 [ext_resource path="res://icons/download.svg" type="Texture" id=2]
@@ -32,6 +32,8 @@
 [ext_resource path="res://icons/help.svg" type="Texture" id=30]
 [ext_resource path="res://scripts/PathHelper.gd" type="Script" id=31]
 [ext_resource path="res://scenes/ChangelogDialog.tscn" type="PackedScene" id=32]
+[ext_resource path="res://scripts/BackupsUI.gd" type="Script" id=33]
+[ext_resource path="res://scripts/BackupManager.gd" type="Script" id=34]
 
 [sub_resource type="ButtonGroup" id=1]
 
@@ -827,6 +829,7 @@ margin_left = 7.5
 margin_top = 38.5
 margin_right = -7.5
 margin_bottom = -7.5
+script = ExtResource( 33 )
 
 [node name="Available" type="VBoxContainer" parent="Main/Tabs/Backups"]
 margin_right = 769.0
@@ -1304,11 +1307,18 @@ __meta__ = {
 "_editor_description_": "The centralized location for all path resolutions in the launcher."
 }
 
+[node name="Backups" type="Node" parent="."]
+script = ExtResource( 34 )
+__meta__ = {
+"_editor_description_": "Provides backup management utilities"
+}
+
 [connection signal="meta_clicked" from="Main/GameInfo/Description" to="." method="_on_Description_meta_clicked"]
 [connection signal="tab_changed" from="Main/Tabs" to="." method="_on_Tabs_tab_changed"]
 [connection signal="tab_changed" from="Main/Tabs" to="Main/Tabs/Mods" method="_on_Tabs_tab_changed"]
 [connection signal="tab_changed" from="Main/Tabs" to="Main/Tabs/Soundpacks" method="_on_Tabs_tab_changed"]
 [connection signal="tab_changed" from="Main/Tabs" to="Main/Tabs/Fonts" method="_on_Tabs_tab_changed"]
+[connection signal="tab_changed" from="Main/Tabs" to="Main/Tabs/Backups" method="_on_Tabs_tab_changed"]
 [connection signal="item_selected" from="Main/Tabs/Game/Builds/BuildsList" to="." method="_on_BuildsList_item_selected"]
 [connection signal="pressed" from="Main/Tabs/Game/Builds/BtnRefresh" to="." method="_on_BtnRefresh_pressed"]
 [connection signal="pressed" from="Main/Tabs/Game/BtnInstall" to="." method="_on_BtnInstall_pressed"]
@@ -1346,6 +1356,7 @@ __meta__ = {
 [connection signal="toggled" from="Main/Tabs/Fonts/FontSelection/LeftPane/PreviewCyrillic" to="Main/Tabs/Fonts" method="_on_PreviewCyrillic_toggled"]
 [connection signal="pressed" from="Main/Tabs/Fonts/FontSelection/LeftPane/OtherSettings/HelpIcon" to="Main/Tabs/Fonts" method="_on_HelpIcon_pressed"]
 [connection signal="pressed" from="Main/Tabs/Fonts/FontSelection/LeftPane/BtnSaveFontOptions" to="Main/Tabs/Fonts" method="_on_BtnSaveFontOptions_pressed"]
+[connection signal="pressed" from="Main/Tabs/Backups/Current/BtnCreate" to="Main/Tabs/Backups" method="_on_BtnCreate_pressed"]
 [connection signal="toggled" from="Main/Tabs/Settings/ShowGameDesc" to="Main/Tabs/Settings" method="_on_ShowGameDesc_toggled"]
 [connection signal="toggled" from="Main/Tabs/Settings/PrintTips" to="Main/Tabs/Settings" method="_on_PrintTips_toggled"]
 [connection signal="toggled" from="Main/Tabs/Settings/UpdateToSame" to="Main/Tabs/Settings" method="_on_UpdateToSame_toggled"]
@@ -1400,3 +1411,4 @@ __meta__ = {
 [connection signal="status_message" from="Sound" to="." method="_on_status_message"]
 [connection signal="status_message" from="Fonts" to="." method="_on_status_message"]
 [connection signal="status_message" from="PathHelper" to="." method="_on_status_message"]
+[connection signal="status_message" from="Backups" to="." method="_on_status_message"]
