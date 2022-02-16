@@ -269,6 +269,16 @@ func _on_soundpack_operation_finished() -> void:
 	_smart_reenable_controls("disable_during_soundpack_operations")
 
 
+func _on_backup_operation_started() -> void:
+	
+	_smart_disable_controls("disable_during_backup_operations")
+
+
+func _on_backup_operation_finished() -> void:
+	
+	_smart_reenable_controls("disable_during_backup_operations")
+
+
 func _on_Description_meta_clicked(meta) -> void:
 	
 	if meta == "CHANGELOG":

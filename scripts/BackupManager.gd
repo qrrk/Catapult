@@ -2,6 +2,10 @@ extends Node
 
 
 signal status_message
+signal backup_creation_started
+signal backup_creation_finished
+signal backup_restoration_started
+signal backup_restoration_finished
 
 
 const _BACKUPS_SUBDIR = "save_backups"
@@ -16,6 +20,8 @@ func backup_current(backup_name: String) -> void:
 	# Create a backup of the save dir for the current game.
 
 	emit_signal("status_message", "Backing up current saves to %s..." % backup_name)
+	
+	emit_signal("backup_creation_started")
 
 	var game_dir = _workdir.plus_file(_settings.read("game"))
 	var temp_dir = _workdir.plus_file("tmp")
@@ -28,6 +34,7 @@ func backup_current(backup_name: String) -> void:
 	_fshelper.move_dir(temp_dir.plus_file("save"), dest_dir)
 	yield(_fshelper, "move_dir_done")
 	
+	emit_signal("backup_creation_finished")
 	emit_signal("status_message", "Backup complete.")
 
 
@@ -55,6 +62,8 @@ func restore(backup_name: String) -> void:
 		emit_signal("status_message", "Backup \"%s\" not found." % backup_name, Enums.MSG_ERROR)
 		return
 	
+	emit_signal("backup_restoration_started")
+
 	if Directory.new().dir_exists(dest_dir):
 		_fshelper.rm_dir(dest_dir)
 		yield(_fshelper, "rm_dir_done")
@@ -65,4 +74,5 @@ func restore(backup_name: String) -> void:
 	_fshelper.move_dir(temp_dir.plus_file(backup_name), dest_dir)
 	yield(_fshelper, "move_dir_done")
 	
+	emit_signal("backup_restoration_finished")
 	emit_signal("status_message", "Backup restored.")
