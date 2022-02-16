@@ -29,6 +29,8 @@ func _on_BtnCreate_pressed():
 	var target_file = _edit_name.text
 	if target_file != "":
 		_backups.backup_current(target_file)
+		yield(_backups, "backup_creation_finished")
+		_refresh_available()
 
 
 func _on_BtnRefresh_pressed():
