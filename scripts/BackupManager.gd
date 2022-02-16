@@ -29,3 +29,13 @@ func backup_current(backup_name: String) -> void:
 	yield(_fshelper, "move_dir_done")
 	
 	emit_signal("status_message", "Backup complete.")
+
+
+func get_available() -> Array:
+
+	var backups_dir = _workdir.plus_file(_settings.read("game")).plus_file(_BACKUPS_SUBDIR)
+	
+	if not Directory.new().dir_exists(backups_dir):
+		return []
+	
+	return _fshelper.list_dir(backups_dir)
