@@ -841,14 +841,29 @@ margin_bottom = 29.0
 text = "Save directory backups:"
 align = 1
 
-[node name="BackupsList" type="ItemList" parent="Main/Tabs/Backups/Available" groups=["disable_during_backup_operations"]]
+[node name="HBox" type="HBoxContainer" parent="Main/Tabs/Backups/Available"]
 margin_top = 35.0
 margin_right = 769.0
 margin_bottom = 235.0
+
+[node name="BackupsList" type="ItemList" parent="Main/Tabs/Backups/Available/HBox" groups=["disable_during_backup_operations"]]
+margin_right = 381.0
+margin_bottom = 200.0
 rect_min_size = Vector2( 0, 200 )
 size_flags_horizontal = 3
 items = [ "Item 0", null, false, "Item 1", null, false, "Item 2", null, false, "Item 3", null, false, "Item 4", null, false, "Item 5", null, false, "Item 6", null, false, "Item 7", null, false, "Item 8", null, false, "Item 9", null, false ]
 same_column_width = true
+
+[node name="BackupInfo" type="RichTextLabel" parent="Main/Tabs/Backups/Available/HBox"]
+margin_left = 387.0
+margin_right = 769.0
+margin_bottom = 200.0
+focus_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+bbcode_text = "Backup details will appear here."
+text = "Backup details will appear here."
+selection_enabled = true
 
 [node name="Buttons" type="HBoxContainer" parent="Main/Tabs/Backups/Available"]
 margin_top = 241.0
@@ -1360,7 +1375,8 @@ __meta__ = {
 [connection signal="toggled" from="Main/Tabs/Fonts/FontSelection/LeftPane/PreviewCyrillic" to="Main/Tabs/Fonts" method="_on_PreviewCyrillic_toggled"]
 [connection signal="pressed" from="Main/Tabs/Fonts/FontSelection/LeftPane/OtherSettings/HelpIcon" to="Main/Tabs/Fonts" method="_on_HelpIcon_pressed"]
 [connection signal="pressed" from="Main/Tabs/Fonts/FontSelection/LeftPane/BtnSaveFontOptions" to="Main/Tabs/Fonts" method="_on_BtnSaveFontOptions_pressed"]
-[connection signal="item_selected" from="Main/Tabs/Backups/Available/BackupsList" to="Main/Tabs/Backups" method="_on_BackupsList_item_selected"]
+[connection signal="item_selected" from="Main/Tabs/Backups/Available/HBox/BackupsList" to="Main/Tabs/Backups" method="_on_BackupsList_item_selected"]
+[connection signal="meta_clicked" from="Main/Tabs/Backups/Available/HBox/BackupInfo" to="Main/Tabs/Backups" method="_on_BackupInfo_meta_clicked"]
 [connection signal="pressed" from="Main/Tabs/Backups/Available/Buttons/BtnRestore" to="Main/Tabs/Backups" method="_on_BtnRestore_pressed"]
 [connection signal="pressed" from="Main/Tabs/Backups/Available/Buttons/BtnDelete" to="Main/Tabs/Backups" method="_on_BtnDelete_pressed"]
 [connection signal="pressed" from="Main/Tabs/Backups/Available/Buttons/BtnRefresh" to="Main/Tabs/Backups" method="_on_BtnRefresh_pressed"]

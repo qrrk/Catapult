@@ -17,6 +17,8 @@ onready var _fshelper = $"../FSHelper"
 
 onready var _workdir = OS.get_executable_path().get_base_dir()
 
+var available = null setget , _get_available
+
 
 func backup_current(backup_name: String) -> void:
 	# Create a backup of the save dir for the current game.
@@ -62,29 +64,36 @@ func get_save_summary(path: String) -> Dictionary:
 	return summary
 
 
-func get_available() -> Array:
+func _get_available() -> Array:
+	
+	if not available:
+		refresh_available()
+	
+	return available
+
+
+func refresh_available():
 
 	var backups_dir = _workdir.plus_file(_settings.read("game")).plus_file(_BACKUPS_SUBDIR)
-	var out = []
+	available = []
 	
 	if not Directory.new().dir_exists(backups_dir):
-		return out
+		return
 	
 	for backup in _fshelper.list_dir(backups_dir):
 		var path = backups_dir.plus_file(backup)
-		out.append(get_save_summary(path))
-	
-	return out
+		available.append(get_save_summary(path))
 
 
-func restore(backup_name: String) -> void:
+func restore(backup_index: int) -> void:
 	# Replace the save dir in the current game with the named backup
 	
+	var backup_name: String = available[backup_index]["name"]
 	emit_signal("status_message", "Restoring backup \"%s\"..." % backup_name)
 	
 	var game_dir = _workdir.plus_file(_settings.read("game"))
 	var temp_dir = _workdir.plus_file("tmp")
-	var source_dir = game_dir.plus_file(_BACKUPS_SUBDIR).plus_file(backup_name)
+	var source_dir = available[backup_index]["path"]
 	var dest_dir = game_dir.plus_file("current").plus_file("save")
 	
 	emit_signal("backup_restoration_started")

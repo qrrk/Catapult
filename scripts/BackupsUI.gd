@@ -4,10 +4,11 @@ extends VBoxContainer
 onready var _backups = $"/root/Catapult/Backups"
 onready var _edit_name = $Current/HBox/EditName
 onready var _btn_create = $Current/HBox/BtnCreate
-onready var _list_backups = $Available/BackupsList
+onready var _list_backups = $Available/HBox/BackupsList
 onready var _btn_refresh = $Available/Buttons/BtnRefresh
 onready var _btn_restore = $Available/Buttons/BtnRestore
 onready var _btn_delete = $Available/Buttons/BtnDelete
+onready var _lbl_info = $Available/HBox/BackupInfo
 
 
 func _refresh_available() -> void:
@@ -15,8 +16,10 @@ func _refresh_available() -> void:
 	_list_backups.clear()
 	_btn_restore.disabled = true
 	_btn_delete.disabled = true
+	_lbl_info.bbcode_text = "Select an existing backup to see its details here."
+	_backups.refresh_available()
 
-	for item in _backups.get_available():
+	for item in _backups.available:
 		_list_backups.add_item(item["name"])
 
 
@@ -63,9 +66,8 @@ func _on_BtnRestore_pressed():
 	if not _list_backups.is_anything_selected():
 		return
 	
-	var selection = _list_backups.get_item_text(_list_backups.get_selected_items()[0])
-	if selection != "":
-		_backups.restore(selection)
+	var idx = _list_backups.get_selected_items()[0]
+	_backups.restore(idx)
 
 
 func _on_BtnDelete_pressed():
@@ -98,3 +100,25 @@ func _on_BackupsList_item_selected(index):
 	
 	_btn_restore.disabled = false
 	_btn_delete.disabled = false
+	_lbl_info.bbcode_text = _make_backup_info_string(index)
+
+
+func _make_backup_info_string(index: int) -> String:
+	
+	var text := ""
+	var info: Dictionary = _backups.available[index]
+	
+	var worlds_str := ""
+	for world in info["worlds"]:
+		worlds_str += world + ", "
+	worlds_str = worlds_str.substr(0, len(worlds_str) - 2)
+	
+	text += "[u]Location:[/u]\n[color=#3b93f7][url=%s]%s[/url][/color]\n\n" % [info["path"], info["path"]]
+	text += "[u]Worlds:[/u]\n%s" % worlds_str
+	
+	return text
+
+
+func _on_BackupInfo_meta_clicked(meta) -> void:
+	
+	OS.shell_open(meta)
