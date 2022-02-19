@@ -29,13 +29,13 @@ func backup_current(backup_name: String) -> void:
 	var temp_dir = _workdir.plus_file("tmp")
 	var source_dir = game_dir.plus_file("current").plus_file("save")
 	var dest_dir = game_dir.plus_file(_BACKUPS_SUBDIR).plus_file(backup_name)
+	var d = Directory.new()
 	
-	if not Directory.new().dir_exists(dest_dir):
-		_fshelper.copy_dir(source_dir, temp_dir)
-		yield(_fshelper, "copy_dir_done")
-		
-		_fshelper.move_dir(temp_dir.plus_file("save"), dest_dir)
-		yield(_fshelper, "move_dir_done")
+	if not d.dir_exists(dest_dir):
+		d.make_dir(dest_dir)
+		for world in _fshelper.list_dir(source_dir):
+			_fshelper.copy_dir(source_dir.plus_file(world), dest_dir)
+			yield(_fshelper, "copy_dir_done")
 		
 		emit_signal("status_message", "Backup created.")
 	else:
@@ -93,12 +93,11 @@ func restore(backup_name: String) -> void:
 		if Directory.new().dir_exists(dest_dir):
 			_fshelper.rm_dir(dest_dir)
 			yield(_fshelper, "rm_dir_done")
-			
-		_fshelper.copy_dir(source_dir, temp_dir)
-		yield(_fshelper, "copy_dir_done")
-
-		_fshelper.move_dir(temp_dir.plus_file(backup_name), dest_dir)
-		yield(_fshelper, "move_dir_done")
+		
+		Directory.new().make_dir(dest_dir)
+		for world in _fshelper.list_dir(source_dir):
+			_fshelper.copy_dir(source_dir.plus_file(world), dest_dir)
+			yield(_fshelper, "copy_dir_done")
 		
 		emit_signal("status_message", "Backup restored.")
 	else:
