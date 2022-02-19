@@ -838,7 +838,7 @@ margin_bottom = 270.0
 [node name="Label" type="Label" parent="Main/Tabs/Backups/Available"]
 margin_right = 769.0
 margin_bottom = 29.0
-text = "Available:"
+text = "Save directory backups:"
 align = 1
 
 [node name="BackupsList" type="ItemList" parent="Main/Tabs/Backups/Available" groups=["disable_during_backup_operations"]]
