@@ -7,11 +7,15 @@ onready var _btn_create = $Current/BtnCreate
 onready var _list_backups = $Available/BackupsList
 onready var _btn_refresh = $Available/Buttons/BtnRefresh
 onready var _btn_restore = $Available/Buttons/BtnRestore
+onready var _btn_delete = $Available/Buttons/BtnDelete
 
 
 func _refresh_available() -> void:
 	
 	_list_backups.clear()
+	_btn_restore.disabled = true
+	_btn_delete.disabled = true
+
 	for item in _backups.get_available():
 		_list_backups.add_item(item)
 
@@ -77,3 +81,9 @@ func _on_EditName_text_changed(new_text: String):
 		_edit_name.add_color_override("font_color", get_color("font_color", "LineEdit"))
 	else:
 		_edit_name.add_color_override("font_color", Color.red)
+
+
+func _on_BackupsList_item_selected(index):
+	
+	_btn_restore.disabled = false
+	_btn_delete.disabled = false

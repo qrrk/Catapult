@@ -1356,6 +1356,7 @@ __meta__ = {
 [connection signal="toggled" from="Main/Tabs/Fonts/FontSelection/LeftPane/PreviewCyrillic" to="Main/Tabs/Fonts" method="_on_PreviewCyrillic_toggled"]
 [connection signal="pressed" from="Main/Tabs/Fonts/FontSelection/LeftPane/OtherSettings/HelpIcon" to="Main/Tabs/Fonts" method="_on_HelpIcon_pressed"]
 [connection signal="pressed" from="Main/Tabs/Fonts/FontSelection/LeftPane/BtnSaveFontOptions" to="Main/Tabs/Fonts" method="_on_BtnSaveFontOptions_pressed"]
+[connection signal="item_selected" from="Main/Tabs/Backups/Available/BackupsList" to="Main/Tabs/Backups" method="_on_BackupsList_item_selected"]
 [connection signal="pressed" from="Main/Tabs/Backups/Available/Buttons/BtnRestore" to="Main/Tabs/Backups" method="_on_BtnRestore_pressed"]
 [connection signal="pressed" from="Main/Tabs/Backups/Available/Buttons/BtnDelete" to="Main/Tabs/Backups" method="_on_BtnDelete_pressed"]
 [connection signal="pressed" from="Main/Tabs/Backups/Available/Buttons/BtnRefresh" to="Main/Tabs/Backups" method="_on_BtnRefresh_pressed"]
