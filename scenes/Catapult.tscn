@@ -120,11 +120,12 @@ margin_bottom = 91.0
 [node name="Tabs" type="TabContainer" parent="Main" groups=["disable_during_backup_operations", "disable_during_mod_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases", "disable_while_installing_game"]]
 margin_top = 97.0
 margin_right = 784.0
-margin_bottom = 418.0
+margin_bottom = 503.0
 tab_align = 0
 script = ExtResource( 16 )
 
 [node name="Game" type="VBoxContainer" parent="Main/Tabs"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -538,8 +539,8 @@ window_title = "Open a File"
 mode = 0
 access = 2
 filters = PoolStringArray( "*.zip" )
-current_dir = "/mnt/data/Godot/Catapult/Changelog"
-current_path = "/mnt/data/Godot/Catapult/Changelog/"
+current_dir = "/mnt/data/Godot/Catapult/Project"
+current_path = "/mnt/data/Godot/Catapult/Project/"
 
 [node name="Fonts" type="VBoxContainer" parent="Main/Tabs"]
 visible = false
@@ -822,7 +823,6 @@ margin_right = 769.0
 margin_bottom = 539.0
 
 [node name="Backups" type="VBoxContainer" parent="Main/Tabs"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -882,12 +882,12 @@ margin_bottom = 284.0
 [node name="Current" type="VBoxContainer" parent="Main/Tabs/Backups"]
 margin_top = 290.0
 margin_right = 769.0
-margin_bottom = 389.0
+margin_bottom = 360.0
 
 [node name="Label" type="Label" parent="Main/Tabs/Backups/Current"]
 margin_right = 769.0
 margin_bottom = 29.0
-text = "Manual Backup"
+text = "Manual backup"
 align = 1
 
 [node name="HBox" type="HBoxContainer" parent="Main/Tabs/Backups/Current"]
@@ -900,20 +900,24 @@ margin_right = 61.0
 margin_bottom = 29.0
 text = "Name:"
 
-[node name="EditName" type="LineEdit" parent="Main/Tabs/Backups/Current/HBox" groups=["disable_during_backup_operations"]]
+[node name="EditName" type="LineEdit" parent="Main/Tabs/Backups/Current/HBox"]
 margin_left = 67.0
-margin_right = 769.0
+margin_right = 695.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
 placeholder_text = "Enter name for new backup"
 
-[node name="BtnCreate" type="Button" parent="Main/Tabs/Backups/Current" groups=["disable_during_backup_operations"]]
-margin_left = 350.0
-margin_top = 70.0
-margin_right = 418.0
-margin_bottom = 99.0
+[node name="BtnCreate" type="Button" parent="Main/Tabs/Backups/Current/HBox" groups=["disable_during_backup_operations"]]
+margin_left = 701.0
+margin_right = 769.0
+margin_bottom = 29.0
 size_flags_horizontal = 4
 text = "Create"
+
+[node name="Spacer" type="Control" parent="Main/Tabs/Backups/Current"]
+margin_top = 70.0
+margin_right = 769.0
+margin_bottom = 70.0
 
 [node name="Settings" type="VBoxContainer" parent="Main/Tabs"]
 visible = false
@@ -1233,7 +1237,7 @@ size_flags_horizontal = 4
 text = "Test path resolution in PathHelper"
 
 [node name="Log" type="RichTextLabel" parent="Main"]
-margin_top = 424.0
+margin_top = 509.0
 margin_right = 784.0
 margin_bottom = 984.0
 focus_mode = 2
@@ -1362,7 +1366,7 @@ __meta__ = {
 [connection signal="pressed" from="Main/Tabs/Backups/Available/Buttons/BtnRefresh" to="Main/Tabs/Backups" method="_on_BtnRefresh_pressed"]
 [connection signal="text_changed" from="Main/Tabs/Backups/Current/HBox/EditName" to="Main/Tabs/Backups" method="_on_EditName_text_changed"]
 [connection signal="text_entered" from="Main/Tabs/Backups/Current/HBox/EditName" to="Main/Tabs/Backups" method="_on_EditName_text_entered"]
-[connection signal="pressed" from="Main/Tabs/Backups/Current/BtnCreate" to="Main/Tabs/Backups" method="_on_BtnCreate_pressed"]
+[connection signal="pressed" from="Main/Tabs/Backups/Current/HBox/BtnCreate" to="Main/Tabs/Backups" method="_on_BtnCreate_pressed"]
 [connection signal="toggled" from="Main/Tabs/Settings/ShowGameDesc" to="Main/Tabs/Settings" method="_on_ShowGameDesc_toggled"]
 [connection signal="toggled" from="Main/Tabs/Settings/PrintTips" to="Main/Tabs/Settings" method="_on_PrintTips_toggled"]
 [connection signal="toggled" from="Main/Tabs/Settings/UpdateToSame" to="Main/Tabs/Settings" method="_on_UpdateToSame_toggled"]

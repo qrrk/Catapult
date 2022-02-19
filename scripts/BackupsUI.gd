@@ -3,7 +3,7 @@ extends VBoxContainer
 
 onready var _backups = $"/root/Catapult/Backups"
 onready var _edit_name = $Current/HBox/EditName
-onready var _btn_create = $Current/BtnCreate
+onready var _btn_create = $Current/HBox/BtnCreate
 onready var _list_backups = $Available/BackupsList
 onready var _btn_refresh = $Available/Buttons/BtnRefresh
 onready var _btn_restore = $Available/Buttons/BtnRestore
@@ -23,10 +23,10 @@ func _refresh_available() -> void:
 func _populate_default_new_name() -> void:
 	
 	var datetime = OS.get_datetime()
-	_edit_name.text = "Manual_%02d%02d%02d" % [
+	_edit_name.text = "Manual_%02d-%02d-%02d" % [
 		datetime["year"] % 100,
 		datetime["month"],
-		datetime["day"],
+		datetime["day"]
 	]
 
 
@@ -88,7 +88,7 @@ func _on_EditName_text_changed(new_text: String):
 	_btn_create.disabled = not new_text.is_valid_filename()
 	
 	# Keep normal color if text is empty to avoid red placeholder text.
-	if new_text == "" or new_text.is_valid_filename():
+	if (new_text == "") or (new_text.is_valid_filename()):
 		_edit_name.add_color_override("font_color", get_color("font_color", "LineEdit"))
 	else:
 		_edit_name.add_color_override("font_color", Color.red)
