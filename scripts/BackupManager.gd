@@ -44,14 +44,37 @@ func backup_current(backup_name: String) -> void:
 	emit_signal("backup_creation_finished")
 
 
+func get_save_summary(path: String) -> Dictionary:
+	# Get information about a game save directory (any directory containing one or more game worlds)
+	
+	if not Directory.new().dir_exists(path):
+		return {}
+	
+	var summary = {
+		"name": path.get_file(),
+		"path": path,
+		"worlds": [],
+	}
+	
+	for world in _fshelper.list_dir(path):
+		summary["worlds"].append(world)
+	
+	return summary
+
+
 func get_available() -> Array:
 
 	var backups_dir = _workdir.plus_file(_settings.read("game")).plus_file(_BACKUPS_SUBDIR)
+	var out = []
 	
 	if not Directory.new().dir_exists(backups_dir):
-		return []
+		return out
 	
-	return _fshelper.list_dir(backups_dir)
+	for backup in _fshelper.list_dir(backups_dir):
+		var path = backups_dir.plus_file(backup)
+		out.append(get_save_summary(path))
+	
+	return out
 
 
 func restore(backup_name: String) -> void:

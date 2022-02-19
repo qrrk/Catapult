@@ -17,7 +17,7 @@ func _refresh_available() -> void:
 	_btn_delete.disabled = true
 
 	for item in _backups.get_available():
-		_list_backups.add_item(item)
+		_list_backups.add_item(item["name"])
 
 
 func _on_Tabs_tab_changed(tab: int) -> void:
