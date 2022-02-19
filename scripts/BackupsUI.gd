@@ -20,12 +20,23 @@ func _refresh_available() -> void:
 		_list_backups.add_item(item["name"])
 
 
+func _populate_default_new_name() -> void:
+	
+	var datetime = OS.get_datetime()
+	_edit_name.text = "Manual_%02d%02d%02d" % [
+		datetime["year"] % 100,
+		datetime["month"],
+		datetime["day"],
+	]
+
+
 func _on_Tabs_tab_changed(tab: int) -> void:
 	
 	if tab != 4:
 		return
 	
 	_refresh_available()
+	_populate_default_new_name()
 
 
 func _on_BtnCreate_pressed():
