@@ -33,6 +33,11 @@ func _on_BtnCreate_pressed():
 		_refresh_available()
 
 
+func _on_EditName_text_entered(new_text):
+	
+	_on_BtnCreate_pressed()
+
+
 func _on_BtnRefresh_pressed():
 
 	_refresh_available()
