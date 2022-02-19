@@ -1359,6 +1359,7 @@ __meta__ = {
 [connection signal="pressed" from="Main/Tabs/Backups/Available/Buttons/BtnRestore" to="Main/Tabs/Backups" method="_on_BtnRestore_pressed"]
 [connection signal="pressed" from="Main/Tabs/Backups/Available/Buttons/BtnDelete" to="Main/Tabs/Backups" method="_on_BtnDelete_pressed"]
 [connection signal="pressed" from="Main/Tabs/Backups/Available/Buttons/BtnRefresh" to="Main/Tabs/Backups" method="_on_BtnRefresh_pressed"]
+[connection signal="text_changed" from="Main/Tabs/Backups/Current/HBox/EditName" to="Main/Tabs/Backups" method="_on_EditName_text_changed"]
 [connection signal="pressed" from="Main/Tabs/Backups/Current/BtnCreate" to="Main/Tabs/Backups" method="_on_BtnCreate_pressed"]
 [connection signal="toggled" from="Main/Tabs/Settings/ShowGameDesc" to="Main/Tabs/Settings" method="_on_ShowGameDesc_toggled"]
 [connection signal="toggled" from="Main/Tabs/Settings/PrintTips" to="Main/Tabs/Settings" method="_on_PrintTips_toggled"]

@@ -27,7 +27,7 @@ func _on_Tabs_tab_changed(tab: int) -> void:
 func _on_BtnCreate_pressed():
 
 	var target_file = _edit_name.text
-	if target_file != "":
+	if target_file.is_valid_filename():
 		_backups.backup_current(target_file)
 		yield(_backups, "backup_creation_finished")
 		_refresh_available()
@@ -59,3 +59,16 @@ func _on_BtnDelete_pressed():
 		_backups.delete(selection)
 		yield(_backups, "backup_deletion_finished")
 		_refresh_available()
+
+
+func _on_EditName_text_changed(new_text: String):
+	
+	# This disallows Windows' invalid characters as well as text that is empty or has leading or
+	# trailing whitespace. These rules are used regardless of the active OS.
+	_btn_create.disabled = not new_text.is_valid_filename()
+	
+	# Keep normal color if text is empty to avoid red placeholder text.
+	if new_text == "" or new_text.is_valid_filename():
+		_edit_name.add_color_override("font_color", get_color("font_color", "LineEdit"))
+	else:
+		_edit_name.add_color_override("font_color", Color.red)
