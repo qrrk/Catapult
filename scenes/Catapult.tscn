@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://icons/info.svg" type="Texture" id=1]
 [ext_resource path="res://icons/download.svg" type="Texture" id=2]
@@ -34,6 +34,12 @@
 [ext_resource path="res://scenes/ChangelogDialog.tscn" type="PackedScene" id=32]
 [ext_resource path="res://scripts/BackupsUI.gd" type="Script" id=33]
 [ext_resource path="res://scripts/BackupManager.gd" type="Script" id=34]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
 
 [sub_resource type="ButtonGroup" id=1]
 
@@ -120,12 +126,11 @@ margin_bottom = 91.0
 [node name="Tabs" type="TabContainer" parent="Main" groups=["disable_during_backup_operations", "disable_during_mod_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases", "disable_while_installing_game"]]
 margin_top = 97.0
 margin_right = 784.0
-margin_bottom = 503.0
+margin_bottom = 418.0
 tab_align = 0
 script = ExtResource( 16 )
 
 [node name="Game" type="VBoxContainer" parent="Main/Tabs"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -138,10 +143,27 @@ custom_constants/separation = 8
 margin_right = 769.0
 margin_bottom = 64.0
 
-[node name="Label" type="Label" parent="Main/Tabs/Game/Channel"]
+[node name="HBox" type="HBoxContainer" parent="Main/Tabs/Game/Channel"]
 margin_right = 769.0
 margin_bottom = 29.0
+
+[node name="Label" type="Label" parent="Main/Tabs/Game/Channel/HBox"]
+margin_right = 78.0
+margin_bottom = 29.0
 text = "Channel:"
+
+[node name="ChangelogLink" type="RichTextLabel" parent="Main/Tabs/Game/Channel/HBox"]
+margin_left = 84.0
+margin_right = 769.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 300, 0 )
+hint_tooltip = "Click to load a summary of latest changes from GitHub."
+size_flags_horizontal = 3
+custom_styles/normal = SubResource( 2 )
+bbcode_enabled = true
+bbcode_text = "[right][color=#3b93f7][url]View Experimental Changelog[/url][/color][/right]"
+text = "View Experimental Changelog"
+scroll_active = false
 
 [node name="Group" type="HBoxContainer" parent="Main/Tabs/Game/Channel"]
 margin_top = 35.0
@@ -823,6 +845,7 @@ margin_right = 769.0
 margin_bottom = 539.0
 
 [node name="Backups" type="VBoxContainer" parent="Main/Tabs"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -1252,7 +1275,7 @@ size_flags_horizontal = 4
 text = "Test path resolution in PathHelper"
 
 [node name="Log" type="RichTextLabel" parent="Main"]
-margin_top = 509.0
+margin_top = 424.0
 margin_right = 784.0
 margin_bottom = 984.0
 focus_mode = 2
@@ -1338,6 +1361,7 @@ __meta__ = {
 [connection signal="tab_changed" from="Main/Tabs" to="Main/Tabs/Soundpacks" method="_on_Tabs_tab_changed"]
 [connection signal="tab_changed" from="Main/Tabs" to="Main/Tabs/Fonts" method="_on_Tabs_tab_changed"]
 [connection signal="tab_changed" from="Main/Tabs" to="Main/Tabs/Backups" method="_on_Tabs_tab_changed"]
+[connection signal="meta_clicked" from="Main/Tabs/Game/Channel/HBox/ChangelogLink" to="." method="_on_ChangelogLink_meta_clicked"]
 [connection signal="item_selected" from="Main/Tabs/Game/Builds/BuildsList" to="." method="_on_BuildsList_item_selected"]
 [connection signal="pressed" from="Main/Tabs/Game/Builds/BtnRefresh" to="." method="_on_BtnRefresh_pressed"]
 [connection signal="pressed" from="Main/Tabs/Game/BtnInstall" to="." method="_on_BtnInstall_pressed"]
