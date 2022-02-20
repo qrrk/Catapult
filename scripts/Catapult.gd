@@ -289,6 +289,11 @@ func _on_ChangelogLink_meta_clicked(meta) -> void:
 	_changelog.open()
 
 
+func _on_Log_meta_clicked(meta) -> void:
+	
+	OS.shell_open(meta)
+
+
 func _on_BtnRefresh_pressed() -> void:
 	
 	_releases.fetch(_get_release_key())

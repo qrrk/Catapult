@@ -1435,6 +1435,7 @@ __meta__ = {
 [connection signal="pressed" from="Main/Tabs/Debug/Button5" to="Main/Tabs/Debug" method="_on_Button5_pressed"]
 [connection signal="pressed" from="Main/Tabs/Debug/Button6" to="Main/Tabs/Debug" method="_on_Button6_pressed"]
 [connection signal="pressed" from="Main/Tabs/Debug/Button7" to="Main/Tabs/Debug" method="_on_Button7_pressed"]
+[connection signal="meta_clicked" from="Main/Log" to="." method="_on_Log_meta_clicked"]
 [connection signal="done_fetching_releases" from="Releases" to="." method="_on_Releases_done_fetching_releases"]
 [connection signal="started_fetching_releases" from="Releases" to="." method="_on_Releases_started_fetching_releases"]
 [connection signal="status_message" from="Releases" to="." method="_on_status_message"]

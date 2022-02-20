@@ -10,7 +10,10 @@ const _TOTD = [
 	"You can downgrade your game version by choosing to \"update\" to an earlier build, but beware of save compatibility issues.",
 	"Mods that come with the game are not managed by Catapult (except for preventing them from being installed a second time). Catapult only deals with the [i]/mods[/i] folder, not [i]/data/mods[/i].",
 	"You can select multiple mods to install/delete by [i]Ctrl-clicking[/i] and [i]Shift-clicking[/i] in the lists.",
-	"Kenan's modpack is updated quite often. Just click [i]Get Kenan Modpack[/i] again to re-download it and replace the mods in your local repository."
+	"Kenan's modpack is updated quite often. Just click [i]Get Kenan Modpack[/i] again to re-download it and replace the mods in your local repository.",
+	"Getting unhelpful error messages? Try enabling debug mode under [i]Settings[/i] for more verbose output.",
+	"If you're having an issue with the launcher and don't see it already reported [color=#3b93f7][url=https://github.com/qrrk/Catapult/issues]on GitHub[/url][/color], then you may well be the first person to notice it! Consider creating a ticket for it, if you have a GitHub account.",
+	"If you keep multiple worlds in your game, beware that savegame backups always operate on the entire save directory. This means that when a backup is restored, all previous contents of the save directory are lost (including any worlds that weren't in this backup).",
 ]
 
 
