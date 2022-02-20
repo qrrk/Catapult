@@ -3,7 +3,7 @@ extends Node
 
 const _GAME_DESC = {
 	"dda":
-		"[b]Cataclysm: Dark Days Ahead[/b] is a turn-based survival game set in a post-apocalyptic world. Scavenge, explore, craft, build, farm, repair and modify vehicles, install bionics, mutate, defend against [color=#009900]zombies[/color] and countless other monstrosities — all in a limitless, procedurally generated world! [color=#3b93f7][url=CHANGELOG]View Changelog[/url][/color]",
+		"[b]Cataclysm: Dark Days Ahead[/b] is a turn-based survival game set in a post-apocalyptic world. Scavenge, explore, craft, build, farm, repair and modify vehicles, install bionics, mutate, defend against [color=#009900]zombies[/color] and countless other monstrosities — all in a limitless, procedurally generated world!",
 	"bn":
 		"[b]Cataclysm: Bright Nights[/b]. Reject pedantry, embrace [color=#ff3300]!!fun!![/color]. This fork takes the game back to its sci-fi roguelike roots and reverts many controversial changes by the DDA team (pockets, proficiencies, freezing, and [color=#3b93f7][url=https://github.com/cataclysmbnteam/Cataclysm-BN/wiki/Changes-so-far]more[/url][/color]). Special attention is paid to combat, game balance and pacing.",
 }
