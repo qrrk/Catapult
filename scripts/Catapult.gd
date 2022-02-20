@@ -269,6 +269,16 @@ func _on_soundpack_operation_finished() -> void:
 	_smart_reenable_controls("disable_during_soundpack_operations")
 
 
+func _on_backup_operation_started() -> void:
+	
+	_smart_disable_controls("disable_during_backup_operations")
+
+
+func _on_backup_operation_finished() -> void:
+	
+	_smart_reenable_controls("disable_during_backup_operations")
+
+
 func _on_Description_meta_clicked(meta) -> void:
 	
 	if meta == "CHANGELOG":
@@ -422,5 +432,5 @@ func _refresh_currently_installed() -> void:
 		_btn_play.disabled = true
 		_btn_game_dir.visible = false
 		
-	for i in [1, 2, 3]:
+	for i in [1, 2, 3, 4]:
 		_tabs.set_tab_disabled(i, not _is_selected_game_installed())

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://icons/info.svg" type="Texture" id=1]
 [ext_resource path="res://icons/download.svg" type="Texture" id=2]
@@ -32,6 +32,8 @@
 [ext_resource path="res://icons/help.svg" type="Texture" id=30]
 [ext_resource path="res://scripts/PathHelper.gd" type="Script" id=31]
 [ext_resource path="res://scenes/ChangelogDialog.tscn" type="PackedScene" id=32]
+[ext_resource path="res://scripts/BackupsUI.gd" type="Script" id=33]
+[ext_resource path="res://scripts/BackupManager.gd" type="Script" id=34]
 
 [sub_resource type="ButtonGroup" id=1]
 
@@ -115,14 +117,15 @@ margin_top = 91.0
 margin_right = 784.0
 margin_bottom = 91.0
 
-[node name="Tabs" type="TabContainer" parent="Main" groups=["disable_during_mod_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases", "disable_while_installing_game"]]
+[node name="Tabs" type="TabContainer" parent="Main" groups=["disable_during_backup_operations", "disable_during_mod_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases", "disable_while_installing_game"]]
 margin_top = 97.0
 margin_right = 784.0
-margin_bottom = 418.0
+margin_bottom = 503.0
 tab_align = 0
 script = ExtResource( 16 )
 
 [node name="Game" type="VBoxContainer" parent="Main/Tabs"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -536,8 +539,8 @@ window_title = "Open a File"
 mode = 0
 access = 2
 filters = PoolStringArray( "*.zip" )
-current_dir = "/mnt/data/Godot/Catapult/Changelog"
-current_path = "/mnt/data/Godot/Catapult/Changelog/"
+current_dir = "/mnt/data/Godot/Catapult/Project"
+current_path = "/mnt/data/Godot/Catapult/Project/"
 
 [node name="Fonts" type="VBoxContainer" parent="Main/Tabs"]
 visible = false
@@ -818,6 +821,118 @@ anchor_bottom = 0.0
 margin_top = 538.0
 margin_right = 769.0
 margin_bottom = 539.0
+
+[node name="Backups" type="VBoxContainer" parent="Main/Tabs"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 7.5
+margin_top = 38.5
+margin_right = -7.5
+margin_bottom = -7.5
+script = ExtResource( 33 )
+
+[node name="Available" type="VBoxContainer" parent="Main/Tabs/Backups"]
+margin_right = 769.0
+margin_bottom = 270.0
+
+[node name="Label" type="Label" parent="Main/Tabs/Backups/Available"]
+margin_right = 769.0
+margin_bottom = 29.0
+text = "Save directory backups:"
+align = 1
+
+[node name="HBox" type="HBoxContainer" parent="Main/Tabs/Backups/Available"]
+margin_top = 35.0
+margin_right = 769.0
+margin_bottom = 235.0
+
+[node name="BackupsList" type="ItemList" parent="Main/Tabs/Backups/Available/HBox" groups=["disable_during_backup_operations"]]
+margin_right = 381.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 0, 200 )
+size_flags_horizontal = 3
+items = [ "Item 0", null, false, "Item 1", null, false, "Item 2", null, false, "Item 3", null, false, "Item 4", null, false, "Item 5", null, false, "Item 6", null, false, "Item 7", null, false, "Item 8", null, false, "Item 9", null, false ]
+same_column_width = true
+
+[node name="BackupInfo" type="RichTextLabel" parent="Main/Tabs/Backups/Available/HBox"]
+margin_left = 387.0
+margin_right = 769.0
+margin_bottom = 200.0
+focus_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+bbcode_text = "Backup details will appear here."
+text = "Backup details will appear here."
+selection_enabled = true
+
+[node name="Buttons" type="HBoxContainer" parent="Main/Tabs/Backups/Available"]
+margin_top = 241.0
+margin_right = 769.0
+margin_bottom = 270.0
+alignment = 1
+
+[node name="BtnRestore" type="Button" parent="Main/Tabs/Backups/Available/Buttons" groups=["disable_during_backup_operations"]]
+margin_left = 268.0
+margin_right = 345.0
+margin_bottom = 29.0
+text = "Restore"
+
+[node name="BtnDelete" type="Button" parent="Main/Tabs/Backups/Available/Buttons" groups=["disable_during_backup_operations"]]
+margin_left = 351.0
+margin_right = 418.0
+margin_bottom = 29.0
+text = "Delete"
+
+[node name="BtnRefresh" type="Button" parent="Main/Tabs/Backups/Available/Buttons" groups=["disable_during_backup_operations"]]
+margin_left = 424.0
+margin_right = 500.0
+margin_bottom = 29.0
+text = "Refresh"
+
+[node name="HSeparator" type="HSeparator" parent="Main/Tabs/Backups"]
+margin_top = 276.0
+margin_right = 769.0
+margin_bottom = 284.0
+
+[node name="Current" type="VBoxContainer" parent="Main/Tabs/Backups"]
+margin_top = 290.0
+margin_right = 769.0
+margin_bottom = 360.0
+
+[node name="Label" type="Label" parent="Main/Tabs/Backups/Current"]
+margin_right = 769.0
+margin_bottom = 29.0
+text = "Manual backup"
+align = 1
+
+[node name="HBox" type="HBoxContainer" parent="Main/Tabs/Backups/Current"]
+margin_top = 35.0
+margin_right = 769.0
+margin_bottom = 64.0
+
+[node name="Label" type="Label" parent="Main/Tabs/Backups/Current/HBox"]
+margin_right = 61.0
+margin_bottom = 29.0
+text = "Name:"
+
+[node name="EditName" type="LineEdit" parent="Main/Tabs/Backups/Current/HBox"]
+margin_left = 67.0
+margin_right = 695.0
+margin_bottom = 29.0
+size_flags_horizontal = 3
+placeholder_text = "Enter name for new backup"
+
+[node name="BtnCreate" type="Button" parent="Main/Tabs/Backups/Current/HBox" groups=["disable_during_backup_operations"]]
+margin_left = 701.0
+margin_right = 769.0
+margin_bottom = 29.0
+size_flags_horizontal = 4
+text = "Create"
+
+[node name="Spacer" type="Control" parent="Main/Tabs/Backups/Current"]
+margin_top = 70.0
+margin_right = 769.0
+margin_bottom = 70.0
 
 [node name="Settings" type="VBoxContainer" parent="Main/Tabs"]
 visible = false
@@ -1137,7 +1252,7 @@ size_flags_horizontal = 4
 text = "Test path resolution in PathHelper"
 
 [node name="Log" type="RichTextLabel" parent="Main"]
-margin_top = 424.0
+margin_top = 509.0
 margin_right = 784.0
 margin_bottom = 984.0
 focus_mode = 2
@@ -1211,11 +1326,18 @@ __meta__ = {
 "_editor_description_": "The centralized location for all path resolutions in the launcher."
 }
 
+[node name="Backups" type="Node" parent="."]
+script = ExtResource( 34 )
+__meta__ = {
+"_editor_description_": "Provides backup management utilities"
+}
+
 [connection signal="meta_clicked" from="Main/GameInfo/Description" to="." method="_on_Description_meta_clicked"]
 [connection signal="tab_changed" from="Main/Tabs" to="." method="_on_Tabs_tab_changed"]
 [connection signal="tab_changed" from="Main/Tabs" to="Main/Tabs/Mods" method="_on_Tabs_tab_changed"]
 [connection signal="tab_changed" from="Main/Tabs" to="Main/Tabs/Soundpacks" method="_on_Tabs_tab_changed"]
 [connection signal="tab_changed" from="Main/Tabs" to="Main/Tabs/Fonts" method="_on_Tabs_tab_changed"]
+[connection signal="tab_changed" from="Main/Tabs" to="Main/Tabs/Backups" method="_on_Tabs_tab_changed"]
 [connection signal="item_selected" from="Main/Tabs/Game/Builds/BuildsList" to="." method="_on_BuildsList_item_selected"]
 [connection signal="pressed" from="Main/Tabs/Game/Builds/BtnRefresh" to="." method="_on_BtnRefresh_pressed"]
 [connection signal="pressed" from="Main/Tabs/Game/BtnInstall" to="." method="_on_BtnInstall_pressed"]
@@ -1253,6 +1375,14 @@ __meta__ = {
 [connection signal="toggled" from="Main/Tabs/Fonts/FontSelection/LeftPane/PreviewCyrillic" to="Main/Tabs/Fonts" method="_on_PreviewCyrillic_toggled"]
 [connection signal="pressed" from="Main/Tabs/Fonts/FontSelection/LeftPane/OtherSettings/HelpIcon" to="Main/Tabs/Fonts" method="_on_HelpIcon_pressed"]
 [connection signal="pressed" from="Main/Tabs/Fonts/FontSelection/LeftPane/BtnSaveFontOptions" to="Main/Tabs/Fonts" method="_on_BtnSaveFontOptions_pressed"]
+[connection signal="item_selected" from="Main/Tabs/Backups/Available/HBox/BackupsList" to="Main/Tabs/Backups" method="_on_BackupsList_item_selected"]
+[connection signal="meta_clicked" from="Main/Tabs/Backups/Available/HBox/BackupInfo" to="Main/Tabs/Backups" method="_on_BackupInfo_meta_clicked"]
+[connection signal="pressed" from="Main/Tabs/Backups/Available/Buttons/BtnRestore" to="Main/Tabs/Backups" method="_on_BtnRestore_pressed"]
+[connection signal="pressed" from="Main/Tabs/Backups/Available/Buttons/BtnDelete" to="Main/Tabs/Backups" method="_on_BtnDelete_pressed"]
+[connection signal="pressed" from="Main/Tabs/Backups/Available/Buttons/BtnRefresh" to="Main/Tabs/Backups" method="_on_BtnRefresh_pressed"]
+[connection signal="text_changed" from="Main/Tabs/Backups/Current/HBox/EditName" to="Main/Tabs/Backups" method="_on_EditName_text_changed"]
+[connection signal="text_entered" from="Main/Tabs/Backups/Current/HBox/EditName" to="Main/Tabs/Backups" method="_on_EditName_text_entered"]
+[connection signal="pressed" from="Main/Tabs/Backups/Current/HBox/BtnCreate" to="Main/Tabs/Backups" method="_on_BtnCreate_pressed"]
 [connection signal="toggled" from="Main/Tabs/Settings/ShowGameDesc" to="Main/Tabs/Settings" method="_on_ShowGameDesc_toggled"]
 [connection signal="toggled" from="Main/Tabs/Settings/PrintTips" to="Main/Tabs/Settings" method="_on_PrintTips_toggled"]
 [connection signal="toggled" from="Main/Tabs/Settings/UpdateToSame" to="Main/Tabs/Settings" method="_on_UpdateToSame_toggled"]
@@ -1307,3 +1437,8 @@ __meta__ = {
 [connection signal="status_message" from="Sound" to="." method="_on_status_message"]
 [connection signal="status_message" from="Fonts" to="." method="_on_status_message"]
 [connection signal="status_message" from="PathHelper" to="." method="_on_status_message"]
+[connection signal="backup_creation_finished" from="Backups" to="." method="_on_backup_operation_finished"]
+[connection signal="backup_creation_started" from="Backups" to="." method="_on_backup_operation_started"]
+[connection signal="backup_restoration_finished" from="Backups" to="." method="_on_backup_operation_finished"]
+[connection signal="backup_restoration_started" from="Backups" to="." method="_on_backup_operation_started"]
+[connection signal="status_message" from="Backups" to="." method="_on_status_message"]
