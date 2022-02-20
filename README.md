@@ -15,6 +15,7 @@
 - Mod management: [Kenan Modpack](https://github.com/Kenan2000/CDDA-Kenan-Modpack) download and complete or selective installation.
 - Automatic download and installation of soundpacks.
 - Customization of game fonts.
+- Saved game backups.
 - Fully portable and can be carried on a removable drive.
 - Good support for HiDPI displays: UI is automatically scaled with screen DPI, with ability to adjust the scale manually.
 
@@ -37,21 +38,21 @@ These are tentative. They may or may not come to fruition.
 
 - Translations.
 - ~~Setting in-game font from the launcher.~~ *Done!*
-- Backups for user data.
+- ~~Backups for user data.~~ *Savegame backups added!*
 - Multiple launcher UI themes.
 - Download and installation of tilesets?
   (Only if there are at least a couple of finished tilesets out there that don't already come with both games.)
 - Some kind of built-in knowledge base similar to Chezzo's [Item Browser](http://www.cdda-trunk.chezzo.com/).
 - *Maybe* an OSX version some day.
 
-## A bit of history
+## Why I am making yet another launcher
 
 I had had ideas about making my own launcher for a couple years, but it didn't go beyond small demos until August 2021. The main reasons for me to start active work on it were that:
 
 - there was no launcher for Linux with a GUI;
 - there was no launcher for C:BN with advanced features, such as mod and soundpack management.
 
-I thought, wouldn't it be nice if a unified launcher existed that was cross-platform and supported both forks of the game. All in all, I made this launcher mainly because *I* wanted it.
+I thought, wouldn't it be nice if a unified launcher existed that was cross-platform and supported both forks of the game. I decided: well, if the thing I want isn't there on the internets, I guess I'll just *make* it!
 
 My choice of tools wasn't great, since I wanted the app to be cross-platform and ship as one self-contained executable, like remyroy's launcher used to. I initially started making it with Python/Gtk/PyInstaller, but the latter didn't want to cooperate, especially on Windows. I started looking into other options, but nothing quite fit the requirements.
 
