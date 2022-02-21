@@ -28,7 +28,7 @@ func download_pull_requests():
 	var url = _PR_URL[_settings.read("game")]
 	url += "+is%3Apr+is%3Amerged&per_page=" + prs
 	var headers = ["user-agent: CatapultGodotApp"]
-	_pr_data = "Fetching recent changes from GitHub. Please wait..."
+	_pr_data = tr("str_fetching_changes")
 	_pullRequests.request(url, headers)
 	_changelogTextBox.clear()
 	_changelogTextBox.append_bbcode(_pr_data)
@@ -39,11 +39,11 @@ func download_pull_requests():
 func _on_PullRequests_request_completed(result, response_code, headers, body):
 	var json = parse_json(body.get_string_from_utf8())
 	if response_code != 200:
-		_pr_data = "Error retrieving data from GitHub API."
-		_pr_data += "\n\nHTTP response code: " + str(response_code)
+		_pr_data = tr("str_error_retrieving_data")
+		_pr_data += tr("str_hhtp_response_code") % response_code
 		if (json) and ("message" in json):
-			_pr_data += "\nGitHub says: [i]%s[/i]" % json["message"]
-		_pr_data += "\n\nPlease try again later."
+			_pr_data += tr("str_github_says") % json["message"]
+		_pr_data += tr("str_try_later")
 	else:
 		_pr_data = process_pr_data(json)
 	_changelogTextBox.clear()
@@ -72,8 +72,7 @@ func process_pr_data(data):
 		_:
 			game_title = "{BUG!!}"
 	
-	var r_val = ("Showing the last [b]%s[/b] completed pull requests (code additions) to [b]%s[/b].\n\nThe chronology may be slightly off due to GitHub API limitations.\n\nYou can click on any item to view the corresponding PR on GitHub and learn more about the change.\n"
-		% [_settings.read("num_prs_to_request"), game_title])
+	var r_val = tr("str_changelog_intro") % [_settings.read("num_prs_to_request"), game_title]
 	
 	for pr in pr_array:
 		var switch_date = false

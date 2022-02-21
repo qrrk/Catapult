@@ -44,6 +44,15 @@ are managed separately and can co-exist).","Установить выбранн�
 "tooltip_game_dir","Open game directory.","Открыть папку с игрой."
 "tooltip_play","Launch the game.","Запустить игру."
 ,,
+" ==== CHANGELOG DIALOG ====",,
+,,
+"str_fetching_changes","Fetching recent changes from GitHub. Please wait…","Получение последних изменений с GitHub. Подождите…"
+"str_error_retrieving_data","Error retrieving data from GitHub API.","Произошла ошибка при получении данных с GitHub."
+"str_hhtp_response_code","\n\nHTTP response code: %s","\n\nКод ответа HTTP: %s"
+"str_github_says","\nGitHub says: [i]%s[/i]","\nGitHub сказал: [i]%s[/i]"
+"str_try_later","\n\nPlease try again later.","\n\nПопробуйте повторить позднее."
+"str_changelog_intro","Showing the last [b]%s[/b] completed pull requests (code additions) to [b]%s[/b].\n\nYou can click on any item to view the corresponding PR on GitHub and learn more about the change.\n","Здесь показаны последние [b]%s[/b] завершенных пул-реквестов (изменений в коде) для [b]%s[/b].\n\nНажмите на любой пункт, чтобы посмотреть соответствующий PR на GitHub и узнать больше об этом изменении.\n"
+,,
 " ==== MODS TAB ====",,
 ,,
 "lbl_installed_mods","Installed%s:","Установленные%s:"
