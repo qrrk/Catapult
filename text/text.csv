@@ -212,3 +212,78 @@ IMG_2
 ,,
 "backup_info_location","Location:","Расположение:"
 "backup_info_worlds","Worlds:","Миры:"
+,,
+" ==== SETTINGS TAB ====",,
+,,
+"cbtn_show_game_desc","Show game description","Показывать описание игры"
+"cbtn_print_tips","Print tips of the day on startup","Выводить совет дня при запуске"
+"cbtn_updating_to_same_build","Allow ""updating"" to the same build as installed","Разрешить «обновляться» на уже установленную версию"
+"cbtn_shorten_release_names","Shorten names of experimental releases","Сокращать названия экспериментальных релизов"
+"cbtn_show_obsolete_mods","List obsolete mods in installed","Показывать устаревшие моды в установленных"
+"cbtn_install_archived_mods","Include archived mods when installing Kenan modpack","Включить архивные моды при установке модпака Кенана"
+"cbtn_debug_mode","Debug mode","Режим отладки"
+"lbl_num_releases_to_request","Number of releases to request:","Запрашиваемое количество релизов:"
+"lbl_num_prs_to_request","Number of results to download for the changelog:","Загружаемое количество записей для списка изменений:"
+"lbl_ui_scale_override","Custom UI scaling:","Произвольный масштаб интерфейса:"
+"cbtn_enable_scale","Enable  ","Включить"
+"lbl_data_to_migrate","Migrate the following files when updating:","Переносить следующие файлы при обновлении:"
+"cbox_savegames","Saved games","Сохранённые игры"
+"cbox_fonts","User fonts","Польз. шрифты"
+"cbox_templates","Character templates","Шаблоны персонажей"
+"cbox_settings","Game settings","Настройки игры"
+"cbox_tilesets","Tilesets","Тайлсеты"
+"cbox_memorial","Memorial","Мемориал"
+"cbox_mods","Mods (non-stock)","Моды (кроме встроенных)"
+"cbos_soundpacks","Soundpacks","Саундпаки"
+"cbox_graveyard","Graveyard","Кладбище"
+,,
+"tooltip_show_game_desc","Show a description for the chosen game
+under the Game list.","Показывать описание для выбранной игры под списком."
+"tooltip_print_tips","Print a random tip in the status pane
+when the launcher starts.","Печатать случайный совет в панели статуса при запуске лончера."
+"tooltip_updating_to_same_build","Allow starting the update procedure even when
+the selected release is the same as currently installed.","Разрешить запускать процесс обновления игры даже
+когда выбранна та же версия, что уже установлена."
+"tooltip_shorten_release_names","Shorten release names to just the date and number
+(e.g. ""2021-09-08-1927"" instead of
+""Cataclysm-DDA experimental build 2021-09-08-1927"").","Сокращать названия релизов до даты и номера
+(например, просто ""2021-09-08-1927"" вместо
+""Cataclysm-DDA experimental build 2021-09-08-1927"")."
+"tooltip_show_obsolete_mods","Show mods that come with the game but are marked
+as ""obsolete"". Normally, such mods are not considered
+as installed.","Показывать моды, которые встроены в игру,
+но помечены как “устаревшие”. В противном случае
+лончер не считает такие моды установленными."
+"tooltip_install_archived_mods","When installing Kenan modpack, also include *archived*
+mods. These mods are no longer maintained by Kenan
+and may be outdated.","При установке модпака Кенана, также распаковывать
+*архивные* моды. Это моды, которые Кенан перестал
+активно поддерживать, из-за чего они могли устареть."
+"tooltip_debug_mode","Shows the Debug tab with some testing functions
+and enables debug messages in the status  pane
+(useful for troubleshooting).","Показать вкладку Debug с тестовыми функциями
+и включить отладочные сообщения в панели статуса
+(полезно при поиске проблем)."
+"tooltip_num_releases_to_request","How many latest releases will be requested
+from GitHub after starting the launcher, choosing
+the game or clicking Refresh.","Сколько свежих релизов нужно запрашивать с GitHub
+после запуска лончера, выбора игры или нажатия Обновить."
+"tooltip_num_prs_to_request","How many recent pull requests (code additions)
+will be requested from GitHub to form the changelog.
+High numbers may lead to slow responses and failures.","Сколько последних пул-реквестов (изменений в коде игры)
+нужно запрашивать с GitHub для формирования списка изменений.
+Высокие значения могут привести к медленным ответам и ошибкам."
+"tooltip_ui_scale_override","Use this if the automatically inferred UI scale
+looks too large or too small on your system.
+(Automatic scale relies on system-reported
+display DPI, which may not work on all systems,
+or give inadequate results when the resolution
+is too low.)","Воспользуйтесь этой настройкой, если автоматически определенный
+масштаб интерфейса выглядит слишком мелко или крупно на вашей
+системе. (Автоматическое определение масштаба полагается на
+сообщаемый системой DPI экрана, что может не сработать на
+некоторых системах, или дать неадекватный результат, когда
+разрешение слишком низкое)."
+"tooltip_data_to_migrate","Choose which types of game data to carry over
+into the new game version when updating.","Выберите, какие игровые данные нужно переносить
+в новую версию при обновлении игры."

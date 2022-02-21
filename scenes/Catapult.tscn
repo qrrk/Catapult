@@ -126,7 +126,7 @@ margin_bottom = 91.0
 [node name="Tabs" type="TabContainer" parent="Main" groups=["disable_during_backup_operations", "disable_during_mod_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases", "disable_while_installing_game"]]
 margin_top = 97.0
 margin_right = 784.0
-margin_bottom = 503.0
+margin_bottom = 629.0
 tab_align = 0
 script = ExtResource( 16 )
 
@@ -833,6 +833,7 @@ margin_right = 769.0
 margin_bottom = 539.0
 
 [node name="Backups" type="VBoxContainer" parent="Main/Tabs"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -945,7 +946,6 @@ margin_right = 769.0
 margin_bottom = 70.0
 
 [node name="Settings" type="VBoxContainer" parent="Main/Tabs"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -958,74 +958,61 @@ script = ExtResource( 8 )
 [node name="ShowGameDesc" type="CheckButton" parent="Main/Tabs/Settings"]
 margin_right = 769.0
 margin_bottom = 29.0
-hint_tooltip = "Show a description for the chosen game
-under the Game list."
-text = "Show game description"
+hint_tooltip = "tooltip_show_game_desc"
+text = "cbtn_show_game_desc"
 
 [node name="PrintTips" type="CheckButton" parent="Main/Tabs/Settings"]
 margin_top = 35.0
 margin_right = 769.0
 margin_bottom = 64.0
-hint_tooltip = "Print a random tip in the status pane
-when the launcher starts."
-text = "Print tips of the day on startup"
+hint_tooltip = "tooltip_print_tips"
+text = "cbtn_print_tips"
 
 [node name="UpdateToSame" type="CheckButton" parent="Main/Tabs/Settings"]
 margin_top = 70.0
 margin_right = 769.0
 margin_bottom = 99.0
-hint_tooltip = "Allow starting the update procedure even when
-the selected release is the same as currently installed."
-text = "Allow \"updating\" to the same build as installed"
+hint_tooltip = "tooltip_updating_to_same_build"
+text = "cbtn_updating_to_same_build"
 
 [node name="ShortenNames" type="CheckButton" parent="Main/Tabs/Settings"]
 margin_top = 105.0
 margin_right = 769.0
 margin_bottom = 134.0
-hint_tooltip = "Shorten release names to just the date and number
-(e.g. \"2021-09-08-1927\" instead of
-\"Cataclysm-DDA experimental build 2021-09-08-1927\")."
-text = "Shorten names of experimental releases"
+hint_tooltip = "tooltip_shorten_release_names"
+text = "cbtn_shorten_release_names"
 
 [node name="ShowObsoleteMods" type="CheckButton" parent="Main/Tabs/Settings"]
 margin_top = 140.0
 margin_right = 769.0
 margin_bottom = 169.0
-hint_tooltip = "Show mods that come with the game but are marked
-as \"obsolete\". Normally, such mods are not considered
-as installed."
-text = "List obsolete mods in installed"
+hint_tooltip = "tooltip_show_obsolete_mods"
+text = "cbtn_show_obsolete_mods"
 
 [node name="InstallArchivedMods" type="CheckButton" parent="Main/Tabs/Settings"]
 margin_top = 175.0
 margin_right = 769.0
 margin_bottom = 204.0
-hint_tooltip = "When installing Kenan modpack, also include *archived*
-mods. These mods are no longer maintained by Kenan
-and may be outdated."
-text = "Include archived mods when installing Kenan modpack"
+hint_tooltip = "tooltip_install_archived_mods"
+text = "cbtn_install_archived_mods"
 
 [node name="ShowDebug" type="CheckButton" parent="Main/Tabs/Settings"]
 margin_top = 210.0
 margin_right = 769.0
 margin_bottom = 239.0
-hint_tooltip = "Shows the Debug tab with some testing functions
-and enables debug messages in the status  pane
-(useful for troubleshooting)."
-text = "Debug mode"
+hint_tooltip = "tooltip_debug_mode"
+text = "cbtn_debug_mode"
 
 [node name="NumReleases" type="HBoxContainer" parent="Main/Tabs/Settings"]
 margin_top = 245.0
 margin_right = 769.0
 margin_bottom = 274.0
-hint_tooltip = "How many latest releases will be requested
-from GitHub after starting the launcher, choosing
-the game or clicking Refresh."
+hint_tooltip = "tooltip_num_releases_to_request"
 
 [node name="Label" type="Label" parent="Main/Tabs/Settings/NumReleases"]
-margin_right = 248.0
+margin_right = 231.0
 margin_bottom = 29.0
-text = "Number of releases to request:"
+text = "lbl_num_releases_to_request"
 
 [node name="sbNumReleases" type="SpinBox" parent="Main/Tabs/Settings/NumReleases"]
 margin_left = 639.0
@@ -1040,14 +1027,12 @@ rounded = true
 margin_top = 280.0
 margin_right = 769.0
 margin_bottom = 309.0
-hint_tooltip = "How many recent pull requests (code additions)
-will be requested from GitHub to form the changelog.
-High numbers may lead to slow responses and failures."
+hint_tooltip = "tooltip_num_prs_to_request"
 
 [node name="Label" type="Label" parent="Main/Tabs/Settings/NumPrs"]
-margin_right = 390.0
+margin_right = 193.0
 margin_bottom = 29.0
-text = "Number of results to download for the changelog:"
+text = "lbl_num_prs_to_request"
 
 [node name="sbNumPRs" type="SpinBox" parent="Main/Tabs/Settings/NumPrs"]
 margin_left = 639.0
@@ -1063,28 +1048,23 @@ rounded = true
 margin_top = 315.0
 margin_right = 769.0
 margin_bottom = 344.0
-hint_tooltip = "Use this if the automatically inferred UI scale
-looks too large or too small on your system.
-(Automatic scale relies on system-reported
-display DPI, which may not work on all systems,
-or give inadequate results when the resolution
-is too low.)"
+hint_tooltip = "tooltip_ui_scale_override"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="Main/Tabs/Settings/ScaleOverride"]
-margin_right = 151.0
+margin_right = 167.0
 margin_bottom = 29.0
-text = "Custom UI scaling:"
+text = "lbl_ui_scale_override"
 
 [node name="cbScaleOverrideEnable" type="CheckBox" parent="Main/Tabs/Settings/ScaleOverride"]
-margin_left = 540.0
+margin_left = 462.0
 margin_right = 633.0
 margin_bottom = 29.0
 size_flags_horizontal = 10
 size_flags_stretch_ratio = 20.0
-text = "Enable  "
+text = "cbtn_enable_scale"
 
 [node name="sbScaleOverride" type="SpinBox" parent="Main/Tabs/Settings/ScaleOverride"]
 margin_left = 639.0
@@ -1107,13 +1087,12 @@ margin_bottom = 358.0
 margin_top = 364.0
 margin_right = 769.0
 margin_bottom = 486.0
-hint_tooltip = "Choose which types of game data to carry over
-into the new game version when updating."
+hint_tooltip = "tooltip_data_to_migrate"
 
 [node name="Label" type="Label" parent="Main/Tabs/Settings/Migration"]
 margin_right = 769.0
 margin_bottom = 29.0
-text = "Migrate the following files when updating:"
+text = "lbl_data_to_migrate"
 
 [node name="Grid" type="GridContainer" parent="Main/Tabs/Settings/Migration"]
 margin_top = 35.0
@@ -1123,70 +1102,70 @@ custom_constants/vseparation = 0
 columns = 3
 
 [node name="Savegames" type="CheckBox" parent="Main/Tabs/Settings/Migration/Grid"]
-margin_right = 165.0
+margin_right = 161.0
 margin_bottom = 29.0
 pressed = true
-text = "Saved games"
+text = "cbox_savegames"
 
 [node name="Fonts" type="CheckBox" parent="Main/Tabs/Settings/Migration/Grid"]
-margin_left = 171.0
-margin_right = 297.0
+margin_left = 167.0
+margin_right = 335.0
 margin_bottom = 29.0
 pressed = true
-text = "User fonts"
+text = "cbox_fonts"
 
 [node name="Templates" type="CheckBox" parent="Main/Tabs/Settings/Migration/Grid"]
-margin_left = 303.0
-margin_right = 492.0
+margin_left = 341.0
+margin_right = 494.0
 margin_bottom = 29.0
 pressed = true
-text = "Character templates"
+text = "cbox_templates"
 
 [node name="Settings" type="CheckBox" parent="Main/Tabs/Settings/Migration/Grid"]
 margin_top = 29.0
-margin_right = 165.0
+margin_right = 161.0
 margin_bottom = 58.0
 pressed = true
-text = "Game settings"
+text = "cbox_settings"
 
 [node name="Tilesets" type="CheckBox" parent="Main/Tabs/Settings/Migration/Grid"]
-margin_left = 171.0
+margin_left = 167.0
 margin_top = 29.0
-margin_right = 297.0
+margin_right = 335.0
 margin_bottom = 58.0
 pressed = true
-text = "Tilesets"
+text = "cbox_tilesets"
 
 [node name="Memorial" type="CheckBox" parent="Main/Tabs/Settings/Migration/Grid"]
-margin_left = 303.0
+margin_left = 341.0
 margin_top = 29.0
-margin_right = 492.0
+margin_right = 494.0
 margin_bottom = 58.0
 pressed = true
-text = "Memorial"
+text = "cbox_memorial"
 
 [node name="Mods" type="CheckBox" parent="Main/Tabs/Settings/Migration/Grid"]
 margin_top = 58.0
-margin_right = 165.0
+margin_right = 161.0
 margin_bottom = 87.0
 pressed = true
-text = "Mods (non-stock)"
+text = "cbox_mods"
 
 [node name="Soundpacks" type="CheckBox" parent="Main/Tabs/Settings/Migration/Grid"]
-margin_left = 171.0
+margin_left = 167.0
 margin_top = 58.0
-margin_right = 297.0
+margin_right = 335.0
 margin_bottom = 87.0
 pressed = true
-text = "Soundpacks"
+text = "cbos_soundpacks"
 
 [node name="Graveyard" type="CheckBox" parent="Main/Tabs/Settings/Migration/Grid"]
-margin_left = 303.0
+margin_left = 341.0
 margin_top = 58.0
-margin_right = 492.0
+margin_right = 494.0
 margin_bottom = 87.0
 pressed = true
-text = "Graveyard"
+text = "cbox_graveyard"
 
 [node name="Debug" type="VBoxContainer" parent="Main/Tabs"]
 visible = false
@@ -1270,7 +1249,7 @@ size_flags_horizontal = 4
 text = "Test translation retrieval"
 
 [node name="Log" type="RichTextLabel" parent="Main"]
-margin_top = 509.0
+margin_top = 635.0
 margin_right = 784.0
 margin_bottom = 984.0
 focus_mode = 2
