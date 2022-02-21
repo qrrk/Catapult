@@ -16,7 +16,7 @@ func _refresh_available() -> void:
 	_list_backups.clear()
 	_btn_restore.disabled = true
 	_btn_delete.disabled = true
-	_lbl_info.bbcode_text = "Select an existing backup to see its details here."
+	_lbl_info.bbcode_text = tr("lbl_backup_info_placeholder")
 	_backups.refresh_available()
 
 	for item in _backups.available:
@@ -113,8 +113,8 @@ func _make_backup_info_string(index: int) -> String:
 		worlds_str += world + ", "
 	worlds_str = worlds_str.substr(0, len(worlds_str) - 2)
 	
-	text += "[u]Location:[/u]\n[color=#3b93f7][url=%s]%s[/url][/color]\n\n" % [info["path"], info["path"]]
-	text += "[u]Worlds:[/u]\n%s" % worlds_str
+	text += "[u]%s[/u]\n[color=#3b93f7][url=%s]%s[/url][/color]\n\n" % [tr("backup_info_location"), info["path"], info["path"]]
+	text += "[u]%s[/u]\n%s" % [tr("backup_info_worlds"), worlds_str]
 	
 	return text
 

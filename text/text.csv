@@ -198,3 +198,17 @@ IMG_2
 "msg_setting_ui_font","Setting [i]%s[/i] as game UI font.","[i]%s[/i] устанавливается в качестве шрифта для интерфейса игры."
 "msg_setting_map_font","Setting [i]%s[/i] as map font.","[i]%s[/i] устанавливается в качестве шрифта для игрового мира."
 "msg_setting_omap_font","Setting [i]%s[/i] as overmap font.","[i]%s[/i] устанавливается в качестве шрифта для карты мира."
+,,
+" ==== BACKUPS TAB ====",,
+,,
+"lbl_save_backups","Save directory backups:","Бэкапы папки с сохранениями:"
+"btn_restore_backup","Restore","Восстановить"
+"btn_delete_backup","Delete","Удалить"
+"btn_refresh_backups","Refresh","Обновить список"
+"lbl_manual_backup","Manual backup","Ручной бэкап"
+"lbl_backup_name","Name:","Название:"
+"btn_create_backup","Create","Создать"
+"lbl_backup_info_placeholder","Select an existing backup to see its details here.","Выберите существующий бэкап, чтобы увидеть здесь информацию по нему."
+,,
+"backup_info_location","Location:","Расположение:"
+"backup_info_worlds","Worlds:","Миры:"

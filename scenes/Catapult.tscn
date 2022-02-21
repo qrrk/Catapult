@@ -126,7 +126,7 @@ margin_bottom = 91.0
 [node name="Tabs" type="TabContainer" parent="Main" groups=["disable_during_backup_operations", "disable_during_mod_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases", "disable_while_installing_game"]]
 margin_top = 97.0
 margin_right = 784.0
-margin_bottom = 675.0
+margin_bottom = 503.0
 tab_align = 0
 script = ExtResource( 16 )
 
@@ -560,6 +560,7 @@ current_dir = "/mnt/data/Godot/Catapult/Project"
 current_path = "/mnt/data/Godot/Catapult/Project/"
 
 [node name="Fonts" type="VBoxContainer" parent="Main/Tabs"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -832,7 +833,6 @@ margin_right = 769.0
 margin_bottom = 539.0
 
 [node name="Backups" type="VBoxContainer" parent="Main/Tabs"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -848,7 +848,7 @@ margin_bottom = 270.0
 [node name="Label" type="Label" parent="Main/Tabs/Backups/Available"]
 margin_right = 769.0
 margin_bottom = 29.0
-text = "Save directory backups:"
+text = "lbl_save_backups"
 align = 1
 
 [node name="HBox" type="HBoxContainer" parent="Main/Tabs/Backups/Available"]
@@ -872,7 +872,7 @@ focus_mode = 2
 size_flags_horizontal = 3
 bbcode_enabled = true
 bbcode_text = "Backup details will appear here."
-text = "Backup details will appear here."
+text = "lbl_backup_info_placeholder"
 selection_enabled = true
 
 [node name="Buttons" type="HBoxContainer" parent="Main/Tabs/Backups/Available"]
@@ -882,22 +882,22 @@ margin_bottom = 270.0
 alignment = 1
 
 [node name="BtnRestore" type="Button" parent="Main/Tabs/Backups/Available/Buttons" groups=["disable_during_backup_operations"]]
-margin_left = 268.0
-margin_right = 345.0
+margin_left = 126.0
+margin_right = 295.0
 margin_bottom = 29.0
-text = "Restore"
+text = "btn_restore_backup"
 
 [node name="BtnDelete" type="Button" parent="Main/Tabs/Backups/Available/Buttons" groups=["disable_during_backup_operations"]]
-margin_left = 351.0
-margin_right = 418.0
+margin_left = 301.0
+margin_right = 461.0
 margin_bottom = 29.0
-text = "Delete"
+text = "btn_delete_backup"
 
 [node name="BtnRefresh" type="Button" parent="Main/Tabs/Backups/Available/Buttons" groups=["disable_during_backup_operations"]]
-margin_left = 424.0
-margin_right = 500.0
+margin_left = 467.0
+margin_right = 643.0
 margin_bottom = 29.0
-text = "Refresh"
+text = "btn_refresh_backups"
 
 [node name="HSeparator" type="HSeparator" parent="Main/Tabs/Backups"]
 margin_top = 276.0
@@ -912,7 +912,7 @@ margin_bottom = 360.0
 [node name="Label" type="Label" parent="Main/Tabs/Backups/Current"]
 margin_right = 769.0
 margin_bottom = 29.0
-text = "Manual backup"
+text = "lbl_manual_backup"
 align = 1
 
 [node name="HBox" type="HBoxContainer" parent="Main/Tabs/Backups/Current"]
@@ -921,23 +921,23 @@ margin_right = 769.0
 margin_bottom = 64.0
 
 [node name="Label" type="Label" parent="Main/Tabs/Backups/Current/HBox"]
-margin_right = 61.0
+margin_right = 142.0
 margin_bottom = 29.0
-text = "Name:"
+text = "lbl_backup_name"
 
 [node name="EditName" type="LineEdit" parent="Main/Tabs/Backups/Current/HBox"]
-margin_left = 67.0
-margin_right = 695.0
+margin_left = 148.0
+margin_right = 602.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
 placeholder_text = "Enter name for new backup"
 
 [node name="BtnCreate" type="Button" parent="Main/Tabs/Backups/Current/HBox" groups=["disable_during_backup_operations"]]
-margin_left = 701.0
+margin_left = 608.0
 margin_right = 769.0
 margin_bottom = 29.0
 size_flags_horizontal = 4
-text = "Create"
+text = "btn_create_backup"
 
 [node name="Spacer" type="Control" parent="Main/Tabs/Backups/Current"]
 margin_top = 70.0
@@ -1270,7 +1270,7 @@ size_flags_horizontal = 4
 text = "Test translation retrieval"
 
 [node name="Log" type="RichTextLabel" parent="Main"]
-margin_top = 681.0
+margin_top = 509.0
 margin_right = 784.0
 margin_bottom = 984.0
 focus_mode = 2
