@@ -9,7 +9,7 @@ const _SETTINGS_FILENAME = "catapult_settings.json"
 const _HARDCODED_DEFAULTS = {
 	"game": "dda",
 	"channel": "stable",  # Currently used only for DDA.
-	"launcher_locale": "en",
+	"launcher_locale": "",
 	"print_tips_of_the_day": true,
 	"update_to_same_build_allowed": false,
 	"shorten_release_names": false,

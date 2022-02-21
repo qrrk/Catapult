@@ -1,4 +1,41 @@
-keys,en,ru
-btn_play,Play,Играть
-lbl_currently_installed,Currently installed:,Сейчас установлено:
-debug_test,This is a debug text to test translation retrieval.,Это отладочный текст для проверки извлечения переводов.
+"keys","en","ru"
+,,
+"window_title","Catapult — a launcher for Cataclysm: DDA and BN","Catapult — лончер для Cataclysm: DDA и BN"
+"debug_test","This is a debug text to test translation retrieval.","Это отладочный текст для проверки извлечения переводов."
+,,
+"lbl_game","Game:","Игра:"
+"desc_dda","[b]Cataclysm: Dark Days Ahead[/b] is a turn-based survival game set in a post-apocalyptic world. Scavenge, explore, craft, build, farm, repair and modify vehicles, install bionics, mutate, defend against [color=#009900]zombies[/color] and countless other monstrosities — all in a limitless, procedurally generated world!","[b]Cataclysm: Dark Days Ahead[/b] — это пошаговый симулятор выживания в пост-апокалипсисе. Находите или крафтите снаряжение, стройте базы, выращивайте еду, тюнингуйте транспорт, ставьте кибер-импланты, мутируйте, отбивайтесь от [color=#009900]зомби[/color] и кучи других монстров — и всё это в бесконечном, процедурно генерируемом мире!"
+"desc_bn","[b]Cataclysm: Bright Nights[/b]. Reject pedantry, embrace [color=#ff3300]!!fun!![/color]. This fork takes the game back to its sci-fi roguelike roots and reverts many controversial changes by the DDA team (pockets, proficiencies, freezing, and [color=#3b93f7][url=https://github.com/cataclysmbnteam/Cataclysm-BN/wiki/Changes-so-far]more[/url][/color]). Special attention is paid to combat, game balance and pacing.","[b]Cataclysm: Bright Nights[/b] — это форк, который возвращает игру к истокам и снова делает её sci-fi рогаликом, откатывая многие спорные нововведения, сделанные командой DDA (кармашки, умения, заморозку и [color=#3b93f7][url=https://github.com/cataclysmbnteam/Cataclysm-BN/wiki/Changes-so-far]многое другое[/url][/color]). Особое внимание уделяется боёвке, балансу и темпу игры, и конечно же [color=#ff3300]!!веселью!![/color]"
+,,
+"tab_game","Game","Игра"
+"tab_mods","Mods","Моды"
+"tab_soundpacks","Soundpacks","Звуки"
+"tab_fonts","Fonts","Шрифты"
+"tab_backups","Backups","Бэкапы"
+"tab_settings","Settings","Настройки"
+,,
+"lbl_channel","Channel:","Ветка:"
+"rbtn_stable","Stable","Стабильная"
+"rbtn_experimental","Experimental","Экспериментальная"
+"lbl_changelog","[right][color=#3b93f7][url]View Experimental Changelog[/url][/color][/right]","[right][color=#3b93f7][url]Изменения в экспериментальной ветке[/url][/color][/right]"
+"lbl_builds","Available builds:","Доступные сборки:"
+"btn_refresh","Refresh","Обновить"
+"btn_install","Install Selected","Установить выбранную"
+"btn_update","Update to Selected","Обновиться до выбранной"
+"btn_play","Play","Играть"
+"lbl_currently_installed","Currently installed:","Сейчас установлено:"
+"lbl_none","None","Ничего"
+,,
+"tooltip_game","Choose which game to manage or play.","Выберите игру для запуска или настройки."
+"tooltip_changelog","Click to load a summary of latest changes from GitHub.","Загрузить с GitHub список последних изменений в игре."
+"tooltip_stable","Stable release channel (DDA only).","Ветка со стабильными релизами (только для DDA)."
+"tooltip_experimental","Experimental release channel.","Ветка с экспериментальными релизами."
+"tooltip_builds","Choose which release of the game to install or update to.","Выбор версии игры для установки или обновления."
+"tooltip_refresh","Re-retrieve the list of available game releases
+from GitHub (only for experimental releases).","Заново загрузить список доступных релизов игры
+c GitHub (только для экспериментальных релизов)."
+"tooltip_install","Install selected game release (DDA and BN
+are managed separately and can co-exist).","Установить выбранную версию игры (DDA и BN хранятся
+раздельно и могут устанавливаться одновременно)."
+"tooltip_game_dir","Open game directory.","Открыть папку с игрой."
+"tooltip_play","Launch the game.","Запустить игру."

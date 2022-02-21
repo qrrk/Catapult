@@ -26,6 +26,7 @@ onready var _installer = $ReleaseInstaller
 onready var _btn_install = $Main/Tabs/Game/BtnInstall
 onready var _btn_refresh = $Main/Tabs/Game/Builds/BtnRefresh
 onready var _changelog = $Main/Tabs/Game/ChangelogDialog
+onready var _lbl_changelog = $Main/Tabs/Game/Channel/HBox/ChangelogLink
 onready var _btn_game_dir = $Main/Tabs/Game/CurrentInstall/Build/GameDir
 onready var _btn_play = $Main/Tabs/Game/CurrentInstall/BtnPlay
 onready var _lst_builds = $Main/Tabs/Game/Builds/BuildsList
@@ -40,12 +41,24 @@ var _ui_staring_sizes = {}  # For UI scaling on the fly
 
 func _ready() -> void:
 	
+	# On the first launch, automatically set UI to system language, if available.
 	var sys_locale := TranslationServer.get_locale().substr(0, 2)
-	if sys_locale in TranslationServer.get_loaded_locales():
+	if (_settings.read("launcher_locale") == "") and (sys_locale in TranslationServer.get_loaded_locales()):
 		_settings.store("launcher_locale", sys_locale)
 	TranslationServer.set_locale(_settings.read("launcher_locale"))
 	
-	OS.set_window_title("Catapult — a launcher for Cataclysm: DDA and BN")
+	OS.set_window_title(tr("window_title"))
+	
+	# Apply translation to tab titles.
+	_tabs.set_tab_title(0, tr("tab_game"))
+	_tabs.set_tab_title(1, tr("tab_mods"))
+	_tabs.set_tab_title(2, tr("tab_soundpacks"))
+	_tabs.set_tab_title(3, tr("tab_fonts"))
+	_tabs.set_tab_title(4, tr("tab_backups"))
+	_tabs.set_tab_title(5, tr("tab_settings"))
+	
+	_lbl_changelog.bbcode_text = tr("lbl_changelog")
+	
 	_log.text = ""
 	
 	var welcome_msg = "Welcome to Catapult!"
@@ -205,10 +218,10 @@ func _on_GamesList_item_selected(index: int) -> void:
 	match index:
 		0:
 			_settings.store("game", "dda")
-			_game_desc.bbcode_text = _GAME_DESC["dda"]
+			_game_desc.bbcode_text = tr("desc_dda")
 		1:
 			_settings.store("game", "bn")
-			_game_desc.bbcode_text = _GAME_DESC["bn"]
+			_game_desc.bbcode_text = tr("desc_bn")
 	
 	_tabs.current_tab = 0
 	apply_game_choice()
@@ -393,6 +406,7 @@ func apply_game_choice() -> void:
 				_btn_refresh.disabled = true
 			else:
 				_btn_refresh.disabled = false
+			_game_desc.bbcode_text = tr("desc_dda")
 				
 		"bn":
 			_lst_games.select(1)
@@ -400,8 +414,9 @@ func apply_game_choice() -> void:
 			_rbtn_exper.disabled = true
 			_rbtn_stable.disabled = true
 			_btn_refresh.disabled = false
+			_game_desc.bbcode_text = tr("desc_bn")
 			
-	_game_desc.bbcode_text = _GAME_DESC[game]
+#	_game_desc.bbcode_text = _GAME_DESC[game]
 	
 	if len(_releases.releases[_get_release_key()]) == 0:
 		_releases.fetch(_get_release_key())
@@ -428,7 +443,7 @@ func _refresh_currently_installed() -> void:
 	
 	if _is_selected_game_installed():
 		_lbl_build.text = info[game]["name"]
-		_btn_install.text = "Update to Selected"
+		_btn_install.text = tr("btn_update")
 		_btn_play.disabled = false
 		_btn_game_dir.visible = true
 		if (_lst_builds.selected != -1) and (_lst_builds.selected < len(releases)):
@@ -438,8 +453,8 @@ func _refresh_currently_installed() -> void:
 			_btn_install.disabled = true
 		
 	else:
-		_lbl_build.text = "None"
-		_btn_install.text = "Install Selected"
+		_lbl_build.text = tr("lbl_none")
+		_btn_install.text = tr("btn_install")
 		_btn_install.disabled = false
 		_btn_play.disabled = true
 		_btn_game_dir.visible = false

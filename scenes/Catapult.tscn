@@ -68,15 +68,15 @@ margin_right = 784.0
 margin_bottom = 29.0
 
 [node name="Label" type="Label" parent="Main/GameChoice"]
-margin_right = 65.0
+margin_right = 79.0
 margin_bottom = 29.0
-text = "Game: "
+text = "lbl_game"
 
 [node name="GamesList" type="OptionButton" parent="Main/GameChoice" groups=["disable_during_mod_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases", "disable_while_installing_game"]]
-margin_left = 71.0
+margin_left = 85.0
 margin_right = 784.0
 margin_bottom = 29.0
-hint_tooltip = "Choose which game to manage or play."
+hint_tooltip = "tooltip_game"
 size_flags_horizontal = 3
 text = "Cataclysm: Dark Days Ahead"
 items = [ "Cataclysm: Dark Days Ahead", null, false, 0, null, "Cataclysm: Bright Nights", null, false, 1, null ]
@@ -148,21 +148,20 @@ margin_right = 769.0
 margin_bottom = 29.0
 
 [node name="Label" type="Label" parent="Main/Tabs/Game/Channel/HBox"]
-margin_right = 78.0
+margin_right = 97.0
 margin_bottom = 29.0
-text = "Channel:"
+text = "lbl_channel"
 
 [node name="ChangelogLink" type="RichTextLabel" parent="Main/Tabs/Game/Channel/HBox"]
-margin_left = 84.0
+margin_left = 103.0
 margin_right = 769.0
 margin_bottom = 29.0
 rect_min_size = Vector2( 300, 0 )
-hint_tooltip = "Click to load a summary of latest changes from GitHub."
+hint_tooltip = "tooltip_changelog"
 size_flags_horizontal = 3
 custom_styles/normal = SubResource( 2 )
 bbcode_enabled = true
-bbcode_text = "[right][color=#3b93f7][url]View Experimental Changelog[/url][/color][/right]"
-text = "View Experimental Changelog"
+text = "lbl_changelog"
 scroll_active = false
 
 [node name="Group" type="HBoxContainer" parent="Main/Tabs/Game/Channel"]
@@ -171,20 +170,20 @@ margin_right = 769.0
 margin_bottom = 64.0
 
 [node name="RBtnStable" type="CheckBox" parent="Main/Tabs/Game/Channel/Group" groups=["disable_while_fetching_releases", "disable_while_installing_game"]]
-margin_right = 81.0
+margin_right = 120.0
 margin_bottom = 29.0
-hint_tooltip = "Stable release channel (DDA only)."
+hint_tooltip = "tooltip_stable"
 group = SubResource( 1 )
-text = "Stable"
+text = "rbtn_stable"
 
 [node name="RBtnExperimental" type="CheckBox" parent="Main/Tabs/Game/Channel/Group" groups=["disable_while_fetching_releases", "disable_while_installing_game"]]
-margin_left = 87.0
-margin_right = 221.0
+margin_left = 126.0
+margin_right = 300.0
 margin_bottom = 29.0
-hint_tooltip = "Experimental release channel."
+hint_tooltip = "tooltip_experimental"
 pressed = true
 group = SubResource( 1 )
-text = "Experimental"
+text = "rbtn_experimental"
 
 [node name="Builds" type="HBoxContainer" parent="Main/Tabs/Game"]
 margin_top = 72.0
@@ -192,15 +191,15 @@ margin_right = 769.0
 margin_bottom = 101.0
 
 [node name="Label" type="Label" parent="Main/Tabs/Game/Builds"]
-margin_right = 133.0
+margin_right = 83.0
 margin_bottom = 29.0
-text = "Available builds:"
+text = "lbl_builds"
 
 [node name="BuildsList" type="OptionButton" parent="Main/Tabs/Game/Builds" groups=["disable_while_fetching_releases", "disable_while_installing_game"]]
-margin_left = 139.0
+margin_left = 89.0
 margin_right = 657.0
 margin_bottom = 29.0
-hint_tooltip = "Choose which release of the game to install or update to."
+hint_tooltip = "tooltip_builds"
 size_flags_horizontal = 3
 clip_text = true
 
@@ -208,18 +207,16 @@ clip_text = true
 margin_left = 663.0
 margin_right = 769.0
 margin_bottom = 29.0
-hint_tooltip = "Re-retrieve the list of available game releases
-from GitHub (only for experimental releases)."
+hint_tooltip = "tooltip_refresh"
 text = "btn_refresh"
 
 [node name="BtnInstall" type="Button" parent="Main/Tabs/Game" groups=["disable_while_fetching_releases", "disable_while_installing_game"]]
-margin_left = 294.0
+margin_left = 264.0
 margin_top = 109.0
-margin_right = 474.0
+margin_right = 504.0
 margin_bottom = 141.0
-rect_min_size = Vector2( 180, 32 )
-hint_tooltip = "Install selected game release (DDA and BN
-are managed separately and can co-exist)."
+rect_min_size = Vector2( 240, 32 )
+hint_tooltip = "tooltip_install"
 size_flags_horizontal = 4
 text = "btn_install"
 icon = ExtResource( 2 )
@@ -242,34 +239,34 @@ text = "lbl_currently_installed"
 align = 1
 
 [node name="Build" type="HBoxContainer" parent="Main/Tabs/Game/CurrentInstall"]
-margin_left = 347.0
+margin_left = 313.0
 margin_top = 35.0
-margin_right = 422.0
+margin_right = 456.0
 margin_bottom = 64.0
 size_flags_horizontal = 4
 custom_constants/separation = 4
 
 [node name="Name" type="Label" parent="Main/Tabs/Game/CurrentInstall/Build"]
-margin_right = 53.0
+margin_right = 121.0
 margin_bottom = 29.0
-text = "None"
+text = "lbl_build_none"
 align = 1
 
 [node name="GameDir" parent="Main/Tabs/Game/CurrentInstall/Build" instance=ExtResource( 26 )]
-margin_left = 57.0
+margin_left = 125.0
 margin_top = 5.0
-margin_right = 75.0
+margin_right = 143.0
 margin_bottom = 23.0
-hint_tooltip = "Open game directory."
+hint_tooltip = "tooltip_game_dir"
 texture_normal = ExtResource( 25 )
 
 [node name="BtnPlay" type="Button" parent="Main/Tabs/Game/CurrentInstall" groups=["disable_while_installing_game"]]
-margin_left = 343.0
+margin_left = 334.0
 margin_top = 70.0
-margin_right = 425.0
+margin_right = 434.0
 margin_bottom = 102.0
-rect_min_size = Vector2( 80, 32 )
-hint_tooltip = "Launch the game."
+rect_min_size = Vector2( 100, 32 )
+hint_tooltip = "tooltip_play"
 size_flags_horizontal = 4
 text = "btn_play"
 icon = ExtResource( 3 )
