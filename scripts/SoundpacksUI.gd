@@ -27,7 +27,7 @@ func refresh_installed() -> void:
 		_installed_list.add_item(pack["name"])
 		var desc = ""
 		if pack["description"] == "":
-			desc = "No description provided"
+			desc = tr("str_no_sound_desc")
 		else:
 			desc = _break_up_string(pack["description"], 60)
 		_installed_list.set_item_tooltip(_installed_list.get_item_count() - 1, desc)
@@ -76,7 +76,7 @@ func _on_Tabs_tab_changed(tab: int) -> void:
 	
 	_btn_delete.disabled = true
 	_btn_install.disabled = true
-	_btn_install.text = "Install Selected"
+	_btn_install.text = tr("btn_install_sound")
 	
 	_populate_available()
 	refresh_installed()
@@ -102,7 +102,7 @@ func _on_InstalledList_item_selected(index: int) -> void:
 func _on_BtnDelete_pressed() -> void:
 	
 	var name = _installed_packs[_installed_list.get_selected_items()[0]]["name"]
-	_dlg_confirm_del.dialog_text = "Deleting %s." % name
+	_dlg_confirm_del.dialog_text = tr("dlg_sound_deletion_text") % name
 	_dlg_confirm_del.rect_min_size = get_tree().root.size * Vector2(0.6, 0.1)
 	_dlg_confirm_del.set_as_minsize()
 	_dlg_confirm_del.popup_centered()
@@ -126,9 +126,9 @@ func _on_AvailableList_item_selected(index: int) -> void:
 	_btn_install.disabled = false
 	var pack_name = _sound.SOUNDPACKS[index]["name"]
 	if _is_pack_installed(pack_name):
-		_btn_install.text = "Reinstall Selected"
+		_btn_install.text = tr("btn_reinstall_sound")
 	else:
-		_btn_install.text = "Install Selected"
+		_btn_install.text = tr("btn_install_sound")
 
 
 func _on_BtnInstall_pressed() -> void:

@@ -126,7 +126,7 @@ margin_bottom = 91.0
 [node name="Tabs" type="TabContainer" parent="Main" groups=["disable_during_backup_operations", "disable_during_mod_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases", "disable_while_installing_game"]]
 margin_top = 97.0
 margin_right = 784.0
-margin_bottom = 623.0
+margin_bottom = 448.0
 tab_align = 0
 script = ExtResource( 16 )
 
@@ -281,6 +281,7 @@ margin_bottom = 275.0
 [node name="ChangelogDialog" parent="Main/Tabs/Game" instance=ExtResource( 32 )]
 
 [node name="Mods" type="VBoxContainer" parent="Main/Tabs"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -440,7 +441,6 @@ margin_right = 97.5
 margin_bottom = 95.34
 
 [node name="Soundpacks" type="VBoxContainer" parent="Main/Tabs"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -462,7 +462,7 @@ size_flags_horizontal = 3
 [node name="Label" type="Label" parent="Main/Tabs/Soundpacks/HBox/Installed"]
 margin_right = 374.0
 margin_bottom = 29.0
-text = "Installed:"
+text = "lbl_installed_sound"
 align = 1
 
 [node name="InstalledList" type="ItemList" parent="Main/Tabs/Soundpacks/HBox/Installed" groups=["disable_during_soundpack_operations"]]
@@ -476,23 +476,23 @@ same_column_width = true
 script = ExtResource( 17 )
 
 [node name="ShowStock" type="CheckBox" parent="Main/Tabs/Soundpacks/HBox/Installed" groups=["disable_during_soundpack_operations"]]
-margin_left = 127.0
+margin_left = 102.0
 margin_top = 241.0
-margin_right = 246.0
+margin_right = 272.0
 margin_bottom = 270.0
-hint_tooltip = "Show soundpacks from data/sound on the list."
+hint_tooltip = "tooltip_stock_sound"
 size_flags_horizontal = 4
-text = "Show stock"
+text = "cbtn_stock_sound"
 
 [node name="BtnDelete" type="Button" parent="Main/Tabs/Soundpacks/HBox/Installed" groups=["disable_during_soundpack_operations"]]
-margin_left = 119.0
+margin_left = 110.0
 margin_top = 276.0
-margin_right = 254.0
+margin_right = 263.0
 margin_bottom = 305.0
-hint_tooltip = "Remove the selected soundpack from your game installation."
+hint_tooltip = "tooltip_delete_sound"
 size_flags_horizontal = 4
 disabled = true
-text = "Delete Selected"
+text = "btn_delete_sound"
 
 [node name="VSeparator" type="VSeparator" parent="Main/Tabs/Soundpacks/HBox"]
 margin_left = 380.0
@@ -508,7 +508,7 @@ size_flags_horizontal = 3
 [node name="Label" type="Label" parent="Main/Tabs/Soundpacks/HBox/Downloadable"]
 margin_right = 375.0
 margin_bottom = 29.0
-text = "Downloadable:"
+text = "lbl_avail_sound"
 align = 1
 
 [node name="AvailableList" type="ItemList" parent="Main/Tabs/Soundpacks/HBox/Downloadable" groups=["disable_during_soundpack_operations"]]
@@ -522,32 +522,30 @@ same_column_width = true
 script = ExtResource( 17 )
 
 [node name="BtnInstall" type="Button" parent="Main/Tabs/Soundpacks/HBox/Downloadable" groups=["disable_during_soundpack_operations"]]
-margin_left = 122.0
+margin_left = 112.0
 margin_top = 241.0
-margin_right = 253.0
+margin_right = 263.0
 margin_bottom = 270.0
-hint_tooltip = "Download the selected soundpack and add it
-to your game installation."
+hint_tooltip = "tooltip_install_sound"
 size_flags_horizontal = 4
 disabled = true
-text = "Install Selected"
+text = "btn_install_sound"
 
 [node name="ConfirmDelete" type="ConfirmationDialog" parent="Main/Tabs/Soundpacks"]
 margin_top = 385.0
 margin_right = 769.0
 margin_bottom = 507.0
 rect_min_size = Vector2( 300, 105 )
-window_title = "Confirm Soundpack Deletion"
-dialog_text = "Deleting soundpack"
+window_title = "dlg_sound_deletion_title"
+dialog_text = "dlg_sound_deletion_text"
 dialog_autowrap = true
 
 [node name="ConfirmManualDownload" type="ConfirmationDialog" parent="Main/Tabs/Soundpacks"]
 margin_right = 300.0
 margin_bottom = 122.0
 rect_min_size = Vector2( 300, 105 )
-dialog_text = "This soundpack cannot be downloaded automatically.
-Click OK to download it in your browser, then choose
-where you saved it in the file selection dialog."
+window_title = "dlg_sound_manual_dl_title"
+dialog_text = "dlg_sound_manual_dl_text"
 
 [node name="InstallFromFileDialog" type="FileDialog" parent="Main/Tabs/Soundpacks"]
 margin_right = 593.0
@@ -1279,7 +1277,7 @@ size_flags_horizontal = 4
 text = "Test translation retrieval"
 
 [node name="Log" type="RichTextLabel" parent="Main"]
-margin_top = 629.0
+margin_top = 454.0
 margin_right = 784.0
 margin_bottom = 984.0
 focus_mode = 2

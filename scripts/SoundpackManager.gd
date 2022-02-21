@@ -64,7 +64,7 @@ onready var _workdir = OS.get_executable_path().get_base_dir()
 func parse_sound_dir(sound_dir: String) -> Array:
 	
 	if not Directory.new().dir_exists(sound_dir):
-		emit_signal("status_message", "Sound directory does not exist: %s" \
+		emit_signal("status_message", tr("msg_no_sound_dir") \
 				% sound_dir, Enums.MSG_ERROR)
 		return []
 	
@@ -117,13 +117,13 @@ func delete_pack(name: String) -> void:
 	for pack in get_installed():
 		if pack["name"] == name:
 			emit_signal("soundpack_deletion_started")
-			emit_signal("status_message", "Deleting %s" % pack["location"])
+			emit_signal("status_message", tr("msg_deleting_sound") % pack["location"])
 			_fshelper.rm_dir(pack["location"])
 			yield(_fshelper, "rm_dir_done")
 			emit_signal("soundpack_deletion_finished")
 			return
 			
-	emit_signal("status_message", "Could not find soundpack named \"%s\"" % name, Enums.MSG_ERROR)
+	emit_signal("status_message", tr("msg_soundpack_not_found") % name, Enums.MSG_ERROR)
 
 
 func install_pack(soundpack_index: int, from_file = null, reinstall = false, keep_archive = false) -> void:
@@ -137,9 +137,9 @@ func install_pack(soundpack_index: int, from_file = null, reinstall = false, kee
 	emit_signal("soundpack_installation_started")
 	
 	if reinstall:
-		emit_signal("status_message", "Reinstalling soundpack \"%s\"..." % pack["name"])
+		emit_signal("status_message", tr("msg_reinstalling_sound") % pack["name"])
 	else:
-		emit_signal("status_message", "Installing soundpack \"%s\"..." % pack["name"])
+		emit_signal("status_message", tr("msg_installing_sound") % pack["name"])
 	
 	if from_file:
 		archive = from_file
@@ -148,7 +148,7 @@ func install_pack(soundpack_index: int, from_file = null, reinstall = false, kee
 		yield(_downloader, "download_finished")
 		archive = _workdir + "/" + pack["filename"]
 		if not Directory.new().file_exists(archive):
-			emit_signal("status_message", "Could not download soundpack archive.", Enums.MSG_ERROR)
+			emit_signal("status_message", tr("msg_sound_download_failed"), Enums.MSG_ERROR)
 			emit_signal("soundpack_installation_finished")
 			return
 		
