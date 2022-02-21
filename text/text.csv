@@ -106,3 +106,95 @@ where you saved it in the file selection dialog.","Этот саундпак н�
 "msg_reinstalling_sound","Reinstalling soundpack \""%s\""…","Переустановка саундпака \""%s\""..."
 "msg_sound_download_failed","Could not download soundpack archive.","Не удалось скачать архив с саундпаком."
 "msg_sound_installed","Soundpack installed.","Саундпак установлен."
+,,
+" ==== FONTS TAB ====",,
+,,
+"lbl_avail_fonts","Available:","Доступные шрифты:"
+"lbl_font_preview","Preview:","Предпросмотр:"
+"cbtn_preview_cyrillics","Preview Cyrillic characters","Предпросмотр символов кириллицы"
+"lbl_other_settings","Other settings","Другие настройки"
+"lbl_font_sz_ui","UI font size:","Размер шрифта UI:"
+"lbl_font_sz_map","Map font size:","Размер шрифта мира:"
+"lbl_font_sz_overmap","Overmap font size:","Размер шрифта карты:"
+"cbtn_font_blending","Font blending:","Сглаживание шрифтов"
+"btn_save_font","Save","Сохранить"
+"btn_set_font_ui","Set for Game UI","Уст. для UI"
+"btn_set_font_map","Set for Map","Уст. для мира"
+"btn_set_font_omap","Set for Overmap","Уст. для карты"
+"btn_set_font_all","Set for All","Уст. для всего"
+"btn_reset_font","Reset All Fonts","Сбросить все шрифты"
+,,
+"tooltip_preview_cyrillics","Show a pangram in Russian.","Показывать панграмму на русском языке."
+"tooltip_font_sz_ui","Font size value for menus/dialogs/etc.
+Font width and height will be set automatically.","Размер шрифта для меню, диалогов и т.п.
+Высота и ширина шрифта будут установлены автоматически."
+"tooltip_font_sz_map","Font size for game world (when not using tiles).
+Font width and height will be set automatically.","Размер шрифта для игрового мира
+(когда не используются графические тайлы).
+Высота и ширина шрифта будут установлены автоматически."
+"tooltip_font_sz_overmap","Font size for world map view a.k.a overmap.
+Font width and height will be set automatically.","Размер шрифта для карты мира.
+Высота и ширина шрифта будут установлены автоматически."
+"tooltip_font_blending","Smoother font rendering.","Отрисовка шрифтов со сглаживанием."
+"tooltip_save_font","Click to save these settings to options.json.
+They are also saved automatically when
+setting a font.","Нажмите, чтобы записать эти настройки
+в options.json игры. Они также сохраняются
+автоматически, когда вы выбираете шрифт."
+"tooltip_set_font_ui","Use selected font for menus/dialogs/etc.","Использовать выбранный шрифт для меню, диалогов и т.п."
+"tooltip_set_font_map","Use selected font for game world
+(when not using tiles).","Использовать выбранный шрифт для игрового мира
+(только когда не используются графические тайлы)."
+"tooltip_set_font_omap","Use selected font for world map view a.k.a overmap.","Использовать выбранный шрифт для карты мира (overmap)."
+"tooltip_set_font_all","Use selected font for everyhting.","Использовать выбранный шрифт для всего в игре."
+"tooltip_reset_font","Return default fonts (Terminus => Unifont).","Вернуть шрифты по умолчанию (Terminus => Unifont)."
+,,
+"str_curr_font_config","Current fonts + fallbacks:","Текущие шрифты + резервные варианты:"
+"str_curr_font_config_ui","UI","Интерфейс"
+"str_curr_font_config_map","Map","Игровой мир"
+"str_curr_font_config_omap","Overmap","Карта мира"
+,,
+"dlg_font_config_help","As you've probably already noticed, you can set a separate font for game UI, map and overmap. Additionally, each of these three fonts in Cataclysm has three size parameters that define how it is drawn. They can be set in the game under [i]Settings > Graphics > Font Settings[/i].
+
+IMG_1
+
+[b]Font Height[/b] and [b]Font Width[/b] define the pixel size of the rectangle reserved for each character. If this rectangle is too small, the letters will be clipped. If it is too large, they will be far apart and appear undersized.
+
+IMG_2
+
+[b]Font Size[/b] is the actual size at which font glyphs will always be rendered, whether they fit into reserved space or not.
+
+For the default Cataclysm fonts, [i]Terminus[/i] and [i]Unifont[/i], these values have a very simple relationship: Font Height should be the same as Font Size, and Font Width should be half that for UI, and equal to Height for everything else (so that tiles are square).
+
+These ratios also work for many 3rd party fonts one may decide to use, but for some fonts a bit of tinkering is required to figure out a good-looking combination of font height, width and size.
+
+Fortunately, Catapult already knows good size ratios for the fonts it offers, so you only need to specify the desired [b]Font Size[/b], and it will calculate and apply the other two values automatically. They are also applied when you set a custom font in the left pane without changing the size.
+
+It is also recommended to turn on [b]Font Blending[/b] for smoother font rendering.
+
+
+","Как вы, наверное, уже заметили, вы можете установить размер шрифта отдельно для интерфейса, мира и карты. Дополнительно, каждый из этих трёх шрифтов в Катаклизме имеет три параметра, определяющие, как он отрисовывается. В игре их можно задать через [i]Настройки > Графика > Настройки шрифта[/i].
+
+IMG_1
+
+[b]Высота шрифта[/b] и [b]Ширина шрифта[/b] отвечают за размер прямоугольной области (в пикселях), отводимой каждому символу. Если этот прямоугольник будет слишком маленьким, буквы будут обрезаны. Если он будет слишком большим, буквы будут слишком далеко друг от друга.
+
+IMG_2
+
+Параметр [b]Размер шрифта[/b] — это истинный размер, с которым всегда будут отрисовываться символы шрифта, умещаются они в отведенное простанство или нет.
+
+Для стандартных шрифтов Катаклизма, [i]Terminus[/i] и [i]Unifont[/i], эти параметры имеют очень простую взаимосвязь: Высота шрифта должна быть равна Размеру, а ширина – половине Размера для интерфейса и равной Размеру для всего остального (чтобы тайлы были квадратными).
+
+Эти соотношения также работают и для многих сторонних шрифтов, но с некоторыми приходится изрядно поковыряться, чтобы подобрать хорошую комбинацию высоты, ширины и размера.
+
+К счастью, Catapult уже знает хорошие соотношения размеров для шрифтов, которые в нем предлагаются, так что вам нужно указать только желаемый [b]Размер шрифта[/b], и он посчитает и применит оставшиеся два параметра автоматически. Они также применяются, когда вы выбираете новый шрифт в панели слева, не меняя размер.
+
+Также рекомендуем включить [b]Сглаживане шрифтов[/b] для улучшенной отрисовки.
+
+
+"
+,,
+"msg_no_font_config_file","Can't manage fonts at this time: font config file does not exist. Make sure you've started the game at least once to create it.","Сейчас нельзя управлять шрифтами, т.к. отсутствует файл конфигурации шрифтов игры. Запустите игру хотя бы раз, чтобы он создался."
+"msg_setting_ui_font","Setting [i]%s[/i] as game UI font.","[i]%s[/i] устанавливается в качестве шрифта для интерфейса игры."
+"msg_setting_map_font","Setting [i]%s[/i] as map font.","[i]%s[/i] устанавливается в качестве шрифта для игрового мира."
+"msg_setting_omap_font","Setting [i]%s[/i] as overmap font.","[i]%s[/i] устанавливается в качестве шрифта для карты мира."

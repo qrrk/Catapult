@@ -18,7 +18,7 @@ func _set_scale(new_scale: float) -> void:
 
 func _apply_scale() -> void:
 	
-	OS.set_window_size(Vector2(600, 800) * scale)
+	OS.set_window_size(Vector2(650, 800) * scale)
 	$"/root/Catapult".call_deferred("apply_ui_scale")
 
 

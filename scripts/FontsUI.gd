@@ -94,8 +94,11 @@ func _make_preview_string(cyrillic: bool = false) -> String:
 func _show_current_config_info() -> void:
 	
 	var config: Dictionary = _fonts.font_config
-	var fields := {"typeface": "UI", "map_typeface": "Map", "overmap_typeface": "Overmap"}
-	var text := "[u]Current fonts + fallbacks:[/u]\n[table=2]"
+	var fields := {
+		"typeface": tr("str_curr_font_config_ui"),
+		"map_typeface": tr("str_curr_font_config_map"),
+		"overmap_typeface": tr("str_curr_font_config_omap")}
+	var text := "[u]%s[/u]\n[table=2]" % tr("str_curr_font_config")
 	
 	for field in fields:
 		var list: Array = config[field]
@@ -129,12 +132,12 @@ func _on_Tabs_tab_changed(tab: int) -> void:
 		return
 	
 	if not _fonts.font_config_file_exists():
-		emit_signal("status_message", "Can't manage fonts at this time: font config file does not exist. Make sure you've started the game at least once to create it.", Enums.MSG_WARN)
+		emit_signal("status_message", tr("msg_no_font_config_file"), Enums.MSG_WARN)
 		_tabs.current_tab = 0
 		return
 	
 	if not _fonts.options_file_exists():
-		emit_signal("status_message", "Can't manage fonts at this time: options file does not exist. Make sure you've started the game at least once to create it.", Enums.MSG_WARN)
+		emit_signal("status_message", tr("msg_no_font_config_file"), Enums.MSG_WARN)
 		_tabs.current_tab = 0
 		return
 		
@@ -178,11 +181,11 @@ func _on_BtnSetFontX_pressed(ui: bool, map: bool, overmap: bool) -> void:
 	var name = _fonts.available_fonts[index]["name"]
 	
 	if ui:
-		emit_signal("status_message", "Setting [i]%s[/i] as game UI font." % name)
+		emit_signal("status_message", tr("msg_setting_ui_font") % name)
 	if map:
-		emit_signal("status_message", "Setting [i]%s[/i] as map font." % name)
+		emit_signal("status_message", tr("msg_setting_map_font") % name)
 	if overmap:
-		emit_signal("status_message", "Setting [i]%s[/i] as overmap font." % name)
+		emit_signal("status_message", tr("msg_setting_omap_font") % name)
 	
 	_fonts.set_font(index, ui, map, overmap)
 	_on_BtnSaveFontOptions_pressed()

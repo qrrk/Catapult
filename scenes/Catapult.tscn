@@ -126,7 +126,7 @@ margin_bottom = 91.0
 [node name="Tabs" type="TabContainer" parent="Main" groups=["disable_during_backup_operations", "disable_during_mod_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases", "disable_while_installing_game"]]
 margin_top = 97.0
 margin_right = 784.0
-margin_bottom = 448.0
+margin_bottom = 675.0
 tab_align = 0
 script = ExtResource( 16 )
 
@@ -441,6 +441,7 @@ margin_right = 97.5
 margin_bottom = 95.34
 
 [node name="Soundpacks" type="VBoxContainer" parent="Main/Tabs"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -559,7 +560,6 @@ current_dir = "/mnt/data/Godot/Catapult/Project"
 current_path = "/mnt/data/Godot/Catapult/Project/"
 
 [node name="Fonts" type="VBoxContainer" parent="Main/Tabs"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -573,22 +573,22 @@ margin_right = 769.0
 margin_bottom = 432.0
 
 [node name="RightPane" type="VBoxContainer" parent="Main/Tabs/Fonts/FontSelection"]
-margin_right = 299.0
+margin_right = 322.0
 margin_bottom = 432.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 
 [node name="Label" type="Label" parent="Main/Tabs/Fonts/FontSelection/RightPane"]
-margin_left = 108.0
-margin_right = 191.0
+margin_left = 102.0
+margin_right = 219.0
 margin_bottom = 29.0
 size_flags_horizontal = 4
-text = "Available:"
+text = "lbl_avail_fonts"
 align = 1
 
 [node name="FontsList" type="ItemList" parent="Main/Tabs/Fonts/FontSelection/RightPane"]
 margin_top = 35.0
-margin_right = 299.0
+margin_right = 322.0
 margin_bottom = 285.0
 rect_min_size = Vector2( 0, 250 )
 size_flags_stretch_ratio = 2.0
@@ -597,62 +597,60 @@ allow_reselect = true
 
 [node name="Buttons" type="VBoxContainer" parent="Main/Tabs/Fonts/FontSelection/RightPane"]
 margin_top = 312.0
-margin_right = 299.0
+margin_right = 322.0
 margin_bottom = 411.0
 size_flags_vertical = 6
 
 [node name="Grid" type="GridContainer" parent="Main/Tabs/Fonts/FontSelection/RightPane/Buttons"]
-margin_left = 23.0
-margin_right = 276.0
+margin_right = 322.0
 margin_bottom = 64.0
 size_flags_horizontal = 4
 columns = 2
 
 [node name="BtnSetFontUI" type="Button" parent="Main/Tabs/Fonts/FontSelection/RightPane/Buttons/Grid"]
-margin_right = 142.0
+margin_right = 163.0
 margin_bottom = 29.0
-hint_tooltip = "Use selected font for menus/dialogs/etc."
-text = "Set for Game UI"
+hint_tooltip = "tooltip_set_font_ui"
+text = "btn_set_font_ui"
 
 [node name="BtnSetFontMap" type="Button" parent="Main/Tabs/Fonts/FontSelection/RightPane/Buttons/Grid"]
-margin_left = 148.0
-margin_right = 253.0
+margin_left = 169.0
+margin_right = 322.0
 margin_bottom = 29.0
-hint_tooltip = "Use selected font for game world
-(when not using tiles)."
-text = "Set for Map"
+hint_tooltip = "tooltip_set_font_map"
+text = "btn_set_font_map"
 
 [node name="BtnSetFontOvermap" type="Button" parent="Main/Tabs/Fonts/FontSelection/RightPane/Buttons/Grid"]
 margin_top = 35.0
-margin_right = 142.0
+margin_right = 163.0
 margin_bottom = 64.0
-hint_tooltip = "Use selected font for world map view a.k.a overmap."
-text = "Set for Overmap"
+hint_tooltip = "tooltip_set_font_omap"
+text = "btn_set_font_omap"
 
 [node name="BtnSetFontAll" type="Button" parent="Main/Tabs/Fonts/FontSelection/RightPane/Buttons/Grid"]
-margin_left = 148.0
+margin_left = 169.0
 margin_top = 35.0
-margin_right = 253.0
+margin_right = 322.0
 margin_bottom = 64.0
-hint_tooltip = "Use selected font for everyhting."
-text = "Set for All"
+hint_tooltip = "tooltip_set_font_all"
+text = "btn_set_font_all"
 
 [node name="BtnResetFont" type="Button" parent="Main/Tabs/Fonts/FontSelection/RightPane/Buttons"]
-margin_left = 85.0
+margin_left = 97.0
 margin_top = 70.0
-margin_right = 213.0
+margin_right = 225.0
 margin_bottom = 99.0
-hint_tooltip = "Return default fonts (Terminus => Unifont)."
+hint_tooltip = "tooltip_reset_font"
 size_flags_horizontal = 4
-text = "Reset All Fonts"
+text = "btn_reset_font"
 
 [node name="VSeparator" type="VSeparator" parent="Main/Tabs/Fonts/FontSelection"]
-margin_left = 305.0
-margin_right = 313.0
+margin_left = 328.0
+margin_right = 336.0
 margin_bottom = 432.0
 
 [node name="LeftPane" type="VBoxContainer" parent="Main/Tabs/Fonts/FontSelection"]
-margin_left = 319.0
+margin_left = 342.0
 margin_right = 769.0
 margin_bottom = 432.0
 size_flags_horizontal = 3
@@ -660,63 +658,61 @@ size_flags_stretch_ratio = 3.0
 custom_constants/separation = 4
 
 [node name="Label" type="Label" parent="Main/Tabs/Fonts/FontSelection/LeftPane"]
-margin_left = 187.0
-margin_right = 262.0
+margin_left = 146.0
+margin_right = 280.0
 margin_bottom = 29.0
 size_flags_horizontal = 4
-text = "Preview:"
+text = "lbl_font_preview"
 align = 1
 
 [node name="Preview" type="RichTextLabel" parent="Main/Tabs/Fonts/FontSelection/LeftPane"]
 margin_top = 33.0
-margin_right = 450.0
+margin_right = 427.0
 margin_bottom = 193.0
 rect_min_size = Vector2( 0, 160 )
 custom_constants/line_separation = -2
 bbcode_enabled = true
-bbcode_text = "This text is for font preview."
-text = "This text is for font preview."
 
 [node name="PreviewCyrillic" type="CheckBox" parent="Main/Tabs/Fonts/FontSelection/LeftPane"]
-margin_left = 109.0
+margin_left = 115.0
 margin_top = 197.0
-margin_right = 340.0
+margin_right = 311.0
 margin_bottom = 226.0
-hint_tooltip = "Show a pangram in Russian."
+hint_tooltip = "tooltip_preview_cyrillics"
 size_flags_horizontal = 4
-text = "Preview Cyrillic characters"
+text = "cbtn_preview_cyrillics"
 
 [node name="HSeparator" type="HSeparator" parent="Main/Tabs/Fonts/FontSelection/LeftPane"]
 margin_top = 230.0
-margin_right = 450.0
+margin_right = 427.0
 margin_bottom = 230.0
 custom_constants/separation = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Main/Tabs/Fonts/FontSelection/LeftPane"]
 margin_top = 234.0
-margin_right = 450.0
+margin_right = 427.0
 margin_bottom = 234.0
 custom_constants/separation = 0
 
 [node name="OtherSettings" type="HBoxContainer" parent="Main/Tabs/Fonts/FontSelection/LeftPane"]
-margin_left = 152.0
+margin_left = 127.0
 margin_top = 238.0
-margin_right = 298.0
+margin_right = 299.0
 margin_bottom = 267.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="Label" type="Label" parent="Main/Tabs/Fonts/FontSelection/LeftPane/OtherSettings"]
-margin_right = 120.0
+margin_right = 146.0
 margin_bottom = 29.0
 size_flags_horizontal = 4
-text = "Other settings"
+text = "lbl_other_settings"
 align = 1
 
 [node name="HelpIcon" parent="Main/Tabs/Fonts/FontSelection/LeftPane/OtherSettings" instance=ExtResource( 26 )]
-margin_left = 126.0
+margin_left = 152.0
 margin_top = 4.0
-margin_right = 146.0
+margin_right = 172.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 20, 20 )
 hint_tooltip = "View detailed description of these settings."
@@ -724,20 +720,19 @@ texture_normal = ExtResource( 30 )
 
 [node name="FontSizeUI" type="HBoxContainer" parent="Main/Tabs/Fonts/FontSelection/LeftPane"]
 margin_top = 271.0
-margin_right = 450.0
+margin_right = 427.0
 margin_bottom = 300.0
-hint_tooltip = "Font size value for menus/dialogs/etc.
-Font width and height will be set automatically."
+hint_tooltip = "tooltip_font_sz_ui"
 size_flags_vertical = 6
 
 [node name="Label" type="Label" parent="Main/Tabs/Fonts/FontSelection/LeftPane/FontSizeUI"]
-margin_right = 99.0
+margin_right = 111.0
 margin_bottom = 29.0
-text = "UI font size:"
+text = "lbl_font_sz_ui"
 
 [node name="sbFontSizeUI" type="SpinBox" parent="Main/Tabs/Fonts/FontSelection/LeftPane/FontSizeUI"]
-margin_left = 320.0
-margin_right = 450.0
+margin_left = 297.0
+margin_right = 427.0
 margin_bottom = 29.0
 size_flags_horizontal = 10
 min_value = 8.0
@@ -746,20 +741,20 @@ value = 8.0
 
 [node name="FontSizeMap" type="HBoxContainer" parent="Main/Tabs/Fonts/FontSelection/LeftPane"]
 margin_top = 304.0
-margin_right = 450.0
+margin_right = 427.0
 margin_bottom = 333.0
-hint_tooltip = "Font size for game world (when not using tiles).
-Font width and height will be set automatically."
+hint_tooltip = "tooltip_font_sz_map"
 size_flags_vertical = 6
 
 [node name="Label" type="Label" parent="Main/Tabs/Fonts/FontSelection/LeftPane/FontSizeMap"]
-margin_right = 116.0
+margin_right = 131.0
 margin_bottom = 29.0
-text = "Map font size:"
+hint_tooltip = "tooltip_font_sz_map"
+text = "lbl_font_sz_map"
 
 [node name="sbFontSizeMap" type="SpinBox" parent="Main/Tabs/Fonts/FontSelection/LeftPane/FontSizeMap"]
-margin_left = 320.0
-margin_right = 450.0
+margin_left = 297.0
+margin_right = 427.0
 margin_bottom = 29.0
 size_flags_horizontal = 10
 min_value = 8.0
@@ -768,20 +763,20 @@ value = 8.0
 
 [node name="FontSizeOvermap" type="HBoxContainer" parent="Main/Tabs/Fonts/FontSelection/LeftPane"]
 margin_top = 337.0
-margin_right = 450.0
+margin_right = 427.0
 margin_bottom = 366.0
-hint_tooltip = "Font size for world map view a.k.a overmap.
-Font width and height will be set automatically."
+hint_tooltip = "tooltip_font_sz_overmap"
 size_flags_vertical = 6
 
 [node name="Label" type="Label" parent="Main/Tabs/Fonts/FontSelection/LeftPane/FontSizeOvermap"]
-margin_right = 153.0
+margin_right = 165.0
 margin_bottom = 29.0
-text = "Overmap font size:"
+hint_tooltip = "tooltip_font_sz_overmap"
+text = "lbl_font_sz_overmap"
 
 [node name="sbFontSizeOM" type="SpinBox" parent="Main/Tabs/Fonts/FontSelection/LeftPane/FontSizeOvermap"]
-margin_left = 320.0
-margin_right = 450.0
+margin_left = 297.0
+margin_right = 427.0
 margin_bottom = 29.0
 size_flags_horizontal = 10
 min_value = 8.0
@@ -790,21 +785,19 @@ value = 8.0
 
 [node name="FontBlending" type="CheckButton" parent="Main/Tabs/Fonts/FontSelection/LeftPane"]
 margin_top = 370.0
-margin_right = 450.0
+margin_right = 427.0
 margin_bottom = 399.0
-hint_tooltip = "Smoother font rendering."
-text = "Font blending"
+hint_tooltip = "tooltip_font_blending"
+text = "cbtn_font_blending"
 
 [node name="BtnSaveFontOptions" type="Button" parent="Main/Tabs/Fonts/FontSelection/LeftPane"]
-margin_left = 198.0
+margin_left = 152.0
 margin_top = 403.0
-margin_right = 251.0
+margin_right = 275.0
 margin_bottom = 432.0
-hint_tooltip = "Click to save these settings to options.json.
-They are also saved automatically when
-setting a font."
+hint_tooltip = "tooltip_save_font"
 size_flags_horizontal = 4
-text = "Save"
+text = "btn_save_font"
 
 [node name="HSeparator" type="HSeparator" parent="Main/Tabs/Fonts"]
 margin_top = 438.0
@@ -1277,7 +1270,7 @@ size_flags_horizontal = 4
 text = "Test translation retrieval"
 
 [node name="Log" type="RichTextLabel" parent="Main"]
-margin_top = 454.0
+margin_top = 681.0
 margin_right = 784.0
 margin_bottom = 984.0
 focus_mode = 2
