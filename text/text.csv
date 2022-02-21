@@ -39,3 +39,31 @@ are managed separately and can co-exist).","Установить выбранн�
 раздельно и могут устанавливаться одновременно)."
 "tooltip_game_dir","Open game directory.","Открыть папку с игрой."
 "tooltip_play","Launch the game.","Запустить игру."
+,,
+"lbl_installed_mods","Installed%s:","Установленные%s:"
+"str_installed_mods_hidden"," (%s hidden)"," (%s скрыто)"
+"lbl_mod_repo","Local repository%s:","Локальный репозиторий%s:"
+"str_mod_repo_hidden"," (%s hidden)"," (%s скрыто)"
+"cbtn_stock_mods","Show stock","Показать встроенные"
+"btn_delete_mods","Delete Selected","Удалить выбранные"
+"cbtn_installed_mods","Show already installed","Показать уже установленные"
+"btn_add_sel_mods","Add Selected","Добавить выбранные"
+"btn_add_all_mods","All Add","Добавить все"
+"btn_get_kenan_pack","Get Kenan Modpack","Загрузить модпак Кенана"
+"lbl_mod_info","Select a mod in either list to see its details here.","Выберите мод в одном из списков, чтобы увидеть здесь информацию по нему."
+"str_mod_name","Name:","Название:"
+"str_mod_authors","Authors:","Авторы:"
+"str_mod_maintainers","Maintainers:","Сопровождение:"
+"str_mod_category","Category:","Категория:"
+"str_mod_description","Description:","Описание:"
+,,
+"tooltip_mod_location","Location: %s","Расположение: %s"
+"tooltip_stock_mods","Show mods from data/mods on this list.","Показать в этом списке моды из data/mods."
+"tooltip_installed_mods","Show already installed mods on this list
+in case you want to re-install them.","Показать в этом списке уже установленные моды
+(например, чтобы выбрать их для переустановки)."
+"tooltip_delete_mods","Remove selected mods from your game installation.","Удалить выбранные моды из текущей установки игры."
+"tooltip_add_sel_mods","Add selected mods to your game installation.","Добавить выбранные моды к текущей установке игры."
+"tooltip_add_all_mods","Add all listed mods to your game installation.","Добавить все показанные моды к текущей установке игры."
+"tooltip_get_kenan_pack","Download Kenan Modpack and add its mods to the local repository.","Загрузить подборку модов от Кенана и добавить
+моды из неё в локальный репозиторий."

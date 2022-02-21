@@ -126,11 +126,12 @@ margin_bottom = 91.0
 [node name="Tabs" type="TabContainer" parent="Main" groups=["disable_during_backup_operations", "disable_during_mod_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases", "disable_while_installing_game"]]
 margin_top = 97.0
 margin_right = 784.0
-margin_bottom = 418.0
+margin_bottom = 623.0
 tab_align = 0
 script = ExtResource( 16 )
 
 [node name="Game" type="VBoxContainer" parent="Main/Tabs"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -280,7 +281,6 @@ margin_bottom = 275.0
 [node name="ChangelogDialog" parent="Main/Tabs/Game" instance=ExtResource( 32 )]
 
 [node name="Mods" type="VBoxContainer" parent="Main/Tabs"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -301,7 +301,7 @@ size_flags_horizontal = 3
 [node name="Label" type="Label" parent="Main/Tabs/Mods/HBox/Installed"]
 margin_right = 374.0
 margin_bottom = 29.0
-text = "Installed:"
+text = "lbl_installed_mods"
 align = 1
 
 [node name="InstalledList" type="ItemList" parent="Main/Tabs/Mods/HBox/Installed" groups=["disable_during_mod_operations"]]
@@ -317,23 +317,23 @@ same_column_width = true
 script = ExtResource( 17 )
 
 [node name="ShowStock" type="CheckBox" parent="Main/Tabs/Mods/HBox/Installed" groups=["disable_during_mod_operations"]]
-margin_left = 127.0
+margin_left = 104.0
 margin_top = 241.0
-margin_right = 246.0
+margin_right = 269.0
 margin_bottom = 270.0
-hint_tooltip = "Show mods from data/mods on this list."
+hint_tooltip = "tooltip_stock_mods"
 size_flags_horizontal = 4
-text = "Show stock"
+text = "cbtn_stock_mods"
 
 [node name="BtnDelete" type="Button" parent="Main/Tabs/Mods/HBox/Installed" groups=["disable_during_mod_operations"]]
-margin_left = 119.0
+margin_left = 113.0
 margin_top = 276.0
-margin_right = 254.0
+margin_right = 261.0
 margin_bottom = 305.0
-hint_tooltip = "Remove selected mods from your game installation."
+hint_tooltip = "tooltip_delete_mods"
 size_flags_horizontal = 4
 disabled = true
-text = "Delete Selected"
+text = "btn_delete_mods"
 
 [node name="VSeparator" type="VSeparator" parent="Main/Tabs/Mods/HBox"]
 margin_left = 380.0
@@ -349,7 +349,7 @@ size_flags_horizontal = 3
 [node name="Label" type="Label" parent="Main/Tabs/Mods/HBox/Available"]
 margin_right = 375.0
 margin_bottom = 29.0
-text = "Local repository:"
+text = "lbl_mod_repo"
 align = 1
 
 [node name="AvailableList" type="ItemList" parent="Main/Tabs/Mods/HBox/Available" groups=["disable_during_mod_operations"]]
@@ -365,14 +365,13 @@ same_column_width = true
 script = ExtResource( 17 )
 
 [node name="ShowInstalled" type="CheckBox" parent="Main/Tabs/Mods/HBox/Available" groups=["disable_during_mod_operations"]]
-margin_left = 86.0
+margin_left = 93.0
 margin_top = 241.0
-margin_right = 289.0
+margin_right = 282.0
 margin_bottom = 270.0
-hint_tooltip = "Show already installed mods on this list
-in case you want to re-install them."
+hint_tooltip = "tooltip_installed_mods"
 size_flags_horizontal = 4
-text = "Show already installed"
+text = "cbtn_installed_mods"
 
 [node name="VBox" type="HBoxContainer" parent="Main/Tabs/Mods/HBox/Available"]
 margin_top = 276.0
@@ -381,28 +380,28 @@ margin_bottom = 305.0
 alignment = 1
 
 [node name="BtnAddSelectedMod" type="Button" parent="Main/Tabs/Mods/HBox/Available/VBox" groups=["disable_during_mod_operations"]]
-margin_left = 91.0
-margin_right = 207.0
+margin_left = 28.0
+margin_right = 186.0
 margin_bottom = 29.0
-hint_tooltip = "Add selected mods to your game installation."
+hint_tooltip = "tooltip_add_sel_mods"
 size_flags_horizontal = 4
-text = "Add Selected"
+text = "btn_add_sel_mods"
 
 [node name="BtnAddAllMods" type="Button" parent="Main/Tabs/Mods/HBox/Available/VBox" groups=["disable_during_mod_operations"]]
-margin_left = 213.0
-margin_right = 283.0
+margin_left = 192.0
+margin_right = 346.0
 margin_bottom = 29.0
-hint_tooltip = "Add all listed mods to your game installation."
-text = "Add All"
+hint_tooltip = "tooltip_add_all_mods"
+text = "btn_add_all_mods"
 
 [node name="BtnDownloadKenan" type="Button" parent="Main/Tabs/Mods/HBox/Available" groups=["disable_during_mod_operations"]]
 margin_left = 102.0
 margin_top = 311.0
 margin_right = 272.0
 margin_bottom = 340.0
-hint_tooltip = "Download Kenan Modpack and add its mods to the local repository."
+hint_tooltip = "tooltip_get_kenan_pack"
 size_flags_horizontal = 4
-text = "Get Kenan Modpack"
+text = "btn_get_kenan_pack"
 
 [node name="HSeparator" type="HSeparator" parent="Main/Tabs/Mods"]
 margin_top = 346.0
@@ -1280,7 +1279,7 @@ size_flags_horizontal = 4
 text = "Test translation retrieval"
 
 [node name="Log" type="RichTextLabel" parent="Main"]
-margin_top = 424.0
+margin_top = 629.0
 margin_right = 784.0
 margin_bottom = 984.0
 focus_mode = 2

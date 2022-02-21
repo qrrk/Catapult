@@ -37,7 +37,7 @@ func _populate_list_with_mods(mods_array: Array, list: ItemList) -> void:
 	for mod in mods_array:
 		list.add_item(mod["name"])
 		if "location" in mod:
-			var tooltip = "Location: " + mod["location"]
+			var tooltip = tr("tooltip_mod_location") % mod["location"]
 			list.set_item_tooltip(list.get_item_count() - 1, tooltip)
 
 
@@ -85,8 +85,8 @@ func reload_installed() -> void:
 	
 	var hidden_str = ""
 	if hidden_mods > 0:
-		hidden_str = " (%s hidden)" % hidden_mods
-	_lbl_installed.text = "Installed%s:" % hidden_str
+		hidden_str = tr("str_installed_mods_hidden") % hidden_mods
+	_lbl_installed.text = tr("lbl_installed_mods") % hidden_str
 	
 	for i in len(_installed_mods_view):
 		var id = _installed_mods_view[i]["id"]
@@ -124,8 +124,8 @@ func reload_available() -> void:
 	
 	var hidden_str = ""
 	if hidden_mods > 0:
-		hidden_str = " (%s hidden)" % hidden_mods
-	_lbl_repo.text = "Local repository%s:" % hidden_str
+		hidden_str = tr("str_mod_repo_hidden") % hidden_mods
+	_lbl_repo.text = tr("lbl_mod_repo") % hidden_str
 	_btn_add.disabled = true
 	
 	_populate_list_with_mods(_available_mods_view, _available_list)
@@ -168,7 +168,7 @@ func _make_mod_info_string(mod: Dictionary) -> String:
 	
 	var result = ""
 	var modinfo = mod["modinfo"]
-	result += "[u]Name:[/u] %s" % modinfo["name"]
+	result += "[u]%s[/u] %s" % [tr("str_mod_name") ,modinfo["name"]]
 	
 	if "id" in modinfo:
 		result += " ([u]ID:[/u] %s)" % modinfo["id"]
@@ -176,16 +176,16 @@ func _make_mod_info_string(mod: Dictionary) -> String:
 	result += "\n"
 	
 	if "authors" in modinfo:
-		result += "[u]Authors:[/u] %s\n" % _array_to_text_list(modinfo["authors"])
+		result += "[u]%s[/u] %s\n" % [tr("str_mod_authors"), _array_to_text_list(modinfo["authors"])]
 		
 	if "maintainers" in modinfo:
-		result += "[u]Maintainers:[/u] %s\n" % _array_to_text_list(modinfo["maintainers"])
+		result += "[u]%s[/u] %s\n" % [tr("str_mod_maintainers"), _array_to_text_list(modinfo["maintainers"])]
 		
 	if "category" in modinfo:
-		result += "[u]Category:[/u] %s\n" % modinfo["category"]
+		result += "[u]%s[/u] %s\n" % [tr("str_mod_category"), modinfo["category"]]
 	
 	if "description" in modinfo:
-		result += "[u]Description:[/u] %s\n" % modinfo["description"]
+		result += "[u]%s[/u] %s\n" % [tr("str_mod_description"), modinfo["description"]]
 	
 	result = result.rstrip("\n")
 	return result
@@ -210,7 +210,7 @@ func _on_Tabs_tab_changed(tab: int) -> void:
 	
 	_cbox_show_stock.pressed = _settings.read("show_stock_mods")
 	_cbox_show_installed.pressed = _settings.read("show_installed_mods_in_available")
-	_lbl_mod_info.bbcode_text = "Select a mod in either list to see its details here."
+	_lbl_mod_info.bbcode_text = tr("lbl_mod_info")
 	_btn_delete.disabled = true
 	_btn_add.disabled = true
 	
