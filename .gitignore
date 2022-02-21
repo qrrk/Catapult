@@ -2,6 +2,8 @@
 export_presets.cfg
 Catapult.x86_64
 Catapult.exe
+*.translation
+*~lock*
 
 # Godot Git plugin
 /bin

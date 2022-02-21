@@ -71,6 +71,11 @@ singletons=[  ]
 
 theme/use_hidpi=true
 
+[locale]
+
+translations=PoolStringArray( "res://text/text.en.translation", "res://text/text.ru.translation" )
+locale_filter=[ 1, [ "en", "ru" ] ]
+
 [physics]
 
 common/enable_pause_aware_picking=true

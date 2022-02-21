@@ -40,6 +40,11 @@ var _ui_staring_sizes = {}  # For UI scaling on the fly
 
 func _ready() -> void:
 	
+	var sys_locale := TranslationServer.get_locale().substr(0, 2)
+	if sys_locale in TranslationServer.get_loaded_locales():
+		_settings.store("launcher_locale", sys_locale)
+	TranslationServer.set_locale(_settings.read("launcher_locale"))
+	
 	OS.set_window_title("Catapult — a launcher for Cataclysm: DDA and BN")
 	_log.text = ""
 	

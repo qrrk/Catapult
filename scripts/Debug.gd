@@ -121,3 +121,15 @@ func _on_Button7_pressed() -> void:
 			msg += "\n%s: %s" % [name, _path.get(name)]
 	
 	emit_signal("status_message", msg, Enums.MSG_DEBUG)
+
+
+func _on_Button8_pressed() -> void:
+	
+	var locales = TranslationServer.get_loaded_locales()
+	var curr_locale = TranslationServer.get_locale()
+	emit_signal("status_message", "Loaded locales: " + str(locales), Enums.MSG_DEBUG)
+	emit_signal("status_message", "Current locale: " + curr_locale, Enums.MSG_DEBUG)
+	for locale in locales:
+		TranslationServer.set_locale(locale)
+		emit_signal("status_message", tr("debug_test"), Enums.MSG_DEBUG)
+	TranslationServer.set_locale(curr_locale)

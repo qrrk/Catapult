@@ -1,0 +1,4 @@
+keys,en,ru
+btn_play,Play,Играть
+lbl_currently_installed,Currently installed:,Сейчас установлено:
+debug_test,This is a debug text to test translation retrieval.,Это отладочный текст для проверки извлечения переводов.
