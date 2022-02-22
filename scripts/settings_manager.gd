@@ -53,7 +53,7 @@ func _load() -> void:
 		
 	else:
 		_current = _HARDCODED_DEFAULTS
-		emit_signal("status_message", "Creating settings file %s." % _SETTINGS_FILENAME)
+		emit_signal("status_message", tr("msg_creating_settings") % _SETTINGS_FILENAME)
 		_write_to_file(_HARDCODED_DEFAULTS, _settings_file)
 
 
@@ -62,17 +62,17 @@ func _read_from_file(path: String) -> Dictionary:
 	var f = File.new()
 	
 	if not f.file_exists(path):
-		emit_signal("status_message", "Attempted to load settings from nonexistent file " + path, Enums.MSG_ERROR)
+		emit_signal("status_message", tr("msg_nonexistent_attempt") % path, Enums.MSG_ERROR)
 		return {}
 		
-	emit_signal("status_message", "Loading settings from %s." % _SETTINGS_FILENAME)
+	emit_signal("status_message", tr("msg_loading_settings") % _SETTINGS_FILENAME)
 		
 	f.open(path, File.READ)
 	var s = f.get_as_text()
 	var result: JSONParseResult = JSON.parse(s)
 	
 	if result.error:
-		emit_signal("status_message", "Error parsing settings from JSON, line %s, message: %s" %
+		emit_signal("status_message", tr("msg_settings_parse_error") %
 				[result.error_line, result.error_string], Enums.MSG_ERROR)
 		return {}
 	else:
@@ -97,7 +97,7 @@ func read(setting_name: String):
 		if setting_name in _HARDCODED_DEFAULTS:
 			_current[setting_name] = _HARDCODED_DEFAULTS[setting_name]
 		else:
-			emit_signal("status_message", "Attempted to read nonexistent setting \"%s\"" \
+			emit_signal("status_message", tr("msg_nonexisting_setting") \
 					% setting_name, Enums.MSG_ERROR)
 			return null
 	

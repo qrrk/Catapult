@@ -369,3 +369,11 @@ into the new game version when updating.","Выберите, какие игро
 "msg_backup_not_found","Backup \""%s\"" not found.","Бэкап \""%s\"" не найден."
 "msg_deleting_backup","Deleting backup \""%s\""...","Удаление бэкапа \""%s\""..."
 "msg_backup_deleted","Backup deleted.","Бэкап удалён."
+,,
+" ==== SETTINGS MANAGER ====",,
+,,
+"msg_creating_settings","Creating settings file %s.","Создается файл настроек %s."
+"msg_nonexistent_attempt","Attempted to load settings from nonexistent file %s","Совершена попытка загрузить настройки из несуществующего файла %s"
+"msg_loading_settings","Loading settings from %s.","Загрузка настроек из %s."
+"msg_settings_parse_error","Error parsing settings from JSON, line %s, message: %s","Произошла ошибка при парсинге настроек из JSON, строка %s, сообщение: %s"
+"msg_nonexisting_setting","Attempted to read nonexistent setting \""%s\""","Совершена попытка прочитать несуществующую настройку \""%s\"""
