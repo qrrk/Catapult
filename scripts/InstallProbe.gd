@@ -24,7 +24,7 @@ func create_info_file(location: String, name: String) -> void:
 		f.store_string(JSON.print(info, "    "))
 		f.close()
 	else:
-		emit_signal("status_message", "Could not create install info file %s" % path, Enums.MSG_ERROR)
+		emit_signal("status_message", tr("msg_cannot_create_install_info") % path, Enums.MSG_ERROR)
 
 
 func _load_json(path: String) -> Dictionary:
@@ -37,7 +37,7 @@ func _load_json(path: String) -> Dictionary:
 	f.close()
 	
 	if result.error:
-		emit_signal("status_message", "Could not parse install info file %s" % path, Enums.MSG_ERROR)
+		emit_signal("status_message", tr("msg_cannot_parse_install_info") % path, Enums.MSG_ERROR)
 		return {}
 	
 	return result.result

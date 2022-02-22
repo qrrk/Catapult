@@ -19,9 +19,9 @@ func install_release(release_info: Dictionary, game: String, update: bool = fals
 	emit_signal("installation_started")
 	
 	if update:
-		emit_signal("status_message", "Updating to %s..." % release_info["name"])
+		emit_signal("status_message", tr("msg_updating_game") % release_info["name"])
 	else:
-		emit_signal("status_message", "Installing %s..." % release_info["name"])
+		emit_signal("status_message", tr("msg_installing_game") % release_info["name"])
 	
 	var gamedir = _workdir + "/" + game + "/current"
 	var tmpdir = _workdir + "/" + game + "/tmp"
@@ -57,61 +57,61 @@ func install_release(release_info: Dictionary, game: String, update: bool = fals
 			yield(_fshelper, "move_dir_done")
 			
 			if update:
-				emit_signal("status_message", "Update finished.")
+				emit_signal("status_message", tr("msg_game_updated"))
 			else:
-				emit_signal("status_message", "Installation finished.")
+				emit_signal("status_message", tr("msg_game_installed"))
 	
 	emit_signal("installation_finished")
 
 
 func _migrate_game_data(from_dir: String, to_dir: String) -> void:
 
-	emit_signal("status_message", "Migrating game data. This may take a while.")
+	emit_signal("status_message", tr("msg_migrating_game_data"))
 	
 	var datatypes = _settings.read("game_data_to_migrate")
 	
 	if "savegames" in datatypes:
-		emit_signal("status_message", "Copying savegames...")
+		emit_signal("status_message", tr("msg_migrating_saves"))
 		_fshelper.copy_dir(from_dir + "/save", to_dir)
 		yield(_fshelper, "copy_dir_done")
 		
 	if "settings" in datatypes:
-		emit_signal("status_message", "Copying game settings...")
+		emit_signal("status_message", tr("msg_migrating_config"))
 		_fshelper.copy_dir(from_dir + "/config", to_dir)
 		yield(_fshelper, "copy_dir_done")
 		
 	if "mods" in datatypes:
-		emit_signal("status_message", "Copying mods...")
+		emit_signal("status_message", tr("msg_migrating_mods"))
 		_fshelper.copy_dir(from_dir + "/mods", to_dir)
 		yield(_fshelper, "copy_dir_done")
 		
 	if "fonts" in datatypes:
-		emit_signal("status_message", "Copying user fonts...")
+		emit_signal("status_message", tr("msg_migrating_fonts"))
 		_fshelper.copy_dir(from_dir + "/font", to_dir)
 		yield(_fshelper, "copy_dir_done")
 		
 	if "tilesets" in datatypes:
-		emit_signal("status_message", "Copying tilesets...")
+		emit_signal("status_message", tr("msg_migrating_gfx"))
 		_fshelper.copy_dir(from_dir + "/gfx", to_dir)
 		yield(_fshelper, "copy_dir_done")
 		
 	if "soundpacks" in datatypes:
-		emit_signal("status_message", "Copying soundpacks...")
+		emit_signal("status_message", tr("msg_migrating_sound"))
 		_fshelper.copy_dir(from_dir + "/sound", to_dir)
 		yield(_fshelper, "copy_dir_done")
 		
 	if "templates" in datatypes:
-		emit_signal("status_message", "Copying character templates...")
+		emit_signal("status_message", tr("msg_migrating_templates"))
 		_fshelper.copy_dir(from_dir + "/templates", to_dir)
 		yield(_fshelper, "copy_dir_done")
 		
 	if "memorial" in datatypes:
-		emit_signal("status_message", "Copying memorial...")
+		emit_signal("status_message", tr("msg_migrating_memorial"))
 		_fshelper.copy_dir(from_dir + "/memorial", to_dir)
 		yield(_fshelper, "copy_dir_done")
 		
 	if "graveyard" in datatypes:
-		emit_signal("status_message", "Copying graveyard...")
+		emit_signal("status_message", tr("msg_migrating_graveyard"))
 		_fshelper.copy_dir(from_dir + "/graveyard", to_dir)
 		yield(_fshelper, "copy_dir_done")
 	

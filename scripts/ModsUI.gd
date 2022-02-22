@@ -332,9 +332,9 @@ func _on_BtnAddSelectedMod_pressed() -> void:
 			_mods_to_install.append(id)
 
 	if num_stock == 1:
-		emit_signal("status_message", "One mod already comes with the game, so it will not be installed.")
+		emit_signal("status_message", tr("msg_mod_install_one_mod_skipped"))
 	elif num_stock > 1:
-		emit_signal("status_message", "%s mods already come with the game, so they will not be installed." % num_stock)
+		emit_signal("status_message", tr("msg_mod_install_n_mods_skipped") % num_stock)
 
 	_ids_to_install = []	# What to install from scratch.
 	_ids_to_delete = []		# What to delete before reinstalling.

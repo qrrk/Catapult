@@ -410,3 +410,25 @@ into the new game version when updating.","Выберите, какие игро
 "msg_extract_error","Archive extraction command exited with an error (exit code: %s)","Команда распаковки архива завершилась с ошибкой (код возврата: %s)"
 "msg_extract_failed_cmd","Failed command: %s","Неудавшаяся команда: %s"
 "msg_extract_fail_output","Output: %s","Вывод команды: %s"
+,,
+" ==== INSTALL PROBE ====",,
+,,
+"msg_cannot_create_install_info","Could not create install info file %s","Не удалось создать файл с информацией об установке %s"
+"msg_cannot_parse_install_info","Could not parse install info file %s","Не удалось разобрать информацию об установке в %s"
+,,
+" ==== RELEASE INSTALLER ====",,
+,,
+"msg_updating_game","Updating to %s…","Обновление до %s…"
+"msg_installing_game","Installing %s…","Установка %s…"
+"msg_game_updated","Update finished.","Обновление завершено."
+"msg_game_installed","Installation finished.","Установка завершена."
+"msg_migrating_game_data","Migrating game data. This may take a while.","Перенос игровых данных. Это может занять некоторое время."
+"msg_migrating_saves","Copying savegames...","Копирование сохранений…"
+"msg_migrating_config","Copying game settings...","Копирование настроек игры…"
+"msg_migrating_mods","Copying mods...","Копирование модов…"
+"msg_migrating_fonts","Copying user fonts...","Копирование пользовательских шрифтов…"
+"msg_migrating_gfx","Copying tilesets...","Копирование тайлсетов…"
+"msg_migrating_sound","Copying soundpacks...","Копирование звуков…"
+"msg_migrating_templates","Copying character templates...","Копирование шаблонов персонажей…"
+"msg_migrating_memorial","Copying memorial...","Копирование мемориала…"
+"msg_migrating_graveyard","Copying graveyard...","Копирование кладбища…"
