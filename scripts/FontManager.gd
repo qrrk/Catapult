@@ -31,8 +31,7 @@ func get_game_option(name: String):
 		if item["name"] == name:
 			return item["value"]
 	
-	emit_signal("status_message", "Tried to get game option \"%s\", but it wasn't found."
-			% name, Enums.MSG_ERROR)
+	emit_signal("status_message", tr("msg_game_option_not_found_get") % name, Enums.MSG_ERROR)
 
 
 func set_game_option(name: String, value: String):
@@ -42,8 +41,7 @@ func set_game_option(name: String, value: String):
 			item["value"] = value
 			return
 	
-	emit_signal("status_message", "Tried to set game option \"%s\", but it wasn't found."
-			% name, Enums.MSG_ERROR)
+	emit_signal("status_message", tr("msg_game_option_not_found_set") % name, Enums.MSG_ERROR)
 
 
 func load_available_fonts() -> void:
@@ -52,14 +50,14 @@ func load_available_fonts() -> void:
 	var error := f.open("res://fonts/ingame/font_info.json", File.READ)
 	
 	if error:
-		emit_signal("status_message", "Failed to open bundled font info.", Enums.MSG_ERROR)
+		emit_signal("status_message", tr("msg_failed_to_open_font_info"), Enums.MSG_ERROR)
 		return
 	
 	var json_result := JSON.parse(f.get_as_text())
 	
 	if json_result.error:
-		emit_signal("status_message", "Could not parse bundled font info.", Enums.MSG_ERROR)
-		emit_signal("status_message", "Error code: %s. Error line: %s. Error message: %s"
+		emit_signal("status_message", tr("msg_could_not_parse_font_info"), Enums.MSG_ERROR)
+		emit_signal("status_message", tr("msg_font_info_error_details")
 				% [json_result.error, json_result.error_line, json_result.error_string], Enums.MSG_DEBUG)
 		return
 		
@@ -88,14 +86,13 @@ func load_font_config() -> void:
 			if parse_result.error == 0:
 				result = parse_result.result
 			else:
-				emit_signal("status_message", "Could not parse font config file %s." % config_file, Enums.MSG_ERROR)
-				emit_signal("status_message", "Error code: %s. Error line: %s. Error message: %s"
+				emit_signal("status_message", tr("msg_could_not_parse_font_config") % config_file, Enums.MSG_ERROR)
+				emit_signal("status_message", tr("msg_font_config_error_details")
 						% [parse_result.error, parse_result.error_line, parse_result.error_string], Enums.MSG_DEBUG)
 		else:
-			emit_signal("status_message", "Could not open font config file %s (error code: %s)."
-					% [config_file, err], Enums.MSG_ERROR)
+			emit_signal("status_message", tr("msg_failed_to_open_font_config") % [config_file, err], Enums.MSG_ERROR)
 	else:
-		emit_signal("status_message", "Font config file %s is not found!" % config_file, Enums.MSG_ERROR)
+		emit_signal("status_message", tr("msg_font_config_not_found") % config_file, Enums.MSG_ERROR)
 	
 	font_config = result
 
@@ -121,14 +118,13 @@ func load_game_options() -> void:
 			if parse_result.error == 0:
 				_game_options = parse_result.result
 			else:
-				emit_signal("status_message", "Could not parse game options file %s." % options_file, Enums.MSG_ERROR)
-				emit_signal("status_message", "Error code: %s. Error line: %s. Error message: %s"
+				emit_signal("status_message", tr("msg_could_not_parse_game_options") % options_file, Enums.MSG_ERROR)
+				emit_signal("status_message", tr("msg_game_options_error_details")
 						% [parse_result.error, parse_result.error_line, parse_result.error_string], Enums.MSG_DEBUG)
 		else:
-			emit_signal("status_message", "Could not open game options file %s (error code: %s)."
-					% [options_file, err], Enums.MSG_ERROR)
+			emit_signal("status_message", tr("msg_could_not_open_game_options") % [options_file, err], Enums.MSG_ERROR)
 	else:
-		emit_signal("status_message", "Game options file %s is not found!" % options_file, Enums.MSG_ERROR)
+		emit_signal("status_message", tr("msg_game_options_not_found") % options_file, Enums.MSG_ERROR)
 
 
 func _write_font_config() -> void:
@@ -143,8 +139,7 @@ func _write_font_config() -> void:
 		f.store_string(json)
 		f.close()
 	else:
-		emit_signal("status_message", "Could not open font config file %s for writing."
-				% config_file, Enums.MSG_ERROR)
+		emit_signal("status_message", tr("msg_font_config_not_writable") % config_file, Enums.MSG_ERROR)
 
 
 func write_game_options() -> void:
@@ -158,10 +153,9 @@ func write_game_options() -> void:
 		var json = JSON.print(_game_options, "    ")
 		f.store_string(json)
 		f.close()
-		emit_signal("status_message", "Saved game options to [i]options.json[/i].")
+		emit_signal("status_message", tr("msg_game_options_saved"))
 	else:
-		emit_signal("status_message", "Could not open game options file %s for writing."
-				% options_file, Enums.MSG_ERROR)
+		emit_signal("status_message", tr("msg_game_options_not_writable") % options_file, Enums.MSG_ERROR)
 
 
 func _install_font(font_index: int) -> bool:
@@ -174,10 +168,8 @@ func _install_font(font_index: int) -> bool:
 	var err = d.copy(source, dest)
 	
 	if err:
-		emit_signal("status_message", "Could not install font file %s (error code: %s)."
-				% [font_file, err], Enums.MSG_ERROR)
-		emit_signal("status_message", "Font source: %s. Destination: %s."
-				% [source, dest], Enums.MSG_DEBUG)
+		emit_signal("status_message", tr("msg_could_not_install_font") % [font_file, err], Enums.MSG_ERROR)
+		emit_signal("status_message", tr("msg_font_install_details") % [source, dest], Enums.MSG_DEBUG)
 		return false
 	else:
 		return true
@@ -186,8 +178,7 @@ func _install_font(font_index: int) -> bool:
 func set_font(font_index: int, ui: bool, map: bool, overmap: bool) -> void:
 	
 	if (font_index < 0) or (font_index >= len(available_fonts)):
-		emit_signal("status_message", "set_font was passed invalid font index %s."
-				% font_index, Enums.MSG_ERROR)
+		emit_signal("status_message", tr("msg_invalid_font_index_passed") % font_index, Enums.MSG_ERROR)
 		return
 		
 	if not _install_font(font_index):
@@ -208,8 +199,7 @@ func set_font(font_index: int, ui: bool, map: bool, overmap: bool) -> void:
 			else:
 				font_config[field][0] = available_fonts[font_index]["file"]
 		else:
-			emit_signal("status_message", "Font config does not have field \"%s\"."
-					% field, Enums.MSG_ERROR)
+			emit_signal("status_message", tr("msg_font_config_field_missing") % field, Enums.MSG_ERROR)
 	
 	_write_font_config()
 

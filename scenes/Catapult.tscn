@@ -126,11 +126,12 @@ margin_bottom = 91.0
 [node name="Tabs" type="TabContainer" parent="Main" groups=["disable_during_backup_operations", "disable_during_mod_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases", "disable_while_installing_game"]]
 margin_top = 97.0
 margin_right = 784.0
-margin_bottom = 418.0
+margin_bottom = 675.0
 tab_align = 0
 script = ExtResource( 16 )
 
 [node name="Game" type="VBoxContainer" parent="Main/Tabs"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -559,7 +560,6 @@ current_dir = "/mnt/data/Godot/Catapult/Project"
 current_path = "/mnt/data/Godot/Catapult/Project/"
 
 [node name="Fonts" type="VBoxContainer" parent="Main/Tabs"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -1249,7 +1249,7 @@ size_flags_horizontal = 4
 text = "Test translation retrieval"
 
 [node name="Log" type="RichTextLabel" parent="Main"]
-margin_top = 424.0
+margin_top = 681.0
 margin_right = 784.0
 margin_bottom = 984.0
 focus_mode = 2

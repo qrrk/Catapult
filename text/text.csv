@@ -118,13 +118,6 @@ where you saved it in the file selection dialog.","Этот саундпак н�
 вернитесь сюда и укажите, куда вы сохранили файл."
 ,,
 "str_no_sound_desc","No description provided.","У этого пака нет описания."
-"msg_no_sound_dir","Sound directory does not exist: %s","Отсутствует директория со звуками игры: %s"
-"msg_deleting_sound","Deleting %s","Удаляется %s"
-"msg_soundpack_not_found","Could not find soundpack named \""%s\""","Не удалось найти саундпак под названием \""%s\"""
-"msg_installing_sound","Installing soundpack \""%s\""...","Установка саундпака \""%s\""..."
-"msg_reinstalling_sound","Reinstalling soundpack \""%s\""…","Переустановка саундпака \""%s\""..."
-"msg_sound_download_failed","Could not download soundpack archive.","Не удалось скачать архив с саундпаком."
-"msg_sound_installed","Soundpack installed.","Саундпак установлен."
 ,,
 " ==== FONTS TAB ====",,
 ,,
@@ -328,3 +321,36 @@ into the new game version when updating.","Выберите, какие игро
 "dlg_mod_reinstall_title","Confirm Mod Reinstall","Подтвердите переустановку модов"
 "dlg_mod_reinstall_text_single","One of the selected mods is already installed.\nDelete and reinstall it?","Один из выбранных модов уже установлен.\nУдалить его и установить заново?"
 "dlg_mod_reinstall_text_multiple","%s of the selected mods are already installed.\nDelete and reinstall them?","%s из выбранных модов уже установлены.\nУдалить их и установить заново?"
+,,
+" ==== SOUNDPACK MANAGER ====",,
+,,
+"msg_no_sound_dir","Sound directory does not exist: %s","Отсутствует директория со звуками игры: %s"
+"msg_deleting_sound","Deleting %s","Удаляется %s"
+"msg_soundpack_not_found","Could not find soundpack named \""%s\""","Не удалось найти саундпак под названием \""%s\"""
+"msg_installing_sound","Installing soundpack \""%s\""...","Установка саундпака \""%s\""..."
+"msg_reinstalling_sound","Reinstalling soundpack \""%s\""…","Переустановка саундпака \""%s\""..."
+"msg_sound_download_failed","Could not download soundpack archive.","Не удалось скачать архив с саундпаком."
+"msg_sound_installed","Soundpack installed.","Саундпак установлен."
+,,
+" ==== FONT MANAGER ====",,
+,,
+"msg_game_option_not_found_get","Tried to get game option \""%s\"", but it wasn't found.","Нужно было прочитать параметр игры \""%s\"", но его не удалось найти."
+"msg_game_option_not_found_set","Tried to set game option \""%s\"", but it wasn't found.","Нужно было изменить параметр игры \""%s\"", но его не удалось найти."
+"msg_failed_to_open_font_info","Failed to open bundled font info.","Не удалось открыть информацию об идущих с лончером шрифтах."
+"msg_could_not_parse_font_info","Could not parse bundled font info.","Не удалось разобрать информацию об идущих с лончером шрифтах."
+"msg_font_info_error_details","Error code: %s. Error line: %s. Error message: %s","Код ошибки: %s. Строка с ошибкой: %s. Сообщение: %s"
+"msg_could_not_parse_font_config","Could not parse font config file %s.","Не удалось разобрать файл конфигурации шрифтов %s."
+"msg_font_config_error_details","Error code: %s. Error line: %s. Error message: %s","Код ошибки: %s. Строка с ошибкой: %s. Сообщение: %s"
+"msg_failed_to_open_font_config","Could not open font config file %s (error code: %s).","Не удалось открыть файл конфигурации шрифтов %s (код ошибки: %s)."
+"msg_font_config_not_found","Font config file %s is not found!","Не найден файл конфигурации шрифтов %s!"
+"msg_could_not_parse_game_options","Could not parse game options file %s.","Не удалось разобрать файл настроек игры %s."
+"msg_game_options_error_details","Error code: %s. Error line: %s. Error message: %s","Код ошибки: %s. Строка с ошибкой: %s. Сообщение: %s"
+"msg_could_not_open_game_options","Could not open game options file %s (error code: %s).","Не удалось открыть файл настроек игры %s (код ошибки: %s)."
+"msg_game_options_not_found","Game options file %s is not found!","Не найден файл настроек игры %s!"
+"msg_font_config_not_writable","Could not open font config file %s for writing.","Не удалось открыть файл конфигурации шрифтов %s на запись."
+"msg_game_options_saved","Saved game options to [i]options.json[/i].","Настройки игры были сохранены в [i]options.json[/i]."
+"msg_game_options_not_writable","Could not open game options file %s for writing.","Не удалось открыть файл настроек игры %s на запись."
+"msg_could_not_install_font","Could not install font file %s (error code: %s).","Не удалось установить файл шрифта %s (код ошибки: %s)."
+"msg_font_install_details","Font source: %s. Destination: %s.","Исходное расположение шрифта: %s. Цель копирования: %s."
+"msg_invalid_font_index_passed","set_font was passed invalid font index %s.","В функцию set_font был передан недействительный индекс шрифта: %s."
+"msg_font_config_field_missing","Font config does not have field \""%s\"".","В конфигурации шрифтов отсутствует поле \""%s\""."

@@ -165,5 +165,5 @@ func install_pack(soundpack_index: int, from_file = null, reinstall = false, kee
 	_fshelper.rm_dir(tmp_dir)
 	yield(_fshelper, "rm_dir_done")
 	
-	emit_signal("status_message", "Soundpack installed.")
+	emit_signal("status_message", tr("msg_sound_installed"))
 	emit_signal("soundpack_installation_finished")
