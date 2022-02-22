@@ -86,6 +86,13 @@ in case you want to re-install them.","Показать в этом списке
 "tooltip_get_kenan_pack","Download Kenan Modpack and add its mods to the local repository.","Загрузить подборку модов от Кенана и добавить
 моды из неё в локальный репозиторий."
 ,,
+"msg_one_mod_is_stock","One of the selected mods is stock and cannot be deleted.","Один из выбранных модов является встроенным и не может быть удалён."
+"msg_n_mods_are_stock","%s of the selected mods are stock and cannot be deleted.","%s из выбранных модов являются встроенными и не могут быть удалены."
+"dlg_deleting_n_mods_title","Confirm Deletion","Подтвердите удаление"
+"dlg_deleting_n_mods_text","Deleting %s mods.","Будут удалены %s модов."
+"msg_mod_install_one_mod_skipped","One mod already comes with the game, so it will not be installed.","Один мод уже идет вместе с игрой, так что он не будет установлен."
+"msg_mod_install_n_mods_skipped","%s mods already come with the game, so they will not be installed.","%s модов уже идут вместе с игрой, так что они не будут установлены."
+,,
 " ==== SOUNDPACKS TAB ====",,
 ,,
 "lbl_installed_sound","Installed:","Установленные:"
@@ -299,3 +306,25 @@ is too low.)","Воспользуйтесь этой настройкой, ес�
 "tooltip_data_to_migrate","Choose which types of game data to carry over
 into the new game version when updating.","Выберите, какие игровые данные нужно переносить
 в новую версию при обновлении игры."
+,,
+" ==== MOD MANAGER ====",,
+,,
+"msg_mod_json_parsing_failed","Could not parse %s","Не удалось разобрать содержимое %s"
+"msg_mod_deleted","Deleted %s","Мод %s удалён."
+"msg_mod_not_found","Could not find mod with ID \""%s\""","Не удалось найти мод с ID \""%s\"""
+"msg_deleting_n_mods","Deleting %s mods…","Удаляем %s модов…"
+"msg_obsolete_mod_collision","There is already an obsoleted mod with ID %s. [i]%s[/i] will be installed with modified ID and name to avoid collisions.","Уже есть мод с ID %s, помеченный как устаревший. [i]%s[/i] будет установлен с изменённым ID и именем, чтобы избежать конфликтов."
+"msg_mod_installed","Installed %s","Мод %s установлен."
+"msg_installing_n_mods","Installing %s mods...","Устанавливаем %s модов…"
+"msg_getting_kenan_pack","Retrieving Kenan Modpack for %s...","Загрузка модпака Кенана для %s…"
+"msg_wiping_mod_repo","Wiping the repository...","Очистка репозитория…"
+"msg_unpacking_kenan_mods","Adding mods from the pack to repository...","Добавление модов из пака в репозиторий…"
+"msg_unpacking_archived_mods","Adding archived mods to repository…","Добавление архивных модов в репозиторий…"
+"msg_kenan_install_cleanup","Cleaning up...","Очистка временных файлов…"
+"msg_kenan_install_done","All finished.","Всё готово."
+,,
+" ==== MOD REINSTALL DIALOG ====",,
+,,
+"dlg_mod_reinstall_title","Confirm Mod Reinstall","Подтвердите переустановку модов"
+"dlg_mod_reinstall_text_single","One of the selected mods is already installed.\nDelete and reinstall it?","Один из выбранных модов уже установлен.\nУдалить его и установить заново?"
+"dlg_mod_reinstall_text_multiple","%s of the selected mods are already installed.\nDelete and reinstall them?","%s из выбранных модов уже установлены.\nУдалить их и установить заново?"

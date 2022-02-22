@@ -7,7 +7,7 @@ anchor_right = 1.0
 anchor_bottom = 0.268
 size_flags_horizontal = 3
 size_flags_vertical = 3
-window_title = "Confirm Mod Reinstall"
+window_title = "dlg_mod_reinstall_title"
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": true

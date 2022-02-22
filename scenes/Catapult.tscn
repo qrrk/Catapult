@@ -429,7 +429,7 @@ margin_top = 648.0
 margin_right = 769.0
 margin_bottom = 770.0
 rect_min_size = Vector2( 300, 105 )
-window_title = "Confirm Deletion"
+window_title = "dlg_deleting_n_mods_title"
 dialog_text = "(this text is assigned at runtime)"
 dialog_autowrap = true
 

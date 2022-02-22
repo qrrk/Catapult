@@ -291,13 +291,13 @@ func _on_BtnDelete_pressed() -> void:
 			skipped_mods += 1
 	
 	if skipped_mods == 1:
-		emit_signal("status_message", "One of the selected mods is stock and cannot be deleted.")
+		emit_signal("status_message", tr("msg_one_mod_is_stock"))
 	elif skipped_mods > 1:
-		emit_signal("status_message", "%s of the selected mods are stock and cannot be deleted." % skipped_mods)
+		emit_signal("status_message", tr("msg_n_mods_are_stock") % skipped_mods)
 	
 	var num = len(_mods_to_delete)
 	if num > 1:
-		_dlg_del_multiple.dialog_text = "Deleting %s mods." % num
+		_dlg_del_multiple.dialog_text = tr("dlg_deleting_n_mods_text") % num
 		_dlg_del_multiple.rect_min_size = get_tree().root.size * Vector2(0.4, 0.1)
 		_dlg_del_multiple.set_as_minsize()
 		_dlg_del_multiple.popup_centered()

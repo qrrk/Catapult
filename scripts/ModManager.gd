@@ -77,7 +77,7 @@ func parse_mods_dir(mods_dir: String) -> Dictionary:
 			f.open(modinfo, File.READ)
 			var json = JSON.parse(f.get_as_text())
 			if json.error != OK:
-				emit_signal("status_message", "Could not parse %s" % modinfo, Enums.MSG_ERROR)
+				emit_signal("status_message", tr("msg_mod_json_parsing_failed") % modinfo, Enums.MSG_ERROR)
 				continue
 			
 			var json_result = json.result
@@ -189,9 +189,9 @@ func _delete_mod(mod_id: String) -> void:
 		var mod = installed[mod_id]
 		_fshelper.rm_dir(mod["location"])
 		yield(_fshelper, "rm_dir_done")
-		emit_signal("status_message", "Deleted %s" % mod["modinfo"]["name"])
+		emit_signal("status_message", tr("msg_mod_deleted") % mod["modinfo"]["name"])
 	else:
-		emit_signal("status_message", "Could not find mod with ID \"%s\"" % mod_id, Enums.MSG_ERROR)
+		emit_signal("status_message", tr("msg_mod_not_found") % mod_id, Enums.MSG_ERROR)
 	
 	emit_signal("_done_deleting_mod")
 
@@ -202,7 +202,7 @@ func delete_mods(mod_ids: Array) -> void:
 		return
 	
 	if len(mod_ids) > 1:
-		emit_signal("status_message", "Deleting %s mods..." % len(mod_ids))
+		emit_signal("status_message", tr("msg_deleting_n_mods") % len(mod_ids))
 	
 	emit_signal("mod_deletion_started")
 	
@@ -231,8 +231,7 @@ func _install_mod(mod_id: String) -> void:
 		yield(_fshelper, "copy_dir_done")
 		
 		if (mod_id in installed) and (installed[mod_id]["is_obsolete"] == true):
-			emit_signal("status_message", "There is already an obsoleted mod with ID %s. [i]%s[/i] will be installed with modified ID and name to avoid collisions."
-					% [mod_id, mod["modinfo"]["name"]])
+			emit_signal("status_message", tr("msg_obsolete_mod_collision") % [mod_id, mod["modinfo"]["name"]])
 			var modinfo = mod["modinfo"].duplicate()
 			modinfo["id"] += "__"
 			modinfo["name"] += "*"
@@ -240,9 +239,9 @@ func _install_mod(mod_id: String) -> void:
 			f.open(mods_dir.plus_file(mod["location"].get_file()).plus_file("modinfo.json"), File.WRITE)
 			f.store_string(JSON.print(modinfo, "    "))
 					
-		emit_signal("status_message", "Installed %s" % mod["modinfo"]["name"])
+		emit_signal("status_message", tr("msg_mod_installed") % mod["modinfo"]["name"])
 	else:
-		emit_signal("status_message", "Could not find mod with ID \"%s\"" % mod_id, Enums.MSG_ERROR)
+		emit_signal("status_message", tr("msg_mod_not_found") % mod_id, Enums.MSG_ERROR)
 	
 	emit_signal("_done_installing_mod")
 
@@ -253,7 +252,7 @@ func install_mods(mod_ids: Array) -> void:
 		return
 	
 	if len(mod_ids) > 1:
-		emit_signal("status_message", "Installing %s mods..." % len(mod_ids))
+		emit_signal("status_message", tr("msg_installing_n_mods") % len(mod_ids))
 	
 	emit_signal("mod_installation_started")
 	
@@ -273,7 +272,7 @@ func retrieve_kenan_pack() -> void:
 	var _modrepo_dir = _workdir + "/" + game + "/mod_repo"
 	
 	emit_signal("modpack_retrieval_started")
-	emit_signal("status_message", "Retrieving Kenan Modpack for %s..." % game.to_upper())
+	emit_signal("status_message", tr("msg_getting_kenan_pack") % game.to_upper())
 	
 	_downloader.download_file(pack["url"], _workdir, pack["filename"])
 	yield(_downloader, "download_finished")
@@ -284,26 +283,26 @@ func retrieve_kenan_pack() -> void:
 		yield(_fshelper, "extract_done")
 		Directory.new().remove(archive)
 		
-		emit_signal("status_message", "Wiping the repository...")
+		emit_signal("status_message", tr("msg_wiping_mod_repo"))
 		if (Directory.new().dir_exists(_modrepo_dir)):
 			_fshelper.rm_dir(_modrepo_dir)
 			yield(_fshelper, "rm_dir_done")
 		
-		emit_signal("status_message", "Adding mods from the pack to repository...")
+		emit_signal("status_message", tr("msg_unpacking_kenan_mods"))
 		for int_path in pack["internal_paths"]:
 			_fshelper.move_dir(_tmp_dir + "/" + int_path, _modrepo_dir)
 			yield(_fshelper, "move_dir_done")
 		
 		if _settings.read("install_archived_mods"):
-			emit_signal("status_message", "Adding archived mods to repository...")
+			emit_signal("status_message", tr("msg_unpacking_archived_mods"))
 			_fshelper.move_dir(_tmp_dir + "/" + pack["archived_path"], _modrepo_dir)
 			yield(_fshelper, "move_dir_done")
 		
-		emit_signal("status_message", "Cleaning up...")
+		emit_signal("status_message", tr("msg_kenan_install_cleanup"))
 		_fshelper.rm_dir(_tmp_dir + "/" + pack["internal_paths"][0].split("/")[0])
 		yield(_fshelper, "rm_dir_done")
 		
-		emit_signal("status_message", "All finished.")
+		emit_signal("status_message", tr("msg_kenan_install_done"))
 	
 	refresh_available()
 	emit_signal("modpack_retrieval_finished")
