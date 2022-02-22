@@ -6,6 +6,10 @@
 "msg_unpacking_unzip","Unpacking unzip.exe…","Распаковываем unzip.exe…"
 "debug_test","This is a debug text to test translation retrieval.","Это отладочный текст для проверки извлечения переводов."
 ,,
+"tag_warning","warning","внимание"
+"tag_error","error ","ошибка"
+"tag_debug","debug","отладка"
+,,
 "lbl_game","Game:","Игра:"
 "desc_dda","[b]Cataclysm: Dark Days Ahead[/b] is a turn-based survival game set in a post-apocalyptic world. Scavenge, explore, craft, build, farm, repair and modify vehicles, install bionics, mutate, defend against [color=#009900]zombies[/color] and countless other monstrosities — all in a limitless, procedurally generated world!","[b]Cataclysm: Dark Days Ahead[/b] — это пошаговый симулятор выживания в пост-апокалипсисе. Находите или крафтите снаряжение, стройте базы, выращивайте еду, тюнингуйте транспорт, ставьте кибер-импланты, мутируйте, отбивайтесь от [color=#009900]зомби[/color] и кучи других монстров — и всё это в бесконечном, процедурно генерируемом мире!"
 "desc_bn","[b]Cataclysm: Bright Nights[/b]. Reject pedantry, embrace [color=#ff3300]!!fun!![/color]. This fork takes the game back to its sci-fi roguelike roots and reverts many controversial changes by the DDA team (pockets, proficiencies, freezing, and [color=#3b93f7][url=https://github.com/cataclysmbnteam/Cataclysm-BN/wiki/Changes-so-far]more[/url][/color]). Special attention is paid to combat, game balance and pacing.","[b]Cataclysm: Bright Nights[/b] — это форк, который возвращает игру к истокам и снова делает её sci-fi рогаликом, откатывая многие спорные нововведения, сделанные командой DDA (кармашки, умения, заморозку и [color=#3b93f7][url=https://github.com/cataclysmbnteam/Cataclysm-BN/wiki/Changes-so-far]многое другое[/url][/color]). Особое внимание уделяется боёвке, балансу и темпу игры, и конечно же [color=#ff3300]!!веселью!![/color]"

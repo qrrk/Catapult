@@ -151,17 +151,17 @@ func print_msg(msg: String, msg_type = Enums.MSG_INFO) -> void:
 		Enums.MSG_INFO:
 			bb_text += " " + msg
 		Enums.MSG_WARN:
-			text += " [warning] " + msg
-			bb_text += " [color=#ffd633][warning][/color] " + msg
+			text += " [%s] %s" % [tr("tag_warning"), msg]
+			bb_text += " [color=#ffd633][%s][/color] %s" % [tr("tag_warning"), msg]
 			push_warning(text)
 		Enums.MSG_ERROR:
-			text += " [error] " + msg
-			bb_text += " [color=#ff3333][error][/color] " + msg
+			text += " [%s] %s" % [tr("tag_error"), msg]
+			bb_text += " [color=#ff3333][%s][/color] %s" % [tr("tag_error"), msg]
 			push_error(text)
 		Enums.MSG_DEBUG:
 			if not _settings.read("debug_mode"):
 				return
-			bb_text += " [color=#999999][debug] %s[/color]" % msg
+			bb_text += " [color=#999999][%s] %s[/color]" % [tr("tag_debug"), msg]
 	
 	bb_text += "\n"
 	
