@@ -377,3 +377,17 @@ into the new game version when updating.","Выберите, какие игро
 "msg_loading_settings","Loading settings from %s.","Загрузка настроек из %s."
 "msg_settings_parse_error","Error parsing settings from JSON, line %s, message: %s","Произошла ошибка при парсинге настроек из JSON, строка %s, сообщение: %s"
 "msg_nonexisting_setting","Attempted to read nonexistent setting \""%s\""","Совершена попытка прочитать несуществующую настройку \""%s\"""
+,,
+" ==== DOWNLOAD MANAGER ====",,
+,,
+"unit_kb","KB","КБ"
+"unit_mb","MB","МБ"
+"unit_kbps","KB/s","КБ/с"
+"unit_mbps","MB/s","МБ/с"
+,,
+"msg_downloading_file","Downloading %s…","Загружается файл %s…"
+"msg_download_progress","Downloading:","Загрузка:"
+"str_dl_speed_at","at","на скорости"
+"msg_download_finished","Finished downloading %s.","Завершена загрузка %s."
+"msg_download_failed","Failed to download %s.","Не удалось загрузить %s."
+"msg_http_request_info","[b]HTTPRequest info:[/b]\n[u]Result:[/u] %s\n[u]Response code:[/u] %s\n[u]Headers:[/u] %s","[b]Информация от HTTPRequest:[/b]\n[u]Результат:[/u] %s\n[u]Код ответа:[/u] %s\n[u]Заголовки:[/u] %s"

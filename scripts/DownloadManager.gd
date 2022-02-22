@@ -7,8 +7,8 @@ signal download_finished
 
 # Give progress update after this time or this amount downloaded,
 # whichever comes first.
-const _PROGRESS_AFTER_MSECS = 2000
-const _PROGRESS_AFTER_BYTES = 1024 * 1024 * 5
+const _PROGRESS_AFTER_MSECS := 2000
+const _PROGRESS_AFTER_BYTES := 1024 * 1024 * 5
 
 var _current_filename: String = ""
 var _current_file_path: String = ""
@@ -19,7 +19,7 @@ onready var _http = $HTTPRequest
 
 func download_file(url: String, target_dir: String, target_filename: String) -> void:
 	
-	emit_signal("status_message", "Downloading %s..." % target_filename)
+	emit_signal("status_message", tr("msg_downloading_file") % target_filename)
 	emit_signal("download_started")
 	_current_filename = target_filename
 	_current_file_path = target_dir.plus_file(target_filename)
@@ -54,23 +54,23 @@ func _get_progress_string(downloaded: int, total: int,
 	
 	var amount_str = ""
 	if (downloaded > 1024*1024):
-		amount_str = "%.1f MB" % (downloaded / 1048576.0)
+		amount_str = "%.1f %s" % [(downloaded / 1048576.0), tr("unit_mb")]
 	else:
 		# warning-ignore:integer_division
-		amount_str = "%s KB" % (downloaded / 1024)
+		amount_str = "%s %s" % [(downloaded / 1024), tr("unit_kb")]
 		
 	var percent_str = ""
 	if total > 0:
 		percent_str = " (%.1f%%)" % ((float(downloaded) / total) * 100)
 		
-	var speed_str = " at "
+	var speed_str = " %s " % tr("str_dl_speed_at")
 	var speed_bps = delta_bytes / float(delta_time) * 1000.0
 	if speed_bps > 1048576.0:
-		speed_str += "%.1f MB/s" % (speed_bps / 1048576.0)
+		speed_str += "%.1f %s" % [(speed_bps / 1048576.0), tr("unit_mbps")]
 	else:
-		speed_str += "%d KB/s" % (speed_bps / 1024.0)
+		speed_str += "%d %s" % [(speed_bps / 1024.0), tr("unit_kbps")]
 		
-	var result = "Downloading: %s%s%s" % [amount_str, percent_str, speed_str]
+	var result = "%s %s%s%s" % [tr("msg_download_progress"), amount_str, percent_str, speed_str]
 	return result
 
 
@@ -78,13 +78,13 @@ func _on_HTTPRequest_request_completed(_result: int, _response_code: int,
 		_headers: PoolStringArray, _body: PoolByteArray) -> void:
 	
 	_download_ongoing = false
-	emit_signal("status_message", "[b]HTTPRequest info:[/b]\n[u]Result:[/u] %s\n[u]Response code:[/u] %s\n[u]Headers:[/u] %s" %
+	emit_signal("status_message", tr("msg_http_request_info") %
 			[_result, _response_code, _headers], Enums.MSG_DEBUG)
 			
 	if Directory.new().file_exists(_current_file_path):
-		emit_signal("status_message", "Finished downloading %s." % _current_filename)
+		emit_signal("status_message", tr("msg_download_finished") % _current_filename)
 	else:
-		emit_signal("status_message", "Failed to download %s." % _current_filename, Enums.MSG_ERROR)
+		emit_signal("status_message", tr("msg_download_failed") % _current_filename, Enums.MSG_ERROR)
 	
 	emit_signal("download_finished")
 
