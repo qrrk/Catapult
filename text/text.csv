@@ -391,3 +391,22 @@ into the new game version when updating.","Выберите, какие игро
 "msg_download_finished","Finished downloading %s.","Завершена загрузка %s."
 "msg_download_failed","Failed to download %s.","Не удалось загрузить %s."
 "msg_http_request_info","[b]HTTPRequest info:[/b]\n[u]Result:[/u] %s\n[u]Response code:[/u] %s\n[u]Headers:[/u] %s","[b]Информация от HTTPRequest:[/b]\n[u]Результат:[/u] %s\n[u]Код ответа:[/u] %s\n[u]Заголовки:[/u] %s"
+,,
+" ==== FILESYSTEM HELPER ====",,
+,,
+"msg_list_dir_failed","Failed to list directory %s. Error code: %s.","Не удалось получить листинг директории %s. Код ошибки: %s."
+"msg_cannot_create_target_dir","Could not create target directory %s. Error code: %s.","Не удалось создать папку назначения %s. Код ошибки: %s."
+"msg_copy_file_failed","Failed to copy file \""%s\"". Error code: %s.","Не удалось скопировать файл \""%s\"". Код ошибки: %s."
+"msg_copy_file_failed_details","[u]Source path:[/u] %s, [u]destination path:[/u] %s.","[u]Исходный путь:[/u] %s, [u]путь назначения:[/u] %s."
+"msg_remove_file_failed","Failed to remove file \""%s\"". Error code: %s.","Не удалось удалить файл \""%s\"". Код ошибки: %s."
+"msg_remove_file_failed_details","""[u]Full path:[/u] %s.""","[u]Полный путь:[/u] %s."
+"msg_rm_dir_failed","Failed to remove directory %s. Error code: %s.","Не удалось удалить директорию %s. Код ошибки: %s."
+"msg_create_dir_failed","Could not create target directory %s. Error code: %s.","Не удалось создать директорию назначения %s. Код ошибки: %s."
+"msg_move_file_failed","Failed to move file \""%s\"". Error code: %s.","Не удалось переместить файл \""%s\"". Код ошибки: %s."
+"msg_move_file_failed_details","[u]Source path:[/u] %s, [u]destination path:[/u] %s.","[u]Исходный путь:[/u] %s, [u]путь назначения:[/u] %s."
+"msg_move_rmdir_failed","Could not remove source directory %s. Error code: %s.","Не получилось удалить исходную директорию %s. Код ошибки: %s."
+"msg_extract_unsupported","Unsupported platform or archive format (file: %s)","Неподдерживаемая платформа или формат архива (файл: %s)"
+"msg_extracting_file","Extracting %s…","Распаковка %s…"
+"msg_extract_error","Archive extraction command exited with an error (exit code: %s)","Команда распаковки архива завершилась с ошибкой (код возврата: %s)"
+"msg_extract_failed_cmd","Failed command: %s","Неудавшаяся команда: %s"
+"msg_extract_fail_output","Output: %s","Вывод команды: %s"

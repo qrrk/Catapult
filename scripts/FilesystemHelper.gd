@@ -38,8 +38,7 @@ func list_dir(path: String, recursive := false) -> Array:
 	
 	var error = d.list_dir_begin(true)
 	if error:
-		emit_signal("status_message", "Failed to list directory %s. Error code: %s."
-				% [path, error], Enums.MSG_ERROR)
+		emit_signal("status_message", tr("msg_list_dir_failed") % [path, error], Enums.MSG_ERROR)
 		return []
 	
 	var result = []
@@ -68,7 +67,7 @@ func _copy_dir_internal(data: Array) -> void:
 	
 	var error = d.make_dir_recursive(dest_dir.plus_file(dir))
 	if error:
-		emit_signal("status_message", "Could not create target directory %s. Error code: %s."
+		emit_signal("status_message", tr("msg_cannot_create_target_dir")
 				% [dest_dir.plus_file(dir), error], Enums.MSG_ERROR)
 		return
 	
@@ -77,9 +76,9 @@ func _copy_dir_internal(data: Array) -> void:
 		if d.file_exists(path):
 			error = d.copy(path, dest_dir.plus_file(dir).plus_file(item))
 			if error:
-				emit_signal("status_message", "Failed to copy file \"%s\". Error code: %s."
+				emit_signal("status_message", tr("msg_copy_file_failed")
 						% [item, error], Enums.MSG_ERROR)
-				emit_signal("status_message", "[u]Source path:[/u] %s, [u]destination path:[/u] %s."
+				emit_signal("status_message", tr("msg_copy_file_failed_details")
 						% [path, dest_dir.plus_file(dir).plus_file(item)])
 		elif d.dir_exists(path):
 			_copy_dir_internal([path, dest_dir.plus_file(dir)])
@@ -106,16 +105,16 @@ func _rm_dir_internal(data: Array) -> void:
 		if d.file_exists(path):
 			error = d.remove(path)
 			if error:
-				emit_signal("status_message", "Failed to remove file \"%s\". Error code: %s."
+				emit_signal("status_message", tr("msg_remove_file_failed")
 						% [item, error], Enums.MSG_ERROR)
-				emit_signal("status_message", "[u]Full path:[/u] %s." % path, Enums.MSG_DEBUG)
+				emit_signal("status_message", tr("msg_remove_file_failed_details")
+						% path, Enums.MSG_DEBUG)
 		elif d.dir_exists(path):
 			_rm_dir_internal([path])
 	
 	error = d.remove(abs_path)
 	if error:
-		emit_signal("status_message", "Failed to remove directory %s. Error code: %s."
-				% [abs_path, error], Enums.MSG_ERROR)
+		emit_signal("status_message", tr("msg_rm_dir_failed") % [abs_path, error], Enums.MSG_ERROR)
 
 
 func rm_dir(abs_path: String) -> void:
@@ -136,8 +135,7 @@ func _move_dir_internal(data: Array) -> void:
 	var d = Directory.new()
 	var error = d.make_dir_recursive(abs_dest)
 	if error:
-		emit_signal("status_message", "Could not create target directory %s. Error code: %s."
-				% [abs_dest, error], Enums.MSG_ERROR)
+		emit_signal("status_message", tr("msg_create_dir_failed") % [abs_dest, error], Enums.MSG_ERROR)
 		return
 	
 	for item in list_dir(abs_path):
@@ -146,17 +144,14 @@ func _move_dir_internal(data: Array) -> void:
 		if d.file_exists(path):
 			error = d.rename(path, abs_dest.plus_file(item))
 			if error:
-				emit_signal("status_message", "Failed to move file \"%s\". Error code: %s."
-						% [item, error], Enums.MSG_ERROR)
-				emit_signal("status_message", "[u]Source path:[/u] %s, [u]destination path:[/u] %s."
-						% [path, dest])
+				emit_signal("status_message", tr("msg_move_file_failed") % [item, error], Enums.MSG_ERROR)
+				emit_signal("status_message", tr("msg_move_file_failed_details") % [path, dest])
 		elif d.dir_exists(path):
 			_move_dir_internal([path, abs_dest.plus_file(item)])
 	
 	error = d.remove(abs_path)
 	if error:
-		emit_signal("status_message", "Could not remove source directory %s. Error code: %s."
-				% [abs_path, error], Enums.MSG_ERROR)
+		emit_signal("status_message", tr("msg_move_rmdir_failed") % [abs_path, error], Enums.MSG_ERROR)
 
 
 func move_dir(abs_path: String, abs_dest: String) -> void:
@@ -199,7 +194,7 @@ func extract(path: String, dest_dir: String) -> void:
 	elif (_platform == "Windows") and (path.to_lower().ends_with(".zip")):
 		command = command_windows
 	else:
-		emit_signal("status_message", "Unsupported platform or archive format (file: %s)" % path.get_file(), Enums.MSG_ERROR)
+		emit_signal("status_message", tr("msg_extract_unsupported") % path.get_file(), Enums.MSG_ERROR)
 		emit_signal("extract_done")
 		return
 		
@@ -207,15 +202,14 @@ func extract(path: String, dest_dir: String) -> void:
 	if not d.dir_exists(dest_dir):
 		d.make_dir_recursive(dest_dir)
 		
-	emit_signal("status_message", "Extracting %s..." % path.get_file())
+	emit_signal("status_message", tr("msg_extracting_file") % path.get_file())
 		
 	var oew = OSExecWrapper.new()
 	oew.execute(command["name"], command["args"])
 	yield(oew, "process_exited")
 	last_extract_result = oew.exit_code
 	if oew.exit_code:
-		emit_signal("status_message", "Archive extraction command exited with an error (exit code: %s)"
-				% oew.exit_code, Enums.MSG_ERROR)
-		emit_signal("status_message", "Failed command: " + str(command), Enums.MSG_DEBUG)
-		emit_signal("status_message", "Output: " + oew.output[0], Enums.MSG_DEBUG)
+		emit_signal("status_message", tr("msg_extract_error") % oew.exit_code, Enums.MSG_ERROR)
+		emit_signal("status_message", tr("msg_extract_failed_cmd") % str(command), Enums.MSG_DEBUG)
+		emit_signal("status_message", tr("msg_extract_fail_output") % oew.output[0], Enums.MSG_DEBUG)
 	emit_signal("extract_done")
