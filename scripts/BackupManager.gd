@@ -23,7 +23,7 @@ var available = null setget , _get_available
 func backup_current(backup_name: String) -> void:
 	# Create a backup of the save dir for the current game.
 
-	emit_signal("status_message", "Backing up current saves to %s..." % backup_name)
+	emit_signal("status_message", tr("msg_backing_up_saves") % backup_name)
 	
 	emit_signal("backup_creation_started")
 
@@ -39,9 +39,9 @@ func backup_current(backup_name: String) -> void:
 			_fshelper.copy_dir(source_dir.plus_file(world), dest_dir)
 			yield(_fshelper, "copy_dir_done")
 		
-		emit_signal("status_message", "Backup created.")
+		emit_signal("status_message", tr("msg_backup_created"))
 	else:
-		emit_signal("status_message", "A backup named \"%s\" already exists." % backup_name, Enums.MSG_ERROR)
+		emit_signal("status_message", tr("msg_backup_name_taken") % backup_name, Enums.MSG_ERROR)
 
 	emit_signal("backup_creation_finished")
 
@@ -89,7 +89,7 @@ func restore(backup_index: int) -> void:
 	# Replace the save dir in the current game with the named backup
 	
 	var backup_name: String = available[backup_index]["name"]
-	emit_signal("status_message", "Restoring backup \"%s\"..." % backup_name)
+	emit_signal("status_message", tr("msg_restoring_backup") % backup_name)
 	
 	var game_dir = _workdir.plus_file(_settings.read("game"))
 	var temp_dir = _workdir.plus_file("tmp")
@@ -108,9 +108,9 @@ func restore(backup_index: int) -> void:
 			_fshelper.copy_dir(source_dir.plus_file(world), dest_dir)
 			yield(_fshelper, "copy_dir_done")
 		
-		emit_signal("status_message", "Backup restored.")
+		emit_signal("status_message", tr("msg_backup_restored"))
 	else:
-		emit_signal("status_message", "Backup \"%s\" not found." % backup_name, Enums.MSG_ERROR)
+		emit_signal("status_message", tr("msg_backup_not_found") % backup_name, Enums.MSG_ERROR)
 	
 	emit_signal("backup_restoration_finished")
 
@@ -122,10 +122,10 @@ func delete(backup_name: String) -> void:
 	emit_signal("backup_deletion_started")
 
 	if Directory.new().dir_exists(target_dir):
-		emit_signal("status_message", "Deleting backup \"%s\"..." % backup_name)
+		emit_signal("status_message", tr("msg_deleting_backup") % backup_name)
 	
 		_fshelper.rm_dir(target_dir)
 		yield(_fshelper, "rm_dir_done")
-		emit_signal("status_message", "Backup deleted.")
+		emit_signal("status_message", tr("msg_backup_deleted"))
 
 	emit_signal("backup_deletion_finished")

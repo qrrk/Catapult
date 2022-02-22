@@ -354,3 +354,14 @@ into the new game version when updating.","Выберите, какие игро
 "msg_font_install_details","Font source: %s. Destination: %s.","Исходное расположение шрифта: %s. Цель копирования: %s."
 "msg_invalid_font_index_passed","set_font was passed invalid font index %s.","В функцию set_font был передан недействительный индекс шрифта: %s."
 "msg_font_config_field_missing","Font config does not have field \""%s\"".","В конфигурации шрифтов отсутствует поле \""%s\""."
+,,
+" ==== BACKUP MANAGER ====",,
+,,
+"msg_backing_up_saves","Backing up current saves to\""%s\""…","Создается бэкап текущих сохранений под именем \""%s\""…"
+"msg_backup_created","Backup created.","Бэкап создан."
+"msg_backup_name_taken","A backup named \""%s\"" already exists.","Бэкап с названием \""%s\"" уже существует."
+"msg_restoring_backup","Restoring backup \""%s\""...","Восстановление бэкапа \""%s\""..."
+"msg_backup_restored","Backup restored.","Бэкап восстановлен."
+"msg_backup_not_found","Backup \""%s\"" not found.","Бэкап \""%s\"" не найден."
+"msg_deleting_backup","Deleting backup \""%s\""...","Удаление бэкапа \""%s\""..."
+"msg_backup_deleted","Backup deleted.","Бэкап удалён."
