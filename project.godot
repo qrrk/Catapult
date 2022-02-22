@@ -73,7 +73,7 @@ theme/use_hidpi=true
 
 [locale]
 
-translations=PoolStringArray( "res://text/text.en.translation", "res://text/text.ru.translation" )
+translations=PoolStringArray( "res://text/text.en.translation", "res://text/text.ru.translation", "res://text/tips.en.translation", "res://text/tips.ru.translation" )
 locale_filter=[ 1, [ "en", "ru" ] ]
 
 [physics]
