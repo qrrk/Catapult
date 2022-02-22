@@ -150,7 +150,7 @@ func _on_Tabs_tab_changed(tab: int) -> void:
 	_list.clear()
 	for font in _fonts.available_fonts:
 		_list.add_item(font["name"])
-		_list.set_item_tooltip(_list.get_item_count() - 1, font["desc"])
+		_list.set_item_tooltip(_list.get_item_count() - 1, tr(font["desc_key"]))
 	
 	_cbox_cyrillic.pressed = _settings.read("font_preview_cyrillic")
 	_load_font_options()
