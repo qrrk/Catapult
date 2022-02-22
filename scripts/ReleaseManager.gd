@@ -144,7 +144,7 @@ func _ready() -> void:
 		"Windows":
 			_platform = "win"
 		_:
-			emit_signal("status_message", "Unsupported platform: \"%s\"" % p, Enums.MSG_ERROR)
+			emit_signal("status_message", tr("msg_unsupported_platform") % p, Enums.MSG_ERROR)
 
 
 func _get_query_string() -> String:
@@ -166,11 +166,11 @@ func _request_bn() -> void:
 func _on_request_completed_dda(result: int, response_code: int,
 		headers: PoolStringArray, body: PoolByteArray) -> void:
 	
-	emit_signal("status_message", "[b]HTTPRequest info:[/b]\n[u]Result:[/u] %s\n[u]Response code:[/u] %s\n[u]Headers:[/u] %s" %
+	emit_signal("status_message", tr("msg_http_request_info") %
 			[result, response_code, headers], Enums.MSG_DEBUG)
 	
 	if result:
-		emit_signal("status_message", "Request failed. Do you have internet connection?", Enums.MSG_WARN)
+		emit_signal("status_message", tr("msg_releases_request_failed"), Enums.MSG_WARN)
 	else:
 		_parse_builds(body, releases["dda-experimental"], _ASSET_FILTERS["dda-experimental-" + _platform])
 	
@@ -180,11 +180,11 @@ func _on_request_completed_dda(result: int, response_code: int,
 func _on_request_completed_bn(result: int, response_code: int,
 		headers: PoolStringArray, body: PoolByteArray) -> void:
 	
-	emit_signal("status_message", "[b]HTTPRequest info:[/b]\n[u]Result:[/u] %s\n[u]Response code:[/u] %s\n[u]Headers:[/u] %s" %
+	emit_signal("status_message", tr("msg_http_request_info") %
 			[result, response_code, headers], Enums.MSG_DEBUG)
 	
 	if result:
-		emit_signal("status_message", "Request failed. Do you have internet connection?", Enums.MSG_WARN)
+		emit_signal("status_message", tr("msg_releases_request_failed"), Enums.MSG_WARN)
 	else:
 		_parse_builds(body, releases["bn-experimental"], _ASSET_FILTERS["bn-experimental-" + _platform])
 	
@@ -197,7 +197,7 @@ func _parse_builds(data: PoolByteArray, write_to: Array, filter: Dictionary) -> 
 	
 	# Check if API rate limit is exceeded
 	if "message" in json:
-		print("Could not get the builds list. GitHub says: " + json["message"])
+		print(tr("msg_releases_api_failure") % json["message"])
 		return
 		
 	var tmp_arr = []
@@ -220,7 +220,7 @@ func _parse_builds(data: PoolByteArray, write_to: Array, filter: Dictionary) -> 
 	if len(tmp_arr) > 0:
 		write_to.clear()
 		write_to.append_array(tmp_arr)
-		emit_signal("status_message", "Got %s releases." % len(tmp_arr))
+		emit_signal("status_message", tr("msg_got_n_releases") % len(tmp_arr))
 
 
 func fetch(release_key: String) -> void:
@@ -234,11 +234,11 @@ func fetch(release_key: String) -> void:
 					releases["dda-stable"] = _DDA_STABLE_WIN
 			emit_signal("done_fetching_releases")
 		"dda-experimental":
-			emit_signal("status_message", "Fetching releases for DDA Experimental...")
+			emit_signal("status_message", tr("msg_fetching_releases_dda"))
 			_request_dda()
 		"bn-experimental":
-			emit_signal("status_message", "Fetching releases for BN Experimental...")
+			emit_signal("status_message", tr("msg_fetching_releases_bn"))
 			_request_bn()
 		_:
-			emit_signal("status_message", "ReleaseManager.fetch() was passed %s" % release_key, Enums.MSG_ERROR)
+			emit_signal("status_message", tr("msg_invalid_fetch_func_param") % release_key, Enums.MSG_ERROR)
 

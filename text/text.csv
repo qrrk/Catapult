@@ -432,3 +432,13 @@ into the new game version when updating.","Выберите, какие игро
 "msg_migrating_templates","Copying character templates...","Копирование шаблонов персонажей…"
 "msg_migrating_memorial","Copying memorial...","Копирование мемориала…"
 "msg_migrating_graveyard","Copying graveyard...","Копирование кладбища…"
+,,
+" ==== RELEASE MANAGER ====",,
+,,
+"msg_unsupported_platform","Unsupported platform: \""%s\""","Неподдерживаемая платформа: \""%s\"""
+"msg_releases_request_failed","Request failed. Do you have internet connection?","Запрос не удался. Вы ведь подключены к интернету?"
+"msg_releases_api_failure","Could not get the builds list. GitHub says: %s","Не удалось получить список релизов. GitHub сказал: %s"
+"msg_got_n_releases","Got %s releases.","Получено %s релизов."
+"msg_fetching_releases_dda","Fetching releases for DDA Experimental...","Получение списка экспериментальных релизов DDA…"
+"msg_fetching_releases_bn","Fetching releases for BN Experimental…","Получение списка экспериментальных релизов BN…"
+"msg_invalid_fetch_func_param","ReleaseManager.fetch() was passed %s","В ReleaseManager.fetch() был передан аргумент %s"
