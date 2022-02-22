@@ -1,13 +1,6 @@
 extends Node
 
 
-const _GAME_DESC = {
-	"dda":
-		"[b]Cataclysm: Dark Days Ahead[/b] is a turn-based survival game set in a post-apocalyptic world. Scavenge, explore, craft, build, farm, repair and modify vehicles, install bionics, mutate, defend against [color=#009900]zombies[/color] and countless other monstrosities — all in a limitless, procedurally generated world!",
-	"bn":
-		"[b]Cataclysm: Bright Nights[/b]. Reject pedantry, embrace [color=#ff3300]!!fun!![/color]. This fork takes the game back to its sci-fi roguelike roots and reverts many controversial changes by the DDA team (pockets, proficiencies, freezing, and [color=#3b93f7][url=https://github.com/cataclysmbnteam/Cataclysm-BN/wiki/Changes-so-far]more[/url][/color]). Special attention is paid to combat, game balance and pacing.",
-}
-
 onready var _settings = $"/root/SettingsManager"
 onready var _geom = $"/root/WindowGeometry"
 onready var _self = $"."
@@ -61,9 +54,9 @@ func _ready() -> void:
 	
 	_log.text = ""
 	
-	var welcome_msg = "Welcome to Catapult!"
+	var welcome_msg = tr("str_welcome")
 	if _settings.read("print_tips_of_the_day"):
-		welcome_msg += "\n\n[u]Tip of the day:[/u]\n" + _totd.get_tip() + "\n"
+		welcome_msg += tr("str_tip_of_the_day") + _totd.get_tip() + "\n"
 	print_msg(welcome_msg)
 	
 	_unpack_utils()
@@ -78,7 +71,7 @@ func _unpack_utils() -> void:
 	if (OS.get_name() == "Windows") and (not d.file_exists(unzip_exe)):
 		if not d.dir_exists(utils_dir):
 			d.make_dir(utils_dir)
-		print_msg("Unpacking unzip.exe...")
+		print_msg(tr("msg_unpacking_unzip"))
 		d.copy("res://utils/unzip.exe", unzip_exe)
 
 

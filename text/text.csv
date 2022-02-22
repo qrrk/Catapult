@@ -1,6 +1,9 @@
 "keys","en","ru"
 ,,
 "window_title","Catapult — a launcher for Cataclysm: DDA and BN","Catapult — лончер для Cataclysm: DDA и BN"
+"str_welcome","Welcome to Catapult!","Добро пожаловать в Catapult!"
+"str_tip_of_the_day","\n\n[u]Tip of the day:[/u]\n","\n\n[u]Совет дня:[/u]\n"
+"msg_unpacking_unzip","Unpacking unzip.exe…","Распаковываем unzip.exe…"
 "debug_test","This is a debug text to test translation retrieval.","Это отладочный текст для проверки извлечения переводов."
 ,,
 "lbl_game","Game:","Игра:"
