@@ -22,6 +22,19 @@ onready var _migration = {
 
 func _ready() -> void:
 	
+	# On the first launch, automatically set UI to system language, if available.
+	var sys_locale := TranslationServer.get_locale().substr(0, 2)
+	if (_settings.read("launcher_locale") == "") and (sys_locale in TranslationServer.get_loaded_locales()):
+		_settings.store("launcher_locale", sys_locale)
+	TranslationServer.set_locale(_settings.read("launcher_locale"))
+	
+	var lang_list := $LauncherLanguage/obtnLanguage
+	match _settings.read("launcher_locale"):
+		"en":
+			lang_list.selected = 0
+		"ru":
+			lang_list.selected = 1
+	
 	$ShowGameDesc.pressed = _settings.read("show_game_desc")
 	$PrintTips.pressed = _settings.read("print_tips_of_the_day")
 	$UpdateToSame.pressed = _settings.read("update_to_same_build_allowed")
@@ -42,6 +55,17 @@ func _ready() -> void:
 			_migration[type].pressed = true
 		else:
 			_migration[type].pressed = false
+
+
+func _on_obtnLanguage_item_selected(index: int) -> void:
+	
+	var locale := ""
+	match index:
+		0:
+			locale = "en"
+		1:
+			locale = "ru"
+	_settings.store("launcher_locale", locale)
 
 
 func _on_ShowGameDesc_toggled(button_pressed: bool) -> void:

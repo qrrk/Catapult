@@ -137,7 +137,7 @@ func _on_Tabs_tab_changed(tab: int) -> void:
 		return
 	
 	if not _fonts.options_file_exists():
-		emit_signal("status_message", tr("msg_no_font_config_file"), Enums.MSG_WARN)
+		emit_signal("status_message", tr("msg_no_game_options_file"), Enums.MSG_WARN)
 		_tabs.current_tab = 0
 		return
 		

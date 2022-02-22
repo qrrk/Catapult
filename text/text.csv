@@ -231,6 +231,7 @@ IMG_2
 ,,
 " ==== SETTINGS TAB ====",,
 ,,
+"lbl_launcher_language","Launcher language (requires restart)","Язык лончера (требует перезапуска)"
 "cbtn_show_game_desc","Show game description","Показывать описание игры"
 "cbtn_print_tips","Print tips of the day on startup","Выводить совет дня при запуске"
 "cbtn_updating_to_same_build","Allow ""updating"" to the same build as installed","Разрешить «обновляться» на уже установленную версию"
