@@ -68,7 +68,7 @@ margin_top = 263.0
 margin_right = 260.0
 margin_bottom = 292.0
 size_flags_horizontal = 4
-text = "Close"
+text = "btn_close"
 __meta__ = {
 "_edit_use_anchors_": false
 }

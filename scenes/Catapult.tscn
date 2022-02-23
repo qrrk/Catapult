@@ -57,7 +57,6 @@ margin_left = 8.0
 margin_top = 6.32009
 margin_right = -8.0
 margin_bottom = -9.67993
-custom_constants/separation = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -82,9 +81,9 @@ items = [ "Cataclysm: Dark Days Ahead", null, false, 0, null, "Cataclysm: Bright
 selected = 0
 
 [node name="GameInfo" type="HBoxContainer" parent="Main"]
-margin_top = 30.0
+margin_top = 32.0
 margin_right = 634.0
-margin_bottom = 74.0
+margin_bottom = 76.0
 custom_constants/separation = 8
 
 [node name="Spacer" type="Control" parent="Main/GameInfo"]
@@ -114,26 +113,24 @@ text = "Game Title is a game in which... and other stuff about the game. This is
 fit_content_height = true
 
 [node name="Spacer" type="Control" parent="Main"]
-margin_top = 78.0
-margin_right = 634.0
-margin_bottom = 78.0
-
-[node name="Tabs" type="TabContainer" parent="Main" groups=["disable_during_backup_operations", "disable_during_mod_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases", "disable_while_installing_game"]]
 margin_top = 82.0
 margin_right = 634.0
-margin_bottom = 565.0
+margin_bottom = 82.0
+
+[node name="Tabs" type="TabContainer" parent="Main" groups=["disable_during_backup_operations", "disable_during_mod_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases", "disable_while_installing_game"]]
+margin_top = 88.0
+margin_right = 634.0
+margin_bottom = 383.0
 tab_align = 0
 script = ExtResource( 16 )
 
 [node name="Game" type="VBoxContainer" parent="Main/Tabs"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
 margin_top = 35.5
 margin_right = -7.5
 margin_bottom = -7.5
-custom_constants/separation = 8
 
 [node name="Channel" type="VBoxContainer" parent="Main/Tabs/Game"]
 margin_right = 619.0
@@ -182,9 +179,9 @@ group = SubResource( 1 )
 text = "rbtn_experimental"
 
 [node name="Builds" type="HBoxContainer" parent="Main/Tabs/Game"]
-margin_top = 68.0
+margin_top = 66.0
 margin_right = 619.0
-margin_bottom = 94.0
+margin_bottom = 92.0
 
 [node name="Label" type="Label" parent="Main/Tabs/Game/Builds"]
 margin_right = 77.0
@@ -208,9 +205,9 @@ text = "btn_refresh"
 
 [node name="BtnInstall" type="Button" parent="Main/Tabs/Game" groups=["disable_while_fetching_releases", "disable_while_installing_game"]]
 margin_left = 189.0
-margin_top = 102.0
+margin_top = 98.0
 margin_right = 429.0
-margin_bottom = 134.0
+margin_bottom = 130.0
 rect_min_size = Vector2( 240, 32 )
 hint_tooltip = "tooltip_install"
 size_flags_horizontal = 4
@@ -219,14 +216,14 @@ icon = ExtResource( 2 )
 expand_icon = true
 
 [node name="HSeparator" type="HSeparator" parent="Main/Tabs/Game"]
-margin_top = 142.0
+margin_top = 136.0
 margin_right = 619.0
-margin_bottom = 150.0
+margin_bottom = 144.0
 
 [node name="CurrentInstall" type="VBoxContainer" parent="Main/Tabs/Game"]
-margin_top = 158.0
+margin_top = 150.0
 margin_right = 619.0
-margin_bottom = 254.0
+margin_bottom = 246.0
 
 [node name="Label" type="Label" parent="Main/Tabs/Game/CurrentInstall"]
 margin_right = 619.0
@@ -269,9 +266,9 @@ icon = ExtResource( 3 )
 expand_icon = true
 
 [node name="Spacer" type="Control" parent="Main/Tabs/Game"]
-margin_top = 262.0
+margin_top = 252.0
 margin_right = 619.0
-margin_bottom = 262.0
+margin_bottom = 252.0
 
 [node name="ChangelogDialog" parent="Main/Tabs/Game" instance=ExtResource( 32 )]
 
@@ -418,18 +415,20 @@ selection_enabled = true
 
 [node name="DeleteMultipleDialog" type="ConfirmationDialog" parent="Main/Tabs/Mods"]
 margin_top = 648.0
-margin_right = 769.0
-margin_bottom = 770.0
+margin_right = 250.0
+margin_bottom = 748.0
 rect_min_size = Vector2( 300, 105 )
 window_title = "dlg_deleting_n_mods_title"
 dialog_text = "(this text is assigned at runtime)"
 dialog_autowrap = true
 
 [node name="ModReinstallDialog" parent="Main/Tabs/Mods" instance=ExtResource( 20 )]
-margin_left = 112.5
-margin_top = 149.34
-margin_right = 97.5
-margin_bottom = 95.34
+visible = false
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 476.0
+margin_right = 619.0
+margin_bottom = 477.0
 
 [node name="Soundpacks" type="VBoxContainer" parent="Main/Tabs"]
 visible = false
@@ -562,11 +561,11 @@ script = ExtResource( 27 )
 
 [node name="FontSelection" type="HBoxContainer" parent="Main/Tabs/Fonts"]
 margin_right = 619.0
-margin_bottom = 412.0
+margin_bottom = 398.0
 
 [node name="RightPane" type="VBoxContainer" parent="Main/Tabs/Fonts/FontSelection"]
 margin_right = 286.0
-margin_bottom = 412.0
+margin_bottom = 398.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 
@@ -588,9 +587,9 @@ items = [ "Item 0", null, false, "Item 1", null, false, "Item 2", null, false, "
 allow_reselect = true
 
 [node name="Buttons" type="VBoxContainer" parent="Main/Tabs/Fonts/FontSelection/RightPane"]
-margin_top = 305.0
+margin_top = 298.0
 margin_right = 286.0
-margin_bottom = 395.0
+margin_bottom = 388.0
 size_flags_vertical = 6
 
 [node name="Grid" type="GridContainer" parent="Main/Tabs/Fonts/FontSelection/RightPane/Buttons"]
@@ -639,12 +638,12 @@ text = "btn_reset_font"
 [node name="VSeparator" type="VSeparator" parent="Main/Tabs/Fonts/FontSelection"]
 margin_left = 292.0
 margin_right = 300.0
-margin_bottom = 412.0
+margin_bottom = 398.0
 
 [node name="LeftPane" type="VBoxContainer" parent="Main/Tabs/Fonts/FontSelection"]
 margin_left = 306.0
 margin_right = 619.0
-margin_bottom = 412.0
+margin_bottom = 398.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 custom_constants/separation = 4
@@ -660,37 +659,31 @@ align = 1
 [node name="Preview" type="RichTextLabel" parent="Main/Tabs/Fonts/FontSelection/LeftPane"]
 margin_top = 30.0
 margin_right = 313.0
-margin_bottom = 190.0
-rect_min_size = Vector2( 0, 160 )
+margin_bottom = 180.0
+rect_min_size = Vector2( 0, 150 )
 custom_constants/line_separation = -2
 bbcode_enabled = true
 
 [node name="PreviewCyrillic" type="CheckBox" parent="Main/Tabs/Fonts/FontSelection/LeftPane"]
 margin_left = 67.0
-margin_top = 194.0
+margin_top = 184.0
 margin_right = 246.0
-margin_bottom = 222.0
+margin_bottom = 212.0
 hint_tooltip = "tooltip_preview_cyrillics"
 size_flags_horizontal = 4
 text = "cbtn_preview_cyrillics"
 
 [node name="HSeparator" type="HSeparator" parent="Main/Tabs/Fonts/FontSelection/LeftPane"]
-margin_top = 226.0
+margin_top = 216.0
 margin_right = 313.0
-margin_bottom = 226.0
-custom_constants/separation = 0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Main/Tabs/Fonts/FontSelection/LeftPane"]
-margin_top = 230.0
-margin_right = 313.0
-margin_bottom = 230.0
+margin_bottom = 216.0
 custom_constants/separation = 0
 
 [node name="OtherSettings" type="HBoxContainer" parent="Main/Tabs/Fonts/FontSelection/LeftPane"]
 margin_left = 78.0
-margin_top = 234.0
+margin_top = 220.0
 margin_right = 234.0
-margin_bottom = 260.0
+margin_bottom = 246.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
@@ -711,9 +704,9 @@ hint_tooltip = "View detailed description of these settings."
 texture_normal = ExtResource( 30 )
 
 [node name="FontSizeUI" type="HBoxContainer" parent="Main/Tabs/Fonts/FontSelection/LeftPane"]
-margin_top = 264.0
+margin_top = 250.0
 margin_right = 313.0
-margin_bottom = 290.0
+margin_bottom = 276.0
 hint_tooltip = "tooltip_font_sz_ui"
 size_flags_vertical = 6
 
@@ -732,9 +725,9 @@ max_value = 64.0
 value = 8.0
 
 [node name="FontSizeMap" type="HBoxContainer" parent="Main/Tabs/Fonts/FontSelection/LeftPane"]
-margin_top = 294.0
+margin_top = 280.0
 margin_right = 313.0
-margin_bottom = 320.0
+margin_bottom = 306.0
 hint_tooltip = "tooltip_font_sz_map"
 size_flags_vertical = 6
 
@@ -754,9 +747,9 @@ max_value = 64.0
 value = 8.0
 
 [node name="FontSizeOvermap" type="HBoxContainer" parent="Main/Tabs/Fonts/FontSelection/LeftPane"]
-margin_top = 324.0
+margin_top = 310.0
 margin_right = 313.0
-margin_bottom = 350.0
+margin_bottom = 336.0
 hint_tooltip = "tooltip_font_sz_overmap"
 size_flags_vertical = 6
 
@@ -776,31 +769,31 @@ max_value = 64.0
 value = 8.0
 
 [node name="FontBlending" type="CheckButton" parent="Main/Tabs/Fonts/FontSelection/LeftPane"]
-margin_top = 354.0
+margin_top = 340.0
 margin_right = 313.0
-margin_bottom = 382.0
+margin_bottom = 368.0
 hint_tooltip = "tooltip_font_blending"
 text = "cbtn_font_blending"
 
 [node name="BtnSaveFontOptions" type="Button" parent="Main/Tabs/Fonts/FontSelection/LeftPane"]
 margin_left = 101.0
-margin_top = 386.0
+margin_top = 372.0
 margin_right = 211.0
-margin_bottom = 412.0
+margin_bottom = 398.0
 hint_tooltip = "tooltip_save_font"
 size_flags_horizontal = 4
 text = "btn_save_font"
 
 [node name="HSeparator" type="HSeparator" parent="Main/Tabs/Fonts"]
-margin_top = 418.0
+margin_top = 404.0
 margin_right = 619.0
-margin_bottom = 418.0
+margin_bottom = 404.0
 custom_constants/separation = 0
 
 [node name="FontConfigInfo" type="RichTextLabel" parent="Main/Tabs/Fonts"]
-margin_top = 424.0
+margin_top = 410.0
 margin_right = 619.0
-margin_bottom = 500.0
+margin_bottom = 486.0
 bbcode_enabled = true
 bbcode_text = "Existing font configuration will be shown here.
 ...
@@ -813,11 +806,12 @@ text = "Existing font configuration will be shown here.
 fit_content_height = true
 
 [node name="FontSizeHelpDialog" parent="Main/Tabs/Fonts" instance=ExtResource( 29 )]
+visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 538.0
-margin_right = 769.0
-margin_bottom = 539.0
+margin_top = 492.0
+margin_right = 619.0
+margin_bottom = 493.0
 
 [node name="Backups" type="VBoxContainer" parent="Main/Tabs"]
 visible = false
@@ -933,6 +927,7 @@ margin_right = 619.0
 margin_bottom = 64.0
 
 [node name="Settings" type="VBoxContainer" parent="Main/Tabs"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -1097,9 +1092,9 @@ margin_bottom = 332.0
 [node name="Migration" type="VBoxContainer" parent="Main/Tabs/Settings"]
 margin_top = 334.0
 margin_right = 619.0
-margin_bottom = 440.0
+margin_bottom = 438.0
 hint_tooltip = "tooltip_data_to_migrate"
-custom_constants/separation = 4
+custom_constants/separation = 2
 
 [node name="Label" type="Label" parent="Main/Tabs/Settings/Migration"]
 margin_right = 619.0
@@ -1107,9 +1102,9 @@ margin_bottom = 26.0
 text = "lbl_data_to_migrate"
 
 [node name="Grid" type="GridContainer" parent="Main/Tabs/Settings/Migration"]
-margin_top = 30.0
+margin_top = 28.0
 margin_right = 619.0
-margin_bottom = 106.0
+margin_bottom = 104.0
 custom_constants/vseparation = -4
 columns = 3
 
@@ -1261,7 +1256,7 @@ size_flags_horizontal = 4
 text = "Test translation retrieval"
 
 [node name="Log" type="RichTextLabel" parent="Main"]
-margin_top = 569.0
+margin_top = 389.0
 margin_right = 634.0
 margin_bottom = 784.0
 focus_mode = 2
