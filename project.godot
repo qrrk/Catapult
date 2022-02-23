@@ -53,8 +53,8 @@ WindowGeometry="*res://scripts/window_geometry.gd"
 
 [display]
 
-window/size/width=800
-window/size/height=1000
+window/size/width=650
+window/size/height=800
 window/size/resizable=false
 window/size/borderless=true
 window/size/test_width=1

@@ -90,22 +90,39 @@ func apply_ui_scale() -> void:
 				]:
 			_try_scale_property(node, property, _geom.scale)
 			
-	var theme = _self.theme
+	var theme: Theme = _self.theme
 	for node_type in ["CheckButton", "CheckBox", "SpinBox"]:
 		for icon in theme.get_icon_list(node_type):
 			_try_scale_property(theme.get_icon(icon, node_type), "size", _geom.scale)
+	
 
 
 func _try_scale_property(obj: Object, prop: String, multiplier: float) -> void:
 	
-	var value = obj.get(prop)
-	if (value) and (typeof(value) in [TYPE_INT, TYPE_REAL, TYPE_VECTOR2, TYPE_RECT2]):
-		if [obj, prop] in _ui_staring_sizes:
-			obj.set(prop, _ui_staring_sizes[[obj, prop]] * multiplier)
-		else:
-			obj.set(prop, value * multiplier)
-			_ui_staring_sizes[[obj, prop]] = value
+#	var value = obj.get(prop)
+#	if (value) and (typeof(value) in [TYPE_INT, TYPE_REAL, TYPE_VECTOR2, TYPE_RECT2]):
+#		if [obj, prop] in _ui_staring_sizes:
+#			obj.set(prop, _ui_staring_sizes[[obj, prop]] * multiplier)
+#		else:
+#			obj.set(prop, value * multiplier)
+#			_ui_staring_sizes[[obj, prop]] = value
 #		print("Node: %s, property: %s, new value: %s" % [obj.name, prop, obj.get(prop)])
+
+	if (not prop in obj) or (obj[prop] == null):
+		return
+	
+	var curr_value
+	if [obj, prop] in _ui_staring_sizes:
+		curr_value = _ui_staring_sizes[[obj, prop]]
+	else:
+		curr_value = obj.get(prop)
+		_ui_staring_sizes[[obj, prop]] = curr_value
+	
+	var new_value = curr_value * multiplier
+	if typeof(curr_value) == TYPE_INT:
+		new_value = int(round(new_value))
+	
+	obj.set(prop, new_value)
 
 
 func _get_all_nodes(within: Node) -> Array:
