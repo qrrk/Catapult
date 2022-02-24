@@ -3,7 +3,7 @@ extends VBoxContainer
 
 signal status_message
 
-
+onready var _root = $"/root/Catapult"
 onready var _mods = $"../../../Mods"
 onready var _settings = $"/root/SettingsManager"
 onready var _installed_list = $HBox/Installed/InstalledList
@@ -298,8 +298,7 @@ func _on_BtnDelete_pressed() -> void:
 	var num = len(_mods_to_delete)
 	if num > 1:
 		_dlg_del_multiple.dialog_text = tr("dlg_deleting_n_mods_text") % num
-		_dlg_del_multiple.rect_min_size = get_tree().root.size * Vector2(0.4, 0.1)
-		_dlg_del_multiple.set_as_minsize()
+		_dlg_del_multiple.rect_size = Vector2(250, 100)
 		_dlg_del_multiple.popup_centered()
 		return
 	

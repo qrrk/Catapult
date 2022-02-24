@@ -7,6 +7,7 @@
 [ext_resource path="res://scripts/FontSizeHelpDialog.gd" type="Script" id=5]
 
 [node name="FontSizeHelpDialog" type="WindowDialog"]
+visible = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 5 )
@@ -24,20 +25,18 @@ __meta__ = {
 [node name="Margin" type="MarginContainer" parent="Panel"]
 margin_left = 14.0
 margin_top = 14.0
-margin_right = 786.0
-margin_bottom = 986.0
+margin_right = 586.0
+margin_bottom = 686.0
 custom_constants/margin_top = 8
 custom_constants/margin_bottom = 8
 
 [node name="VBox" type="VBoxContainer" parent="Panel/Margin"]
-margin_top = 8.0
-margin_right = 772.0
-margin_bottom = 964.0
-custom_constants/separation = 16
+margin_right = 572.0
+margin_bottom = 664.0
 
 [node name="Help" type="RichTextLabel" parent="Panel/Margin/VBox"]
-margin_right = 772.0
-margin_bottom = 903.0
+margin_right = 572.0
+margin_bottom = 619.0
 size_flags_vertical = 3
 custom_fonts/bold_italics_font = ExtResource( 2 )
 custom_fonts/italics_font = ExtResource( 3 )
@@ -48,10 +47,10 @@ bbcode_text = "dlg_font_config_help"
 text = "dlg_font_config_help"
 
 [node name="BtnOK" type="Button" parent="Panel/Margin/VBox"]
-margin_left = 345.0
-margin_top = 919.0
-margin_right = 427.0
-margin_bottom = 956.0
+margin_left = 245.0
+margin_top = 627.0
+margin_right = 327.0
+margin_bottom = 664.0
 size_flags_horizontal = 4
 text = "Close"
 

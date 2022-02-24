@@ -6,10 +6,9 @@ const _PR_URL = {
 	"bn": "https://api.github.com/search/issues?q=repo%3Acataclysmbnteam/Cataclysm-BN",
 }
 
-
-onready var _settings = $"/root/SettingsManager"
-onready var _pullRequests = $PullRequests
-onready var _changelogTextBox = $Panel/Margin/VBox/ChangelogText
+onready var _settings := $"/root/SettingsManager"
+onready var _pullRequests := $PullRequests
+onready var _changelogTextBox := $Panel/Margin/VBox/ChangelogText
 
 var _pr_data = ""
 
@@ -17,9 +16,7 @@ var _pr_data = ""
 func open() -> void:
 	
 	download_pull_requests()
-	rect_min_size = get_tree().root.size * Vector2(0.9, 0.9)
-	set_as_minsize()
-	popup_centered()
+	popup_centered_ratio(0.9)
 
 
 func download_pull_requests():

@@ -78,9 +78,6 @@ func _make_preview_string(cyrillic: bool = false) -> String:
 	var index = _rng.randi_range(0, len(_PREVIEW_TEXT_NUM) - 1)
 	var result = _PREVIEW_TEXT_NUM
 	
-	index = _rng.randi_range(0, len(_PREVIEW_TEXT_EN) - 1)
-	result += "\n\n" + _PREVIEW_TEXT_EN[index]
-	
 	if _settings.read("font_preview_cyrillic"):
 		index = _rng.randi_range(0, len(_PREVIEW_TEXT_RU) - 1)
 		result += "\n\n" + _PREVIEW_TEXT_RU[index]
@@ -166,7 +163,7 @@ func _on_FontsList_item_selected(index: int) -> void:
 	var font_res = DynamicFont.new()
 	
 	font_res.font_data = load(font_path)
-	font_res.size = 15.0 * _geom.scale
+	font_res.size = 15.0
 	
 	_preview.add_font_override("normal_font", font_res)
 	_preview.bbcode_text = _make_preview_string(_settings.read("font_preview_cyrillic"))

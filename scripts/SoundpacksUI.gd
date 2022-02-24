@@ -103,8 +103,7 @@ func _on_BtnDelete_pressed() -> void:
 	
 	var name = _installed_packs[_installed_list.get_selected_items()[0]]["name"]
 	_dlg_confirm_del.dialog_text = tr("dlg_sound_deletion_text") % name
-	_dlg_confirm_del.rect_min_size = get_tree().root.size * Vector2(0.6, 0.1)
-	_dlg_confirm_del.set_as_minsize()
+	_dlg_confirm_del.rect_size = Vector2(200, 100)
 	_dlg_confirm_del.popup_centered()
 
 
@@ -137,8 +136,7 @@ func _on_BtnInstall_pressed() -> void:
 	var pack = _sound.SOUNDPACKS[pack_index]
 	
 	if ("manual_download" in pack) and (pack["manual_download"] == true):
-		_dlg_manual_dl.rect_min_size = get_tree().root.size * Vector2(0.6, 0.2)
-		_dlg_manual_dl.set_as_minsize()
+		_dlg_manual_dl.rect_size = Vector2(300, 150)
 		_dlg_manual_dl.popup_centered()
 	else:
 		if _is_pack_installed(pack["name"]):

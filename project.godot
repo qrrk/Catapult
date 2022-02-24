@@ -53,8 +53,8 @@ WindowGeometry="*res://scripts/window_geometry.gd"
 
 [display]
 
-window/size/width=650
-window/size/height=800
+window/size/width=600
+window/size/height=700
 window/size/resizable=false
 window/size/borderless=true
 window/size/test_width=1
@@ -62,6 +62,7 @@ window/size/test_height=1
 window/dpi/allow_hidpi=true
 window/per_pixel_transparency/allowed=true
 window/per_pixel_transparency/enabled=true
+window/stretch/mode="2d"
 
 [gdnative]
 
