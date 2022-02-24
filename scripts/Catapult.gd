@@ -69,16 +69,6 @@ func _unpack_utils() -> void:
 		d.copy("res://utils/unzip.exe", unzip_exe)
 
 
-func _get_all_nodes(within: Node) -> Array:
-	
-	var result = []
-	for node in within.get_children():
-		result.append(node)
-		if node.get_child_count() > 0:
-			result.append_array(_get_all_nodes(node))
-	return result
-
-
 func datetime_with_msecs(utc = false) -> Dictionary:
 	
 	var datetime = OS.get_datetime(utc)
