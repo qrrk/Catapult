@@ -3,7 +3,7 @@
 [ext_resource path="res://fonts/OpenSans-Semibold.ttf" type="DynamicFontData" id=1]
 
 [resource]
-size = 14
+size = 13
 extra_spacing_top = -3
 extra_spacing_bottom = -3
 font_data = ExtResource( 1 )

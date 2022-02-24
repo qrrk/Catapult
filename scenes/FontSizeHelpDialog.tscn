@@ -25,19 +25,18 @@ __meta__ = {
 [node name="Margin" type="MarginContainer" parent="Panel"]
 margin_left = 14.0
 margin_top = 14.0
-margin_right = 636.0
-margin_bottom = 786.0
+margin_right = 586.0
+margin_bottom = 686.0
 custom_constants/margin_top = 8
 custom_constants/margin_bottom = 8
 
 [node name="VBox" type="VBoxContainer" parent="Panel/Margin"]
-margin_top = 8.0
-margin_right = 622.0
-margin_bottom = 764.0
+margin_right = 572.0
+margin_bottom = 664.0
 
 [node name="Help" type="RichTextLabel" parent="Panel/Margin/VBox"]
-margin_right = 622.0
-margin_bottom = 711.0
+margin_right = 572.0
+margin_bottom = 619.0
 size_flags_vertical = 3
 custom_fonts/bold_italics_font = ExtResource( 2 )
 custom_fonts/italics_font = ExtResource( 3 )
@@ -48,10 +47,10 @@ bbcode_text = "dlg_font_config_help"
 text = "dlg_font_config_help"
 
 [node name="BtnOK" type="Button" parent="Panel/Margin/VBox"]
-margin_left = 270.0
-margin_top = 719.0
-margin_right = 352.0
-margin_bottom = 756.0
+margin_left = 245.0
+margin_top = 627.0
+margin_right = 327.0
+margin_bottom = 664.0
 size_flags_horizontal = 4
 text = "Close"
 

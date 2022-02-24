@@ -22,13 +22,17 @@ func _apply_scale() -> void:
 	# This is a workaround for weird font aliasing that shows up when the scale
 	# is a simple rational fraction, like 125% (5/4) or 150% (3/2).
 	
-	OS.set_window_size(Vector2(650, 800) * final_scale)
+	var base_size := Vector2(
+		ProjectSettings.get("display/window/size/width"),
+		ProjectSettings.get("display/window/size/height"))
+	
+	OS.set_window_size(base_size * final_scale)
 
 
 func calculate_scale_from_dpi() -> float:
 	
 	var ratio = OS.get_screen_dpi() / 96.0
-	return round(ratio / 0.125) * 0.125
+	return stepify(ratio, 0.125)
 
 
 func _on_SceneTree_idle():

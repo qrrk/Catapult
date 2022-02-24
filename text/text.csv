@@ -172,11 +172,11 @@ setting a font.","Нажмите, чтобы записать эти настр�
 ,,
 "dlg_font_config_help","As you've probably already noticed, you can set a separate font for game UI, map and overmap. Additionally, each of these three fonts in Cataclysm has three size parameters that define how it is drawn. They can be set in the game under [i]Settings > Graphics > Font Settings[/i].
 
-[img=200]res://images/font-sizes.png[/img]
+[img=180]res://images/font-sizes.png[/img]
 
 [b]Font Height[/b] and [b]Font Width[/b] define the pixel size of the rectangle reserved for each character. If this rectangle is too small, the letters will be clipped. If it is too large, they will be far apart and appear undersized.
 
-[img=450]res://images/font-rect.png[/img]
+[img=400]res://images/font-rect.png[/img]
 
 [b]Font Size[/b] is the actual size at which font glyphs will always be rendered, whether they fit into reserved space or not.
 
@@ -191,11 +191,11 @@ It is also recommended to turn on [b]Font Blending[/b] for smoother font renderi
 
 ","Как вы, наверное, уже заметили, вы можете установить размер шрифта отдельно для интерфейса, мира и карты. Дополнительно, каждый из этих трёх шрифтов в Катаклизме имеет три параметра, определяющие, как он отрисовывается. В игре их можно задать через [i]Настройки > Графика > Настройки шрифта[/i].
 
-[img=200]res://images/font-sizes.png[/img]
+[img=180]res://images/font-sizes.png[/img]
 
 [b]Высота шрифта[/b] и [b]Ширина шрифта[/b] отвечают за размер прямоугольной области (в пикселях), отводимой каждому символу. Если этот прямоугольник будет слишком маленьким, буквы будут обрезаны. Если он будет слишком большим, буквы будут слишком далеко друг от друга.
 
-[img=450]res://images/font-rect.png[/img]
+[img=400]res://images/font-rect.png[/img]
 
 Параметр [b]Размер шрифта[/b] — это истинный размер, с которым всегда будут отрисовываться символы шрифта, умещаются они в отведенное простанство или нет.
 
