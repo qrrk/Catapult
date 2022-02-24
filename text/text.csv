@@ -53,6 +53,7 @@ are managed separately and can co-exist).","Установить выбранн�
 ,,
 " ==== CHANGELOG DIALOG ====",,
 ,,
+"dlg_changelog_title","Recent changes","Последние изменения"
 "str_fetching_changes","Fetching recent changes from GitHub. Please wait…","Получение последних изменений с GitHub. Подождите…"
 "str_error_retrieving_data","Error retrieving data from GitHub API.","Произошла ошибка при получении данных с GitHub."
 "str_hhtp_response_code","\n\nHTTP response code: %s","\n\nКод ответа HTTP: %s"
@@ -170,6 +171,7 @@ setting a font.","Нажмите, чтобы записать эти настр�
 "str_curr_font_config_map","Map","Игровой мир"
 "str_curr_font_config_omap","Overmap","Карта мира"
 ,,
+"dlg_font_size_help_title","Font size help","Справка по размерам шрифтов"
 "dlg_font_config_help","As you've probably already noticed, you can set a separate font for game UI, map and overmap. Additionally, each of these three fonts in Cataclysm has three size parameters that define how it is drawn. They can be set in the game under [i]Settings > Graphics > Font Settings[/i].
 
 [img=180]res://images/font-sizes.png[/img]

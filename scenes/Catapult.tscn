@@ -806,7 +806,6 @@ text = "Existing font configuration will be shown here.
 fit_content_height = true
 
 [node name="FontSizeHelpDialog" parent="Main/Tabs/Fonts" instance=ExtResource( 29 )]
-visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 492.0
