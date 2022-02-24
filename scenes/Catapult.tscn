@@ -1331,6 +1331,7 @@ __meta__ = {
 "_editor_description_": "Provides backup management utilities"
 }
 
+[connection signal="gui_input" from="Main/GameInfo/Icon" to="." method="_on_InfoIcon_gui_input"]
 [connection signal="meta_clicked" from="Main/GameInfo/Description" to="." method="_on_Description_meta_clicked"]
 [connection signal="tab_changed" from="Main/Tabs" to="." method="_on_Tabs_tab_changed"]
 [connection signal="tab_changed" from="Main/Tabs" to="Main/Tabs/Mods" method="_on_Tabs_tab_changed"]

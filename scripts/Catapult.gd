@@ -28,8 +28,9 @@ onready var _rbtn_stable = $Main/Tabs/Game/Channel/Group/RBtnStable
 onready var _rbtn_exper = $Main/Tabs/Game/Channel/Group/RBtnExperimental
 onready var _lbl_build = $Main/Tabs/Game/CurrentInstall/Build/Name
 
-var _disable_savestate = {}
-var _ui_staring_sizes = {}  # For UI scaling on the fly
+var _disable_savestate := {}
+var _ui_staring_sizes := {}  # For UI scaling on the fly
+var _easter_egg_counter := 0
 
 
 func _ready() -> void:
@@ -91,6 +92,9 @@ func print_msg(msg: String, msg_type = Enums.MSG_INFO) -> void:
 	var time = timestamp_with_msecs()
 	text += time
 	bb_text += "[color=#999999]%s[/color]" % time
+	
+	if _easter_egg_counter >= 10:
+		msg = "[rainbow freq=0.2 sat=5 val=1]%s[/rainbow]" % msg
 	
 	match msg_type:
 		Enums.MSG_INFO:
@@ -399,3 +403,26 @@ func _refresh_currently_installed() -> void:
 		
 	for i in [1, 2, 3, 4]:
 		_tabs.set_tab_disabled(i, not _is_selected_game_installed())
+
+
+func _on_InfoIcon_gui_input(event: InputEvent) -> void:
+	
+	if (event is InputEventMouseButton) and (event.button_index == BUTTON_LEFT) and (event.is_pressed()):
+		_easter_egg_counter += 1
+		if _easter_egg_counter == 3:
+			print_msg("[color=red]%s[/color]" % tr("msg_easter_egg_warning"))
+		if _easter_egg_counter == 10:
+			_activate_easter_egg()
+
+
+func _activate_easter_egg() -> void:
+	
+	for node in Helpers.get_all_nodes_within(self):
+		if node is Control:
+			node.rect_pivot_offset = node.rect_size / 2.0
+			node.rect_rotation = randf() * 2.0 - 1.0
+	
+	for i in range(20):
+		print_msg(tr("msg_easter_egg_activated"))
+		yield(get_tree().create_timer(0.1), "timeout")
+		
