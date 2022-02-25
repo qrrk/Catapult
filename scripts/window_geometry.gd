@@ -6,8 +6,13 @@ extends Node
 # Thanks to github.com/Lauson1ex for helping me figure this out.
 
 var scale: float setget _set_scale
+var min_base_size := Vector2(
+	ProjectSettings.get("display/window/size/width"),
+	ProjectSettings.get("display/window/size/height"))
+var base_size := min_base_size
 
-onready var _settings = $"/root/SettingsManager"
+onready var _settings := $"/root/SettingsManager"
+onready var _viewport := get_tree().get_root()
 
 
 func _set_scale(new_scale: float) -> void:
@@ -22,11 +27,9 @@ func _apply_scale() -> void:
 	# This is a workaround for weird font aliasing that shows up when the scale
 	# is a simple rational fraction, like 125% (5/4) or 150% (3/2).
 	
-	var base_size := Vector2(
-		ProjectSettings.get("display/window/size/width"),
-		ProjectSettings.get("display/window/size/height"))
-	
+	OS.min_window_size = min_base_size * final_scale
 	OS.set_window_size(base_size * final_scale)
+
 
 
 func calculate_scale_from_dpi() -> float:
@@ -58,5 +61,12 @@ func _ready():
 	
 	_apply_scale()
 	OS.center_window()
+	_viewport.connect("size_changed", self, "_on_window_resized")
 	_on_SceneTree_idle()
 
+
+func _on_window_resized() -> void:
+	
+	var new_size := OS.window_size / scale
+	_viewport.set_size_override(true, new_size)
+	base_size = new_size
