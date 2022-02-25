@@ -133,3 +133,24 @@ func _on_Button8_pressed() -> void:
 		TranslationServer.set_locale(locale)
 		emit_signal("status_message", tr("debug_test"), Enums.MSG_DEBUG)
 	TranslationServer.set_locale(curr_locale)
+
+
+func _on_Button9_pressed() -> void:
+	
+	var msg := """Screen information:
+	Screen count: %s
+	Current screen: %s
+	Screen position: %s
+	Screen size: %s
+	Window position: %s
+	Window size: %s
+	Real window size: %s\n""" % [ \
+	OS.get_screen_count(),
+	OS.current_screen,
+	OS.get_screen_position(),
+	OS.get_screen_size(),
+	OS.window_position,
+	OS.window_size,
+	OS.get_real_window_size()]
+	
+	emit_signal("status_message", msg, Enums.MSG_DEBUG)

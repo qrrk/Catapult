@@ -863,20 +863,20 @@ margin_bottom = 256.0
 alignment = 1
 
 [node name="BtnRestore" type="Button" parent="Main/Tabs/Backups/Available/Buttons" groups=["disable_during_backup_operations"]]
-margin_left = 76.0
-margin_right = 214.0
+margin_left = 85.0
+margin_right = 217.0
 margin_bottom = 24.0
 text = "btn_restore_backup"
 
 [node name="BtnDelete" type="Button" parent="Main/Tabs/Backups/Available/Buttons" groups=["disable_during_backup_operations"]]
-margin_left = 220.0
-margin_right = 352.0
+margin_left = 223.0
+margin_right = 349.0
 margin_bottom = 24.0
 text = "btn_delete_backup"
 
 [node name="BtnRefresh" type="Button" parent="Main/Tabs/Backups/Available/Buttons" groups=["disable_during_backup_operations"]]
-margin_left = 358.0
-margin_right = 501.0
+margin_left = 355.0
+margin_right = 492.0
 margin_bottom = 24.0
 text = "btn_refresh_backups"
 
@@ -908,13 +908,13 @@ text = "lbl_backup_name"
 
 [node name="EditName" type="LineEdit" parent="Main/Tabs/Backups/Current/HBox"]
 margin_left = 122.0
-margin_right = 439.0
+margin_right = 445.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 placeholder_text = "Enter name for new backup"
 
 [node name="BtnCreate" type="Button" parent="Main/Tabs/Backups/Current/HBox" groups=["disable_during_backup_operations"]]
-margin_left = 445.0
+margin_left = 451.0
 margin_right = 577.0
 margin_bottom = 24.0
 size_flags_horizontal = 4
@@ -1019,7 +1019,7 @@ margin_bottom = 24.0
 text = "lbl_num_releases_to_request"
 
 [node name="sbNumReleases" type="SpinBox" parent="Main/Tabs/Settings/NumReleases"]
-margin_left = 471.0
+margin_left = 477.0
 margin_right = 577.0
 margin_bottom = 24.0
 size_flags_horizontal = 10
@@ -1039,7 +1039,7 @@ margin_bottom = 24.0
 text = "lbl_num_prs_to_request"
 
 [node name="sbNumPRs" type="SpinBox" parent="Main/Tabs/Settings/NumPrs"]
-margin_left = 471.0
+margin_left = 477.0
 margin_right = 577.0
 margin_bottom = 24.0
 size_flags_horizontal = 10
@@ -1064,15 +1064,15 @@ margin_bottom = 26.0
 text = "lbl_ui_scale_override"
 
 [node name="cbScaleOverrideEnable" type="CheckBox" parent="Main/Tabs/Settings/ScaleOverride"]
-margin_left = 323.0
-margin_right = 465.0
+margin_left = 329.0
+margin_right = 471.0
 margin_bottom = 28.0
 size_flags_horizontal = 10
 size_flags_stretch_ratio = 20.0
 text = "cbtn_enable_scale"
 
 [node name="sbScaleOverride" type="SpinBox" parent="Main/Tabs/Settings/ScaleOverride"]
-margin_left = 471.0
+margin_left = 477.0
 margin_right = 577.0
 margin_bottom = 28.0
 size_flags_horizontal = 10
@@ -1184,75 +1184,83 @@ margin_bottom = -7.5
 script = ExtResource( 14 )
 
 [node name="Label" type="Label" parent="Main/Tabs/Debug"]
-margin_right = 619.0
-margin_bottom = 44.0
+margin_right = 577.0
+margin_bottom = 40.0
 text = "This tab contains functions helpful in debugging parts of the launcher during development. Useless for anything else."
 align = 1
 autowrap = true
 
 [node name="Button" type="Button" parent="Main/Tabs/Debug"]
-margin_left = 210.0
-margin_top = 50.0
-margin_right = 408.0
-margin_bottom = 76.0
+margin_left = 202.0
+margin_top = 44.0
+margin_right = 374.0
+margin_bottom = 68.0
 size_flags_horizontal = 6
 text = "Test mod directory parsing"
 
 [node name="Button2" type="Button" parent="Main/Tabs/Debug"]
-margin_left = 204.0
-margin_top = 82.0
-margin_right = 414.0
-margin_bottom = 108.0
+margin_left = 197.0
+margin_top = 72.0
+margin_right = 379.0
+margin_bottom = 96.0
 size_flags_horizontal = 6
 text = "Test sound directory parsing"
 
 [node name="Button3" type="Button" parent="Main/Tabs/Debug"]
 margin_left = 146.0
-margin_top = 114.0
-margin_right = 472.0
-margin_bottom = 140.0
+margin_top = 100.0
+margin_right = 430.0
+margin_bottom = 124.0
 size_flags_horizontal = 6
 text = "Test passing of arguments to shell commands"
 
 [node name="Button4" type="Button" parent="Main/Tabs/Debug"]
-margin_left = 169.0
-margin_top = 146.0
-margin_right = 449.0
-margin_bottom = 172.0
+margin_left = 167.0
+margin_top = 128.0
+margin_right = 410.0
+margin_bottom = 152.0
 size_flags_horizontal = 6
 text = "Test different types of status messages"
 
 [node name="Button5" type="Button" parent="Main/Tabs/Debug"]
-margin_left = 199.0
-margin_top = 178.0
-margin_right = 419.0
-margin_bottom = 204.0
+margin_left = 194.0
+margin_top = 156.0
+margin_right = 383.0
+margin_bottom = 180.0
 size_flags_horizontal = 4
 text = "Test recursive directory listing"
 
 [node name="Button6" type="Button" parent="Main/Tabs/Debug"]
-margin_left = 201.0
-margin_top = 210.0
-margin_right = 417.0
-margin_bottom = 236.0
+margin_left = 195.0
+margin_top = 184.0
+margin_right = 382.0
+margin_bottom = 208.0
 size_flags_horizontal = 4
 text = "Print a random Tip of the Day"
 
 [node name="Button7" type="Button" parent="Main/Tabs/Debug"]
-margin_left = 185.0
-margin_top = 242.0
-margin_right = 433.0
-margin_bottom = 268.0
+margin_left = 180.0
+margin_top = 212.0
+margin_right = 397.0
+margin_bottom = 236.0
 size_flags_horizontal = 4
 text = "Test path resolution in PathHelper"
 
 [node name="Button8" type="Button" parent="Main/Tabs/Debug"]
-margin_left = 218.0
-margin_top = 274.0
-margin_right = 400.0
-margin_bottom = 300.0
+margin_left = 210.0
+margin_top = 240.0
+margin_right = 367.0
+margin_bottom = 264.0
 size_flags_horizontal = 4
 text = "Test translation retrieval"
+
+[node name="Button9" type="Button" parent="Main/Tabs/Debug"]
+margin_left = 234.0
+margin_top = 268.0
+margin_right = 343.0
+margin_bottom = 292.0
+size_flags_horizontal = 4
+text = "Print screen info"
 
 [node name="Log" type="RichTextLabel" parent="Main"]
 margin_top = 377.0
@@ -1414,6 +1422,7 @@ __meta__ = {
 [connection signal="pressed" from="Main/Tabs/Debug/Button6" to="Main/Tabs/Debug" method="_on_Button6_pressed"]
 [connection signal="pressed" from="Main/Tabs/Debug/Button7" to="Main/Tabs/Debug" method="_on_Button7_pressed"]
 [connection signal="pressed" from="Main/Tabs/Debug/Button8" to="Main/Tabs/Debug" method="_on_Button8_pressed"]
+[connection signal="pressed" from="Main/Tabs/Debug/Button9" to="Main/Tabs/Debug" method="_on_Button9_pressed"]
 [connection signal="meta_clicked" from="Main/Log" to="." method="_on_Log_meta_clicked"]
 [connection signal="done_fetching_releases" from="Releases" to="." method="_on_Releases_done_fetching_releases"]
 [connection signal="started_fetching_releases" from="Releases" to="." method="_on_Releases_started_fetching_releases"]
