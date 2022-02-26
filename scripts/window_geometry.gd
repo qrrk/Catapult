@@ -25,12 +25,8 @@ func _set_scale(new_scale: float) -> void:
 
 func _apply_scale() -> void:
 	
-	var final_scale := scale if fmod(scale, 1.0) == 0 else scale + 0.002
-	# This is a workaround for weird font aliasing that shows up when the scale
-	# is a simple rational fraction, like 125% (5/4) or 150% (3/2).
-	
-	OS.min_window_size = min_base_size * final_scale
-	OS.set_window_size(base_size * final_scale)
+	OS.min_window_size = min_base_size * scale
+	OS.set_window_size(base_size * scale)
 
 
 func calculate_scale_from_dpi() -> float:

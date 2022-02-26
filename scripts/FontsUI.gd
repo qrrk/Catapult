@@ -164,6 +164,7 @@ func _on_FontsList_item_selected(index: int) -> void:
 	
 	font_res.font_data = load(font_path)
 	font_res.size = 15.0
+	font_res.use_filter = true
 	
 	_preview.add_font_override("normal_font", font_res)
 	_preview.bbcode_text = _make_preview_string(_settings.read("font_preview_cyrillic"))

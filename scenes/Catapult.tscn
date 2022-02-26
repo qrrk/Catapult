@@ -46,9 +46,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 21 )
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Main" type="VBoxContainer" parent="."]
 anchor_right = 1.0

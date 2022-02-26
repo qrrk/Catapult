@@ -68,7 +68,6 @@ window/dpi/allow_hidpi=true
 window/per_pixel_transparency/allowed=true
 window/per_pixel_transparency/enabled=true
 window/stretch/mode="2d"
-window/stretch/aspect="expand"
 
 [gdnative]
 
