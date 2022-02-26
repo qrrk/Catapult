@@ -2,7 +2,7 @@
 
 **Catapult** is a cross-platform launcher and content manager for [Cataclysm: Dark Days Ahead](https://github.com/CleverRaven/Cataclysm-DDA) and [Cataclysm: Bright Nights](https://github.com/cataclysmbnteam/Cataclysm-BN). It is in part inspired by earlier versions of [Rémy Roy's launcher](https://github.com/remyroy/CDDA-Game-Launcher).
 
-[**Download latest version**](https://github.com/qrrk/Catapult/releases/latest)
+[**Download latest release**](https://github.com/qrrk/Catapult/releases/latest)  |  [**See all releases**](https://github.com/qrrk/Catapult/releases)
 
 
 
@@ -16,6 +16,7 @@
 - Automatic download and installation of soundpacks.
 - Customization of game fonts.
 - Saved game backups.
+- Multilingual interface.
 - Fully portable and can be carried on a removable drive.
 - Good support for HiDPI displays: UI is automatically scaled with screen DPI, with ability to adjust the scale manually.
 
@@ -36,7 +37,7 @@ None required. The launcher is a single, self-contained executable. Just [downlo
 
 These are tentative. They may or may not come to fruition.
 
-- Translations.
+- ~~Translations~~. *Done! (Translation infrasctructure is implemented; currently English and Russian are available; other contributions welcome!)*
 - ~~Setting in-game font from the launcher.~~ *Done!*
 - ~~Backups for user data.~~ *Savegame backups added!*
 - Multiple launcher UI themes.
@@ -54,7 +55,7 @@ I had had ideas about making my own launcher for a couple years, but it didn't g
 
 I thought, wouldn't it be nice if a unified launcher existed that was cross-platform and supported both forks of the game. I decided: well, if the thing I want isn't there on the internets, I guess I'll just *make* it!
 
-My choice of tools wasn't great, since I wanted the app to be cross-platform and ship as one self-contained executable, like remyroy's launcher used to. I initially started making it with Python/Gtk/PyInstaller, but the latter didn't want to cooperate, especially on Windows. I started looking into other options, but nothing quite fit the requirements.
+My selection of tools wasn't great, since I wanted the app to be cross-platform and ship as one self-contained executable, like remyroy's launcher used to. I initially started making it with Python/Gtk/PyInstaller, but the latter didn't want to cooperate, especially on Windows. I started looking into other options, but nothing quite fit the requirements.
 
 I was almost desperate enough to use Electron, but then I remembered about my old buddy [Godot](https://godotengine.org/), with which I had some limited experience. I knew that it had a good UI system, and some non-game desktop apps had already been made with it. After some prototyping it seemed like it was going to work. Of course, Godot apps aren't as lightweight as fully native binaries, but they are nowhere near Electron in terms of size and resource usage. I think you'll agree that it would have been awkward if a game launcher was heavier than the game itself!
 
