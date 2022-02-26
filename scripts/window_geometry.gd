@@ -53,7 +53,7 @@ func recover_window_state() -> void:
 	var state: Dictionary = _settings.read("window_state")
 	
 	if state.empty():
-		OS.center_window()
+		OS.call_deferred("center_window")
 		return
 	
 	base_size =  Vector2(state["size_x"] as float, state["size_y"] as float)
