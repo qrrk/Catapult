@@ -1,7 +1,7 @@
-"keys","en","ru"
-,,
-"font_desc_fantasque","A somewhat whimsical monospace font by Jany Belluz.","Слегка причудливый моноширинный шрифт от Jany Belluz."
-"font_desc_hack","A workhorse font primarily designed for source code,\nwith focus on legibility. By Source Foundry Authors.","Рабочий шрифт, созданный в первую очередь для кода,\nс упором на удобочитаемость. От Source Foundry Authors."
-"font_desc_inconsolata","A variant of Inconsolata font (originally by Raph Levien)\nwith addition of Greek and Cyrillic characters.","Вариант шрифта Inconsolata (созданного Raph Levien)\nс добавлением греческих и кириллических символов."
-"font_desc_pt","A typewriter font by ParaType with excellent Cyrillic typography.","Машинописный шрифт от компании ParaType\nс отличной кириллической типографикой."
-"font_desc_ubuntu","A font by Canonical with a very distinct style,\ndesigned for the eponymous Linux distribution.","Шрифт с неповторимым стилем, созданный компанией\nCanonical для одноименного дистрибутива Линукса."
+keys,en,ru,
+,,,
+font_desc_fantasque,A somewhat whimsical monospace font by Jany Belluz.,Слегка причудливый моноширинный шрифт от Jany Belluz.,Jany Belluz 的一种有点异想天开的等宽字体。 
+font_desc_hack,"A workhorse font primarily designed for source code,\nwith focus on legibility. By Source Foundry Authors.","Рабочий шрифт, созданный в первую очередь для кода,\nс упором на удобочитаемость. От Source Foundry Authors.",主要为源代码设计的主力字体，\n注重易读性。作者：Source Foundry Authors。 
+font_desc_inconsolata,A variant of Inconsolata font (originally by Raph Levien)\nwith addition of Greek and Cyrillic characters.,Вариант шрифта Inconsolata (созданного Raph Levien)\nс добавлением греческих и кириллических символов.,Inconsolata 字体的变体（最初由 Raph Levien 设计）\n添加了希腊语和西里尔字符。 
+font_desc_pt,A typewriter font by ParaType with excellent Cyrillic typography.,Машинописный шрифт от компании ParaType\nс отличной кириллической типографикой.,ParaType 的打字机字体，在显示西里尔字体上很出色。 
+font_desc_ubuntu,"A font by Canonical with a very distinct style,\ndesigned for the eponymous Linux distribution.","Шрифт с неповторимым стилем, созданный компанией\nCanonical для одноименного дистрибутива Линукса.",Canonical 的字体，风格非常独特，\n为同名的 Linux 发行版设计。
