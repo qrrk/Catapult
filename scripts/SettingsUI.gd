@@ -34,6 +34,8 @@ func _ready() -> void:
 			lang_list.selected = 0
 		"ru":
 			lang_list.selected = 1
+		"zh":
+			lang_list.selected = 2
 	
 	$ShowGameDesc.pressed = _settings.read("show_game_desc")
 	$PrintTips.pressed = _settings.read("print_tips_of_the_day")
@@ -65,6 +67,8 @@ func _on_obtnLanguage_item_selected(index: int) -> void:
 			locale = "en"
 		1:
 			locale = "ru"
+		2:
+			locale = "zh"
 	_settings.store("launcher_locale", locale)
 
 
