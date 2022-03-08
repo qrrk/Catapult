@@ -370,13 +370,13 @@ dlg_mod_reinstall_text_multiple,%s of the selected mods are already installed.\n
 ,,,
  ==== SOUNDPACK MANAGER ====,,,
 ,,,
-msg_no_sound_dir,Sound directory does not exist: %s,Отсутствует директория со звуками игры: %s,
-msg_deleting_sound,Deleting %s,Удаляется %s,
-msg_soundpack_not_found,"Could not find soundpack named \""%s\""","Не удалось найти саундпак под названием \""%s\""",
-msg_installing_sound,"Installing soundpack \""%s\""...","Установка саундпака \""%s\""...",
-msg_reinstalling_sound,"Reinstalling soundpack \""%s\""…","Переустановка саундпака \""%s\""...",
-msg_sound_download_failed,Could not download soundpack archive.,Не удалось скачать архив с саундпаком.,
-msg_sound_installed,Soundpack installed.,Саундпак установлен.,
+msg_no_sound_dir,Sound directory does not exist: %s,Отсутствует директория со звуками игры: %s,音效目录不存在：%s
+msg_deleting_sound,Deleting %s,Удаляется %s,正在删除%s
+msg_soundpack_not_found,"Could not find soundpack named \""%s\""","Не удалось найти саундпак под названием \""%s\""","无法找到名为\""%s\""的音效包"
+msg_installing_sound,"Installing soundpack \""%s\""...","Установка саундпака \""%s\""...","正在安装音效包\""%s\""..."
+msg_reinstalling_sound,"Reinstalling soundpack \""%s\""…","Переустановка саундпака \""%s\""...","正在重装音效包\""%s\""…"
+msg_sound_download_failed,Could not download soundpack archive.,Не удалось скачать архив с саундпаком.,无法下载音效包文件。
+msg_sound_installed,Soundpack installed.,Саундпак установлен.,音效包已安装。
 ,,,
  ==== FONT MANAGER ====,,,
 ,,,
