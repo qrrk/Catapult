@@ -37,7 +37,7 @@ None required. The launcher is a single, self-contained executable. Just [downlo
 
 These are tentative. They may or may not come to fruition.
 
-- ~~Translations~~. *Done! (Translation infrasctructure is implemented; currently English and Russian are available; other contributions welcome!)*
+- ~~Translations~~. *Done! (Translation infrasctructure is implemented; currently English, Russian and Simplified Chinese are available; other contributions welcome!)*
 - ~~Setting in-game font from the launcher.~~ *Done!*
 - ~~Backups for user data.~~ *Savegame backups added!*
 - Multiple launcher UI themes.
