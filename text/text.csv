@@ -12,7 +12,7 @@ tag_debug,debug,отладка,调试
 ,,,
 lbl_game,Game:,Игра:,游戏：
 desc_dda,"[b]Cataclysm: Dark Days Ahead[/b] is a turn-based survival game set in a post-apocalyptic world. Scavenge, explore, craft, build, farm, repair and modify vehicles, install bionics, mutate, defend against [color=#009900]zombies[/color] and countless other monstrosities — all in a limitless, procedurally generated world!","[b]Cataclysm: Dark Days Ahead[/b] — это пошаговый симулятор выживания в пост-апокалипсисе. Находите или крафтите снаряжение, стройте базы, выращивайте еду, тюнингуйте транспорт, ставьте кибер-импланты, мутируйте, отбивайтесь от [color=#009900]зомби[/color] и кучи других монстров — и всё это в бесконечном, процедурно генерируемом мире!",[b]Cataclysm: Dark Days Ahead[/b] 是一款以世界末日为背景的回合制生存游戏。搜刮，探索，制造，建造，耕种，修理并改装载具，安装生化插件，变异，抵御[color=#009900]僵尸[/color]和无数其他怪物的攻击——一切尽在一个无限的，程序生成的世界中！
-desc_bn,"[b]Cataclysm: Bright Nights[/b]. Reject pedantry, embrace [color=#ff3300]!!fun!![/color]. This fork takes the game back to its sci-fi roguelike roots and reverts many controversial changes by the DDA team (pockets, proficiencies, freezing, and [color=#3b93f7][url=https://github.com/cataclysmbnteam/Cataclysm-BN/wiki/Changes-so-far]more[/url][/color]). Special attention is paid to combat, game balance and pacing.","[b]Cataclysm: Bright Nights[/b] — это форк, который возвращает игру к истокам и снова делает её sci-fi рогаликом, откатывая многие спорные нововведения, сделанные командой DDA (кармашки, умения, заморозку и [color=#3b93f7][url=https://github.com/cataclysmbnteam/Cataclysm-BN/wiki/Changes-so-far]многое другое[/url][/color]). Особое внимание уделяется боёвке, балансу и темпу игры, и конечно же [color=#ff3300]!!веселью!![/color]",[b]Cataclysm: Bright Nights[/b]. 拒绝迂腐，拥抱[color=#ff3300]!!乐趣!![/color]。这一分支将游戏带回了它科幻roguelike游戏的初衷，并撤回了许多由DDA团队做出的备受争议的改动（容器，专精，冷冻和[color=#3b93f7][url=https://github.com/cataclysmbnteam/Cataclysm-BN/wiki/Changes-so-far]更多[/url][/color]）。更注重战斗，游戏平衡和游戏节奏。
+desc_bn,"[b]Cataclysm: Bright Nights[/b]. Reject pedantry, embrace [color=#ff3300]!!fun!![/color]. This fork takes the game back to its sci-fi roguelike roots and reverts many controversial changes by the DDA team (pockets, proficiencies, freezing, and [color=#3b93f7][url=https://github.com/cataclysmbnteam/Cataclysm-BN/wiki/Changes-so-far]more[/url][/color]). Special attention is paid to combat, game balance and pacing.","[b]Cataclysm: Bright Nights[/b] — это форк, который возвращает игру к истокам и снова делает её sci-fi рогаликом, откатывая многие спорные нововведения, сделанные командой DDA (кармашки, умения, заморозку и [color=#3b93f7][url=https://github.com/cataclysmbnteam/Cataclysm-BN/wiki/Changes-so-far]многое другое[/url][/color]). Особое внимание уделяется боёвке, балансу и темпу игры, и конечно же [color=#ff3300]!!веселью!![/color]",[b]Cataclysm: Bright Nights[/b] 拒绝迂腐，拥抱[color=#ff3300]!!乐趣!![/color]。这一分支将游戏带回了它科幻roguelike游戏的初衷，并撤回了许多由DDA团队做出的备受争议的改动（容器，专精，冷冻和[color=#3b93f7][url=https://github.com/cataclysmbnteam/Cataclysm-BN/wiki/Changes-so-far]更多[/url][/color]）。更注重战斗，游戏平衡和游戏节奏。
 ,,,
  ==== TAB NAMES ====,,,
 ,,,
@@ -61,7 +61,7 @@ str_error_retrieving_data,Error retrieving data from GitHub API.,Произош�
 str_hhtp_response_code,\n\nHTTP response code: %s,\n\nКод ответа HTTP: %s,\n\nHTTP响应代码： %s
 str_github_says,\nGitHub says: [i]%s[/i],\nGitHub сказал: [i]%s[/i],\nGitHub说： [i]%s[/i]
 str_try_later,\n\nPlease try again later.,\n\nПопробуйте повторить позднее.,\n\n请稍后重试。
-str_changelog_intro,Showing the last [b]%s[/b] completed pull requests (code additions) to [b]%s[/b].\n\nYou can click on any item to view the corresponding PR on GitHub and learn more about the change.\n,"Здесь показаны последние [b]%s[/b] завершенных пул-реквестов (изменений в коде) для [b]%s[/b].\n\nНажмите на любой пункт, чтобы посмотреть соответствующий PR на GitHub и узнать больше об этом изменении.\n",展示最近[b]%s[/b]个到[b]%s[/b].\n\n的已合并请求（代码贡献）。您可以点击任意一项来查阅相应的Github合并请求并了解更多。\n
+str_changelog_intro,Showing the last [b]%s[/b] completed pull requests (code additions) to [b]%s[/b].\n\nYou can click on any item to view the corresponding PR on GitHub and learn more about the change.\n,"Здесь показаны последние [b]%s[/b] завершенных пул-реквестов (изменений в коде) для [b]%s[/b].\n\nНажмите на любой пункт, чтобы посмотреть соответствующий PR на GitHub и узнать больше об этом изменении.\n",展示最近[b]%s[/b]个到[b]%s[/b]\n\n的已合并请求（代码贡献）。您可以点击任意一项来查阅相应的Github合并请求并了解更多。\n
 ,,,
  ==== MODS TAB ====,,,
 ,,,
@@ -316,11 +316,11 @@ and enables debug messages in the status  pane
 (useful for troubleshooting).","Показать вкладку Debug с тестовыми функциями
 и включить отладочные сообщения в панели статуса
 (полезно при поиске проблем).","显示Debug选项卡，有一些调试功能，
-展示debug消息（有助于排除故障）"
+展示debug消息（有助于排除故障）。"
 tooltip_num_releases_to_request,"How many latest releases will be requested
 from GitHub after starting the launcher, choosing
 the game or clicking Refresh.","Сколько свежих релизов нужно запрашивать с GitHub
-после запуска лончера, выбора игры или нажатия Обновить.",启动器会从Github拉取多少条发布
+после запуска лончера, выбора игры или нажатия Обновить.",启动器会从Github拉取多少条发布。
 tooltip_num_prs_to_request,"How many recent pull requests (code additions)
 will be requested from GitHub to form the changelog.
 High numbers may lead to slow responses and failures.","Сколько последних пул-реквестов (изменений в коде игры)
@@ -463,7 +463,7 @@ msg_cannot_parse_install_info,Could not parse install info file %s,Не удал
 msg_updating_game,Updating to %s…,Обновление до %s…,更新至%s…
 msg_installing_game,Installing %s…,Установка %s…,正在安装%s…
 msg_game_updated,Update finished.,Обновление завершено.,更新完成。
-msg_game_installed,Installation finished.,Установка завершена.,安装完成
+msg_game_installed,Installation finished.,Установка завершена.,安装完成。
 msg_migrating_game_data,Migrating game data. This may take a while.,Перенос игровых данных. Это может занять некоторое время.,正在迁移游戏数据，请稍等。
 msg_migrating_saves,Copying savegames...,Копирование сохранений…,复制游戏存档...
 msg_migrating_config,Copying game settings...,Копирование настроек игры…,复制游戏设置...
@@ -480,7 +480,7 @@ msg_migrating_graveyard,Copying graveyard...,Копирование кладби
 msg_unsupported_platform,"Unsupported platform: \""%s\""","Неподдерживаемая платформа: \""%s\""","不支持的平台：\""%s\"""
 msg_releases_request_failed,Request failed. Do you have internet connection?,Запрос не удался. Вы ведь подключены к интернету?,请求失败。你的网络正常连接吗？
 msg_releases_api_failure,Could not get the builds list. GitHub says: %s,Не удалось получить список релизов. GitHub сказал: %s,无法获取构建列表。GitHub说：%s
-msg_got_n_releases,Got %s releases.,Получено %s релизов.,获取了%s个发布.
+msg_got_n_releases,Got %s releases.,Получено %s релизов.,获取了%s个发布。
 msg_fetching_releases_dda,Fetching releases for DDA Experimental...,Получение списка экспериментальных релизов DDA…,正在为DDA测试版获取发布... 
 msg_fetching_releases_bn,Fetching releases for BN Experimental…,Получение списка экспериментальных релизов BN…,正在为BN测试版获取发布...
 msg_invalid_fetch_func_param,ReleaseManager.fetch() was passed %s,В ReleaseManager.fetch() был передан аргумент %s,ReleaseManager.fetch()已传至%s
