@@ -1,178 +1,187 @@
-"keys","en","ru"
-,,
-"window_title","Catapult — a launcher for Cataclysm: DDA and BN","Catapult — лончер для Cataclysm: DDA и BN"
-"str_welcome","Welcome to Catapult!","Добро пожаловать в Catapult!"
-"str_tip_of_the_day","\n\n[u]Tip of the day:[/u]\n","\n\n[u]Совет дня:[/u]\n"
-"msg_unpacking_unzip","Unpacking unzip.exe…","Распаковываем unzip.exe…"
-"debug_test","This is a debug text to test translation retrieval.","Это отладочный текст для проверки извлечения переводов."
-,,
-"tag_warning","warning","внимание"
-"tag_error","error ","ошибка"
-"tag_debug","debug","отладка"
-,,
-"lbl_game","Game:","Игра:"
-"desc_dda","[b]Cataclysm: Dark Days Ahead[/b] is a turn-based survival game set in a post-apocalyptic world. Scavenge, explore, craft, build, farm, repair and modify vehicles, install bionics, mutate, defend against [color=#009900]zombies[/color] and countless other monstrosities — all in a limitless, procedurally generated world!","[b]Cataclysm: Dark Days Ahead[/b] — это пошаговый симулятор выживания в пост-апокалипсисе. Находите или крафтите снаряжение, стройте базы, выращивайте еду, тюнингуйте транспорт, ставьте кибер-импланты, мутируйте, отбивайтесь от [color=#009900]зомби[/color] и кучи других монстров — и всё это в бесконечном, процедурно генерируемом мире!"
-"desc_bn","[b]Cataclysm: Bright Nights[/b]. Reject pedantry, embrace [color=#ff3300]!!fun!![/color]. This fork takes the game back to its sci-fi roguelike roots and reverts many controversial changes by the DDA team (pockets, proficiencies, freezing, and [color=#3b93f7][url=https://github.com/cataclysmbnteam/Cataclysm-BN/wiki/Changes-so-far]more[/url][/color]). Special attention is paid to combat, game balance and pacing.","[b]Cataclysm: Bright Nights[/b] — это форк, который возвращает игру к истокам и снова делает её sci-fi рогаликом, откатывая многие спорные нововведения, сделанные командой DDA (кармашки, умения, заморозку и [color=#3b93f7][url=https://github.com/cataclysmbnteam/Cataclysm-BN/wiki/Changes-so-far]многое другое[/url][/color]). Особое внимание уделяется боёвке, балансу и темпу игры, и конечно же [color=#ff3300]!!веселью!![/color]"
-,,
-" ==== TAB NAMES ====",,
-,,
-"tab_game","Game","Игра"
-"tab_mods","Mods","Моды"
-"tab_soundpacks","Soundpacks","Звуки"
-"tab_fonts","Fonts","Шрифты"
-"tab_backups","Backups","Бэкапы"
-"tab_settings","Settings","Настройки"
-,,
-" ==== GAME TAB ====",,
-,,
-"lbl_channel","Channel:","Ветка:"
-"rbtn_stable","Stable","Стабильная"
-"rbtn_experimental","Experimental","Экспериментальная"
-"lbl_changelog","[right][color=#3b93f7][url]View Experimental Changelog[/url][/color][/right]","[right][color=#3b93f7][url]Изменения в экспериментальной ветке[/url][/color][/right]"
-"lbl_builds","Available builds:","Доступные сборки:"
-"btn_refresh","Refresh","Обновить"
-"btn_install","Install Selected","Установить выбранную"
-"btn_update","Update to Selected","Обновиться до выбранной"
-"btn_play","Play","Играть"
-"lbl_currently_installed","Currently installed:","Сейчас установлено:"
-"lbl_none","None","Ничего"
-,,
-"tooltip_game","Choose which game to manage or play.","Выберите игру для запуска или настройки."
-"tooltip_changelog","Click to load a summary of latest changes from GitHub.","Загрузить с GitHub список последних изменений в игре."
-"tooltip_stable","Stable release channel (DDA only).","Ветка со стабильными релизами (только для DDA)."
-"tooltip_experimental","Experimental release channel.","Ветка с экспериментальными релизами."
-"tooltip_builds","Choose which release of the game to install or update to.","Выбор версии игры для установки или обновления."
-"tooltip_refresh","Re-retrieve the list of available game releases
+keys,en,ru,zh
+,,,
+window_title,Catapult — a launcher for Cataclysm: DDA and BN,Catapult — лончер для Cataclysm: DDA и BN,Catapult — Cataclysm: DDA和BN的启动器
+str_welcome,Welcome to Catapult!,Добро пожаловать в Catapult!,欢迎来到Catapult！
+str_tip_of_the_day,\n\n[u]Tip of the day:[/u]\n,\n\n[u]Совет дня:[/u]\n,\n\n[u]小贴士：[/u]\n
+msg_unpacking_unzip,Unpacking unzip.exe…,Распаковываем unzip.exe…,正在解压 unzip.exe…
+debug_test,This is a debug text to test translation retrieval.,Это отладочный текст для проверки извлечения переводов.,这是一条测试文本。
+,,,
+tag_warning,warning,внимание,警告
+tag_error,error ,ошибка,错误
+tag_debug,debug,отладка,调试
+,,,
+lbl_game,Game:,Игра:,游戏：
+desc_dda,"[b]Cataclysm: Dark Days Ahead[/b] is a turn-based survival game set in a post-apocalyptic world. Scavenge, explore, craft, build, farm, repair and modify vehicles, install bionics, mutate, defend against [color=#009900]zombies[/color] and countless other monstrosities — all in a limitless, procedurally generated world!","[b]Cataclysm: Dark Days Ahead[/b] — это пошаговый симулятор выживания в пост-апокалипсисе. Находите или крафтите снаряжение, стройте базы, выращивайте еду, тюнингуйте транспорт, ставьте кибер-импланты, мутируйте, отбивайтесь от [color=#009900]зомби[/color] и кучи других монстров — и всё это в бесконечном, процедурно генерируемом мире!",[b]Cataclysm: Dark Days Ahead[/b] 是一款以世界末日为背景的回合制生存游戏。搜刮，探索，制造，建造，耕种，修理并改装载具，安装生化插件，变异，抵御[color=#009900]僵尸[/color]和无数其他怪物的攻击——一切尽在一个无限的，程序生成的世界中！
+desc_bn,"[b]Cataclysm: Bright Nights[/b]. Reject pedantry, embrace [color=#ff3300]!!fun!![/color]. This fork takes the game back to its sci-fi roguelike roots and reverts many controversial changes by the DDA team (pockets, proficiencies, freezing, and [color=#3b93f7][url=https://github.com/cataclysmbnteam/Cataclysm-BN/wiki/Changes-so-far]more[/url][/color]). Special attention is paid to combat, game balance and pacing.","[b]Cataclysm: Bright Nights[/b] — это форк, который возвращает игру к истокам и снова делает её sci-fi рогаликом, откатывая многие спорные нововведения, сделанные командой DDA (кармашки, умения, заморозку и [color=#3b93f7][url=https://github.com/cataclysmbnteam/Cataclysm-BN/wiki/Changes-so-far]многое другое[/url][/color]). Особое внимание уделяется боёвке, балансу и темпу игры, и конечно же [color=#ff3300]!!веселью!![/color]",[b]Cataclysm: Bright Nights[/b] 拒绝迂腐，拥抱[color=#ff3300]!!乐趣!![/color]。这一分支将游戏带回了它科幻roguelike游戏的初衷，并撤回了许多由DDA团队做出的备受争议的改动（容器，专精，冷冻和[color=#3b93f7][url=https://github.com/cataclysmbnteam/Cataclysm-BN/wiki/Changes-so-far]更多[/url][/color]）。更注重战斗，游戏平衡和游戏节奏。
+,,,
+ ==== TAB NAMES ====,,,
+,,,
+tab_game,Game,Игра,游戏
+tab_mods,Mods,Моды,模组
+tab_soundpacks,Soundpacks,Звуки,音效包
+tab_fonts,Fonts,Шрифты,字体
+tab_backups,Backups,Бэкапы,备份
+tab_settings,Settings,Настройки,设置
+,,,
+ ==== GAME TAB ====,,,
+,,,
+lbl_channel,Channel:,Ветка:,版本：
+rbtn_stable,Stable,Стабильная,稳定版
+rbtn_experimental,Experimental,Экспериментальная,测试版
+lbl_changelog,[right][color=#3b93f7][url]View Experimental Changelog[/url][/color][/right],[right][color=#3b93f7][url]Изменения в экспериментальной ветке[/url][/color][/right],[right][color=#3b93f7][url]查看测试版更新日志[/url][/color][/right]
+lbl_builds,Available builds:,Доступные сборки:,可用构建：
+btn_refresh,Refresh,Обновить,刷新
+btn_install,Install Selected,Установить выбранную,安装
+btn_update,Update to Selected,Обновиться до выбранной,更新
+btn_play,Play,Играть,开始
+lbl_currently_installed,Currently installed:,Сейчас установлено:,已安装：
+lbl_none,None,Ничего,无
+,,,
+tooltip_game,Choose which game to manage or play.,Выберите игру для запуска или настройки.,切换要管理或游玩的游戏。
+tooltip_changelog,Click to load a summary of latest changes from GitHub.,Загрузить с GitHub список последних изменений в игре.,点击从Github加载最近的更新日志。
+tooltip_stable,Stable release channel (DDA only).,Ветка со стабильными релизами (только для DDA).,稳定版（仅DDA）。
+tooltip_experimental,Experimental release channel.,Ветка с экспериментальными релизами.,测试版。
+tooltip_builds,Choose which release of the game to install or update to.,Выбор версии игры для установки или обновления.,选择游戏要安装或更新到具体哪个构建。
+tooltip_refresh,"Re-retrieve the list of available game releases
 from GitHub (only for experimental releases).","Заново загрузить список доступных релизов игры
-c GitHub (только для экспериментальных релизов)."
-"tooltip_install","Install selected game release (DDA and BN
+c GitHub (только для экспериментальных релизов).","从Github重新检索可用
+游戏列表（仅测试版）。"
+tooltip_install,"Install selected game release (DDA and BN
 are managed separately and can co-exist).","Установить выбранную версию игры (DDA и BN хранятся
-раздельно и могут устанавливаться одновременно)."
-"tooltip_game_dir","Open game directory.","Открыть папку с игрой."
-"tooltip_play","Launch the game.","Запустить игру."
-,,
-" ==== CHANGELOG DIALOG ====",,
-,,
-"dlg_changelog_title","Recent changes","Последние изменения"
-"str_fetching_changes","Fetching recent changes from GitHub. Please wait…","Получение последних изменений с GitHub. Подождите…"
-"str_error_retrieving_data","Error retrieving data from GitHub API.","Произошла ошибка при получении данных с GitHub."
-"str_hhtp_response_code","\n\nHTTP response code: %s","\n\nКод ответа HTTP: %s"
-"str_github_says","\nGitHub says: [i]%s[/i]","\nGitHub сказал: [i]%s[/i]"
-"str_try_later","\n\nPlease try again later.","\n\nПопробуйте повторить позднее."
-"str_changelog_intro","Showing the last [b]%s[/b] completed pull requests (code additions) to [b]%s[/b].\n\nYou can click on any item to view the corresponding PR on GitHub and learn more about the change.\n","Здесь показаны последние [b]%s[/b] завершенных пул-реквестов (изменений в коде) для [b]%s[/b].\n\nНажмите на любой пункт, чтобы посмотреть соответствующий PR на GitHub и узнать больше об этом изменении.\n"
-,,
-" ==== MODS TAB ====",,
-,,
-"lbl_installed_mods","Installed%s:","Установленные%s:"
-"str_installed_mods_hidden"," (%s hidden)"," (%s скрыто)"
-"lbl_mod_repo","Local repository%s:","Локальный репозиторий%s:"
-"str_mod_repo_hidden"," (%s hidden)"," (%s скрыто)"
-"cbtn_stock_mods","Show stock","Показать встроенные"
-"btn_delete_mods","Delete Selected","Удалить выбранные"
-"cbtn_installed_mods","Show already installed","Показать уже установленные"
-"btn_add_sel_mods","Add Selected","Добавить выбранные"
-"btn_add_all_mods","All Add","Добавить все"
-"btn_get_kenan_pack","Get Kenan Modpack","Загрузить модпак Кенана"
-"lbl_mod_info","Select a mod in either list to see its details here.","Выберите мод в одном из списков, чтобы увидеть здесь информацию по нему."
-"str_mod_name","Name:","Название:"
-"str_mod_authors","Authors:","Авторы:"
-"str_mod_maintainers","Maintainers:","Сопровождение:"
-"str_mod_category","Category:","Категория:"
-"str_mod_description","Description:","Описание:"
-,,
-"tooltip_mod_location","Location: %s","Расположение: %s"
-"tooltip_stock_mods","Show mods from data/mods on this list.","Показать в этом списке моды из data/mods."
-"tooltip_installed_mods","Show already installed mods on this list
+раздельно и могут устанавливаться одновременно).","安装所选发布（DDA和BN
+分别管理，可同时存在）。"
+tooltip_game_dir,Open game directory.,Открыть папку с игрой.,打开游戏目录。
+tooltip_play,Launch the game.,Запустить игру.,启动游戏。
+,,,
+ ==== CHANGELOG DIALOG ====,,,
+,,,
+dlg_changelog_title,Recent changes,Последние изменения,最近改动
+str_fetching_changes,Fetching recent changes from GitHub. Please wait…,Получение последних изменений с GitHub. Подождите…,正在从Github获取最近改动。请稍等...
+str_error_retrieving_data,Error retrieving data from GitHub API.,Произошла ошибка при получении данных с GitHub.,从GitHub API检索数据时出错。 
+str_hhtp_response_code,\n\nHTTP response code: %s,\n\nКод ответа HTTP: %s,\n\nHTTP响应代码： %s
+str_github_says,\nGitHub says: [i]%s[/i],\nGitHub сказал: [i]%s[/i],\nGitHub说： [i]%s[/i]
+str_try_later,\n\nPlease try again later.,\n\nПопробуйте повторить позднее.,\n\n请稍后重试。
+str_changelog_intro,Showing the last [b]%s[/b] completed pull requests (code additions) to [b]%s[/b].\n\nYou can click on any item to view the corresponding PR on GitHub and learn more about the change.\n,"Здесь показаны последние [b]%s[/b] завершенных пул-реквестов (изменений в коде) для [b]%s[/b].\n\nНажмите на любой пункт, чтобы посмотреть соответствующий PR на GitHub и узнать больше об этом изменении.\n",展示最近[b]%s[/b]个到[b]%s[/b]\n\n的已合并请求（代码贡献）。您可以点击任意一项来查阅相应的Github合并请求并了解更多。\n
+,,,
+ ==== MODS TAB ====,,,
+,,,
+lbl_installed_mods,Installed%s:,Установленные%s:,已安装%s：
+str_installed_mods_hidden, (%s hidden), (%s скрыто),（%s 隐藏）
+lbl_mod_repo,Local repository%s:,Локальный репозиторий%s:,本地存储%s：
+str_mod_repo_hidden, (%s hidden), (%s скрыто),（%s 隐藏）
+cbtn_stock_mods,Show stock,Показать встроенные,展示基础模组
+btn_delete_mods,Delete Selected,Удалить выбранные,删除该项
+cbtn_installed_mods,Show already installed,Показать уже установленные,展示已安装
+btn_add_sel_mods,Add Selected,Добавить выбранные,添加所选
+btn_add_all_mods,All Add,Добавить все,全部添加
+btn_get_kenan_pack,Get Kenan Modpack,Загрузить модпак Кенана,获取Kenan Modpack
+lbl_mod_info,Select a mod in either list to see its details here.,"Выберите мод в одном из списков, чтобы увидеть здесь информацию по нему.",选择一个mod来查看详情。
+str_mod_name,Name:,Название:,名称：
+str_mod_authors,Authors:,Авторы:,作者：
+str_mod_maintainers,Maintainers:,Сопровождение:,维护者：
+str_mod_category,Category:,Категория:,分类：
+str_mod_description,Description:,Описание:,描述：
+,,,
+tooltip_mod_location,Location: %s,Расположение: %s,位置：%s
+tooltip_stock_mods,Show mods from data/mods on this list.,Показать в этом списке моды из data/mods.,显示该列表下data/mods里的模组。
+tooltip_installed_mods,"Show already installed mods on this list
 in case you want to re-install them.","Показать в этом списке уже установленные моды
-(например, чтобы выбрать их для переустановки)."
-"tooltip_delete_mods","Remove selected mods from your game installation.","Удалить выбранные моды из текущей установки игры."
-"tooltip_add_sel_mods","Add selected mods to your game installation.","Добавить выбранные моды к текущей установке игры."
-"tooltip_add_all_mods","Add all listed mods to your game installation.","Добавить все показанные моды к текущей установке игры."
-"tooltip_get_kenan_pack","Download Kenan Modpack and add its mods to the local repository.","Загрузить подборку модов от Кенана и добавить
-моды из неё в локальный репозиторий."
-,,
-"msg_one_mod_is_stock","One of the selected mods is stock and cannot be deleted.","Один из выбранных модов является встроенным и не может быть удалён."
-"msg_n_mods_are_stock","%s of the selected mods are stock and cannot be deleted.","%s из выбранных модов являются встроенными и не могут быть удалены."
-"dlg_deleting_n_mods_title","Confirm Deletion","Подтвердите удаление"
-"dlg_deleting_n_mods_text","Deleting %s mods.","Будут удалены %s модов."
-"msg_mod_install_one_mod_skipped","One mod already comes with the game, so it will not be installed.","Один мод уже идет вместе с игрой, так что он не будет установлен."
-"msg_mod_install_n_mods_skipped","%s mods already come with the game, so they will not be installed.","%s модов уже идут вместе с игрой, так что они не будут установлены."
-,,
-" ==== SOUNDPACKS TAB ====",,
-,,
-"lbl_installed_sound","Installed:","Установленные:"
-"lbl_avail_sound","Downloadable:","Доступные для загрузки:"
-"cbtn_stock_sound","Show stock","Показать встроенные"
-"btn_delete_sound","Delete Selected","Удалить выбранный"
-"btn_install_sound","Install Selected","Установить выбранный"
-"btn_reinstall_sound","Reinstall Selected","Переустановить выбранный"
-,,
-"tooltip_stock_sound","Show soundpacks from data/sound on the list.","Показать в этом списке саундпаки из data/sound."
-"tooltip_delete_sound","Remove the selected soundpack from your game installation.","Удалить выбранный саундпак из текущей установки игры."
-"tooltip_install_sound","Download the selected soundpack and add it
+(например, чтобы выбрать их для переустановки).","显示该列表已安装的模组
+（您可以重新安装）。"
+tooltip_delete_mods,Remove selected mods from your game installation.,Удалить выбранные моды из текущей установки игры.,从游戏中删除该模组。
+tooltip_add_sel_mods,Add selected mods to your game installation.,Добавить выбранные моды к текущей установке игры.,将该模组添加至游戏。
+tooltip_add_all_mods,Add all listed mods to your game installation.,Добавить все показанные моды к текущей установке игры.,将该列表下的所有模组添加至游戏。
+tooltip_get_kenan_pack,Download Kenan Modpack and add its mods to the local repository.,"Загрузить подборку модов от Кенана и добавить
+моды из неё в локальный репозиторий.",下载Kenan Modpack并添加至本地存储。
+,,,
+msg_one_mod_is_stock,One of the selected mods is stock and cannot be deleted.,Один из выбранных модов является встроенным и не может быть удалён.,选中模组有一个是基础模组，无法被删除。
+msg_n_mods_are_stock,%s of the selected mods are stock and cannot be deleted.,%s из выбранных модов являются встроенными и не могут быть удалены.,选中模组有%s个是基础模组，无法被删除。
+dlg_deleting_n_mods_title,Confirm Deletion,Подтвердите удаление,确认删除
+dlg_deleting_n_mods_text,Deleting %s mods.,Будут удалены %s модов.,正在删除%s个模组。
+msg_mod_install_one_mod_skipped,"One mod already comes with the game, so it will not be installed.","Один мод уже идет вместе с игрой, так что он не будет установлен.",一个模组是游戏内置模组，将不会被安装。
+msg_mod_install_n_mods_skipped,"%s mods already come with the game, so they will not be installed.","%s модов уже идут вместе с игрой, так что они не будут установлены.",%s个模组是游戏内置模组，将不会被安装。 
+,,,
+ ==== SOUNDPACKS TAB ====,,,
+,,,
+lbl_installed_sound,Installed:,Установленные:,已安装：
+lbl_avail_sound,Downloadable:,Доступные для загрузки:,可下载：
+cbtn_stock_sound,Show stock,Показать встроенные,展示基础音效包：
+btn_delete_sound,Delete Selected,Удалить выбранный,删除该项
+btn_install_sound,Install Selected,Установить выбранный,安装所选
+btn_reinstall_sound,Reinstall Selected,Переустановить выбранный,重新安装所选
+,,,
+tooltip_stock_sound,Show soundpacks from data/sound on the list.,Показать в этом списке саундпаки из data/sound.,显示该列表下data/sound里的音效包。
+tooltip_delete_sound,Remove the selected soundpack from your game installation.,Удалить выбранный саундпак из текущей установки игры.,从游戏中删除该音效包。
+tooltip_install_sound,"Download the selected soundpack and add it
 to your game installation.","Загрузить выбранный саундпак и добавить его
-в текущую установку игры."
-,,
-"dlg_sound_deletion_title","Confirm Soundpack Deletion","Подтвердите удаление саундпака"
-"dlg_sound_deletion_text","Deleting %s.","%s будет удалён."
-"dlg_sound_manual_dl_title","Manual Download Required","Требуется ручное скачивание"
-"dlg_sound_manual_dl_text","This soundpack cannot be downloaded automatically.
+в текущую установку игры.",下载所选音效包并添加至游戏。
+,,,
+dlg_sound_deletion_title,Confirm Soundpack Deletion,Подтвердите удаление саундпака,确认删除音效包
+dlg_sound_deletion_text,Deleting %s.,%s будет удалён.,正在删除%s。
+dlg_sound_manual_dl_title,Manual Download Required,Требуется ручное скачивание,需要手动下载
+dlg_sound_manual_dl_text,"This soundpack cannot be downloaded automatically.
 Click OK to download it in your browser, then choose
 where you saved it in the file selection dialog.","Этот саундпак нельзя загрузить автоматически.
 Нажмите OK, чтобы скачать его в браузере, затем
-вернитесь сюда и укажите, куда вы сохранили файл."
-,,
-"str_no_sound_desc","No description provided.","У этого пака нет описания."
-,,
-" ==== FONTS TAB ====",,
-,,
-"lbl_avail_fonts","Available:","Доступные шрифты:"
-"lbl_font_preview","Preview:","Предпросмотр:"
-"cbtn_preview_cyrillics","Preview Cyrillic characters","Предпросмотр символов кириллицы"
-"lbl_other_settings","Other settings","Другие настройки"
-"lbl_font_sz_ui","UI font size:","Размер шрифта UI:"
-"lbl_font_sz_map","Map font size:","Размер шрифта мира:"
-"lbl_font_sz_overmap","Overmap font size:","Размер шрифта карты:"
-"cbtn_font_blending","Font blending:","Сглаживание шрифтов"
-"btn_save_font","Save","Сохранить"
-"btn_set_font_ui","Set for Game UI","Уст. для UI"
-"btn_set_font_map","Set for Map","Уст. для мира"
-"btn_set_font_omap","Set for Overmap","Уст. для карты"
-"btn_set_font_all","Set for All","Уст. для всего"
-"btn_reset_font","Reset All Fonts","Сбросить все шрифты"
-,,
-"tooltip_preview_cyrillics","Show a pangram in Russian.","Показывать панграмму на русском языке."
-"tooltip_font_sz_ui","Font size value for menus/dialogs/etc.
+вернитесь сюда и укажите, куда вы сохранили файл.","该音效包无法自动下载。点击OK跳转到浏览器，
+在文件选择窗口选择文件保存的位置。"
+,,,
+str_no_sound_desc,No description provided.,У этого пака нет описания.,无描述。
+,,,
+ ==== FONTS TAB ====,,,
+,,,
+lbl_avail_fonts,Available:,Доступные шрифты:,可用：
+lbl_font_preview,Preview:,Предпросмотр:,预览：
+cbtn_preview_cyrillics,Preview Cyrillic characters,Предпросмотр символов кириллицы,预览西里尔字母：
+lbl_other_settings,Other settings,Другие настройки,其他设定：
+lbl_font_sz_ui,UI font size:,Размер шрифта UI:,UI字体大小：
+lbl_font_sz_map,Map font size:,Размер шрифта мира:,地图字体大小：
+lbl_font_sz_overmap,Overmap font size:,Размер шрифта карты:,大地图字体大小：
+cbtn_font_blending,Font blending:,Сглаживание шрифтов,字体混合：
+btn_save_font,Save,Сохранить,保存
+btn_set_font_ui,Set for Game UI,Уст. для UI,设为UI字体
+btn_set_font_map,Set for Map,Уст. для мира,设为地图字体
+btn_set_font_omap,Set for Overmap,Уст. для карты,设为大地图字体
+btn_set_font_all,Set for All,Уст. для всего,设为全部
+btn_reset_font,Reset All Fonts,Сбросить все шрифты,重置全部字体
+,,,
+tooltip_preview_cyrillics,Show a pangram in Russian.,Показывать панграмму на русском языке.,展示一条俄文的全字母短句。
+tooltip_font_sz_ui,"Font size value for menus/dialogs/etc.
 Font width and height will be set automatically.","Размер шрифта для меню, диалогов и т.п.
-Высота и ширина шрифта будут установлены автоматически."
-"tooltip_font_sz_map","Font size for game world (when not using tiles).
+Высота и ширина шрифта будут установлены автоматически.","菜单，对话等的字体大小。
+字体宽高将自动设定。"
+tooltip_font_sz_map,"Font size for game world (when not using tiles).
 Font width and height will be set automatically.","Размер шрифта для игрового мира
 (когда не используются графические тайлы).
-Высота и ширина шрифта будут установлены автоматически."
-"tooltip_font_sz_overmap","Font size for world map view a.k.a overmap.
+Высота и ширина шрифта будут установлены автоматически.","游戏世界的字体大小（没有使用图形包时）。
+字体宽高将自动设定。"
+tooltip_font_sz_overmap,"Font size for world map view a.k.a overmap.
 Font width and height will be set automatically.","Размер шрифта для карты мира.
-Высота и ширина шрифта будут установлены автоматически."
-"tooltip_font_blending","Smoother font rendering.","Отрисовка шрифтов со сглаживанием."
-"tooltip_save_font","Click to save these settings to options.json.
+Высота и ширина шрифта будут установлены автоматически.","大地图的字体大小。
+字体宽高将自动设定。"
+tooltip_font_blending,Smoother font rendering.,Отрисовка шрифтов со сглаживанием.,平滑字体渲染。
+tooltip_save_font,"Click to save these settings to options.json.
 They are also saved automatically when
 setting a font.","Нажмите, чтобы записать эти настройки
 в options.json игры. Они также сохраняются
-автоматически, когда вы выбираете шрифт."
-"tooltip_set_font_ui","Use selected font for menus/dialogs/etc.","Использовать выбранный шрифт для меню, диалогов и т.п."
-"tooltip_set_font_map","Use selected font for game world
+автоматически, когда вы выбираете шрифт.","点击将设定保存至options.json。
+在设置字体时会自动保存。"
+tooltip_set_font_ui,Use selected font for menus/dialogs/etc.,"Использовать выбранный шрифт для меню, диалогов и т.п.",将所选字体应用至菜单，对话等。
+tooltip_set_font_map,"Use selected font for game world
 (when not using tiles).","Использовать выбранный шрифт для игрового мира
-(только когда не используются графические тайлы)."
-"tooltip_set_font_omap","Use selected font for world map view a.k.a overmap.","Использовать выбранный шрифт для карты мира (overmap)."
-"tooltip_set_font_all","Use selected font for everyhting.","Использовать выбранный шрифт для всего в игре."
-"tooltip_reset_font","Return default fonts (Terminus => Unifont).","Вернуть шрифты по умолчанию (Terminus => Unifont)."
-,,
-"str_curr_font_config","Current fonts + fallbacks:","Текущие шрифты + резервные варианты:"
-"str_curr_font_config_ui","UI","Интерфейс"
-"str_curr_font_config_map","Map","Игровой мир"
-"str_curr_font_config_omap","Overmap","Карта мира"
-,,
-"dlg_font_size_help_title","Font size help","Справка по размерам шрифтов"
-"dlg_font_config_help","As you've probably already noticed, you can set a separate font for game UI, map and overmap. Additionally, each of these three fonts in Cataclysm has three size parameters that define how it is drawn. They can be set in the game under [i]Settings > Graphics > Font Settings[/i].
+(только когда не используются графические тайлы).","将所选字体应用至游戏世界
+（没有使用图形包时）。"
+tooltip_set_font_omap,Use selected font for world map view a.k.a overmap.,Использовать выбранный шрифт для карты мира (overmap).,将所选字体应用至大地图。
+tooltip_set_font_all,Use selected font for everyhting.,Использовать выбранный шрифт для всего в игре.,将所选字体应用至全部。
+tooltip_reset_font,Return default fonts (Terminus => Unifont).,Вернуть шрифты по умолчанию (Terminus => Unifont).,重置为默认字体（Terminus => Unifont）。
+,,,
+str_curr_font_config,Current fonts + fallbacks:,Текущие шрифты + резервные варианты:,目前字体和备用字体：
+str_curr_font_config_ui,UI,Интерфейс,UI
+str_curr_font_config_map,Map,Игровой мир,地图
+str_curr_font_config_omap,Overmap,Карта мира,大地图
+,,,
+dlg_font_size_help_title,Font size help,Справка по размерам шрифтов,字体大小帮助
+dlg_font_config_help,"As you've probably already noticed, you can set a separate font for game UI, map and overmap. Additionally, each of these three fonts in Cataclysm has three size parameters that define how it is drawn. They can be set in the game under [i]Settings > Graphics > Font Settings[/i].
 
 [img=180]res://images/font-sizes.png[/img]
 
@@ -210,89 +219,115 @@ It is also recommended to turn on [b]Font Blending[/b] for smoother font renderi
 Также рекомендуем включить [b]Сглаживане шрифтов[/b] для улучшенной отрисовки.
 
 
+","您可能已经注意到，您可以为游戏 UI、地图和大地图设置单独的字体。此外，Cataclysm中的这三种字体中的每一种都有三个大小参数来定义它的绘制方式。可以在游戏中的 [i]设置 > 图形 > 字体设置[/i] 下进行设置。
+
+[img=180]res://images/font-sizes.png[/img]
+
+[b]字体高度[/b]和[b]字体宽度[/b]定义了每个字符所占据的矩形的像素大小。如果矩形太小，文字会被裁剪，如果太大，则会相距太远而显得很小。
+
+[img=400]res://images/font-rect.png[/img]
+
+[b]字体大小[/b]是字体字形渲染出来的实际大小，无论是否有保留空间。
+
+对于默认的Cataclysm字体，[i]Terminus[/i]和[i]Unifont[/i]，这些值有一个非常简单的关系：字体高度应与字体大小等同。UI字体宽度应为一半，其他的字体宽度应等同于字体高度（所以一个格子才是一个正方形）。
+
+这些比例也可能适用于其他第三方字体，但对于一些字体来说需要进行一些修改才能找到字体宽高和大小的美观组合。
+
+幸运的是，Catapult已经知道它所提供的字体的良好大小比例，因此您只需要指定所需的[b]字体大小[/b]，它就会自动计算并应用其他两个值。当您在左窗格中设置自定义字体而不更改大小时，也会应用这些比例。
+
+此外，建议打开[b]字体混合[/b]以取得更平滑的字体渲染。
+
+
 "
-,,
-"msg_no_font_config_file","Can't manage fonts at this time: font config file does not exist. Make sure you've started the game at least once to create it.","Сейчас нельзя управлять шрифтами, т.к. отсутствует файл конфигурации шрифтов игры. Запустите игру хотя бы раз, чтобы он создался."
-"msg_setting_ui_font","Setting [i]%s[/i] as game UI font.","[i]%s[/i] устанавливается в качестве шрифта для интерфейса игры."
-"msg_setting_map_font","Setting [i]%s[/i] as map font.","[i]%s[/i] устанавливается в качестве шрифта для игрового мира."
-"msg_setting_omap_font","Setting [i]%s[/i] as overmap font.","[i]%s[/i] устанавливается в качестве шрифта для карты мира."
-,,
-" ==== BACKUPS TAB ====",,
-,,
-"lbl_save_backups","Save directory backups:","Бэкапы папки с сохранениями:"
-"btn_restore_backup","Restore","Восстановить"
-"btn_delete_backup","Delete","Удалить"
-"btn_refresh_backups","Refresh","Обновить список"
-"lbl_manual_backup","Manual backup","Ручной бэкап"
-"lbl_backup_name","Name:","Название:"
-"btn_create_backup","Create","Создать"
-"lbl_backup_info_placeholder","Select an existing backup to see its details here.","Выберите существующий бэкап, чтобы увидеть здесь информацию по нему."
-,,
-"backup_info_location","Location:","Расположение:"
-"backup_info_worlds","Worlds:","Миры:"
-,,
-" ==== SETTINGS TAB ====",,
-,,
-"lbl_launcher_language","Launcher language (requires restart)","Язык лончера (требует перезапуска)"
-"cbtn_show_game_desc","Show game description","Показывать описание игры"
-"cbtn_print_tips","Print tips of the day on startup","Выводить совет дня при запуске"
-"cbtn_updating_to_same_build","Allow ""updating"" to the same build as installed","Разрешить «обновляться» на уже установленную версию"
-"cbtn_shorten_release_names","Shorten names of experimental releases","Сокращать названия экспериментальных релизов"
-"cbtn_show_obsolete_mods","List obsolete mods in installed","Показывать устаревшие моды в установленных"
-"cbtn_install_archived_mods","Include archived mods when installing Kenan modpack","Включить архивные моды при установке модпака Кенана"
-"cbtn_debug_mode","Debug mode","Режим отладки"
-"lbl_num_releases_to_request","Number of releases to request:","Запрашиваемое количество релизов:"
-"lbl_num_prs_to_request","Number of results to download for the changelog:","Загружаемое количество записей для списка изменений:"
-"lbl_ui_scale_override","Custom UI scaling:","Произвольный масштаб интерфейса:"
-"cbtn_enable_scale","Enable  ","Включить"
-"lbl_data_to_migrate","Migrate the following files when updating:","Переносить следующие файлы при обновлении:"
-"cbox_savegames","Saved games","Сохранённые игры"
-"cbox_fonts","User fonts","Польз. шрифты"
-"cbox_templates","Character templates","Шаблоны персонажей"
-"cbox_settings","Game settings","Настройки игры"
-"cbox_tilesets","Tilesets","Тайлсеты"
-"cbox_memorial","Memorial","Мемориал"
-"cbox_mods","Mods (non-stock)","Моды (кроме встроенных)"
-"cbos_soundpacks","Soundpacks","Саундпаки"
-"cbox_graveyard","Graveyard","Кладбище"
-,,
-"tooltip_show_game_desc","Show a description for the chosen game
-under the Game list.","Показывать описание для выбранной игры под списком."
-"tooltip_print_tips","Print a random tip in the status pane
-when the launcher starts.","Печатать случайный совет в панели статуса при запуске лончера."
-"tooltip_updating_to_same_build","Allow starting the update procedure even when
+,,,
+msg_no_font_config_file,Can't manage fonts at this time: font config file does not exist. Make sure you've started the game at least once to create it.,"Сейчас нельзя управлять шрифтами, т.к. отсутствует файл конфигурации шрифтов игры. Запустите игру хотя бы раз, чтобы он создался.",暂时无法管理字体：字体设置文件不存在。请先启动一次游戏以生成它。
+msg_setting_ui_font,Setting [i]%s[/i] as game UI font.,[i]%s[/i] устанавливается в качестве шрифта для интерфейса игры.,[i]%s[/i]设为了游戏UI字体。
+msg_setting_map_font,Setting [i]%s[/i] as map font.,[i]%s[/i] устанавливается в качестве шрифта для игрового мира.,[i]%s[/i]设为了地图字体。
+msg_setting_omap_font,Setting [i]%s[/i] as overmap font.,[i]%s[/i] устанавливается в качестве шрифта для карты мира.,[i]%s[/i]设为了大地图字体。
+,,,
+ ==== BACKUPS TAB ====,,,
+,,,
+lbl_save_backups,Save directory backups:,Бэкапы папки с сохранениями:,保存目录下的备份：
+btn_restore_backup,Restore,Восстановить,恢复
+btn_delete_backup,Delete,Удалить,删除该项
+btn_refresh_backups,Refresh,Обновить список,刷新
+lbl_manual_backup,Manual backup,Ручной бэкап,手动备份
+lbl_backup_name,Name:,Название:,名称：
+btn_create_backup,Create,Создать,创建
+lbl_backup_info_placeholder,Select an existing backup to see its details here.,"Выберите существующий бэкап, чтобы увидеть здесь информацию по нему.",选择一项备份以查看详情。
+,,,
+backup_info_location,Location:,Расположение:,位置：
+backup_info_worlds,Worlds:,Миры:,世界：
+,,,
+ ==== SETTINGS TAB ====,,,
+,,,
+lbl_launcher_language,Launcher language (requires restart),Язык лончера (требует перезапуска),启动器语言（需要重启）
+cbtn_show_game_desc,Show game description,Показывать описание игры,显示游戏描述
+cbtn_print_tips,Print tips of the day on startup,Выводить совет дня при запуске,启动时显示小贴士
+cbtn_updating_to_same_build,"Allow ""updating"" to the same build as installed",Разрешить «обновляться» на уже установленную версию,允许“更新”至当前安装版本
+cbtn_shorten_release_names,Shorten names of experimental releases,Сокращать названия экспериментальных релизов,缩短测试版发布的名称
+cbtn_show_obsolete_mods,List obsolete mods in installed,Показывать устаревшие моды в установленных,列出已安装的过时模组
+cbtn_install_archived_mods,Include archived mods when installing Kenan modpack,Включить архивные моды при установке модпака Кенана,安装Kenan Modpack时包含归档模组
+cbtn_debug_mode,Debug mode,Режим отладки,调试模式
+lbl_num_releases_to_request,Number of releases to request:,Запрашиваемое количество релизов:,获取发布的数量
+lbl_num_prs_to_request,Number of results to download for the changelog:,Загружаемое количество записей для списка изменений:,下载更新日志的数量
+lbl_ui_scale_override,Custom UI scaling:,Произвольный масштаб интерфейса:,自定义UI比例：
+cbtn_enable_scale,Enable  ,Включить,启用
+lbl_data_to_migrate,Migrate the following files when updating:,Переносить следующие файлы при обновлении:,更新时迁移以下文件：
+cbox_savegames,Saved games,Сохранённые игры,游戏存档
+cbox_fonts,User fonts,Польз. шрифты,用户字体
+cbox_templates,Character templates,Шаблоны персонажей,角色模板
+cbox_settings,Game settings,Настройки игры,游戏设置
+cbox_tilesets,Tilesets,Тайлсеты,图形包
+cbox_memorial,Memorial,Мемориал,游戏记录
+cbox_mods,Mods (non-stock),Моды (кроме встроенных),模组（非基础）
+cbos_soundpacks,Soundpacks,Саундпаки,音效包
+cbox_graveyard,Graveyard,Кладбище,墓地（死亡角色）
+,,,
+tooltip_show_game_desc,"Show a description for the chosen game
+under the Game list.",Показывать описание для выбранной игры под списком.,为所选游戏展示描述
+tooltip_print_tips,"Print a random tip in the status pane
+when the launcher starts.",Печатать случайный совет в панели статуса при запуске лончера.,启动时展示一条随机小贴士
+tooltip_updating_to_same_build,"Allow starting the update procedure even when
 the selected release is the same as currently installed.","Разрешить запускать процесс обновления игры даже
-когда выбранна та же версия, что уже установлена."
-"tooltip_shorten_release_names","Shorten release names to just the date and number
+когда выбранна та же версия, что уже установлена.","就算选中的发布与已安装版本一样
+也照样允许进行更新流程。"
+tooltip_shorten_release_names,"Shorten release names to just the date and number
 (e.g. ""2021-09-08-1927"" instead of
 ""Cataclysm-DDA experimental build 2021-09-08-1927"").","Сокращать названия релизов до даты и номера
 (например, просто ""2021-09-08-1927"" вместо
-""Cataclysm-DDA experimental build 2021-09-08-1927"")."
-"tooltip_show_obsolete_mods","Show mods that come with the game but are marked
+""Cataclysm-DDA experimental build 2021-09-08-1927"").","缩短发布名，只保留日期和编号，比如
+（""2021-09-08-1927"" 而不是
+""Cataclysm-DDA experimental build 2021-09-08-1927""）。"
+tooltip_show_obsolete_mods,"Show mods that come with the game but are marked
 as ""obsolete"". Normally, such mods are not considered
 as installed.","Показывать моды, которые встроены в игру,
 но помечены как “устаревшие”. В противном случае
-лончер не считает такие моды установленными."
-"tooltip_install_archived_mods","When installing Kenan modpack, also include *archived*
+лончер не считает такие моды установленными.","展示游戏内置但是被列为“过时”的模组 ，
+通常来讲这样的模组不被视为已安装。"
+tooltip_install_archived_mods,"When installing Kenan modpack, also include *archived*
 mods. These mods are no longer maintained by Kenan
 and may be outdated.","При установке модпака Кенана, также распаковывать
 *архивные* моды. Это моды, которые Кенан перестал
-активно поддерживать, из-за чего они могли устареть."
-"tooltip_debug_mode","Shows the Debug tab with some testing functions
+активно поддерживать, из-за чего они могли устареть.","当安装Kenan Modpack时，包括*归档模组*。
+这些模组不再被Kenan维护，通常被认为过时。"
+tooltip_debug_mode,"Shows the Debug tab with some testing functions
 and enables debug messages in the status  pane
 (useful for troubleshooting).","Показать вкладку Debug с тестовыми функциями
 и включить отладочные сообщения в панели статуса
-(полезно при поиске проблем)."
-"tooltip_num_releases_to_request","How many latest releases will be requested
+(полезно при поиске проблем).","显示Debug选项卡，有一些调试功能，
+展示debug消息（有助于排除故障）。"
+tooltip_num_releases_to_request,"How many latest releases will be requested
 from GitHub after starting the launcher, choosing
 the game or clicking Refresh.","Сколько свежих релизов нужно запрашивать с GitHub
-после запуска лончера, выбора игры или нажатия Обновить."
-"tooltip_num_prs_to_request","How many recent pull requests (code additions)
+после запуска лончера, выбора игры или нажатия Обновить.",启动器会从Github拉取多少条发布。
+tooltip_num_prs_to_request,"How many recent pull requests (code additions)
 will be requested from GitHub to form the changelog.
 High numbers may lead to slow responses and failures.","Сколько последних пул-реквестов (изменений в коде игры)
 нужно запрашивать с GitHub для формирования списка изменений.
-Высокие значения могут привести к медленным ответам и ошибкам."
-"tooltip_ui_scale_override","Use this if the automatically inferred UI scale
+Высокие значения могут привести к медленным ответам и ошибкам.","启动器会从Github拉取多少条PR来组成更新日志，
+过高的数字会导致获取变慢或失败。"
+tooltip_ui_scale_override,"Use this if the automatically inferred UI scale
 looks too large or too small on your system.
 (Automatic scale relies on system-reported
 display DPI, which may not work on all systems,
@@ -302,161 +337,165 @@ is too low.)","Воспользуйтесь этой настройкой, ес�
 системе. (Автоматическое определение масштаба полагается на
 сообщаемый системой DPI экрана, что может не сработать на
 некоторых системах, или дать неадекватный результат, когда
-разрешение слишком низкое)."
-"tooltip_data_to_migrate","Choose which types of game data to carry over
+разрешение слишком низкое).","如果自动指定的UI比例在您的系统上看起来
+太大或太小，请使用此选项。（自动缩放依赖于
+系统报告的显示 DPI，这可能不适用于所有系统，
+或者在分辨率太低时给出不充分的结果。） "
+tooltip_data_to_migrate,"Choose which types of game data to carry over
 into the new game version when updating.","Выберите, какие игровые данные нужно переносить
-в новую версию при обновлении игры."
-,,
-" ==== MOD MANAGER ====",,
-,,
-"msg_mod_json_parsing_failed","Could not parse %s","Не удалось разобрать содержимое %s"
-"msg_mod_deleted","Deleted %s","Мод %s удалён."
-"msg_mod_not_found","Could not find mod with ID \""%s\""","Не удалось найти мод с ID \""%s\"""
-"msg_deleting_n_mods","Deleting %s mods…","Удаляем %s модов…"
-"msg_obsolete_mod_collision","There is already an obsoleted mod with ID %s. [i]%s[/i] will be installed with modified ID and name to avoid collisions.","Уже есть мод с ID %s, помеченный как устаревший. [i]%s[/i] будет установлен с изменённым ID и именем, чтобы избежать конфликтов."
-"msg_mod_installed","Installed %s","Мод %s установлен."
-"msg_installing_n_mods","Installing %s mods...","Устанавливаем %s модов…"
-"msg_getting_kenan_pack","Retrieving Kenan Modpack for %s...","Загрузка модпака Кенана для %s…"
-"msg_wiping_mod_repo","Wiping the repository...","Очистка репозитория…"
-"msg_unpacking_kenan_mods","Adding mods from the pack to repository...","Добавление модов из пака в репозиторий…"
-"msg_unpacking_archived_mods","Adding archived mods to repository…","Добавление архивных модов в репозиторий…"
-"msg_kenan_install_cleanup","Cleaning up...","Очистка временных файлов…"
-"msg_kenan_install_done","All finished.","Всё готово."
-,,
-" ==== MOD REINSTALL DIALOG ====",,
-,,
-"dlg_mod_reinstall_title","Confirm Mod Reinstall","Подтвердите переустановку модов"
-"dlg_mod_reinstall_text_single","One of the selected mods is already installed.\nDelete and reinstall it?","Один из выбранных модов уже установлен.\nУдалить его и установить заново?"
-"dlg_mod_reinstall_text_multiple","%s of the selected mods are already installed.\nDelete and reinstall them?","%s из выбранных модов уже установлены.\nУдалить их и установить заново?"
-,,
-" ==== SOUNDPACK MANAGER ====",,
-,,
-"msg_no_sound_dir","Sound directory does not exist: %s","Отсутствует директория со звуками игры: %s"
-"msg_deleting_sound","Deleting %s","Удаляется %s"
-"msg_soundpack_not_found","Could not find soundpack named \""%s\""","Не удалось найти саундпак под названием \""%s\"""
-"msg_installing_sound","Installing soundpack \""%s\""...","Установка саундпака \""%s\""..."
-"msg_reinstalling_sound","Reinstalling soundpack \""%s\""…","Переустановка саундпака \""%s\""..."
-"msg_sound_download_failed","Could not download soundpack archive.","Не удалось скачать архив с саундпаком."
-"msg_sound_installed","Soundpack installed.","Саундпак установлен."
-,,
-" ==== FONT MANAGER ====",,
-,,
-"msg_game_option_not_found_get","Tried to get game option \""%s\"", but it wasn't found.","Нужно было прочитать параметр игры \""%s\"", но его не удалось найти."
-"msg_game_option_not_found_set","Tried to set game option \""%s\"", but it wasn't found.","Нужно было изменить параметр игры \""%s\"", но его не удалось найти."
-"msg_failed_to_open_font_info","Failed to open bundled font info.","Не удалось открыть информацию об идущих с лончером шрифтах."
-"msg_could_not_parse_font_info","Could not parse bundled font info.","Не удалось разобрать информацию об идущих с лончером шрифтах."
-"msg_font_info_error_details","Error code: %s. Error line: %s. Error message: %s","Код ошибки: %s. Строка с ошибкой: %s. Сообщение: %s"
-"msg_could_not_parse_font_config","Could not parse font config file %s.","Не удалось разобрать файл конфигурации шрифтов %s."
-"msg_font_config_error_details","Error code: %s. Error line: %s. Error message: %s","Код ошибки: %s. Строка с ошибкой: %s. Сообщение: %s"
-"msg_failed_to_open_font_config","Could not open font config file %s (error code: %s).","Не удалось открыть файл конфигурации шрифтов %s (код ошибки: %s)."
-"msg_font_config_not_found","Font config file %s is not found!","Не найден файл конфигурации шрифтов %s!"
-"msg_could_not_parse_game_options","Could not parse game options file %s.","Не удалось разобрать файл настроек игры %s."
-"msg_game_options_error_details","Error code: %s. Error line: %s. Error message: %s","Код ошибки: %s. Строка с ошибкой: %s. Сообщение: %s"
-"msg_could_not_open_game_options","Could not open game options file %s (error code: %s).","Не удалось открыть файл настроек игры %s (код ошибки: %s)."
-"msg_game_options_not_found","Game options file %s is not found!","Не найден файл настроек игры %s!"
-"msg_font_config_not_writable","Could not open font config file %s for writing.","Не удалось открыть файл конфигурации шрифтов %s на запись."
-"msg_game_options_saved","Saved game options to [i]options.json[/i].","Настройки игры были сохранены в [i]options.json[/i]."
-"msg_game_options_not_writable","Could not open game options file %s for writing.","Не удалось открыть файл настроек игры %s на запись."
-"msg_could_not_install_font","Could not install font file %s (error code: %s).","Не удалось установить файл шрифта %s (код ошибки: %s)."
-"msg_font_install_details","Font source: %s. Destination: %s.","Исходное расположение шрифта: %s. Цель копирования: %s."
-"msg_invalid_font_index_passed","set_font was passed invalid font index %s.","В функцию set_font был передан недействительный индекс шрифта: %s."
-"msg_font_config_field_missing","Font config does not have field \""%s\"".","В конфигурации шрифтов отсутствует поле \""%s\""."
-,,
-" ==== BACKUP MANAGER ====",,
-,,
-"msg_backing_up_saves","Backing up current saves to\""%s\""…","Создается бэкап текущих сохранений под именем \""%s\""…"
-"msg_backup_created","Backup created.","Бэкап создан."
-"msg_backup_name_taken","A backup named \""%s\"" already exists.","Бэкап с названием \""%s\"" уже существует."
-"msg_restoring_backup","Restoring backup \""%s\""...","Восстановление бэкапа \""%s\""..."
-"msg_backup_restored","Backup restored.","Бэкап восстановлен."
-"msg_backup_not_found","Backup \""%s\"" not found.","Бэкап \""%s\"" не найден."
-"msg_deleting_backup","Deleting backup \""%s\""...","Удаление бэкапа \""%s\""..."
-"msg_backup_deleted","Backup deleted.","Бэкап удалён."
-,,
-" ==== SETTINGS MANAGER ====",,
-,,
-"msg_creating_settings","Creating settings file %s.","Создается файл настроек %s."
-"msg_nonexistent_attempt","Attempted to load settings from nonexistent file %s","Совершена попытка загрузить настройки из несуществующего файла %s"
-"msg_loading_settings","Loading settings from %s.","Загрузка настроек из %s."
-"msg_settings_parse_error","Error parsing settings from JSON, line %s, message: %s","Произошла ошибка при парсинге настроек из JSON, строка %s, сообщение: %s"
-"msg_nonexisting_setting","Attempted to read nonexistent setting \""%s\""","Совершена попытка прочитать несуществующую настройку \""%s\"""
-,,
-" ==== DOWNLOAD MANAGER ====",,
-,,
-"unit_kb","KB","КБ"
-"unit_mb","MB","МБ"
-"unit_kbps","KB/s","КБ/с"
-"unit_mbps","MB/s","МБ/с"
-,,
-"msg_downloading_file","Downloading %s…","Загружается файл %s…"
-"msg_download_progress","Downloading:","Загрузка:"
-"str_dl_speed_at","at","на скорости"
-"msg_download_finished","Finished downloading %s.","Завершена загрузка %s."
-"msg_download_failed","Failed to download %s.","Не удалось загрузить %s."
-"msg_http_request_info","[b]HTTPRequest info:[/b]\n[u]Result:[/u] %s\n[u]Response code:[/u] %s\n[u]Headers:[/u] %s","[b]Информация от HTTPRequest:[/b]\n[u]Результат:[/u] %s\n[u]Код ответа:[/u] %s\n[u]Заголовки:[/u] %s"
-,,
-" ==== FILESYSTEM HELPER ====",,
-,,
-"msg_list_dir_failed","Failed to list directory %s. Error code: %s.","Не удалось получить листинг директории %s. Код ошибки: %s."
-"msg_cannot_create_target_dir","Could not create target directory %s. Error code: %s.","Не удалось создать папку назначения %s. Код ошибки: %s."
-"msg_copy_file_failed","Failed to copy file \""%s\"". Error code: %s.","Не удалось скопировать файл \""%s\"". Код ошибки: %s."
-"msg_copy_file_failed_details","[u]Source path:[/u] %s, [u]destination path:[/u] %s.","[u]Исходный путь:[/u] %s, [u]путь назначения:[/u] %s."
-"msg_remove_file_failed","Failed to remove file \""%s\"". Error code: %s.","Не удалось удалить файл \""%s\"". Код ошибки: %s."
-"msg_remove_file_failed_details","""[u]Full path:[/u] %s.""","[u]Полный путь:[/u] %s."
-"msg_rm_dir_failed","Failed to remove directory %s. Error code: %s.","Не удалось удалить директорию %s. Код ошибки: %s."
-"msg_create_dir_failed","Could not create target directory %s. Error code: %s.","Не удалось создать директорию назначения %s. Код ошибки: %s."
-"msg_move_file_failed","Failed to move file \""%s\"". Error code: %s.","Не удалось переместить файл \""%s\"". Код ошибки: %s."
-"msg_move_file_failed_details","[u]Source path:[/u] %s, [u]destination path:[/u] %s.","[u]Исходный путь:[/u] %s, [u]путь назначения:[/u] %s."
-"msg_move_rmdir_failed","Could not remove source directory %s. Error code: %s.","Не получилось удалить исходную директорию %s. Код ошибки: %s."
-"msg_extract_unsupported","Unsupported platform or archive format (file: %s)","Неподдерживаемая платформа или формат архива (файл: %s)"
-"msg_extracting_file","Extracting %s…","Распаковка %s…"
-"msg_extract_error","Archive extraction command exited with an error (exit code: %s)","Команда распаковки архива завершилась с ошибкой (код возврата: %s)"
-"msg_extract_failed_cmd","Failed command: %s","Неудавшаяся команда: %s"
-"msg_extract_fail_output","Output: %s","Вывод команды: %s"
-,,
-" ==== INSTALL PROBE ====",,
-,,
-"msg_cannot_create_install_info","Could not create install info file %s","Не удалось создать файл с информацией об установке %s"
-"msg_cannot_parse_install_info","Could not parse install info file %s","Не удалось разобрать информацию об установке в %s"
-,,
-" ==== RELEASE INSTALLER ====",,
-,,
-"msg_updating_game","Updating to %s…","Обновление до %s…"
-"msg_installing_game","Installing %s…","Установка %s…"
-"msg_game_updated","Update finished.","Обновление завершено."
-"msg_game_installed","Installation finished.","Установка завершена."
-"msg_migrating_game_data","Migrating game data. This may take a while.","Перенос игровых данных. Это может занять некоторое время."
-"msg_migrating_saves","Copying savegames...","Копирование сохранений…"
-"msg_migrating_config","Copying game settings...","Копирование настроек игры…"
-"msg_migrating_mods","Copying mods...","Копирование модов…"
-"msg_migrating_fonts","Copying user fonts...","Копирование пользовательских шрифтов…"
-"msg_migrating_gfx","Copying tilesets...","Копирование тайлсетов…"
-"msg_migrating_sound","Copying soundpacks...","Копирование звуков…"
-"msg_migrating_templates","Copying character templates...","Копирование шаблонов персонажей…"
-"msg_migrating_memorial","Copying memorial...","Копирование мемориала…"
-"msg_migrating_graveyard","Copying graveyard...","Копирование кладбища…"
-,,
-" ==== RELEASE MANAGER ====",,
-,,
-"msg_unsupported_platform","Unsupported platform: \""%s\""","Неподдерживаемая платформа: \""%s\"""
-"msg_releases_request_failed","Request failed. Do you have internet connection?","Запрос не удался. Вы ведь подключены к интернету?"
-"msg_releases_api_failure","Could not get the builds list. GitHub says: %s","Не удалось получить список релизов. GitHub сказал: %s"
-"msg_got_n_releases","Got %s releases.","Получено %s релизов."
-"msg_fetching_releases_dda","Fetching releases for DDA Experimental...","Получение списка экспериментальных релизов DDA…"
-"msg_fetching_releases_bn","Fetching releases for BN Experimental…","Получение списка экспериментальных релизов BN…"
-"msg_invalid_fetch_func_param","ReleaseManager.fetch() was passed %s","В ReleaseManager.fetch() был передан аргумент %s"
-,,
-" ==== DIALOG BUTTONS ====",,
-,,
-"btn_close","Close","Закрыть"
-"btn_ok","OK","ОК"
-"btn_cancel","Cancel","Отмена"
-"btn_yes","Yes","Да"
-"btn_no","No","Нет"
-"btn_reinstall","Reinstall","Переустановить"
-"btn_skip","Skip","Пропустить"
-,,
-" ==== EASTER EGG ====",,
-,,
-"msg_easter_egg_warning","WATCH OUT!","ОСТОРОЖНЕЕ!"
-"msg_easter_egg_activated","OH NO, YOU BROKE IT!!","О НЕТ, ТЫ ВСЁ СЛОМАЛ!!"
+в новую версию при обновлении игры.","选择哪些游戏数据要在
+更新游戏版本时迁移。"
+,,,
+ ==== MOD MANAGER ====,,,
+,,,
+msg_mod_json_parsing_failed,Could not parse %s,Не удалось разобрать содержимое %s,无法解析%s
+msg_mod_deleted,Deleted %s,Мод %s удалён.,已删除%s
+msg_mod_not_found,"Could not find mod with ID \""%s\""","Не удалось найти мод с ID \""%s\""","无法找到ID为\""%s\""的模组"
+msg_deleting_n_mods,Deleting %s mods…,Удаляем %s модов…,正在删除%s个模组…
+msg_obsolete_mod_collision,There is already an obsoleted mod with ID %s. [i]%s[/i] will be installed with modified ID and name to avoid collisions.,"Уже есть мод с ID %s, помеченный как устаревший. [i]%s[/i] будет установлен с изменённым ID и именем, чтобы избежать конфликтов.",已经存在ID为%s的过时模组。[i]%s[/i]将会以调整后的ID和名称安装以避免冲突。
+msg_mod_installed,Installed %s,Мод %s установлен.,已安装%s
+msg_installing_n_mods,Installing %s mods...,Устанавливаем %s модов…,正在安装%s个模组...
+msg_getting_kenan_pack,Retrieving Kenan Modpack for %s...,Загрузка модпака Кенана для %s…,正在为%s获取Kenan Modpack…
+msg_wiping_mod_repo,Wiping the repository...,Очистка репозитория…,正在移除本地存储...
+msg_unpacking_kenan_mods,Adding mods from the pack to repository...,Добавление модов из пака в репозиторий…,正在将模组添加至本地存储...
+msg_unpacking_archived_mods,Adding archived mods to repository…,Добавление архивных модов в репозиторий…,正在将归档模组添加至本地存储...
+msg_kenan_install_cleanup,Cleaning up...,Очистка временных файлов…,稍等...
+msg_kenan_install_done,All finished.,Всё готово.,完成。
+,,,
+ ==== MOD REINSTALL DIALOG ====,,,
+,,,
+dlg_mod_reinstall_title,Confirm Mod Reinstall,Подтвердите переустановку модов,确认重装模组
+dlg_mod_reinstall_text_single,One of the selected mods is already installed.\nDelete and reinstall it?,Один из выбранных модов уже установлен.\nУдалить его и установить заново?,选中的模组有一个已经安装。\n删除并重装？
+dlg_mod_reinstall_text_multiple,%s of the selected mods are already installed.\nDelete and reinstall them?,%s из выбранных модов уже установлены.\nУдалить их и установить заново?,选中的模组有%s个已经安装。\n删除并重装？
+,,,
+ ==== SOUNDPACK MANAGER ====,,,
+,,,
+msg_no_sound_dir,Sound directory does not exist: %s,Отсутствует директория со звуками игры: %s,音效目录不存在：%s
+msg_deleting_sound,Deleting %s,Удаляется %s,正在删除%s
+msg_soundpack_not_found,"Could not find soundpack named \""%s\""","Не удалось найти саундпак под названием \""%s\""","无法找到名为\""%s\""的音效包"
+msg_installing_sound,"Installing soundpack \""%s\""...","Установка саундпака \""%s\""...","正在安装音效包\""%s\""..."
+msg_reinstalling_sound,"Reinstalling soundpack \""%s\""…","Переустановка саундпака \""%s\""...","正在重装音效包\""%s\""…"
+msg_sound_download_failed,Could not download soundpack archive.,Не удалось скачать архив с саундпаком.,无法下载音效包文件。
+msg_sound_installed,Soundpack installed.,Саундпак установлен.,音效包已安装。
+,,,
+ ==== FONT MANAGER ====,,,
+,,,
+msg_game_option_not_found_get,"Tried to get game option \""%s\"", but it wasn't found.","Нужно было прочитать параметр игры \""%s\"", но его не удалось найти.","尝试获取游戏选项\""%s\""，并未找到。"
+msg_game_option_not_found_set,"Tried to set game option \""%s\"", but it wasn't found.","Нужно было изменить параметр игры \""%s\"", но его не удалось найти.","尝试设置游戏选项\""%s\""，并未找到。"
+msg_failed_to_open_font_info,Failed to open bundled font info.,Не удалось открыть информацию об идущих с лончером шрифтах.,无法打开字体包信息。
+msg_could_not_parse_font_info,Could not parse bundled font info.,Не удалось разобрать информацию об идущих с лончером шрифтах.,无法解析字体包信息。
+msg_font_info_error_details,Error code: %s. Error line: %s. Error message: %s,Код ошибки: %s. Строка с ошибкой: %s. Сообщение: %s,错误代码： %s。错误行：%s。错误信息：%s
+msg_could_not_parse_font_config,Could not parse font config file %s.,Не удалось разобрать файл конфигурации шрифтов %s.,无法解析字体设置文件%s。
+msg_font_config_error_details,Error code: %s. Error line: %s. Error message: %s,Код ошибки: %s. Строка с ошибкой: %s. Сообщение: %s,错误代码： %s。错误行：%s。错误信息：%s
+msg_failed_to_open_font_config,Could not open font config file %s (error code: %s).,Не удалось открыть файл конфигурации шрифтов %s (код ошибки: %s).,无法打开字体设置文件%s（错误代码：%s）。
+msg_font_config_not_found,Font config file %s is not found!,Не найден файл конфигурации шрифтов %s!,字体设置文件%s无法找到！
+msg_could_not_parse_game_options,Could not parse game options file %s.,Не удалось разобрать файл настроек игры %s.,无法解析游戏设置文件%s。
+msg_game_options_error_details,Error code: %s. Error line: %s. Error message: %s,Код ошибки: %s. Строка с ошибкой: %s. Сообщение: %s,错误代码： %s。错误行：%s。错误信息：%s
+msg_could_not_open_game_options,Could not open game options file %s (error code: %s).,Не удалось открыть файл настроек игры %s (код ошибки: %s).,无法打开游戏设置文件%s（错误代码：%s）。
+msg_game_options_not_found,Game options file %s is not found!,Не найден файл настроек игры %s!,游戏设置文件%s无法找到！
+msg_font_config_not_writable,Could not open font config file %s for writing.,Не удалось открыть файл конфигурации шрифтов %s на запись.,无法打开字体设置文件%s以写入。
+msg_game_options_saved,Saved game options to [i]options.json[/i].,Настройки игры были сохранены в [i]options.json[/i].,已保存游戏设置至[i]options.json[/i]。
+msg_game_options_not_writable,Could not open game options file %s for writing.,Не удалось открыть файл настроек игры %s на запись.,无法打开游戏设置文件%s以写入。
+msg_could_not_install_font,Could not install font file %s (error code: %s).,Не удалось установить файл шрифта %s (код ошибки: %s).,无法安装字体文件%s（错误代码：%s）。
+msg_font_install_details,Font source: %s. Destination: %s.,Исходное расположение шрифта: %s. Цель копирования: %s.,字体源：%s。目标：%s。
+msg_invalid_font_index_passed,set_font was passed invalid font index %s.,В функцию set_font был передан недействительный индекс шрифта: %s.,set_font传递了无效的字体索引%s。
+msg_font_config_field_missing,"Font config does not have field \""%s\"".","В конфигурации шрифтов отсутствует поле \""%s\"".","字体设置没有\""%s\""字段。"
+,,,
+ ==== BACKUP MANAGER ====,,,
+,,,
+msg_backing_up_saves,"Backing up current saves to\""%s\""…","Создается бэкап текущих сохранений под именем \""%s\""…","备份当前存档至\""%s\""…"
+msg_backup_created,Backup created.,Бэкап создан.,备份已创建。
+msg_backup_name_taken,"A backup named \""%s\"" already exists.","Бэкап с названием \""%s\"" уже существует.","名为\""%s\""的备份已经存在。"
+msg_restoring_backup,"Restoring backup \""%s\""...","Восстановление бэкапа \""%s\""...","正在从\""%s\""备份恢复..."
+msg_backup_restored,Backup restored.,Бэкап восстановлен.,备份已恢复。
+msg_backup_not_found,"Backup \""%s\"" not found.","Бэкап \""%s\"" не найден.","备份\""%s\""未找到。"
+msg_deleting_backup,"Deleting backup \""%s\""...","Удаление бэкапа \""%s\""...","正在删除备份\""%s\""..."
+msg_backup_deleted,Backup deleted.,Бэкап удалён.,备份已删除。
+,,,
+ ==== SETTINGS MANAGER ====,,,
+,,,
+msg_creating_settings,Creating settings file %s.,Создается файл настроек %s.,正在创建设置文件%s。
+msg_nonexistent_attempt,Attempted to load settings from nonexistent file %s,Совершена попытка загрузить настройки из несуществующего файла %s,尝试从不存在的文件%s加载设置。
+msg_loading_settings,Loading settings from %s.,Загрузка настроек из %s.,正在从%s加载设置。
+msg_settings_parse_error,"Error parsing settings from JSON, line %s, message: %s","Произошла ошибка при парсинге настроек из JSON, строка %s, сообщение: %s",解析来自JSON的设置时出错，第%s行，信息：%s
+msg_nonexisting_setting,"Attempted to read nonexistent setting \""%s\""","Совершена попытка прочитать несуществующую настройку \""%s\""","尝试读取不存在的设定 \""%s\"""
+,,,
+ ==== DOWNLOAD MANAGER ====,,,
+,,,
+unit_kb,KB,КБ,KB
+unit_mb,MB,МБ,MB
+unit_kbps,KB/s,КБ/с,KB/s
+unit_mbps,MB/s,МБ/с,MB/s
+,,,
+msg_downloading_file,Downloading %s…,Загружается файл %s…,正在下载%s…
+msg_download_progress,Downloading:,Загрузка:,正在下载：
+str_dl_speed_at,at,на скорости,以
+msg_download_finished,Finished downloading %s.,Завершена загрузка %s.,已完成下载%s。
+msg_download_failed,Failed to download %s.,Не удалось загрузить %s.,下载%s失败。
+msg_http_request_info,[b]HTTPRequest info:[/b]\n[u]Result:[/u] %s\n[u]Response code:[/u] %s\n[u]Headers:[/u] %s,[b]Информация от HTTPRequest:[/b]\n[u]Результат:[/u] %s\n[u]Код ответа:[/u] %s\n[u]Заголовки:[/u] %s,[b]HTTPRequest信息：[/b]\n[u]结果：[/u] %s\n[u]响应代码：[/u] %s\n[u]头：[/u] %s
+,,,
+ ==== FILESYSTEM HELPER ====,,,
+,,,
+msg_list_dir_failed,Failed to list directory %s. Error code: %s.,Не удалось получить листинг директории %s. Код ошибки: %s.,列出目录%s失败。错误代码：%s。
+msg_cannot_create_target_dir,Could not create target directory %s. Error code: %s.,Не удалось создать папку назначения %s. Код ошибки: %s.,无法创建目标目录%s。错误代码：%s。
+msg_copy_file_failed,"Failed to copy file \""%s\"". Error code: %s.","Не удалось скопировать файл \""%s\"". Код ошибки: %s.","复制文件\""%s\""失败。错误代码：%s。"
+msg_copy_file_failed_details,"[u]Source path:[/u] %s, [u]destination path:[/u] %s.","[u]Исходный путь:[/u] %s, [u]путь назначения:[/u] %s.",[u]源路径：[/u] %s，[u]目标路径：[/u] %s。
+msg_remove_file_failed,"Failed to remove file \""%s\"". Error code: %s.","Не удалось удалить файл \""%s\"". Код ошибки: %s.","无法移除文件\""%s\""。错误代码：%s。"
+msg_remove_file_failed_details,"""[u]Full path:[/u] %s.""",[u]Полный путь:[/u] %s.,"""[u]完整路径：[/u] %s。"""
+msg_rm_dir_failed,Failed to remove directory %s. Error code: %s.,Не удалось удалить директорию %s. Код ошибки: %s.,移除目录%s失败。错误代码：%s。
+msg_create_dir_failed,Could not create target directory %s. Error code: %s.,Не удалось создать директорию назначения %s. Код ошибки: %s.,无法创建目标目录%s。错误代码：%s。
+msg_move_file_failed,"Failed to move file \""%s\"". Error code: %s.","Не удалось переместить файл \""%s\"". Код ошибки: %s.","移动文件\""%s\""失败。错误代码：%s。"
+msg_move_file_failed_details,"[u]Source path:[/u] %s, [u]destination path:[/u] %s.","[u]Исходный путь:[/u] %s, [u]путь назначения:[/u] %s.",[u]源路径：[/u] %s，[u]目标路径：[/u] %s。
+msg_move_rmdir_failed,Could not remove source directory %s. Error code: %s.,Не получилось удалить исходную директорию %s. Код ошибки: %s.,无法移除源目录%s。错误代码：%s。
+msg_extract_unsupported,Unsupported platform or archive format (file: %s),Неподдерживаемая платформа или формат архива (файл: %s),不支持的平台或存储格式（文件：%s）
+msg_extracting_file,Extracting %s…,Распаковка %s…,解压%s…
+msg_extract_error,Archive extraction command exited with an error (exit code: %s),Команда распаковки архива завершилась с ошибкой (код возврата: %s),解压命令报错中断（中断代码：%s)
+msg_extract_failed_cmd,Failed command: %s,Неудавшаяся команда: %s,失败命令：%s
+msg_extract_fail_output,Output: %s,Вывод команды: %s,输出：%s
+,,,
+ ==== INSTALL PROBE ====,,,
+,,,
+msg_cannot_create_install_info,Could not create install info file %s,Не удалось создать файл с информацией об установке %s,无法创建安装信息文件%s
+msg_cannot_parse_install_info,Could not parse install info file %s,Не удалось разобрать информацию об установке в %s,无法解析安装信息文件%s
+,,,
+ ==== RELEASE INSTALLER ====,,,
+,,,
+msg_updating_game,Updating to %s…,Обновление до %s…,更新至%s…
+msg_installing_game,Installing %s…,Установка %s…,正在安装%s…
+msg_game_updated,Update finished.,Обновление завершено.,更新完成。
+msg_game_installed,Installation finished.,Установка завершена.,安装完成。
+msg_migrating_game_data,Migrating game data. This may take a while.,Перенос игровых данных. Это может занять некоторое время.,正在迁移游戏数据，请稍等。
+msg_migrating_saves,Copying savegames...,Копирование сохранений…,复制游戏存档...
+msg_migrating_config,Copying game settings...,Копирование настроек игры…,复制游戏设置...
+msg_migrating_mods,Copying mods...,Копирование модов…,复制模组...
+msg_migrating_fonts,Copying user fonts...,Копирование пользовательских шрифтов…,复制用户字体...
+msg_migrating_gfx,Copying tilesets...,Копирование тайлсетов…,复制图形包...
+msg_migrating_sound,Copying soundpacks...,Копирование звуков…,复制音效包...
+msg_migrating_templates,Copying character templates...,Копирование шаблонов персонажей…,复制角色模板...
+msg_migrating_memorial,Copying memorial...,Копирование мемориала…,复制游戏记录...
+msg_migrating_graveyard,Copying graveyard...,Копирование кладбища…,复制墓地...
+,,,
+ ==== RELEASE MANAGER ====,,,
+,,,
+msg_unsupported_platform,"Unsupported platform: \""%s\""","Неподдерживаемая платформа: \""%s\""","不支持的平台：\""%s\"""
+msg_releases_request_failed,Request failed. Do you have internet connection?,Запрос не удался. Вы ведь подключены к интернету?,请求失败。你的网络正常连接吗？
+msg_releases_api_failure,Could not get the builds list. GitHub says: %s,Не удалось получить список релизов. GitHub сказал: %s,无法获取构建列表。GitHub说：%s
+msg_got_n_releases,Got %s releases.,Получено %s релизов.,获取了%s个发布。
+msg_fetching_releases_dda,Fetching releases for DDA Experimental...,Получение списка экспериментальных релизов DDA…,正在为DDA测试版获取发布... 
+msg_fetching_releases_bn,Fetching releases for BN Experimental…,Получение списка экспериментальных релизов BN…,正在为BN测试版获取发布...
+msg_invalid_fetch_func_param,ReleaseManager.fetch() was passed %s,В ReleaseManager.fetch() был передан аргумент %s,ReleaseManager.fetch()已传至%s
+,,,
+ ==== DIALOG BUTTONS ====,,,
+,,,
+btn_close,Close,Закрыть,关闭
+btn_ok,OK,ОК,OK
+btn_cancel,Cancel,Отмена,取消
+btn_yes,Yes,Да,是
+btn_no,No,Нет,否
+btn_reinstall,Reinstall,Переустановить,重新安装
+btn_skip,Skip,Пропустить,跳过
+,,,
+ ==== EASTER EGG ====,,,
+,,,
+msg_easter_egg_warning,WATCH OUT!,ОСТОРОЖНЕЕ!,当心！
+msg_easter_egg_activated,"OH NO, YOU BROKE IT!!","О НЕТ, ТЫ ВСЁ СЛОМАЛ!!",哦不！你毁了它！
