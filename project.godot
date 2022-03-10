@@ -79,7 +79,7 @@ theme/use_hidpi=true
 
 [locale]
 
-translations=PoolStringArray( "res://text/text.en.translation", "res://text/text.ru.translation", "res://text/tips.en.translation", "res://text/tips.ru.translation", "res://text/font_info.en.translation", "res://text/font_info.ru.translation", "res://text/font_info.zh.translation", "res://text/text.zh.translation", "res://text/tips.zh.translation" )
+translations=PoolStringArray( "res://text/text.en.translation", "res://text/text.ru.translation", "res://text/tips.en.translation", "res://text/tips.ru.translation", "res://text/font_info.en.translation", "res://text/font_info.ru.translation", "res://text/font_info.zh.translation", "res://text/text.zh.translation", "res://text/tips.zh.translation", "res://text/font_info.fr.translation", "res://text/text.fr.translation", "res://text/tips.fr.translation" )
 locale_filter=[ 0, [ "en", "ru", "zh" ] ]
 
 [physics]
