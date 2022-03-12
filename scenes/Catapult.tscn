@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://icons/info.svg" type="Texture" id=1]
 [ext_resource path="res://icons/download.svg" type="Texture" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://scripts/TOTD.gd" type="Script" id=19]
 [ext_resource path="res://scenes/ModReinstallDialog.tscn" type="PackedScene" id=20]
 [ext_resource path="res://themes/Godot_3.tres" type="Theme" id=21]
+[ext_resource path="res://icons/lang_fr.png" type="Texture" id=22]
 [ext_resource path="res://icons/folder.svg" type="Texture" id=25]
 [ext_resource path="res://scenes/InlineIconButton.tscn" type="PackedScene" id=26]
 [ext_resource path="res://scripts/FontsUI.gd" type="Script" id=27]
@@ -953,7 +954,7 @@ size_flags_horizontal = 10
 text = "English"
 icon = ExtResource( 35 )
 expand_icon = true
-items = [ "English", ExtResource( 35 ), false, 0, null, "Русский", ExtResource( 36 ), false, 1, null, "简体字", ExtResource( 7 ), false, 2, null ]
+items = [ "English", ExtResource( 35 ), false, 0, null, "Français", ExtResource( 22 ), false, 1, null, "Русский", ExtResource( 36 ), false, 2, null, "简体字", ExtResource( 7 ), false, 3, null ]
 selected = 0
 
 [node name="ShowGameDesc" type="CheckButton" parent="Main/Tabs/Settings"]

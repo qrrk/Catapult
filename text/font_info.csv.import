@@ -5,10 +5,10 @@ type="Translation"
 
 [deps]
 
-files=[ "res://text/font_info.en.translation", "res://text/font_info.ru.translation", "res://text/font_info.zh.translation" ]
+files=[ "res://text/font_info.en.translation", "res://text/font_info.ru.translation", "res://text/font_info.zh.translation", "res://text/font_info.fr.translation" ]
 
 source_file="res://text/font_info.csv"
-dest_files=[ "res://text/font_info.en.translation", "res://text/font_info.ru.translation", "res://text/font_info.zh.translation" ]
+dest_files=[ "res://text/font_info.en.translation", "res://text/font_info.ru.translation", "res://text/font_info.zh.translation", "res://text/font_info.fr.translation" ]
 
 [params]
 
