@@ -1,0 +1,22 @@
+"keys","zh"
+,
+"window_title","Catapult — Cataclysm: DDA和BN的启动器"
+"str_welcome","欢迎来到Catapult！"
+"str_tip_of_the_day","\n\n[u]小贴士：[/u]\n"
+"msg_unpacking_unzip","正在解压 unzip.exe…"
+"debug_test","这是一条测试文本。"
+,
+"tag_warning","警告"
+"tag_error","错误"
+"tag_debug","调试"
+,
+"lbl_game","游戏："
+"desc_dda","[b]Cataclysm: Dark Days Ahead[/b] 是一款以世界末日为背景的回合制生存游戏。搜刮，探索，制造，建造，耕种，修理并改装载具，安装生化插件，变异，抵御[color=#009900]僵尸[/color]和无数其他怪物的攻击——一切尽在一个无限的，程序生成的世界中！"
+"desc_bn","[b]Cataclysm: Bright Nights[/b] 拒绝迂腐，拥抱[color=#ff3300]!!乐趣!![/color]。这一分支将游戏带回了它科幻roguelike游戏的初衷，并撤回了许多由DDA团队做出的备受争议的改动（容器，专精，冷冻和[color=#3b93f7][url=https://github.com/cataclysmbnteam/Cataclysm-BN/wiki/Changes-so-far]更多[/url][/color]）。更注重战斗，游戏平衡和游戏节奏。"
+,
+"tab_game","游戏"
+"tab_mods","模组"
+"tab_soundpacks","音效包"
+"tab_fonts","字体"
+"tab_backups","备份"
+"tab_settings","设置"

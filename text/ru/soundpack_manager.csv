@@ -1,0 +1,9 @@
+"keys","ru"
+,
+"msg_no_sound_dir","Отсутствует директория со звуками игры: %s"
+"msg_deleting_sound","Удаляется %s"
+"msg_soundpack_not_found","Не удалось найти саундпак под названием \""%s\"""
+"msg_installing_sound","Установка саундпака \""%s\""..."
+"msg_reinstalling_sound","Переустановка саундпака \""%s\""..."
+"msg_sound_download_failed","Не удалось скачать архив с саундпаком."
+"msg_sound_installed","Саундпак установлен."

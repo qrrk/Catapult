@@ -1,0 +1,9 @@
+"keys","fr"
+,
+"msg_no_sound_dir","Le répertoire des sons n’existe pas: %s"
+"msg_deleting_sound","Supprime %s"
+"msg_soundpack_not_found","Impossible de trouver le pack de sons nommé \""%s\"""
+"msg_installing_sound","Installe le pack de sons  \""%s\""…"
+"msg_reinstalling_sound","Réinstalle le pack de sons \""%s\""…"
+"msg_sound_download_failed","Impossible de télécharger l’archive du pack de sons"
+"msg_sound_installed","Pack de sons installé"

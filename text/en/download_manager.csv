@@ -1,0 +1,13 @@
+"keys","en"
+,
+"unit_kb","KB"
+"unit_mb","MB"
+"unit_kbps","KB/s"
+"unit_mbps","MB/s"
+,
+"msg_downloading_file","Downloading %s…"
+"msg_download_progress","Downloading:"
+"str_dl_speed_at","at"
+"msg_download_finished","Finished downloading %s."
+"msg_download_failed","Failed to download %s."
+"msg_http_request_info","[b]HTTPRequest info:[/b]\n[u]Result:[/u] %s\n[u]Response code:[/u] %s\n[u]Headers:[/u] %s"

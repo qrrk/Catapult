@@ -1,0 +1,9 @@
+"keys","ru"
+,
+"msg_unsupported_platform","Неподдерживаемая платформа: \""%s\"""
+"msg_releases_request_failed","Запрос не удался. Вы ведь подключены к интернету?"
+"msg_releases_api_failure","Не удалось получить список релизов. GitHub сказал: %s"
+"msg_got_n_releases","Получено %s релизов."
+"msg_fetching_releases_dda","Получение списка экспериментальных релизов DDA…"
+"msg_fetching_releases_bn","Получение списка экспериментальных релизов BN…"
+"msg_invalid_fetch_func_param","В ReleaseManager.fetch() был передан аргумент %s"

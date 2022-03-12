@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+
+[deps]
+
+files=[ "res://text/zh/game_tab.zh.translation" ]
+
+source_file="res://text/zh/game_tab.csv"
+dest_files=[ "res://text/zh/game_tab.zh.translation" ]
+
+[params]
+
+compress=true
+delimiter=0

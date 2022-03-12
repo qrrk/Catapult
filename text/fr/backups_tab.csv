@@ -1,0 +1,13 @@
+"keys","fr"
+,
+"lbl_save_backups","Répertoire des archives de sauvegarde"
+"btn_restore_backup","Restaurer"
+"btn_delete_backup","Supprimer"
+"btn_refresh_backups","Actualiser"
+"lbl_manual_backup","Archive manuelle"
+"lbl_backup_name","Nom:"
+"btn_create_backup","Créer"
+"lbl_backup_info_placeholder","Sélectionner une archive existante pour voir ses détails ici."
+,
+"backup_info_location","Endroit:"
+"backup_info_worlds","Mondes:"

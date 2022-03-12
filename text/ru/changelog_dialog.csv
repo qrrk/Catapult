@@ -1,0 +1,9 @@
+"keys","ru"
+,
+"dlg_changelog_title","Последние изменения"
+"str_fetching_changes","Получение последних изменений с GitHub. Подождите…"
+"str_error_retrieving_data","Произошла ошибка при получении данных с GitHub."
+"str_hhtp_response_code","\n\nКод ответа HTTP: %s"
+"str_github_says","\nGitHub сказал: [i]%s[/i]"
+"str_try_later","\n\nПопробуйте повторить позднее."
+"str_changelog_intro","Здесь показаны последние [b]%s[/b] завершенных пул-реквестов (изменений в коде) для [b]%s[/b].\n\nНажмите на любой пункт, чтобы посмотреть соответствующий PR на GitHub и узнать больше об этом изменении.\n"

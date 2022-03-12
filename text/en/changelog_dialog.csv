@@ -1,0 +1,9 @@
+"keys","en"
+,
+"dlg_changelog_title","Recent changes"
+"str_fetching_changes","Fetching recent changes from GitHub. Please wait…"
+"str_error_retrieving_data","Error retrieving data from GitHub API."
+"str_hhtp_response_code","\n\nHTTP response code: %s"
+"str_github_says","\nGitHub says: [i]%s[/i]"
+"str_try_later","\n\nPlease try again later."
+"str_changelog_intro","Showing the last [b]%s[/b] completed pull requests (code additions) to [b]%s[/b].\n\nYou can click on any item to view the corresponding PR on GitHub and learn more about the change.\n"

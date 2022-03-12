@@ -1,0 +1,13 @@
+"keys","zh"
+,
+"lbl_save_backups","保存目录下的备份："
+"btn_restore_backup","恢复"
+"btn_delete_backup","删除该项"
+"btn_refresh_backups","刷新"
+"lbl_manual_backup","手动备份"
+"lbl_backup_name","名称："
+"btn_create_backup","创建"
+"lbl_backup_info_placeholder","选择一项备份以查看详情。"
+,
+"backup_info_location","位置："
+"backup_info_worlds","世界："

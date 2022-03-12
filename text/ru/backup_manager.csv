@@ -1,0 +1,10 @@
+"keys","ru"
+,
+"msg_backing_up_saves","Создается бэкап текущих сохранений под именем \""%s\""…"
+"msg_backup_created","Бэкап создан."
+"msg_backup_name_taken","Бэкап с названием \""%s\"" уже существует."
+"msg_restoring_backup","Восстановление бэкапа \""%s\""..."
+"msg_backup_restored","Бэкап восстановлен."
+"msg_backup_not_found","Бэкап \""%s\"" не найден."
+"msg_deleting_backup","Удаление бэкапа \""%s\""..."
+"msg_backup_deleted","Бэкап удалён."

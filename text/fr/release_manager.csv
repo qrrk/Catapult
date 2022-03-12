@@ -1,0 +1,9 @@
+"keys","fr"
+,
+"msg_unsupported_platform","Plateforme non supportée: \""%s\"""
+"msg_releases_request_failed","Échec de la requête. Vérifier votre connexion Internet."
+"msg_releases_api_failure","Impossible de récupérer la liste des versions. GitHub indique: %s"
+"msg_got_n_releases","Trouvé %s versions."
+"msg_fetching_releases_dda","Cherche les dernières versions de DDA Expérimental…"
+"msg_fetching_releases_bn","Cherche les dernières versions de BN Expérimental…"
+"msg_invalid_fetch_func_param","ReleaseManager.fetch() a passé %s"

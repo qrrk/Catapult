@@ -1,0 +1,7 @@
+"keys","fr"
+,
+"msg_creating_settings","Crée le fichier de paramètres %s"
+"msg_nonexistent_attempt","Essaie de lire les paramètres d’un fichier inexistant %s"
+"msg_loading_settings","Charge les paramètres depuis %s"
+"msg_settings_parse_error","Erreur d’analyse des paramètres depuis JSON, ligne %s, message: %s"
+"msg_nonexisting_setting","Essaie de lire le paramètre \""%s\"" inexistant"

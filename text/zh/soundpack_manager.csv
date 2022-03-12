@@ -1,0 +1,9 @@
+"keys","zh"
+,
+"msg_no_sound_dir","音效目录不存在：%s"
+"msg_deleting_sound","正在删除%s"
+"msg_soundpack_not_found","无法找到名为\""%s\""的音效包"
+"msg_installing_sound","正在安装音效包\""%s\""..."
+"msg_reinstalling_sound","正在重装音效包\""%s\""…"
+"msg_sound_download_failed","无法下载音效包文件。"
+"msg_sound_installed","音效包已安装。"

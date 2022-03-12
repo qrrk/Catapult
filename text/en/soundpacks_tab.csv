@@ -1,0 +1,19 @@
+"keys","en"
+,
+"lbl_installed_sound","Installed:"
+"lbl_avail_sound","Downloadable:"
+"cbtn_stock_sound","Show stock"
+"btn_delete_sound","Delete Selected"
+"btn_install_sound","Install Selected"
+"btn_reinstall_sound","Reinstall Selected"
+,
+"tooltip_stock_sound","Show soundpacks from data/sound on the list."
+"tooltip_delete_sound","Remove the selected soundpack from your game installation."
+"tooltip_install_sound","Download the selected soundpack and add it to your game installation."
+,
+"dlg_sound_deletion_title","Confirm Soundpack Deletion"
+"dlg_sound_deletion_text","Deleting %s."
+"dlg_sound_manual_dl_title","Manual Download Required"
+"dlg_sound_manual_dl_text","This soundpack cannot be downloaded automatically. Click OK to download it in your browser, then choose where you saved it in the file selection dialog."
+,
+"str_no_sound_desc","No description provided."

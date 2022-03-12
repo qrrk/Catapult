@@ -1,0 +1,13 @@
+"keys","ru"
+,
+"lbl_save_backups","Бэкапы папки с сохранениями:"
+"btn_restore_backup","Восстановить"
+"btn_delete_backup","Удалить"
+"btn_refresh_backups","Обновить список"
+"lbl_manual_backup","Ручной бэкап"
+"lbl_backup_name","Название:"
+"btn_create_backup","Создать"
+"lbl_backup_info_placeholder","Выберите существующий бэкап, чтобы увидеть здесь информацию по нему."
+,
+"backup_info_location","Расположение:"
+"backup_info_worlds","Миры:"

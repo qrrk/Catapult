@@ -1,0 +1,19 @@
+"keys","zh"
+,
+"lbl_installed_sound","已安装："
+"lbl_avail_sound","可下载："
+"cbtn_stock_sound","展示基础音效包："
+"btn_delete_sound","删除该项"
+"btn_install_sound","安装所选"
+"btn_reinstall_sound","重新安装所选"
+,
+"tooltip_stock_sound","显示该列表下data/sound里的音效包。"
+"tooltip_delete_sound","从游戏中删除该音效包。"
+"tooltip_install_sound","下载所选音效包并添加至游戏。"
+,
+"dlg_sound_deletion_title","确认删除音效包"
+"dlg_sound_deletion_text","正在删除%s。"
+"dlg_sound_manual_dl_title","需要手动下载"
+"dlg_sound_manual_dl_text","该音效包无法自动下载。点击OK跳转到浏览器， 在文件选择窗口选择文件保存的位置。"
+,
+"str_no_sound_desc","无描述。"

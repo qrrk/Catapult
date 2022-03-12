@@ -1,0 +1,13 @@
+"keys","en"
+,
+"lbl_save_backups","Save directory backups:"
+"btn_restore_backup","Restore"
+"btn_delete_backup","Delete"
+"btn_refresh_backups","Refresh"
+"lbl_manual_backup","Manual backup"
+"lbl_backup_name","Name:"
+"btn_create_backup","Create"
+"lbl_backup_info_placeholder","Select an existing backup to see its details here."
+,
+"backup_info_location","Location:"
+"backup_info_worlds","Worlds:"

@@ -1,0 +1,10 @@
+"keys","zh"
+,
+"msg_backing_up_saves","备份当前存档至\""%s\""…"
+"msg_backup_created","备份已创建。"
+"msg_backup_name_taken","名为\""%s\""的备份已经存在。"
+"msg_restoring_backup","正在从\""%s\""备份恢复..."
+"msg_backup_restored","备份已恢复。"
+"msg_backup_not_found","备份\""%s\""未找到。"
+"msg_deleting_backup","正在删除备份\""%s\""..."
+"msg_backup_deleted","备份已删除。"

@@ -1,0 +1,13 @@
+"keys","fr"
+,
+"unit_kb","Ko"
+"unit_mb","Mo"
+"unit_kbps","Ko/s"
+"unit_mbps","Mo/s"
+,
+"msg_downloading_file","Télécharge %s"
+"msg_download_progress","Téléchargement: "
+"str_dl_speed_at","à"
+"msg_download_finished","Téléchargement terminé: %s"
+"msg_download_failed","Échec de téléchargement: %s"
+"msg_http_request_info","[b]Info Requête HTTP:[/b]\n[u]Résultat:[/u] %s\n[u]Réponse[/u] %s\n[u]En-tête[/u] %s"

@@ -1,0 +1,7 @@
+"keys","zh"
+,
+"msg_creating_settings","正在创建设置文件%s。"
+"msg_nonexistent_attempt","尝试从不存在的文件%s加载设置。"
+"msg_loading_settings","正在从%s加载设置。"
+"msg_settings_parse_error","解析来自JSON的设置时出错，第%s行，信息：%s"
+"msg_nonexisting_setting","尝试读取不存在的设定 \""%s\"""

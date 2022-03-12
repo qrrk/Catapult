@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+
+[deps]
+
+files=[ "res://text/ru/download_manager.ru.translation" ]
+
+source_file="res://text/ru/download_manager.csv"
+dest_files=[ "res://text/ru/download_manager.ru.translation" ]
+
+[params]
+
+compress=true
+delimiter=0

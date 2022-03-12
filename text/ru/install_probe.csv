@@ -1,0 +1,4 @@
+"keys","ru"
+,
+"msg_cannot_create_install_info","Не удалось создать файл с информацией об установке %s"
+"msg_cannot_parse_install_info","Не удалось разобрать информацию об установке в %s"

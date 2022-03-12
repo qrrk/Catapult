@@ -1,0 +1,9 @@
+"keys","zh"
+,
+"dlg_changelog_title","最近改动"
+"str_fetching_changes","正在从Github获取最近改动。请稍等..."
+"str_error_retrieving_data","从GitHub API检索数据时出错。 "
+"str_hhtp_response_code","\n\nHTTP响应代码： %s"
+"str_github_says","\nGitHub说： [i]%s[/i]"
+"str_try_later","\n\n请稍后重试。"
+"str_changelog_intro","展示最近[b]%s[/b]个到[b]%s[/b]\n\n的已合并请求（代码贡献）。您可以点击任意一项来查阅相应的Github合并请求并了解更多。\n"

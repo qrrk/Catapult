@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+
+[deps]
+
+files=[ "res://text/fr/changelog_dialog.fr.translation" ]
+
+source_file="res://text/fr/changelog_dialog.csv"
+dest_files=[ "res://text/fr/changelog_dialog.fr.translation" ]
+
+[params]
+
+compress=true
+delimiter=0

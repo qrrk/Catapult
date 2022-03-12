@@ -1,0 +1,22 @@
+"keys","fr"
+,
+"window_title","Catapult – un lanceur pour Cataclysm: DDA et BN"
+"str_welcome","Bienvenue sur Catapult!"
+"str_tip_of_the_day","\n\n[u]Astuce du jour:[/u]\n"
+"msg_unpacking_unzip","Décompression de unzip.exe…"
+"debug_test","Ceci est un texte de débogage pour tester la récupération de la traduction"
+,
+"tag_warning","avertissement"
+"tag_error","erreur"
+"tag_debug","débogage"
+,
+"lbl_game","Jouer: "
+"desc_dda","[b]Cataclysm: Dark Days Ahead[/b] est un jeu de survie au tour par tour qui se déroule dans un monde post-apocalyptique. Récupérez, explorez, fabriquez, construisez, cultivez, réparez et modifiez des véhicules, installez des éléments bioniques, mutez, défendez-vous contre les [color=#009900]zombies[/color] et d'innombrables autres monstruosités, le tout dans un monde illimité généré de manière procédurale!"
+"desc_bn","[b]Cataclysm: Bright Nights[/b]. Rejetez le pédantisme, adoptez le [color=#ff3300]!!fun!![/color]. Ce fork ramène le jeu à ses racines de science-fiction roguelike et annule de nombreux changements controversés par l'équipe DDA (poches, compétences, gel et [color=#3b93f7][url=https://github.com/cataclysmbnteam/Cataclysm -BN/wiki/Changes-so-far]plus[/url][/color]). Une attention particulière est portée au combat, à l'équilibre du jeu et au rythme. "
+,
+"tab_game","Jeu"
+"tab_mods","Mods"
+"tab_soundpacks","Packs de sons"
+"tab_fonts","Polices"
+"tab_backups","Sauvegardes"
+"tab_settings","Paramètres"

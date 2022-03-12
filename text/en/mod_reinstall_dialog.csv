@@ -1,0 +1,5 @@
+"keys","en"
+,
+"dlg_mod_reinstall_title","Confirm Mod Reinstall"
+"dlg_mod_reinstall_text_single","One of the selected mods is already installed.\nDelete and reinstall it?"
+"dlg_mod_reinstall_text_multiple","%s of the selected mods are already installed.\nDelete and reinstall them?"

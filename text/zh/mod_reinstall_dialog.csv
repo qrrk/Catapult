@@ -1,0 +1,5 @@
+"keys","zh"
+,
+"dlg_mod_reinstall_title","确认重装模组"
+"dlg_mod_reinstall_text_single","选中的模组有一个已经安装。\n删除并重装？"
+"dlg_mod_reinstall_text_multiple","选中的模组有%s个已经安装。\n删除并重装？"

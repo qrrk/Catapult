@@ -1,0 +1,19 @@
+"keys","fr"
+,
+"lbl_installed_sound","Installés:"
+"lbl_avail_sound","Téléchargable:"
+"cbtn_stock_sound","Voir les sons de base"
+"btn_delete_sound","Supprimer la sélection"
+"btn_install_sound","Installer la sélection"
+"btn_reinstall_sound","Réinstaller la sélection"
+,
+"tooltip_stock_sound","Voir les packs de sons depuis data/sound dans la liste."
+"tooltip_delete_sound","Supprimer les packs de sons sélectionnés de votre répertoire d’installation"
+"tooltip_install_sound","Télécharger le pack de sons sélectionné et l’ajouter à votre répertoire d’installation"
+,
+"dlg_sound_deletion_title","Confirmer la suppression du pack sonore"
+"dlg_sound_deletion_text","Supprime %s"
+"dlg_sound_manual_dl_title","Téléchargement manuel requis"
+"dlg_sound_manual_dl_text","Ce pack sonore ne peut être téléchargé automatiquement. Cliquez sur OK pour le télécharger via votre navigateur, puis indiquez où vous avez sauvé le fichier dans la boite de dialogue."
+,
+"str_no_sound_desc","Pas de description fournie."

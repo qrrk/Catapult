@@ -1,0 +1,4 @@
+"keys","en"
+,
+"msg_cannot_create_install_info","Could not create install info file %s"
+"msg_cannot_parse_install_info","Could not parse install info file %s"

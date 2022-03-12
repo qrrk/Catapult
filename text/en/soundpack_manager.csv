@@ -1,0 +1,9 @@
+"keys","en"
+,
+"msg_no_sound_dir","Sound directory does not exist: %s"
+"msg_deleting_sound","Deleting %s"
+"msg_soundpack_not_found","Could not find soundpack named \""%s\"""
+"msg_installing_sound","Installing soundpack \""%s\""..."
+"msg_reinstalling_sound","Reinstalling soundpack \""%s\""…"
+"msg_sound_download_failed","Could not download soundpack archive."
+"msg_sound_installed","Soundpack installed."

@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+
+[deps]
+
+files=[ "res://text/zh/font_manager.zh.translation" ]
+
+source_file="res://text/zh/font_manager.csv"
+dest_files=[ "res://text/zh/font_manager.zh.translation" ]
+
+[params]
+
+compress=true
+delimiter=0
