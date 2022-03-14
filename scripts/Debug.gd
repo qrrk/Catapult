@@ -113,11 +113,11 @@ func _on_Button6_pressed() -> void:
 
 func _on_Button7_pressed() -> void:
 	
-	var msg = "Paths provided by PathHelper:"
+	var msg = "PathHelper properties:"
 	
 	for prop in _path.get_property_list():
 		var name = prop["name"]
-		if (prop["type"] == 4) and ("dir" in name):
+		if (prop["type"] == 4):
 			msg += "\n%s: %s" % [name, _path.get(name)]
 	
 	emit_signal("status_message", msg, Enums.MSG_DEBUG)
