@@ -19,5 +19,6 @@
 "tooltip_builds","Choose which release of the game to install or update to."
 "tooltip_refresh","Re-retrieve the list of available game releases\nfrom GitHub (only for experimental releases)."
 "tooltip_install","Install selected game release (DDA and BN\nare managed separately and can co-exist)."
-"tooltip_game_dir","Open game directory."
+"tooltip_game_dir","Open game installation directory (contains\ngame executable and built-in game content)."
+"tooltip_user_dir","Open user data directory (contains saves, \ngame cofiguration, user mods, sound, etc.)"
 "tooltip_play","Launch the game."

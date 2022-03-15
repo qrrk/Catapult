@@ -19,5 +19,6 @@
 "tooltip_builds","选择游戏要安装或更新到具体哪个构建。"
 "tooltip_refresh","从Github重新检索可用 游戏列表（仅测试版）。"
 "tooltip_install","安装所选发布（DDA和BN 分别管理，可同时存在）。"
-"tooltip_game_dir","打开游戏目录。"
+"tooltip_game_dir","打开游戏安装目录（包含游戏可执行文件和内置游戏内容）。"
+"tooltip_user_dir","打开用户数据目录（包含存档、游戏配置、用户模组、声音等）"
 "tooltip_play","启动游戏。"

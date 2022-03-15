@@ -22,6 +22,7 @@ onready var _btn_refresh = $Main/Tabs/Game/Builds/BtnRefresh
 onready var _changelog = $Main/Tabs/Game/ChangelogDialog
 onready var _lbl_changelog = $Main/Tabs/Game/Channel/HBox/ChangelogLink
 onready var _btn_game_dir = $Main/Tabs/Game/CurrentInstall/Build/GameDir
+onready var _btn_user_dir = $Main/Tabs/Game/CurrentInstall/Build/UserDir
 onready var _btn_play = $Main/Tabs/Game/CurrentInstall/BtnPlay
 onready var _lst_builds = $Main/Tabs/Game/Builds/BuildsList
 onready var _lst_games = $Main/GameChoice/GamesList
@@ -307,6 +308,13 @@ func _on_GameDir_pressed() -> void:
 		OS.shell_open(gamedir)
 
 
+func _on_UserDir_pressed() -> void:
+	
+	var userdir = _path.userdata
+	if Directory.new().dir_exists(userdir):
+		OS.shell_open(userdir)
+
+
 func setup_ui() -> void:
 
 	_game_info.visible = _settings.read("show_game_desc")
@@ -385,6 +393,7 @@ func _refresh_currently_installed() -> void:
 		_btn_install.text = tr("btn_update")
 		_btn_play.disabled = false
 		_btn_game_dir.visible = true
+		_btn_user_dir.visible = true
 		if (_lst_builds.selected != -1) and (_lst_builds.selected < len(releases)):
 				if not _settings.read("update_to_same_build_allowed"):
 					_btn_install.disabled = (releases[_lst_builds.selected]["name"] == info[game]["name"])
@@ -397,6 +406,7 @@ func _refresh_currently_installed() -> void:
 		_btn_install.disabled = false
 		_btn_play.disabled = true
 		_btn_game_dir.visible = false
+		_btn_user_dir.visible = false
 		
 	for i in [1, 2, 3, 4]:
 		_tabs.set_tab_disabled(i, not _is_selected_game_installed())
@@ -422,4 +432,3 @@ func _activate_easter_egg() -> void:
 	for i in range(20):
 		print_msg(tr("msg_easter_egg_activated"))
 		yield(get_tree().create_timer(0.1), "timeout")
-		
