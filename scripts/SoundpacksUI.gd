@@ -14,7 +14,6 @@ onready var _cbox_stock = $HBox/Installed/ShowStock
 
 onready var _workdir = OS.get_executable_path().get_base_dir()
 
-var _gamedir = ""
 var _installed_packs = []
 
 
@@ -71,7 +70,6 @@ func _on_Tabs_tab_changed(tab: int) -> void:
 	if tab != 2:
 		return
 		
-	_gamedir = _workdir + "/" + _settings.read("game") + "/current"
 	_cbox_stock.pressed = _settings.read("show_stock_sound")
 	
 	_btn_delete.disabled = true

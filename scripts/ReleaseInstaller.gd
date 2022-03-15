@@ -7,11 +7,11 @@ signal installation_finished
 signal _migration_finished
 
 
-onready var _downloader = $"../Downloader"
-onready var _fshelper = $"../FSHelper"
-onready var _probe = $"../InstallProbe"
-onready var _settings = $"/root/SettingsManager"
-onready var _workdir = _fshelper.get_own_dir()
+onready var _downloader := $"../Downloader"
+onready var _fshelper := $"../FSHelper"
+onready var _probe := $"../InstallProbe"
+onready var _settings := $"/root/SettingsManager"
+onready var _path := $"../PathHelper"
 
 
 func install_release(release_info: Dictionary, game: String, update: bool = false) -> void:
@@ -23,37 +23,35 @@ func install_release(release_info: Dictionary, game: String, update: bool = fals
 	else:
 		emit_signal("status_message", tr("msg_installing_game") % release_info["name"])
 	
-	var gamedir = _workdir + "/" + game + "/current"
-	var tmpdir = _workdir + "/" + game + "/tmp"
-	
-	_downloader.download_file(release_info["url"], _workdir, release_info["filename"])
+	_downloader.download_file(release_info["url"], _path.own_dir, release_info["filename"])
 	yield(_downloader, "download_finished")
 	
-	if Directory.new().file_exists(_workdir.plus_file(release_info["filename"])):
+	var archive: String = _path.own_dir.plus_file(release_info["filename"])
+	if Directory.new().file_exists(archive):
 		
-		_fshelper.extract(_workdir + "/" + release_info["filename"], tmpdir)
+		_fshelper.extract(archive, _path.tmp_dir)
 		yield(_fshelper, "extract_done")
-		Directory.new().remove(_workdir + "/" + release_info["filename"])
+		Directory.new().remove(archive)
 		
 		if _fshelper.last_extract_result == 0:
 		
 			var extracted_root
 			match OS.get_name():
 				"X11":
-					extracted_root = tmpdir + "/" + _fshelper.list_dir(tmpdir)[0]
+					extracted_root = _path.tmp_dir.plus_file(_fshelper.list_dir(_path.tmp_dir)[0])
 				"Windows":
-					extracted_root = tmpdir
+					extracted_root = _path.tmp_dir
 			
 			_probe.create_info_file(extracted_root, release_info["name"])
 			
 			if update:
 				if len(_settings.read("game_data_to_migrate")) > 0:
-					_migrate_game_data(gamedir, extracted_root)
+					_migrate_game_data(_path.game_dir, extracted_root)
 					yield(self, "_migration_finished")
-				_fshelper.rm_dir(gamedir)
+				_fshelper.rm_dir(_path.game_dir)
 				yield(_fshelper, "rm_dir_done")
 			
-			_fshelper.move_dir(extracted_root, gamedir)
+			_fshelper.move_dir(extracted_root, _path.game_dir)
 			yield(_fshelper, "move_dir_done")
 			
 			if update:

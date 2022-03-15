@@ -55,10 +55,10 @@ const SOUNDPACKS = [
 ]
 
 
-onready var _settings = $"/root/SettingsManager"
-onready var _fshelper = $"../FSHelper"
-onready var _downloader = $"../Downloader"
-onready var _workdir = OS.get_executable_path().get_base_dir()
+onready var _settings := $"/root/SettingsManager"
+onready var _fshelper := $"../FSHelper"
+onready var _downloader := $"../Downloader"
+onready var _path := $"../PathHelper"
 
 
 func parse_sound_dir(sound_dir: String) -> Array:
@@ -72,7 +72,7 @@ func parse_sound_dir(sound_dir: String) -> Array:
 	
 	for subdir in _fshelper.list_dir(sound_dir):
 		var f = File.new()
-		var info = sound_dir + "/" + subdir + "/soundpack.txt"
+		var info = sound_dir.plus_file(subdir).plus_file("soundpack.txt")
 		if f.file_exists(info):
 			f.open(info, File.READ)
 			var lines = f.get_as_text().split("\n", false)
@@ -86,7 +86,7 @@ func parse_sound_dir(sound_dir: String) -> Array:
 			var item = {}
 			item["name"] = name
 			item["description"] = desc
-			item["location"] = sound_dir + "/" + subdir
+			item["location"] = sound_dir.plus_file(subdir)
 			result.append(item)
 			f.close()
 		
@@ -95,16 +95,15 @@ func parse_sound_dir(sound_dir: String) -> Array:
 
 func get_installed(include_stock = false) -> Array:
 	
-	var gamedir = _workdir + "/" + _settings.read("game") + "/current"
 	var packs = []
 	
-	if Directory.new().dir_exists(gamedir + "/sound"):
-		packs.append_array(parse_sound_dir(gamedir + "/sound"))
+	if Directory.new().dir_exists(_path.sound_user):
+		packs.append_array(parse_sound_dir(_path.sound_user))
 		for pack in packs:
 			pack["is_stock"] = false
 	
 	if include_stock:
-		var stock = parse_sound_dir(gamedir + "/data/sound")
+		var stock = parse_sound_dir(_path.sound_stock)
 		for pack in stock:
 			pack["is_stock"] = true
 		packs.append_array(stock)
@@ -130,8 +129,8 @@ func install_pack(soundpack_index: int, from_file = null, reinstall = false, kee
 	
 	var pack = SOUNDPACKS[soundpack_index]
 	var game = _settings.read("game")
-	var sound_dir = _workdir + "/" + game + "/current/sound"
-	var tmp_dir = _workdir + "/" + game + "/tmp/" + pack["name"]
+	var sound_dir = _path.sound_user
+	var tmp_dir = _path.tmp_dir.plus_file(pack["name"])
 	var archive = ""
 			
 	emit_signal("soundpack_installation_started")
@@ -144,9 +143,9 @@ func install_pack(soundpack_index: int, from_file = null, reinstall = false, kee
 	if from_file:
 		archive = from_file
 	else:
-		_downloader.download_file(pack["url"], _workdir, pack["filename"])
+		_downloader.download_file(pack["url"], _path.own_dir, pack["filename"])
 		yield(_downloader, "download_finished")
-		archive = _workdir + "/" + pack["filename"]
+		archive = _path.own_dir.plus_file(pack["filename"])
 		if not Directory.new().file_exists(archive):
 			emit_signal("status_message", tr("msg_sound_download_failed"), Enums.MSG_ERROR)
 			emit_signal("soundpack_installation_finished")

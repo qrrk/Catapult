@@ -20,7 +20,6 @@ onready var _lbl_repo = $HBox/Available/Label
 onready var _dlg_reinstall = $ModReinstallDialog
 onready var _dlg_del_multiple = $DeleteMultipleDialog
 
-var _gamedir := ""
 var _installed_mods_view := []
 var _available_mods_view := []
 

@@ -13,16 +13,12 @@ var _platform: String = ""
 var last_extract_result: int = 0 setget , _get_last_extract_result
 # Stores the exit code of the last extract operation (0 if successful).
 
+onready var _path = $"../PathHelper"
+
 
 func _enter_tree() -> void:
 	
 	_platform = OS.get_name()
-
-
-func get_own_dir() -> String:
-	# Returns the absolute path to the directory with the executable.
-	
-	return OS.get_executable_path().get_base_dir()
 
 
 func _get_last_extract_result() -> int:
@@ -169,7 +165,7 @@ func extract(path: String, dest_dir: String) -> void:
 	# Extracts a .zip or .tar.gz archive using the system utilities on Linux
 	# and bundled unzip.exe from InfoZip on Windows.
 	
-	var unzip_exe = get_own_dir().plus_file("utils").plus_file("unzip.exe")
+	var unzip_exe = _path.utils_dir.plus_file("unzip.exe")
 	
 	var command_linux_zip = {
 		"name": "unzip",

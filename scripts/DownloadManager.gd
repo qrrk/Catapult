@@ -10,9 +10,9 @@ signal download_finished
 const _PROGRESS_AFTER_MSECS := 2000
 const _PROGRESS_AFTER_BYTES := 1024 * 1024 * 5
 
-var _current_filename: String = ""
-var _current_file_path: String = ""
-var _download_ongoing: bool = false
+var _current_filename := ""
+var _current_file_path := ""
+var _download_ongoing := false
 
 onready var _http = $HTTPRequest
 

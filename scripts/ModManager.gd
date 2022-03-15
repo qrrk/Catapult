@@ -35,10 +35,10 @@ const _MODPACKS = {
 	}
 }
 
-onready var _settings = $"/root/SettingsManager"
-onready var _fshelper = $"../FSHelper"
-onready var _downloader = $"../Downloader"
-onready var _workdir = OS.get_executable_path().get_base_dir()
+onready var _settings := $"/root/SettingsManager"
+onready var _fshelper := $"../FSHelper"
+onready var _downloader := $"../Downloader"
+onready var _path := $"../PathHelper"
 
 
 var installed: Dictionary = {} setget , _get_installed
@@ -70,7 +70,7 @@ func parse_mods_dir(mods_dir: String) -> Dictionary:
 	
 	for subdir in _fshelper.list_dir(mods_dir):
 		var f = File.new()
-		var modinfo = mods_dir + "/" + subdir + "/modinfo.json"
+		var modinfo = mods_dir.plus_file(subdir).plus_file("/modinfo.json")
 		
 		if f.file_exists(modinfo):
 			
@@ -147,16 +147,15 @@ func mod_status(id: String) -> int:
 
 func refresh_installed():
 	
-	var gamedir = _workdir + "/" + _settings.read("game") + "/current"
 	installed = {}
 	
 	var non_stock := {}
-	if Directory.new().dir_exists(gamedir + "/mods"):
-		non_stock = parse_mods_dir(gamedir + "/mods")
+	if Directory.new().dir_exists(_path.mods_user):
+		non_stock = parse_mods_dir(_path.mods_user)
 		for id in non_stock:
 			non_stock[id]["is_stock"] = false
 			
-	var stock := parse_mods_dir(gamedir + "/data/mods")
+	var stock := parse_mods_dir(_path.mods_stock)
 	for id in stock:
 		stock[id]["is_stock"] = true
 		if ("obsolete" in stock[id]["modinfo"]) and (stock[id]["modinfo"]["obsolete"] == true):
@@ -175,8 +174,7 @@ func refresh_installed():
 
 func refresh_available():
 	
-	var mod_repo = _workdir + "/" + _settings.read("game") + "/mod_repo"
-	available = parse_mods_dir(mod_repo)
+	available = parse_mods_dir(_path.mod_repo)
 
 
 func _delete_mod(mod_id: String) -> void:
@@ -222,7 +220,7 @@ func _install_mod(mod_id: String) -> void:
 	yield(get_tree().create_timer(0.05), "timeout")
 	# For stability; see above.
 
-	var mods_dir = _workdir + "/" + _settings.read("game") + "/current/mods"
+	var mods_dir = _path.mods_user
 	
 	if mod_id in available:
 		var mod = available[mod_id]
@@ -268,38 +266,36 @@ func retrieve_kenan_pack() -> void:
 	
 	var game = _settings.read("game")
 	var pack = _MODPACKS["kenan-" + game]
-	var _tmp_dir = _workdir + "/" + game + "/tmp"
-	var _modrepo_dir = _workdir + "/" + game + "/mod_repo"
 	
 	emit_signal("modpack_retrieval_started")
 	emit_signal("status_message", tr("msg_getting_kenan_pack") % game.to_upper())
 	
-	_downloader.download_file(pack["url"], _workdir, pack["filename"])
+	_downloader.download_file(pack["url"], _path.own_dir, pack["filename"])
 	yield(_downloader, "download_finished")
 	
-	var archive = _workdir + "/" + pack["filename"]
+	var archive = _path.own_dir.plus_file(pack["filename"])
 	if Directory.new().file_exists(archive):
-		_fshelper.extract(archive, _tmp_dir)
+		_fshelper.extract(archive, _path.tmp_dir)
 		yield(_fshelper, "extract_done")
 		Directory.new().remove(archive)
 		
 		emit_signal("status_message", tr("msg_wiping_mod_repo"))
-		if (Directory.new().dir_exists(_modrepo_dir)):
-			_fshelper.rm_dir(_modrepo_dir)
+		if (Directory.new().dir_exists(_path.mod_repo)):
+			_fshelper.rm_dir(_path.mod_repo)
 			yield(_fshelper, "rm_dir_done")
 		
 		emit_signal("status_message", tr("msg_unpacking_kenan_mods"))
 		for int_path in pack["internal_paths"]:
-			_fshelper.move_dir(_tmp_dir + "/" + int_path, _modrepo_dir)
+			_fshelper.move_dir(_path.tmp_dir.plus_file(int_path), _path.mod_repo)
 			yield(_fshelper, "move_dir_done")
 		
 		if _settings.read("install_archived_mods"):
 			emit_signal("status_message", tr("msg_unpacking_archived_mods"))
-			_fshelper.move_dir(_tmp_dir + "/" + pack["archived_path"], _modrepo_dir)
+			_fshelper.move_dir(_path.tmp_dir.plus_file(pack["archived_path"]), _path.mod_repo)
 			yield(_fshelper, "move_dir_done")
 		
 		emit_signal("status_message", tr("msg_kenan_install_cleanup"))
-		_fshelper.rm_dir(_tmp_dir + "/" + pack["internal_paths"][0].split("/")[0])
+		_fshelper.rm_dir(_path.tmp_dir.plus_file(pack["internal_paths"][0].split("/")[0]))
 		yield(_fshelper, "rm_dir_done")
 		
 		emit_signal("status_message", tr("msg_kenan_install_done"))

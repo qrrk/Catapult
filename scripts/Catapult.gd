@@ -12,9 +12,10 @@ onready var _game_desc = $Main/GameInfo/Description
 onready var _mod_info = $Main/Tabs/Mods/ModInfo
 onready var _inst_probe = $InstallProbe
 onready var _tabs = $Main/Tabs
-onready var _mods = $Mods
+onready var _mods = $Mods  
 onready var _releases = $Releases
 onready var _fshelper = $FSHelper
+onready var _path = $PathHelper
 onready var _installer = $ReleaseInstaller
 onready var _btn_install = $Main/Tabs/Game/BtnInstall
 onready var _btn_refresh = $Main/Tabs/Game/Builds/BtnRefresh
@@ -61,11 +62,10 @@ func _ready() -> void:
 func _unpack_utils() -> void:
 	
 	var d = Directory.new()
-	var utils_dir = _fshelper.get_own_dir().plus_file("utils")
-	var unzip_exe = utils_dir.plus_file("unzip.exe")
+	var unzip_exe = _path.utils_dir.plus_file("unzip.exe")
 	if (OS.get_name() == "Windows") and (not d.file_exists(unzip_exe)):
-		if not d.dir_exists(utils_dir):
-			d.make_dir(utils_dir)
+		if not d.dir_exists(_path.utils_dir):
+			d.make_dir(_path.utils_dir)
 		print_msg(tr("msg_unpacking_unzip"))
 		d.copy("res://utils/unzip.exe", unzip_exe)
 
@@ -302,7 +302,7 @@ func _get_release_key() -> String:
 
 func _on_GameDir_pressed() -> void:
 	
-	var gamedir = _fshelper.get_own_dir().plus_file(_settings.read("game")).plus_file("current")
+	var gamedir = _path.game_dir
 	if Directory.new().dir_exists(gamedir):
 		OS.shell_open(gamedir)
 
@@ -357,8 +357,6 @@ func apply_game_choice() -> void:
 			_rbtn_stable.disabled = true
 			_btn_refresh.disabled = false
 			_game_desc.bbcode_text = tr("desc_bn")
-			
-#	_game_desc.bbcode_text = _GAME_DESC[game]
 	
 	if len(_releases.releases[_get_release_key()]) == 0:
 		_releases.fetch(_get_release_key())
@@ -368,12 +366,11 @@ func apply_game_choice() -> void:
 
 func _on_BtnPlay_pressed() -> void:
 	
-	var exec_path = _fshelper.get_own_dir().plus_file(_settings.read("game")).plus_file("current")
 	match OS.get_name():
 		"X11":
-			OS.execute(exec_path.plus_file("cataclysm-launcher"), [], false)
+			OS.execute(_path.game_dir.plus_file("cataclysm-launcher"), ["--userdir", _path.userdata + "/"], false)
 		"Windows":
-			var command = "cd /d %s && start cataclysm-tiles.exe" % exec_path
+			var command = "cd /d %s && start cataclysm-tiles.exe --userdir %s" % [_path.game_dir, _path.userdata]
 			OS.execute("cmd", ["/C", command], false)
 
 

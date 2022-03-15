@@ -11,6 +11,7 @@ var own_dir: String setget , _get_own_dir
 var game_dir: String setget , _get_game_dir
 var userdata: String setget , _get_userdata_dir
 var config: String setget , _get_config_dir
+var savegames: String setget , _get_savegame_dir
 var mods_stock: String setget , _get_mods_dir_default
 var mods_user: String setget , _get_mods_dir_user
 var sound_stock: String setget , _get_sound_dir_default
@@ -24,6 +25,7 @@ var graveyard: String setget , _get_graveyard_dir
 var mod_repo: String setget , _get_modrepo_dir
 var tmp_dir: String setget , _get_tmp_dir
 var utils_dir: String setget , _get_utils_dir
+var save_backups: String setget , _get_save_backups_dir
 
 
 func _get_own_dir() -> String:
@@ -44,6 +46,11 @@ func _get_userdata_dir() -> String:
 func _get_config_dir() -> String:
 	
 	return _get_userdata_dir().plus_file("config")
+
+
+func _get_savegame_dir() -> String:
+	
+	return _get_userdata_dir().plus_file("save")
 
 
 func _get_mods_dir_default() -> String:
@@ -109,3 +116,8 @@ func _get_tmp_dir() -> String:
 func _get_utils_dir() -> String:
 	
 	return _get_own_dir().plus_file("utils")
+
+
+func _get_save_backups_dir() -> String:
+	
+	return _get_own_dir().plus_file(_settings.read("game")).plus_file("save_backups")
