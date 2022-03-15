@@ -26,9 +26,6 @@ const _HARDCODED_DEFAULTS = {
 	"font_preview_cyrillic": false,
 	"show_game_desc": true,
 	"debug_mode": false,
-	"game_data_to_migrate": [
-		"savegames", "settings", "mods", "fonts", "tilesets",
-		"soundpacks", "templates", "memorial", "graveyard"],
 }
 
 

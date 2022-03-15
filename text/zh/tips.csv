@@ -1,9 +1,7 @@
 "keys","zh"
 ,
 "tip_soundpack_size","音效包很大，可能需要一段时间才能转移到新的游戏版本。您可以只保留当前使用的音效包并卸载其余的音效包。"
-"tip_mod_migration","如果您有太多模组，可能需要一段时间才能转移到新的游戏版本。您可以只安装您感兴趣的模组。"
 "tip_os_hopping","您可以将Catapult文件夹从Windows带到Linux（或者相反）并继续使用，但您必须下载正确的Catapult可执行文件并至少更新一次游戏。"
-"tip_migration_settings","您可以在[i]设置[/i]选项卡里选择哪些文件需要在更新时被迁移。"
 "tip_dual_install","[i]C:DDA[/i]和[i]C:BN[/i]可以同时安装。他们的安装是完全独立的，他们的更新、模组和音效包是分开管理的。"
 "tip_downgrading","您可以通过选择“更新”到较早的版本来降级您的游戏版本，但要注意存档的兼容性问题。"
 "tip_stock_mods","游戏自带的模组不受Catapult管理（为了防止它们被二次安装）。Catapult只处理[i]/mods[/i]文件夹，而不是[i]/data/mods[/i]。"

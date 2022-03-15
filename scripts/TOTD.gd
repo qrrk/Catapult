@@ -6,9 +6,7 @@ const _TOTD = [
 	# These used to be hardcoded, but now it is just a list of translation keys.
 	
 	"tip_soundpack_size",
-	"tip_mod_migration",
 	"tip_os_hopping",
-	"tip_migration_settings",
 	"tip_dual_install",
 	"tip_downgrading",
 	"tip_stock_mods",

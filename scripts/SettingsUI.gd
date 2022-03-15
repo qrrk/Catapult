@@ -7,18 +7,6 @@ onready var _root = $"/root/Catapult"
 onready var _tabs = $"/root/Catapult/Main/Tabs"
 onready var _debug_ui = $"/root/Catapult/Main/Tabs/Debug"
 
-onready var _migration = {
-	"savegames": $Migration/Grid/Savegames,
-	"fonts": $Migration/Grid/Fonts,
-	"templates": $Migration/Grid/Templates,
-	"settings": $Migration/Grid/Settings,
-	"tilesets": $Migration/Grid/Tilesets,
-	"memorial": $Migration/Grid/Memorial,
-	"mods": $Migration/Grid/Mods,
-	"soundpacks": $Migration/Grid/Soundpacks,
-	"graveyard": $Migration/Grid/Graveyard,
-}
-
 
 func _ready() -> void:
 	
@@ -52,13 +40,6 @@ func _ready() -> void:
 	$ScaleOverride/cbScaleOverrideEnable.pressed = _settings.read("ui_scale_override_enabled")
 	$ScaleOverride/sbScaleOverride.editable = _settings.read("ui_scale_override_enabled")
 	$ScaleOverride/sbScaleOverride.value = (_settings.read("ui_scale_override") as float) * 100.0
-	
-	var data_types = _settings.read("game_data_to_migrate")
-	for type in _migration:
-		if type in data_types:
-			_migration[type].pressed = true
-		else:
-			_migration[type].pressed = false
 
 
 func _on_obtnLanguage_item_selected(index: int) -> void:
@@ -141,15 +122,3 @@ func _on_sbScaleOverride_value_changed(value: float) -> void:
 	if _settings.read("ui_scale_override_enabled"):
 		_settings.store("ui_scale_override", value / 100.0)
 		_geom.scale = value / 100.0
-
-
-func _on_any_migration_checkbox_toggled(_asdf: bool) -> void:
-	# To cut down on the amount of code, let's treat all these checkboxes
-	# as one control and poll all of them every time.
-	
-	var data_types = []
-	for type in _migration:
-		if _migration[type].pressed:
-			data_types.append(type)
-	
-	_settings.store("game_data_to_migrate", data_types)
