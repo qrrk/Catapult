@@ -19,5 +19,6 @@
 "tooltip_builds","Choisissez quelle version du jeu à installer ou mettre à jour."
 "tooltip_refresh","Rafraîchir la liste des versions disponibles depuis GitHub\n (seulement pour les versions expérimentales)."
 "tooltip_install","Installer la version du jeu sélectionnée\n(DDA et BN sont gérés indépendamment et peuvent co-exister)."
-"tooltip_game_dir","Ouvrir le répertoire du jeu."
+"tooltip_game_dir","Ouvrir le répertoire d'installation du jeu (contient\nl'exécutable du jeu et le contenu du jeu intégré)."
+"tooltip_user_dir","Ouvrir le répertoire des données utilisateur\n(contient les sauvegardes, la configuration du jeu,\nles mods utilisateur, le son, etc.)"
 "tooltip_play","Lancer le jeu."

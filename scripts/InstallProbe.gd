@@ -3,16 +3,9 @@ extends Node
 
 signal status_message
 
-
 const _INFO_FILENAME = "catapult_install_info.json"
 
-
-var _workdir = ""
-
-
-func _enter_tree() -> void:
-	
-	_workdir = OS.get_executable_path().get_base_dir()
+onready var _path := $"../PathHelper"
 
 
 func create_info_file(location: String, name: String) -> void:
@@ -49,11 +42,11 @@ func probe_installed_games() -> Dictionary:
 	var result = {}
 	var d = Directory.new()
 	
-	var path_dda = _workdir + "/dda/current/" + _INFO_FILENAME
+	var path_dda = _path.own_dir + "/dda/current/" + _INFO_FILENAME
 	if d.file_exists(path_dda):
 		result["dda"] = _load_json(path_dda)
 		
-	var path_bn = _workdir + "/bn/current/" + _INFO_FILENAME
+	var path_bn = _path.own_dir + "/bn/current/" + _INFO_FILENAME
 	if d.file_exists(path_bn):
 		result["bn"] = _load_json(path_bn)
 	

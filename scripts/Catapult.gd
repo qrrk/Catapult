@@ -12,15 +12,17 @@ onready var _game_desc = $Main/GameInfo/Description
 onready var _mod_info = $Main/Tabs/Mods/ModInfo
 onready var _inst_probe = $InstallProbe
 onready var _tabs = $Main/Tabs
-onready var _mods = $Mods
+onready var _mods = $Mods  
 onready var _releases = $Releases
 onready var _fshelper = $FSHelper
+onready var _path = $PathHelper
 onready var _installer = $ReleaseInstaller
 onready var _btn_install = $Main/Tabs/Game/BtnInstall
 onready var _btn_refresh = $Main/Tabs/Game/Builds/BtnRefresh
 onready var _changelog = $Main/Tabs/Game/ChangelogDialog
 onready var _lbl_changelog = $Main/Tabs/Game/Channel/HBox/ChangelogLink
 onready var _btn_game_dir = $Main/Tabs/Game/CurrentInstall/Build/GameDir
+onready var _btn_user_dir = $Main/Tabs/Game/CurrentInstall/Build/UserDir
 onready var _btn_play = $Main/Tabs/Game/CurrentInstall/BtnPlay
 onready var _lst_builds = $Main/Tabs/Game/Builds/BuildsList
 onready var _lst_games = $Main/GameChoice/GamesList
@@ -61,11 +63,10 @@ func _ready() -> void:
 func _unpack_utils() -> void:
 	
 	var d = Directory.new()
-	var utils_dir = _fshelper.get_own_dir().plus_file("utils")
-	var unzip_exe = utils_dir.plus_file("unzip.exe")
+	var unzip_exe = _path.utils_dir.plus_file("unzip.exe")
 	if (OS.get_name() == "Windows") and (not d.file_exists(unzip_exe)):
-		if not d.dir_exists(utils_dir):
-			d.make_dir(utils_dir)
+		if not d.dir_exists(_path.utils_dir):
+			d.make_dir(_path.utils_dir)
 		print_msg(tr("msg_unpacking_unzip"))
 		d.copy("res://utils/unzip.exe", unzip_exe)
 
@@ -302,9 +303,16 @@ func _get_release_key() -> String:
 
 func _on_GameDir_pressed() -> void:
 	
-	var gamedir = _fshelper.get_own_dir().plus_file(_settings.read("game")).plus_file("current")
+	var gamedir = _path.game_dir
 	if Directory.new().dir_exists(gamedir):
 		OS.shell_open(gamedir)
+
+
+func _on_UserDir_pressed() -> void:
+	
+	var userdir = _path.userdata
+	if Directory.new().dir_exists(userdir):
+		OS.shell_open(userdir)
 
 
 func setup_ui() -> void:
@@ -357,8 +365,6 @@ func apply_game_choice() -> void:
 			_rbtn_stable.disabled = true
 			_btn_refresh.disabled = false
 			_game_desc.bbcode_text = tr("desc_bn")
-			
-#	_game_desc.bbcode_text = _GAME_DESC[game]
 	
 	if len(_releases.releases[_get_release_key()]) == 0:
 		_releases.fetch(_get_release_key())
@@ -368,12 +374,11 @@ func apply_game_choice() -> void:
 
 func _on_BtnPlay_pressed() -> void:
 	
-	var exec_path = _fshelper.get_own_dir().plus_file(_settings.read("game")).plus_file("current")
 	match OS.get_name():
 		"X11":
-			OS.execute(exec_path.plus_file("cataclysm-launcher"), [], false)
+			OS.execute(_path.game_dir.plus_file("cataclysm-launcher"), ["--userdir", _path.userdata + "/"], false)
 		"Windows":
-			var command = "cd /d %s && start cataclysm-tiles.exe" % exec_path
+			var command = "cd /d %s && start cataclysm-tiles.exe --userdir %s" % [_path.game_dir, _path.userdata]
 			OS.execute("cmd", ["/C", command], false)
 
 
@@ -388,6 +393,7 @@ func _refresh_currently_installed() -> void:
 		_btn_install.text = tr("btn_update")
 		_btn_play.disabled = false
 		_btn_game_dir.visible = true
+		_btn_user_dir.visible = true
 		if (_lst_builds.selected != -1) and (_lst_builds.selected < len(releases)):
 				if not _settings.read("update_to_same_build_allowed"):
 					_btn_install.disabled = (releases[_lst_builds.selected]["name"] == info[game]["name"])
@@ -400,6 +406,7 @@ func _refresh_currently_installed() -> void:
 		_btn_install.disabled = false
 		_btn_play.disabled = true
 		_btn_game_dir.visible = false
+		_btn_user_dir.visible = false
 		
 	for i in [1, 2, 3, 4]:
 		_tabs.set_tab_disabled(i, not _is_selected_game_installed())
@@ -425,4 +432,3 @@ func _activate_easter_egg() -> void:
 	for i in range(20):
 		print_msg(tr("msg_easter_egg_activated"))
 		yield(get_tree().create_timer(0.1), "timeout")
-		

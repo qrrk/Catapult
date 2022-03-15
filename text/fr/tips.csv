@@ -1,9 +1,7 @@
 "keys","fr"
 ,
 "tip_soundpack_size","Les packs sonores sont lourds et peuvent prendre un certain temps pour être transférés vers une nouvelle version du jeu. Envisagez de ne conserver que le pack sonore que vous utilisez actuellement et de désinstaller le reste."
-"tip_mod_migration","Les mods peuvent prendre un certain temps pour être transférés vers une nouvelle version du jeu si vous en avez trop. Envisagez d’installer uniquement les mods qui vous intéressent à partir du serveur."
 "tip_os_hopping","Vous pouvez transférer le dossier Catapult de Windows vers Linux (ou vice versa) et continuer à l’utiliser, mais vous devrez télécharger le bon exécutable Catapult et mettre à jour votre jeu au moins une fois."
-"tip_migration_settings","Vous pouvez choisir les données à conserver lors de la mise à jour du jeu dans l’onglet [i]Paramètres[/i]."
 "tip_dual_install","[i]C:DDA[/i] et [i]C:BN[/i] peuvent être installés en même temps. Leurs installations sont complètement indépendantes et leurs mises à jour, mods et packs sonores sont gérés séparément"
 "tip_downgrading","Vous pouvez rétrograder votre version du jeu en mettant à jour vers une version précédente, mais faites attention aux problèmes de compatibilité des sauvegardes."
 "tip_stock_mods","Les mods fournis avec le jeu ne sont pas gérés par Catapult (sauf pour empêcher leur installation une seconde fois). Catapult ne traite que le dossier [i]mods[/i], pas [i]data/mods[/i]."

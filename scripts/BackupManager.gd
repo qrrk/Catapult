@@ -9,13 +9,9 @@ signal backup_restoration_finished
 signal backup_deletion_started
 signal backup_deletion_finished
 
-
-const _BACKUPS_SUBDIR = "save_backups"
-
-onready var _settings = $"/root/SettingsManager"
-onready var _fshelper = $"../FSHelper"
-
-onready var _workdir = OS.get_executable_path().get_base_dir()
+onready var _settings := $"/root/SettingsManager"
+onready var _fshelper := $"../FSHelper"
+onready var _path := $"../PathHelper"
 
 var available = null setget , _get_available
 
@@ -24,19 +20,15 @@ func backup_current(backup_name: String) -> void:
 	# Create a backup of the save dir for the current game.
 
 	emit_signal("status_message", tr("msg_backing_up_saves") % backup_name)
-	
 	emit_signal("backup_creation_started")
 
-	var game_dir = _workdir.plus_file(_settings.read("game"))
-	var temp_dir = _workdir.plus_file("tmp")
-	var source_dir = game_dir.plus_file("current").plus_file("save")
-	var dest_dir = game_dir.plus_file(_BACKUPS_SUBDIR).plus_file(backup_name)
+	var dest_dir = _path.save_backups.plus_file(backup_name)
 	var d = Directory.new()
 	
 	if not d.dir_exists(dest_dir):
 		d.make_dir(dest_dir)
-		for world in _fshelper.list_dir(source_dir):
-			_fshelper.copy_dir(source_dir.plus_file(world), dest_dir)
+		for world in _fshelper.list_dir(_path.savegames):
+			_fshelper.copy_dir(_path.savegames.plus_file(world), dest_dir)
 			yield(_fshelper, "copy_dir_done")
 		
 		emit_signal("status_message", tr("msg_backup_created"))
@@ -74,14 +66,13 @@ func _get_available() -> Array:
 
 func refresh_available():
 
-	var backups_dir = _workdir.plus_file(_settings.read("game")).plus_file(_BACKUPS_SUBDIR)
 	available = []
 	
-	if not Directory.new().dir_exists(backups_dir):
+	if not Directory.new().dir_exists(_path.save_backups):
 		return
 	
-	for backup in _fshelper.list_dir(backups_dir):
-		var path = backups_dir.plus_file(backup)
+	for backup in _fshelper.list_dir(_path.save_backups):
+		var path = _path.save_backups.plus_file(backup)
 		available.append(get_save_summary(path))
 
 
@@ -91,10 +82,8 @@ func restore(backup_index: int) -> void:
 	var backup_name: String = available[backup_index]["name"]
 	emit_signal("status_message", tr("msg_restoring_backup") % backup_name)
 	
-	var game_dir = _workdir.plus_file(_settings.read("game"))
-	var temp_dir = _workdir.plus_file("tmp")
 	var source_dir = available[backup_index]["path"]
-	var dest_dir = game_dir.plus_file("current").plus_file("save")
+	var dest_dir = _path.savegames
 	
 	emit_signal("backup_restoration_started")
 
@@ -118,7 +107,7 @@ func restore(backup_index: int) -> void:
 func delete(backup_name: String) -> void:
 	# Delete a backup.
 	
-	var target_dir = _workdir.plus_file(_settings.read("game")).plus_file(_BACKUPS_SUBDIR).plus_file(backup_name)
+	var target_dir = _path.save_backups.plus_file(backup_name)
 	emit_signal("backup_deletion_started")
 
 	if Directory.new().dir_exists(target_dir):

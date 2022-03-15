@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://icons/info.svg" type="Texture" id=1]
 [ext_resource path="res://icons/download.svg" type="Texture" id=2]
@@ -22,7 +22,8 @@
 [ext_resource path="res://scenes/ModReinstallDialog.tscn" type="PackedScene" id=20]
 [ext_resource path="res://themes/Godot_3.tres" type="Theme" id=21]
 [ext_resource path="res://icons/lang_fr.png" type="Texture" id=22]
-[ext_resource path="res://icons/folder.svg" type="Texture" id=25]
+[ext_resource path="res://icons/folder_user.svg" type="Texture" id=23]
+[ext_resource path="res://icons/folder_game.svg" type="Texture" id=24]
 [ext_resource path="res://scenes/InlineIconButton.tscn" type="PackedScene" id=26]
 [ext_resource path="res://scripts/FontsUI.gd" type="Script" id=27]
 [ext_resource path="res://scripts/FontManager.gd" type="Script" id=28]
@@ -231,9 +232,9 @@ text = "lbl_currently_installed"
 align = 1
 
 [node name="Build" type="HBoxContainer" parent="Main/Tabs/Game/CurrentInstall"]
-margin_left = 228.0
+margin_left = 217.0
 margin_top = 28.0
-margin_right = 349.0
+margin_right = 360.0
 margin_bottom = 52.0
 size_flags_horizontal = 4
 custom_constants/separation = 4
@@ -250,7 +251,15 @@ margin_top = 3.0
 margin_right = 121.0
 margin_bottom = 21.0
 hint_tooltip = "tooltip_game_dir"
-texture_normal = ExtResource( 25 )
+texture_normal = ExtResource( 24 )
+
+[node name="UserDir" parent="Main/Tabs/Game/CurrentInstall/Build" instance=ExtResource( 26 )]
+margin_left = 125.0
+margin_top = 3.0
+margin_right = 143.0
+margin_bottom = 21.0
+hint_tooltip = "tooltip_user_dir"
+texture_normal = ExtResource( 23 )
 
 [node name="BtnPlay" type="Button" parent="Main/Tabs/Game/CurrentInstall" groups=["disable_while_installing_game"]]
 margin_left = 238.0
@@ -1082,96 +1091,6 @@ value = 100.0
 editable = false
 suffix = "%"
 
-[node name="HSeparator" type="HSeparator" parent="Main/Tabs/Settings"]
-margin_top = 318.0
-margin_right = 577.0
-margin_bottom = 326.0
-
-[node name="Migration" type="VBoxContainer" parent="Main/Tabs/Settings"]
-margin_top = 328.0
-margin_right = 577.0
-margin_bottom = 430.0
-hint_tooltip = "tooltip_data_to_migrate"
-custom_constants/separation = 2
-
-[node name="Label" type="Label" parent="Main/Tabs/Settings/Migration"]
-margin_right = 577.0
-margin_bottom = 24.0
-text = "lbl_data_to_migrate"
-
-[node name="Grid" type="GridContainer" parent="Main/Tabs/Settings/Migration"]
-margin_top = 26.0
-margin_right = 577.0
-margin_bottom = 102.0
-custom_constants/vseparation = -4
-columns = 3
-
-[node name="Savegames" type="CheckBox" parent="Main/Tabs/Settings/Migration/Grid"]
-margin_right = 135.0
-margin_bottom = 28.0
-pressed = true
-text = "cbox_savegames"
-
-[node name="Fonts" type="CheckBox" parent="Main/Tabs/Settings/Migration/Grid"]
-margin_left = 141.0
-margin_right = 281.0
-margin_bottom = 28.0
-pressed = true
-text = "cbox_fonts"
-
-[node name="Templates" type="CheckBox" parent="Main/Tabs/Settings/Migration/Grid"]
-margin_left = 287.0
-margin_right = 416.0
-margin_bottom = 28.0
-pressed = true
-text = "cbox_templates"
-
-[node name="Settings" type="CheckBox" parent="Main/Tabs/Settings/Migration/Grid"]
-margin_top = 24.0
-margin_right = 135.0
-margin_bottom = 52.0
-pressed = true
-text = "cbox_settings"
-
-[node name="Tilesets" type="CheckBox" parent="Main/Tabs/Settings/Migration/Grid"]
-margin_left = 141.0
-margin_top = 24.0
-margin_right = 281.0
-margin_bottom = 52.0
-pressed = true
-text = "cbox_tilesets"
-
-[node name="Memorial" type="CheckBox" parent="Main/Tabs/Settings/Migration/Grid"]
-margin_left = 287.0
-margin_top = 24.0
-margin_right = 416.0
-margin_bottom = 52.0
-pressed = true
-text = "cbox_memorial"
-
-[node name="Mods" type="CheckBox" parent="Main/Tabs/Settings/Migration/Grid"]
-margin_top = 48.0
-margin_right = 135.0
-margin_bottom = 76.0
-pressed = true
-text = "cbox_mods"
-
-[node name="Soundpacks" type="CheckBox" parent="Main/Tabs/Settings/Migration/Grid"]
-margin_left = 141.0
-margin_top = 48.0
-margin_right = 281.0
-margin_bottom = 76.0
-pressed = true
-text = "cbos_soundpacks"
-
-[node name="Graveyard" type="CheckBox" parent="Main/Tabs/Settings/Migration/Grid"]
-margin_left = 287.0
-margin_top = 48.0
-margin_right = 416.0
-margin_bottom = 76.0
-pressed = true
-text = "cbox_graveyard"
-
 [node name="Debug" type="VBoxContainer" parent="Main/Tabs"]
 visible = false
 anchor_right = 1.0
@@ -1350,6 +1269,7 @@ __meta__ = {
 [connection signal="pressed" from="Main/Tabs/Game/Builds/BtnRefresh" to="." method="_on_BtnRefresh_pressed"]
 [connection signal="pressed" from="Main/Tabs/Game/BtnInstall" to="." method="_on_BtnInstall_pressed"]
 [connection signal="pressed" from="Main/Tabs/Game/CurrentInstall/Build/GameDir" to="." method="_on_GameDir_pressed"]
+[connection signal="pressed" from="Main/Tabs/Game/CurrentInstall/Build/UserDir" to="." method="_on_UserDir_pressed"]
 [connection signal="pressed" from="Main/Tabs/Game/CurrentInstall/BtnPlay" to="." method="_on_BtnPlay_pressed"]
 [connection signal="status_message" from="Main/Tabs/Mods" to="." method="_on_status_message"]
 [connection signal="item_selected" from="Main/Tabs/Mods/HBox/Installed/InstalledList" to="Main/Tabs/Mods" method="_on_InstalledList_item_selected"]
@@ -1403,15 +1323,6 @@ __meta__ = {
 [connection signal="value_changed" from="Main/Tabs/Settings/NumPrs/sbNumPRs" to="Main/Tabs/Settings" method="_on_sbNumPRs_value_changed"]
 [connection signal="toggled" from="Main/Tabs/Settings/ScaleOverride/cbScaleOverrideEnable" to="Main/Tabs/Settings" method="_on_cbScaleOverrideEnable_toggled"]
 [connection signal="value_changed" from="Main/Tabs/Settings/ScaleOverride/sbScaleOverride" to="Main/Tabs/Settings" method="_on_sbScaleOverride_value_changed"]
-[connection signal="toggled" from="Main/Tabs/Settings/Migration/Grid/Savegames" to="Main/Tabs/Settings" method="_on_any_migration_checkbox_toggled"]
-[connection signal="toggled" from="Main/Tabs/Settings/Migration/Grid/Fonts" to="Main/Tabs/Settings" method="_on_any_migration_checkbox_toggled"]
-[connection signal="toggled" from="Main/Tabs/Settings/Migration/Grid/Templates" to="Main/Tabs/Settings" method="_on_any_migration_checkbox_toggled"]
-[connection signal="toggled" from="Main/Tabs/Settings/Migration/Grid/Settings" to="Main/Tabs/Settings" method="_on_any_migration_checkbox_toggled"]
-[connection signal="toggled" from="Main/Tabs/Settings/Migration/Grid/Tilesets" to="Main/Tabs/Settings" method="_on_any_migration_checkbox_toggled"]
-[connection signal="toggled" from="Main/Tabs/Settings/Migration/Grid/Memorial" to="Main/Tabs/Settings" method="_on_any_migration_checkbox_toggled"]
-[connection signal="toggled" from="Main/Tabs/Settings/Migration/Grid/Mods" to="Main/Tabs/Settings" method="_on_any_migration_checkbox_toggled"]
-[connection signal="toggled" from="Main/Tabs/Settings/Migration/Grid/Soundpacks" to="Main/Tabs/Settings" method="_on_any_migration_checkbox_toggled"]
-[connection signal="toggled" from="Main/Tabs/Settings/Migration/Grid/Graveyard" to="Main/Tabs/Settings" method="_on_any_migration_checkbox_toggled"]
 [connection signal="status_message" from="Main/Tabs/Debug" to="." method="_on_status_message"]
 [connection signal="pressed" from="Main/Tabs/Debug/Button" to="Main/Tabs/Debug" method="_on_Button_pressed"]
 [connection signal="pressed" from="Main/Tabs/Debug/Button2" to="Main/Tabs/Debug" method="_on_Button2_pressed"]

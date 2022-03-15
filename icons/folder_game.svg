@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="64"
+   height="64"
+   viewBox="0 0 64 64"
+   version="1.1"
+   id="svg4"
+   sodipodi:docname="folder_game.svg"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview6"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="18.875"
+     inkscape:cx="31.97351"
+     inkscape:cy="32"
+     inkscape:current-layer="svg4" />
+  <defs
+     id="defs8" />
+  <path
+     d="m 29.66665,15.9 c -3.801027,0 -5.378372,-2.4334 -9.3334,-6.9 H 3.9998 V 55 H 60.0002 V 15.9 Z"
+     id="path2"
+     style="stroke-width:2.31662;fill:#808080;fill-opacity:1" />
+  <path
+     d="m 44,37.616 v -3.232 c -1.651,-0.587 -2.694,-0.752 -3.219,-2.019 v -0.001 c -0.527,-1.271 0.1,-2.134 0.847,-3.707 l -2.285,-2.285 c -1.561,0.742 -2.433,1.375 -3.707,0.847 H 35.635 C 34.366,26.693 34.2,25.643 33.616,24 h -3.232 c -0.582,1.635 -0.749,2.692 -2.019,3.219 h -10e-4 c -1.271,0.528 -2.132,-0.098 -3.707,-0.847 l -2.285,2.285 c 0.745,1.568 1.375,2.434 0.847,3.707 -0.527,1.271 -1.584,1.438 -3.219,2.02 v 3.232 c 1.632,0.58 2.692,0.749 3.219,2.019 0.53,1.282 -0.114,2.166 -0.847,3.707 l 2.285,2.286 c 1.562,-0.743 2.434,-1.375 3.707,-0.847 h 10e-4 c 1.27,0.526 1.436,1.579 2.019,3.219 h 3.232 c 0.582,-1.636 0.75,-2.69 2.027,-3.222 h 10e-4 c 1.262,-0.524 2.12,0.101 3.698,0.851 l 2.285,-2.286 C 40.883,41.78 40.252,40.91 40.779,39.637 41.306,38.366 42.367,38.197 44,37.616 Z M 32,40 c -2.209,0 -4,-1.791 -4,-4 0,-2.209 1.791,-4 4,-4 2.209,0 4,1.791 4,4 0,2.209 -1.791,4 -4,4 z"
+     id="path153"
+     style="fill:#e6e6e6" />
+</svg>

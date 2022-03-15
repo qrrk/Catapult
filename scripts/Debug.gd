@@ -10,7 +10,6 @@ onready var _path = $"/root/Catapult/PathHelper"
 onready var _mods = $"../../../Mods"
 onready var _sound = $"../../../Sound"
 onready var _totd = $"/root/Catapult/TOTD"
-onready var _workdir = OS.get_executable_path().get_base_dir()
 
 
 func _on_Button_pressed() -> void:
@@ -18,7 +17,7 @@ func _on_Button_pressed() -> void:
 	# Test modinfo parsing.
 	
 	var message = "Found mods:"
-	var mods_dir = _workdir + "/" + _settings.read("game") + "/current/data/mods"
+	var mods_dir = _path.mods_stock
 	
 	emit_signal("status_message", "Looking for mods in %s" % mods_dir)	
 	
@@ -34,7 +33,7 @@ func _on_Button2_pressed() -> void:
 	# Test soundpack parsing.
 	
 	var message = "Found soundpacks:"
-	var sound_dir = _workdir + "/" + _settings.read("game") + "/current/sound"
+	var sound_dir = _path.sound_user
 	
 	emit_signal("status_message", "Looking for soundpacks in %s" % sound_dir)
 	
@@ -48,9 +47,8 @@ func _on_Button2_pressed() -> void:
 
 func _on_Button3_pressed():
 	
-	var workdir = OS.get_executable_path().get_base_dir()
 	var d = Directory.new()
-	var dir = workdir.plus_file("testdir")
+	var dir = _path.own_dir.plus_file("testdir")
 	d.make_dir(dir)
 	
 	var command_linux = {
@@ -95,7 +93,7 @@ func _on_Button4_pressed() -> void:
 
 func _on_Button5_pressed() -> void:
 	
-	var path = _workdir
+	var path = _path.own_dir
 	emit_signal("status_message", "Listing directory %s..." % path, Enums.MSG_DEBUG)
 	yield(get_tree().create_timer(0.1), "timeout")
 	
@@ -113,11 +111,11 @@ func _on_Button6_pressed() -> void:
 
 func _on_Button7_pressed() -> void:
 	
-	var msg = "Paths provided by PathHelper:"
+	var msg = "PathHelper properties:"
 	
 	for prop in _path.get_property_list():
 		var name = prop["name"]
-		if (prop["type"] == 4) and ("dir" in name):
+		if (prop["type"] == 4):
 			msg += "\n%s: %s" % [name, _path.get(name)]
 	
 	emit_signal("status_message", msg, Enums.MSG_DEBUG)
