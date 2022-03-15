@@ -9,6 +9,7 @@
 "btn_install","Installer la version sélectionnée"
 "btn_update","MÀJ vers la version sélectionnée"
 "btn_play","Jouer"
+"btn_resume","Charger le dernier monde"
 "lbl_currently_installed","Version installée:"
 "lbl_none","Aucune"
 ,
@@ -22,3 +23,4 @@
 "tooltip_game_dir","Ouvrir le répertoire d'installation du jeu (contient\nl'exécutable du jeu et le contenu du jeu intégré)."
 "tooltip_user_dir","Ouvrir le répertoire des données utilisateur\n(contient les sauvegardes, la configuration du jeu,\nles mods utilisateur, le son, etc.)"
 "tooltip_play","Lancer le jeu."
+"tooltip_resume","Ignorer le menu principal et charger rapidement le dernier monde joué.\n(Le premier personnage sera toujours chargé s'il y en a plusieurs.)"

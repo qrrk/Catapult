@@ -9,6 +9,7 @@
 "btn_install","Install Selected"
 "btn_update","Update to Selected"
 "btn_play","Play"
+"btn_resume","Resume last world"
 "lbl_currently_installed","Currently installed:"
 "lbl_none","None"
 ,
@@ -22,3 +23,4 @@
 "tooltip_game_dir","Open game installation directory (contains\ngame executable and built-in game content)."
 "tooltip_user_dir","Open user data directory (contains saves, \ngame cofiguration, user mods, sound, etc.)"
 "tooltip_play","Launch the game."
+"tooltip_resume","Skip main menu and quick-load last played world.\n(First character will always be loaded if there are multiple.)"

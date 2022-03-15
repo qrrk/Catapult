@@ -23,7 +23,8 @@ onready var _changelog = $Main/Tabs/Game/ChangelogDialog
 onready var _lbl_changelog = $Main/Tabs/Game/Channel/HBox/ChangelogLink
 onready var _btn_game_dir = $Main/Tabs/Game/CurrentInstall/Build/GameDir
 onready var _btn_user_dir = $Main/Tabs/Game/CurrentInstall/Build/UserDir
-onready var _btn_play = $Main/Tabs/Game/CurrentInstall/BtnPlay
+onready var _btn_play = $Main/Tabs/Game/CurrentInstall/Launch/BtnPlay
+onready var _btn_resume = $Main/Tabs/Game/CurrentInstall/Launch/BtnResume
 onready var _lst_builds = $Main/Tabs/Game/Builds/BuildsList
 onready var _lst_games = $Main/GameChoice/GamesList
 onready var _rbtn_stable = $Main/Tabs/Game/Channel/Group/RBtnStable
@@ -374,11 +375,33 @@ func apply_game_choice() -> void:
 
 func _on_BtnPlay_pressed() -> void:
 	
+	_start_game()
+
+
+func _on_BtnResume_pressed() -> void:
+	
+	var lastworld: String = _path.config.plus_file("lastworld.json")
+	if Directory.new().file_exists(lastworld):
+		var f = File.new()
+		f.open(lastworld, File.READ)
+		var pr := JSON.parse(f.get_as_text())
+		if pr.error == OK:
+			_start_game(pr.result["world_name"])
+
+
+func _start_game(world := "") -> void:
+	
 	match OS.get_name():
 		"X11":
-			OS.execute(_path.game_dir.plus_file("cataclysm-launcher"), ["--userdir", _path.userdata + "/"], false)
+			var params := ["--userdir", _path.userdata + "/"]
+			if world != "":
+				params.append_array(["--world", world])
+			OS.execute(_path.game_dir.plus_file("cataclysm-launcher"), params, false)
 		"Windows":
-			var command = "cd /d %s && start cataclysm-tiles.exe --userdir %s" % [_path.game_dir, _path.userdata]
+			var world_str := ""
+			if world != "":
+				world_str = "--world \"%s\"" % world
+			var command = "cd /d %s && start cataclysm-tiles.exe --userdir %s %s" % [_path.game_dir, _path.userdata, world_str]
 			OS.execute("cmd", ["/C", command], false)
 
 
@@ -392,6 +415,7 @@ func _refresh_currently_installed() -> void:
 		_lbl_build.text = info[game]["name"]
 		_btn_install.text = tr("btn_update")
 		_btn_play.disabled = false
+		_btn_resume.disabled = not (Directory.new().file_exists(_path.config.plus_file("lastworld.json")))
 		_btn_game_dir.visible = true
 		_btn_user_dir.visible = true
 		if (_lst_builds.selected != -1) and (_lst_builds.selected < len(releases)):
@@ -405,6 +429,7 @@ func _refresh_currently_installed() -> void:
 		_btn_install.text = tr("btn_install")
 		_btn_install.disabled = false
 		_btn_play.disabled = true
+		_btn_resume.disabled = true
 		_btn_game_dir.visible = false
 		_btn_user_dir.visible = false
 		

@@ -9,6 +9,7 @@
 "btn_install","安装"
 "btn_update","更新"
 "btn_play","开始"
+"btn_resume","加载最后一个世界"
 "lbl_currently_installed","已安装："
 "lbl_none","无"
 ,
@@ -22,3 +23,4 @@
 "tooltip_game_dir","打开游戏安装目录（包含游戏可执行文件和内置游戏内容）。"
 "tooltip_user_dir","打开用户数据目录（包含存档、游戏配置、用户模组、声音等）"
 "tooltip_play","启动游戏。"
+"tooltip_resume","跳过主菜单并快速加载上次播放的世界。\n（如果有多个，将始终加载第一个字符。）"
