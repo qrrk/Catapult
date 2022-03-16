@@ -4,8 +4,6 @@ extends Node
 signal started_fetching_releases
 signal done_fetching_releases
 
-onready var _settings = $"/root/SettingsManager"
-
 var _platform = ""
 
 
@@ -147,7 +145,7 @@ func _ready() -> void:
 
 func _get_query_string() -> String:
 	
-	var num_per_page = _settings.read("num_releases_to_request")
+	var num_per_page = Settings.read("num_releases_to_request")
 	return "?per_page=%s" % num_per_page
 
 
@@ -203,7 +201,7 @@ func _parse_builds(data: PoolByteArray, write_to: Array, filter: Dictionary) -> 
 	for rec in json:
 		var build = {}
 		build["name"] = rec["name"]
-		if _settings.read("shorten_release_names"):
+		if Settings.read("shorten_release_names"):
 			build["name"] = build["name"].split(" ")[-1]
 		build["url"] = ""
 		

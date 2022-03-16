@@ -3,7 +3,6 @@ extends Node
 
 const _DEFAULT_FONTS = ["data/font/Terminus.ttf", "data/font/unifont.ttf"]
 
-onready var _settings := $"/root/SettingsManager"
 onready var _path := $"../PathHelper"
 
 var _game_options: Array = []

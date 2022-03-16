@@ -23,7 +23,7 @@ func _ready() -> void:
 
 func post(msg: String, type: int = Enums.MSG_INFO) -> void:
 	
-	if (type == Enums.MSG_DEBUG) and (not SettingsManager.read("debug_mode")):
+	if (type == Enums.MSG_DEBUG) and (not Settings.read("debug_mode")):
 		return
 	
 	var msg_data := _form_message(msg, type)

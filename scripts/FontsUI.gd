@@ -51,9 +51,7 @@ const _PREVIEW_TEXT_RU := [
 const _PREVIEW_TEXT_NUM := "1234567890 !@#$ %^&* ()[]{}"
 
 onready var _rng := RandomNumberGenerator.new()
-onready var _geom := $"/root/WindowGeometry"
 onready var _tabs := $".."
-onready var _settings := $"/root/SettingsManager"
 onready var _fonts := $"/root/Catapult/Fonts"
 onready var _list := $FontSelection/RightPane/FontsList
 onready var _btn_set_ui := $FontSelection/RightPane/Buttons/Grid/BtnSetFontUI
@@ -75,7 +73,7 @@ func _make_preview_string(cyrillic: bool = false) -> String:
 	var index = _rng.randi_range(0, len(_PREVIEW_TEXT_NUM) - 1)
 	var result = _PREVIEW_TEXT_NUM
 	
-	if _settings.read("font_preview_cyrillic"):
+	if Settings.read("font_preview_cyrillic"):
 		index = _rng.randi_range(0, len(_PREVIEW_TEXT_RU) - 1)
 		result += "\n\n" + _PREVIEW_TEXT_RU[index]
 	else:
@@ -146,7 +144,7 @@ func _on_Tabs_tab_changed(tab: int) -> void:
 		_list.add_item(font["name"])
 		_list.set_item_tooltip(_list.get_item_count() - 1, tr(font["desc_key"]))
 	
-	_cbox_cyrillic.pressed = _settings.read("font_preview_cyrillic")
+	_cbox_cyrillic.pressed = Settings.read("font_preview_cyrillic")
 	_load_font_options()
 	
 	_preview.bbcode_text = ""
@@ -164,7 +162,7 @@ func _on_FontsList_item_selected(index: int) -> void:
 	font_res.use_filter = true
 	
 	_preview.add_font_override("normal_font", font_res)
-	_preview.bbcode_text = _make_preview_string(_settings.read("font_preview_cyrillic"))
+	_preview.bbcode_text = _make_preview_string(Settings.read("font_preview_cyrillic"))
 	
 	for btn in [_btn_set_ui, _btn_set_map, _btn_set_om, _btn_set_all]:
 		btn.disabled = false
@@ -196,8 +194,8 @@ func _on_BtnResetFont_pressed() -> void:
 
 func _on_PreviewCyrillic_toggled(button_pressed: bool) -> void:
 	
-	_settings.store("font_preview_cyrillic", button_pressed)
-	_preview.bbcode_text = _make_preview_string(_settings.read("font_preview_cyrillic"))
+	Settings.store("font_preview_cyrillic", button_pressed)
+	_preview.bbcode_text = _make_preview_string(Settings.read("font_preview_cyrillic"))
 
 
 func _on_BtnSaveFontOptions_pressed() -> void:

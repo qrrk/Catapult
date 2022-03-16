@@ -6,7 +6,6 @@ const _PR_URL = {
 	"bn": "https://api.github.com/search/issues?q=repo%3Acataclysmbnteam/Cataclysm-BN",
 }
 
-onready var _settings := $"/root/SettingsManager"
 onready var _pullRequests := $PullRequests
 onready var _changelogTextBox := $Panel/Margin/VBox/ChangelogText
 
@@ -20,9 +19,9 @@ func open() -> void:
 
 
 func download_pull_requests():
-	var game_selected = _settings.read("game")
-	var prs = _settings.read("num_prs_to_request")
-	var url = _PR_URL[_settings.read("game")]
+	var game_selected = Settings.read("game")
+	var prs = Settings.read("num_prs_to_request")
+	var url = _PR_URL[Settings.read("game")]
 	url += "+is%3Apr+is%3Amerged&per_page=" + prs
 	var headers = ["user-agent: CatapultGodotApp"]
 	_pr_data = tr("str_fetching_changes")
@@ -61,7 +60,7 @@ func process_pr_data(data):
 	var day_str = PullRequest.format_two_digit(str(latest_day))
 	
 	var game_title = ""
-	match _settings.read("game"):
+	match Settings.read("game"):
 		"dda":
 			game_title = "Cataclysm: Dark Days Ahead"
 		"bn":
@@ -69,7 +68,7 @@ func process_pr_data(data):
 		_:
 			game_title = "{BUG!!}"
 	
-	var r_val = tr("str_changelog_intro") % [_settings.read("num_prs_to_request"), game_title]
+	var r_val = tr("str_changelog_intro") % [Settings.read("num_prs_to_request"), game_title]
 	
 	for pr in pr_array:
 		var switch_date = false

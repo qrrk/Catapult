@@ -13,7 +13,6 @@ var base_size := min_base_size
 
 var decor_offset := Vector2.ZERO
 
-onready var _settings := $"/root/SettingsManager"
 onready var _viewport := get_tree().get_root()
 
 
@@ -45,12 +44,12 @@ func save_window_state() -> void:
 		"decor_offset_x": decor_offset.x,
 		"decor_offset_y": decor_offset.y,
 		}
-	_settings.store("window_state", state)
+	Settings.store("window_state", state)
 
 
 func recover_window_state() -> void:
 	
-	var state: Dictionary = _settings.read("window_state")
+	var state: Dictionary = Settings.read("window_state")
 	
 	if state.empty():
 		OS.call_deferred("center_window")
@@ -86,8 +85,8 @@ func _on_SceneTree_idle():
 
 func _ready():
 	
-	if _settings.read("ui_scale_override_enabled"):
-		scale = _settings.read("ui_scale_override") as float
+	if Settings.read("ui_scale_override_enabled"):
+		scale = Settings.read("ui_scale_override") as float
 	else:
 		scale = calculate_scale_from_dpi()
 

@@ -8,7 +8,6 @@ signal backup_restoration_finished
 signal backup_deletion_started
 signal backup_deletion_finished
 
-onready var _settings := $"/root/SettingsManager"
 onready var _fshelper := $"../FSHelper"
 onready var _path := $"../PathHelper"
 

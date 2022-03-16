@@ -3,7 +3,6 @@ extends VBoxContainer
 
 onready var _root = $"/root/Catapult"
 onready var _mods = $"../../../Mods"
-onready var _settings = $"/root/SettingsManager"
 onready var _installed_list = $HBox/Installed/InstalledList
 onready var _available_list = $HBox/Available/AvailableList
 onready var _cbox_show_stock = $HBox/Installed/ShowStock
@@ -41,8 +40,8 @@ func _populate_list_with_mods(mods_array: Array, list: ItemList) -> void:
 func reload_installed() -> void:
 	
 	var hidden_mods = 0
-	var show_stock = _settings.read("show_stock_mods")
-	var show_obsolete = _settings.read("show_obsolete_mods")
+	var show_stock = Settings.read("show_stock_mods")
+	var show_obsolete = Settings.read("show_obsolete_mods")
 	
 	_installed_mods_view.clear()
 	
@@ -94,7 +93,7 @@ func reload_installed() -> void:
 
 func reload_available() -> void:
 	
-	var include_installed = _settings.read("show_installed_mods_in_available")
+	var include_installed = Settings.read("show_installed_mods_in_available")
 	var hidden_mods = 0
 
 	_available_mods_view.clear()
@@ -190,13 +189,13 @@ func _make_mod_info_string(mod: Dictionary) -> String:
 
 func _on_ShowStock_toggled(button_pressed: bool) -> void:
 	
-	_settings.store("show_stock_mods", button_pressed)
+	Settings.store("show_stock_mods", button_pressed)
 	reload_installed()
 
 
 func _on_ShowInstalled_toggled(button_pressed: bool) -> void:
 	
-	_settings.store("show_installed_mods_in_available", button_pressed)
+	Settings.store("show_installed_mods_in_available", button_pressed)
 	reload_available()
 
 
@@ -205,8 +204,8 @@ func _on_Tabs_tab_changed(tab: int) -> void:
 	if tab != 1:
 		return
 	
-	_cbox_show_stock.pressed = _settings.read("show_stock_mods")
-	_cbox_show_installed.pressed = _settings.read("show_installed_mods_in_available")
+	_cbox_show_stock.pressed = Settings.read("show_stock_mods")
+	_cbox_show_installed.pressed = Settings.read("show_installed_mods_in_available")
 	_lbl_mod_info.bbcode_text = tr("lbl_mod_info")
 	_btn_delete.disabled = true
 	_btn_add.disabled = true

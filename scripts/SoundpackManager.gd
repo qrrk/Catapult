@@ -54,7 +54,6 @@ const SOUNDPACKS = [
 ]
 
 
-onready var _settings := $"/root/SettingsManager"
 onready var _fshelper := $"../FSHelper"
 onready var _downloader := $"../Downloader"
 onready var _path := $"../PathHelper"
@@ -126,7 +125,7 @@ func delete_pack(name: String) -> void:
 func install_pack(soundpack_index: int, from_file = null, reinstall = false, keep_archive = false) -> void:
 	
 	var pack = SOUNDPACKS[soundpack_index]
-	var game = _settings.read("game")
+	var game = Settings.read("game")
 	var sound_dir = _path.sound_user
 	var tmp_dir = _path.tmp_dir.plus_file(pack["name"])
 	var archive = ""

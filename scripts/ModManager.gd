@@ -34,7 +34,6 @@ const _MODPACKS = {
 	}
 }
 
-onready var _settings := $"/root/SettingsManager"
 onready var _fshelper := $"../FSHelper"
 onready var _downloader := $"../Downloader"
 onready var _path := $"../PathHelper"
@@ -263,7 +262,7 @@ func install_mods(mod_ids: Array) -> void:
 
 func retrieve_kenan_pack() -> void:
 	
-	var game = _settings.read("game")
+	var game = Settings.read("game")
 	var pack = _MODPACKS["kenan-" + game]
 	
 	emit_signal("modpack_retrieval_started")
@@ -288,7 +287,7 @@ func retrieve_kenan_pack() -> void:
 			_fshelper.move_dir(_path.tmp_dir.plus_file(int_path), _path.mod_repo)
 			yield(_fshelper, "move_dir_done")
 		
-		if _settings.read("install_archived_mods"):
+		if Settings.read("install_archived_mods"):
 			Status.post(tr("msg_unpacking_archived_mods"))
 			_fshelper.move_dir(_path.tmp_dir.plus_file(pack["archived_path"]), _path.mod_repo)
 			yield(_fshelper, "move_dir_done")

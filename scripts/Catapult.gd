@@ -1,8 +1,6 @@
 extends Node
 
 
-onready var _settings = $"/root/SettingsManager"
-onready var _geom = $"/root/WindowGeometry"
 onready var _self = $"."
 onready var _debug_ui = $Main/Tabs/Debug
 onready var _log = $Main/Log
@@ -51,7 +49,7 @@ func _ready() -> void:
 	_lbl_changelog.bbcode_text = tr("lbl_changelog")
 	
 	var welcome_msg = tr("str_welcome")
-	if _settings.read("print_tips_of_the_day"):
+	if Settings.read("print_tips_of_the_day"):
 		welcome_msg += tr("str_tip_of_the_day") + _totd.get_tip() + "\n"
 	Status.post(welcome_msg)
 	
@@ -98,7 +96,7 @@ func _smart_reenable_controls(group_name: String) -> void:
 func _is_selected_game_installed() -> bool:
 	
 	var info = _inst_probe.probe_installed_games()
-	var game = _settings.read("game")
+	var game = Settings.read("game")
 	return (game in info)
 
 
@@ -111,10 +109,10 @@ func _on_GamesList_item_selected(index: int) -> void:
 	
 	match index:
 		0:
-			_settings.store("game", "dda")
+			Settings.store("game", "dda")
 			_game_desc.bbcode_text = tr("desc_dda")
 		1:
-			_settings.store("game", "bn")
+			Settings.store("game", "bn")
 			_game_desc.bbcode_text = tr("desc_bn")
 	
 	_tabs.current_tab = 0
@@ -127,13 +125,13 @@ func _on_GamesList_item_selected(index: int) -> void:
 
 func _on_RBtnStable_toggled(button_pressed: bool) -> void:
 	
-	if _settings.read("game") == "bn":
+	if Settings.read("game") == "bn":
 		return
 	
 	if button_pressed:
-		_settings.store("channel", "stable")
+		Settings.store("channel", "stable")
 	else:
-		_settings.store("channel", "experimental")
+		Settings.store("channel", "experimental")
 		
 	apply_game_choice()
 
@@ -214,9 +212,9 @@ func _on_BtnRefresh_pressed() -> void:
 func _on_BuildsList_item_selected(index: int) -> void:
 	
 	var info = _inst_probe.probe_installed_games()
-	var game = _settings.read("game")
+	var game = Settings.read("game")
 	
-	if (not _settings.read("update_to_same_build_allowed")) \
+	if (not Settings.read("update_to_same_build_allowed")) \
 			and (game in info) \
 			and (info[game]["name"] == _releases.releases[_get_release_key()][index]["name"]):
 		_btn_install.disabled = true
@@ -228,19 +226,19 @@ func _on_BtnInstall_pressed() -> void:
 	
 	var index = _lst_builds.selected
 	var release = _releases.releases[_get_release_key()][index]
-	var update = _settings.read("game") in _inst_probe.probe_installed_games()
-	_installer.install_release(release, _settings.read("game"), update)
+	var update = Settings.read("game") in _inst_probe.probe_installed_games()
+	_installer.install_release(release, Settings.read("game"), update)
 
 
 func _get_release_key() -> String:
 	# Compiles a string looking like "dda-stable" or "bn-experimental"
 	# from settings.
 	
-	var game = _settings.read("game")
+	var game = Settings.read("game")
 	var key
 	
 	if game == "dda":
-		key = game + "-" + _settings.read("channel")
+		key = game + "-" + Settings.read("channel")
 	else:
 		key = "bn-experimental"
 	
@@ -263,8 +261,8 @@ func _on_UserDir_pressed() -> void:
 
 func setup_ui() -> void:
 
-	_game_info.visible = _settings.read("show_game_desc")
-	if not _settings.read("debug_mode"):
+	_game_info.visible = Settings.read("show_game_desc")
+	if not Settings.read("debug_mode"):
 		_tabs.remove_child(_debug_ui)
 	
 	apply_game_choice()
@@ -289,8 +287,8 @@ func apply_game_choice() -> void:
 	
 	# TODO: Turn this mess into a more elegant mess.
 
-	var game = _settings.read("game")
-	var channel = _settings.read("channel")
+	var game = Settings.read("game")
+	var channel = Settings.read("channel")
 
 	match game:
 		"dda":
@@ -353,7 +351,7 @@ func _start_game(world := "") -> void:
 func _refresh_currently_installed() -> void:
 	
 	var info = _inst_probe.probe_installed_games()
-	var game = _settings.read("game")
+	var game = Settings.read("game")
 	var releases = _releases.releases[_get_release_key()]
 	
 	if _is_selected_game_installed():
@@ -364,7 +362,7 @@ func _refresh_currently_installed() -> void:
 		_btn_game_dir.visible = true
 		_btn_user_dir.visible = true
 		if (_lst_builds.selected != -1) and (_lst_builds.selected < len(releases)):
-				if not _settings.read("update_to_same_build_allowed"):
+				if not Settings.read("update_to_same_build_allowed"):
 					_btn_install.disabled = (releases[_lst_builds.selected]["name"] == info[game]["name"])
 		else:
 			_btn_install.disabled = true

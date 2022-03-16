@@ -7,7 +7,6 @@ signal installation_finished
 onready var _downloader := $"../Downloader"
 onready var _fshelper := $"../FSHelper"
 onready var _probe := $"../InstallProbe"
-onready var _settings := $"/root/SettingsManager"
 onready var _path := $"../PathHelper"
 
 

@@ -4,9 +4,6 @@ extends Node
 
 signal status_message
 
-
-onready var _settings := $"/root/SettingsManager"
-
 var own_dir: String setget , _get_own_dir
 var game_dir: String setget , _get_game_dir
 var userdata: String setget , _get_userdata_dir
@@ -35,12 +32,12 @@ func _get_own_dir() -> String:
 
 func _get_game_dir() -> String:
 	
-	return _get_own_dir().plus_file(_settings.read("game")).plus_file("current")
+	return _get_own_dir().plus_file(Settings.read("game")).plus_file("current")
 
 
 func _get_userdata_dir() -> String:
 	
-	return _get_own_dir().plus_file(_settings.read("game")).plus_file("userdata")
+	return _get_own_dir().plus_file(Settings.read("game")).plus_file("userdata")
 
 
 func _get_config_dir() -> String:
@@ -105,12 +102,12 @@ func _get_graveyard_dir() -> String:
 
 func _get_modrepo_dir() -> String:
 	
-	return _get_own_dir().plus_file(_settings.read("game")).plus_file("mod_repo")
+	return _get_own_dir().plus_file(Settings.read("game")).plus_file("mod_repo")
 
 
 func _get_tmp_dir() -> String:
 	
-	return _get_own_dir().plus_file(_settings.read("game")).plus_file("tmp")
+	return _get_own_dir().plus_file(Settings.read("game")).plus_file("tmp")
 
 
 func _get_utils_dir() -> String:
@@ -120,4 +117,4 @@ func _get_utils_dir() -> String:
 
 func _get_save_backups_dir() -> String:
 	
-	return _get_own_dir().plus_file(_settings.read("game")).plus_file("save_backups")
+	return _get_own_dir().plus_file(Settings.read("game")).plus_file("save_backups")

@@ -1,8 +1,6 @@
 extends VBoxContainer
 
 
-onready var _geom = $"/root/WindowGeometry"
-onready var _settings = $"/root/SettingsManager"
 onready var _root = $"/root/Catapult"
 onready var _tabs = $"/root/Catapult/Main/Tabs"
 onready var _debug_ui = $"/root/Catapult/Main/Tabs/Debug"
@@ -12,12 +10,12 @@ func _ready() -> void:
 	
 	# On the first launch, automatically set UI to system language, if available.
 	var sys_locale := TranslationServer.get_locale().substr(0, 2)
-	if (_settings.read("launcher_locale") == "") and (sys_locale in TranslationServer.get_loaded_locales()):
-		_settings.store("launcher_locale", sys_locale)
-	TranslationServer.set_locale(_settings.read("launcher_locale"))
+	if (Settings.read("launcher_locale") == "") and (sys_locale in TranslationServer.get_loaded_locales()):
+		Settings.store("launcher_locale", sys_locale)
+	TranslationServer.set_locale(Settings.read("launcher_locale"))
 	
 	var lang_list := $LauncherLanguage/obtnLanguage
-	match _settings.read("launcher_locale"):
+	match Settings.read("launcher_locale"):
 		"en":
 			lang_list.selected = 0
 		"fr":
@@ -27,19 +25,19 @@ func _ready() -> void:
 		"zh":
 			lang_list.selected = 3
 	
-	$ShowGameDesc.pressed = _settings.read("show_game_desc")
-	$PrintTips.pressed = _settings.read("print_tips_of_the_day")
-	$UpdateToSame.pressed = _settings.read("update_to_same_build_allowed")
-	$ShortenNames.pressed = _settings.read("shorten_release_names")
-	$ShowObsoleteMods.pressed = _settings.read("show_obsolete_mods")
-	$InstallArchivedMods.pressed = _settings.read("install_archived_mods")
-	$ShowDebug.pressed = _settings.read("debug_mode")
-	$NumReleases/sbNumReleases.value = _settings.read("num_releases_to_request") as int
-	$NumPrs/sbNumPRs.value = _settings.read("num_prs_to_request") as int
+	$ShowGameDesc.pressed = Settings.read("show_game_desc")
+	$PrintTips.pressed = Settings.read("print_tips_of_the_day")
+	$UpdateToSame.pressed = Settings.read("update_to_same_build_allowed")
+	$ShortenNames.pressed = Settings.read("shorten_release_names")
+	$ShowObsoleteMods.pressed = Settings.read("show_obsolete_mods")
+	$InstallArchivedMods.pressed = Settings.read("install_archived_mods")
+	$ShowDebug.pressed = Settings.read("debug_mode")
+	$NumReleases/sbNumReleases.value = Settings.read("num_releases_to_request") as int
+	$NumPrs/sbNumPRs.value = Settings.read("num_prs_to_request") as int
 	
-	$ScaleOverride/cbScaleOverrideEnable.pressed = _settings.read("ui_scale_override_enabled")
-	$ScaleOverride/sbScaleOverride.editable = _settings.read("ui_scale_override_enabled")
-	$ScaleOverride/sbScaleOverride.value = (_settings.read("ui_scale_override") as float) * 100.0
+	$ScaleOverride/cbScaleOverrideEnable.pressed = Settings.read("ui_scale_override_enabled")
+	$ScaleOverride/sbScaleOverride.editable = Settings.read("ui_scale_override_enabled")
+	$ScaleOverride/sbScaleOverride.value = (Settings.read("ui_scale_override") as float) * 100.0
 
 
 func _on_obtnLanguage_item_selected(index: int) -> void:
@@ -54,41 +52,41 @@ func _on_obtnLanguage_item_selected(index: int) -> void:
 			locale = "ru"
 		3:
 			locale = "zh"
-	_settings.store("launcher_locale", locale)
+	Settings.store("launcher_locale", locale)
 
 
 func _on_ShowGameDesc_toggled(button_pressed: bool) -> void:
 	
-	_settings.store("show_game_desc", button_pressed)
+	Settings.store("show_game_desc", button_pressed)
 	$"../../GameInfo".visible = button_pressed
 
 
 func _on_PrintTips_toggled(button_pressed: bool) -> void:
 	
-	_settings.store("print_tips_of_the_day", button_pressed)
+	Settings.store("print_tips_of_the_day", button_pressed)
 
 
 func _on_UpdateToSame_toggled(button_pressed: bool) -> void:
 	
-	_settings.store("update_to_same_build_allowed", button_pressed)
+	Settings.store("update_to_same_build_allowed", button_pressed)
 
 
 func _on_ShortenNames_toggled(button_pressed: bool) -> void:
 	
-	_settings.store("shorten_release_names", button_pressed)
+	Settings.store("shorten_release_names", button_pressed)
 
 
 func _on_ShowObsoleteMods_toggled(button_pressed: bool) -> void:
 	
-	_settings.store("show_obsolete_mods", button_pressed)
+	Settings.store("show_obsolete_mods", button_pressed)
 
 func _on_InstallArchivedMods_toggled(button_pressed: bool) -> void:
 	
-	_settings.store("install_archived_mods", button_pressed)
+	Settings.store("install_archived_mods", button_pressed)
 
 func _on_ShowDebug_toggled(button_pressed: bool) -> void:
 	
-	_settings.store("debug_mode", button_pressed)
+	Settings.store("debug_mode", button_pressed)
 	
 	if button_pressed:
 		if _debug_ui.get_parent() != _tabs:
@@ -99,26 +97,26 @@ func _on_ShowDebug_toggled(button_pressed: bool) -> void:
 
 func _on_sbNumReleases_value_changed(value: float) -> void:
 	
-	_settings.store("num_releases_to_request", str(value))
+	Settings.store("num_releases_to_request", str(value))
 
 func _on_sbNumPRs_value_changed(value: float) -> void:
 	
-	_settings.store("num_prs_to_request", str(value))
+	Settings.store("num_prs_to_request", str(value))
 
 
 func _on_cbScaleOverrideEnable_toggled(button_pressed: bool) -> void:
 	
-	_settings.store("ui_scale_override_enabled", button_pressed)
+	Settings.store("ui_scale_override_enabled", button_pressed)
 	$ScaleOverride/sbScaleOverride.editable = button_pressed
 	
 	if button_pressed:
-		_geom.scale = _settings.read("ui_scale_override")
+		Geom.scale = Settings.read("ui_scale_override")
 	else:
-		_geom.scale = _geom.calculate_scale_from_dpi()
+		Geom.scale = Geom.calculate_scale_from_dpi()
 
 
 func _on_sbScaleOverride_value_changed(value: float) -> void:
 	
-	if _settings.read("ui_scale_override_enabled"):
-		_settings.store("ui_scale_override", value / 100.0)
-		_geom.scale = value / 100.0
+	if Settings.read("ui_scale_override_enabled"):
+		Settings.store("ui_scale_override", value / 100.0)
+		Geom.scale = value / 100.0

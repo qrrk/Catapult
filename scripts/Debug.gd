@@ -1,7 +1,6 @@
 extends VBoxContainer
 
 
-onready var _settings = $"/root/SettingsManager"
 onready var _fshelper = $"/root/Catapult/FSHelper"
 onready var _path = $"/root/Catapult/PathHelper"
 onready var _mods = $"../../../Mods"

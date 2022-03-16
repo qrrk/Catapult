@@ -1,7 +1,6 @@
 extends VBoxContainer
 
 
-onready var _settings = $"/root/SettingsManager"
 onready var _sound = $"/root/Catapult/Sound"
 onready var _installed_list = $HBox/Installed/InstalledList
 onready var _available_list = $HBox/Downloadable/AvailableList
@@ -19,7 +18,7 @@ var _installed_packs = []
 
 func refresh_installed() -> void:
 	
-	_installed_packs = _sound.get_installed(_settings.read("show_stock_sound"))
+	_installed_packs = _sound.get_installed(Settings.read("show_stock_sound"))
 		
 	_installed_list.clear()
 	for pack in _installed_packs:
@@ -70,7 +69,7 @@ func _on_Tabs_tab_changed(tab: int) -> void:
 	if tab != 2:
 		return
 		
-	_cbox_stock.pressed = _settings.read("show_stock_sound")
+	_cbox_stock.pressed = Settings.read("show_stock_sound")
 	
 	_btn_delete.disabled = true
 	_btn_install.disabled = true
@@ -82,7 +81,7 @@ func _on_Tabs_tab_changed(tab: int) -> void:
 
 func _on_ShowStock_toggled(button_pressed: bool) -> void:
 	
-	_settings.store("show_stock_sound", button_pressed)
+	Settings.store("show_stock_sound", button_pressed)
 	refresh_installed()
 
 
