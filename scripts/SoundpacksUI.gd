@@ -11,8 +11,6 @@ onready var _dlg_manual_dl = $ConfirmManualDownload
 onready var _dlg_file = $InstallFromFileDialog
 onready var _cbox_stock = $HBox/Installed/ShowStock
 
-onready var _workdir = OS.get_executable_path().get_base_dir()
-
 var _installed_packs = []
 
 
@@ -151,7 +149,7 @@ func _on_ConfirmManualDownload_confirmed() -> void:
 	var pack = _sound.SOUNDPACKS[_available_list.get_selected_items()[0]]
 	
 	OS.shell_open(pack["url"])
-	_dlg_file.current_dir = _workdir
+	_dlg_file.current_dir = Paths.own_dir
 	_dlg_file.popup_centered_ratio(0.9)
 	
 

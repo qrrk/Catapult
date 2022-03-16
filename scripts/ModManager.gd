@@ -36,7 +36,6 @@ const _MODPACKS = {
 
 onready var _fshelper := $"../FSHelper"
 onready var _downloader := $"../Downloader"
-onready var _path := $"../PathHelper"
 
 
 var installed: Dictionary = {} setget , _get_installed
@@ -148,12 +147,12 @@ func refresh_installed():
 	installed = {}
 	
 	var non_stock := {}
-	if Directory.new().dir_exists(_path.mods_user):
-		non_stock = parse_mods_dir(_path.mods_user)
+	if Directory.new().dir_exists(Paths.mods_user):
+		non_stock = parse_mods_dir(Paths.mods_user)
 		for id in non_stock:
 			non_stock[id]["is_stock"] = false
 			
-	var stock := parse_mods_dir(_path.mods_stock)
+	var stock := parse_mods_dir(Paths.mods_stock)
 	for id in stock:
 		stock[id]["is_stock"] = true
 		if ("obsolete" in stock[id]["modinfo"]) and (stock[id]["modinfo"]["obsolete"] == true):
@@ -172,7 +171,7 @@ func refresh_installed():
 
 func refresh_available():
 	
-	available = parse_mods_dir(_path.mod_repo)
+	available = parse_mods_dir(Paths.mod_repo)
 
 
 func _delete_mod(mod_id: String) -> void:
@@ -218,7 +217,7 @@ func _install_mod(mod_id: String) -> void:
 	yield(get_tree().create_timer(0.05), "timeout")
 	# For stability; see above.
 
-	var mods_dir = _path.mods_user
+	var mods_dir = Paths.mods_user
 	
 	if mod_id in available:
 		var mod = available[mod_id]
@@ -268,32 +267,32 @@ func retrieve_kenan_pack() -> void:
 	emit_signal("modpack_retrieval_started")
 	Status.post(tr("msg_getting_kenan_pack") % game.to_upper())
 	
-	_downloader.download_file(pack["url"], _path.own_dir, pack["filename"])
+	_downloader.download_file(pack["url"], Paths.own_dir, pack["filename"])
 	yield(_downloader, "download_finished")
 	
-	var archive = _path.own_dir.plus_file(pack["filename"])
+	var archive = Paths.own_dir.plus_file(pack["filename"])
 	if Directory.new().file_exists(archive):
-		_fshelper.extract(archive, _path.tmp_dir)
+		_fshelper.extract(archive, Paths.tmp_dir)
 		yield(_fshelper, "extract_done")
 		Directory.new().remove(archive)
 		
 		Status.post(tr("msg_wiping_mod_repo"))
-		if (Directory.new().dir_exists(_path.mod_repo)):
-			_fshelper.rm_dir(_path.mod_repo)
+		if (Directory.new().dir_exists(Paths.mod_repo)):
+			_fshelper.rm_dir(Paths.mod_repo)
 			yield(_fshelper, "rm_dir_done")
 		
 		Status.post(tr("msg_unpacking_kenan_mods"))
 		for int_path in pack["internal_paths"]:
-			_fshelper.move_dir(_path.tmp_dir.plus_file(int_path), _path.mod_repo)
+			_fshelper.move_dir(Paths.tmp_dir.plus_file(int_path), Paths.mod_repo)
 			yield(_fshelper, "move_dir_done")
 		
 		if Settings.read("install_archived_mods"):
 			Status.post(tr("msg_unpacking_archived_mods"))
-			_fshelper.move_dir(_path.tmp_dir.plus_file(pack["archived_path"]), _path.mod_repo)
+			_fshelper.move_dir(Paths.tmp_dir.plus_file(pack["archived_path"]), Paths.mod_repo)
 			yield(_fshelper, "move_dir_done")
 		
 		Status.post(tr("msg_kenan_install_cleanup"))
-		_fshelper.rm_dir(_path.tmp_dir.plus_file(pack["internal_paths"][0].split("/")[0]))
+		_fshelper.rm_dir(Paths.tmp_dir.plus_file(pack["internal_paths"][0].split("/")[0]))
 		yield(_fshelper, "rm_dir_done")
 		
 		Status.post(tr("msg_kenan_install_done"))

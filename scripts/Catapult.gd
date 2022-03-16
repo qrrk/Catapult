@@ -13,7 +13,6 @@ onready var _tabs = $Main/Tabs
 onready var _mods = $Mods  
 onready var _releases = $Releases
 onready var _fshelper = $FSHelper
-onready var _path = $PathHelper
 onready var _installer = $ReleaseInstaller
 onready var _btn_install = $Main/Tabs/Game/BtnInstall
 onready var _btn_refresh = $Main/Tabs/Game/Builds/BtnRefresh
@@ -60,10 +59,10 @@ func _ready() -> void:
 func _unpack_utils() -> void:
 	
 	var d = Directory.new()
-	var unzip_exe = _path.utils_dir.plus_file("unzip.exe")
+	var unzip_exe = Paths.utils_dir.plus_file("unzip.exe")
 	if (OS.get_name() == "Windows") and (not d.file_exists(unzip_exe)):
-		if not d.dir_exists(_path.utils_dir):
-			d.make_dir(_path.utils_dir)
+		if not d.dir_exists(Paths.utils_dir):
+			d.make_dir(Paths.utils_dir)
 		Status.post(tr("msg_unpacking_unzip"))
 		d.copy("res://utils/unzip.exe", unzip_exe)
 
@@ -247,14 +246,14 @@ func _get_release_key() -> String:
 
 func _on_GameDir_pressed() -> void:
 	
-	var gamedir = _path.game_dir
+	var gamedir = Paths.game_dir
 	if Directory.new().dir_exists(gamedir):
 		OS.shell_open(gamedir)
 
 
 func _on_UserDir_pressed() -> void:
 	
-	var userdir = _path.userdata
+	var userdir = Paths.userdata
 	if Directory.new().dir_exists(userdir):
 		OS.shell_open(userdir)
 
@@ -323,7 +322,7 @@ func _on_BtnPlay_pressed() -> void:
 
 func _on_BtnResume_pressed() -> void:
 	
-	var lastworld: String = _path.config.plus_file("lastworld.json")
+	var lastworld: String = Paths.config.plus_file("lastworld.json")
 	if Directory.new().file_exists(lastworld):
 		var f = File.new()
 		f.open(lastworld, File.READ)
@@ -336,15 +335,15 @@ func _start_game(world := "") -> void:
 	
 	match OS.get_name():
 		"X11":
-			var params := ["--userdir", _path.userdata + "/"]
+			var params := ["--userdir", Paths.userdata + "/"]
 			if world != "":
 				params.append_array(["--world", world])
-			OS.execute(_path.game_dir.plus_file("cataclysm-launcher"), params, false)
+			OS.execute(Paths.game_dir.plus_file("cataclysm-launcher"), params, false)
 		"Windows":
 			var world_str := ""
 			if world != "":
 				world_str = "--world \"%s\"" % world
-			var command = "cd /d %s && start cataclysm-tiles.exe --userdir %s %s" % [_path.game_dir, _path.userdata, world_str]
+			var command = "cd /d %s && start cataclysm-tiles.exe --userdir %s %s" % [Paths.game_dir, Paths.userdata, world_str]
 			OS.execute("cmd", ["/C", command], false)
 
 
@@ -358,7 +357,7 @@ func _refresh_currently_installed() -> void:
 		_lbl_build.text = info[game]["name"]
 		_btn_install.text = tr("btn_update")
 		_btn_play.disabled = false
-		_btn_resume.disabled = not (Directory.new().file_exists(_path.config.plus_file("lastworld.json")))
+		_btn_resume.disabled = not (Directory.new().file_exists(Paths.config.plus_file("lastworld.json")))
 		_btn_game_dir.visible = true
 		_btn_user_dir.visible = true
 		if (_lst_builds.selected != -1) and (_lst_builds.selected < len(releases)):
