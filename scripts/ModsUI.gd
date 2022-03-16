@@ -1,8 +1,6 @@
 extends VBoxContainer
 
 
-signal status_message
-
 onready var _root = $"/root/Catapult"
 onready var _mods = $"../../../Mods"
 onready var _settings = $"/root/SettingsManager"
@@ -290,9 +288,9 @@ func _on_BtnDelete_pressed() -> void:
 			skipped_mods += 1
 	
 	if skipped_mods == 1:
-		emit_signal("status_message", tr("msg_one_mod_is_stock"))
+		Status.post(tr("msg_one_mod_is_stock"))
 	elif skipped_mods > 1:
-		emit_signal("status_message", tr("msg_n_mods_are_stock") % skipped_mods)
+		Status.post(tr("msg_n_mods_are_stock") % skipped_mods)
 	
 	var num = len(_mods_to_delete)
 	if num > 1:
@@ -331,9 +329,9 @@ func _on_BtnAddSelectedMod_pressed() -> void:
 			_mods_to_install.append(id)
 
 	if num_stock == 1:
-		emit_signal("status_message", tr("msg_mod_install_one_mod_skipped"))
+		Status.post(tr("msg_mod_install_one_mod_skipped"))
 	elif num_stock > 1:
-		emit_signal("status_message", tr("msg_mod_install_n_mods_skipped") % num_stock)
+		Status.post(tr("msg_mod_install_n_mods_skipped") % num_stock)
 
 	_ids_to_install = []	# What to install from scratch.
 	_ids_to_delete = []		# What to delete before reinstalling.

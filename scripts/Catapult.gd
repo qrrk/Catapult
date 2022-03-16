@@ -50,12 +50,10 @@ func _ready() -> void:
 	
 	_lbl_changelog.bbcode_text = tr("lbl_changelog")
 	
-	_log.text = ""
-	
 	var welcome_msg = tr("str_welcome")
 	if _settings.read("print_tips_of_the_day"):
 		welcome_msg += tr("str_tip_of_the_day") + _totd.get_tip() + "\n"
-	print_msg(welcome_msg)
+	Status.post(welcome_msg)
 	
 	_unpack_utils()
 	setup_ui()
@@ -68,56 +66,8 @@ func _unpack_utils() -> void:
 	if (OS.get_name() == "Windows") and (not d.file_exists(unzip_exe)):
 		if not d.dir_exists(_path.utils_dir):
 			d.make_dir(_path.utils_dir)
-		print_msg(tr("msg_unpacking_unzip"))
+		Status.post(tr("msg_unpacking_unzip"))
 		d.copy("res://utils/unzip.exe", unzip_exe)
-
-
-func datetime_with_msecs(utc = false) -> Dictionary:
-	
-	var datetime = OS.get_datetime(utc)
-	datetime["millisecond"] = OS.get_system_time_msecs() % 1000
-	return datetime
-
-
-func timestamp_with_msecs() -> String:
-	
-	var t = datetime_with_msecs()
-	var s = "[%02d:%02d:%02d.%03d]" % [t.hour, t.minute, t.second, t.millisecond]
-	return s
-
-
-func print_msg(msg: String, msg_type = Enums.MSG_INFO) -> void:
-	
-	var text = ""
-	var bb_text = ""
-		
-	var time = timestamp_with_msecs()
-	text += time
-	bb_text += "[color=#999999]%s[/color]" % time
-	
-	if _easter_egg_counter >= 10:
-		msg = "[rainbow freq=0.2 sat=5 val=1]%s[/rainbow]" % msg
-	
-	match msg_type:
-		Enums.MSG_INFO:
-			bb_text += " " + msg
-		Enums.MSG_WARN:
-			text += " [%s] %s" % [tr("tag_warning"), msg]
-			bb_text += " [color=#ffd633][%s][/color] %s" % [tr("tag_warning"), msg]
-			push_warning(text)
-		Enums.MSG_ERROR:
-			text += " [%s] %s" % [tr("tag_error"), msg]
-			bb_text += " [color=#ff3333][%s][/color] %s" % [tr("tag_error"), msg]
-			push_error(text)
-		Enums.MSG_DEBUG:
-			if not _settings.read("debug_mode"):
-				return
-			bb_text += " [color=#999999][%s] %s[/color]" % [tr("tag_debug"), msg]
-	
-	bb_text += "\n"
-	
-	if _log:
-		_log.append_bbcode(bb_text)
 
 
 func _smart_disable_controls(group_name: String) -> void:
@@ -272,11 +222,6 @@ func _on_BuildsList_item_selected(index: int) -> void:
 		_btn_install.disabled = true
 	else:
 		_btn_install.disabled = false
-
-
-func _on_status_message(msg: String, msg_type: int = Enums.MSG_INFO) -> void:
-	
-	print_msg(msg, msg_type)
 
 
 func _on_BtnInstall_pressed() -> void:
@@ -442,7 +387,7 @@ func _on_InfoIcon_gui_input(event: InputEvent) -> void:
 	if (event is InputEventMouseButton) and (event.button_index == BUTTON_LEFT) and (event.is_pressed()):
 		_easter_egg_counter += 1
 		if _easter_egg_counter == 3:
-			print_msg("[color=red]%s[/color]" % tr("msg_easter_egg_warning"))
+			Status.post("[color=red]%s[/color]" % tr("msg_easter_egg_warning"))
 		if _easter_egg_counter == 10:
 			_activate_easter_egg()
 
@@ -455,5 +400,5 @@ func _activate_easter_egg() -> void:
 			node.rect_rotation = randf() * 2.0 - 1.0
 	
 	for i in range(20):
-		print_msg(tr("msg_easter_egg_activated"))
+		Status.post(tr("msg_easter_egg_activated"))
 		yield(get_tree().create_timer(0.1), "timeout")

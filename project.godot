@@ -54,6 +54,7 @@ default_bus_layout=""
 
 [autoload]
 
+Status="*res://scripts/status.gd"
 SettingsManager="*res://scripts/settings_manager.gd"
 WindowGeometry="*res://scripts/window_geometry.gd"
 

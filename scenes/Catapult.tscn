@@ -58,9 +58,6 @@ margin_left = 4.0
 margin_top = 4.0
 margin_right = -4.0
 margin_bottom = -4.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="GameChoice" type="HBoxContainer" parent="Main"]
 margin_right = 592.0
@@ -1289,7 +1286,6 @@ __meta__ = {
 [connection signal="pressed" from="Main/Tabs/Game/CurrentInstall/Build/UserDir" to="." method="_on_UserDir_pressed"]
 [connection signal="pressed" from="Main/Tabs/Game/CurrentInstall/Launch/BtnPlay" to="." method="_on_BtnPlay_pressed"]
 [connection signal="pressed" from="Main/Tabs/Game/CurrentInstall/Launch/BtnResume" to="." method="_on_BtnResume_pressed"]
-[connection signal="status_message" from="Main/Tabs/Mods" to="." method="_on_status_message"]
 [connection signal="item_selected" from="Main/Tabs/Mods/HBox/Installed/InstalledList" to="Main/Tabs/Mods" method="_on_InstalledList_item_selected"]
 [connection signal="multi_selected" from="Main/Tabs/Mods/HBox/Installed/InstalledList" to="Main/Tabs/Mods" method="_on_InstalledList_multi_selected"]
 [connection signal="toggled" from="Main/Tabs/Mods/HBox/Installed/ShowStock" to="Main/Tabs/Mods" method="_on_ShowStock_toggled"]
@@ -1311,7 +1307,6 @@ __meta__ = {
 [connection signal="confirmed" from="Main/Tabs/Soundpacks/ConfirmDelete" to="Main/Tabs/Soundpacks" method="_on_ConfirmDelete_confirmed"]
 [connection signal="confirmed" from="Main/Tabs/Soundpacks/ConfirmManualDownload" to="Main/Tabs/Soundpacks" method="_on_ConfirmManualDownload_confirmed"]
 [connection signal="file_selected" from="Main/Tabs/Soundpacks/InstallFromFileDialog" to="Main/Tabs/Soundpacks" method="_on_InstallFromFileDialog_file_selected"]
-[connection signal="status_message" from="Main/Tabs/Fonts" to="." method="_on_status_message"]
 [connection signal="item_selected" from="Main/Tabs/Fonts/FontSelection/RightPane/FontsList" to="Main/Tabs/Fonts" method="_on_FontsList_item_selected"]
 [connection signal="pressed" from="Main/Tabs/Fonts/FontSelection/RightPane/Buttons/Grid/BtnSetFontUI" to="Main/Tabs/Fonts" method="_on_BtnSetFontX_pressed" binds= [ true, false, false ]]
 [connection signal="pressed" from="Main/Tabs/Fonts/FontSelection/RightPane/Buttons/Grid/BtnSetFontMap" to="Main/Tabs/Fonts" method="_on_BtnSetFontX_pressed" binds= [ false, true, false ]]
@@ -1341,7 +1336,6 @@ __meta__ = {
 [connection signal="value_changed" from="Main/Tabs/Settings/NumPrs/sbNumPRs" to="Main/Tabs/Settings" method="_on_sbNumPRs_value_changed"]
 [connection signal="toggled" from="Main/Tabs/Settings/ScaleOverride/cbScaleOverrideEnable" to="Main/Tabs/Settings" method="_on_cbScaleOverrideEnable_toggled"]
 [connection signal="value_changed" from="Main/Tabs/Settings/ScaleOverride/sbScaleOverride" to="Main/Tabs/Settings" method="_on_sbScaleOverride_value_changed"]
-[connection signal="status_message" from="Main/Tabs/Debug" to="." method="_on_status_message"]
 [connection signal="pressed" from="Main/Tabs/Debug/Button" to="Main/Tabs/Debug" method="_on_Button_pressed"]
 [connection signal="pressed" from="Main/Tabs/Debug/Button2" to="Main/Tabs/Debug" method="_on_Button2_pressed"]
 [connection signal="pressed" from="Main/Tabs/Debug/Button3" to="Main/Tabs/Debug" method="_on_Button3_pressed"]
@@ -1354,32 +1348,23 @@ __meta__ = {
 [connection signal="meta_clicked" from="Main/Log" to="." method="_on_Log_meta_clicked"]
 [connection signal="done_fetching_releases" from="Releases" to="." method="_on_Releases_done_fetching_releases"]
 [connection signal="started_fetching_releases" from="Releases" to="." method="_on_Releases_started_fetching_releases"]
-[connection signal="status_message" from="Releases" to="." method="_on_status_message"]
 [connection signal="request_completed" from="Releases/HTTPRequest_DDA" to="Releases" method="_on_request_completed_dda"]
 [connection signal="request_completed" from="Releases/HTTPRequest_BN" to="Releases" method="_on_request_completed_bn"]
-[connection signal="status_message" from="Downloader" to="." method="_on_status_message"]
 [connection signal="request_completed" from="Downloader/HTTPRequest" to="Downloader" method="_on_HTTPRequest_request_completed"]
 [connection signal="installation_finished" from="ReleaseInstaller" to="." method="_on_ReleaseInstaller_installation_finished"]
 [connection signal="installation_started" from="ReleaseInstaller" to="." method="_on_ReleaseInstaller_installation_started"]
-[connection signal="status_message" from="ReleaseInstaller" to="." method="_on_status_message"]
-[connection signal="status_message" from="InstallProbe" to="." method="_on_status_message"]
-[connection signal="status_message" from="FSHelper" to="." method="_on_status_message"]
 [connection signal="mod_deletion_finished" from="Mods" to="." method="_on_mod_operation_finished"]
 [connection signal="mod_deletion_started" from="Mods" to="." method="_on_mod_operation_started"]
 [connection signal="mod_installation_finished" from="Mods" to="." method="_on_mod_operation_finished"]
 [connection signal="mod_installation_started" from="Mods" to="." method="_on_mod_operation_started"]
 [connection signal="modpack_retrieval_finished" from="Mods" to="." method="_on_mod_operation_finished"]
 [connection signal="modpack_retrieval_started" from="Mods" to="." method="_on_mod_operation_started"]
-[connection signal="status_message" from="Mods" to="." method="_on_status_message"]
 [connection signal="soundpack_deletion_finished" from="Sound" to="." method="_on_soundpack_operation_finished"]
 [connection signal="soundpack_deletion_started" from="Sound" to="." method="_on_soundpack_operation_started"]
 [connection signal="soundpack_installation_finished" from="Sound" to="." method="_on_soundpack_operation_finished"]
 [connection signal="soundpack_installation_started" from="Sound" to="." method="_on_soundpack_operation_started"]
-[connection signal="status_message" from="Sound" to="." method="_on_status_message"]
-[connection signal="status_message" from="Fonts" to="." method="_on_status_message"]
 [connection signal="status_message" from="PathHelper" to="." method="_on_status_message"]
 [connection signal="backup_creation_finished" from="Backups" to="." method="_on_backup_operation_finished"]
 [connection signal="backup_creation_started" from="Backups" to="." method="_on_backup_operation_started"]
 [connection signal="backup_restoration_finished" from="Backups" to="." method="_on_backup_operation_finished"]
 [connection signal="backup_restoration_started" from="Backups" to="." method="_on_backup_operation_started"]
-[connection signal="status_message" from="Backups" to="." method="_on_status_message"]

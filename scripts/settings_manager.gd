@@ -1,9 +1,6 @@
 extends Node
 
 
-signal status_message
-
-
 const _SETTINGS_FILENAME = "catapult_settings.json"
 
 const _HARDCODED_DEFAULTS = {
@@ -28,14 +25,8 @@ const _HARDCODED_DEFAULTS = {
 	"debug_mode": false,
 }
 
-
 var _settings_file = ""
-
 var _current = {}
-
-
-func _enter_tree() -> void:
-	connect("status_message", $"/root/Catapult", "_on_status_message")
 
 
 func _exit_tree() -> void:
@@ -51,7 +42,7 @@ func _load() -> void:
 		
 	else:
 		_current = _HARDCODED_DEFAULTS
-		emit_signal("status_message", tr("msg_creating_settings") % _SETTINGS_FILENAME)
+		Status.post(tr("msg_creating_settings") % _SETTINGS_FILENAME)
 		_write_to_file(_HARDCODED_DEFAULTS, _settings_file)
 
 
@@ -60,18 +51,17 @@ func _read_from_file(path: String) -> Dictionary:
 	var f = File.new()
 	
 	if not f.file_exists(path):
-		emit_signal("status_message", tr("msg_nonexistent_attempt") % path, Enums.MSG_ERROR)
+		Status.post(tr("msg_nonexistent_attempt") % path, Enums.MSG_ERROR)
 		return {}
 		
-	emit_signal("status_message", tr("msg_loading_settings") % _SETTINGS_FILENAME)
+	Status.post(tr("msg_loading_settings") % _SETTINGS_FILENAME)
 		
 	f.open(path, File.READ)
 	var s = f.get_as_text()
 	var result: JSONParseResult = JSON.parse(s)
 	
 	if result.error:
-		emit_signal("status_message", tr("msg_settings_parse_error") %
-				[result.error_line, result.error_string], Enums.MSG_ERROR)
+		Status.post(tr("msg_settings_parse_error") % [result.error_line, result.error_string], Enums.MSG_ERROR)
 		return {}
 	else:
 		return result.result
@@ -95,8 +85,7 @@ func read(setting_name: String):
 		if setting_name in _HARDCODED_DEFAULTS:
 			_current[setting_name] = _HARDCODED_DEFAULTS[setting_name]
 		else:
-			emit_signal("status_message", tr("msg_nonexisting_setting") \
-					% setting_name, Enums.MSG_ERROR)
+			Status.post(tr("msg_nonexisting_setting") % setting_name, Enums.MSG_ERROR)
 			return null
 	
 	return _current[setting_name]

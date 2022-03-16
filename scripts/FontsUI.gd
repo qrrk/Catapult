@@ -1,9 +1,6 @@
 extends VBoxContainer
 
 
-signal status_message
-
-
 const _PREVIEW_TEXT_EN := [
 	"A quick brown fox jumps over the lazy dog.",
 	"A quart jar of oil mixed with zinc oxide makes a very bright paint.",
@@ -129,12 +126,12 @@ func _on_Tabs_tab_changed(tab: int) -> void:
 		return
 	
 	if not _fonts.font_config_file_exists():
-		emit_signal("status_message", tr("msg_no_font_config_file"), Enums.MSG_WARN)
+		Status.post(tr("msg_no_font_config_file"), Enums.MSG_WARN)
 		_tabs.current_tab = 0
 		return
 	
 	if not _fonts.options_file_exists():
-		emit_signal("status_message", tr("msg_no_game_options_file"), Enums.MSG_WARN)
+		Status.post(tr("msg_no_game_options_file"), Enums.MSG_WARN)
 		_tabs.current_tab = 0
 		return
 		
@@ -179,11 +176,11 @@ func _on_BtnSetFontX_pressed(ui: bool, map: bool, overmap: bool) -> void:
 	var name = _fonts.available_fonts[index]["name"]
 	
 	if ui:
-		emit_signal("status_message", tr("msg_setting_ui_font") % name)
+		Status.post(tr("msg_setting_ui_font") % name)
 	if map:
-		emit_signal("status_message", tr("msg_setting_map_font") % name)
+		Status.post(tr("msg_setting_map_font") % name)
 	if overmap:
-		emit_signal("status_message", tr("msg_setting_omap_font") % name)
+		Status.post(tr("msg_setting_omap_font") % name)
 	
 	_fonts.set_font(index, ui, map, overmap)
 	_on_BtnSaveFontOptions_pressed()

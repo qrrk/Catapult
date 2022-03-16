@@ -1,10 +1,8 @@
 extends Node
 
 
-signal status_message
 signal started_fetching_releases
 signal done_fetching_releases
-
 
 onready var _settings = $"/root/SettingsManager"
 
@@ -144,7 +142,7 @@ func _ready() -> void:
 		"Windows":
 			_platform = "win"
 		_:
-			emit_signal("status_message", tr("msg_unsupported_platform") % p, Enums.MSG_ERROR)
+			Status.post(tr("msg_unsupported_platform") % p, Enums.MSG_ERROR)
 
 
 func _get_query_string() -> String:
@@ -166,11 +164,11 @@ func _request_bn() -> void:
 func _on_request_completed_dda(result: int, response_code: int,
 		headers: PoolStringArray, body: PoolByteArray) -> void:
 	
-	emit_signal("status_message", tr("msg_http_request_info") %
+	Status.post(tr("msg_http_request_info") %
 			[result, response_code, headers], Enums.MSG_DEBUG)
 	
 	if result:
-		emit_signal("status_message", tr("msg_releases_request_failed"), Enums.MSG_WARN)
+		Status.post(tr("msg_releases_request_failed"), Enums.MSG_WARN)
 	else:
 		_parse_builds(body, releases["dda-experimental"], _ASSET_FILTERS["dda-experimental-" + _platform])
 	
@@ -180,11 +178,11 @@ func _on_request_completed_dda(result: int, response_code: int,
 func _on_request_completed_bn(result: int, response_code: int,
 		headers: PoolStringArray, body: PoolByteArray) -> void:
 	
-	emit_signal("status_message", tr("msg_http_request_info") %
+	Status.post(tr("msg_http_request_info") %
 			[result, response_code, headers], Enums.MSG_DEBUG)
 	
 	if result:
-		emit_signal("status_message", tr("msg_releases_request_failed"), Enums.MSG_WARN)
+		Status.post(tr("msg_releases_request_failed"), Enums.MSG_WARN)
 	else:
 		_parse_builds(body, releases["bn-experimental"], _ASSET_FILTERS["bn-experimental-" + _platform])
 	
@@ -220,7 +218,7 @@ func _parse_builds(data: PoolByteArray, write_to: Array, filter: Dictionary) -> 
 	if len(tmp_arr) > 0:
 		write_to.clear()
 		write_to.append_array(tmp_arr)
-		emit_signal("status_message", tr("msg_got_n_releases") % len(tmp_arr))
+		Status.post(tr("msg_got_n_releases") % len(tmp_arr))
 
 
 func fetch(release_key: String) -> void:
@@ -234,11 +232,11 @@ func fetch(release_key: String) -> void:
 					releases["dda-stable"] = _DDA_STABLE_WIN
 			emit_signal("done_fetching_releases")
 		"dda-experimental":
-			emit_signal("status_message", tr("msg_fetching_releases_dda"))
+			Status.post(tr("msg_fetching_releases_dda"))
 			_request_dda()
 		"bn-experimental":
-			emit_signal("status_message", tr("msg_fetching_releases_bn"))
+			Status.post(tr("msg_fetching_releases_bn"))
 			_request_bn()
 		_:
-			emit_signal("status_message", tr("msg_invalid_fetch_func_param") % release_key, Enums.MSG_ERROR)
+			Status.post(tr("msg_invalid_fetch_func_param") % release_key, Enums.MSG_ERROR)
 

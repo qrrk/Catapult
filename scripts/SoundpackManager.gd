@@ -1,7 +1,6 @@
 extends Node
 
 
-signal status_message
 signal soundpack_installation_started
 signal soundpack_installation_finished
 signal soundpack_deletion_started
@@ -64,8 +63,7 @@ onready var _path := $"../PathHelper"
 func parse_sound_dir(sound_dir: String) -> Array:
 	
 	if not Directory.new().dir_exists(sound_dir):
-		emit_signal("status_message", tr("msg_no_sound_dir") \
-				% sound_dir, Enums.MSG_ERROR)
+		Status.post(tr("msg_no_sound_dir") % sound_dir, Enums.MSG_ERROR)
 		return []
 	
 	var result = []
@@ -116,13 +114,13 @@ func delete_pack(name: String) -> void:
 	for pack in get_installed():
 		if pack["name"] == name:
 			emit_signal("soundpack_deletion_started")
-			emit_signal("status_message", tr("msg_deleting_sound") % pack["location"])
+			Status.post(tr("msg_deleting_sound") % pack["location"])
 			_fshelper.rm_dir(pack["location"])
 			yield(_fshelper, "rm_dir_done")
 			emit_signal("soundpack_deletion_finished")
 			return
 			
-	emit_signal("status_message", tr("msg_soundpack_not_found") % name, Enums.MSG_ERROR)
+	Status.post(tr("msg_soundpack_not_found") % name, Enums.MSG_ERROR)
 
 
 func install_pack(soundpack_index: int, from_file = null, reinstall = false, keep_archive = false) -> void:
@@ -136,9 +134,9 @@ func install_pack(soundpack_index: int, from_file = null, reinstall = false, kee
 	emit_signal("soundpack_installation_started")
 	
 	if reinstall:
-		emit_signal("status_message", tr("msg_reinstalling_sound") % pack["name"])
+		Status.post(tr("msg_reinstalling_sound") % pack["name"])
 	else:
-		emit_signal("status_message", tr("msg_installing_sound") % pack["name"])
+		Status.post(tr("msg_installing_sound") % pack["name"])
 	
 	if from_file:
 		archive = from_file
@@ -147,7 +145,7 @@ func install_pack(soundpack_index: int, from_file = null, reinstall = false, kee
 		yield(_downloader, "download_finished")
 		archive = _path.own_dir.plus_file(pack["filename"])
 		if not Directory.new().file_exists(archive):
-			emit_signal("status_message", tr("msg_sound_download_failed"), Enums.MSG_ERROR)
+			Status.post(tr("msg_sound_download_failed"), Enums.MSG_ERROR)
 			emit_signal("soundpack_installation_finished")
 			return
 		
@@ -164,5 +162,5 @@ func install_pack(soundpack_index: int, from_file = null, reinstall = false, kee
 	_fshelper.rm_dir(tmp_dir)
 	yield(_fshelper, "rm_dir_done")
 	
-	emit_signal("status_message", tr("msg_sound_installed"))
+	Status.post(tr("msg_sound_installed"))
 	emit_signal("soundpack_installation_finished")

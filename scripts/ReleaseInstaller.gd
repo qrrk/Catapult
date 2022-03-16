@@ -1,7 +1,6 @@
 extends Node
 
 
-signal status_message
 signal installation_started
 signal installation_finished
 
@@ -17,9 +16,9 @@ func install_release(release_info: Dictionary, game: String, update: bool = fals
 	emit_signal("installation_started")
 	
 	if update:
-		emit_signal("status_message", tr("msg_updating_game") % release_info["name"])
+		Status.post(tr("msg_updating_game") % release_info["name"])
 	else:
-		emit_signal("status_message", tr("msg_installing_game") % release_info["name"])
+		Status.post(tr("msg_installing_game") % release_info["name"])
 	
 	_downloader.download_file(release_info["url"], _path.own_dir, release_info["filename"])
 	yield(_downloader, "download_finished")
@@ -50,8 +49,8 @@ func install_release(release_info: Dictionary, game: String, update: bool = fals
 			yield(_fshelper, "move_dir_done")
 			
 			if update:
-				emit_signal("status_message", tr("msg_game_updated"))
+				Status.post(tr("msg_game_updated"))
 			else:
-				emit_signal("status_message", tr("msg_game_installed"))
+				Status.post(tr("msg_game_installed"))
 	
 	emit_signal("installation_finished")

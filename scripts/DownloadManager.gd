@@ -1,7 +1,6 @@
 extends Node
 
 
-signal status_message
 signal download_started
 signal download_finished
 
@@ -19,7 +18,7 @@ onready var _http = $HTTPRequest
 
 func download_file(url: String, target_dir: String, target_filename: String) -> void:
 	
-	emit_signal("status_message", tr("msg_downloading_file") % target_filename)
+	Status.post(tr("msg_downloading_file") % target_filename)
 	emit_signal("download_started")
 	_current_filename = target_filename
 	_current_file_path = target_dir.plus_file(target_filename)
@@ -42,7 +41,7 @@ func download_file(url: String, target_dir: String, target_filename: String) -> 
 		var delta_bytes = downloaded - last_progress_bytes
 		
 		if (delta_time >= _PROGRESS_AFTER_MSECS) or (delta_bytes >= _PROGRESS_AFTER_BYTES):
-			emit_signal("status_message", _get_progress_string(downloaded, total, delta_time, delta_bytes))
+			Status.post(_get_progress_string(downloaded, total, delta_time, delta_bytes))
 			last_progress_time = OS.get_system_time_msecs()
 			last_progress_bytes = downloaded
 		
@@ -78,14 +77,11 @@ func _on_HTTPRequest_request_completed(_result: int, _response_code: int,
 		_headers: PoolStringArray, _body: PoolByteArray) -> void:
 	
 	_download_ongoing = false
-	emit_signal("status_message", tr("msg_http_request_info") %
-			[_result, _response_code, _headers], Enums.MSG_DEBUG)
+	Status.post(tr("msg_http_request_info") % [_result, _response_code, _headers], Enums.MSG_DEBUG)
 			
 	if Directory.new().file_exists(_current_file_path):
-		emit_signal("status_message", tr("msg_download_finished") % _current_filename)
+		Status.post(tr("msg_download_finished") % _current_filename)
 	else:
-		emit_signal("status_message", tr("msg_download_failed") % _current_filename, Enums.MSG_ERROR)
+		Status.post(tr("msg_download_failed") % _current_filename, Enums.MSG_ERROR)
 	
 	emit_signal("download_finished")
-
-

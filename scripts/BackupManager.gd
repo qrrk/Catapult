@@ -1,7 +1,6 @@
 extends Node
 
 
-signal status_message
 signal backup_creation_started
 signal backup_creation_finished
 signal backup_restoration_started
@@ -19,7 +18,7 @@ var available = null setget , _get_available
 func backup_current(backup_name: String) -> void:
 	# Create a backup of the save dir for the current game.
 
-	emit_signal("status_message", tr("msg_backing_up_saves") % backup_name)
+	Status.post(tr("msg_backing_up_saves") % backup_name)
 	emit_signal("backup_creation_started")
 
 	var dest_dir = _path.save_backups.plus_file(backup_name)
@@ -31,9 +30,9 @@ func backup_current(backup_name: String) -> void:
 			_fshelper.copy_dir(_path.savegames.plus_file(world), dest_dir)
 			yield(_fshelper, "copy_dir_done")
 		
-		emit_signal("status_message", tr("msg_backup_created"))
+		Status.post(tr("msg_backup_created"))
 	else:
-		emit_signal("status_message", tr("msg_backup_name_taken") % backup_name, Enums.MSG_ERROR)
+		Status.post(tr("msg_backup_name_taken") % backup_name, Enums.MSG_ERROR)
 
 	emit_signal("backup_creation_finished")
 
@@ -80,7 +79,7 @@ func restore(backup_index: int) -> void:
 	# Replace the save dir in the current game with the named backup
 	
 	var backup_name: String = available[backup_index]["name"]
-	emit_signal("status_message", tr("msg_restoring_backup") % backup_name)
+	Status.post(tr("msg_restoring_backup") % backup_name)
 	
 	var source_dir = available[backup_index]["path"]
 	var dest_dir = _path.savegames
@@ -97,9 +96,9 @@ func restore(backup_index: int) -> void:
 			_fshelper.copy_dir(source_dir.plus_file(world), dest_dir)
 			yield(_fshelper, "copy_dir_done")
 		
-		emit_signal("status_message", tr("msg_backup_restored"))
+		Status.post(tr("msg_backup_restored"))
 	else:
-		emit_signal("status_message", tr("msg_backup_not_found") % backup_name, Enums.MSG_ERROR)
+		Status.post(tr("msg_backup_not_found") % backup_name, Enums.MSG_ERROR)
 	
 	emit_signal("backup_restoration_finished")
 
@@ -111,10 +110,10 @@ func delete(backup_name: String) -> void:
 	emit_signal("backup_deletion_started")
 
 	if Directory.new().dir_exists(target_dir):
-		emit_signal("status_message", tr("msg_deleting_backup") % backup_name)
+		Status.post(tr("msg_deleting_backup") % backup_name)
 	
 		_fshelper.rm_dir(target_dir)
 		yield(_fshelper, "rm_dir_done")
-		emit_signal("status_message", tr("msg_backup_deleted"))
+		Status.post(tr("msg_backup_deleted"))
 
 	emit_signal("backup_deletion_finished")
