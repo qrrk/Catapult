@@ -78,7 +78,7 @@ func _on_HTTPRequest_request_completed(_result: int, _response_code: int,
 	
 	_download_ongoing = false
 	Status.post(tr("msg_http_request_info") % [_result, _response_code, _headers], Enums.MSG_DEBUG)
-			
+	
 	if Directory.new().file_exists(_current_file_path):
 		Status.post(tr("msg_download_finished") % _current_filename)
 	else:

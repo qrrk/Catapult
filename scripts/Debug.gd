@@ -14,7 +14,7 @@ func _on_Button_pressed() -> void:
 	var message = "Found mods:"
 	var mods_dir = Paths.mods_stock
 	
-	Status.post("Looking for mods in %s" % mods_dir)	
+	Status.post("Looking for mods in %s" % mods_dir)
 	
 	for mod in _mods.parse_mods_dir(mods_dir):
 		message += "\n" + mod["modinfo"]["name"]
