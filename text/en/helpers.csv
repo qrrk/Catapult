@@ -1,0 +1,7 @@
+"keys","en"
+,
+"msg_file_read_fail","Could not open file %s (error %s)."
+"msg_file_write_fail","Could not open file %s for writing (error %s)."
+"msg_debug_file_path","Full path: %s"
+"msg_json_parse_fail","Could not parse contents of %s."
+"msg_debug_json_result","JSON parse result:\nError code: %s\nError message: %s\nError line: %s"

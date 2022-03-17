@@ -396,6 +396,8 @@ func _activate_easter_egg() -> void:
 			node.rect_pivot_offset = node.rect_size / 2.0
 			node.rect_rotation = randf() * 2.0 - 1.0
 	
+	Status.rainbow_text = true
+	
 	for i in range(20):
 		Status.post(tr("msg_easter_egg_activated"))
 		yield(get_tree().create_timer(0.1), "timeout")

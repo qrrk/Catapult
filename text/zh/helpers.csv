@@ -1,0 +1,7 @@
+"keys","zh"
+,
+"msg_file_read_fail","无法打开文件 %s（错误 %s）。"
+"msg_file_write_fail","无法打开文件 %s 进行写入（错误 %s）。"
+"msg_debug_file_path","完整路径: %s"
+"msg_json_parse_fail","无法解析 %s 的内容。"
+"msg_debug_json_result","JSON 解析结果:\n错误代码: %s\n错误消息: %s\n错误行: %s"
