@@ -5,7 +5,6 @@ extends Node
 const _TOTD = [
 	# These used to be hardcoded, but now it is just a list of translation keys.
 	
-	"tip_soundpack_size",
 	"tip_os_hopping",
 	"tip_dual_install",
 	"tip_downgrading",

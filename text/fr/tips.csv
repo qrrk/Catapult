@@ -1,6 +1,5 @@
 "keys","fr"
 ,
-"tip_soundpack_size","Les packs sonores sont lourds et peuvent prendre un certain temps pour être transférés vers une nouvelle version du jeu. Envisagez de ne conserver que le pack sonore que vous utilisez actuellement et de désinstaller le reste."
 "tip_os_hopping","Vous pouvez transférer le dossier Catapult de Windows vers Linux (ou vice versa) et continuer à l’utiliser, mais vous devrez télécharger le bon exécutable Catapult et mettre à jour votre jeu au moins une fois."
 "tip_dual_install","[i]C:DDA[/i] et [i]C:BN[/i] peuvent être installés en même temps. Leurs installations sont complètement indépendantes et leurs mises à jour, mods et packs sonores sont gérés séparément"
 "tip_downgrading","Vous pouvez rétrograder votre version du jeu en mettant à jour vers une version précédente, mais faites attention aux problèmes de compatibilité des sauvegardes."

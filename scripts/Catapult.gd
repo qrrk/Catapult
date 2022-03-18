@@ -323,12 +323,9 @@ func _on_BtnPlay_pressed() -> void:
 func _on_BtnResume_pressed() -> void:
 	
 	var lastworld: String = Paths.config.plus_file("lastworld.json")
-	if Directory.new().file_exists(lastworld):
-		var f = File.new()
-		f.open(lastworld, File.READ)
-		var pr := JSON.parse(f.get_as_text())
-		if pr.error == OK:
-			_start_game(pr.result["world_name"])
+	var info = Helpers.load_json_file(lastworld)
+	if info:
+		_start_game(info["world_name"])
 
 
 func _start_game(world := "") -> void:
