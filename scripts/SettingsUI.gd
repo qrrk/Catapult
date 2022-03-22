@@ -1,8 +1,11 @@
 extends VBoxContainer
 
 
+var themes := {}
+
 onready var _root = $"/root/Catapult"
 onready var _tabs = $"/root/Catapult/Main/Tabs"
+onready var _fshelper = $"/root/Catapult/FSHelper"
 onready var _debug_ui = $"/root/Catapult/Main/Tabs/Debug"
 
 
@@ -25,6 +28,8 @@ func _ready() -> void:
 		"zh":
 			lang_list.selected = 3
 	
+	_populate_theme_list()
+	
 	$ShowGameDesc.pressed = Settings.read("show_game_desc")
 	$PrintTips.pressed = Settings.read("print_tips_of_the_day")
 	$UpdateToSame.pressed = Settings.read("update_to_same_build_allowed")
@@ -40,6 +45,30 @@ func _ready() -> void:
 	$ScaleOverride/sbScaleOverride.value = (Settings.read("ui_scale_override") as float) * 100.0
 
 
+func _discover_themes() -> Array:
+	
+	var result := []
+	var files = _fshelper.list_dir("res://themes")
+	for file in files:
+		if file.ends_with(".theme"):
+			result.push_back(file)
+	return result
+
+
+func _populate_theme_list() -> void:
+	
+	var list := $LauncherTheme/obtnTheme as OptionButton
+	var curr_theme = Settings.read("launcher_theme")
+	var id := 0
+	for theme_file in _discover_themes():
+		themes[id] = theme_file
+		var theme_name = theme_file.get_basename().replace("_", " ")
+		list.add_item(theme_name, id)
+		if theme_file == curr_theme:
+			list.selected = id
+		id += 1
+
+
 func _on_obtnLanguage_item_selected(index: int) -> void:
 	
 	var locale := ""
@@ -53,6 +82,12 @@ func _on_obtnLanguage_item_selected(index: int) -> void:
 		3:
 			locale = "zh"
 	Settings.store("launcher_locale", locale)
+
+
+func _on_obtnTheme_item_selected(index: int) -> void:
+	
+	Settings.store("launcher_theme", themes[index])
+	_root.load_ui_theme(themes[index])
 
 
 func _on_ShowGameDesc_toggled(button_pressed: bool) -> void:

@@ -1,6 +1,7 @@
 "keys","fr"
 ,
 "lbl_launcher_language","Langue du lanceur (nécessite un redémarrage)"
+"lbl_launcher_theme","Thème du lanceur"
 "cbtn_show_game_desc","Voir la description du jeu"
 "cbtn_print_tips","Afficher les astuces du jour au démarrage"
 "cbtn_updating_to_same_build","Permettre les «mises à jour» vers la même version installée"

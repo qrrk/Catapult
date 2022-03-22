@@ -1,7 +1,6 @@
 extends Node
 
 
-onready var _self = $"."
 onready var _debug_ui = $Main/Tabs/Debug
 onready var _log = $Main/Log
 onready var _totd = $TOTD
@@ -35,6 +34,10 @@ var _easter_egg_counter := 0
 
 func _ready() -> void:
 	
+	# Apply UI theme
+	var theme_file = Settings.read("launcher_theme")
+	load_ui_theme(theme_file)
+	
 	OS.set_window_title(tr("window_title"))
 	
 	# Apply translation to tab titles.
@@ -54,6 +57,15 @@ func _ready() -> void:
 	
 	_unpack_utils()
 	setup_ui()
+
+
+func load_ui_theme(theme_file: String) -> void:
+	
+	var theme := load("res://themes".plus_file(theme_file)) as Theme
+	if theme:
+		self.theme = theme
+	else:
+		Status.post(tr("msg_theme_load_error") % theme_file, Enums.MSG_ERROR)
 
 
 func _unpack_utils() -> void:
