@@ -117,12 +117,11 @@ margin_bottom = 100.0
 [node name="Tabs" type="TabContainer" parent="Main" groups=["disable_during_backup_operations", "disable_during_mod_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases", "disable_while_installing_game"]]
 margin_top = 104.0
 margin_right = 592.0
-margin_bottom = 487.0
+margin_bottom = 373.0
 tab_align = 0
 script = ExtResource( 16 )
 
 [node name="Game" type="VBoxContainer" parent="Main/Tabs"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -132,7 +131,7 @@ margin_bottom = -7.5
 
 [node name="Channel" type="VBoxContainer" parent="Main/Tabs/Game"]
 margin_right = 577.0
-margin_bottom = 58.0
+margin_bottom = 56.0
 
 [node name="HBox" type="HBoxContainer" parent="Main/Tabs/Game/Channel"]
 margin_right = 577.0
@@ -156,9 +155,9 @@ text = "lbl_changelog"
 scroll_active = false
 
 [node name="Group" type="HBoxContainer" parent="Main/Tabs/Game/Channel"]
-margin_top = 30.0
+margin_top = 28.0
 margin_right = 577.0
-margin_bottom = 58.0
+margin_bottom = 56.0
 
 [node name="RBtnStable" type="CheckBox" parent="Main/Tabs/Game/Channel/Group" groups=["disable_while_fetching_releases", "disable_while_installing_game"]]
 margin_right = 102.0
@@ -177,9 +176,9 @@ group = SubResource( 1 )
 text = "rbtn_experimental"
 
 [node name="Builds" type="HBoxContainer" parent="Main/Tabs/Game"]
-margin_top = 64.0
+margin_top = 60.0
 margin_right = 577.0
-margin_bottom = 88.0
+margin_bottom = 84.0
 
 [node name="Label" type="Label" parent="Main/Tabs/Game/Builds"]
 margin_right = 68.0
@@ -188,14 +187,14 @@ text = "lbl_builds"
 
 [node name="BuildsList" type="OptionButton" parent="Main/Tabs/Game/Builds" groups=["disable_while_fetching_releases", "disable_while_installing_game"]]
 margin_left = 74.0
-margin_right = 484.0
+margin_right = 490.0
 margin_bottom = 24.0
 hint_tooltip = "tooltip_builds"
 size_flags_horizontal = 3
 clip_text = true
 
 [node name="BtnRefresh" type="Button" parent="Main/Tabs/Game/Builds" groups=["disable_while_fetching_releases", "disable_while_installing_game"]]
-margin_left = 490.0
+margin_left = 496.0
 margin_right = 577.0
 margin_bottom = 24.0
 hint_tooltip = "tooltip_refresh"
@@ -203,9 +202,9 @@ text = "btn_refresh"
 
 [node name="BtnInstall" type="Button" parent="Main/Tabs/Game" groups=["disable_while_fetching_releases", "disable_while_installing_game"]]
 margin_left = 168.0
-margin_top = 94.0
+margin_top = 88.0
 margin_right = 408.0
-margin_bottom = 126.0
+margin_bottom = 120.0
 rect_min_size = Vector2( 240, 32 )
 hint_tooltip = "tooltip_install"
 size_flags_horizontal = 4
@@ -214,14 +213,14 @@ icon = ExtResource( 2 )
 expand_icon = true
 
 [node name="HSeparator" type="HSeparator" parent="Main/Tabs/Game"]
-margin_top = 132.0
+margin_top = 124.0
 margin_right = 577.0
-margin_bottom = 140.0
+margin_bottom = 132.0
 
 [node name="CurrentInstall" type="VBoxContainer" parent="Main/Tabs/Game"]
-margin_top = 146.0
+margin_top = 136.0
 margin_right = 577.0
-margin_bottom = 238.0
+margin_bottom = 224.0
 
 [node name="Label" type="Label" parent="Main/Tabs/Game/CurrentInstall"]
 margin_right = 577.0
@@ -231,9 +230,9 @@ align = 1
 
 [node name="Build" type="HBoxContainer" parent="Main/Tabs/Game/CurrentInstall"]
 margin_left = 217.0
-margin_top = 30.0
+margin_top = 28.0
 margin_right = 360.0
-margin_bottom = 54.0
+margin_bottom = 52.0
 size_flags_horizontal = 4
 custom_constants/separation = 4
 
@@ -261,9 +260,9 @@ texture_normal = ExtResource( 23 )
 
 [node name="Launch" type="HBoxContainer" parent="Main/Tabs/Game/CurrentInstall"]
 margin_left = 125.0
-margin_top = 60.0
+margin_top = 56.0
 margin_right = 451.0
-margin_bottom = 92.0
+margin_bottom = 88.0
 size_flags_horizontal = 4
 
 [node name="BtnPlay" type="Button" parent="Main/Tabs/Game/CurrentInstall/Launch" groups=["disable_while_installing_game"]]
@@ -288,9 +287,9 @@ icon = ExtResource( 25 )
 expand_icon = true
 
 [node name="Spacer" type="Control" parent="Main/Tabs/Game"]
-margin_top = 244.0
+margin_top = 228.0
 margin_right = 577.0
-margin_bottom = 244.0
+margin_bottom = 228.0
 
 [node name="ChangelogDialog" parent="Main/Tabs/Game" instance=ExtResource( 32 )]
 
@@ -948,6 +947,7 @@ margin_right = 577.0
 margin_bottom = 60.0
 
 [node name="Settings" type="VBoxContainer" parent="Main/Tabs"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -995,7 +995,6 @@ margin_bottom = 24.0
 rect_min_size = Vector2( 180, 0 )
 size_flags_horizontal = 10
 expand_icon = true
-selected = 0
 
 [node name="ShowGameDesc" type="CheckButton" parent="Main/Tabs/Settings"]
 margin_top = 52.0
@@ -1212,7 +1211,7 @@ size_flags_horizontal = 4
 text = "Print screen info"
 
 [node name="Log" type="RichTextLabel" parent="Main"]
-margin_top = 491.0
+margin_top = 377.0
 margin_right = 592.0
 margin_bottom = 692.0
 focus_mode = 2

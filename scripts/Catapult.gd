@@ -38,9 +38,21 @@ func _ready() -> void:
 	var theme_file = Settings.read("launcher_theme")
 	load_ui_theme(theme_file)
 	
-	OS.set_window_title(tr("window_title"))
+	assign_localized_text()
 	
-	# Apply translation to tab titles.
+	var welcome_msg = tr("str_welcome")
+	if Settings.read("print_tips_of_the_day"):
+		welcome_msg += tr("str_tip_of_the_day") + _totd.get_tip() + "\n"
+	Status.post(welcome_msg)
+	
+	_unpack_utils()
+	setup_ui()
+
+
+func assign_localized_text() -> void:
+	
+	OS.set_window_title(tr("window_title"))	
+	
 	_tabs.set_tab_title(0, tr("tab_game"))
 	_tabs.set_tab_title(1, tr("tab_mods"))
 	_tabs.set_tab_title(2, tr("tab_soundpacks"))
@@ -50,13 +62,11 @@ func _ready() -> void:
 	
 	_lbl_changelog.bbcode_text = tr("lbl_changelog")
 	
-	var welcome_msg = tr("str_welcome")
-	if Settings.read("print_tips_of_the_day"):
-		welcome_msg += tr("str_tip_of_the_day") + _totd.get_tip() + "\n"
-	Status.post(welcome_msg)
-	
-	_unpack_utils()
-	setup_ui()
+	var game = Settings.read("game")
+	if game == "dda":
+		_game_desc.bbcode_text = tr("desc_dda")
+	elif game == "bn":
+		_game_desc.bbcode_text = tr("desc_bn")
 
 
 func load_ui_theme(theme_file: String) -> void:

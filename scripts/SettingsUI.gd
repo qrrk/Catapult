@@ -81,7 +81,10 @@ func _on_obtnLanguage_item_selected(index: int) -> void:
 			locale = "ru"
 		3:
 			locale = "zh"
+	
 	Settings.store("launcher_locale", locale)
+	TranslationServer.set_locale(locale)
+	_root.assign_localized_text()
 
 
 func _on_obtnTheme_item_selected(index: int) -> void:
