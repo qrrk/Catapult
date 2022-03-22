@@ -1,7 +1,0 @@
-"keys","cz"
-,
-"msg_creating_settings","Vytvářím soubor s nastavením %s."
-"msg_nonexistent_attempt","Pokus o načtení nastavení z neexistujícího souboru %s"
-"msg_loading_settings","Načítám nastavení z %s."
-"msg_settings_parse_error","Chyba parsování nastavení z JSONu, řádek %s, hláška: %s"
-"msg_nonexisting_setting","Pokus o přečtení neexistujícího nastavení \""%s\"""

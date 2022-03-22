@@ -1,0 +1,9 @@
+"keys","cs"
+,
+"dlg_changelog_title","Nedávné změny"
+"str_fetching_changes","Fetching recent changes from GitHub. Prosím čekejte…"
+"str_error_retrieving_data","Chyba získávání dat z GitHub API."
+"str_hhtp_response_code","\n\nHTTP stavový kód: %s"
+"str_github_says","\nGitHub říká: [i]%s[/i]"
+"str_try_later","\n\nProsím, zkuste to znovu."
+"str_changelog_intro","Ukazuji posledních [b]%s[/b] dokončených pull requestů (přidání kódu) do [b]%s[/b].\n\nMůžete kliknout na libovolný z nich pro zobrazení korespondujícího PR na GitHubu a detailů změny.\n"

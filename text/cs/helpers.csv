@@ -1,0 +1,7 @@
+"keys","cs"
+,
+"msg_file_read_fail","Nepodařilo se otevřít soubor %s (chyba %s)."
+"msg_file_write_fail","Nepodařilo se otevřít soubor %s pro psaní (chyba %s)."
+"msg_debug_file_path","Celá cesta: %s"
+"msg_json_parse_fail","Nezdařilo se zparsovat obsah %s."
+"msg_debug_json_result","Výsledek parsování JSON:\nChybový kód: %s\nChybová hláška: %s\nŘádek s chybou: %s"
