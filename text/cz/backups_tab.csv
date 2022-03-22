@@ -1,0 +1,13 @@
+"keys","cz"
+,
+"lbl_save_backups","Složka se zálohami her:"
+"btn_restore_backup","Obnovit zálohu"
+"btn_delete_backup","Smazat"
+"btn_refresh_backups","Obnovit"
+"lbl_manual_backup","Manuální záloha"
+"lbl_backup_name","Jméno:"
+"btn_create_backup","Vytvořit"
+"lbl_backup_info_placeholder","Vyberte existující zálohu pro zobrazení detailů."
+,
+"backup_info_location","Lokace:"
+"backup_info_worlds","Světy:"

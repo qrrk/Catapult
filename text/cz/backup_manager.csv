@@ -1,0 +1,10 @@
+"keys","cz"
+,
+"msg_backing_up_saves","Zálohuji aktuální uložené hry do \""%s\""…"
+"msg_backup_created","Záloha vytvořena."
+"msg_backup_name_taken","Záloha se jménem \""%s\"" už existuje."
+"msg_restoring_backup","Obnovuji zálohu \""%s\""..."
+"msg_backup_restored","Záloha obnovena."
+"msg_backup_not_found","Záloha \""%s\"" nenalezena."
+"msg_deleting_backup","Mažu zálohu \""%s\""..."
+"msg_backup_deleted","Záloha smazána."

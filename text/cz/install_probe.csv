@@ -1,0 +1,4 @@
+"keys","cz"
+,
+"msg_cannot_create_install_info","Nepodařilo se vytvořit soubor s informacemi o instalaci %s"
+"msg_cannot_parse_install_info","Nepodařilo se zparsovat soubor s informacemi o instalaci %s"

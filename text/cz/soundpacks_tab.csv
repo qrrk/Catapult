@@ -1,0 +1,19 @@
+"keys","cz"
+,
+"lbl_installed_sound","Nainstalované:"
+"lbl_avail_sound","Stáhnutelné:"
+"cbtn_stock_sound","Ukázat původní"
+"btn_delete_sound","Smazat vybrané"
+"btn_install_sound","Nainstalovat vybrané"
+"btn_reinstall_sound","Znovu nainstalovat vybrané"
+,
+"tooltip_stock_sound","Ukázat balíčky se zvuky z data/sound na seznamu."
+"tooltip_delete_sound","Odstranit vybraný balíček se zvuky z vaší herní instalace."
+"tooltip_install_sound","Stáhnout vybraný balíček se zvuky a přidat ho do vaší herní instalace."
+,
+"dlg_sound_deletion_title","Potvrdit smazání balíčku se zvuky"
+"dlg_sound_deletion_text","Mažu %s."
+"dlg_sound_manual_dl_title","Manuální stáhnutí vyžadováno"
+"dlg_sound_manual_dl_text","Tento balíček se zvuky nemůže být stáhnut automaticky. Klikněte na OK, stáhněte si ho ve svém prohlížeči a potom v dialogu vyberte, kde jste si ho uložili."
+,
+"str_no_sound_desc","Žádný popis nebyl poskytnut."

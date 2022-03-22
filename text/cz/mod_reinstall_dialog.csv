@@ -1,0 +1,5 @@
+"keys","cz"
+,
+"dlg_mod_reinstall_title","Potvrdit opětovnou instalaci modu"
+"dlg_mod_reinstall_text_single","Jeden z vybraných modů už je nainstalován.\nSmazat a znovu nainstalovat?"
+"dlg_mod_reinstall_text_multiple","%s z vybraných modů už jsou nainstalovány.\nSmazat a znovu nainstalovat?"

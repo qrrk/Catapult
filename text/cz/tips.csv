@@ -1,0 +1,11 @@
+"keys","cz"
+,
+"tip_os_hopping","Můžete svou Catapult složku přenést z Windowsu na Linux (a naopak) a používat ji, ale budete si muset stáhnout správný spouštěč Catapultu a alespoň jednou aktualizovat svou hru."
+"tip_dual_install","Jak [i]C:DDA[/i] tak [i]C:BN[/i] mohou být nainstalovány zaráz. Jejich instalace je kompletně nezávislá, a jejich aktualizace, mody i balíčky se zvuky jsou spravovány nezávisle."
+"tip_downgrading","Můžete downgradovat svou verzi hry pomocí \""aktualizace\"" na dřívější verzi, ale musíte si dát pozor na kompatibilitu uložených her."
+"tip_stock_mods","Mody které jsou součástí hry nejsou spravovány Catapultem (kromě zabránění jejich instalace po druhé). Catapult manipuluje pouze se složkou [i]/mods[/i], ne s [i]/data/mods[/i]."
+"tip_mod_multi_install","Můžete vybrat více modů na instalaci/smazání pomocí [i]Ctrl-kliknutí[/i] a [i]Shift-kliknutí[/i] v jejich seznamu."
+"tip_modpack_update","Kenanův Modpack je aktualizován docela často. Stačí kliknout na [i]Získat Kenanův Modpack[/i] a stáhne se znovu a nahradí mody ve vašem lokálním repozitáři."
+"tip_debug_mode","Dostáváte nerozluštitelné chybové hlášky? Zkuste zapnout debug režim v [i]Nastavení[/i] pro více informací k chybám."
+"tip_bug_reporting","Pokud máte problém s Catapultem a nevidíte ho oznámený na [color=#3b93f7][url=https://github.com/qrrk/Catapult/issues]on GitHub[/url][/color], je možné, že jste první kdo si toho všimnul! Zvažte pro něj založit ticket, pokud máte GitHub účet."
+"tip_backup_caveat","Pokud máte více světů ve své hře, dejte si pozor protože zálohování uložených her vždy funguje na celé složce s uloženými hrami. To znamená, že pokud je záloha obnovena, všechna předchozí data v této složce jsou ztracena (včetně jakýchkoliv světů co nebyly v této záloze)."
