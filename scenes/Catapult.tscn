@@ -558,6 +558,7 @@ margin_bottom = 122.0
 rect_min_size = Vector2( 300, 105 )
 window_title = "dlg_sound_manual_dl_title"
 dialog_text = "dlg_sound_manual_dl_text"
+dialog_autowrap = true
 
 [node name="InstallFromFileDialog" type="FileDialog" parent="Main/Tabs/Soundpacks"]
 margin_right = 593.0
