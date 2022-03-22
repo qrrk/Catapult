@@ -1,6 +1,6 @@
 "keys","en"
 ,
-"lbl_launcher_language","Launcher language (requires restart)"
+"lbl_launcher_language","Launcher language"
 "lbl_launcher_theme","Launcher theme"
 "cbtn_print_tips","Print tips of the day on startup"
 "cbtn_updating_to_same_build","Allow ""updating"" to the same build as installed"
