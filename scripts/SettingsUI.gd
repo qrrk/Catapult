@@ -1,7 +1,15 @@
 extends VBoxContainer
 
 
-var themes := {}
+var _langs := ["en", "fr", "ru", "zh", "cs"]
+
+var _themes := [
+	"Godot_3.theme",
+	"Light.theme",
+	"Grey.theme",
+	"Solarized_Dark.theme",
+	"Solarized_Light.theme",
+]
 
 onready var _root = $"/root/Catapult"
 onready var _tabs = $"/root/Catapult/Main/Tabs"
@@ -15,22 +23,16 @@ func _ready() -> void:
 	var sys_locale := TranslationServer.get_locale().substr(0, 2)
 	if (Settings.read("launcher_locale") == "") and (sys_locale in TranslationServer.get_loaded_locales()):
 		Settings.store("launcher_locale", sys_locale)
-	TranslationServer.set_locale(Settings.read("launcher_locale"))
 	
-	var lang_list := $LauncherLanguage/obtnLanguage
-	match Settings.read("launcher_locale"):
-		"en":
-			lang_list.selected = 0
-		"fr":
-			lang_list.selected = 1
-		"ru":
-			lang_list.selected = 2
-		"zh":
-			lang_list.selected = 3
-		"cs":
-			lang_list.selected = 4
+	var locale = Settings.read("launcher_locale")
+	TranslationServer.set_locale(locale)
+	var lang_idx := _langs.find(locale)
+	if lang_idx >= 0:
+		$LauncherLanguage/obtnLanguage.selected = lang_idx
 	
-	_populate_theme_list()
+	var theme_idx := _themes.find(Settings.read("launcher_theme"))
+	if theme_idx >= 0:
+		$LauncherTheme/obtnTheme.selected = theme_idx
 	
 	$ShowGameDesc.pressed = Settings.read("show_game_desc")
 	$PrintTips.pressed = Settings.read("print_tips_of_the_day")
@@ -45,30 +47,6 @@ func _ready() -> void:
 	$ScaleOverride/cbScaleOverrideEnable.pressed = Settings.read("ui_scale_override_enabled")
 	$ScaleOverride/sbScaleOverride.editable = Settings.read("ui_scale_override_enabled")
 	$ScaleOverride/sbScaleOverride.value = (Settings.read("ui_scale_override") as float) * 100.0
-
-
-func _discover_themes() -> Array:
-	
-	var result := []
-	var files = _fshelper.list_dir("res://themes")
-	for file in files:
-		if file.ends_with(".theme"):
-			result.push_back(file)
-	return result
-
-
-func _populate_theme_list() -> void:
-	
-	var list := $LauncherTheme/obtnTheme as OptionButton
-	var curr_theme = Settings.read("launcher_theme")
-	var id := 0
-	for theme_file in _discover_themes():
-		themes[id] = theme_file
-		var theme_name = theme_file.get_basename().replace("_", " ")
-		list.add_item(theme_name, id)
-		if theme_file == curr_theme:
-			list.selected = id
-		id += 1
 
 
 func _on_obtnLanguage_item_selected(index: int) -> void:
@@ -93,8 +71,8 @@ func _on_obtnLanguage_item_selected(index: int) -> void:
 
 func _on_obtnTheme_item_selected(index: int) -> void:
 	
-	Settings.store("launcher_theme", themes[index])
-	_root.load_ui_theme(themes[index])
+	Settings.store("launcher_theme", _themes[index])
+	_root.load_ui_theme(_themes[index])
 
 
 func _on_ShowGameDesc_toggled(button_pressed: bool) -> void:
