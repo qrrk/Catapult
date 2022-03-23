@@ -7,6 +7,7 @@ const _HARDCODED_DEFAULTS = {
 	"game": "dda",
 	"channel": "stable",  # Currently used only for DDA.
 	"launcher_locale": "",
+	"launcher_theme": "Godot_3.theme",
 	"window_state": {},
 	"print_tips_of_the_day": true,
 	"update_to_same_build_allowed": false,

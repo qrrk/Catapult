@@ -1,7 +1,6 @@
 extends Node
 
 
-onready var _self = $"."
 onready var _debug_ui = $Main/Tabs/Debug
 onready var _log = $Main/Log
 onready var _totd = $TOTD
@@ -35,9 +34,25 @@ var _easter_egg_counter := 0
 
 func _ready() -> void:
 	
-	OS.set_window_title(tr("window_title"))
+	# Apply UI theme
+	var theme_file = Settings.read("launcher_theme")
+	load_ui_theme(theme_file)
 	
-	# Apply translation to tab titles.
+	assign_localized_text()
+	
+	var welcome_msg = tr("str_welcome")
+	if Settings.read("print_tips_of_the_day"):
+		welcome_msg += tr("str_tip_of_the_day") + _totd.get_tip() + "\n"
+	Status.post(welcome_msg)
+	
+	_unpack_utils()
+	setup_ui()
+
+
+func assign_localized_text() -> void:
+	
+	OS.set_window_title(tr("window_title"))	
+	
 	_tabs.set_tab_title(0, tr("tab_game"))
 	_tabs.set_tab_title(1, tr("tab_mods"))
 	_tabs.set_tab_title(2, tr("tab_soundpacks"))
@@ -47,13 +62,20 @@ func _ready() -> void:
 	
 	_lbl_changelog.bbcode_text = tr("lbl_changelog")
 	
-	var welcome_msg = tr("str_welcome")
-	if Settings.read("print_tips_of_the_day"):
-		welcome_msg += tr("str_tip_of_the_day") + _totd.get_tip() + "\n"
-	Status.post(welcome_msg)
+	var game = Settings.read("game")
+	if game == "dda":
+		_game_desc.bbcode_text = tr("desc_dda")
+	elif game == "bn":
+		_game_desc.bbcode_text = tr("desc_bn")
+
+
+func load_ui_theme(theme_file: String) -> void:
 	
-	_unpack_utils()
-	setup_ui()
+	var theme := load("res://themes".plus_file(theme_file)) as Theme
+	if theme:
+		self.theme = theme
+	else:
+		Status.post(tr("msg_theme_load_error") % theme_file, Enums.MSG_ERROR)
 
 
 func _unpack_utils() -> void:

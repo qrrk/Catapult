@@ -20,7 +20,7 @@
 [ext_resource path="res://scripts/ModsUI.gd" type="Script" id=18]
 [ext_resource path="res://scripts/TOTD.gd" type="Script" id=19]
 [ext_resource path="res://scenes/ModReinstallDialog.tscn" type="PackedScene" id=20]
-[ext_resource path="res://themes/Godot_3.tres" type="Theme" id=21]
+[ext_resource path="res://themes/Godot_3.theme" type="Theme" id=21]
 [ext_resource path="res://icons/lang_fr.png" type="Texture" id=22]
 [ext_resource path="res://icons/folder_user.svg" type="Texture" id=23]
 [ext_resource path="res://icons/folder_game.svg" type="Texture" id=24]
@@ -118,7 +118,7 @@ margin_bottom = 100.0
 [node name="Tabs" type="TabContainer" parent="Main" groups=["disable_during_backup_operations", "disable_during_mod_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases", "disable_while_installing_game"]]
 margin_top = 104.0
 margin_right = 592.0
-margin_bottom = 461.0
+margin_bottom = 487.0
 tab_align = 0
 script = ExtResource( 16 )
 
@@ -560,6 +560,7 @@ margin_bottom = 122.0
 rect_min_size = Vector2( 300, 105 )
 window_title = "dlg_sound_manual_dl_title"
 dialog_text = "dlg_sound_manual_dl_text"
+dialog_autowrap = true
 
 [node name="InstallFromFileDialog" type="FileDialog" parent="Main/Tabs/Soundpacks"]
 margin_right = 593.0
@@ -961,7 +962,6 @@ script = ExtResource( 8 )
 [node name="LauncherLanguage" type="HBoxContainer" parent="Main/Tabs/Settings"]
 margin_right = 577.0
 margin_bottom = 24.0
-hint_tooltip = "tooltip_num_releases_to_request"
 
 [node name="Label" type="Label" parent="Main/Tabs/Settings/LauncherLanguage"]
 margin_right = 144.0
@@ -980,59 +980,77 @@ expand_icon = true
 items = [ "English", ExtResource( 35 ), false, 0, null, "Français", ExtResource( 22 ), false, 1, null, "Русский", ExtResource( 36 ), false, 2, null, "简体字", ExtResource( 7 ), false, 3, null, "Čeština", ExtResource( 31 ), false, 4, null ]
 selected = 0
 
-[node name="ShowGameDesc" type="CheckButton" parent="Main/Tabs/Settings"]
+[node name="LauncherTheme" type="HBoxContainer" parent="Main/Tabs/Settings"]
 margin_top = 26.0
 margin_right = 577.0
-margin_bottom = 54.0
+margin_bottom = 50.0
+
+[node name="Label" type="Label" parent="Main/Tabs/Settings/LauncherTheme"]
+margin_right = 129.0
+margin_bottom = 24.0
+text = "lbl_launcher_theme"
+
+[node name="obtnTheme" type="OptionButton" parent="Main/Tabs/Settings/LauncherTheme"]
+margin_left = 397.0
+margin_right = 577.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 180, 0 )
+size_flags_horizontal = 10
+expand_icon = true
+
+[node name="ShowGameDesc" type="CheckButton" parent="Main/Tabs/Settings"]
+margin_top = 52.0
+margin_right = 577.0
+margin_bottom = 80.0
 hint_tooltip = "tooltip_show_game_desc"
 text = "cbtn_show_game_desc"
 
 [node name="PrintTips" type="CheckButton" parent="Main/Tabs/Settings"]
-margin_top = 56.0
+margin_top = 82.0
 margin_right = 577.0
-margin_bottom = 84.0
+margin_bottom = 110.0
 hint_tooltip = "tooltip_print_tips"
 text = "cbtn_print_tips"
 
 [node name="UpdateToSame" type="CheckButton" parent="Main/Tabs/Settings"]
-margin_top = 86.0
+margin_top = 112.0
 margin_right = 577.0
-margin_bottom = 114.0
+margin_bottom = 140.0
 hint_tooltip = "tooltip_updating_to_same_build"
 text = "cbtn_updating_to_same_build"
 
 [node name="ShortenNames" type="CheckButton" parent="Main/Tabs/Settings"]
-margin_top = 116.0
+margin_top = 142.0
 margin_right = 577.0
-margin_bottom = 144.0
+margin_bottom = 170.0
 hint_tooltip = "tooltip_shorten_release_names"
 text = "cbtn_shorten_release_names"
 
 [node name="ShowObsoleteMods" type="CheckButton" parent="Main/Tabs/Settings"]
-margin_top = 146.0
+margin_top = 172.0
 margin_right = 577.0
-margin_bottom = 174.0
+margin_bottom = 200.0
 hint_tooltip = "tooltip_show_obsolete_mods"
 text = "cbtn_show_obsolete_mods"
 
 [node name="InstallArchivedMods" type="CheckButton" parent="Main/Tabs/Settings"]
-margin_top = 176.0
+margin_top = 202.0
 margin_right = 577.0
-margin_bottom = 204.0
+margin_bottom = 230.0
 hint_tooltip = "tooltip_install_archived_mods"
 text = "cbtn_install_archived_mods"
 
 [node name="ShowDebug" type="CheckButton" parent="Main/Tabs/Settings"]
-margin_top = 206.0
+margin_top = 232.0
 margin_right = 577.0
-margin_bottom = 234.0
+margin_bottom = 260.0
 hint_tooltip = "tooltip_debug_mode"
 text = "cbtn_debug_mode"
 
 [node name="NumReleases" type="HBoxContainer" parent="Main/Tabs/Settings"]
-margin_top = 236.0
+margin_top = 262.0
 margin_right = 577.0
-margin_bottom = 260.0
+margin_bottom = 286.0
 hint_tooltip = "tooltip_num_releases_to_request"
 
 [node name="Label" type="Label" parent="Main/Tabs/Settings/NumReleases"]
@@ -1050,9 +1068,9 @@ value = 30.0
 rounded = true
 
 [node name="NumPrs" type="HBoxContainer" parent="Main/Tabs/Settings"]
-margin_top = 262.0
+margin_top = 288.0
 margin_right = 577.0
-margin_bottom = 286.0
+margin_bottom = 312.0
 hint_tooltip = "tooltip_num_prs_to_request"
 
 [node name="Label" type="Label" parent="Main/Tabs/Settings/NumPrs"]
@@ -1071,9 +1089,9 @@ value = 100.0
 rounded = true
 
 [node name="ScaleOverride" type="HBoxContainer" parent="Main/Tabs/Settings"]
-margin_top = 288.0
+margin_top = 314.0
 margin_right = 577.0
-margin_bottom = 316.0
+margin_bottom = 342.0
 hint_tooltip = "tooltip_ui_scale_override"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1195,7 +1213,7 @@ size_flags_horizontal = 4
 text = "Print screen info"
 
 [node name="Log" type="RichTextLabel" parent="Main"]
-margin_top = 465.0
+margin_top = 491.0
 margin_right = 592.0
 margin_bottom = 692.0
 focus_mode = 2
@@ -1319,6 +1337,7 @@ __meta__ = {
 [connection signal="text_entered" from="Main/Tabs/Backups/Current/HBox/EditName" to="Main/Tabs/Backups" method="_on_EditName_text_entered"]
 [connection signal="pressed" from="Main/Tabs/Backups/Current/HBox/BtnCreate" to="Main/Tabs/Backups" method="_on_BtnCreate_pressed"]
 [connection signal="item_selected" from="Main/Tabs/Settings/LauncherLanguage/obtnLanguage" to="Main/Tabs/Settings" method="_on_obtnLanguage_item_selected"]
+[connection signal="item_selected" from="Main/Tabs/Settings/LauncherTheme/obtnTheme" to="Main/Tabs/Settings" method="_on_obtnTheme_item_selected"]
 [connection signal="toggled" from="Main/Tabs/Settings/ShowGameDesc" to="Main/Tabs/Settings" method="_on_ShowGameDesc_toggled"]
 [connection signal="toggled" from="Main/Tabs/Settings/PrintTips" to="Main/Tabs/Settings" method="_on_PrintTips_toggled"]
 [connection signal="toggled" from="Main/Tabs/Settings/UpdateToSame" to="Main/Tabs/Settings" method="_on_UpdateToSame_toggled"]
