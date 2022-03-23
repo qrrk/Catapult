@@ -37,10 +37,10 @@ None required. The launcher is a single, self-contained executable. Just [downlo
 
 These are tentative. They may or may not come to fruition.
 
-- ~~Translations~~. *Done! (Translation infrasctructure is implemented; currently English, French, Russian and Simplified Chinese are available; other contributions welcome!)*
+- ~~Translations~~. *Done!
 - ~~Setting in-game font from the launcher.~~ *Done!*
 - ~~Backups for user data.~~ *Savegame backups added!*
-- Multiple launcher UI themes.
+- ~~Multiple launcher UI themes.~~ *Done!*
 - Download and installation of tilesets?
   (Only if there are at least a couple of finished tilesets out there that don't already come with both games.)
 - Some kind of built-in knowledge base similar to Chezzo's [Item Browser](http://www.cdda-trunk.chezzo.com/).
