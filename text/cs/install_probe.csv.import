@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+
+[deps]
+
+files=[ "res://text/cs/install_probe.cs.translation" ]
+
+source_file="res://text/cs/install_probe.csv"
+dest_files=[ "res://text/cs/install_probe.cs.translation" ]
+
+[params]
+
+compress=true
+delimiter=0

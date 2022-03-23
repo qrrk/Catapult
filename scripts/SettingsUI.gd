@@ -27,6 +27,8 @@ func _ready() -> void:
 			lang_list.selected = 2
 		"zh":
 			lang_list.selected = 3
+		"cs":
+			lang_list.selected = 4
 	
 	_populate_theme_list()
 	
@@ -81,7 +83,9 @@ func _on_obtnLanguage_item_selected(index: int) -> void:
 			locale = "ru"
 		3:
 			locale = "zh"
-	
+		4:
+			locale = "cs"
+  
 	Settings.store("launcher_locale", locale)
 	TranslationServer.set_locale(locale)
 	_root.assign_localized_text()

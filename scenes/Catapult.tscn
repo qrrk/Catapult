@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://icons/info.svg" type="Texture" id=1]
 [ext_resource path="res://icons/download.svg" type="Texture" id=2]
@@ -30,6 +30,7 @@
 [ext_resource path="res://scripts/FontManager.gd" type="Script" id=28]
 [ext_resource path="res://scenes/FontSizeHelpDialog.tscn" type="PackedScene" id=29]
 [ext_resource path="res://icons/help.svg" type="Texture" id=30]
+[ext_resource path="res://icons/lang_cs.png" type="Texture" id=31]
 [ext_resource path="res://scenes/ChangelogDialog.tscn" type="PackedScene" id=32]
 [ext_resource path="res://scripts/BackupsUI.gd" type="Script" id=33]
 [ext_resource path="res://scripts/BackupManager.gd" type="Script" id=34]
@@ -976,7 +977,7 @@ size_flags_horizontal = 10
 text = "English"
 icon = ExtResource( 35 )
 expand_icon = true
-items = [ "English", ExtResource( 35 ), false, 0, null, "Français", ExtResource( 22 ), false, 1, null, "Русский", ExtResource( 36 ), false, 2, null, "简体字", ExtResource( 7 ), false, 3, null ]
+items = [ "English", ExtResource( 35 ), false, 0, null, "Français", ExtResource( 22 ), false, 1, null, "Русский", ExtResource( 36 ), false, 2, null, "简体字", ExtResource( 7 ), false, 3, null, "Čeština", ExtResource( 31 ), false, 4, null ]
 selected = 0
 
 [node name="LauncherTheme" type="HBoxContainer" parent="Main/Tabs/Settings"]
