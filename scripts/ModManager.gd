@@ -34,9 +34,6 @@ const _MODPACKS = {
 	}
 }
 
-onready var _fshelper := $"../FSHelper"
-onready var _downloader := $"../Downloader"
-
 
 var installed: Dictionary = {} setget , _get_installed
 var available: Dictionary = {} setget , _get_available
@@ -65,7 +62,7 @@ func parse_mods_dir(mods_dir: String) -> Dictionary:
 		
 	var result = {}
 	
-	for subdir in _fshelper.list_dir(mods_dir):
+	for subdir in FS.list_dir(mods_dir):
 		var f = File.new()
 		var modinfo = mods_dir.plus_file(subdir).plus_file("/modinfo.json")
 		
@@ -182,8 +179,8 @@ func _delete_mod(mod_id: String) -> void:
 	
 	if mod_id in installed:
 		var mod = installed[mod_id]
-		_fshelper.rm_dir(mod["location"])
-		yield(_fshelper, "rm_dir_done")
+		FS.rm_dir(mod["location"])
+		yield(FS, "rm_dir_done")
 		Status.post(tr("msg_mod_deleted") % mod["modinfo"]["name"])
 	else:
 		Status.post(tr("msg_mod_not_found") % mod_id, Enums.MSG_ERROR)
@@ -222,8 +219,8 @@ func _install_mod(mod_id: String) -> void:
 	if mod_id in available:
 		var mod = available[mod_id]
 		
-		_fshelper.copy_dir(mod["location"], mods_dir)
-		yield(_fshelper, "copy_dir_done")
+		FS.copy_dir(mod["location"], mods_dir)
+		yield(FS, "copy_dir_done")
 		
 		if (mod_id in installed) and (installed[mod_id]["is_obsolete"] == true):
 			Status.post(tr("msg_obsolete_mod_collision") % [mod_id, mod["modinfo"]["name"]])
@@ -267,33 +264,33 @@ func retrieve_kenan_pack() -> void:
 	emit_signal("modpack_retrieval_started")
 	Status.post(tr("msg_getting_kenan_pack") % game.to_upper())
 	
-	_downloader.download_file(pack["url"], Paths.own_dir, pack["filename"])
-	yield(_downloader, "download_finished")
+	Downloader.download_file(pack["url"], Paths.own_dir, pack["filename"])
+	yield(Downloader, "download_finished")
 	
 	var archive = Paths.own_dir.plus_file(pack["filename"])
 	if Directory.new().file_exists(archive):
-		_fshelper.extract(archive, Paths.tmp_dir)
-		yield(_fshelper, "extract_done")
+		FS.extract(archive, Paths.tmp_dir)
+		yield(FS, "extract_done")
 		Directory.new().remove(archive)
 		
 		Status.post(tr("msg_wiping_mod_repo"))
 		if (Directory.new().dir_exists(Paths.mod_repo)):
-			_fshelper.rm_dir(Paths.mod_repo)
-			yield(_fshelper, "rm_dir_done")
+			FS.rm_dir(Paths.mod_repo)
+			yield(FS, "rm_dir_done")
 		
 		Status.post(tr("msg_unpacking_kenan_mods"))
 		for int_path in pack["internal_paths"]:
-			_fshelper.move_dir(Paths.tmp_dir.plus_file(int_path), Paths.mod_repo)
-			yield(_fshelper, "move_dir_done")
+			FS.move_dir(Paths.tmp_dir.plus_file(int_path), Paths.mod_repo)
+			yield(FS, "move_dir_done")
 		
 		if Settings.read("install_archived_mods"):
 			Status.post(tr("msg_unpacking_archived_mods"))
-			_fshelper.move_dir(Paths.tmp_dir.plus_file(pack["archived_path"]), Paths.mod_repo)
-			yield(_fshelper, "move_dir_done")
+			FS.move_dir(Paths.tmp_dir.plus_file(pack["archived_path"]), Paths.mod_repo)
+			yield(FS, "move_dir_done")
 		
 		Status.post(tr("msg_kenan_install_cleanup"))
-		_fshelper.rm_dir(Paths.tmp_dir.plus_file(pack["internal_paths"][0].split("/")[0]))
-		yield(_fshelper, "rm_dir_done")
+		FS.rm_dir(Paths.tmp_dir.plus_file(pack["internal_paths"][0].split("/")[0]))
+		yield(FS, "rm_dir_done")
 		
 		Status.post(tr("msg_kenan_install_done"))
 	

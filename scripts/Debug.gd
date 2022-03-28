@@ -1,10 +1,8 @@
 extends VBoxContainer
 
 
-onready var _fshelper = $"/root/Catapult/FSHelper"
 onready var _mods = $"../../../Mods"
 onready var _sound = $"../../../Sound"
-onready var _totd = $"/root/Catapult/TOTD"
 
 
 func _on_Button_pressed() -> void:
@@ -92,7 +90,7 @@ func _on_Button5_pressed() -> void:
 	yield(get_tree().create_timer(0.1), "timeout")
 	
 	var listing_msg = "\n"
-	for p in _fshelper.list_dir(path, true):
+	for p in FS.list_dir(path, true):
 		listing_msg += p + "\n"
 		
 	Status.post(listing_msg, Enums.MSG_DEBUG)
@@ -100,7 +98,7 @@ func _on_Button5_pressed() -> void:
 
 func _on_Button6_pressed() -> void:
 	
-	Status.post("Random tip of the day (debug):\n%s\n" % _totd.get_tip())
+	Status.post("Random tip of the day (debug):\n%s\n" % TOTD.get_tip())
 
 
 func _on_Button7_pressed() -> void:

@@ -3,7 +3,6 @@ extends Node
 
 onready var _debug_ui = $Main/Tabs/Debug
 onready var _log = $Main/Log
-onready var _totd = $TOTD
 onready var _game_info = $Main/GameInfo
 onready var _game_desc = $Main/GameInfo/Description
 onready var _mod_info = $Main/Tabs/Mods/ModInfo
@@ -11,7 +10,6 @@ onready var _inst_probe = $InstallProbe
 onready var _tabs = $Main/Tabs
 onready var _mods = $Mods  
 onready var _releases = $Releases
-onready var _fshelper = $FSHelper
 onready var _installer = $ReleaseInstaller
 onready var _btn_install = $Main/Tabs/Game/BtnInstall
 onready var _btn_refresh = $Main/Tabs/Game/Builds/BtnRefresh
@@ -42,7 +40,7 @@ func _ready() -> void:
 	
 	var welcome_msg = tr("str_welcome")
 	if Settings.read("print_tips_of_the_day"):
-		welcome_msg += tr("str_tip_of_the_day") + _totd.get_tip() + "\n"
+		welcome_msg += tr("str_tip_of_the_day") + TOTD.get_tip() + "\n"
 	Status.post(welcome_msg)
 	
 	_unpack_utils()

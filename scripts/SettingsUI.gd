@@ -13,7 +13,6 @@ var _themes := [
 
 onready var _root = $"/root/Catapult"
 onready var _tabs = $"/root/Catapult/Main/Tabs"
-onready var _fshelper = $"/root/Catapult/FSHelper"
 onready var _debug_ui = $"/root/Catapult/Main/Tabs/Debug"
 
 

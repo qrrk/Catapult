@@ -54,10 +54,6 @@ const SOUNDPACKS = [
 ]
 
 
-onready var _fshelper := $"../FSHelper"
-onready var _downloader := $"../Downloader"
-
-
 func parse_sound_dir(sound_dir: String) -> Array:
 	
 	if not Directory.new().dir_exists(sound_dir):
@@ -66,7 +62,7 @@ func parse_sound_dir(sound_dir: String) -> Array:
 	
 	var result = []
 	
-	for subdir in _fshelper.list_dir(sound_dir):
+	for subdir in FS.list_dir(sound_dir):
 		var f = File.new()
 		var info = sound_dir.plus_file(subdir).plus_file("soundpack.txt")
 		if f.file_exists(info):
@@ -113,8 +109,8 @@ func delete_pack(name: String) -> void:
 		if pack["name"] == name:
 			emit_signal("soundpack_deletion_started")
 			Status.post(tr("msg_deleting_sound") % pack["location"])
-			_fshelper.rm_dir(pack["location"])
-			yield(_fshelper, "rm_dir_done")
+			FS.rm_dir(pack["location"])
+			yield(FS, "rm_dir_done")
 			emit_signal("soundpack_deletion_finished")
 			return
 			
@@ -128,7 +124,7 @@ func install_pack(soundpack_index: int, from_file = null, reinstall = false, kee
 	var sound_dir = Paths.sound_user
 	var tmp_dir = Paths.tmp_dir.plus_file(pack["name"])
 	var archive = ""
-			
+	
 	emit_signal("soundpack_installation_started")
 	
 	if reinstall:
@@ -139,8 +135,8 @@ func install_pack(soundpack_index: int, from_file = null, reinstall = false, kee
 	if from_file:
 		archive = from_file
 	else:
-		_downloader.download_file(pack["url"], Paths.own_dir, pack["filename"])
-		yield(_downloader, "download_finished")
+		Downloader.download_file(pack["url"], Paths.own_dir, pack["filename"])
+		yield(Downloader, "download_finished")
 		archive = Paths.own_dir.plus_file(pack["filename"])
 		if not Directory.new().file_exists(archive):
 			Status.post(tr("msg_sound_download_failed"), Enums.MSG_ERROR)
@@ -148,17 +144,17 @@ func install_pack(soundpack_index: int, from_file = null, reinstall = false, kee
 			return
 		
 	if reinstall:
-		_fshelper.rm_dir(sound_dir + "/" + pack["name"])
-		yield(_fshelper, "rm_dir_done")
+		FS.rm_dir(sound_dir + "/" + pack["name"])
+		yield(FS, "rm_dir_done")
 		
-	_fshelper.extract(archive, tmp_dir)
-	yield(_fshelper, "extract_done")
+	FS.extract(archive, tmp_dir)
+	yield(FS, "extract_done")
 	if not keep_archive:
 		Directory.new().remove(archive)
-	_fshelper.move_dir(tmp_dir + "/" + pack["internal_path"], sound_dir + "/" + pack["name"])
-	yield(_fshelper, "move_dir_done")
-	_fshelper.rm_dir(tmp_dir)
-	yield(_fshelper, "rm_dir_done")
+	FS.move_dir(tmp_dir + "/" + pack["internal_path"], sound_dir + "/" + pack["name"])
+	yield(FS, "move_dir_done")
+	FS.rm_dir(tmp_dir)
+	yield(FS, "rm_dir_done")
 	
 	Status.post(tr("msg_sound_installed"))
 	emit_signal("soundpack_installation_finished")

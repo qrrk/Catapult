@@ -8,8 +8,6 @@ signal backup_restoration_finished
 signal backup_deletion_started
 signal backup_deletion_finished
 
-onready var _fshelper := $"../FSHelper"
-
 var available = null setget , _get_available
 
 
@@ -24,9 +22,9 @@ func backup_current(backup_name: String) -> void:
 	
 	if not d.dir_exists(dest_dir):
 		d.make_dir(dest_dir)
-		for world in _fshelper.list_dir(Paths.savegames):
-			_fshelper.copy_dir(Paths.savegames.plus_file(world), dest_dir)
-			yield(_fshelper, "copy_dir_done")
+		for world in FS.list_dir(Paths.savegames):
+			FS.copy_dir(Paths.savegames.plus_file(world), dest_dir)
+			yield(FS, "copy_dir_done")
 		
 		Status.post(tr("msg_backup_created"))
 	else:
@@ -47,7 +45,7 @@ func get_save_summary(path: String) -> Dictionary:
 		"worlds": [],
 	}
 	
-	for world in _fshelper.list_dir(path):
+	for world in FS.list_dir(path):
 		summary["worlds"].append(world)
 	
 	return summary
@@ -68,7 +66,7 @@ func refresh_available():
 	if not Directory.new().dir_exists(Paths.save_backups):
 		return
 	
-	for backup in _fshelper.list_dir(Paths.save_backups):
+	for backup in FS.list_dir(Paths.save_backups):
 		var path = Paths.save_backups.plus_file(backup)
 		available.append(get_save_summary(path))
 
@@ -86,13 +84,13 @@ func restore(backup_index: int) -> void:
 
 	if Directory.new().dir_exists(source_dir):
 		if Directory.new().dir_exists(dest_dir):
-			_fshelper.rm_dir(dest_dir)
-			yield(_fshelper, "rm_dir_done")
+			FS.rm_dir(dest_dir)
+			yield(FS, "rm_dir_done")
 		
 		Directory.new().make_dir(dest_dir)
-		for world in _fshelper.list_dir(source_dir):
-			_fshelper.copy_dir(source_dir.plus_file(world), dest_dir)
-			yield(_fshelper, "copy_dir_done")
+		for world in FS.list_dir(source_dir):
+			FS.copy_dir(source_dir.plus_file(world), dest_dir)
+			yield(FS, "copy_dir_done")
 		
 		Status.post(tr("msg_backup_restored"))
 	else:
@@ -110,8 +108,8 @@ func delete(backup_name: String) -> void:
 	if Directory.new().dir_exists(target_dir):
 		Status.post(tr("msg_deleting_backup") % backup_name)
 	
-		_fshelper.rm_dir(target_dir)
-		yield(_fshelper, "rm_dir_done")
+		FS.rm_dir(target_dir)
+		yield(FS, "rm_dir_done")
 		Status.post(tr("msg_backup_deleted"))
 
 	emit_signal("backup_deletion_finished")

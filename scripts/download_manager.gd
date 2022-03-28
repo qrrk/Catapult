@@ -13,7 +13,14 @@ var _current_filename := ""
 var _current_file_path := ""
 var _download_ongoing := false
 
-onready var _http = $HTTPRequest
+onready var _http: HTTPRequest
+
+
+func _enter_tree() -> void:
+	
+	_http = HTTPRequest.new()
+	self.add_child(_http)
+	_http.connect("request_completed", self, "_on_HTTPRequest_request_completed")
 
 
 func download_file(url: String, target_dir: String, target_filename: String) -> void:
