@@ -1,7 +1,7 @@
 extends VBoxContainer
 
 
-var _langs := ["en", "fr", "ru", "zh", "cs"]
+var _langs := ["en", "fr", "ru", "zh", "cs", "es"]
 
 var _themes := [
 	"Godot_3.theme",
@@ -62,6 +62,8 @@ func _on_obtnLanguage_item_selected(index: int) -> void:
 			locale = "zh"
 		4:
 			locale = "cs"
+		5:
+			locale = "es"
   
 	Settings.store("launcher_locale", locale)
 	TranslationServer.set_locale(locale)
