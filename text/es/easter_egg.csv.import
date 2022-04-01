@@ -5,10 +5,10 @@ type="Translation"
 
 [deps]
 
-files=[ "res://text/en/easter_egg.en.translation" ]
+files=[ "res://text/es/easter_egg.es.translation" ]
 
-source_file="res://text/en/easter_egg.csv"
-dest_files=[ "res://text/en/easter_egg.en.translation" ]
+source_file="res://text/es/easter_egg.csv"
+dest_files=[ "res://text/es/easter_egg.es.translation" ]
 
 [params]
 

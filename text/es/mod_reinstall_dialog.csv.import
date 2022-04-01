@@ -5,10 +5,10 @@ type="Translation"
 
 [deps]
 
-files=[ "res://text/en/mod_reinstall_dialog.en.translation" ]
+files=[ "res://text/es/mod_reinstall_dialog.es.translation" ]
 
-source_file="res://text/en/mod_reinstall_dialog.csv"
-dest_files=[ "res://text/en/mod_reinstall_dialog.en.translation" ]
+source_file="res://text/es/mod_reinstall_dialog.csv"
+dest_files=[ "res://text/es/mod_reinstall_dialog.es.translation" ]
 
 [params]
 

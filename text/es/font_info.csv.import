@@ -5,10 +5,10 @@ type="Translation"
 
 [deps]
 
-files=[ "res://text/en/font_info.en.translation" ]
+files=[ "res://text/es/font_info.es.translation" ]
 
-source_file="res://text/en/font_info.csv"
-dest_files=[ "res://text/en/font_info.en.translation" ]
+source_file="res://text/es/font_info.csv"
+dest_files=[ "res://text/es/font_info.es.translation" ]
 
 [params]
 

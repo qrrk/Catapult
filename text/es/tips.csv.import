@@ -5,10 +5,10 @@ type="Translation"
 
 [deps]
 
-files=[ "res://text/en/tips.en.translation" ]
+files=[ "res://text/es/tips.es.translation" ]
 
-source_file="res://text/en/tips.csv"
-dest_files=[ "res://text/en/tips.en.translation" ]
+source_file="res://text/es/tips.csv"
+dest_files=[ "res://text/es/tips.es.translation" ]
 
 [params]
 

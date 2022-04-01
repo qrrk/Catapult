@@ -5,10 +5,10 @@ type="Translation"
 
 [deps]
 
-files=[ "res://text/en/release_installer.en.translation" ]
+files=[ "res://text/es/release_installer.es.translation" ]
 
-source_file="res://text/en/release_installer.csv"
-dest_files=[ "res://text/en/release_installer.en.translation" ]
+source_file="res://text/es/release_installer.csv"
+dest_files=[ "res://text/es/release_installer.es.translation" ]
 
 [params]
 

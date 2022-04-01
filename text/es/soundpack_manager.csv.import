@@ -5,10 +5,10 @@ type="Translation"
 
 [deps]
 
-files=[ "res://text/en/soundpack_manager.en.translation" ]
+files=[ "res://text/es/soundpack_manager.es.translation" ]
 
-source_file="res://text/en/soundpack_manager.csv"
-dest_files=[ "res://text/en/soundpack_manager.en.translation" ]
+source_file="res://text/es/soundpack_manager.csv"
+dest_files=[ "res://text/es/soundpack_manager.es.translation" ]
 
 [params]
 

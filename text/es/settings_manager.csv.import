@@ -5,10 +5,10 @@ type="Translation"
 
 [deps]
 
-files=[ "res://text/en/settings_manager.en.translation" ]
+files=[ "res://text/es/settings_manager.es.translation" ]
 
-source_file="res://text/en/settings_manager.csv"
-dest_files=[ "res://text/en/settings_manager.en.translation" ]
+source_file="res://text/es/settings_manager.csv"
+dest_files=[ "res://text/es/settings_manager.es.translation" ]
 
 [params]
 
