@@ -1,0 +1,9 @@
+"keys","es"
+,
+"msg_unsupported_platform","Plataforma no soportada: \""%s\"""
+"msg_releases_request_failed","Solicitud fallida.¿Tienes conexión a internet?"
+"msg_releases_api_failure","No se pudo obtener la lista de compilaciones. GitHub dice: %s"
+"msg_got_n_releases","Hay %s lanzamientos."
+"msg_fetching_releases_dda","Buscando lanzamientos para DDA Experimental..."
+"msg_fetching_releases_bn","Buscando lanzamientos para BN Experimental…"
+"msg_invalid_fetch_func_param","ReleaseManager.fetch() pasó %s"

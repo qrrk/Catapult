@@ -1,0 +1,7 @@
+"keys","es"
+,
+"msg_file_read_fail","No se pudo abrir el archivo %s (error %s)."
+"msg_file_write_fail","No se pudo abrir el archivo %s para escritura (error %s)."
+"msg_debug_file_path","Ruta completa: %s"
+"msg_json_parse_fail","No se pudo analizar el contenido de %s."
+"msg_debug_json_result","Resultado de análisis del JSON:\nCódigo de error: %s\nMensaje de error: %s\nLínea de error: %s"

@@ -1,0 +1,19 @@
+"keys","es"
+,
+"lbl_installed_sound","Instalado:"
+"lbl_avail_sound","Descargable:"
+"cbtn_stock_sound","Mostrar stock"
+"btn_delete_sound","Eliminar seleccionado"
+"btn_install_sound","Instalar seleccionado"
+"btn_reinstall_sound","Reinstalar seleccionado"
+,
+"tooltip_stock_sound","Mostrar paquetes de sonido de data/sound en la lista."
+"tooltip_delete_sound","Eliminar los paquetes de sonido seleccionados de la instalación del juego."
+"tooltip_install_sound","Descargar los paquetes de sonido seleccionados y agregarlos al juego."
+,
+"dlg_sound_deletion_title","Confirmar la eliminación del paquete de sonido"
+"dlg_sound_deletion_text","Eliminando %s."
+"dlg_sound_manual_dl_title","Descarga manual requerida"
+"dlg_sound_manual_dl_text","Esta paquete de sonido no se puede descargar automáticamente. Haga clic en OK para descargarlo en su navegador, luego elija donde lo guardo en el cuadro de diálogo Selección de archivos."
+,
+"str_no_sound_desc","Ninguna descripción ha sido provista."

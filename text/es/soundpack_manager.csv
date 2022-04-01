@@ -1,0 +1,9 @@
+"keys","es"
+,
+"msg_no_sound_dir","La carpeta de sonido no existe: %s"
+"msg_deleting_sound","Eliminando %s"
+"msg_soundpack_not_found","No se pudo encontrar el paquete de sonido llamado \""%s\"""
+"msg_installing_sound","Instalando paquete de sonido \""%s\""..."
+"msg_reinstalling_sound","Reinstalando paquete de sonido \""%s\""…"
+"msg_sound_download_failed","No se pudo descargar el paquete de sonido."
+"msg_sound_installed","Paquete de sonido instalado."
