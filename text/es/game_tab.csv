@@ -4,7 +4,7 @@
 "rbtn_stable","Estable"
 "rbtn_experimental","Experimental"
 "lbl_changelog","[right][color=#3b93f7][url]Ver lista de cambios experimentales[/url][/color][/right]"
-"lbl_builds","Compilaciones disponibles:"
+"lbl_builds","Compilaciones:"
 "btn_refresh","Refrescar"
 "btn_install","Instalar seleccionado"
 "btn_update","Actualizar a seleccionado"
