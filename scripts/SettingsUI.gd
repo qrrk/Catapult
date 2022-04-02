@@ -50,21 +50,7 @@ func _ready() -> void:
 
 func _on_obtnLanguage_item_selected(index: int) -> void:
 	
-	var locale := ""
-	match index:
-		0:
-			locale = "en"
-		1:
-			locale = "fr"
-		2:
-			locale = "ru"
-		3:
-			locale = "zh"
-		4:
-			locale = "cs"
-		5:
-			locale = "es"
-  
+	var locale = _langs[index]
 	Settings.store("launcher_locale", locale)
 	TranslationServer.set_locale(locale)
 	_root.assign_localized_text()
