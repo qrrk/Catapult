@@ -8,6 +8,6 @@
 "msg_downloading_file","Descargando %s…"
 "msg_download_progress","Descargando:"
 "str_dl_speed_at","a"
-"msg_download_finished","La descarga se ha completado %s."
+"msg_download_finished","La descarga de %s se ha completado."
 "msg_download_failed","La descarga ha fallado %s."
-"msg_http_request_info","[b]HTTPRequest info:[/b]\n[u]Result:[/u] %s\n[u]Response code:[/u] %s\n[u]Headers:[/u] %s"
+"msg_http_request_info","[b]Info HTTPRequest:[/b]\n[u]Resultado:[/u] %s\n[u]Código de respuesta:[/u] %s\n[u]Cabeceras:[/u] %s"

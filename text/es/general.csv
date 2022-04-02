@@ -1,11 +1,11 @@
 "keys","es"
 ,
-"window_title","Catapult — un launcher para Cataclysm: DDA y BN"
+"window_title","Catapult — Launcher para Cataclysm: DDA y BN"
 "str_welcome","Bienvenido a Catapult!"
 "str_tip_of_the_day","\n\n[u]Consejo del dia:[/u]\n"
 "msg_unpacking_unzip","Descomprimiendo unzip.exe…"
 "msg_theme_load_error","No se pudo cargar el tema %s."
-"debug_test","Este es un texto de debug para probar la búsqueda de traducciones."
+"debug_test","Este es un texto debug para probar la búsqueda de traducciones."
 ,
 "tag_warning","advertencia"
 "tag_error","error"
@@ -17,7 +17,7 @@
 ,
 "tab_game","Juego"
 "tab_mods","Mods"
-"tab_soundpacks","Packs de sonido"
+"tab_soundpacks","Sonido"
 "tab_fonts","Fuentes"
-"tab_backups","Copias de seguridad"
+"tab_backups","Backups"
 "tab_settings","Opciones"
