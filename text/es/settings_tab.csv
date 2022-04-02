@@ -4,7 +4,7 @@
 "lbl_launcher_theme","Tema de launcher"
 "cbtn_show_game_desc","Mostrar Descripción del juego"
 "cbtn_print_tips","Mostrar consejos del día en el inicio."
-"cbtn_updating_to_same_build","Permitir ""actualizar"" "a la misma compilación que ya está instalada"
+"cbtn_updating_to_same_build","Permitir ""actualizar"" a la misma compilación que ya está instalada"
 "cbtn_shorten_release_names","Acortar los nombres de los lanzamientos experimentales."
 "cbtn_show_obsolete_mods","Listar los mods obsoletos en la lista de instalados"
 "cbtn_install_archived_mods","Incluir mods archivados al instalar el pack de mods de Kenan"
