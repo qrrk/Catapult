@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+
+[deps]
+
+files=[ "res://text/es/dialog_buttons.es.translation" ]
+
+source_file="res://text/es/dialog_buttons.csv"
+dest_files=[ "res://text/es/dialog_buttons.es.translation" ]
+
+[params]
+
+compress=true
+delimiter=0

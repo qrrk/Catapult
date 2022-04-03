@@ -1,0 +1,11 @@
+"keys","es"
+,
+"tip_os_hopping","Puede llevar la carpeta Catapult desde Windows a Linux (o viceversa) y seguir usándolo, pero deberá descargar el ejecutable Catapult correcto y actualizar su juego al menos una vez."
+"tip_dual_install","Ambos [i]C:DDA[/i] y [i]C:BN[/i] pueden instalarse al mismo tiempo. Sus instalaciones son completamente independientes, y sus actualizaciones, mods y paquetes de sonido se gestionan por separado."
+"tip_downgrading","Puedes volver a una version anterior eligiendo \""actualizar\"" a una compilación anterior, pero ten cuidado con problemas de compatibilidad."
+"tip_stock_mods","Los mods que vienen con el juego no son administrados por Catapult (excepto para evitar que se instalen una segunda vez). Catapult solo trabaja con la carpeta [i]/mods[/i], no [i]/data/mods[/i]."
+"tip_mod_multi_install","Puedes seleccionar varios mods para instalar/borrar haciendo [i]Ctrl-clic[/i] y [i]Shift-clic[/i] en las listas."
+"tip_modpack_update","El Modpack de Kenan's se actualiza frecuentemente. Solo haz clic en [i]Obtener el Modpack de Kenan[/i] nuevamente para volver a descargarlo y reemplazar los mods en su repositorio local."
+"tip_debug_mode","¿Te salen mensajes de error inútiles? Prueba habilitar el modo debug en [i]Opciones[/i] para un output mas extenso."
+"tip_bug_reporting","Si estas teniendo un problema con el launcher y no lo ves ya reportado [color=#3b93f7][url=https://github.com/qrrk/Catapult/issues]en GitHub[/url][/color], ¡Entonces puedes ser la primera persona en notarlo! Considera crear un ticket para ello si tienes una cuenta en GitHub."
+"tip_backup_caveat","Si mantiene múltiples mundos en tu juego, ten cuidado con los backups guardados siempre operan en toda la carpeta save. Esto significa que cuando se restaura un backup, se pierden todos los contenidos anteriores de la carpeta save (incluidos los mundos que no estuvieran en ese backup)."

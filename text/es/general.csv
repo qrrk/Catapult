@@ -1,0 +1,23 @@
+"keys","es"
+,
+"window_title","Catapult — Launcher para Cataclysm: DDA y BN"
+"str_welcome","Bienvenido a Catapult!"
+"str_tip_of_the_day","\n\n[u]Consejo del dia:[/u]\n"
+"msg_unpacking_unzip","Descomprimiendo unzip.exe…"
+"msg_theme_load_error","No se pudo cargar el tema %s."
+"debug_test","Este es un texto debug para probar la búsqueda de traducciones."
+,
+"tag_warning","advertencia"
+"tag_error","error"
+"tag_debug","debug"
+,
+"lbl_game","Juego:"
+"desc_dda","[b]Cataclysm: Dark Days Ahead[/b] es un juego de supervivencia por turnos ambientado en un mundo postapocalíptico. Busca, explora, fabrica, construye, cultiva, repara y modifica vehículos, instala prótesis biónicas, muta y defiéndete de [color=#009900]zombis[/color] e incontables monstruosidades — todo en un infinito y procedural mundo abierto!"
+"desc_bn","[b]Cataclysm: Bright Nights[/b]. Rechaza la pedantería, abraza la [color=#ff3300]!!diversión!![/color]. Esta ramificación vuelve el juego a sus raíces sci-fi y revierte muchos cambios controversiales hechos por el equipo de  DDA (bolsillos, habilidades, congelamiento, y [color=#3b93f7][url=https://github.com/cataclysmbnteam/Cataclysm-BN/wiki/Changes-so-far]más[/url][/color]). Se le prestó mas atención al combate, balance y ritmo del juego."
+,
+"tab_game","Juego"
+"tab_mods","Mods"
+"tab_soundpacks","Sonido"
+"tab_fonts","Fuentes"
+"tab_backups","Backups"
+"tab_settings","Opciones"

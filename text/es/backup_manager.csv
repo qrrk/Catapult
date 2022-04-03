@@ -1,0 +1,10 @@
+"keys","es"
+,
+"msg_backing_up_saves","Guardando backups en \""%s\""..."
+"msg_backup_created","Backup creado."
+"msg_backup_name_taken","El backup llamado \""%s\"" ya existe."
+"msg_restoring_backup","Restaurando backup \""%s\""..."
+"msg_backup_restored","Backup restaurado."
+"msg_backup_not_found","No se encontró el backup \""%s\""."
+"msg_deleting_backup","Eliminando backup \""%s\""..."
+"msg_backup_deleted","Backup eliminad."

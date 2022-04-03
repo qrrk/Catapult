@@ -1,0 +1,13 @@
+"keys","es"
+,
+"lbl_save_backups","Carpeta de backups guardados:"
+"btn_restore_backup","Restaurar"
+"btn_delete_backup","Borrar"
+"btn_refresh_backups","Refrescar"
+"lbl_manual_backup","Backup manual"
+"lbl_backup_name","Nombre:"
+"btn_create_backup","Crear"
+"lbl_backup_info_placeholder","Selecciona un backup para ver sus detalles."
+,
+"backup_info_location","Carpeta:"
+"backup_info_worlds","Mundos:"

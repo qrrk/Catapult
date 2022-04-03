@@ -1,0 +1,9 @@
+"keys","es"
+,
+"dlg_changelog_title","Cambios recientes"
+"str_fetching_changes","Buscando cambios recientes en GitHub. Por favor espere..."
+"str_error_retrieving_data","Ocurrió un error al traer los datos de la API de GitHub."
+"str_hhtp_response_code","\n\nCódigo de respuesta HTTP: %s"
+"str_github_says","\nGitHub dice: [i]%s[/i]"
+"str_try_later","\n\nPor favor intente de nuevo más tarde."
+"str_changelog_intro","Mostrando las últimas [b]%s[/b] pull requests completadas (lineas de código añadidas) a [b]%s[/b].\n\nPuedes hacer clic en cualquier item para ver la pull request correspondiente en GitHub y aprender más sobre el cambio.\n"
