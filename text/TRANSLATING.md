@@ -26,12 +26,18 @@ This system makes translation data easier to manage and more friendly to version
 
 # How to add your own translation
 
-_Tip:_ you can use Excel, LibreOffice, or even a plain text editor to work with the CSV files.
+_Tip:_ you can use Excel, LibreOffice, or even a plain text editor like Notepad to work with the CSV files. In fact, I myself prefer editing them as plain text.
 
 1. Fork the repository and clone it.
 2. Duplicate the `text/en/` directory and name it with the two-letter code of your language. Translating from other languages is not recommended. English is the original language for this project, so it's best to use it as the base for your translation to avoid distortions.
 3. Edit each CSV file inside your language folder. Replace `en` in the header row with your own language (do not forget this step!), then replace the strings in English with your translations.
 4. Open the project in Godot and go to _Project → Project Settings → Localization → Translations_. Click _Add_ and navigate to your language folder. Select all of `.translation` files generated from your CSVs and click _Open_.
 5. Now you can "play-test" your translation by editing the config file of Catapult, `catapult_settings.json`, and replacing the value of `launcher_locale` with your new localization. Run the launcher from Godot editor, look around and make sure everything looks good.
-6. Optionally, edit the launcher code to have your translation show up in _Settings_. Or I can do it for you.
+6. Optionally, integrate your translation into launcher settings. This usually involves adding a new item to the language drop-down and editing `SettingsUI.gd`. If you don't feel comfortable doing that, I can do this step for you later.
 7. Commit your changes and create a pull request!
+
+# Tips and things to watch out for
+
+- Some UI elements may break the layout if their text is too long. Avoid being unnecessarily verbose, expecially in button titles. Keep in mind that element titles don't have to be exceedingly clear, since most of them also have tooltips to clear up any confusion.
+- Remember to keep/add line breaks in tooltips. Godot doesn't do automatic word wrap in tooltips, so they may go off-screen if the individual lines are too long.
+- Don't strive for word-for-word translations at all costs. If you think rephrasing a string will make it more clear and/or concise in your language, go for it!
