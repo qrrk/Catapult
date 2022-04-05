@@ -24,7 +24,7 @@
 "tooltip_set_font_ui","Use selected font for menus/dialogs/etc."
 "tooltip_set_font_map","Use selected font for game world\n(when not using tiles)."
 "tooltip_set_font_omap","Use selected font for world map view a.k.a overmap."
-"tooltip_set_font_all","Use selected font for everyhting."
+"tooltip_set_font_all","Use selected font for everything."
 "tooltip_reset_font","Return default fonts (Terminus => Unifont)."
 ,
 "str_curr_font_config","Current fonts + fallbacks:"
