@@ -9,7 +9,7 @@
 "lbl_font_sz_overmap","Tamaño de fuente del mapa general:"
 "cbtn_font_blending","Mezcla de fuentes:"
 "btn_save_font","Guardar"
-"btn_set_font_ui","Aplicar a interfaz"
+"btn_set_font_ui","Aplicar a la interfaz"
 "btn_set_font_map","Aplicar al mapa"
 "btn_set_font_omap","Aplicar al mapa general"
 "btn_set_font_all","Aplicar a todo"

@@ -1,7 +1,7 @@
 "keys","es"
 ,
-"lbl_installed_sound","Instalado:"
-"lbl_avail_sound","Descargable:"
+"lbl_installed_sound","Instalados:"
+"lbl_avail_sound","Disponibles:"
 "cbtn_stock_sound","Mostrar stock"
 "btn_delete_sound","Eliminar seleccionado"
 "btn_install_sound","Instalar seleccionado"
@@ -9,7 +9,7 @@
 ,
 "tooltip_stock_sound","Mostrar paquetes de sonido de data/sound en la lista."
 "tooltip_delete_sound","Eliminar los paquetes de sonido seleccionados de la instalación del juego."
-"tooltip_install_sound","Descargar los paquetes de sonido seleccionados y agregarlos al juego."
+"tooltip_install_sound","Descarga los paquetes de sonido\nseleccionados y los agrega al juego."
 ,
 "dlg_sound_deletion_title","Confirmar la eliminación del paquete de sonido"
 "dlg_sound_deletion_text","Eliminando %s."
