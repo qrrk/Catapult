@@ -12,7 +12,7 @@
 "msg_move_file_failed_details","[u]Исходный путь:[/u] %s, [u]путь назначения:[/u] %s."
 "msg_move_rmdir_failed","Не получилось удалить исходную директорию %s. Код ошибки: %s."
 "msg_extract_unsupported","Неподдерживаемая платформа или формат архива (файл: %s)"
-"msg_extracting_file","Распаковка %s…"
+"msg_extracting_file","Распаковка %s..."
 "msg_extract_error","Команда распаковки архива завершилась с ошибкой (код возврата: %s)"
 "msg_extract_failed_cmd","Неудавшаяся команда: %s"
 "msg_extract_fail_output","Вывод команды: %s"

@@ -5,7 +5,7 @@
 "unit_kbps","KB/s"
 "unit_mbps","MB/s"
 ,
-"msg_downloading_file","正在下载%s…"
+"msg_downloading_file","正在下载%s..."
 "msg_download_progress","正在下载："
 "str_dl_speed_at","以"
 "msg_download_finished","已完成下载%s。"

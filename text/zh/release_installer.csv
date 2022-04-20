@@ -1,7 +1,7 @@
 "keys","zh"
 ,
-"msg_updating_game","更新至%s…"
-"msg_installing_game","正在安装%s…"
+"msg_updating_game","更新至%s..."
+"msg_installing_game","正在安装%s..."
 "msg_game_updated","更新完成。"
 "msg_game_installed","安装完成。"
 

@@ -1,7 +1,7 @@
 "keys","cs"
 ,
 "dlg_changelog_title","Nedávné změny"
-"str_fetching_changes","Fetching recent changes from GitHub. Prosím čekejte…"
+"str_fetching_changes","Fetching recent changes from GitHub. Prosím čekejte..."
 "str_error_retrieving_data","Chyba získávání dat z GitHub API."
 "str_hhtp_response_code","\n\nHTTP stavový kód: %s"
 "str_github_says","\nGitHub říká: [i]%s[/i]"

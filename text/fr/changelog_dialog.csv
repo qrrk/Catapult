@@ -1,7 +1,7 @@
 "keys","fr"
 ,
 "dlg_changelog_title","Changements récents"
-"str_fetching_changes","Récupération des récents changements depuis GitHub. Veuillez patienter…"
+"str_fetching_changes","Récupération des récents changements depuis GitHub. Veuillez patienter..."
 "str_error_retrieving_data","Erreur en récupérant les données depuis l’API GitHub."
 "str_hhtp_response_code","\n\nCode réponse HTTP:%s"
 "str_github_says","\nGitHub indique: [i]%s[/i]"

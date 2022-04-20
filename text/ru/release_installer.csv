@@ -1,6 +1,6 @@
 "keys","ru"
 ,
-"msg_updating_game","Обновление до %s…"
-"msg_installing_game","Установка %s…"
+"msg_updating_game","Обновление до %s..."
+"msg_installing_game","Установка %s..."
 "msg_game_updated","Обновление завершено."
 "msg_game_installed","Установка завершена."

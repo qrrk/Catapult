@@ -5,5 +5,5 @@
 "msg_releases_api_failure","Nepodařilo se získat seznam vydání. GitHub říká: %s"
 "msg_got_n_releases","Získáno %s vydání."
 "msg_fetching_releases_dda","Získávám vydání pro DDA Experimental..."
-"msg_fetching_releases_bn","Získávám vydání pro BN Experimental…"
+"msg_fetching_releases_bn","Získávám vydání pro BN Experimental..."
 "msg_invalid_fetch_func_param","ReleaseManager.fetch() dostal %s"

@@ -12,7 +12,7 @@
 "msg_move_file_failed_details","[u]Source: [/u]%s, [u]Destination[/u] %s"
 "msg_move_rmdir_failed","Impossible de supprimer le répertoire source %s. Code d’erreur %s"
 "msg_extract_unsupported","Plateforme ou format d’archive non supporté (fichier: %s)"
-"msg_extracting_file","Extrait %s…"
+"msg_extracting_file","Extrait %s..."
 "msg_extract_error","Commande d’extraction d’archive terminée avec une erreur (code de sortie %s)."
 "msg_extract_failed_cmd","Commande échouée: %s"
 "msg_extract_fail_output","Sortie: %s"

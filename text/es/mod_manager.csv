@@ -2,8 +2,8 @@
 ,
 "msg_mod_json_parsing_failed","No se pudo analizar %s"
 "msg_mod_deleted","Eliminado %s"
-"msg_mod_not_found","No se encontró el mod con ID \""%s\"""
-"msg_deleting_n_mods","Eliminando %s mods…"
+"msg_mod_not_found","No se encontró el mod con ID \""%s\""".
+"msg_deleting_n_mods","Eliminando %s mods..."
 "msg_obsolete_mod_collision","Ya existe un mod obsoleto con ID %s. [i]%s[/i] será instalado con nombre e ID modificado para evitar colisiones."
 "msg_mod_installed","%s instalado"
 "msg_installing_n_mods","Instalando %s mods..."

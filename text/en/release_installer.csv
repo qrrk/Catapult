@@ -1,6 +1,6 @@
 "keys","en"
 ,
-"msg_updating_game","Updating to %s…"
-"msg_installing_game","Installing %s…"
+"msg_updating_game","Updating to %s..."
+"msg_installing_game","Installing %s..."
 "msg_game_updated","Update finished."
 "msg_game_installed","Installation finished."

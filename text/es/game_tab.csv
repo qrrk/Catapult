@@ -21,6 +21,6 @@
 "tooltip_refresh","Busca nuevamente la lista de lanzamientos disponibles\ndesde Github (solo para lanzamientos experimentales)."
 "tooltip_install","Instalar el lanzamiento seleccionado (DDA y BN\nse configuran por separado y pueden co-existir)."
 "tooltip_game_dir","Abrir la carpeta de instalación del juego (contiene\nel juego ejecutable y contenido interno)."
-"tooltip_user_dir","Abrir la carpeta de dato de usuario (contiene las partidas guardadas, \nconfiguración del juego, mods de usuario, sonido, etc.)"
+"tooltip_user_dir","Abrir la carpeta de dato de usuario (contiene las partidas guardadas, \nconfiguración del juego, mods de usuario, sonido, etc)."
 "tooltip_play","Iniciar el juego."
-"tooltip_resume","Sáltate el menú principal y carga rápidamente el último mundo jugado.\n(Se cargará el primer personaje si existen varios.)"
+"tooltip_resume","Sáltate el menú principal y carga rápidamente el último mundo jugado.\n(Se cargará el primer personaje si existen varios)."

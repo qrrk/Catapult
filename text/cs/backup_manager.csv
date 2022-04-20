@@ -1,6 +1,6 @@
 "keys","cs"
 ,
-"msg_backing_up_saves","Zálohuji aktuální uložené hry do \""%s\""…"
+"msg_backing_up_saves","Zálohuji aktuální uložené hry do \""%s\""..."
 "msg_backup_created","Záloha vytvořena."
 "msg_backup_name_taken","Záloha se jménem \""%s\"" už existuje."
 "msg_restoring_backup","Obnovuji zálohu \""%s\""..."

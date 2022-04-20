@@ -12,7 +12,7 @@
 "msg_move_file_failed_details","[u]Source path:[/u] %s, [u]destination path:[/u] %s."
 "msg_move_rmdir_failed","Could not remove source directory %s. Error code: %s."
 "msg_extract_unsupported","Unsupported platform or archive format (file: %s)"
-"msg_extracting_file","Extracting %s…"
+"msg_extracting_file","Extracting %s..."
 "msg_extract_error","Archive extraction command exited with an error (exit code: %s)"
 "msg_extract_failed_cmd","Failed command: %s"
 "msg_extract_fail_output","Output: %s"
