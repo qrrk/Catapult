@@ -1,4 +1,4 @@
 "keys","es"
 ,
-"msg_cannot_create_install_info","No se pudo crear el archivo de información de instalación %s"
-"msg_cannot_parse_install_info","No se pudo analizar el archivo de información de instalación %s"
+"msg_cannot_create_install_info","No se pudo crear el archivo de información de instalación %s."
+"msg_cannot_parse_install_info","No se pudo analizar el archivo de información de instalación %s."
