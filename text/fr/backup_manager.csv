@@ -1,9 +1,9 @@
 "keys","fr"
 ,
-"msg_backing_up_saves","Archive les sauvegardes existantes vers \""%s\""…"
+"msg_backing_up_saves","Archive les sauvegardes existantes vers \""%s\""..."
 "msg_backup_created","Archive créée."
 "msg_backup_name_taken","Une archive nommée \""%s\"" existe déjà."
-"msg_restoring_backup","Restaure l’archive \""%s\""…"
+"msg_restoring_backup","Restaure l’archive \""%s\""..."
 "msg_backup_restored","Archive restaurée."
 "msg_backup_not_found","Archive \""%s\"" non trouvée."
 "msg_deleting_backup","Supprime l’archive \""%s\"""

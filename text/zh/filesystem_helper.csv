@@ -12,7 +12,7 @@
 "msg_move_file_failed_details","[u]源路径：[/u] %s，[u]目标路径：[/u] %s。"
 "msg_move_rmdir_failed","无法移除源目录%s。错误代码：%s。"
 "msg_extract_unsupported","不支持的平台或存储格式（文件：%s）"
-"msg_extracting_file","解压%s…"
+"msg_extracting_file","解压%s..."
 "msg_extract_error","解压命令报错中断（中断代码：%s)"
 "msg_extract_failed_cmd","失败命令：%s"
 "msg_extract_fail_output","输出：%s"

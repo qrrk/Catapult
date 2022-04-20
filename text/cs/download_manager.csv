@@ -5,7 +5,7 @@
 "unit_kbps","KB/s"
 "unit_mbps","MB/s"
 ,
-"msg_downloading_file","Stahuji %s…"
+"msg_downloading_file","Stahuji %s..."
 "msg_download_progress","Stahuji:"
 "str_dl_speed_at","rychlostí"
 "msg_download_finished","Dokončeno stahování %s."

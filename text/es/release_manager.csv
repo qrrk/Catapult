@@ -5,5 +5,5 @@
 "msg_releases_api_failure","No se pudo obtener la lista de versiones. GitHub dice: %s"
 "msg_got_n_releases","Hay %s lanzamientos."
 "msg_fetching_releases_dda","Buscando lanzamientos para DDA Experimental..."
-"msg_fetching_releases_bn","Buscando lanzamientos para BN Experimental…"
+"msg_fetching_releases_bn","Buscando lanzamientos para BN Experimental..."
 "msg_invalid_fetch_func_param","ReleaseManager.fetch() pasó %s"

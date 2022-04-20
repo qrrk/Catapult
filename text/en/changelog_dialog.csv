@@ -1,7 +1,7 @@
 "keys","en"
 ,
 "dlg_changelog_title","Recent changes"
-"str_fetching_changes","Fetching recent changes from GitHub. Please wait…"
+"str_fetching_changes","Fetching recent changes from GitHub. Please wait..."
 "str_error_retrieving_data","Error retrieving data from GitHub API."
 "str_hhtp_response_code","\n\nHTTP response code: %s"
 "str_github_says","\nGitHub says: [i]%s[/i]"

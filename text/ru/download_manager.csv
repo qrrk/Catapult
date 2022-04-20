@@ -5,7 +5,7 @@
 "unit_kbps","КБ/с"
 "unit_mbps","МБ/с"
 ,
-"msg_downloading_file","Загружается файл %s…"
+"msg_downloading_file","Загружается файл %s..."
 "msg_download_progress","Загрузка:"
 "str_dl_speed_at","на скорости"
 "msg_download_finished","Завершена загрузка %s."
