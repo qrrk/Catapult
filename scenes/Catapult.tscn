@@ -10,6 +10,7 @@
 [ext_resource path="res://scripts/SettingsUI.gd" type="Script" id=8]
 [ext_resource path="res://scripts/ReleaseInstaller.gd" type="Script" id=9]
 [ext_resource path="res://icons/lang/lang_es.png" type="Texture" id=10]
+[ext_resource path="res://themes/Godot_3.res" type="Theme" id=11]
 [ext_resource path="res://scripts/ModManager.gd" type="Script" id=12]
 [ext_resource path="res://scripts/SoundpackManager.gd" type="Script" id=13]
 [ext_resource path="res://scripts/Debug.gd" type="Script" id=14]
@@ -18,7 +19,6 @@
 [ext_resource path="res://scripts/ItemList.gd" type="Script" id=17]
 [ext_resource path="res://scripts/ModsUI.gd" type="Script" id=18]
 [ext_resource path="res://scenes/ModReinstallDialog.tscn" type="PackedScene" id=20]
-[ext_resource path="res://themes/Godot_3.theme" type="Theme" id=21]
 [ext_resource path="res://icons/lang/lang_ru.png" type="Texture" id=22]
 [ext_resource path="res://icons/folder_user.svg" type="Texture" id=23]
 [ext_resource path="res://icons/folder_game.svg" type="Texture" id=24]
@@ -51,7 +51,7 @@ content_margin_bottom = 4.0
 [node name="Catapult" type="Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 21 )
+theme = ExtResource( 11 )
 script = ExtResource( 4 )
 
 [node name="Main" type="VBoxContainer" parent="."]
@@ -121,12 +121,11 @@ margin_bottom = 100.0
 [node name="Tabs" type="TabContainer" parent="Main" groups=["disable_during_backup_operations", "disable_during_mod_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases", "disable_while_installing_game"]]
 margin_top = 104.0
 margin_right = 592.0
-margin_bottom = 569.0
+margin_bottom = 373.0
 tab_align = 0
 script = ExtResource( 16 )
 
 [node name="Game" type="VBoxContainer" parent="Main/Tabs"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -577,6 +576,7 @@ current_dir = "/mnt/data/Godot/Catapult/Project"
 current_path = "/mnt/data/Godot/Catapult/Project/"
 
 [node name="Fonts" type="VBoxContainer" parent="Main/Tabs"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -1218,7 +1218,7 @@ size_flags_horizontal = 4
 text = "Print screen info"
 
 [node name="Log" type="RichTextLabel" parent="Main"]
-margin_top = 573.0
+margin_top = 377.0
 margin_right = 592.0
 margin_bottom = 692.0
 focus_mode = 2
