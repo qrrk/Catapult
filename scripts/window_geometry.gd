@@ -7,18 +7,16 @@ extends Node
 
 var scale: float setget _set_scale
 var min_base_size := Vector2(
-	ProjectSettings.get("display/window/size/width"),
-	ProjectSettings.get("display/window/size/height"))
+		ProjectSettings.get("display/window/size/width"),
+		ProjectSettings.get("display/window/size/height"))
 var base_size := min_base_size
 
 var decor_offset := Vector2.ZERO
 
-onready var _viewport := get_tree().get_root()
-
 
 func _set_scale(new_scale: float) -> void:
 	
-	scale = new_scale
+	scale = new_scale + 0.0004
 	_apply_scale()
 
 
@@ -86,19 +84,16 @@ func _on_SceneTree_idle():
 func _ready():
 	
 	if Settings.read("ui_scale_override_enabled"):
-		scale = Settings.read("ui_scale_override") as float
+		_set_scale(Settings.read("ui_scale_override") as float)
 	else:
-		scale = calculate_scale_from_dpi()
+		_set_scale(calculate_scale_from_dpi())
 
-	_viewport.connect("size_changed", self, "_on_window_resized")
 	_on_SceneTree_idle()
 
 
 func _on_window_resized() -> void:
 	
-	var new_size := OS.window_size / scale
-	_viewport.set_size_override(true, new_size)
-	base_size = new_size
+	base_size = OS.window_size / scale
 
 
 func _exit_tree() -> void:

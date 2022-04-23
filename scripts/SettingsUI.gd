@@ -4,11 +4,11 @@ extends VBoxContainer
 var _langs := ["en", "fr", "ru", "zh", "cs", "es"]
 
 var _themes := [
-	"Godot_3.theme",
-	"Light.theme",
-	"Grey.theme",
-	"Solarized_Dark.theme",
-	"Solarized_Light.theme",
+	"Godot_3.res",
+	"Light.res",
+	"Grey.res",
+	"Solarized_Dark.res",
+	"Solarized_Light.res",
 ]
 
 onready var _root = $"/root/Catapult"
@@ -120,6 +120,8 @@ func _on_cbScaleOverrideEnable_toggled(button_pressed: bool) -> void:
 		Geom.scale = Settings.read("ui_scale_override")
 	else:
 		Geom.scale = Geom.calculate_scale_from_dpi()
+	
+	_root.theme.apply_scale(Geom.scale)
 
 
 func _on_sbScaleOverride_value_changed(value: float) -> void:
@@ -127,3 +129,4 @@ func _on_sbScaleOverride_value_changed(value: float) -> void:
 	if Settings.read("ui_scale_override_enabled"):
 		Settings.store("ui_scale_override", value / 100.0)
 		Geom.scale = value / 100.0
+		_root.theme.apply_scale(Geom.scale)

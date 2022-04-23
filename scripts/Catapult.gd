@@ -28,6 +28,7 @@ onready var _lbl_build = $Main/Tabs/Game/CurrentInstall/Build/Name
 var _disable_savestate := {}
 var _ui_staring_sizes := {}  # For UI scaling on the fly
 var _easter_egg_counter := 0
+var base_font_size: int
 
 
 func _ready() -> void:
@@ -69,10 +70,20 @@ func assign_localized_text() -> void:
 
 func load_ui_theme(theme_file: String) -> void:
 	
-	var theme := load("res://themes".plus_file(theme_file)) as Theme
-	if theme:
-		self.theme = theme
+	# Since we've got multiple themes that have some shared elements (like fonts),
+	# we have to make sure old theme's *scaled* sizes don't become new theme's
+	# *base* sizes. To avoid that, we have to reset the scale of the old theme
+	# before replacing it, and we have to do that before we even attempt to load
+	# the new theme.
+	
+	self.theme.apply_scale(1.0)
+	var new_theme := load("res://themes".plus_file(theme_file)) as ScalableTheme
+	
+	if new_theme:
+		new_theme.apply_scale(Geom.scale)
+		self.theme = new_theme
 	else:
+		self.theme.apply_scale(Geom.scale)
 		Status.post(tr("msg_theme_load_error") % theme_file, Enums.MSG_ERROR)
 
 
