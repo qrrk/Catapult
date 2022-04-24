@@ -5,6 +5,8 @@ extends Node
 
 # Thanks to github.com/Lauson1ex for helping me figure this out.
 
+signal scale_changed
+
 var scale: float setget _set_scale
 var min_base_size := Vector2(
 		ProjectSettings.get("display/window/size/width"),
@@ -18,6 +20,7 @@ func _set_scale(new_scale: float) -> void:
 	
 	scale = new_scale + 0.0004
 	_apply_scale()
+	emit_signal("scale_changed", scale)
 
 
 func _apply_scale() -> void:

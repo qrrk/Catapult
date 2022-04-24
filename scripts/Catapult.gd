@@ -26,9 +26,12 @@ onready var _rbtn_exper = $Main/Tabs/Game/Channel/Group/RBtnExperimental
 onready var _lbl_build = $Main/Tabs/Game/CurrentInstall/Build/Name
 
 var _disable_savestate := {}
-var _ui_staring_sizes := {}  # For UI scaling on the fly
+
+# For UI scaling on the fly
+var _base_min_sizes := {}
+var _base_icon_sizes := {}
+
 var _easter_egg_counter := 0
-var base_font_size: int
 
 
 func _ready() -> void:
@@ -36,6 +39,10 @@ func _ready() -> void:
 	# Apply UI theme
 	var theme_file = Settings.read("launcher_theme")
 	load_ui_theme(theme_file)
+	
+	_save_control_min_sizes()
+	_scale_control_min_sizes(Geom.scale)
+	Geom.connect("scale_changed", self, "_on_ui_scale_changed")
 	
 	assign_localized_text()
 	
@@ -46,6 +53,24 @@ func _ready() -> void:
 	
 	_unpack_utils()
 	setup_ui()
+
+
+func _save_control_min_sizes() -> void:
+	
+	for node in Helpers.get_all_nodes_within(self):
+		if ("rect_min_size" in node) and (node.rect_min_size != Vector2.ZERO):
+			_base_min_sizes[node] = node.rect_min_size
+
+
+func _scale_control_min_sizes(factor: float) -> void:
+	
+	for node in _base_min_sizes:
+		node.rect_min_size = _base_min_sizes[node] * factor
+
+
+func _save_icon_sizes() -> void:
+	
+	var resources = load("res://")
 
 
 func assign_localized_text() -> void:
@@ -128,6 +153,11 @@ func _is_selected_game_installed() -> bool:
 	var info = _inst_probe.probe_installed_games()
 	var game = Settings.read("game")
 	return (game in info)
+
+
+func _on_ui_scale_changed(new_scale: float) -> void:
+	
+	_scale_control_min_sizes(new_scale)
 
 
 func _on_Tabs_tab_changed(tab: int) -> void:

@@ -1,15 +1,15 @@
 [gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://icons/info.svg" type="Texture" id=1]
-[ext_resource path="res://icons/download.svg" type="Texture" id=2]
-[ext_resource path="res://icons/play.svg" type="Texture" id=3]
+[ext_resource path="res://icons/buttons/tex_resume.tex" type="Texture" id=2]
+[ext_resource path="res://icons/buttons/tex_download.tex" type="Texture" id=3]
 [ext_resource path="res://scripts/Catapult.gd" type="Script" id=4]
 [ext_resource path="res://scripts/ReleaseManager.gd" type="Script" id=5]
 [ext_resource path="res://scripts/InstallProbe.gd" type="Script" id=6]
-[ext_resource path="res://icons/lang/lang_fr.png" type="Texture" id=7]
+[ext_resource path="res://icons/lang/tex_lang_cs.res" type="Texture" id=7]
 [ext_resource path="res://scripts/SettingsUI.gd" type="Script" id=8]
 [ext_resource path="res://scripts/ReleaseInstaller.gd" type="Script" id=9]
-[ext_resource path="res://icons/lang/lang_es.png" type="Texture" id=10]
+[ext_resource path="res://icons/lang/tex_lang_fr.res" type="Texture" id=10]
 [ext_resource path="res://themes/Godot_3.res" type="Theme" id=11]
 [ext_resource path="res://scripts/ModManager.gd" type="Script" id=12]
 [ext_resource path="res://scripts/SoundpackManager.gd" type="Script" id=13]
@@ -18,27 +18,27 @@
 [ext_resource path="res://scripts/Tabs.gd" type="Script" id=16]
 [ext_resource path="res://scripts/ItemList.gd" type="Script" id=17]
 [ext_resource path="res://scripts/ModsUI.gd" type="Script" id=18]
+[ext_resource path="res://icons/lang/tex_lang_es.res" type="Texture" id=19]
 [ext_resource path="res://scenes/ModReinstallDialog.tscn" type="PackedScene" id=20]
-[ext_resource path="res://icons/lang/lang_ru.png" type="Texture" id=22]
+[ext_resource path="res://icons/lang/tex_lang_ru.res" type="Texture" id=21]
+[ext_resource path="res://icons/lang/tex_lang_en.res" type="Texture" id=22]
 [ext_resource path="res://icons/folder_user.svg" type="Texture" id=23]
 [ext_resource path="res://icons/folder_game.svg" type="Texture" id=24]
-[ext_resource path="res://icons/resume.svg" type="Texture" id=25]
+[ext_resource path="res://icons/buttons/tex_play.tex" type="Texture" id=25]
 [ext_resource path="res://scenes/InlineIconButton.tscn" type="PackedScene" id=26]
 [ext_resource path="res://scripts/FontsUI.gd" type="Script" id=27]
 [ext_resource path="res://scripts/FontManager.gd" type="Script" id=28]
 [ext_resource path="res://scenes/FontSizeHelpDialog.tscn" type="PackedScene" id=29]
 [ext_resource path="res://icons/help.svg" type="Texture" id=30]
-[ext_resource path="res://icons/lang/lang_zh.png" type="Texture" id=31]
+[ext_resource path="res://icons/lang/tex_lang_zh.res" type="Texture" id=31]
 [ext_resource path="res://scenes/ChangelogDialog.tscn" type="PackedScene" id=32]
 [ext_resource path="res://scripts/BackupsUI.gd" type="Script" id=33]
 [ext_resource path="res://scripts/BackupManager.gd" type="Script" id=34]
-[ext_resource path="res://icons/lang/lang_cs.png" type="Texture" id=35]
-[ext_resource path="res://icons/lang/lang_en.png" type="Texture" id=36]
-[ext_resource path="res://icons/theme/Godot_3.png" type="Texture" id=37]
-[ext_resource path="res://icons/theme/Solarized_Light.png" type="Texture" id=38]
-[ext_resource path="res://icons/theme/Light.png" type="Texture" id=39]
-[ext_resource path="res://icons/theme/Solarized_Dark.png" type="Texture" id=40]
-[ext_resource path="res://icons/theme/Grey.png" type="Texture" id=41]
+[ext_resource path="res://icons/theme/tex_light.res" type="Texture" id=35]
+[ext_resource path="res://icons/theme/tex_solarized_dark.res" type="Texture" id=36]
+[ext_resource path="res://icons/theme/tex_godot3.res" type="Texture" id=37]
+[ext_resource path="res://icons/theme/tex_solarized_light.res" type="Texture" id=38]
+[ext_resource path="res://icons/theme/tex_grey.res" type="Texture" id=39]
 
 [sub_resource type="StyleBoxEmpty" id=2]
 content_margin_left = 4.0
@@ -121,11 +121,12 @@ margin_bottom = 100.0
 [node name="Tabs" type="TabContainer" parent="Main" groups=["disable_during_backup_operations", "disable_during_mod_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases", "disable_while_installing_game"]]
 margin_top = 104.0
 margin_right = 592.0
-margin_bottom = 373.0
+margin_bottom = 487.0
 tab_align = 0
 script = ExtResource( 16 )
 
 [node name="Game" type="VBoxContainer" parent="Main/Tabs"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -205,16 +206,14 @@ hint_tooltip = "tooltip_refresh"
 text = "btn_refresh"
 
 [node name="BtnInstall" type="Button" parent="Main/Tabs/Game" groups=["disable_while_fetching_releases", "disable_while_installing_game"]]
-margin_left = 168.0
+margin_left = 239.0
 margin_top = 88.0
-margin_right = 408.0
+margin_right = 337.0
 margin_bottom = 120.0
-rect_min_size = Vector2( 240, 32 )
 hint_tooltip = "tooltip_install"
 size_flags_horizontal = 4
 text = "btn_install"
-icon = ExtResource( 2 )
-expand_icon = true
+icon = ExtResource( 3 )
 
 [node name="HSeparator" type="HSeparator" parent="Main/Tabs/Game"]
 margin_top = 124.0
@@ -263,32 +262,28 @@ hint_tooltip = "tooltip_user_dir"
 texture_normal = ExtResource( 23 )
 
 [node name="Launch" type="HBoxContainer" parent="Main/Tabs/Game/CurrentInstall"]
-margin_left = 125.0
+margin_left = 187.0
 margin_top = 56.0
-margin_right = 451.0
+margin_right = 389.0
 margin_bottom = 88.0
 size_flags_horizontal = 4
 
 [node name="BtnPlay" type="Button" parent="Main/Tabs/Game/CurrentInstall/Launch" groups=["disable_while_installing_game"]]
-margin_right = 100.0
+margin_right = 88.0
 margin_bottom = 32.0
-rect_min_size = Vector2( 100, 32 )
 hint_tooltip = "tooltip_play"
 size_flags_horizontal = 4
 text = "btn_play"
-icon = ExtResource( 3 )
-expand_icon = true
+icon = ExtResource( 25 )
 
 [node name="BtnResume" type="Button" parent="Main/Tabs/Game/CurrentInstall/Launch" groups=["disable_while_installing_game"]]
-margin_left = 106.0
-margin_right = 326.0
+margin_left = 94.0
+margin_right = 202.0
 margin_bottom = 32.0
-rect_min_size = Vector2( 220, 32 )
 hint_tooltip = "tooltip_resume"
 size_flags_horizontal = 4
 text = "btn_resume"
-icon = ExtResource( 25 )
-expand_icon = true
+icon = ExtResource( 2 )
 
 [node name="Spacer" type="Control" parent="Main/Tabs/Game"]
 margin_top = 228.0
@@ -950,7 +945,6 @@ margin_right = 577.0
 margin_bottom = 56.0
 
 [node name="Settings" type="VBoxContainer" parent="Main/Tabs"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -976,9 +970,9 @@ margin_bottom = 24.0
 rect_min_size = Vector2( 180, 0 )
 size_flags_horizontal = 10
 text = "English"
-icon = ExtResource( 36 )
+icon = ExtResource( 22 )
 expand_icon = true
-items = [ "English", ExtResource( 36 ), false, 0, null, "Français", ExtResource( 7 ), false, 1, null, "Русский", ExtResource( 22 ), false, 2, null, "简体字", ExtResource( 31 ), false, 3, null, "Čeština", ExtResource( 35 ), false, 4, null, "Español", ExtResource( 10 ), false, 5, null ]
+items = [ "English", ExtResource( 22 ), false, 0, null, "Français", ExtResource( 10 ), false, 1, null, "Русский", ExtResource( 21 ), false, 2, null, "简体字", ExtResource( 31 ), false, 3, null, "Čeština", ExtResource( 7 ), false, 4, null, "Español", ExtResource( 19 ), false, 5, null ]
 selected = 0
 
 [node name="LauncherTheme" type="HBoxContainer" parent="Main/Tabs/Settings"]
@@ -1000,7 +994,7 @@ size_flags_horizontal = 10
 text = "Godot 3"
 icon = ExtResource( 37 )
 expand_icon = true
-items = [ "Godot 3", ExtResource( 37 ), false, 0, null, "Light", ExtResource( 39 ), false, 1, null, "Grey", ExtResource( 41 ), false, 2, null, "Solarized Dark", ExtResource( 40 ), false, 3, null, "Solarized Light", ExtResource( 38 ), false, 4, null ]
+items = [ "Godot 3", ExtResource( 37 ), false, 0, null, "Light", ExtResource( 35 ), false, 1, null, "Grey", ExtResource( 39 ), false, 2, null, "Solarized Dark", ExtResource( 36 ), false, 3, null, "Solarized Light", ExtResource( 38 ), false, 4, null ]
 selected = 0
 
 [node name="ShowGameDesc" type="CheckButton" parent="Main/Tabs/Settings"]
@@ -1218,7 +1212,7 @@ size_flags_horizontal = 4
 text = "Print screen info"
 
 [node name="Log" type="RichTextLabel" parent="Main"]
-margin_top = 377.0
+margin_top = 491.0
 margin_right = 592.0
 margin_bottom = 692.0
 focus_mode = 2
