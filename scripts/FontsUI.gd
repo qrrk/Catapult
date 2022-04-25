@@ -158,7 +158,7 @@ func _on_FontsList_item_selected(index: int) -> void:
 	var font_res = DynamicFont.new()
 	
 	font_res.font_data = load(font_path)
-	font_res.size = 15.0
+	font_res.size = 15.0 * Geom.scale
 	font_res.use_filter = true
 	
 	_preview.add_font_override("normal_font", font_res)
