@@ -34,6 +34,7 @@ func _ready() -> void:
 		$LauncherTheme/obtnTheme.selected = theme_idx
 	
 	$ShowGameDesc.pressed = Settings.read("show_game_desc")
+	$KeepLauncherOpen.pressed = Settings.read("keep_open_after_starting_game")
 	$PrintTips.pressed = Settings.read("print_tips_of_the_day")
 	$UpdateToSame.pressed = Settings.read("update_to_same_build_allowed")
 	$ShortenNames.pressed = Settings.read("shorten_release_names")
@@ -66,6 +67,11 @@ func _on_ShowGameDesc_toggled(button_pressed: bool) -> void:
 	
 	Settings.store("show_game_desc", button_pressed)
 	$"../../GameInfo".visible = button_pressed
+
+
+func _on_KeepLauncherOpen_toggled(button_pressed: bool) -> void:
+	
+	Settings.store("keep_open_after_starting_game", button_pressed)
 
 
 func _on_PrintTips_toggled(button_pressed: bool) -> void:

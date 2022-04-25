@@ -23,6 +23,7 @@ const _HARDCODED_DEFAULTS = {
 	"show_stock_sound": false,
 	"font_preview_cyrillic": false,
 	"show_game_desc": true,
+	"keep_open_after_starting_game": true,
 	"debug_mode": false,
 }
 

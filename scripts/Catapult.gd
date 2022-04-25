@@ -403,6 +403,11 @@ func _start_game(world := "") -> void:
 				world_str = "--world \"%s\"" % world
 			var command = "cd /d %s && start cataclysm-tiles.exe --userdir \"%s/\" %s" % [Paths.game_dir, Paths.userdata, world_str]
 			OS.execute("cmd", ["/C", command], false)
+		_:
+			return
+	
+	if not Settings.read("keep_open_after_starting_game"):
+		get_tree().quit()
 
 
 func _refresh_currently_installed() -> void:

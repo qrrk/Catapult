@@ -3,6 +3,7 @@
 "lbl_launcher_language","Lenguaje de launcher"
 "lbl_launcher_theme","Tema de launcher"
 "cbtn_show_game_desc","Mostrar una descripción del juego"
+"cbtn_keep_launcher_open","Mantener el lanzador abierto después de comenzar el juego"
 "cbtn_print_tips","Mostrar consejos del día en el inicio."
 "cbtn_updating_to_same_build","Permitir ""actualizar"" a la misma versión que ya está instalada"
 "cbtn_shorten_release_names","Acortar los nombres de los lanzamientos experimentales."
@@ -15,6 +16,7 @@
 "cbtn_enable_scale","Habilitar  "
 ,
 "tooltip_show_game_desc","Mostrar una descripción para el juego elegido debajo de la lista de Juego."
+"tooltip_keep_launcher_open","Si está desactivado, el iniciador se cerrará después de hacer clic en Reproducir o Reanudar.\nTenga en cuenta que si el juego no se inicia por algún motivo, el iniciador\nse cerrará igualmente."
 "tooltip_print_tips","Mostrar un tip aleatorio en el panel de estado cuando comienza el launcher."
 "tooltip_updating_to_same_build","Permitir iniciar la actualización por más que el lanzamiento\nseleccionado sea el mismo al instalado actualmente."
 "tooltip_shorten_release_names","Acortar los nombres de lanzamiento a la fecha y el número\n(ej. ""2021-09-08-1927" "en vez de\n""Cataclysm-DDA experimental build 2021-09-08-1927"")."
