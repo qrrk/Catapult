@@ -26,10 +26,12 @@ func _refresh_available() -> void:
 func _populate_default_new_name() -> void:
 	
 	var datetime = OS.get_datetime()
-	_edit_name.text = "Manual_%02d-%02d-%02d" % [
+	_edit_name.text = "Manual_%02d-%02d-%02d_%02d-%02d" % [
 		datetime["year"] % 100,
 		datetime["month"],
-		datetime["day"]
+		datetime["day"],
+		datetime["hour"],
+		datetime["minute"],
 	]
 
 
