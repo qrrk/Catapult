@@ -26,6 +26,7 @@ None required. The launcher is a single, self-contained executable. Just [downlo
 
 - Be sure you have write permission in that folder.
 - On Linux, [make the file executable](https://askubuntu.com/a/485001) before running it.
+    - For Arch Linux you can install [the AUR package](https://aur.archlinux.org/packages/catapult-bin)
 
 ## System requirements
 
