@@ -316,15 +316,17 @@ margin_left = 494.0
 margin_right = 577.0
 margin_bottom = 100.0
 
-[node name="Button" type="Button" parent="Main/Tabs/Game/GameInstalls/HBox/VBox"]
+[node name="btnMakeActive" type="Button" parent="Main/Tabs/Game/GameInstalls/HBox/VBox"]
 margin_right = 83.0
 margin_bottom = 24.0
+disabled = true
 text = "Make active"
 
-[node name="Button2" type="Button" parent="Main/Tabs/Game/GameInstalls/HBox/VBox"]
+[node name="btnDelete" type="Button" parent="Main/Tabs/Game/GameInstalls/HBox/VBox"]
 margin_top = 28.0
 margin_right = 83.0
 margin_bottom = 52.0
+disabled = true
 text = "Delete"
 
 [node name="ChangelogDialog" parent="Main/Tabs/Game" instance=ExtResource( 32 )]
@@ -1315,6 +1317,9 @@ __meta__ = {
 [connection signal="pressed" from="Main/Tabs/Game/ActiveInstall/Build/UserDir" to="." method="_on_UserDir_pressed"]
 [connection signal="pressed" from="Main/Tabs/Game/ActiveInstall/Launch/BtnPlay" to="." method="_on_BtnPlay_pressed"]
 [connection signal="pressed" from="Main/Tabs/Game/ActiveInstall/Launch/BtnResume" to="." method="_on_BtnResume_pressed"]
+[connection signal="item_selected" from="Main/Tabs/Game/GameInstalls/HBox/InstallsList" to="." method="_on_InstallsList_item_selected"]
+[connection signal="pressed" from="Main/Tabs/Game/GameInstalls/HBox/VBox/btnMakeActive" to="." method="_on_btnMakeActive_pressed"]
+[connection signal="pressed" from="Main/Tabs/Game/GameInstalls/HBox/VBox/btnDelete" to="." method="_on_btnDelete_pressed"]
 [connection signal="item_selected" from="Main/Tabs/Mods/HBox/Installed/InstalledList" to="Main/Tabs/Mods" method="_on_InstalledList_item_selected"]
 [connection signal="multi_selected" from="Main/Tabs/Mods/HBox/Installed/InstalledList" to="Main/Tabs/Mods" method="_on_InstalledList_multi_selected"]
 [connection signal="toggled" from="Main/Tabs/Mods/HBox/Installed/ShowStock" to="Main/Tabs/Mods" method="_on_ShowStock_toggled"]
@@ -1381,8 +1386,8 @@ __meta__ = {
 [connection signal="started_fetching_releases" from="Releases" to="." method="_on_Releases_started_fetching_releases"]
 [connection signal="request_completed" from="Releases/HTTPRequest_DDA" to="Releases" method="_on_request_completed_dda"]
 [connection signal="request_completed" from="Releases/HTTPRequest_BN" to="Releases" method="_on_request_completed_bn"]
-[connection signal="installation_finished" from="ReleaseInstaller" to="." method="_on_ReleaseInstaller_installation_finished"]
-[connection signal="installation_started" from="ReleaseInstaller" to="." method="_on_ReleaseInstaller_installation_started"]
+[connection signal="operation_finished" from="ReleaseInstaller" to="." method="_on_ReleaseInstaller_operation_finished"]
+[connection signal="operation_started" from="ReleaseInstaller" to="." method="_on_ReleaseInstaller_operation_started"]
 [connection signal="mod_deletion_finished" from="Mods" to="." method="_on_mod_operation_finished"]
 [connection signal="mod_deletion_started" from="Mods" to="." method="_on_mod_operation_started"]
 [connection signal="mod_installation_finished" from="Mods" to="." method="_on_mod_operation_finished"]

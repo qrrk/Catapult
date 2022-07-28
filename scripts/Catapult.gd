@@ -24,8 +24,11 @@ onready var _rbtn_stable = $Main/Tabs/Game/Channel/Group/RBtnStable
 onready var _rbtn_exper = $Main/Tabs/Game/Channel/Group/RBtnExperimental
 onready var _lbl_build = $Main/Tabs/Game/ActiveInstall/Build/Name
 onready var _lst_installs = $Main/Tabs/Game/GameInstalls/HBox/InstallsList
+onready var _btn_make_active = $Main/Tabs/Game/GameInstalls/HBox/VBox/btnMakeActive
+onready var _btn_delete = $Main/Tabs/Game/GameInstalls/HBox/VBox/btnDelete
 
 var _disable_savestate := {}
+var _installs := {}
 
 # For UI scaling on the fly
 var _base_min_sizes := {}
@@ -201,12 +204,12 @@ func _on_Releases_done_fetching_releases() -> void:
 	_refresh_currently_installed()
 
 
-func _on_ReleaseInstaller_installation_started() -> void:
+func _on_ReleaseInstaller_operation_started() -> void:
 	
 	_smart_disable_controls("disable_while_installing_game")
 
 
-func _on_ReleaseInstaller_installation_finished() -> void:
+func _on_ReleaseInstaller_operation_finished() -> void:
 	
 	_smart_reenable_controls("disable_while_installing_game")
 	_refresh_currently_installed()
@@ -403,25 +406,49 @@ func _start_game(world := "") -> void:
 		get_tree().quit()
 
 
+func _on_InstallsList_item_selected(index: int) -> void:
+	
+	var name = _lst_installs.get_item_text(index)
+	_btn_delete.disabled = false
+	_btn_make_active.disabled = (name == Settings.read("active_install_" + Settings.read("game")))
+	
+
+
+func _on_btnMakeActive_pressed() -> void:
+	
+	var name = _lst_installs.get_item_text(_lst_installs.get_selected_items()[0])
+	Status.post("Setting active install to %s." % name)
+	Settings.store("active_install_" + Settings.read("game"), name)
+	_refresh_currently_installed()
+
+
+func _on_btnDelete_pressed() -> void:
+	
+	var name = _lst_installs.get_item_text(_lst_installs.get_selected_items()[0])
+	_installer.remove_release_by_name(name)
+
+
 func _refresh_currently_installed() -> void:
 	
-#	var info = Paths.installs_summary
-#	var game = Settings.read("game")
 	var releases = _releases.releases[_get_release_key()]
 
 	_lst_installs.clear()
 	var game = Settings.read("game")	
-	var installs = Paths.installs_summary
+	_installs = Paths.installs_summary
 	var active_name = Settings.read("active_install_" + game)
-	if game in installs:
-		for name in installs[game]:
+	if game in _installs:
+		for name in _installs[game]:
 			_lst_installs.add_item(name)
 			var curr_idx = _lst_installs.get_item_count() - 1
-			_lst_installs.set_item_tooltip(curr_idx, "Location: " + installs[game][name])
+			_lst_installs.set_item_tooltip(curr_idx, "Location: " + _installs[game][name])
 #			if name == active_name:
 #				_lst_installs.set_item_custom_fg_color(curr_idx, Color(0, 0.8, 0))
 	
-	if game in installs:
+	_lst_builds.select(-1)
+	_btn_make_active.disabled = true
+	_btn_delete.disabled = true
+	
+	if game in _installs:
 		_lbl_build.text = active_name
 		_btn_play.disabled = false
 		_btn_resume.disabled = not (Directory.new().file_exists(Paths.config.plus_file("lastworld.json")))
@@ -442,8 +469,7 @@ func _refresh_currently_installed() -> void:
 		_btn_user_dir.visible = false
 
 	for i in [1, 2, 3, 4]:
-		_tabs.set_tab_disabled(i, not game in installs)
-	
+		_tabs.set_tab_disabled(i, not game in _installs)
 
 
 func _on_InfoIcon_gui_input(event: InputEvent) -> void:

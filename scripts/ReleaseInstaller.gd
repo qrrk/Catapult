@@ -1,13 +1,13 @@
 extends Node
 
 
-signal installation_started
-signal installation_finished
+signal operation_started
+signal operation_finished
 
 
 func install_release(release_info: Dictionary, game: String, update_in: String = "") -> void:
 	
-	emit_signal("installation_started")
+	emit_signal("operation_started")
 	
 	if update_in:
 		Status.post(tr("msg_updating_game") % release_info["name"])
@@ -51,4 +51,23 @@ func install_release(release_info: Dictionary, game: String, update_in: String =
 			else:
 				Status.post(tr("msg_game_installed"))
 	
-	emit_signal("installation_finished")
+	emit_signal("operation_finished")
+
+
+func remove_release_by_name(name: String) -> void:
+	
+	emit_signal("operation_started")
+	
+	var installs := Paths.installs_summary
+	var game = Settings.read("game")
+	
+	if (game in installs) and (name in installs[game]):
+		Status.post("Removing %s..." % name)
+		var location = installs[game][name]
+		FS.rm_dir(location)
+		yield(FS, "rm_dir_done")
+		Status.post("Removal finished.")
+	else:
+		Status.post("Attempted to remove release \"%s\", but could not find it on disk." % name, Enums.MSG_ERROR)
+	
+	emit_signal("operation_finished")
