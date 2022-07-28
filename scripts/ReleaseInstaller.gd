@@ -4,14 +4,12 @@ extends Node
 signal installation_started
 signal installation_finished
 
-onready var _probe := $"../InstallProbe"
 
-
-func install_release(release_info: Dictionary, game: String, update: bool = false) -> void:
+func install_release(release_info: Dictionary, game: String, update_in: String = "") -> void:
 	
 	emit_signal("installation_started")
 	
-	if update:
+	if update_in:
 		Status.post(tr("msg_updating_game") % release_info["name"])
 	else:
 		Status.post(tr("msg_installing_game") % release_info["name"])
@@ -35,16 +33,20 @@ func install_release(release_info: Dictionary, game: String, update: bool = fals
 				"Windows":
 					extracted_root = Paths.tmp_dir
 			
-			_probe.create_info_file(extracted_root, release_info["name"])
+			Helpers.create_info_file(extracted_root, release_info["name"])
 			
-			if update:
-				FS.rm_dir(Paths.game_dir)
+			var target_dir: String
+			if update_in:
+				target_dir = update_in
+				FS.rm_dir(target_dir)
 				yield(FS, "rm_dir_done")
+			else:
+				target_dir = Paths.next_install_dir
 			
-			FS.move_dir(extracted_root, Paths.game_dir)
+			FS.move_dir(extracted_root, target_dir)
 			yield(FS, "move_dir_done")
 			
-			if update:
+			if update_in:
 				Status.post(tr("msg_game_updated"))
 			else:
 				Status.post(tr("msg_game_installed"))

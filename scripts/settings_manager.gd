@@ -6,8 +6,10 @@ const _SETTINGS_FILENAME = "catapult_settings.json"
 const _HARDCODED_DEFAULTS = {
 	"game": "dda",
 	"channel": "stable",  # Currently used only for DDA.
+	"active_install_dda": "Cataclysm-DDA experimental build 2022-07-26-0606",
+	"active_install_bn": "",
 	"launcher_locale": "",
-	"launcher_theme": "Godot_3.theme",
+	"launcher_theme": "Godot_3.res",
 	"window_state": {},
 	"print_tips_of_the_day": true,
 	"update_to_same_build_allowed": false,
