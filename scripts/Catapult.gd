@@ -23,6 +23,7 @@ onready var _lst_games = $Main/GameChoice/GamesList
 onready var _rbtn_stable = $Main/Tabs/Game/Channel/Group/RBtnStable
 onready var _rbtn_exper = $Main/Tabs/Game/Channel/Group/RBtnExperimental
 onready var _lbl_build = $Main/Tabs/Game/ActiveInstall/Build/Name
+onready var _cb_update = $Main/Tabs/Game/UpdateCurrent
 onready var _lst_installs = $Main/Tabs/Game/GameInstalls/HBox/InstallsList
 onready var _btn_make_active = $Main/Tabs/Game/GameInstalls/HBox/VBox/btnMakeActive
 onready var _btn_delete = $Main/Tabs/Game/GameInstalls/HBox/VBox/btnDelete
@@ -55,7 +56,7 @@ func _ready() -> void:
 	Status.post(welcome_msg)
 	
 	_unpack_utils()
-	setup_ui()
+	_setup_ui()
 
 
 func _save_control_min_sizes() -> void:
@@ -206,12 +207,12 @@ func _on_Releases_done_fetching_releases() -> void:
 
 func _on_ReleaseInstaller_operation_started() -> void:
 	
-	_smart_disable_controls("disable_while_installing_game")
+	_smart_disable_controls("disable_during_release_operations")
 
 
 func _on_ReleaseInstaller_operation_finished() -> void:
 	
-	_smart_reenable_controls("disable_while_installing_game")
+	_smart_reenable_controls("disable_during_release_operations")
 	_refresh_currently_installed()
 
 
@@ -274,16 +275,27 @@ func _on_BuildsList_item_selected(index: int) -> void:
 			and (game in info) \
 			and (_releases.releases[_get_release_key()][index]["name"] in info[game]):
 		_btn_install.disabled = true
+		_cb_update.disabled = true
 	else:
 		_btn_install.disabled = false
+		_cb_update.disabled = false
 
 
 func _on_BtnInstall_pressed() -> void:
 	
 	var index = _lst_builds.selected
 	var release = _releases.releases[_get_release_key()][index]
-#	var update = Settings.read("game") in _inst_probe.probe_installed_games()
-	_installer.install_release(release, Settings.read("game"), "")
+	var update_path := ""
+	if Settings.read("update_current_when_installing"):
+		var game = Settings.read("game")
+		var active_name = Settings.read("active_install_" + game)
+		update_path = _installs[game][active_name]
+	_installer.install_release(release, Settings.read("game"), update_path)
+
+
+func _on_cbUpdateCurrent_toggled(button_pressed: bool) -> void:
+	
+	Settings.store("update_current_when_installing", button_pressed)
 
 
 func _get_release_key() -> String:
@@ -315,11 +327,13 @@ func _on_UserDir_pressed() -> void:
 		OS.shell_open(userdir)
 
 
-func setup_ui() -> void:
+func _setup_ui() -> void:
 
 	_game_info.visible = Settings.read("show_game_desc")
 	if not Settings.read("debug_mode"):
 		_tabs.remove_child(_debug_ui)
+	
+	_cb_update.pressed = Settings.read("update_current_when_installing")
 	
 	apply_game_choice()
 	
@@ -433,7 +447,7 @@ func _refresh_currently_installed() -> void:
 	var releases = _releases.releases[_get_release_key()]
 
 	_lst_installs.clear()
-	var game = Settings.read("game")	
+	var game = Settings.read("game")
 	_installs = Paths.installs_summary
 	var active_name = Settings.read("active_install_" + game)
 	if game in _installs:
@@ -456,7 +470,8 @@ func _refresh_currently_installed() -> void:
 		_btn_user_dir.visible = true
 		if (_lst_builds.selected != -1) and (_lst_builds.selected < len(releases)):
 				if not Settings.read("update_to_same_build_allowed"):
-					_btn_install.disabled = (releases[_lst_builds.selected]["name"] == active_name)
+					_btn_install.disabled = (releases[_lst_builds.selected]["name"] in _installs[game])
+					_cb_update.disabled = _btn_install.disabled
 		else:
 			_btn_install.disabled = true
 

@@ -8,6 +8,7 @@ const _HARDCODED_DEFAULTS = {
 	"channel": "stable",  # Currently used only for DDA.
 	"active_install_dda": "Cataclysm-DDA experimental build 2022-07-26-0606",
 	"active_install_bn": "",
+	"update_current_when_installing": true,
 	"launcher_locale": "",
 	"launcher_theme": "Godot_3.res",
 	"window_state": {},

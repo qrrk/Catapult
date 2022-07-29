@@ -47,6 +47,7 @@ func install_release(release_info: Dictionary, game: String, update_in: String =
 			yield(FS, "move_dir_done")
 			
 			if update_in:
+				Settings.store("active_install_" + Settings.read("game"), release_info["name"])
 				Status.post(tr("msg_game_updated"))
 			else:
 				Status.post(tr("msg_game_installed"))
