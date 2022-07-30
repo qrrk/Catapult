@@ -1,0 +1,10 @@
+"keys","pl"
+,
+"msg_backing_up_saves","Kopiowanie zapisów gry do\""%s\""..."
+"msg_backup_created","Kopia utworzona."
+"msg_backup_name_taken","Kopia o nazwie \""%s\"" już istnieje."
+"msg_restoring_backup","Przywracanie kopii \""%s\""..."
+"msg_backup_restored","Kopia przywrócona."
+"msg_backup_not_found","Kopia \""%s\"" nie istnieje."
+"msg_deleting_backup","Usuwanie kopii \""%s\""..."
+"msg_backup_deleted","Kopia usunięta."

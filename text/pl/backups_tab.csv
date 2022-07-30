@@ -1,0 +1,13 @@
+"keys","pl"
+,
+"lbl_save_backups","Kopie folderów zapisów:"
+"btn_restore_backup","Przywróć"
+"btn_delete_backup","Usuń"
+"btn_refresh_backups","Odśwież"
+"lbl_manual_backup","Kopia manualna"
+"lbl_backup_name","Nazwa:"
+"btn_create_backup","Utwórz"
+"lbl_backup_info_placeholder","Wybierz istniejącą kopię, aby zobaczyć jej szczegóły."
+,
+"backup_info_location","Lokacja:"
+"backup_info_worlds","Światy:"
