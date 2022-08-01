@@ -46,6 +46,8 @@ func _ready() -> void:
 	
 	assign_localized_text()
 	
+	_btn_resume.grab_focus()
+	
 	var welcome_msg = tr("str_welcome")
 	if Settings.read("print_tips_of_the_day"):
 		welcome_msg += tr("str_tip_of_the_day") + TOTD.get_tip() + "\n"
