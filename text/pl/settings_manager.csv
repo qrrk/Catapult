@@ -1,0 +1,7 @@
+"keys","pl"
+,
+"msg_creating_settings","Tworzenie pliku konfiguracyjnego %s."
+"msg_nonexistent_attempt","Próbowano załadować ustawienia z nieistniejącego pliku %s"
+"msg_loading_settings","Ładowanie ustawień z %s."
+"msg_settings_parse_error","Błąd parsowania ustawień z JSON, linia %s, wiadomość: %s"
+"msg_nonexisting_setting","Próbowano wczytać nieistniejące ustawienie \""%s\"""
