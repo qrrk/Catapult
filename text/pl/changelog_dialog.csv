@@ -1,9 +1,0 @@
-"keys","pl"
-,
-"dlg_changelog_title","Ostatnie zmiany"
-"str_fetching_changes","Pobieranie ostatnich zmian z GitHub. Proszę czekać..."
-"str_error_retrieving_data","Błąd podczas pozyskiwania danych z GitHub API."
-"str_hhtp_response_code","\n\nKod odpowiedzi HTTP: %s"
-"str_github_says","\nGitHub odpowiada: [i]%s[/i]"
-"str_try_later","\n\nProszę spróbować ponownie później."
-"str_changelog_intro","Wyświetlanie ostatnich [b]%s[/b] udanych pull requestów (dodatków kodu) do [b]%s[/b].\n\nKliknij dowolną pozycję, aby wyświetlić odpowiedni PR na GitHub i dowiedzieć się więcej o zmianie.\n"

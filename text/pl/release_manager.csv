@@ -1,9 +1,0 @@
-"keys","pl"
-,
-"msg_unsupported_platform","Nieobsługiwana platforma: \""%s\"""
-"msg_releases_request_failed","Żądanie nie powiodło się. Czy posiadasz połączenie z internetem?"
-"msg_releases_api_failure","Nie udało się odebrać listy kompilacji. GitHub odpowiada: %s"
-"msg_got_n_releases","Odebrano %s kompilacji."
-"msg_fetching_releases_dda","Sprowadzanie kompilacji dla for DDA Experimental..."
-"msg_fetching_releases_bn","Sprowadzanie kompilacji dla BN Experimental..."
-"msg_invalid_fetch_func_param","ReleaseManager.fetch() przeszło %s"

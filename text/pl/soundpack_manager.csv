@@ -1,9 +1,0 @@
-"keys","pl"
-,
-"msg_no_sound_dir","Folder dźwięków nie istnieje: %s"
-"msg_deleting_sound","Usuwanie %s"
-"msg_soundpack_not_found","Nie udało się znaleźć paczki dźwiękowej o nazwie \""%s\"""
-"msg_installing_sound","Instalowanie paczki dźwiękowej \""%s\""..."
-"msg_reinstalling_sound","Reinstalacja paczki dźwiękowej \""%s\""..."
-"msg_sound_download_failed","Nie udało się pobrać archiwum paczki dźwiękowej."
-"msg_sound_installed","Paczka dźwiękowa zainstalowana."

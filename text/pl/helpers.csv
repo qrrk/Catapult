@@ -1,7 +1,0 @@
-"keys","pl"
-,
-"msg_file_read_fail","Nie udało się otworzyć pliku %s (błąd %s)."
-"msg_file_write_fail","Nie udało się otworzyć pliku %s do zapisu (błąd %s)."
-"msg_debug_file_path","Pełna ścieżka: %s"
-"msg_json_parse_fail","Nie udało się sparsować zawartości %s."
-"msg_debug_json_result","Rezultat parsowania JSON:\nKod błędu: %s\nWiadomość błędu: %s\nLinia błędu: %s"
