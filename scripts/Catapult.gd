@@ -427,7 +427,14 @@ func _on_InstallsList_item_selected(index: int) -> void:
 	var name = _lst_installs.get_item_text(index)
 	_btn_delete.disabled = false
 	_btn_make_active.disabled = (name == Settings.read("active_install_" + Settings.read("game")))
+
+
+func _on_InstallsList_item_activated(index: int) -> void:
 	
+	var name = _lst_installs.get_item_text(index)
+	var path = _installs[Settings.read("game")][name]
+	if Directory.new().dir_exists(path):
+		OS.shell_open(path)
 
 
 func _on_btnMakeActive_pressed() -> void:
@@ -456,7 +463,7 @@ func _refresh_currently_installed() -> void:
 		for name in _installs[game]:
 			_lst_installs.add_item(name)
 			var curr_idx = _lst_installs.get_item_count() - 1
-			_lst_installs.set_item_tooltip(curr_idx, "Location: " + _installs[game][name])
+			_lst_installs.set_item_tooltip(curr_idx, "Location:\n%s\n(double-click to open folder)" % _installs[game][name])
 #			if name == active_name:
 #				_lst_installs.set_item_custom_fg_color(curr_idx, Color(0, 0.8, 0))
 	

@@ -124,12 +124,11 @@ margin_bottom = 100.0
 [node name="Tabs" type="TabContainer" parent="Main" groups=["disable_during_backup_operations", "disable_during_mod_operations", "disable_during_release_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases"]]
 margin_top = 104.0
 margin_right = 592.0
-margin_bottom = 517.0
+margin_bottom = 535.0
 tab_align = 0
 script = ExtResource( 16 )
 
 [node name="Game" type="VBoxContainer" parent="Main/Tabs"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -305,7 +304,7 @@ margin_bottom = 268.0
 [node name="GameInstalls" type="VBoxContainer" parent="Main/Tabs/Game"]
 margin_top = 272.0
 margin_right = 577.0
-margin_bottom = 400.0
+margin_bottom = 390.0
 
 [node name="Label2" type="Label" parent="Main/Tabs/Game/GameInstalls"]
 margin_right = 577.0
@@ -316,12 +315,12 @@ align = 1
 [node name="HBox" type="HBoxContainer" parent="Main/Tabs/Game/GameInstalls"]
 margin_top = 28.0
 margin_right = 577.0
-margin_bottom = 128.0
+margin_bottom = 118.0
 
 [node name="InstallsList" type="ItemList" parent="Main/Tabs/Game/GameInstalls/HBox" groups=["disable_during_release_operations"]]
 margin_right = 464.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 0, 100 )
+margin_bottom = 90.0
+rect_min_size = Vector2( 0, 90 )
 size_flags_horizontal = 3
 items = [ "Item 0", null, false, "Item 1", null, false, "Item 2", null, false, "Item 3", null, false, "Item 4", null, false, "Item 5", null, false ]
 script = ExtResource( 6 )
@@ -329,7 +328,7 @@ script = ExtResource( 6 )
 [node name="VBox" type="VBoxContainer" parent="Main/Tabs/Game/GameInstalls/HBox"]
 margin_left = 470.0
 margin_right = 577.0
-margin_bottom = 100.0
+margin_bottom = 90.0
 
 [node name="btnMakeActive" type="Button" parent="Main/Tabs/Game/GameInstalls/HBox/VBox" groups=["disable_during_release_operations"]]
 margin_right = 107.0
@@ -1001,6 +1000,7 @@ margin_right = 577.0
 margin_bottom = 56.0
 
 [node name="Settings" type="VBoxContainer" parent="Main/Tabs"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -1275,7 +1275,7 @@ size_flags_horizontal = 4
 text = "Print screen info"
 
 [node name="Log" type="RichTextLabel" parent="Main"]
-margin_top = 521.0
+margin_top = 539.0
 margin_right = 592.0
 margin_bottom = 692.0
 focus_mode = 2
@@ -1334,6 +1334,7 @@ __meta__ = {
 [connection signal="pressed" from="Main/Tabs/Game/ActiveInstall/Build/UserDir" to="." method="_on_UserDir_pressed"]
 [connection signal="pressed" from="Main/Tabs/Game/ActiveInstall/Launch/BtnPlay" to="." method="_on_BtnPlay_pressed"]
 [connection signal="pressed" from="Main/Tabs/Game/ActiveInstall/Launch/BtnResume" to="." method="_on_BtnResume_pressed"]
+[connection signal="item_activated" from="Main/Tabs/Game/GameInstalls/HBox/InstallsList" to="." method="_on_InstallsList_item_activated"]
 [connection signal="item_selected" from="Main/Tabs/Game/GameInstalls/HBox/InstallsList" to="." method="_on_InstallsList_item_selected"]
 [connection signal="pressed" from="Main/Tabs/Game/GameInstalls/HBox/VBox/btnMakeActive" to="." method="_on_btnMakeActive_pressed"]
 [connection signal="pressed" from="Main/Tabs/Game/GameInstalls/HBox/VBox/btnDelete" to="." method="_on_btnDelete_pressed"]
