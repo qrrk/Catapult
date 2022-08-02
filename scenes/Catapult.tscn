@@ -222,6 +222,10 @@ margin_left = 188.0
 margin_top = 124.0
 margin_right = 389.0
 margin_bottom = 152.0
+hint_tooltip = "If checked, the game install currently set as active
+will be replaced with the version selected above.
+If unchecked, the selected build will be a new,
+separate install of the game."
 size_flags_horizontal = 4
 pressed = true
 text = "Update current active install"
@@ -305,6 +309,7 @@ margin_bottom = 268.0
 margin_top = 272.0
 margin_right = 577.0
 margin_bottom = 390.0
+hint_tooltip = "asdfasdfasdfas"
 
 [node name="Label2" type="Label" parent="Main/Tabs/Game/GameInstalls"]
 margin_right = 577.0
@@ -333,6 +338,10 @@ margin_bottom = 90.0
 [node name="btnMakeActive" type="Button" parent="Main/Tabs/Game/GameInstalls/HBox/VBox" groups=["disable_during_release_operations"]]
 margin_right = 107.0
 margin_bottom = 32.0
+hint_tooltip = "Set the selected game install as active (i.e. in use).
+\"Active\" install is the one that will be launched
+when you click Play/Resume, or updated when
+you click Install."
 disabled = true
 text = "Make active"
 icon = ExtResource( 41 )
@@ -341,6 +350,9 @@ icon = ExtResource( 41 )
 margin_top = 36.0
 margin_right = 107.0
 margin_bottom = 68.0
+hint_tooltip = "Delete the selected copy of the game.
+(Saves, settings and other user data
+are stored separately and will not be lost.)"
 disabled = true
 text = "Delete"
 icon = ExtResource( 40 )
