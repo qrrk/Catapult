@@ -440,7 +440,7 @@ func _on_InstallsList_item_activated(index: int) -> void:
 func _on_btnMakeActive_pressed() -> void:
 	
 	var name = _lst_installs.get_item_text(_lst_installs.get_selected_items()[0])
-	Status.post("Setting active install to %s." % name)
+	Status.post(tr("msg_set_active") % name)
 	Settings.store("active_install_" + Settings.read("game"), name)
 	_refresh_currently_installed()
 
@@ -463,7 +463,7 @@ func _refresh_currently_installed() -> void:
 		for name in _installs[game]:
 			_lst_installs.add_item(name)
 			var curr_idx = _lst_installs.get_item_count() - 1
-			_lst_installs.set_item_tooltip(curr_idx, "Location:\n%s\n(double-click to open folder)" % _installs[game][name])
+			_lst_installs.set_item_tooltip(curr_idx, tr("tooltip_installs_item") % _installs[game][name])
 #			if name == active_name:
 #				_lst_installs.set_item_custom_fg_color(curr_idx, Color(0, 0.8, 0))
 	

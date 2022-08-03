@@ -218,17 +218,14 @@ text = "btn_install"
 icon = ExtResource( 3 )
 
 [node name="UpdateCurrent" type="CheckBox" parent="Main/Tabs/Game" groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
-margin_left = 188.0
+margin_left = 219.0
 margin_top = 124.0
-margin_right = 389.0
+margin_right = 357.0
 margin_bottom = 152.0
-hint_tooltip = "If checked, the game install currently set as active
-will be replaced with the version selected above.
-If unchecked, the selected build will be a new,
-separate install of the game."
+hint_tooltip = "tooltip_update"
 size_flags_horizontal = 4
 pressed = true
-text = "Update current active install"
+text = "cb_update_active"
 
 [node name="HSeparator" type="HSeparator" parent="Main/Tabs/Game"]
 margin_top = 156.0
@@ -243,7 +240,7 @@ margin_bottom = 256.0
 [node name="Label" type="Label" parent="Main/Tabs/Game/ActiveInstall"]
 margin_right = 577.0
 margin_bottom = 24.0
-text = "Active install:"
+text = "lbl_active_install"
 align = 1
 
 [node name="Build" type="HBoxContainer" parent="Main/Tabs/Game/ActiveInstall"]
@@ -309,12 +306,11 @@ margin_bottom = 268.0
 margin_top = 272.0
 margin_right = 577.0
 margin_bottom = 390.0
-hint_tooltip = "asdfasdfasdfas"
 
 [node name="Label2" type="Label" parent="Main/Tabs/Game/GameInstalls"]
 margin_right = 577.0
 margin_bottom = 24.0
-text = "Installed versions:"
+text = "lbl_installs"
 align = 1
 
 [node name="HBox" type="HBoxContainer" parent="Main/Tabs/Game/GameInstalls"]
@@ -323,7 +319,7 @@ margin_right = 577.0
 margin_bottom = 118.0
 
 [node name="InstallsList" type="ItemList" parent="Main/Tabs/Game/GameInstalls/HBox" groups=["disable_during_release_operations"]]
-margin_right = 464.0
+margin_right = 461.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 0, 90 )
 size_flags_horizontal = 3
@@ -331,30 +327,25 @@ items = [ "Item 0", null, false, "Item 1", null, false, "Item 2", null, false, "
 script = ExtResource( 6 )
 
 [node name="VBox" type="VBoxContainer" parent="Main/Tabs/Game/GameInstalls/HBox"]
-margin_left = 470.0
+margin_left = 467.0
 margin_right = 577.0
 margin_bottom = 90.0
 
 [node name="btnMakeActive" type="Button" parent="Main/Tabs/Game/GameInstalls/HBox/VBox" groups=["disable_during_release_operations"]]
-margin_right = 107.0
+margin_right = 110.0
 margin_bottom = 32.0
-hint_tooltip = "Set the selected game install as active (i.e. in use).
-\"Active\" install is the one that will be launched
-when you click Play/Resume, or updated when
-you click Install."
+hint_tooltip = "tooltip_activate"
 disabled = true
-text = "Make active"
+text = "btn_activate"
 icon = ExtResource( 41 )
 
 [node name="btnDelete" type="Button" parent="Main/Tabs/Game/GameInstalls/HBox/VBox" groups=["disable_during_release_operations"]]
 margin_top = 36.0
-margin_right = 107.0
+margin_right = 110.0
 margin_bottom = 68.0
-hint_tooltip = "Delete the selected copy of the game.
-(Saves, settings and other user data
-are stored separately and will not be lost.)"
+hint_tooltip = "tooltip_delete"
 disabled = true
-text = "Delete"
+text = "btn_delete"
 icon = ExtResource( 40 )
 
 [node name="ChangelogDialog" parent="Main/Tabs/Game" instance=ExtResource( 32 )]
