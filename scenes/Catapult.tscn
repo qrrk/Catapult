@@ -124,11 +124,12 @@ margin_bottom = 100.0
 [node name="Tabs" type="TabContainer" parent="Main" groups=["disable_during_backup_operations", "disable_during_mod_operations", "disable_during_release_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases"]]
 margin_top = 104.0
 margin_right = 592.0
-margin_bottom = 535.0
+margin_bottom = 547.0
 tab_align = 0
 script = ExtResource( 16 )
 
 [node name="Game" type="VBoxContainer" parent="Main/Tabs"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -297,26 +298,26 @@ size_flags_horizontal = 4
 text = "btn_resume"
 icon = ExtResource( 2 )
 
-[node name="HSeparator2" type="HSeparator" parent="Main/Tabs/Game"]
-margin_top = 260.0
-margin_right = 577.0
-margin_bottom = 268.0
-
 [node name="GameInstalls" type="VBoxContainer" parent="Main/Tabs/Game"]
-margin_top = 272.0
+margin_top = 260.0
 margin_right = 577.0
 margin_bottom = 390.0
 
-[node name="Label2" type="Label" parent="Main/Tabs/Game/GameInstalls"]
+[node name="HSeparator2" type="HSeparator" parent="Main/Tabs/Game/GameInstalls"]
 margin_right = 577.0
-margin_bottom = 24.0
+margin_bottom = 8.0
+
+[node name="Label2" type="Label" parent="Main/Tabs/Game/GameInstalls"]
+margin_top = 12.0
+margin_right = 577.0
+margin_bottom = 36.0
 text = "lbl_installs"
 align = 1
 
 [node name="HBox" type="HBoxContainer" parent="Main/Tabs/Game/GameInstalls"]
-margin_top = 28.0
+margin_top = 40.0
 margin_right = 577.0
-margin_bottom = 118.0
+margin_bottom = 130.0
 
 [node name="InstallsList" type="ItemList" parent="Main/Tabs/Game/GameInstalls/HBox" groups=["disable_during_release_operations"]]
 margin_right = 461.0
@@ -1003,7 +1004,6 @@ margin_right = 577.0
 margin_bottom = 56.0
 
 [node name="Settings" type="VBoxContainer" parent="Main/Tabs"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -1091,31 +1091,38 @@ margin_bottom = 200.0
 hint_tooltip = "tooltip_shorten_release_names"
 text = "cbtn_shorten_release_names"
 
-[node name="ShowObsoleteMods" type="CheckButton" parent="Main/Tabs/Settings"]
+[node name="AlwaysShowInstalls" type="CheckButton" parent="Main/Tabs/Settings"]
 margin_top = 202.0
 margin_right = 577.0
 margin_bottom = 230.0
+hint_tooltip = "tooltip_always_show_installs"
+text = "cbtn_always_show_installs"
+
+[node name="ShowObsoleteMods" type="CheckButton" parent="Main/Tabs/Settings"]
+margin_top = 232.0
+margin_right = 577.0
+margin_bottom = 260.0
 hint_tooltip = "tooltip_show_obsolete_mods"
 text = "cbtn_show_obsolete_mods"
 
 [node name="InstallArchivedMods" type="CheckButton" parent="Main/Tabs/Settings"]
-margin_top = 232.0
+margin_top = 262.0
 margin_right = 577.0
-margin_bottom = 260.0
+margin_bottom = 290.0
 hint_tooltip = "tooltip_install_archived_mods"
 text = "cbtn_install_archived_mods"
 
 [node name="ShowDebug" type="CheckButton" parent="Main/Tabs/Settings"]
-margin_top = 262.0
+margin_top = 292.0
 margin_right = 577.0
-margin_bottom = 290.0
+margin_bottom = 320.0
 hint_tooltip = "tooltip_debug_mode"
 text = "cbtn_debug_mode"
 
 [node name="NumReleases" type="HBoxContainer" parent="Main/Tabs/Settings"]
-margin_top = 292.0
+margin_top = 322.0
 margin_right = 577.0
-margin_bottom = 316.0
+margin_bottom = 346.0
 hint_tooltip = "tooltip_num_releases_to_request"
 
 [node name="Label" type="Label" parent="Main/Tabs/Settings/NumReleases"]
@@ -1133,9 +1140,9 @@ value = 30.0
 rounded = true
 
 [node name="NumPrs" type="HBoxContainer" parent="Main/Tabs/Settings"]
-margin_top = 318.0
+margin_top = 348.0
 margin_right = 577.0
-margin_bottom = 342.0
+margin_bottom = 372.0
 hint_tooltip = "tooltip_num_prs_to_request"
 
 [node name="Label" type="Label" parent="Main/Tabs/Settings/NumPrs"]
@@ -1154,9 +1161,9 @@ value = 100.0
 rounded = true
 
 [node name="ScaleOverride" type="HBoxContainer" parent="Main/Tabs/Settings"]
-margin_top = 344.0
+margin_top = 374.0
 margin_right = 577.0
-margin_bottom = 372.0
+margin_bottom = 402.0
 hint_tooltip = "tooltip_ui_scale_override"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1278,7 +1285,7 @@ size_flags_horizontal = 4
 text = "Print screen info"
 
 [node name="Log" type="RichTextLabel" parent="Main"]
-margin_top = 539.0
+margin_top = 551.0
 margin_right = 592.0
 margin_bottom = 692.0
 focus_mode = 2
@@ -1386,6 +1393,7 @@ __meta__ = {
 [connection signal="toggled" from="Main/Tabs/Settings/PrintTips" to="Main/Tabs/Settings" method="_on_PrintTips_toggled"]
 [connection signal="toggled" from="Main/Tabs/Settings/UpdateToSame" to="Main/Tabs/Settings" method="_on_UpdateToSame_toggled"]
 [connection signal="toggled" from="Main/Tabs/Settings/ShortenNames" to="Main/Tabs/Settings" method="_on_ShortenNames_toggled"]
+[connection signal="toggled" from="Main/Tabs/Settings/AlwaysShowInstalls" to="Main/Tabs/Settings" method="_on_AlwaysShowInstalls_toggled"]
 [connection signal="toggled" from="Main/Tabs/Settings/ShowObsoleteMods" to="Main/Tabs/Settings" method="_on_ShowObsoleteMods_toggled"]
 [connection signal="toggled" from="Main/Tabs/Settings/InstallArchivedMods" to="Main/Tabs/Settings" method="_on_InstallArchivedMods_toggled"]
 [connection signal="toggled" from="Main/Tabs/Settings/ShowDebug" to="Main/Tabs/Settings" method="_on_ShowDebug_toggled"]

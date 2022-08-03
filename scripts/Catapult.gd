@@ -27,6 +27,7 @@ onready var _cb_update = $Main/Tabs/Game/UpdateCurrent
 onready var _lst_installs = $Main/Tabs/Game/GameInstalls/HBox/InstallsList
 onready var _btn_make_active = $Main/Tabs/Game/GameInstalls/HBox/VBox/btnMakeActive
 onready var _btn_delete = $Main/Tabs/Game/GameInstalls/HBox/VBox/btnDelete
+onready var _panel_installs = $Main/Tabs/Game/GameInstalls
 
 var _disable_savestate := {}
 var _installs := {}
@@ -491,6 +492,12 @@ func _refresh_currently_installed() -> void:
 		_btn_resume.disabled = true
 		_btn_game_dir.visible = false
 		_btn_user_dir.visible = false
+	
+	if (game in _installs and _installs[game].size() > 1) or \
+			(Settings.read("always_show_installs") == true):
+		_panel_installs.visible = true
+	else:
+		_panel_installs.visible = false
 
 	for i in [1, 2, 3, 4]:
 		_tabs.set_tab_disabled(i, not game in _installs)
