@@ -63,12 +63,12 @@ func remove_release_by_name(name: String) -> void:
 	var game = Settings.read("game")
 	
 	if (game in installs) and (name in installs[game]):
-		Status.post("Removing %s..." % name)
+		Status.post(tr("msg_deleting_game") % name)
 		var location = installs[game][name]
 		FS.rm_dir(location)
 		yield(FS, "rm_dir_done")
-		Status.post("Removal finished.")
+		Status.post(tr("msg_game_deleted"))
 	else:
-		Status.post("Attempted to remove release \"%s\", but could not find it on disk." % name, Enums.MSG_ERROR)
+		Status.post(tr("msg_delete_not_found") % name, Enums.MSG_ERROR)
 	
 	emit_signal("operation_finished")

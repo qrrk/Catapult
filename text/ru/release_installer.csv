@@ -4,3 +4,6 @@
 "msg_installing_game","Установка %s..."
 "msg_game_updated","Обновление завершено."
 "msg_game_installed","Установка завершена."
+"msg_deleting_game","Удаление %s..."
+«msg_game_deleted», «Удаление завершено».
+"msg_delete_not_found", "Была попытка удалить релиз \"%s\", но не удалось найти его на диске."

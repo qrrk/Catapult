@@ -4,3 +4,6 @@
 "msg_installing_game","Instaluji %s..."
 "msg_game_updated","Aktualizace dokončena."
 "msg_game_installed","Instalace dokončena."
+"msg_deleting_game","Odebírám %s..."
+"msg_game_deleted","Odstranění dokončeno."
+"msg_delete_not_found","Pokusil jsem se odstranit vydání \"%s\", ale nemohl jsem je najít na disku."

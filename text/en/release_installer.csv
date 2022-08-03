@@ -4,3 +4,6 @@
 "msg_installing_game","Installing %s..."
 "msg_game_updated","Update finished."
 "msg_game_installed","Installation finished."
+"msg_deleting_game","Removing %s..."
+"msg_game_deleted","Removal finished."
+"msg_delete_not_found","Attempted to remove release \"%s\", but could not find it on disk."

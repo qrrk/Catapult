@@ -4,4 +4,6 @@
 "msg_installing_game","正在安装%s..."
 "msg_game_updated","更新完成。"
 "msg_game_installed","安装完成。"
-
+"msg_deleting_game","正在删除 %s..."
+"msg_game_deleted","删除完成。"
+"msg_delete_not_found","试图删除版本 \"%s\"，但在磁盘上找不到它。"
