@@ -11,6 +11,7 @@
 ## Features
 
 - Automatic game download and installation (stable or experimental releases).
+- Ability to install multiple versions of the game and switch between them.
 - Updating the game while preserving user data (saved games, settings, mods, etc).
 - Mod management: [Kenan Modpack](https://github.com/Kenan2000/CDDA-Kenan-Modpack) download and complete or selective installation.
 - Automatic download and installation of soundpacks.
@@ -26,7 +27,8 @@ None required. The launcher is a single, self-contained executable. Just [downlo
 
 - Be sure you have write permission in that folder.
 - On Linux, [make the file executable](https://askubuntu.com/a/485001) before running it.
-    - For Arch Linux you can install [the AUR package](https://aur.archlinux.org/packages/catapult-bin)
+    - If the game does not start on Linux, make sure you have the following dependencies installed: `sdl2`, `sdl2_image`, `sdl2_ttf`, `sdl2_mixer`, `freetype2`. Some distros come with these preinstalled, but others don't.
+    - For Arch Linux, an [unofficial AUR package](https://aur.archlinux.org/packages/catapult-bin) is available.
 
 ## System requirements
 
