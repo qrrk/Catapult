@@ -1,6 +1,21 @@
 extends Node
 
 
+const INFO_FILENAME := "catapult_install_info.json"
+
+
+func create_info_file(location: String, name: String) -> void:
+	
+	var info = {"name": name}
+	var path = location + "/" + INFO_FILENAME
+	var f = File.new()
+	if (f.open(path, File.WRITE) == 0):
+		f.store_string(JSON.print(info, "    "))
+		f.close()
+	else:
+		Status.post(tr("msg_cannot_create_install_info") % path, Enums.MSG_ERROR)
+
+
 func get_all_nodes_within(n: Node) -> Array:
 	
 	var result = []

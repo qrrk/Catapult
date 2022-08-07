@@ -1,11 +1,11 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://icons/info.svg" type="Texture" id=1]
 [ext_resource path="res://icons/buttons/tex_resume.tex" type="Texture" id=2]
 [ext_resource path="res://icons/buttons/tex_download.tex" type="Texture" id=3]
 [ext_resource path="res://scripts/Catapult.gd" type="Script" id=4]
 [ext_resource path="res://scripts/ReleaseManager.gd" type="Script" id=5]
-[ext_resource path="res://scripts/InstallProbe.gd" type="Script" id=6]
+[ext_resource path="res://scripts/InstallsList.gd" type="Script" id=6]
 [ext_resource path="res://icons/lang/tex_lang_cs.res" type="Texture" id=7]
 [ext_resource path="res://scripts/SettingsUI.gd" type="Script" id=8]
 [ext_resource path="res://scripts/ReleaseInstaller.gd" type="Script" id=9]
@@ -39,7 +39,9 @@
 [ext_resource path="res://icons/theme/tex_godot3.res" type="Texture" id=37]
 [ext_resource path="res://icons/theme/tex_solarized_light.res" type="Texture" id=38]
 [ext_resource path="res://icons/theme/tex_grey.res" type="Texture" id=39]
-[ext_resource path="res://icons/lang/tex_lang_pl.res" type="Texture" id=40]
+[ext_resource path="res://icons/buttons/tex_delete.tex" type="Texture" id=40]
+[ext_resource path="res://icons/buttons/tex_activate.tex" type="Texture" id=41]
+[ext_resource path="res://icons/lang/tex_lang_pl.res" type="Texture" id=42]
 
 [sub_resource type="StyleBoxEmpty" id=2]
 content_margin_left = 4.0
@@ -119,10 +121,10 @@ margin_top = 100.0
 margin_right = 592.0
 margin_bottom = 100.0
 
-[node name="Tabs" type="TabContainer" parent="Main" groups=["disable_during_backup_operations", "disable_during_mod_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases", "disable_while_installing_game"]]
+[node name="Tabs" type="TabContainer" parent="Main" groups=["disable_during_backup_operations", "disable_during_mod_operations", "disable_during_release_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases"]]
 margin_top = 104.0
 margin_right = 592.0
-margin_bottom = 373.0
+margin_bottom = 535.0
 tab_align = 0
 script = ExtResource( 16 )
 
@@ -164,14 +166,14 @@ margin_top = 28.0
 margin_right = 577.0
 margin_bottom = 56.0
 
-[node name="RBtnStable" type="CheckBox" parent="Main/Tabs/Game/Channel/Group" groups=["disable_while_fetching_releases", "disable_while_installing_game"]]
+[node name="RBtnStable" type="CheckBox" parent="Main/Tabs/Game/Channel/Group" groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
 margin_right = 102.0
 margin_bottom = 28.0
 hint_tooltip = "tooltip_stable"
 group = SubResource( 1 )
 text = "rbtn_stable"
 
-[node name="RBtnExperimental" type="CheckBox" parent="Main/Tabs/Game/Channel/Group" groups=["disable_while_fetching_releases", "disable_while_installing_game"]]
+[node name="RBtnExperimental" type="CheckBox" parent="Main/Tabs/Game/Channel/Group" groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
 margin_left = 108.0
 margin_right = 253.0
 margin_bottom = 28.0
@@ -190,7 +192,7 @@ margin_right = 68.0
 margin_bottom = 24.0
 text = "lbl_builds"
 
-[node name="BuildsList" type="OptionButton" parent="Main/Tabs/Game/Builds" groups=["disable_while_fetching_releases", "disable_while_installing_game"]]
+[node name="BuildsList" type="OptionButton" parent="Main/Tabs/Game/Builds" groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
 margin_left = 74.0
 margin_right = 490.0
 margin_bottom = 24.0
@@ -198,14 +200,14 @@ hint_tooltip = "tooltip_builds"
 size_flags_horizontal = 3
 clip_text = true
 
-[node name="BtnRefresh" type="Button" parent="Main/Tabs/Game/Builds" groups=["disable_while_fetching_releases", "disable_while_installing_game"]]
+[node name="BtnRefresh" type="Button" parent="Main/Tabs/Game/Builds" groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
 margin_left = 496.0
 margin_right = 577.0
 margin_bottom = 24.0
 hint_tooltip = "tooltip_refresh"
 text = "btn_refresh"
 
-[node name="BtnInstall" type="Button" parent="Main/Tabs/Game" groups=["disable_while_fetching_releases", "disable_while_installing_game"]]
+[node name="BtnInstall" type="Button" parent="Main/Tabs/Game" groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
 margin_left = 239.0
 margin_top = 88.0
 margin_right = 337.0
@@ -215,23 +217,33 @@ size_flags_horizontal = 4
 text = "btn_install"
 icon = ExtResource( 3 )
 
-[node name="HSeparator" type="HSeparator" parent="Main/Tabs/Game"]
+[node name="UpdateCurrent" type="CheckBox" parent="Main/Tabs/Game" groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
+margin_left = 219.0
 margin_top = 124.0
-margin_right = 577.0
-margin_bottom = 132.0
+margin_right = 357.0
+margin_bottom = 152.0
+hint_tooltip = "tooltip_update"
+size_flags_horizontal = 4
+pressed = true
+text = "cb_update_active"
 
-[node name="CurrentInstall" type="VBoxContainer" parent="Main/Tabs/Game"]
-margin_top = 136.0
+[node name="HSeparator" type="HSeparator" parent="Main/Tabs/Game"]
+margin_top = 156.0
 margin_right = 577.0
-margin_bottom = 224.0
+margin_bottom = 164.0
 
-[node name="Label" type="Label" parent="Main/Tabs/Game/CurrentInstall"]
+[node name="ActiveInstall" type="VBoxContainer" parent="Main/Tabs/Game"]
+margin_top = 168.0
+margin_right = 577.0
+margin_bottom = 256.0
+
+[node name="Label" type="Label" parent="Main/Tabs/Game/ActiveInstall"]
 margin_right = 577.0
 margin_bottom = 24.0
-text = "lbl_currently_installed"
+text = "lbl_active_install"
 align = 1
 
-[node name="Build" type="HBoxContainer" parent="Main/Tabs/Game/CurrentInstall"]
+[node name="Build" type="HBoxContainer" parent="Main/Tabs/Game/ActiveInstall"]
 margin_left = 217.0
 margin_top = 28.0
 margin_right = 360.0
@@ -239,13 +251,13 @@ margin_bottom = 52.0
 size_flags_horizontal = 4
 custom_constants/separation = 4
 
-[node name="Name" type="Label" parent="Main/Tabs/Game/CurrentInstall/Build"]
+[node name="Name" type="Label" parent="Main/Tabs/Game/ActiveInstall/Build"]
 margin_right = 99.0
 margin_bottom = 24.0
 text = "lbl_build_none"
 align = 1
 
-[node name="GameDir" parent="Main/Tabs/Game/CurrentInstall/Build" instance=ExtResource( 26 )]
+[node name="GameDir" parent="Main/Tabs/Game/ActiveInstall/Build" instance=ExtResource( 26 )]
 margin_left = 103.0
 margin_top = 3.0
 margin_right = 121.0
@@ -253,7 +265,7 @@ margin_bottom = 21.0
 hint_tooltip = "tooltip_game_dir"
 texture_normal = ExtResource( 24 )
 
-[node name="UserDir" parent="Main/Tabs/Game/CurrentInstall/Build" instance=ExtResource( 26 )]
+[node name="UserDir" parent="Main/Tabs/Game/ActiveInstall/Build" instance=ExtResource( 26 )]
 margin_left = 125.0
 margin_top = 3.0
 margin_right = 143.0
@@ -261,14 +273,14 @@ margin_bottom = 21.0
 hint_tooltip = "tooltip_user_dir"
 texture_normal = ExtResource( 23 )
 
-[node name="Launch" type="HBoxContainer" parent="Main/Tabs/Game/CurrentInstall"]
+[node name="Launch" type="HBoxContainer" parent="Main/Tabs/Game/ActiveInstall"]
 margin_left = 187.0
 margin_top = 56.0
 margin_right = 389.0
 margin_bottom = 88.0
 size_flags_horizontal = 4
 
-[node name="BtnPlay" type="Button" parent="Main/Tabs/Game/CurrentInstall/Launch" groups=["disable_while_installing_game"]]
+[node name="BtnPlay" type="Button" parent="Main/Tabs/Game/ActiveInstall/Launch" groups=["disable_during_release_operations"]]
 margin_right = 88.0
 margin_bottom = 32.0
 hint_tooltip = "tooltip_play"
@@ -276,7 +288,7 @@ size_flags_horizontal = 4
 text = "btn_play"
 icon = ExtResource( 25 )
 
-[node name="BtnResume" type="Button" parent="Main/Tabs/Game/CurrentInstall/Launch" groups=["disable_while_installing_game"]]
+[node name="BtnResume" type="Button" parent="Main/Tabs/Game/ActiveInstall/Launch" groups=["disable_during_release_operations"]]
 margin_left = 94.0
 margin_right = 202.0
 margin_bottom = 32.0
@@ -285,10 +297,56 @@ size_flags_horizontal = 4
 text = "btn_resume"
 icon = ExtResource( 2 )
 
-[node name="Spacer" type="Control" parent="Main/Tabs/Game"]
-margin_top = 228.0
+[node name="GameInstalls" type="VBoxContainer" parent="Main/Tabs/Game"]
+margin_top = 260.0
 margin_right = 577.0
-margin_bottom = 228.0
+margin_bottom = 390.0
+
+[node name="HSeparator2" type="HSeparator" parent="Main/Tabs/Game/GameInstalls"]
+margin_right = 577.0
+margin_bottom = 8.0
+
+[node name="Label2" type="Label" parent="Main/Tabs/Game/GameInstalls"]
+margin_top = 12.0
+margin_right = 577.0
+margin_bottom = 36.0
+text = "lbl_installs"
+align = 1
+
+[node name="HBox" type="HBoxContainer" parent="Main/Tabs/Game/GameInstalls"]
+margin_top = 40.0
+margin_right = 577.0
+margin_bottom = 130.0
+
+[node name="InstallsList" type="ItemList" parent="Main/Tabs/Game/GameInstalls/HBox" groups=["disable_during_release_operations"]]
+margin_right = 461.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 0, 90 )
+size_flags_horizontal = 3
+items = [ "Item 0", null, false, "Item 1", null, false, "Item 2", null, false, "Item 3", null, false, "Item 4", null, false, "Item 5", null, false ]
+script = ExtResource( 6 )
+
+[node name="VBox" type="VBoxContainer" parent="Main/Tabs/Game/GameInstalls/HBox"]
+margin_left = 467.0
+margin_right = 577.0
+margin_bottom = 90.0
+
+[node name="btnMakeActive" type="Button" parent="Main/Tabs/Game/GameInstalls/HBox/VBox" groups=["disable_during_release_operations"]]
+margin_right = 110.0
+margin_bottom = 32.0
+hint_tooltip = "tooltip_activate"
+disabled = true
+text = "btn_activate"
+icon = ExtResource( 41 )
+
+[node name="btnDelete" type="Button" parent="Main/Tabs/Game/GameInstalls/HBox/VBox" groups=["disable_during_release_operations"]]
+margin_top = 36.0
+margin_right = 110.0
+margin_bottom = 68.0
+hint_tooltip = "tooltip_delete"
+disabled = true
+text = "btn_delete"
+icon = ExtResource( 40 )
 
 [node name="ChangelogDialog" parent="Main/Tabs/Game" instance=ExtResource( 32 )]
 
@@ -973,7 +1031,7 @@ size_flags_horizontal = 10
 text = "English"
 icon = ExtResource( 22 )
 expand_icon = true
-items = [ "English", ExtResource( 22 ), false, 0, null, "Français", ExtResource( 10 ), false, 1, null, "Русский", ExtResource( 21 ), false, 2, null, "简体字", ExtResource( 31 ), false, 3, null, "Čeština", ExtResource( 7 ), false, 4, null, "Español", ExtResource( 19 ), false, 5, null, "Polski", ExtResource( 40 ), false, 6, null ]
+items = [ "English", ExtResource( 22 ), false, 0, null, "Français", ExtResource( 10 ), false, 1, null, "Русский", ExtResource( 21 ), false, 2, null, "简体字", ExtResource( 31 ), false, 3, null, "Čeština", ExtResource( 7 ), false, 4, null, "Español", ExtResource( 19 ), false, 5, null, "Polski", ExtResource( 42 ), false, 6, null ]
 selected = 0
 
 [node name="LauncherTheme" type="HBoxContainer" parent="Main/Tabs/Settings"]
@@ -1033,31 +1091,38 @@ margin_bottom = 200.0
 hint_tooltip = "tooltip_shorten_release_names"
 text = "cbtn_shorten_release_names"
 
-[node name="ShowObsoleteMods" type="CheckButton" parent="Main/Tabs/Settings"]
+[node name="AlwaysShowInstalls" type="CheckButton" parent="Main/Tabs/Settings"]
 margin_top = 202.0
 margin_right = 577.0
 margin_bottom = 230.0
+hint_tooltip = "tooltip_always_show_installs"
+text = "cbtn_always_show_installs"
+
+[node name="ShowObsoleteMods" type="CheckButton" parent="Main/Tabs/Settings"]
+margin_top = 232.0
+margin_right = 577.0
+margin_bottom = 260.0
 hint_tooltip = "tooltip_show_obsolete_mods"
 text = "cbtn_show_obsolete_mods"
 
 [node name="InstallArchivedMods" type="CheckButton" parent="Main/Tabs/Settings"]
-margin_top = 232.0
+margin_top = 262.0
 margin_right = 577.0
-margin_bottom = 260.0
+margin_bottom = 290.0
 hint_tooltip = "tooltip_install_archived_mods"
 text = "cbtn_install_archived_mods"
 
 [node name="ShowDebug" type="CheckButton" parent="Main/Tabs/Settings"]
-margin_top = 262.0
+margin_top = 292.0
 margin_right = 577.0
-margin_bottom = 290.0
+margin_bottom = 320.0
 hint_tooltip = "tooltip_debug_mode"
 text = "cbtn_debug_mode"
 
 [node name="NumReleases" type="HBoxContainer" parent="Main/Tabs/Settings"]
-margin_top = 292.0
+margin_top = 322.0
 margin_right = 577.0
-margin_bottom = 316.0
+margin_bottom = 346.0
 hint_tooltip = "tooltip_num_releases_to_request"
 
 [node name="Label" type="Label" parent="Main/Tabs/Settings/NumReleases"]
@@ -1075,9 +1140,9 @@ value = 30.0
 rounded = true
 
 [node name="NumPrs" type="HBoxContainer" parent="Main/Tabs/Settings"]
-margin_top = 318.0
+margin_top = 348.0
 margin_right = 577.0
-margin_bottom = 342.0
+margin_bottom = 372.0
 hint_tooltip = "tooltip_num_prs_to_request"
 
 [node name="Label" type="Label" parent="Main/Tabs/Settings/NumPrs"]
@@ -1096,9 +1161,9 @@ value = 100.0
 rounded = true
 
 [node name="ScaleOverride" type="HBoxContainer" parent="Main/Tabs/Settings"]
-margin_top = 344.0
+margin_top = 374.0
 margin_right = 577.0
-margin_bottom = 372.0
+margin_bottom = 402.0
 hint_tooltip = "tooltip_ui_scale_override"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1220,7 +1285,7 @@ size_flags_horizontal = 4
 text = "Print screen info"
 
 [node name="Log" type="RichTextLabel" parent="Main"]
-margin_top = 377.0
+margin_top = 539.0
 margin_right = 592.0
 margin_bottom = 692.0
 focus_mode = 2
@@ -1243,12 +1308,6 @@ __meta__ = {
 script = ExtResource( 9 )
 __meta__ = {
 "_editor_description_": "Installs game releases from scratch into specified location. Makes use of  the Downloader."
-}
-
-[node name="InstallProbe" type="Node" parent="."]
-script = ExtResource( 6 )
-__meta__ = {
-"_editor_description_": "For now only provides information about installed game builds."
 }
 
 [node name="Mods" type="Node" parent="."]
@@ -1280,10 +1339,15 @@ __meta__ = {
 [connection signal="item_selected" from="Main/Tabs/Game/Builds/BuildsList" to="." method="_on_BuildsList_item_selected"]
 [connection signal="pressed" from="Main/Tabs/Game/Builds/BtnRefresh" to="." method="_on_BtnRefresh_pressed"]
 [connection signal="pressed" from="Main/Tabs/Game/BtnInstall" to="." method="_on_BtnInstall_pressed"]
-[connection signal="pressed" from="Main/Tabs/Game/CurrentInstall/Build/GameDir" to="." method="_on_GameDir_pressed"]
-[connection signal="pressed" from="Main/Tabs/Game/CurrentInstall/Build/UserDir" to="." method="_on_UserDir_pressed"]
-[connection signal="pressed" from="Main/Tabs/Game/CurrentInstall/Launch/BtnPlay" to="." method="_on_BtnPlay_pressed"]
-[connection signal="pressed" from="Main/Tabs/Game/CurrentInstall/Launch/BtnResume" to="." method="_on_BtnResume_pressed"]
+[connection signal="toggled" from="Main/Tabs/Game/UpdateCurrent" to="." method="_on_cbUpdateCurrent_toggled"]
+[connection signal="pressed" from="Main/Tabs/Game/ActiveInstall/Build/GameDir" to="." method="_on_GameDir_pressed"]
+[connection signal="pressed" from="Main/Tabs/Game/ActiveInstall/Build/UserDir" to="." method="_on_UserDir_pressed"]
+[connection signal="pressed" from="Main/Tabs/Game/ActiveInstall/Launch/BtnPlay" to="." method="_on_BtnPlay_pressed"]
+[connection signal="pressed" from="Main/Tabs/Game/ActiveInstall/Launch/BtnResume" to="." method="_on_BtnResume_pressed"]
+[connection signal="item_activated" from="Main/Tabs/Game/GameInstalls/HBox/InstallsList" to="." method="_on_InstallsList_item_activated"]
+[connection signal="item_selected" from="Main/Tabs/Game/GameInstalls/HBox/InstallsList" to="." method="_on_InstallsList_item_selected"]
+[connection signal="pressed" from="Main/Tabs/Game/GameInstalls/HBox/VBox/btnMakeActive" to="." method="_on_btnMakeActive_pressed"]
+[connection signal="pressed" from="Main/Tabs/Game/GameInstalls/HBox/VBox/btnDelete" to="." method="_on_btnDelete_pressed"]
 [connection signal="item_selected" from="Main/Tabs/Mods/HBox/Installed/InstalledList" to="Main/Tabs/Mods" method="_on_InstalledList_item_selected"]
 [connection signal="multi_selected" from="Main/Tabs/Mods/HBox/Installed/InstalledList" to="Main/Tabs/Mods" method="_on_InstalledList_multi_selected"]
 [connection signal="toggled" from="Main/Tabs/Mods/HBox/Installed/ShowStock" to="Main/Tabs/Mods" method="_on_ShowStock_toggled"]
@@ -1329,6 +1393,7 @@ __meta__ = {
 [connection signal="toggled" from="Main/Tabs/Settings/PrintTips" to="Main/Tabs/Settings" method="_on_PrintTips_toggled"]
 [connection signal="toggled" from="Main/Tabs/Settings/UpdateToSame" to="Main/Tabs/Settings" method="_on_UpdateToSame_toggled"]
 [connection signal="toggled" from="Main/Tabs/Settings/ShortenNames" to="Main/Tabs/Settings" method="_on_ShortenNames_toggled"]
+[connection signal="toggled" from="Main/Tabs/Settings/AlwaysShowInstalls" to="Main/Tabs/Settings" method="_on_AlwaysShowInstalls_toggled"]
 [connection signal="toggled" from="Main/Tabs/Settings/ShowObsoleteMods" to="Main/Tabs/Settings" method="_on_ShowObsoleteMods_toggled"]
 [connection signal="toggled" from="Main/Tabs/Settings/InstallArchivedMods" to="Main/Tabs/Settings" method="_on_InstallArchivedMods_toggled"]
 [connection signal="toggled" from="Main/Tabs/Settings/ShowDebug" to="Main/Tabs/Settings" method="_on_ShowDebug_toggled"]
@@ -1350,8 +1415,8 @@ __meta__ = {
 [connection signal="started_fetching_releases" from="Releases" to="." method="_on_Releases_started_fetching_releases"]
 [connection signal="request_completed" from="Releases/HTTPRequest_DDA" to="Releases" method="_on_request_completed_dda"]
 [connection signal="request_completed" from="Releases/HTTPRequest_BN" to="Releases" method="_on_request_completed_bn"]
-[connection signal="installation_finished" from="ReleaseInstaller" to="." method="_on_ReleaseInstaller_installation_finished"]
-[connection signal="installation_started" from="ReleaseInstaller" to="." method="_on_ReleaseInstaller_installation_started"]
+[connection signal="operation_finished" from="ReleaseInstaller" to="." method="_on_ReleaseInstaller_operation_finished"]
+[connection signal="operation_started" from="ReleaseInstaller" to="." method="_on_ReleaseInstaller_operation_started"]
 [connection signal="mod_deletion_finished" from="Mods" to="." method="_on_mod_operation_finished"]
 [connection signal="mod_deletion_started" from="Mods" to="." method="_on_mod_operation_started"]
 [connection signal="mod_installation_finished" from="Mods" to="." method="_on_mod_operation_finished"]

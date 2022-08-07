@@ -38,6 +38,7 @@ func _ready() -> void:
 	$PrintTips.pressed = Settings.read("print_tips_of_the_day")
 	$UpdateToSame.pressed = Settings.read("update_to_same_build_allowed")
 	$ShortenNames.pressed = Settings.read("shorten_release_names")
+	$AlwaysShowInstalls.pressed = Settings.read("always_show_installs")
 	$ShowObsoleteMods.pressed = Settings.read("show_obsolete_mods")
 	$InstallArchivedMods.pressed = Settings.read("install_archived_mods")
 	$ShowDebug.pressed = Settings.read("debug_mode")
@@ -87,6 +88,11 @@ func _on_UpdateToSame_toggled(button_pressed: bool) -> void:
 func _on_ShortenNames_toggled(button_pressed: bool) -> void:
 	
 	Settings.store("shorten_release_names", button_pressed)
+
+
+func _on_AlwaysShowInstalls_toggled(button_pressed: bool) -> void:
+	
+	Settings.store("always_show_installs", button_pressed)
 
 
 func _on_ShowObsoleteMods_toggled(button_pressed: bool) -> void:

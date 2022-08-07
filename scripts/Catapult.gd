@@ -6,7 +6,6 @@ onready var _log = $Main/Log
 onready var _game_info = $Main/GameInfo
 onready var _game_desc = $Main/GameInfo/Description
 onready var _mod_info = $Main/Tabs/Mods/ModInfo
-onready var _inst_probe = $InstallProbe
 onready var _tabs = $Main/Tabs
 onready var _mods = $Mods  
 onready var _releases = $Releases
@@ -15,17 +14,23 @@ onready var _btn_install = $Main/Tabs/Game/BtnInstall
 onready var _btn_refresh = $Main/Tabs/Game/Builds/BtnRefresh
 onready var _changelog = $Main/Tabs/Game/ChangelogDialog
 onready var _lbl_changelog = $Main/Tabs/Game/Channel/HBox/ChangelogLink
-onready var _btn_game_dir = $Main/Tabs/Game/CurrentInstall/Build/GameDir
-onready var _btn_user_dir = $Main/Tabs/Game/CurrentInstall/Build/UserDir
-onready var _btn_play = $Main/Tabs/Game/CurrentInstall/Launch/BtnPlay
-onready var _btn_resume = $Main/Tabs/Game/CurrentInstall/Launch/BtnResume
+onready var _btn_game_dir = $Main/Tabs/Game/ActiveInstall/Build/GameDir
+onready var _btn_user_dir = $Main/Tabs/Game/ActiveInstall/Build/UserDir
+onready var _btn_play = $Main/Tabs/Game/ActiveInstall/Launch/BtnPlay
+onready var _btn_resume = $Main/Tabs/Game/ActiveInstall/Launch/BtnResume
 onready var _lst_builds = $Main/Tabs/Game/Builds/BuildsList
 onready var _lst_games = $Main/GameChoice/GamesList
 onready var _rbtn_stable = $Main/Tabs/Game/Channel/Group/RBtnStable
 onready var _rbtn_exper = $Main/Tabs/Game/Channel/Group/RBtnExperimental
-onready var _lbl_build = $Main/Tabs/Game/CurrentInstall/Build/Name
+onready var _lbl_build = $Main/Tabs/Game/ActiveInstall/Build/Name
+onready var _cb_update = $Main/Tabs/Game/UpdateCurrent
+onready var _lst_installs = $Main/Tabs/Game/GameInstalls/HBox/InstallsList
+onready var _btn_make_active = $Main/Tabs/Game/GameInstalls/HBox/VBox/btnMakeActive
+onready var _btn_delete = $Main/Tabs/Game/GameInstalls/HBox/VBox/btnDelete
+onready var _panel_installs = $Main/Tabs/Game/GameInstalls
 
 var _disable_savestate := {}
+var _installs := {}
 
 # For UI scaling on the fly
 var _base_min_sizes := {}
@@ -54,7 +59,7 @@ func _ready() -> void:
 	Status.post(welcome_msg)
 	
 	_unpack_utils()
-	setup_ui()
+	_setup_ui()
 
 
 func _save_control_min_sizes() -> void:
@@ -150,13 +155,6 @@ func _smart_reenable_controls(group_name: String) -> void:
 	_disable_savestate.erase(group_name)
 
 
-func _is_selected_game_installed() -> bool:
-	
-	var info = _inst_probe.probe_installed_games()
-	var game = Settings.read("game")
-	return (game in info)
-
-
 func _on_ui_scale_changed(new_scale: float) -> void:
 	
 	_scale_control_min_sizes(new_scale)
@@ -210,14 +208,14 @@ func _on_Releases_done_fetching_releases() -> void:
 	_refresh_currently_installed()
 
 
-func _on_ReleaseInstaller_installation_started() -> void:
+func _on_ReleaseInstaller_operation_started() -> void:
 	
-	_smart_disable_controls("disable_while_installing_game")
+	_smart_disable_controls("disable_during_release_operations")
 
 
-func _on_ReleaseInstaller_installation_finished() -> void:
+func _on_ReleaseInstaller_operation_finished() -> void:
 	
-	_smart_reenable_controls("disable_while_installing_game")
+	_smart_reenable_controls("disable_during_release_operations")
 	_refresh_currently_installed()
 
 
@@ -273,23 +271,35 @@ func _on_BtnRefresh_pressed() -> void:
 
 func _on_BuildsList_item_selected(index: int) -> void:
 	
-	var info = _inst_probe.probe_installed_games()
+	var info = Paths.installs_summary
 	var game = Settings.read("game")
 	
 	if (not Settings.read("update_to_same_build_allowed")) \
 			and (game in info) \
-			and (info[game]["name"] == _releases.releases[_get_release_key()][index]["name"]):
+			and (_releases.releases[_get_release_key()][index]["name"] in info[game]):
 		_btn_install.disabled = true
+		_cb_update.disabled = true
 	else:
 		_btn_install.disabled = false
+		_cb_update.disabled = false
 
 
 func _on_BtnInstall_pressed() -> void:
 	
 	var index = _lst_builds.selected
 	var release = _releases.releases[_get_release_key()][index]
-	var update = Settings.read("game") in _inst_probe.probe_installed_games()
-	_installer.install_release(release, Settings.read("game"), update)
+	var update_path := ""
+	if Settings.read("update_current_when_installing"):
+		var game = Settings.read("game")
+		var active_name = Settings.read("active_install_" + game)
+		if (game in _installs) and (active_name in _installs[game]):
+			update_path = _installs[game][active_name]
+	_installer.install_release(release, Settings.read("game"), update_path)
+
+
+func _on_cbUpdateCurrent_toggled(button_pressed: bool) -> void:
+	
+	Settings.store("update_current_when_installing", button_pressed)
 
 
 func _get_release_key() -> String:
@@ -321,11 +331,13 @@ func _on_UserDir_pressed() -> void:
 		OS.shell_open(userdir)
 
 
-func setup_ui() -> void:
+func _setup_ui() -> void:
 
 	_game_info.visible = Settings.read("show_game_desc")
 	if not Settings.read("debug_mode"):
 		_tabs.remove_child(_debug_ui)
+	
+	_cb_update.pressed = Settings.read("update_current_when_installing")
 	
 	apply_game_choice()
 	
@@ -412,36 +424,85 @@ func _start_game(world := "") -> void:
 		get_tree().quit()
 
 
+func _on_InstallsList_item_selected(index: int) -> void:
+	
+	var name = _lst_installs.get_item_text(index)
+	_btn_delete.disabled = false
+	_btn_make_active.disabled = (name == Settings.read("active_install_" + Settings.read("game")))
+
+
+func _on_InstallsList_item_activated(index: int) -> void:
+	
+	var name = _lst_installs.get_item_text(index)
+	var path = _installs[Settings.read("game")][name]
+	if Directory.new().dir_exists(path):
+		OS.shell_open(path)
+
+
+func _on_btnMakeActive_pressed() -> void:
+	
+	var name = _lst_installs.get_item_text(_lst_installs.get_selected_items()[0])
+	Status.post(tr("msg_set_active") % name)
+	Settings.store("active_install_" + Settings.read("game"), name)
+	_refresh_currently_installed()
+
+
+func _on_btnDelete_pressed() -> void:
+	
+	var name = _lst_installs.get_item_text(_lst_installs.get_selected_items()[0])
+	_installer.remove_release_by_name(name)
+
+
 func _refresh_currently_installed() -> void:
 	
-	var info = _inst_probe.probe_installed_games()
-	var game = Settings.read("game")
 	var releases = _releases.releases[_get_release_key()]
+
+	_lst_installs.clear()
+	var game = Settings.read("game")
+	_installs = Paths.installs_summary
+	var active_name = Settings.read("active_install_" + game)
+	if game in _installs:
+		for name in _installs[game]:
+			_lst_installs.add_item(name)
+			var curr_idx = _lst_installs.get_item_count() - 1
+			_lst_installs.set_item_tooltip(curr_idx, tr("tooltip_installs_item") % _installs[game][name])
+#			if name == active_name:
+#				_lst_installs.set_item_custom_fg_color(curr_idx, Color(0, 0.8, 0))
 	
-	if _is_selected_game_installed():
-		_lbl_build.text = info[game]["name"]
-		_btn_install.text = tr("btn_update")
+	_lst_builds.select(-1)
+	_btn_make_active.disabled = true
+	_btn_delete.disabled = true
+	
+	if game in _installs:
+		_lbl_build.text = active_name
 		_btn_play.disabled = false
 		_btn_resume.disabled = not (Directory.new().file_exists(Paths.config.plus_file("lastworld.json")))
 		_btn_game_dir.visible = true
 		_btn_user_dir.visible = true
 		if (_lst_builds.selected != -1) and (_lst_builds.selected < len(releases)):
 				if not Settings.read("update_to_same_build_allowed"):
-					_btn_install.disabled = (releases[_lst_builds.selected]["name"] == info[game]["name"])
+					_btn_install.disabled = (releases[_lst_builds.selected]["name"] in _installs[game])
+					_cb_update.disabled = _btn_install.disabled
 		else:
 			_btn_install.disabled = true
-		
+
 	else:
 		_lbl_build.text = tr("lbl_none")
-		_btn_install.text = tr("btn_install")
 		_btn_install.disabled = false
+		_cb_update.disabled = true
 		_btn_play.disabled = true
 		_btn_resume.disabled = true
 		_btn_game_dir.visible = false
 		_btn_user_dir.visible = false
-		
+	
+	if (game in _installs and _installs[game].size() > 1) or \
+			(Settings.read("always_show_installs") == true):
+		_panel_installs.visible = true
+	else:
+		_panel_installs.visible = false
+
 	for i in [1, 2, 3, 4]:
-		_tabs.set_tab_disabled(i, not _is_selected_game_installed())
+		_tabs.set_tab_disabled(i, not game in _installs)
 
 
 func _on_InfoIcon_gui_input(event: InputEvent) -> void:

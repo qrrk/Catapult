@@ -7,6 +7,7 @@
 "cbtn_print_tips","Mostrar consejos del día en el inicio."
 "cbtn_updating_to_same_build","Permitir ""actualizar"" a la misma versión que ya está instalada"
 "cbtn_shorten_release_names","Acortar los nombres de los lanzamientos experimentales."
+"cbtn_always_show_installs","Mostrar siempre la lista de instalaciones"
 "cbtn_show_obsolete_mods","Listar los mods obsoletos en la lista de instalados"
 "cbtn_install_archived_mods","Incluir mods archivados al instalar el Modpack de Kenan"
 "cbtn_debug_mode","Modo debug"
@@ -20,6 +21,7 @@
 "tooltip_print_tips","Mostrar un tip aleatorio en el panel de estado cuando comienza el launcher."
 "tooltip_updating_to_same_build","Permitir iniciar la actualización por más que el lanzamiento\nseleccionado sea el mismo al instalado actualmente."
 "tooltip_shorten_release_names","Acortar los nombres de lanzamiento a la fecha y el número\n(ej. ""2021-09-08-1927" "en vez de\n""Cataclysm-DDA experimental build 2021-09-08-1927"")."
+"tooltip_always_show_installs","Mostrar la lista de instalaciones incluso cuando solo\nse haya instalado una copia del juego, o ninguna".
 "tooltip_show_obsolete_mods","Mostrar mods que vienen con el juego, pero están marcados como ""obsoletos"".\nNormalmente, esos mods no se consideran instalados."
 "tooltip_install_archived_mods","Al instalar el Modpack de Kenan, también incluir los mods *archivados*.\nEstos mods ya no son mantenidos por Kenan y pueden estar desactualizados."
 "tooltip_debug_mode","Muestra la pestaña ""Debug"" con algunas funciones de prueba\ny habilita los mensajes debug en el panel de estado\n(Esto es útil para solucionar problemas)."

@@ -8,10 +8,15 @@
 "btn_refresh","Refrescar"
 "btn_install","Instalar seleccionado"
 "btn_update","Actualizar a seleccionado"
+"cb_update_active","Actualizar instalación activa actual"
+"lbl_active_install","Instalación activa:"
 "btn_play","Jugar"
 "btn_resume","Continuar mundo"
+"lbl_installs","Versiones instaladas:"
 "lbl_currently_installed","Instalado actualmente:"
 "lbl_none","Ninguno"
+"btn_activate","Activar"
+"btn_delete","Borrar"
 ,
 "tooltip_game","Elige que juego configurar o jugar."
 "tooltip_changelog","Haz clic para cargar un resumen con los últimos cambios de GitHub."
@@ -20,7 +25,13 @@
 "tooltip_builds","Elige que versión del juego instalar o actualizar."
 "tooltip_refresh","Busca nuevamente la lista de lanzamientos disponibles\ndesde Github (solo para lanzamientos experimentales)."
 "tooltip_install","Instalar el lanzamiento seleccionado (DDA y BN\nse configuran por separado y pueden co-existir)."
+"tooltip_update","Si está marcada, la instalación del juego configurada actualmente como activa\nserá reemplazada por la versión seleccionada anteriormente.\nDe lo contrario, la compilación seleccionada será una instalación nueva\nseparada del juego".
 "tooltip_game_dir","Abrir la carpeta de instalación del juego (contiene\nel juego ejecutable y contenido interno)."
 "tooltip_user_dir","Abrir la carpeta de dato de usuario (contiene las partidas guardadas, \nconfiguración del juego, mods de usuario, sonido, etc)."
 "tooltip_play","Iniciar el juego."
 "tooltip_resume","Sáltate el menú principal y carga rápidamente el último mundo jugado.\n(Se cargará el primer personaje si existen varios)."
+"tooltip_activate","Establecer la instalación del juego seleccionada como activa.\nLa instalación ""activa"" es la que se iniciará\ncuando haga clic en Reproducir/Reanudar, o se actualizará cuando\nhaga clic en Instalar".
+"tooltip_delete","Eliminar la copia seleccionada del juego.\n(Los datos guardados, la configuración y otros datos del usuario\nse almacenan por separado y no se perderán)."
+"tooltip_installs_item","Ubicación:\n%s\n(doble clic para abrir la carpeta)"
+,
+"msg_set_active","Configurando instalación activa en %s".

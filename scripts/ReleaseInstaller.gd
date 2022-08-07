@@ -1,17 +1,15 @@
 extends Node
 
 
-signal installation_started
-signal installation_finished
-
-onready var _probe := $"../InstallProbe"
+signal operation_started
+signal operation_finished
 
 
-func install_release(release_info: Dictionary, game: String, update: bool = false) -> void:
+func install_release(release_info: Dictionary, game: String, update_in: String = "") -> void:
 	
-	emit_signal("installation_started")
+	emit_signal("operation_started")
 	
-	if update:
+	if update_in:
 		Status.post(tr("msg_updating_game") % release_info["name"])
 	else:
 		Status.post(tr("msg_installing_game") % release_info["name"])
@@ -35,18 +33,42 @@ func install_release(release_info: Dictionary, game: String, update: bool = fals
 				"Windows":
 					extracted_root = Paths.tmp_dir
 			
-			_probe.create_info_file(extracted_root, release_info["name"])
+			Helpers.create_info_file(extracted_root, release_info["name"])
 			
-			if update:
-				FS.rm_dir(Paths.game_dir)
+			var target_dir: String
+			if update_in:
+				target_dir = update_in
+				FS.rm_dir(target_dir)
 				yield(FS, "rm_dir_done")
+			else:
+				target_dir = Paths.next_install_dir
 			
-			FS.move_dir(extracted_root, Paths.game_dir)
+			FS.move_dir(extracted_root, target_dir)
 			yield(FS, "move_dir_done")
 			
-			if update:
+			if update_in:
+				Settings.store("active_install_" + Settings.read("game"), release_info["name"])
 				Status.post(tr("msg_game_updated"))
 			else:
 				Status.post(tr("msg_game_installed"))
 	
-	emit_signal("installation_finished")
+	emit_signal("operation_finished")
+
+
+func remove_release_by_name(name: String) -> void:
+	
+	emit_signal("operation_started")
+	
+	var installs := Paths.installs_summary
+	var game = Settings.read("game")
+	
+	if (game in installs) and (name in installs[game]):
+		Status.post(tr("msg_deleting_game") % name)
+		var location = installs[game][name]
+		FS.rm_dir(location)
+		yield(FS, "rm_dir_done")
+		Status.post(tr("msg_game_deleted"))
+	else:
+		Status.post(tr("msg_delete_not_found") % name, Enums.MSG_ERROR)
+	
+	emit_signal("operation_finished")

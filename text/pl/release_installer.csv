@@ -4,3 +4,6 @@
 "msg_installing_game","Instalowanie %s..."
 "msg_game_updated","Aktualizacja zakończona."
 "msg_game_installed","Instalacja zakończona."
+"msg_deleting_game","Usuwanie %s..."
+"msg_game_deleted","Usuwanie zakończone."
+"msg_delete_not_found","Próbowano usunąć wydanie \"%s\", ale nie można go znaleźć na dysku."
