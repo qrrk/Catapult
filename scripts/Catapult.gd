@@ -292,7 +292,8 @@ func _on_BtnInstall_pressed() -> void:
 	if Settings.read("update_current_when_installing"):
 		var game = Settings.read("game")
 		var active_name = Settings.read("active_install_" + game)
-		update_path = _installs[game][active_name]
+		if (game in _installs) and (active_name in _installs[game]):
+			update_path = _installs[game][active_name]
 	_installer.install_release(release, Settings.read("game"), update_path)
 
 
@@ -488,6 +489,7 @@ func _refresh_currently_installed() -> void:
 	else:
 		_lbl_build.text = tr("lbl_none")
 		_btn_install.disabled = false
+		_cb_update.disabled = true
 		_btn_play.disabled = true
 		_btn_resume.disabled = true
 		_btn_game_dir.visible = false
