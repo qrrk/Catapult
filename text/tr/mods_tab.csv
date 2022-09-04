@@ -1,0 +1,33 @@
+keys,tr
+,
+lbl_installed_mods,Yüklü%s:
+str_installed_mods_hidden, (%s gizli)
+lbl_mod_repo,Yerel dizin%s:
+str_mod_repo_hidden, (%s gizli)
+cbtn_stock_mods,Stoktakini göster
+btn_delete_mods,Seçilenleri sil
+cbtn_installed_mods,Yüklenmiþ olanlarý göster
+btn_add_sel_mods,Seçilenleri ekle
+btn_add_all_mods,Hepsini ekle
+btn_get_kenan_pack,Kenan'ýn Mod Paketini edin
+lbl_mod_info,Detaylarý görmek için listelerdeki modlardan birini seç
+str_mod_name,Ýsim:
+str_mod_authors,Yapýmcýlar:
+str_mod_maintainers,Bakýcýlar:
+str_mod_category,Kategori:
+str_mod_description,Açýklama:
+,
+tooltip_mod_location,Konum: %s
+tooltip_stock_mods,data/mods konumundaki dosyalarý bu listede göster.
+tooltip_installed_mods,Ýstediðinde tekrar yüklemek için\n zaten yüklenmiþ modlarý listede göster.
+tooltip_delete_mods,Seçili modlarý oyun yüklemesinden kaldýr.
+tooltip_add_sel_mods,Seçili modlarý oyun yüklemesine ekle.
+tooltip_add_all_mods,Listelenmiþ tüm modlarý oyun yüklemesine ekle.
+tooltip_get_kenan_pack,Kenan'ýn Mod Paketini indir ve modlarýný\nyerel dizie ekle.
+,
+msg_one_mod_is_stock,Seçili modlardan biri oyunla birlikte geldi ve silinemez.
+msg_n_mods_are_stock,Seçili modlardan %s tanesi oyunla birlikte geldi ve silinemezler.
+dlg_deleting_n_mods_title,Silmeyi onayla
+dlg_deleting_n_mods_text,%s mod silindi.
+msg_mod_install_one_mod_skipped,"Mod zaten oyunla birlikte geldi, bu yüzden indirilmeyecek."
+msg_mod_install_n_mods_skipped,"%s tane mod zaten oyunla birlikte geldi, bu yüzden indirilmeyecekler."

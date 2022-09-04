@@ -1,0 +1,13 @@
+keys,tr
+,
+unit_kb,KB
+unit_mb,MB
+unit_kbps,KB/s
+unit_mbps,MB/s
+,
+msg_downloading_file,%s indiriliyor...
+msg_download_progress,Ýndiriliyor:
+str_dl_speed_at,hýzý
+msg_download_finished,%s nýn indirilmesi tamamlandý.
+msg_download_failed,%s nýn indirilmesi baþarýsýz oldu.
+msg_http_request_info,[b]HTTPRequest bilgisi:[/b]\n[u]Sonuç:[/u] %s\n[u]Tepki kodu:[/u] %s\n[u]Baþlýklar:[/u] %s

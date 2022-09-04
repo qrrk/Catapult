@@ -1,0 +1,22 @@
+keys,tr
+,
+msg_game_option_not_found_get,"Oyunun \""%s\"" ayarý getirilmeye çalýþýldý, ama bulunamadý."
+msg_game_option_not_found_set,"Oyunun \""%s\"" ayarý ayarlamaya çalýþýldý, ama bulunamadý."
+msg_failed_to_open_font_info,Font bilgisi açýlamadý.
+msg_could_not_parse_font_info,Font bilgisi alýnamadý.
+msg_font_info_error_details,Hata kodu: %s. Hata satýrý: %s. Hata mesajý: %s
+msg_could_not_parse_font_config,Font ayar dosyasý alýnamadý.
+msg_font_config_error_details,Hata kodu: %s. Hata satýrý: %s. Hata mesajý: %s
+msg_failed_to_open_font_config,Font ayar dosyasý %s açýlamadý (hata kodu: %s).
+msg_font_config_not_found,Font ayar dosyasý %s bulunamadý.
+msg_could_not_parse_game_options,Oyun ayar dosyasý %s alýnamadý.
+msg_game_options_error_details,Hata kodu: %s. Hata satýrý: %s. Hata mesajý: %s
+msg_could_not_open_game_options,Oyun ayar dosyasý açýlamadý (hata kodu: %s).
+msg_game_options_not_found,Oyun ayar dosyasý %s bulunamadý.
+msg_font_config_not_writable,Font ayar dosyasý %s yazmak için açýlamadý.
+msg_game_options_saved,Oyun ayarlarý [i]options.json[/i] konumuna kaydedildi.
+msg_game_options_not_writable,Oyun ayar dosyasý %s yazmak için açýlamadý.
+msg_could_not_install_font,Font dosyasý %s yüklenemedi (hata kodu: %s).
+msg_font_install_details,Font kaynaðý: %s. Hedef: %s.
+msg_invalid_font_index_passed,set_font fonksiyonuna geçersiz %s indexi verildi.
+msg_font_config_field_missing,"Font ayarý \""%s\"" bölümünden yoksun."

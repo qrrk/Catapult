@@ -1,0 +1,37 @@
+keys,tr
+,
+lbl_channel,Kanal:
+rbtn_stable,Kararlý
+rbtn_experimental,Deneysel
+lbl_changelog,[right][color=#3b93f7][url]Deneysel deðiþiklik listesini gör[/url][/color][/right]
+lbl_builds,Kullanýlabilir sürümler:
+btn_refresh,Yenile
+btn_install,Seçileni yükle
+btn_update,Seçilene yükselt
+cb_update_active,Þu an aktif olan sürümü yükselt
+lbl_active_install,Aktif sürüm
+btn_play,Oyna
+btn_resume,Son dünyaya devam et
+lbl_installs,Yüklenmiþ sürümler:
+lbl_currently_installed,Yüklü olanlar:
+lbl_none,Hiç
+btn_activate,Aktif yap
+btn_delete,Sil
+,
+tooltip_game,Oynamak ya da ayarlamak istediðin oyunu seç
+tooltip_changelog,GitHub daki son deðiþikliklerin özeti için týkla
+tooltip_stable,Kararlý sürüm kanalý (sadece DDA).
+tooltip_experimental,Deneysel sürüm kanalý
+tooltip_builds,Yüklemek ya da güncellemek istediðin oyunu seç
+tooltip_refresh,GitHub tan kullanýlabilir oyun sürümlerini yeniden yükle (sadece deneysel sürümler için).
+tooltip_install,Seçili oyun sürümünü yükle (DDA ve BN\nayrý olarak yönetilir ve birlikte bulunabilirler).
+tooltip_update,"Seçiliyse, aktif yükleme yukarýda seili\nnyüklemeyle deðiþecektir.\nDeðilse, seçili sürüm ayrý bir yükleme olacaktýr."
+tooltip_game_dir,Oyun yükleme dizinini aç (yürütülebilir dosyayý ve\noyun içi içeriði içerir)
+tooltip_user_dir,"Kullanýcý kayýt dizinini aç (kayýt dosyalarý, \noyun ayarlarý, kullanýcý modlarý, ses, vs. içerir)"
+tooltip_play,Oyunu çalýþtýr
+tooltip_resume,Ana menüyü atla ve hýzlýca son açýlmýþ dünyayý yükle.\n(Eðer birden fazla karakter varsa ilki yüklenir.)
+tooltip_activate,"Seçili oyun yüklemesini (ör. Kullanýlan) aktif yap.\n""Aktif"" yükleme Oyna/Devam et tuþuna týklandýðýnda çalýþýr, Yükle tuþuna bastýðýn zaman da güncellenir."
+tooltip_delete,"Seçili oyun kopyasýný sil.\n(Kayýtlar, ayarlar ve diðer kullanýcý verileri\nayrý olarak saklanýr ve silinmezler.)"
+tooltip_installs_item,Konum:\n%s\n(klasörü açmak için çift týkla)
+,
+msg_set_active,Aktif sürüm %s ‘a ayarlanýyor.
