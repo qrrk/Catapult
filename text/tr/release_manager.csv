@@ -1,9 +1,0 @@
-keys,tr
-,
-msg_unsupported_platform,"Desteklenmeyen platform: \""%s\"""
-msg_releases_request_failed,Ýstek baþarýsý oldu. Ýnternet baðlantýn var mý?
-msg_releases_api_failure,Sürüm listesi alýnamadý. GitHub diyor  ki : %s
-msg_got_n_releases,%s sürüm alýndý.
-msg_fetching_releases_dda,Deneysel DDA için sürümler alýnýyor...
-msg_fetching_releases_bn,Deneysel BN için sürümler alýnýyor...
-msg_invalid_fetch_func_param,ReleaseManager.fetch() fonksiyonu %s çýktýsýný verdi.

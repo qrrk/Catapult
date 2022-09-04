@@ -1,7 +1,0 @@
-keys,tr
-,
-msg_creating_settings,Ayar dosyasý %s oluþturuluyor.
-msg_nonexistent_attempt,Olmayan dosya %s den ayar yüklenmeye çalýþýldý
-msg_loading_settings,%s daki ayarlan yükleniyor.
-msg_settings_parse_error,"JSON, satýrý %s den ayar okunurken hata, mesaj: %s"
-msg_nonexisting_setting,"Olmayan ayar \""%s\"" okunulmaya çalýþýldý."

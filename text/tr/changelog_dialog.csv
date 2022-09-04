@@ -1,9 +1,0 @@
-keys,tr
-,
-dlg_changelog_title,Son deðiþiklikler
-str_fetching_changes,"GitHub tan son deðiþiklikler alýnýyor, lütfen bekleyin..."
-str_error_retrieving_data,GitHub API sinden veri alýnýrken hata oluþtu.
-str_hhtp_response_code,\n\nHTTP tepki kodu: %s
-str_github_says,\nGitHub diyor ki: [i]%s[/i]
-str_try_later,\n\nLütfen tekrar deneyin.
-str_changelog_intro,Son [b]%s[/b] tamamlanmýþ pull request (kod eklemeleri) gösteriliyor ([b]%s[/b] için).\n\nÝlgili PR ý GitHub üzerinde görüp deðiþiklik hakkýnda daha fazla bilgi almak için ilgili öðeye týkla.\n
