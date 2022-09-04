@@ -1,0 +1,10 @@
+"keys","tr"
+,
+"msg_backing_up_saves","Kayıt dosyaları \""%s\"" ‘e yedekleniyor..."
+"msg_backup_created","Yedek oluşturuldu."
+"msg_backup_name_taken","\""%s\"" isimli bir yedek zaten var."
+"msg_restoring_backup","\""%s\"" yedeği kurtarılıyor..."
+"msg_backup_restored","Yedek kurtarıldı."
+"msg_backup_not_found","\""%s\"" yedeği bulunamadı."
+"msg_deleting_backup","\""%s\" yedeği siliniyor..."
+"msg_backup_deleted","Yedek silindi."

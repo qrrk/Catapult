@@ -1,0 +1,7 @@
+"keys","tr"
+,
+"msg_file_read_fail","Dosya %s açılamıyor (hata %s)."
+"msg_file_write_fail","Dosya %s yazma için açılamıyor (hata %s)."
+"msg_debug_file_path","Tam yol: %s"
+"msg_json_parse_fail","%s nin içeriği alınamadı."
+"msg_debug_json_result","JSON alım sonucu:\nHata kodu: %s\nHata mesajı: %s\nHata satırı: %s"

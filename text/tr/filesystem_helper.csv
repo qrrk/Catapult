@@ -1,0 +1,18 @@
+"keys","tr"
+,
+"msg_list_dir_failed","\""%s\"" dizini listelenemedi. Hata kodu: %s."
+"msg_cannot_create_target_dir","Hedef dizini %s oluşturulamadı. Hata kodu: %s."
+"msg_copy_file_failed","\""%s\"" dosyası kopyalanamadı. Hata kodu: %s."
+"msg_copy_file_failed_details","[u]Kaynak yolu:[/u] %s, [u]hedef yol:[/u] %s."
+"msg_remove_file_failed","\""%s\"" dosyası kaldırılamadı. Hata kodu: %s."
+"msg_remove_file_failed_details",[u]Tam yol:[/u] %s.
+"msg_rm_dir_failed","\""%s\"" dizini kaldırılamadı. Hata kodu: %s."
+"msg_create_dir_failed","\""%s\"" dizini oluşturulamadı. Hata kodu: %s."
+"msg_move_file_failed","\""%s\"" dosyası taşınamadı. Hata kodu: %s."
+"msg_move_file_failed_details","[u]Kaynak yolu:[/u] %s, [u]hedef yol:[/u] %s."
+"msg_move_rmdir_failed",Kaynak dizini %s kaldırılamadı. Hata kodu: %s.
+"msg_extract_unsupported","Desteklenmeyen platform ya da arşiv formatı (dosya: %s)"
+"msg_extracting_file","%s çıkarılıyor..."
+"msg_extract_error","Arşiv çıkartma komutu hata ile son buldu (hata kodu: %s)"
+"msg_extract_failed_cmd","%s komudu başarısız oldu."
+"msg_extract_fail_output","Çıkış: %s"

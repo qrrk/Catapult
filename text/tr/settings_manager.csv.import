@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+
+[deps]
+
+files=[ "res://text/tr/settings_manager.tr.translation" ]
+
+source_file="res://text/tr/settings_manager.csv"
+dest_files=[ "res://text/tr/settings_manager.tr.translation" ]
+
+[params]
+
+compress=true
+delimiter=0

@@ -1,0 +1,5 @@
+"keys","tr"
+,
+"dlg_mod_reinstall_title","Mod yeniden yüklemesini onayla"
+"dlg_mod_reinstall_text_single","Seçili modlardan biri zaten yüklenmiş.\nSilinip yeniden yüklensin mi?"
+"dlg_mod_reinstall_text_multiple","Seçili modlardan %s tanesi zaten yüklenmiş.\nSilinip yeniden yüklensin mi?"

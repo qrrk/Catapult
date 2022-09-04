@@ -1,0 +1,9 @@
+"keys","tr"
+,
+"msg_updating_game","%s e güncelleniyor..."
+"msg_installing_game","%s yükleniyor..."
+"msg_game_updated","Güncelleme bitti"
+"msg_game_installed","Yükleme bitti"
+"msg_deleting_game","%s kaldırılıyor..."
+"msg_game_deleted","Kaldırma bitti"
+"msg_delete_not_found","Sürüm \""%s\"" kaldırılmaya çalışıldı",fakat diskte bulunamadı."
