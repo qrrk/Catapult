@@ -26,5 +26,5 @@
 "tooltip_debug_mode","Test foksiyonlarına sahip hata ayıklama penceresini\nve durum paneline hata ayıklama mesajlarını\netkinleştirir (hata tanılamak için kullanışlı)."
 "tooltip_num_releases_to_request","Yükleyici açıldıktan sonra, oyunu seçerken\n ya da yenile tuşuna basarken\n GitHub tan kaç tane yeni sürüm istensin?"
 "tooltip_num_prs_to_request","Değişiklik listesini belirlemek için\nkaç pull request (kod eklemeleri) istenecek.\nYüksek sayılar yavaş isteklere ve hatalara sebep olabilir"
-"tooltip_ui_scale_override","Otomatik olarak çıkarılan arayüz ölçeği sisteminizde çok büyük\veya çok küçük görünüyorsa bunu kullanın. (Otomatik ölçek,\ntüm sistemlerde çalışmayabilen veya çözünürlük çok düşük olduğunda yetersiz sonuçlar veren\nsistem tarafından bildirilen ekran DPI'sına dayanır.)"
+"tooltip_ui_scale_override","Otomatik olarak çıkarılan arayüz ölçeği sisteminizde\nçok büyük\veya çok küçük görünüyorsa bunu kullanın.\n(Otomatik ölçek,tüm sistemlerde çalışmayabilen veya\nçözünürlük çok düşük olduğunda yetersiz sonuçlar veren\nsistem tarafından bildirilen ekran DPI'sına dayanır.)"
 "tooltip_data_to_migrate","Oyun sürümünü güncellerken hangi oyun verilerinin taşınacağını seçin."

@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://icons/info.svg" type="Texture" id=1]
 [ext_resource path="res://icons/buttons/tex_resume.tex" type="Texture" id=2]
@@ -42,6 +42,7 @@
 [ext_resource path="res://icons/buttons/tex_delete.tex" type="Texture" id=40]
 [ext_resource path="res://icons/buttons/tex_activate.tex" type="Texture" id=41]
 [ext_resource path="res://icons/lang/tex_lang_pl.res" type="Texture" id=42]
+[ext_resource path="res://icons/lang/tex_lang_tr.res" type="Texture" id=43]
 
 [sub_resource type="StyleBoxEmpty" id=2]
 content_margin_left = 4.0
@@ -124,11 +125,12 @@ margin_bottom = 100.0
 [node name="Tabs" type="TabContainer" parent="Main" groups=["disable_during_backup_operations", "disable_during_mod_operations", "disable_during_release_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases"]]
 margin_top = 104.0
 margin_right = 592.0
-margin_bottom = 535.0
+margin_bottom = 547.0
 tab_align = 0
 script = ExtResource( 16 )
 
 [node name="Game" type="VBoxContainer" parent="Main/Tabs"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -625,8 +627,6 @@ window_title = "Open a File"
 mode = 0
 access = 2
 filters = PoolStringArray( "*.zip" )
-current_dir = "/mnt/data/Godot/Catapult/Project"
-current_path = "/mnt/data/Godot/Catapult/Project/"
 
 [node name="Fonts" type="VBoxContainer" parent="Main/Tabs"]
 visible = false
@@ -1003,7 +1003,6 @@ margin_right = 577.0
 margin_bottom = 56.0
 
 [node name="Settings" type="VBoxContainer" parent="Main/Tabs"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -1031,7 +1030,7 @@ size_flags_horizontal = 10
 text = "English"
 icon = ExtResource( 22 )
 expand_icon = true
-items = [ "English", ExtResource( 22 ), false, 0, null, "Français", ExtResource( 10 ), false, 1, null, "Русский", ExtResource( 21 ), false, 2, null, "简体字", ExtResource( 31 ), false, 3, null, "Čeština", ExtResource( 7 ), false, 4, null, "Español", ExtResource( 19 ), false, 5, null, "Polski", ExtResource( 42 ), false, 6, null ]
+items = [ "English", ExtResource( 22 ), false, 0, null, "Français", ExtResource( 10 ), false, 1, null, "Русский", ExtResource( 21 ), false, 2, null, "简体字", ExtResource( 31 ), false, 3, null, "Čeština", ExtResource( 7 ), false, 4, null, "Español", ExtResource( 19 ), false, 5, null, "Polski", ExtResource( 42 ), false, 6, null, "Türkçe", ExtResource( 43 ), false, 7, null ]
 selected = 0
 
 [node name="LauncherTheme" type="HBoxContainer" parent="Main/Tabs/Settings"]
@@ -1285,7 +1284,7 @@ size_flags_horizontal = 4
 text = "Print screen info"
 
 [node name="Log" type="RichTextLabel" parent="Main"]
-margin_top = 539.0
+margin_top = 551.0
 margin_right = 592.0
 margin_bottom = 692.0
 focus_mode = 2
