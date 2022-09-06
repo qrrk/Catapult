@@ -1,0 +1,9 @@
+"keys","tr"
+,
+"msg_unsupported_platform","Desteklenmeyen platform: \""%s\"""
+"msg_releases_request_failed","İstek başarısı oldu. İnternet bağlantın var mı?"
+"msg_releases_api_failure","Sürüm listesi alınamadı. GitHub diyor  ki : %s"
+"msg_got_n_releases","%s sürüm alındı."
+"msg_fetching_releases_dda","Deneysel DDA için sürümler alınıyor..."
+"msg_fetching_releases_bn","Deneysel BN için sürümler alınıyor..."
+"msg_invalid_fetch_func_param","ReleaseManager.fetch() fonksiyonu %s çıktısını verdi."

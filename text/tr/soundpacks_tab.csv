@@ -1,0 +1,19 @@
+"keys","tr"
+,
+"lbl_installed_sound","Yüklü:"
+"lbl_avail_sound","İndirilebilir:"
+"cbtn_stock_sound","Stoktakini göster"
+"btn_delete_sound","Seçili olanı sil"
+"btn_install_sound","Seçili olanı yükle"
+"btn_reinstall_sound","Seçili olanı yeniden yükle"
+,
+"tooltip_stock_sound","Listede data/sound klasöründeki ses paketlerini göster."
+"tooltip_delete_sound","Seçili ses paketini oyundan kaldır."
+"tooltip_install_sound","Seçili ses paketini indir ve oyuna yükle."
+,
+"dlg_sound_deletion_title","Ses paketi silmeyi onayla"
+"dlg_sound_deletion_text","%s siliniyor."
+"dlg_sound_manual_dl_title","Elle indirme gerekli"
+"dlg_sound_manual_dl_text","Bu ses paketi otomatik olarak indirilemiyor. Tarayıcınızdan indirmek için TAMAM a basın, sonrasında da dosya seçim yerinden indirdiğiniz konumu seçin."
+,
+"str_no_sound_desc","Açıklama yazılmamış."

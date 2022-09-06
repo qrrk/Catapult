@@ -1,0 +1,9 @@
+"keys","tr"
+,
+"msg_no_sound_dir","%s ses dizini yok."
+"msg_deleting_sound","%s siliniyor"
+"msg_soundpack_not_found","\""%s\"" isimli ses paketi bulunmadı."
+"msg_installing_sound","\""%s\"" ses paketi indiriliyor..."
+"msg_reinstalling_sound","\""%s\"" ses paketi yeniden indiriliyor..."
+"msg_sound_download_failed","Ses paketi arşivi indirilemedi."
+"msg_sound_installed","Ses paketi yüklendi."

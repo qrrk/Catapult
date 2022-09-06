@@ -1,0 +1,12 @@
+"keys","tr"
+,
+"tip_os_hopping","Catapult klasörünü Windows'tan Linux'a getirebilir (veya tam tersi) ve kullanmaya devam edebilirsiniz, ancak doğru Catapult yürütülebilir dosyasını indirmeniz ve oyununuzu en az bir kez güncellemeniz gerekir."
+"tip_dual_install","Hem [i]C:DDA[/i] hem de [i]C:BN[/i] aynı anda kurulabilir. Kurulumları tamamen bağımsızdır ve güncellemeleri, modları ve ses paketleri ayrı ayrı yönetilir."
+"tip_downgrading","Daha önceki bir sürüme \"yükselterek\" oyun sürümünü düşürebilirsin. Ancak kayıt dosyalarında uyum sorunu yaşanabilir."
+"tip_stock_mods","Oyunla birlikte yüklenen modlar Catapult tarafından yönetilmez (ikinci kez yüklemelerini engellemek haricinde). Catapult sadece [i]/mods[/i] klasörünü yönetir, [i]/data/mods[/i] klasörünü değil."
+"tip_mod_multi_install","[i]Ctrl-tıklayarak[/i] ve [i]Shift-tıklayarak[/i] birden fazla modu yükleyip silebilirsin."
+"tip_modpack_update","Kenan'ın Mod Paketi sıklıkla güncellenir. Sadece [i]Kenan Mod Paketini Edin[/i] tuşuna tekrar tıklayarak modları yeniden yükleyip dizinindeki modları değiştirebilirsin."
+"tip_debug_mode","Hata mesajları yardımcı olmuyor mu? [i]Ayarlar[/i] menüsünde hata ayıklama modunu açarak daha ayrıntılı çıkış alabilirsin."
+"tip_bug_reporting","Eğer yükleyici ile ilgili daha önce rapor edilmemiş bir sorun bulursan [color=#3b93f7]GitHub üzerinden [url=https://github.com/qrrk/Catapult/issues][/url][/color] adresine git,belki de sorunu farkeden ilk kişi sensindir! Eğer bir GitHub hesabın varsa bir Ticket açmayı düşün."
+"tip_backup_caveat","Oyununda birden fazla dünya varsa kayıt dosyalarının yedeğinin kayıt klasöründe saklandığını unutma. Kayıt yedeği kurtarıldığında, kayıt dosyasındaki tüm veri silinecektir (buna yedeklenmemiş dünyalar da dahil)."
+"tip_multi_install","Artık birden fazla sürümü aynı anda yükleyebilir ve sürümler arasında kolayca geçebilirsin. Lakin kayıt dosyaları da sürümler arasında paylaşılır, bu yüzden birbirinden farklı sürümlerde (ör. Kararlı ve deneysel) oynarken kayıt dosyalarının bozulmasına karşı dikkatli ol."

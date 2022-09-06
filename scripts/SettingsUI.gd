@@ -1,7 +1,7 @@
 extends VBoxContainer
 
 
-var _langs := ["en", "fr", "ru", "zh", "cs", "es", "pl"]
+var _langs := ["en", "fr", "ru", "zh", "cs", "es", "pl", "tr"]
 
 var _themes := [
 	"Godot_3.res",

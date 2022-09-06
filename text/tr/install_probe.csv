@@ -1,0 +1,4 @@
+"keys","tr"
+,
+"msg_cannot_create_install_info","%s dosyasına yükleme bilgisi yazılamıyor."
+"msg_cannot_parse_install_info","%s dosyasından yükleme bilgisi alınamıyor."

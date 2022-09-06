@@ -1,0 +1,23 @@
+"keys","tr"
+,
+"window_title","Catapult — Cataclysm: DDA ve BN için yükleyici"
+"str_welcome","Catapult’a hoş geldin !"
+"str_tip_of_the_day","\n\n[u]Günün İpucu:[/u]\n"
+"msg_unpacking_unzip","unzip.exe çıkarılıyor..."
+"msg_theme_load_error","Tema %s yüklenemedi."
+"debug_test","Bu,çeviri alımını test etmek için konulan bir hata ayıklama yazısıdır."
+,
+"tag_warning","uyarı"
+"tag_error","hata"
+"tag_debug","hata ayıklama"
+,
+"lbl_game","Oyun："
+"desc_dda","[b]Cataclysm: Dark Days Ahead[/b] kıyamet sonrası dünyada yer alan tur tabanlı bir oyundur. Yağmala, keşfet, inşa et, çiftçilik yap, araçları tamir ve modifiye et, biyonik yükle, mutasyon geçir [color=#009900]zombiler[/color] ve diğer sayısız tehtide karşı kendini savun — ve hepsi de sınırsız, rastgele oluşmuş bir dünyada!"
+"desc_bn","[b]Cataclysm: Bright Nights[/b]. Bilgiçlik taslamayı bırak, [color=#ff3300]!!eğlenceye!![/color] kucak aç. Bu fork, oyunu bilim kurgu roguelike kökenine geri getirir ve DDA takımı tarafından yapılan tartışmalı değişiklikleri geri çeker (cepler, yetkinlik, donma ve [color=#3b93f7][url=https://github.com/cataclysmbnteam/Cataclysm-BN/wiki/Changes-so-far]daha fazlası[/url][/color]). Savaş,oyun dengesi ve tempoya özel önem verildi."
+,
+"tab_game","Oyun"
+"tab_mods","Modlar"
+"tab_soundpacks","Ses paketleri"
+"tab_fonts","Fontlar"
+"tab_backups","Yedekler"
+"tab_settings","Ayarlar"

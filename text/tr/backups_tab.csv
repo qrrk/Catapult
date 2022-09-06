@@ -1,0 +1,13 @@
+"keys","tr"
+,
+"lbl_save_backups","Kayıt dosyası yedekleri:"
+"btn_restore_backup","Kurtar"
+"btn_delete_backup","Sil"
+"btn_refresh_backups","Yenile"
+"lbl_manual_backup","Elle yedek"
+"lbl_backup_name","İsim:："
+"btn_create_backup","Oluştur"
+"lbl_backup_info_placeholder","Detayları görmek için bir yedek seçin."
+,
+"backup_info_location","Konum:"
+"backup_info_worlds","Dünyalar:"

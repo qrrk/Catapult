@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+
+[deps]
+
+files=[ "res://text/tr/easter_egg.tr.translation" ]
+
+source_file="res://text/tr/easter_egg.csv"
+dest_files=[ "res://text/tr/easter_egg.tr.translation" ]
+
+[params]
+
+compress=true
+delimiter=0
