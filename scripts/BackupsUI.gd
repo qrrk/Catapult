@@ -44,6 +44,13 @@ func _on_Tabs_tab_changed(tab: int) -> void:
 	_populate_default_new_name()
 
 
+## Update the default backup filename when the app gains focus.
+func _notification(what: int) -> void:
+
+	if what == MainLoop.NOTIFICATION_WM_FOCUS_IN:
+		_populate_default_new_name()
+
+
 func _on_BtnCreate_pressed():
 
 	var target_file = _edit_name.text
