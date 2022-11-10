@@ -50,7 +50,6 @@ func _determine_data_dir() -> String:
 					var error = d.make_dir_recursive(dirname)
 					if error:
 						# something went wrong, fallback to executable path
-						# todo: error message
 						Status.post(tr("msg_cannot_create_target_dir") % [dirname, error], Enums.MSG_ERROR)
 						break
 				
