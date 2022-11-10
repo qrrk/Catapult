@@ -149,7 +149,7 @@ func _on_ConfirmManualDownload_confirmed() -> void:
 	var pack = _sound.SOUNDPACKS[_available_list.get_selected_items()[0]]
 	
 	OS.shell_open(pack["url"])
-	_dlg_file.current_dir = Paths.own_dir
+	_dlg_file.current_dir = Paths.data_dir
 	_dlg_file.popup_centered_ratio(0.9)
 	
 

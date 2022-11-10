@@ -141,9 +141,9 @@ func install_pack(soundpack_index: int, from_file = null, reinstall = false, kee
 	if from_file:
 		archive = from_file
 	else:
-		Downloader.download_file(pack["url"], Paths.own_dir, pack["filename"])
+		Downloader.download_file(pack["url"], Paths.data_dir, pack["filename"])
 		yield(Downloader, "download_finished")
-		archive = Paths.own_dir.plus_file(pack["filename"])
+		archive = Paths.data_dir.plus_file(pack["filename"])
 		if not Directory.new().file_exists(archive):
 			Status.post(tr("msg_sound_download_failed"), Enums.MSG_ERROR)
 			emit_signal("soundpack_installation_finished")
