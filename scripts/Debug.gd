@@ -41,7 +41,7 @@ func _on_Button2_pressed() -> void:
 func _on_Button3_pressed():
 	
 	var d = Directory.new()
-	var dir = Paths.data_dir.plus_file("testdir")
+	var dir = Paths.catapult_dir.plus_file("testdir")
 	d.make_dir(dir)
 	
 	var command_linux = {
@@ -85,7 +85,7 @@ func _on_Button4_pressed() -> void:
 
 func _on_Button5_pressed() -> void:
 	
-	var path = Paths.data_dir
+	var path = Paths.catapult_dir
 	Status.post("Listing directory %s..." % path, Enums.MSG_DEBUG)
 	yield(get_tree().create_timer(0.1), "timeout")
 	

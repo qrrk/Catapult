@@ -41,7 +41,7 @@ func _exit_tree() -> void:
 
 func _load() -> void:
 	
-	_settings_file = Paths.data_dir.plus_file(_SETTINGS_FILENAME)
+	_settings_file = Paths.catapult_dir.plus_file(_SETTINGS_FILENAME)
 	
 	if File.new().file_exists(_settings_file):
 		_current = _read_from_file(_settings_file)

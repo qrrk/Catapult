@@ -14,10 +14,10 @@ func install_release(release_info: Dictionary, game: String, update_in: String =
 	else:
 		Status.post(tr("msg_installing_game") % release_info["name"])
 	
-	Downloader.download_file(release_info["url"], Paths.data_dir, release_info["filename"])
+	Downloader.download_file(release_info["url"], Paths.catapult_dir, release_info["filename"])
 	yield(Downloader, "download_finished")
 	
-	var archive: String = Paths.data_dir.plus_file(release_info["filename"])
+	var archive: String = Paths.catapult_dir.plus_file(release_info["filename"])
 	if Directory.new().file_exists(archive):
 		
 		FS.extract(archive, Paths.tmp_dir)
