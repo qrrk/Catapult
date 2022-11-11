@@ -524,6 +524,6 @@ func _activate_easter_egg() -> void:
 	
 	Status.rainbow_text = true
 	
-	for i in range(20):
+	for _i in range(20):
 		Status.post(tr("msg_easter_egg_activated"))
 		yield(get_tree().create_timer(0.1), "timeout")

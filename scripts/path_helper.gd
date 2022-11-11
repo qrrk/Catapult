@@ -4,7 +4,7 @@ extends Node
 
 signal status_message
 
-var catapult_dir: String setget , _get_catapult_dir
+var catapult_dir: String setget _set_catapult_dir , _get_catapult_dir
 var installs_summary: Dictionary setget , _get_installs_summary
 var game_dir: String setget , _get_game_dir
 var next_data_dir: String setget , _get_next_data_dir
@@ -26,9 +26,13 @@ var tmp_dir: String setget , _get_tmp_dir
 var utils_dir: String setget , _get_utils_dir
 var save_backups: String setget , _get_save_backups_dir
 
-var _catapult_dir := _determine_catapult_dir()
 var _last_active_install_name := ""
 var _last_active_install_dir := ""
+
+
+func _init() -> void:
+
+	catapult_dir = _determine_catapult_dir()
 
 
 func _determine_catapult_dir() -> String:
@@ -58,9 +62,14 @@ func _determine_catapult_dir() -> String:
 	return OS.get_executable_path().get_base_dir()
 
 
+func _set_catapult_dir(path: String) -> void:
+
+	catapult_dir = path
+
+
 func _get_catapult_dir() -> String:
 
-	return _catapult_dir
+	return catapult_dir
 
 
 func _get_installs_summary() -> Dictionary:
