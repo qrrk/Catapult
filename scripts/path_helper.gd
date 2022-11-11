@@ -41,7 +41,7 @@ func _determine_data_dir() -> String:
 
 				if not dirname.begins_with("/"):
 					# relative paths are not supported, fallback to executable path
-					Status.post(tr("msg_path_not_absolute"), Enums.MSG_ERROR)
+					Status.post(tr("msg_path_not_absolute") % dirname, Enums.MSG_ERROR)
 					break
 
 				# Ensure that data_dir_abs exists
