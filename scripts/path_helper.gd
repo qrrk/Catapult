@@ -5,6 +5,7 @@ extends Node
 signal status_message
 
 var catapult_dir: String setget _set_catapult_dir , _get_catapult_dir
+var settings_dir: String setget _set_settings_dir , _get_settings_dir
 var installs_summary: Dictionary setget , _get_installs_summary
 var game_dir: String setget , _get_game_dir
 var next_data_dir: String setget , _get_next_data_dir
@@ -33,6 +34,7 @@ var _last_active_install_dir := ""
 func _init() -> void:
 
 	catapult_dir = _determine_catapult_dir()
+	settings_dir = _determine_settings_dir()
 
 
 func _determine_catapult_dir() -> String:
@@ -62,6 +64,24 @@ func _determine_catapult_dir() -> String:
 	return OS.get_executable_path().get_base_dir()
 
 
+func _determine_settings_dir() -> String:
+
+	var global_settings_dir: String
+
+	match OS.get_name():
+		"X11":
+			global_settings_dir = OS.get_environment("HOME").plus_file(".config/catapult/")
+		"Windows":
+			global_settings_dir = OS.get_environment("USERPROFILE").plus_file("AppData/Local/Catapult/")
+		_:
+			return catapult_dir
+	
+	if Settings.dir_contains_settings(global_settings_dir):
+		return global_settings_dir
+	else:
+		return catapult_dir
+
+
 func _set_catapult_dir(path: String) -> void:
 
 	catapult_dir = path
@@ -70,6 +90,16 @@ func _set_catapult_dir(path: String) -> void:
 func _get_catapult_dir() -> String:
 
 	return catapult_dir
+
+
+func _set_settings_dir(path: String) -> void:
+
+	settings_dir = path
+
+
+func _get_settings_dir() -> String:
+
+	return settings_dir
 
 
 func _get_installs_summary() -> Dictionary:

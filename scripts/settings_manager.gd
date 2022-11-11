@@ -41,11 +41,10 @@ func _exit_tree() -> void:
 
 func _load() -> void:
 	
-	_settings_file = Paths.catapult_dir.plus_file(_SETTINGS_FILENAME)
+	_settings_file = Paths.settings_dir.plus_file(_SETTINGS_FILENAME)
 	
 	if File.new().file_exists(_settings_file):
 		_current = _read_from_file(_settings_file)
-		
 	else:
 		_current = _HARDCODED_DEFAULTS
 		Status.post(tr("msg_creating_settings") % _SETTINGS_FILENAME)
@@ -80,6 +79,14 @@ func _write_to_file(data: Dictionary, path: String) -> void:
 	f.open(path, File.WRITE)
 	f.store_string(content)
 	f.close()
+
+
+func dir_contains_settings(path: String) ->bool:
+
+	var d = Directory.new()
+	d.open(path)
+
+	return d.file_exists(_SETTINGS_FILENAME)
 
 
 func read(setting_name: String):
