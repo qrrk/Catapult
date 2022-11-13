@@ -38,17 +38,15 @@ func _init() -> void:
 
 	Settings.load_settings(settings_dir)
 	var inst_dir_setting = Settings.read("installation_dir")
-	if inst_dir_setting != null and inst_dir_setting.is_abs_path():
-		var d = Directory.new()
-		if not d.dir_exists(inst_dir_setting):
-			var error = d.make_dir_recursive(inst_dir_setting)
-			if error:
-				# something went wrong, use basic catapult_dir
-				Status.post(tr("msg_cannot_create_target_dir") % [inst_dir_setting, error], Enums.MSG_ERROR)
-				return
+	inst_dir_setting = inst_dir_setting.replace("~", OS.get_environment("HOME"))
 
-		d.open(inst_dir_setting)
-		catapult_dir = d.get_current_dir()
+	if inst_dir_setting != null:
+		var d = Directory.new()
+
+		if not d.dir_exists(inst_dir_setting):
+			d.make_dir_recursive(inst_dir_setting)
+
+		catapult_dir = inst_dir_setting
 
 
 func _determine_catapult_dir() -> String:
