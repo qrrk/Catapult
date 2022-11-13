@@ -83,7 +83,9 @@ func _determine_settings_dir() -> String:
 
 	match OS.get_name():
 		"X11":
-			global_settings_dir = OS.get_environment("HOME").plus_file(".config/catapult/")
+			var xdg_config_home = OS.get_environment("XDG_CONFIG_HOME")
+			var config_home = xdg_config_home if not xdg_config_home.empty() else OS.get_environment("HOME").plus_file(".config")
+			global_settings_dir = config_home.plus_file("catapult/")
 		"Windows":
 			global_settings_dir = OS.get_environment("USERPROFILE").plus_file("AppData/Local/Catapult/")
 		_:
