@@ -36,6 +36,19 @@ func _init() -> void:
 	catapult_dir = _determine_catapult_dir()
 	settings_dir = _determine_settings_dir()
 
+	Settings.load_settings(settings_dir)
+	var inst_dir_setting = Settings.read("installation_dir")
+	if inst_dir_setting != null and inst_dir_setting.is_abs_path():
+		var d = Directory.new()
+		if not d.dir_exists(inst_dir_setting):
+			var error = d.make_dir_recursive(inst_dir_setting)
+			if error:
+				# something went wrong, use basic catapult_dir
+				Status.post(tr("msg_cannot_create_target_dir") % [inst_dir_setting, error], Enums.MSG_ERROR)
+				return
+
+		catapult_dir = inst_dir_setting
+
 
 func _determine_catapult_dir() -> String:
 
@@ -45,7 +58,7 @@ func _determine_catapult_dir() -> String:
 			if arg_pair[0] == "--catapult_dir_abs":
 				var dirname = arg_pair[1]
 
-				if not dirname.begins_with("/"):
+				if not dirname.is_abs_path():
 					# relative paths are not supported, fallback to executable path
 					Status.post(tr("msg_path_not_absolute") % dirname, Enums.MSG_ERROR)
 					break

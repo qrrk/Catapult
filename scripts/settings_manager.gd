@@ -39,9 +39,9 @@ func _exit_tree() -> void:
 	_write_to_file(_current, _settings_file)
 
 
-func _load() -> void:
+func load_settings(path: String = Paths.settings_dir) -> void:
 	
-	_settings_file = Paths.settings_dir.plus_file(_SETTINGS_FILENAME)
+	_settings_file = path.plus_file(_SETTINGS_FILENAME)
 	
 	if File.new().file_exists(_settings_file):
 		_current = _read_from_file(_settings_file)
@@ -92,7 +92,7 @@ func dir_contains_settings(path: String) ->bool:
 func read(setting_name: String):
 	
 	if len(_current) == 0:
-		_load()
+		load_settings()
 	
 	if not setting_name in _current:
 		if setting_name in _HARDCODED_DEFAULTS:
