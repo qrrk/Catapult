@@ -47,7 +47,8 @@ func _init() -> void:
 				Status.post(tr("msg_cannot_create_target_dir") % [inst_dir_setting, error], Enums.MSG_ERROR)
 				return
 
-		catapult_dir = inst_dir_setting
+		d.open(inst_dir_setting)
+		catapult_dir = d.get_current_dir()
 
 
 func _determine_catapult_dir() -> String:
