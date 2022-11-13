@@ -43,10 +43,12 @@ func _init() -> void:
 	if inst_dir_setting != null:
 		var d = Directory.new()
 
+		var error = 0
 		if not d.dir_exists(inst_dir_setting):
-			d.make_dir_recursive(inst_dir_setting)
+			error = d.make_dir_recursive(inst_dir_setting)
 
-		catapult_dir = inst_dir_setting
+		if not error:
+			catapult_dir = inst_dir_setting
 
 
 func _determine_catapult_dir() -> String:
