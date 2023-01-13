@@ -10,7 +10,7 @@ signal soundpack_deletion_finished
 const SOUNDPACKS = [
 	{
 		"name": "CC-Sounds",
-		"url": "https://github.com/Fris0uman/CDDA-Soundpacks/releases/download/2022-03-20/CC-Sounds.zip",
+		"url": "https://github.com/Fris0uman/CDDA-Soundpacks/releases/download/2022-08-23/CC-Sounds.zip",
 		"filename": "CC-Sounds.zip",
 		"internal_path": "CC-Sounds",
 	},
