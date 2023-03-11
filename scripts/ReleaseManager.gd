@@ -124,9 +124,36 @@ const _DDA_STABLE_WIN = [
 	},
 ]
 
+const _BN_STABLE_LINUX = [
+	{
+		"name": "0.2",
+		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/cbn-0.2/cbn-linux-tiles-x64-0.2.tar.gz",
+		"filename": "cbn-linux-tiles-x64-0.2.tar.gz"
+	},
+	{
+		"name": "0.1",
+		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/cbn-0.1/cbn-linux-tiles-x64-0.1.tar.gz",
+		"filename": "cbn-linux-tiles-x64-0.1.tar.gz"
+	},
+]
+
+const _BN_STABLE_WIN = [
+	{
+		"name": "0.2",
+		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/cbn-0.2/cbn-windows-tiles-x64-msvc-0.2.zip",
+		"filename": "cbn-windows-tiles-x64-msvc-0.2.zip"
+	},
+	{
+		"name": "0.1",
+		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/cbn-0.1/cbn-windows-tiles-x64-msvc-0.1.zip",
+		"filename": "cbn-windows-tiles-x64-msvc-0.1.zip"
+	}
+]
+
 var releases = {
 	"dda-stable": [],
 	"dda-experimental": [],
+	"bn-stable": [],
 	"bn-experimental": [],
 }
 
@@ -232,6 +259,13 @@ func fetch(release_key: String) -> void:
 		"dda-experimental":
 			Status.post(tr("msg_fetching_releases_dda"))
 			_request_dda()
+		"bn-stable":
+			match _platform:
+				"linux":
+					releases["bn-stable"] = _BN_STABLE_LINUX
+				"win":
+					releases["bn-stable"] = _BN_STABLE_WIN
+			emit_signal("done_fetching_releases")
 		"bn-experimental":
 			Status.post(tr("msg_fetching_releases_bn"))
 			_request_bn()
