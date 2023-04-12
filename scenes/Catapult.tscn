@@ -82,7 +82,7 @@ margin_bottom = 24.0
 hint_tooltip = "tooltip_game"
 size_flags_horizontal = 3
 text = "Cataclysm: Dark Days Ahead"
-items = [ "Cataclysm: Dark Days Ahead", null, false, 0, null, "Cataclysm: Bright Nights", null, false, 1, null ]
+items = [ "Cataclysm: Dark Days Ahead", null, false, 0, null, "Cataclysm: Bright Nights", null, false, 1, null, "Cataclysm: Era Of Decay", null, false, 2, null, "Cataclysm: There Is Still Hope", null, false, 3, null ]
 selected = 0
 
 [node name="GameInfo" type="HBoxContainer" parent="Main"]
@@ -125,12 +125,11 @@ margin_bottom = 100.0
 [node name="Tabs" type="TabContainer" parent="Main" groups=["disable_during_backup_operations", "disable_during_mod_operations", "disable_during_release_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases"]]
 margin_top = 104.0
 margin_right = 592.0
-margin_bottom = 547.0
+margin_bottom = 535.0
 tab_align = 0
 script = ExtResource( 16 )
 
 [node name="Game" type="VBoxContainer" parent="Main/Tabs"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -623,7 +622,7 @@ dialog_autowrap = true
 margin_right = 593.0
 margin_bottom = 250.0
 rect_min_size = Vector2( 300, 105 )
-window_title = "Open a File"
+window_title = "Открыть файл"
 mode = 0
 access = 2
 filters = PoolStringArray( "*.zip" )
@@ -1003,6 +1002,7 @@ margin_right = 577.0
 margin_bottom = 56.0
 
 [node name="Settings" type="VBoxContainer" parent="Main/Tabs"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.5
@@ -1284,7 +1284,7 @@ size_flags_horizontal = 4
 text = "Print screen info"
 
 [node name="Log" type="RichTextLabel" parent="Main"]
-margin_top = 551.0
+margin_top = 539.0
 margin_right = 592.0
 margin_bottom = 692.0
 focus_mode = 2
@@ -1302,6 +1302,10 @@ __meta__ = {
 [node name="HTTPRequest_DDA" type="HTTPRequest" parent="Releases"]
 
 [node name="HTTPRequest_BN" type="HTTPRequest" parent="Releases"]
+
+[node name="HTTPRequest_EOD" type="HTTPRequest" parent="Releases"]
+
+[node name="HTTPRequest_TISH" type="HTTPRequest" parent="Releases"]
 
 [node name="ReleaseInstaller" type="Node" parent="."]
 script = ExtResource( 9 )
@@ -1414,6 +1418,8 @@ __meta__ = {
 [connection signal="started_fetching_releases" from="Releases" to="." method="_on_Releases_started_fetching_releases"]
 [connection signal="request_completed" from="Releases/HTTPRequest_DDA" to="Releases" method="_on_request_completed_dda"]
 [connection signal="request_completed" from="Releases/HTTPRequest_BN" to="Releases" method="_on_request_completed_bn"]
+[connection signal="request_completed" from="Releases/HTTPRequest_EOD" to="Releases" method="_on_request_completed_eod"]
+[connection signal="request_completed" from="Releases/HTTPRequest_TISH" to="Releases" method="_on_request_completed_tish"]
 [connection signal="operation_finished" from="ReleaseInstaller" to="." method="_on_ReleaseInstaller_operation_finished"]
 [connection signal="operation_started" from="ReleaseInstaller" to="." method="_on_ReleaseInstaller_operation_started"]
 [connection signal="mod_deletion_finished" from="Mods" to="." method="_on_mod_operation_finished"]
