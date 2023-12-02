@@ -125,7 +125,7 @@ margin_bottom = 100.0
 [node name="Tabs" type="TabContainer" parent="Main" groups=["disable_during_backup_operations", "disable_during_mod_operations", "disable_during_release_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases"]]
 margin_top = 104.0
 margin_right = 592.0
-margin_bottom = 547.0
+margin_bottom = 573.0
 tab_align = 0
 script = ExtResource( 16 )
 
@@ -1194,6 +1194,26 @@ value = 100.0
 editable = false
 suffix = "%"
 
+[node name="InstDir" type="HBoxContainer" parent="Main/Tabs/Settings"]
+margin_top = 404.0
+margin_right = 577.0
+margin_bottom = 428.0
+hint_tooltip = "tooltip_num_prs_to_request"
+
+[node name="Label" type="Label" parent="Main/Tabs/Settings/InstDir"]
+margin_right = 120.0
+margin_bottom = 24.0
+text = "lbl_installation_dir"
+
+[node name="leInstDir" type="LineEdit" parent="Main/Tabs/Settings/InstDir"]
+margin_left = 493.0
+margin_right = 577.0
+margin_bottom = 24.0
+size_flags_horizontal = 10
+middle_mouse_paste_enabled = false
+placeholder_text = "placeholder_installation_dir"
+caret_blink = true
+
 [node name="Debug" type="VBoxContainer" parent="Main/Tabs"]
 visible = false
 anchor_right = 1.0
@@ -1284,7 +1304,7 @@ size_flags_horizontal = 4
 text = "Print screen info"
 
 [node name="Log" type="RichTextLabel" parent="Main"]
-margin_top = 551.0
+margin_top = 577.0
 margin_right = 592.0
 margin_bottom = 692.0
 focus_mode = 2
@@ -1400,6 +1420,7 @@ __meta__ = {
 [connection signal="value_changed" from="Main/Tabs/Settings/NumPrs/sbNumPRs" to="Main/Tabs/Settings" method="_on_sbNumPRs_value_changed"]
 [connection signal="toggled" from="Main/Tabs/Settings/ScaleOverride/cbScaleOverrideEnable" to="Main/Tabs/Settings" method="_on_cbScaleOverrideEnable_toggled"]
 [connection signal="value_changed" from="Main/Tabs/Settings/ScaleOverride/sbScaleOverride" to="Main/Tabs/Settings" method="_on_sbScaleOverride_value_changed"]
+[connection signal="text_changed" from="Main/Tabs/Settings/InstDir/leInstDir" to="Main/Tabs/Settings" method="_on_leInstDir_text_changed"]
 [connection signal="pressed" from="Main/Tabs/Debug/Button" to="Main/Tabs/Debug" method="_on_Button_pressed"]
 [connection signal="pressed" from="Main/Tabs/Debug/Button2" to="Main/Tabs/Debug" method="_on_Button2_pressed"]
 [connection signal="pressed" from="Main/Tabs/Debug/Button3" to="Main/Tabs/Debug" method="_on_Button3_pressed"]

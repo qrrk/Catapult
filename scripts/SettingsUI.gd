@@ -44,6 +44,8 @@ func _ready() -> void:
 	$ShowDebug.pressed = Settings.read("debug_mode")
 	$NumReleases/sbNumReleases.value = Settings.read("num_releases_to_request") as int
 	$NumPrs/sbNumPRs.value = Settings.read("num_prs_to_request") as int
+	var inst_dir = Settings.read("installation_dir")
+	$InstDir/leInstDir.text = inst_dir if inst_dir else ""
 	
 	$ScaleOverride/cbScaleOverrideEnable.pressed = Settings.read("ui_scale_override_enabled")
 	$ScaleOverride/sbScaleOverride.editable = Settings.read("ui_scale_override_enabled")
@@ -121,6 +123,11 @@ func _on_sbNumReleases_value_changed(value: float) -> void:
 func _on_sbNumPRs_value_changed(value: float) -> void:
 	
 	Settings.store("num_prs_to_request", str(value))
+
+
+func _on_leInstDir_text_changed(new_text: String) -> void:
+
+	Settings.store("installation_dir", new_text)
 
 
 func _on_cbScaleOverrideEnable_toggled(button_pressed: bool) -> void:
