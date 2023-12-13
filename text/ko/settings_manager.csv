@@ -1,0 +1,7 @@
+keys,ko
+,
+msg_creating_settings,설정 파일 %s을(를) 만드는 중입니다.
+msg_nonexistent_attempt,존재하지 않는 파일 %s에서 설정을 로드하려고 시도했습니다.
+msg_loading_settings,%s에서 설정을 로드하는 중입니다.
+msg_settings_parse_error,"JSON에서 설정을 구문 분석하는 중 오류가 발생했습니다. %s행, 메시지: %s"
+msg_nonexisting_setting,"존재하지 않는 설정 \""%s\""을(를) 읽으려고 시도했습니다."

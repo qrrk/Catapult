@@ -1,0 +1,5 @@
+keys,ko
+,
+dlg_mod_reinstall_title,모드 재설치 확인
+dlg_mod_reinstall_text_single,선택한 모드 중 하나가 이미 설치되어 있습니다.\n삭제하고 다시 설치하시겠습니까?
+dlg_mod_reinstall_text_multiple,선택한 모드 중 %s이(가) 이미 설치되어 있습니다.\n삭제하고 다시 설치하시겠습니까?
