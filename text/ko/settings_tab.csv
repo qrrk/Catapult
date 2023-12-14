@@ -1,11 +1,11 @@
 keys,ko
 ,
 cbtn_debug_mode,디버그 모드
-cbtn_enable_scale,할 수 있게 하다
+cbtn_enable_scale,활성화  
 cbtn_install_archived_mods,Kenan Modpack 설치 시 보관된 모드 포함
-cbtn_keep_launcher_open,게임을 시작한 후 런처를 열어두세요
-cbtn_print_tips,시작 시 오늘의 팁 인쇄
-cbtn_shorten_release_names,실험적 릴리스의 이름을 줄입니다.
+cbtn_keep_launcher_open,게임 시작 후에도 런처를 열어두기
+cbtn_print_tips,시작 시 오늘의 팁 표시
+cbtn_shorten_release_names,실험판 릴리스 이름 축약
 cbtn_always_show_installs,항상 설치 목록 표시
 cbtn_show_game_desc,게임 설명 표시
 cbtn_show_obsolete_mods,설치된 모드에서 사용되지 않는 모드 나열
@@ -17,8 +17,8 @@ lbl_num_prs_to_request,변경 로그를 위해 다운로드할 결과 수:
 lbl_num_releases_to_request,요청할 릴리스 수:
 lbl_ui_scale_override,사용자 정의 UI 크기 조정:
 tooltip_debug_mode,일부 테스트 기능이 포함된 디버그 탭을 표시하고\n상태 창에서 디버그 메시지를\n활성화합니다(문제 해결에 유용함).
-tooltip_install_archived_mods,Kenan Modpack을 설치할 때 *보관된* 모드도 포함하세요.\n이러한 모드는 Kenan에서 더 이상 유지 관리하지 않으며 오래되었을 수 있습니다.
-tooltip_keep_launcher_open,끄면 재생 또는 재개를 클릭한 후 런처가 닫힙니다.\n어떤 이유로든 게임이 시작되지 않더라도 런처는\n여전히 닫힙니다.
+tooltip_install_archived_mods,Kenan Modpack을 설치할 때 *보관된* 모드도 포함합니다.\n이러한 모드는 Kenan에서 더 이상 유지 관리하지 않으며 오래되었을 수 있습니다.
+tooltip_keep_launcher_open,끄면 게임 시작 또는 이어하기를 클릭한 후 런처가 닫힙니다.\n어떤 이유로든 게임이 시작되지 않더라도 런처는\n여전히 닫힙니다.
 tooltip_num_prs_to_request,변경 로그를 작성하기 위해 GitHub에서\n최근 끌어오기 요청(코드 추가)을 얼마나 많이 요청합니까?\n숫자가 높으면 응답이 느려지고 실패할 수 있습니다.
 tooltip_num_releases_to_request,"런처를 시작하거나, 게임을 선택하거나, 새로 고침을 클릭한 후\nGitHub에서 몇 개의 최신 릴리스가\n요청됩니다."
 tooltip_print_tips,런처가 시작되면 상태 창에 임의의 팁을 인쇄합니다.

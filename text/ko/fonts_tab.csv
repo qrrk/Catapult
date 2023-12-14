@@ -1,21 +1,21 @@
 keys,ko
 ,
 lbl_avail_fonts,사용 가능:
-lbl_font_preview,시사:
+lbl_font_preview,미리보기:
 cbtn_preview_cyrillics,키릴 문자 미리보기
 lbl_other_settings,다른 설정
 lbl_font_sz_ui,UI 글꼴 크기:
 lbl_font_sz_map,지도 글꼴 크기:
 lbl_font_sz_overmap,오버맵 글꼴 크기:
-cbtn_font_blending,글꼴 혼합:
-btn_save_font,구하다
-btn_set_font_ui,게임 UI에 대한 설정
+cbtn_font_blending,폰트 블렌딩:
+btn_save_font,저장
+btn_set_font_ui,게임 UI로 설정
 btn_set_font_map,지도용으로 설정
 btn_set_font_omap,오버맵용으로 설정
-btn_set_font_all,모두를 위한 설정
-btn_reset_font,모든 글꼴 재설정
+btn_set_font_all,모든 용도로 설정
+btn_reset_font,모든 글꼴 초기화
 ,
-tooltip_preview_cyrillics,러시아어로 팬그램을 보여주세요.
+tooltip_preview_cyrillics,러시아어로 팬그램을 보여줍니다.
 tooltip_font_sz_ui,메뉴/대화상자/등의 글꼴 크기 값입니다.\n글꼴 너비와 높이는 자동으로 설정됩니다.
 tooltip_font_sz_map,게임 세계의 글꼴 크기(타일을 사용하지 않는 경우).\n글꼴 너비와 높이는 자동으로 설정됩니다.
 tooltip_font_sz_overmap,오버맵이라고도 불리는 세계 지도 보기의 글꼴 크기.\n글꼴 너비와 높이는 자동으로 설정됩니다.

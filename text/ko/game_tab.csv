@@ -1,19 +1,19 @@
 keys,ko
 ,
 lbl_channel,채널:
-rbtn_stable,안정적인
-rbtn_experimental,실험적
-lbl_changelog,[right][color=#3b93f7][url]실험 변경 로그 보기[/url][/color][/right]
+rbtn_stable,안정판
+rbtn_experimental,실험판
+lbl_changelog,[right][color=#3b93f7][url]실험판 변경 로그 보기[/url][/color][/right]
 lbl_builds,사용 가능한 빌드:
-btn_refresh,새로 고치다
+btn_refresh,새로 고침
 btn_install,선택한 항목 설치
-btn_update,선택 항목으로 업데이트
-cb_update_active,현재 활성 설치 업데이트
-lbl_active_install,활성 설치:
-btn_play,놀다
-btn_resume,마지막 세계 재개
+btn_update,선택한 항목을 덮어쓰기
+cb_update_active,현재 활성화된 버전을 덮어쓰기
+lbl_active_install,활성화된 버전:
+btn_play,게임 시작
+btn_resume,마지막 세계 이어하기
 lbl_installs,설치된 버전:
-lbl_currently_installed,현재 설치되어 있는 것:
+lbl_currently_installed,현재 설치된 버전:
 lbl_none,없음
 btn_activate,활성화
 btn_delete,삭제

@@ -3,9 +3,9 @@ keys,ko
 lbl_installed_sound,설치됨:
 lbl_avail_sound,다운로드 가능:
 cbtn_stock_sound,재고 표시
-btn_delete_sound,선택된 것을 지워 라
-btn_install_sound,선택한 항목 설치
-btn_reinstall_sound,선택 항목 다시 설치
+btn_delete_sound,선택 항목 삭제
+btn_install_sound,선택 항목 설치
+btn_reinstall_sound,선택 항목 재설치
 ,
 tooltip_stock_sound,데이터/사운드의 사운드팩을 목록에 표시합니다.
 tooltip_delete_sound,게임 설치에서 선택한 사운드팩을 제거합니다.
