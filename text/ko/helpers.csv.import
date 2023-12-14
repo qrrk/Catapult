@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+
+[deps]
+
+files=[ "res://text/ko/helpers.ko.translation" ]
+
+source_file="res://text/ko/helpers.csv"
+dest_files=[ "res://text/ko/helpers.ko.translation" ]
+
+[params]
+
+compress=true
+delimiter=0

@@ -1,0 +1,9 @@
+keys,ko
+,
+msg_unsupported_platform,"지원되지 않는 플랫폼: \"%s\""
+msg_releases_request_failed,요청이 실패했습니다. 인터넷에 연결되어 있나요?
+msg_releases_api_failure,빌드 목록을 가져올 수 없습니다. GitHub의 내용: %s
+msg_got_n_releases,%s개의 릴리스를 받았습니다.
+msg_fetching_releases_dda,DDA 실험용 릴리스를 가져오는 중...
+msg_fetching_releases_bn,BN 실험용 릴리스를 가져오는 중...
+msg_invalid_fetch_func_param,ReleaseManager.fetch()가 %s에 전달되었습니다.

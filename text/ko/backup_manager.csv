@@ -1,0 +1,10 @@
+keys,ko
+,
+msg_backing_up_saves,"현재 저장 내용을 \""%s\""에 백업하는 중..."
+msg_backup_created,백업이 생성되었습니다.
+msg_backup_name_taken,"\""%s\""이라는 백업이 이미 존재합니다."
+msg_restoring_backup,"백업 \""%s\"" 복원 중..."
+msg_backup_restored,백업이 복원되었습니다.
+msg_backup_not_found,"백업 \""%s\""을(를) 찾을 수 없습니다."
+msg_deleting_backup,"백업 \""%s\"" 삭제 중..."
+msg_backup_deleted,백업이 삭제되었습니다.

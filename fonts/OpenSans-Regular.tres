@@ -1,7 +1,8 @@
-[gd_resource type="DynamicFont" load_steps=3 format=2]
+[gd_resource type="DynamicFont" load_steps=4 format=2]
 
 [ext_resource path="res://fonts/OpenSans-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://fonts/SourceHanSansCN-Regular.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://fonts/NotoSansKR-Regular.ttf" type="DynamicFontData" id=3]
 
 [resource]
 size = 13
@@ -9,3 +10,4 @@ extra_spacing_top = -3
 extra_spacing_bottom = -3
 font_data = ExtResource( 1 )
 fallback/0 = ExtResource( 2 )
+fallback/1 = ExtResource( 3 )

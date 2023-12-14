@@ -1,0 +1,33 @@
+keys,ko
+,
+lbl_installed_mods,설치됨%s:
+str_installed_mods_hidden, (%s 숨김)
+lbl_mod_repo,로컬 저장소%s:
+str_mod_repo_hidden,(%s 숨김)
+cbtn_stock_mods,저장된 항목 표시
+btn_delete_mods,선택 삭제
+cbtn_installed_mods,설치된 항목 표시
+btn_add_sel_mods,선택 항목 추가
+btn_add_all_mods,모두 추가
+btn_get_kenan_pack,케난 모드팩 받기
+lbl_mod_info,여기에서 자세한 내용을 보려면 목록에서 모드를 선택하세요.
+str_mod_name,이름:
+str_mod_authors,제작자:
+str_mod_maintainers,유지관리자:
+str_mod_category,카테고리:
+str_mod_description,설명:
+,
+tooltip_mod_location,위치: %s
+tooltip_stock_mods,이 목록의 데이터/모드에서 모드를 표시합니다.
+tooltip_installed_mods,다시 설치하려는 경우\n이 목록에 이미 설치된 모드를 표시합니다.
+tooltip_delete_mods,게임 설치에서 선택한 모드를 제거합니다.
+tooltip_add_sel_mods,선택한 모드를 게임 설치에 추가합니다.
+tooltip_add_all_mods,나열된 모드를 모두 게임 설치에 추가합니다.
+tooltip_get_kenan_pack,Kenan Modpack을 다운로드하고 해당 모드를\n로컬 저장소에 추가합니다.
+,
+msg_one_mod_is_stock,선택한 모드 중 하나가 재고이므로 삭제할 수 없습니다.
+msg_n_mods_are_stock,선택한 모드 중 %s이(가) 재고이므로 삭제할 수 없습니다.
+dlg_deleting_n_mods_title,삭제 확인
+dlg_deleting_n_mods_text,%s 모드를 삭제하는 중입니다.
+msg_mod_install_one_mod_skipped,하나의 모드가 이미 게임과 함께 제공되므로 설치되지 않습니다.
+msg_mod_install_n_mods_skipped,%s 모드는 이미 게임과 함께 제공되므로 설치되지 않습니다.

@@ -1,0 +1,23 @@
+keys,ko
+,
+window_title,Catapult — Cataclysm: DDA 및 BN 런처
+str_welcome,Catapult에 오신 것을 환영합니다!
+str_tip_of_the_day,\n\n[u]오늘의 팁:[/u]\n
+msg_unpacking_unzip,unzip.exe 압축을 푸는 중...
+msg_theme_load_error,%s 테마를 로드할 수 없습니다.
+debug_test,번역 검색을 테스트하기 위한 디버그 텍스트입니다.
+,
+tag_warning,경고
+tag_error,오류
+tag_debug,디버그
+,
+lbl_game,게임:
+desc_dda,"[b]Cataclysm: Dark Days Ahead[/b]는 포스트-아포칼립스 세계를 배경으로 한 턴제 생존 게임입니다. 절차적으로 생성된 무한한 세계에서 수색하고, 탐험하고, 제작하고, 건설하고, 농사를 짓고, 차량을 수리하고 개조하고, 바이오닉을 설치하고, 돌연변이를 일으키고, [color=#009900]좀비[/color] 및 수많은 다른 괴물로부터 살아남으세요!"
+desc_bn,"[b]Cataclysm: Bright Nights[/b]. 현학을 거부하고 [color=#ff3300]!!재미!![/color]를 수용합니다. 이 포크는 게임을 SF 로그라이크의 뿌리로 되돌리고 DDA 팀이 논란이 많은 변경 사항(수납공간, 숙련도, 얼음 및 [color=#3b93f7][url=https://docs.cataclysmbn.org/en/game/changelog/]더보기[/url][/color])을 되돌립니다. 전투, 게임 밸런스 및 속도에 특별한 주의를 기울입니다."
+,
+tab_game,게임
+tab_mods,모드
+tab_soundpacks,사운드팩
+tab_fonts,글꼴
+tab_backups,백업
+tab_settings,설정

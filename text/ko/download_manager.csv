@@ -1,0 +1,13 @@
+keys,ko
+,
+unit_kb,KB
+unit_mb,MB
+unit_kbps,KB/초
+unit_mbps,MB/초
+,
+msg_downloading_file,%s 다운로드 중...
+msg_download_progress,다운로드 중:
+str_dl_speed_at,속도:
+msg_download_finished,%s 다운로드가 완료되었습니다.
+msg_download_failed,%s를 다운로드하지 못했습니다.
+msg_http_request_info,[b]HTTP요청 정보:[/b]\n[u]결과:[/u] %s\n[u]응답 코드:[/u] %s\n[u]헤더:[/u] %s

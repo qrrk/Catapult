@@ -1,0 +1,18 @@
+keys,ko
+,
+msg_list_dir_failed,%s 디렉터리를 나열하지 못했습니다. 오류 코드: %s.
+msg_cannot_create_target_dir,대상 디렉터리 %s을(를) 생성할 수 없습니다. 오류 코드: %s.
+msg_copy_file_failed,"\""%s\"" 파일을 복사하지 못했습니다. 오류 코드: %s."
+msg_copy_file_failed_details,"[u]소스 경로:[/u] %s, [u]대상 경로:[/u] %s."
+msg_remove_file_failed,"\""%s\"" 파일을 제거하지 못했습니다. 오류 코드: %s."
+msg_remove_file_failed_details,[u]전체 경로:[/u] %s.
+msg_rm_dir_failed,%s 디렉터리를 제거하지 못했습니다. 오류 코드: %s.
+msg_create_dir_failed,대상 디렉터리 %s을(를) 생성할 수 없습니다. 오류 코드: %s.
+msg_move_file_failed,"\""%s\"" 파일을 이동하지 못했습니다. 오류 코드: %s."
+msg_move_file_failed_details,"[u]소스 경로:[/u] %s, [u]대상 경로:[/u] %s."
+msg_move_rmdir_failed,소스 디렉터리 %s을(를) 제거할 수 없습니다. 오류 코드: %s.
+msg_extract_unsupported,지원되지 않는 플랫폼 또는 아카이브 형식(파일: %s)
+msg_extracting_file,%s 압축 해제 중...
+msg_extract_error,오류로 인해 아카이브 추출 명령이 종료되었습니다(종료 코드: %s).
+msg_extract_failed_cmd,실패한 명령: %s
+msg_extract_fail_output,출력: %s

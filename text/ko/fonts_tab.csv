@@ -1,0 +1,38 @@
+keys,ko
+,
+lbl_avail_fonts,사용 가능:
+lbl_font_preview,미리보기:
+cbtn_preview_cyrillics,키릴 문자 미리보기
+lbl_other_settings,다른 설정
+lbl_font_sz_ui,UI 글꼴 크기:
+lbl_font_sz_map,지도 글꼴 크기:
+lbl_font_sz_overmap,오버맵 글꼴 크기:
+cbtn_font_blending,폰트 블렌딩:
+btn_save_font,저장
+btn_set_font_ui,게임 UI로 설정
+btn_set_font_map,지도용으로 설정
+btn_set_font_omap,오버맵용으로 설정
+btn_set_font_all,모든 용도로 설정
+btn_reset_font,모든 글꼴 설정 초기화
+,
+tooltip_preview_cyrillics,러시아어로 팬그램을 보여줍니다.
+tooltip_font_sz_ui,메뉴/대화상자/등의 글꼴 크기 값입니다.\n글꼴 너비와 높이는 자동으로 설정됩니다.
+tooltip_font_sz_map,게임 세계의 글꼴 크기(타일을 사용하지 않는 경우).\n글꼴 너비와 높이는 자동으로 설정됩니다.
+tooltip_font_sz_overmap,오버맵이라고도 불리는 세계 지도 보기의 글꼴 크기.\n글꼴 너비와 높이는 자동으로 설정됩니다.
+tooltip_font_blending,더 부드러운 글꼴 렌더링.
+tooltip_save_font,이 설정을 options.json에 저장하려면 클릭하세요.\n글꼴을 설정할 때 자동으로 저장되기도 합니다.
+tooltip_set_font_ui,메뉴/대화상자/등에 선택한 글꼴을 사용합니다.
+tooltip_set_font_map,게임 세계에 선택한 글꼴을 사용합니다\n(타일을 사용하지 않는 경우).
+tooltip_set_font_omap,오버맵이라고도 불리는 세계 지도 보기에 선택한 글꼴을 사용합니다.
+tooltip_set_font_all,모든 것에 선택한 글꼴을 사용하십시오.
+tooltip_reset_font,기본 글꼴을 반환합니다(Terminus => Unifont).
+,
+str_curr_font_config,현재 글꼴 + 대체:
+str_curr_font_config_ui,UI
+str_curr_font_config_map,지도
+str_curr_font_config_omap,오버맵
+,
+msg_no_font_config_file,지금은 글꼴을 관리할 수 없습니다. 글꼴 구성 파일이 존재하지 않습니다. 게임을 생성하려면 게임을 한 번 이상 시작했는지 확인하세요.
+msg_setting_ui_font,[i]%s[/i]를 게임 UI 글꼴로 설정합니다.
+msg_setting_map_font,[i]%s[/i]를 지도 글꼴로 설정합니다.
+msg_setting_omap_font,[i]%s[/i]를 오버맵 글꼴로 설정합니다.

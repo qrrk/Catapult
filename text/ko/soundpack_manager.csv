@@ -1,0 +1,9 @@
+keys,ko
+,
+msg_no_sound_dir,사운드 디렉터리가 존재하지 않습니다: %s
+msg_deleting_sound,%s 삭제 중
+msg_soundpack_not_found,"이름이 \""%s\""인 사운드팩을 찾을 수 없습니다."
+msg_installing_sound,"사운드팩 \""%s\"" 설치 중..."
+msg_reinstalling_sound,"사운드팩 \""%s\"" 재설치 중..."
+msg_sound_download_failed,사운드팩 아카이브를 다운로드할 수 없습니다.
+msg_sound_installed,사운드팩이 설치되었습니다.
