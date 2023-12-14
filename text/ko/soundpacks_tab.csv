@@ -2,7 +2,7 @@ keys,ko
 ,
 lbl_installed_sound,설치됨:
 lbl_avail_sound,다운로드 가능:
-cbtn_stock_sound,재고 표시
+cbtn_stock_sound,저장된 항목 표시
 btn_delete_sound,선택 항목 삭제
 btn_install_sound,선택 항목 설치
 btn_reinstall_sound,선택 항목 재설치

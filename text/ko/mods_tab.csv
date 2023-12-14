@@ -4,7 +4,7 @@ lbl_installed_mods,설치됨%s:
 str_installed_mods_hidden, (%s 숨김)
 lbl_mod_repo,로컬 저장소%s:
 str_mod_repo_hidden,(%s 숨김)
-cbtn_stock_mods,재고 표시
+cbtn_stock_mods,저장된 항목 표시
 btn_delete_mods,선택 삭제
 cbtn_installed_mods,설치된 항목 표시
 btn_add_sel_mods,선택 항목 추가

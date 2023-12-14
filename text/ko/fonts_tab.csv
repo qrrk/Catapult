@@ -13,7 +13,7 @@ btn_set_font_ui,게임 UI로 설정
 btn_set_font_map,지도용으로 설정
 btn_set_font_omap,오버맵용으로 설정
 btn_set_font_all,모든 용도로 설정
-btn_reset_font,모든 글꼴 초기화
+btn_reset_font,모든 글꼴 설정 초기화
 ,
 tooltip_preview_cyrillics,러시아어로 팬그램을 보여줍니다.
 tooltip_font_sz_ui,메뉴/대화상자/등의 글꼴 크기 값입니다.\n글꼴 너비와 높이는 자동으로 설정됩니다.
