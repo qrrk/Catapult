@@ -168,7 +168,7 @@ func extract(path: String, dest_dir: String) -> void:
 	
 	var command_linux_zip = {
 		"name": "unzip",
-		"args": ["-o", "\"\"%s\"\"" % path, "-d", "\"\"%s\"\"" % dest_dir]
+		"args": ["-o", "%s" % path, "-d", "%s" % dest_dir]
 	}
 	var command_linux_gz = {
 		"name": "tar",
@@ -224,7 +224,7 @@ func zip(parent: String, dir_to_zip: String, dest_zip: String) -> void:
 	
 	var command_linux_zip = {
 		"name": "/bin/bash",
-		"args": ["-c", "cd \"\"%s\"\" && zip -b \"\"%s\"\" -r \"\"%s\"\" \"\"%s\"\"" % [parent, Paths.tmp_dir, dest_zip, dir_to_zip]]
+		"args": ["-c", "cd '%s' && zip -b '%s' -r '%s' '%s'" % [parent, Paths.tmp_dir, dest_zip, dir_to_zip]]
 	}
 	var command_windows = {
 		"name": "cmd",
