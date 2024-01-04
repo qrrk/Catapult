@@ -132,6 +132,13 @@ func _unpack_utils() -> void:
 			d.make_dir(Paths.utils_dir)
 		Status.post(tr("msg_unpacking_unzip"))
 		d.copy("res://utils/unzip.exe", unzip_exe)
+	var zip_exe = Paths.utils_dir.plus_file("zip.exe")
+	if (OS.get_name() == "Windows") and (not d.file_exists(zip_exe)):
+		if not d.dir_exists(Paths.utils_dir):
+			d.make_dir(Paths.utils_dir)
+		Status.post(tr("msg_unpacking_unzip"))
+		d.copy("res://utils/zip.exe", zip_exe)
+	
 
 
 func _smart_disable_controls(group_name: String) -> void:
