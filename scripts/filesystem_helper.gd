@@ -241,7 +241,10 @@ func zip(parent: String, dir_to_zip: String, dest_zip: String) -> void:
 		emit_signal("zip_done")
 		return
 		
-		
+	var d = Directory.new()
+	if not d.dir_exists(Paths.tmp_dir):
+		d.make_dir_recursive(Paths.tmp_dir)
+	
 	Status.post(tr("msg_zipping_file") % dest_zip.get_file())
 		
 	var oew = OSExecWrapper.new()
