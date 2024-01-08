@@ -21,10 +21,10 @@ func backup_current(backup_name: String) -> void:
 	var d = Directory.new()
 	
 	if not d.dir_exists(dest_dir):
-		d.make_dir(dest_dir)
+		d.make_dir_recursive(dest_dir)
 		for world in FS.list_dir(Paths.savegames):
-			FS.copy_dir(Paths.savegames.plus_file(world), dest_dir)
-			yield(FS, "copy_dir_done")
+			FS.zip(Paths.savegames, world, dest_dir.plus_file(world + ".zip"))
+			yield(FS, "zip_done")
 		
 		Status.post(tr("msg_backup_created"))
 	else:
@@ -88,9 +88,9 @@ func restore(backup_index: int) -> void:
 			yield(FS, "rm_dir_done")
 		
 		Directory.new().make_dir(dest_dir)
-		for world in FS.list_dir(source_dir):
-			FS.copy_dir(source_dir.plus_file(world), dest_dir)
-			yield(FS, "copy_dir_done")
+		for world_zip in FS.list_dir(source_dir):
+			FS.extract(source_dir.plus_file(world_zip), dest_dir)
+			yield(FS, "extract_done")
 		
 		Status.post(tr("msg_backup_restored"))
 	else:
