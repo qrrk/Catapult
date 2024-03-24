@@ -14,6 +14,8 @@
 "lbl_game","游戏："
 "desc_dda","[b]Cataclysm: Dark Days Ahead[/b] 是一款以世界末日为背景的回合制生存游戏。搜刮，探索，制造，建造，耕种，修理并改装载具，安装生化插件，变异，抵御[color=#009900]僵尸[/color]和无数其他怪物的攻击——一切尽在一个无限的，程序生成的世界中！"
 "desc_bn","[b]Cataclysm: Bright Nights[/b] 拒绝迂腐，拥抱[color=#ff3300]!!乐趣!![/color]。这一分支将游戏带回了它科幻roguelike游戏的初衷，并撤回了许多由DDA团队做出的备受争议的改动（容器，专精，冷冻和[color=#3b93f7][url=https://docs.cataclysmbn.org/en/game/changelog/]更多[/url][/color]）。更注重战斗，游戏平衡和游戏节奏。"
+"desc_eod","[b]Cataclysm: Era of Decay[/b] 是DDA的一个分支，主要目标是尽可能多的玩家可访问的可配置性，而不完全删除任何原始游戏的功能或内容，并使游戏具有默认设置的现实性。 以[color=#ff3300]你[/color]想要的方式玩得开心。"
+"desc_tish","[b]Cataclysm: There Is Still Hope[/b] 是DDA的一个分支，专注于游戏的有趣高于一切，拒绝''现实主义或乐趣''和''真实或乐趣''的二分法。"
 ,
 "tab_game","游戏"
 "tab_mods","模组"

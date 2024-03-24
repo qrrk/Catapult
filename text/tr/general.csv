@@ -14,6 +14,8 @@
 "lbl_game","Oyun："
 "desc_dda","[b]Cataclysm: Dark Days Ahead[/b] kıyamet sonrası dünyada yer alan tur tabanlı bir oyundur. Yağmala, keşfet, inşa et, çiftçilik yap, araçları tamir ve modifiye et, biyonik yükle, mutasyon geçir [color=#009900]zombiler[/color] ve diğer sayısız tehtide karşı kendini savun — ve hepsi de sınırsız, rastgele oluşmuş bir dünyada!"
 "desc_bn","[b]Cataclysm: Bright Nights[/b]. Bilgiçlik taslamayı bırak, [color=#ff3300]!!eğlenceye!![/color] kucak aç. Bu fork, oyunu bilim kurgu roguelike kökenine geri getirir ve DDA takımı tarafından yapılan tartışmalı değişiklikleri geri çeker (cepler, yetkinlik, donma ve [color=#3b93f7][url=https://docs.cataclysmbn.org/en/game/changelog/]daha fazlası[/url][/color]). Savaş,oyun dengesi ve tempoya özel önem verildi."
+"desc_eod","[b]Cataclysm: Era of Decay[/b] bu, orijinal oyunun özelliklerinden veya içeriğinden hiçbirini tamamen kaldırmadan ve oyunu varsayılan ayarlarla gerçekçi bırakmadan, pratik olarak mümkün olduğunca oyuncu tarafından erişilebilir yapılandırılabilirliğe sahip olmayı amaçlayan bir DDA çatalıdır. [color=#ff3300] istediğiniz şekilde eğlenin [/color]."
+"desc_tish","[b]Cataclysm: There Is Still Hope[/b] oyunun her şeyden önce ilginç olmasına odaklanan, ''gerçekçilik veya eğlence'' ve ''gerçekçilik veya eğlence'' ikiliklerini reddeden bir DDA çatalıdır."
 ,
 "tab_game","Oyun"
 "tab_mods","Modlar"

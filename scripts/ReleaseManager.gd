@@ -12,6 +12,10 @@ const _RELEASE_URLS = {
 		"https://api.github.com/repos/CleverRaven/Cataclysm-DDA/releases",
 	"bn-experimental":
 		"https://api.github.com/repos/cataclysmbnteam/Cataclysm-BN/releases",
+	"eod-experimental":
+		"https://api.github.com/repos/atomicfox556/Cataclysm-EOD/releases",
+	"tish-experimental":
+		"https://api.github.com/repos/Cataclysm-TISH-team/Cataclysm-TISH/releases",
 }
 
 const _ASSET_FILTERS = {
@@ -30,6 +34,22 @@ const _ASSET_FILTERS = {
 	"bn-experimental-win": {
 		"field": "name",
 		"substring": "cbn-windows-tiles-x64",
+	},
+	"eod-experimental-linux": {
+		"field": "name",
+		"substring": "cdda-linux-tiles-x64",
+	},
+	"eod-experimental-win": {
+		"field": "name",
+		"substring": "cdda-windows-tiles-x64",
+	},
+	"tish-experimental-linux": {
+		"field": "name",
+		"substring": "tish-linux-tiles-x64",
+	},
+	"tish-experimental-win": {
+		"field": "name",
+		"substring": "tish-windows-tiles-x64",
 	},
 }
 
@@ -185,6 +205,10 @@ var releases = {
 	"dda-experimental": [],
 	"bn-stable": [],
 	"bn-experimental": [],
+	"eod-stable": [],
+	"eod-experimental": [],
+	"tish-stable": [],
+	"tish-experimental": [],
 }
 
 
@@ -216,6 +240,16 @@ func _request_bn() -> void:
 	$HTTPRequest_BN.request(_RELEASE_URLS["bn-experimental"] + _get_query_string())
 
 
+func _request_eod() -> void:
+	emit_signal("started_fetching_releases")
+	$HTTPRequest_EOD.request(_RELEASE_URLS["eod-experimental"] + _get_query_string())
+
+
+func _request_tish() -> void:
+	emit_signal("started_fetching_releases")
+	$HTTPRequest_TISH.request(_RELEASE_URLS["tish-experimental"] + _get_query_string())
+
+
 func _on_request_completed_dda(result: int, response_code: int,
 		headers: PoolStringArray, body: PoolByteArray) -> void:
 	
@@ -243,6 +277,31 @@ func _on_request_completed_bn(result: int, response_code: int,
 	
 	emit_signal("done_fetching_releases")
 
+func _on_request_completed_eod(result: int, response_code: int,
+		headers: PoolStringArray, body: PoolByteArray) -> void:
+	
+	Status.post(tr("msg_http_request_info") %
+			[result, response_code, headers], Enums.MSG_DEBUG)
+	
+	if result:
+		Status.post(tr("msg_releases_request_failed"), Enums.MSG_WARN)
+	else:
+		_parse_builds(body, releases["eod-experimental"], _ASSET_FILTERS["dda-experimental-" + _platform])
+	
+	emit_signal("done_fetching_releases")
+
+func _on_request_completed_tish(result: int, response_code: int,
+		headers: PoolStringArray, body: PoolByteArray) -> void:
+	
+	Status.post(tr("msg_http_request_info") %
+			[result, response_code, headers], Enums.MSG_DEBUG)
+	
+	if result:
+		Status.post(tr("msg_releases_request_failed"), Enums.MSG_WARN)
+	else:
+		_parse_builds(body, releases["tish-experimental"], _ASSET_FILTERS["tish-experimental-" + _platform])
+	
+	emit_signal("done_fetching_releases")
 
 func _parse_builds(data: PoolByteArray, write_to: Array, filter: Dictionary) -> void:
 	
@@ -299,6 +358,12 @@ func fetch(release_key: String) -> void:
 		"bn-experimental":
 			Status.post(tr("msg_fetching_releases_bn"))
 			_request_bn()
+		"eod-experimental":
+			Status.post(tr("msg_fetching_releases_eod"))
+			_request_eod()
+		"tish-experimental":
+			Status.post(tr("msg_fetching_releases_tish"))
+			_request_tish()
 		_:
 			Status.post(tr("msg_invalid_fetch_func_param") % release_key, Enums.MSG_ERROR)
 

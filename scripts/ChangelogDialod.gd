@@ -4,6 +4,8 @@ extends WindowDialog
 const _PR_URL = {
 	"dda": "https://api.github.com/search/issues?q=repo%3Acleverraven/Cataclysm-DDA",
 	"bn": "https://api.github.com/search/issues?q=repo%3Acataclysmbnteam/Cataclysm-BN",
+	"eod": "https://api.github.com/search/issues?q=repo%3Aatomicfox556/Cataclysm-EOD",
+	"tish": "https://api.github.com/search/issues?q=repo%3ACataclysm-TISH-team/Cataclysm-TISH/",
 }
 
 onready var _pullRequests := $PullRequests
@@ -65,6 +67,10 @@ func process_pr_data(data):
 			game_title = "Cataclysm: Dark Days Ahead"
 		"bn":
 			game_title = "Cataclysm: Bright Nights"
+		"eod":
+			game_title = "Cataclysm: Era of Decay"
+		"tish":
+			game_title = "Cataclysm: There Is Still Hope"
 		_:
 			game_title = "{BUG!!}"
 	

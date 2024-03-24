@@ -14,6 +14,8 @@
 "lbl_game","Jouer: "
 "desc_dda","[b]Cataclysm: Dark Days Ahead[/b] est un jeu de survie au tour par tour qui se déroule dans un monde post-apocalyptique. Récupérez, explorez, fabriquez, construisez, cultivez, réparez et modifiez des véhicules, installez des éléments bioniques, mutez, défendez-vous contre les [color=#009900]zombies[/color] et d'innombrables autres monstruosités, le tout dans un monde illimité généré de manière procédurale!"
 "desc_bn","[b]Cataclysm: Bright Nights[/b]. Rejetez le pédantisme, adoptez le [color=#ff3300]!!fun!![/color]. Ce fork ramène le jeu à ses racines de science-fiction roguelike et annule de nombreux changements controversés par l'équipe DDA (poches, compétences, gel et [color=#3b93f7][url=https://docs.cataclysmbn.org/en/game/changelog/]plus[/url][/color]). Une attention particulière est portée au combat, à l'équilibre du jeu et au rythme. "
+"desc_eod","[b]Cataclysm: Era of Decay[/b] est un fork de DDA, visant principalement à avoir autant de configurabilité accessible aux joueurs que possible, sans supprimer complètement les fonctionnalités ou le contenu du jeu original et en laissant le jeu réaliste avec les paramètres par défaut. Amusez-vous de la manière que [color=#ff3300]vous[/color] voulez."
+"desc_tish","[b]Cataclysm: There Is Still Hope[/b] est un fork de DDA qui met l'accent sur le fait que le jeu est intéressant par-dessus tout, rejetant les dichotomies de ''réalisme ou amusement'' et de ''vraisemblance ou amusement''."
 ,
 "tab_game","Jeu"
 "tab_mods","Mods"
