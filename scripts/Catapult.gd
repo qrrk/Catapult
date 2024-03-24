@@ -201,9 +201,9 @@ func _on_GamesList_item_selected(index: int) -> void:
 
 
 func _on_RBtnStable_toggled(button_pressed: bool) -> void:
-	
 	if (Settings.read("game") == "eod") or (Settings.read("game") == "tish"):
-		return
+		Settings.store("channel", "experimental")
+
 
 	if button_pressed:
 		Settings.store("channel", "stable")

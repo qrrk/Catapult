@@ -4,7 +4,7 @@ extends WindowDialog
 const _PR_URL = {
 	"dda": "https://api.github.com/search/issues?q=repo%3Acleverraven/Cataclysm-DDA",
 	"bn": "https://api.github.com/search/issues?q=repo%3Acataclysmbnteam/Cataclysm-BN",
-	"eod": "https://api.github.com/search/issues?q=repo%3Aatomicfox556/Cataclysm-EOD",
+	"eod": "https://api.github.com/search/issues?q=repo%3AAtomicFox556/Cataclysm-EOD",
 	"tish": "https://api.github.com/search/issues?q=repo%3ACataclysm-TISH-team/Cataclysm-TISH/",
 }
 

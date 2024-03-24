@@ -13,7 +13,7 @@ const _RELEASE_URLS = {
 	"bn-experimental":
 		"https://api.github.com/repos/cataclysmbnteam/Cataclysm-BN/releases",
 	"eod-experimental":
-		"https://api.github.com/repos/atomicfox556/Cataclysm-EOD/releases",
+		"https://api.github.com/repos/AtomicFox556/Cataclysm-EOD/releases",
 	"tish-experimental":
 		"https://api.github.com/repos/Cataclysm-TISH-team/Cataclysm-TISH/releases",
 }
@@ -37,11 +37,11 @@ const _ASSET_FILTERS = {
 	},
 	"eod-experimental-linux": {
 		"field": "name",
-		"substring": "cdda-linux-tiles-x64",
+		"substring": "eod-linux-tiles-x64",
 	},
 	"eod-experimental-win": {
 		"field": "name",
-		"substring": "cdda-windows-tiles-x64",
+		"substring": "eod-windows-tiles-x64",
 	},
 	"tish-experimental-linux": {
 		"field": "name",
@@ -326,7 +326,7 @@ func _on_request_completed_eod(result: int, response_code: int,
 	if result:
 		Status.post(tr("msg_releases_request_failed"), Enums.MSG_WARN)
 	else:
-		_parse_builds(body, releases["eod-experimental"], _ASSET_FILTERS["dda-experimental-" + _platform])
+		_parse_builds(body, releases["eod-experimental"], _ASSET_FILTERS["eod-experimental-" + _platform])
 	
 	emit_signal("done_fetching_releases")
 
