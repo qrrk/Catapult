@@ -25,10 +25,16 @@
 
 None required. The launcher is a single, self-contained executable. Just [download](https://github.com/qrrk/Catapult/releases/latest) it to a separate folder and run.
 
-- Be sure you have write permission in that folder.
-- On Linux, [make the file executable](https://askubuntu.com/a/485001) before running it.
-    - If the game does not start on Linux, make sure you have the following dependencies installed: `sdl2`, `sdl2_image`, `sdl2_ttf`, `sdl2_mixer`, `freetype2`. Some distros come with these preinstalled, but others don't.
-    - For Arch Linux, an [unofficial AUR package](https://aur.archlinux.org/packages/catapult-bin) is available.
+### Linux
+- You need write permission in the folder that contains the Catapult executable.
+- The catapult executable [should have execution permission enabled](https://askubuntu.com/a/485001).
+- The game needs the following dependencies, Some distros come with these preinstalled, but others don't.: `sdl2`, `sdl2_image`, `sdl2_ttf`, `sdl2_mixer`, `freetype2`
+    - On Debian based distros (Ubuntu, Mint, etc.): 'sudo apt install libsdl2-image libsdl2-ttf libsdl2-mixer libfreetype6'
+    - On Arch based distros `sudo pacman -S sdl2 sdl2_image sdl2_ttf sdl2_mixer`
+
+#### Packaging
+
+- For Arch Linux, an [unofficial AUR package](https://aur.archlinux.org/packages/catapult-bin) is available.
 
 ## System requirements
 
