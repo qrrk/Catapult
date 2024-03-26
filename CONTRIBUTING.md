@@ -3,6 +3,23 @@
 
 The project uses Godot 3.
 
+### Godot export settings
+
+#### Linux
+
+- Enable `Binary Format` > `Embed PCK`
+
+#### Windows
+
+- Enable `Binary Format` > `Embed PCK`
+- Configure Application section with apporpriate info according to the image. (configure rcedit path if needed)
+    - Alternatively manually run the folowing with updated values after exporting: `rcedit-x64.exe catapult.exe --set-icon ..\Catapult\icons\appicon.ico --set-file-version 24.03.1.0 --set-product-version 24.03a --set-version-string FileDescription "A cross-platform launcher for Cataclysm: DDA and BN" --set-version-string LegalCopyright qrrk --set-version-string ProductName Catapult`
+- In `Resources` tab, set `Filters to export ...` to `*.exe` (this will make Godot bundle the programs from `utils` dir)
+
+![alt text](./.github/windows_export_01.png)
+![alt text](./.github/windows_export_02.png)
+
+
 ## Future plans
 
 These are tentative. They may or may not come to fruition.

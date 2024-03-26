@@ -6,7 +6,7 @@
 
 
 
-![Catapult UI](catapult_ui.gif)
+![Catapult UI](./.github/catapult_ui.gif)
 
 ## Features
 
