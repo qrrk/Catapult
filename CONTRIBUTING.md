@@ -12,7 +12,7 @@ The project uses Godot 3.
 #### Windows
 
 - Enable `Binary Format` > `Embed PCK`
-- Configure Application section with apporpriate info according to the image. (configure rcedit path if needed)
+- Configure Application section with apporpriate info according to the image bellow. (configure rcedit path if needed)
 - In `Resources` tab, set `Filters to export ...` to `*.exe` (this will make Godot bundle the programs from `utils` dir)
 
 ![alt text](./.github/windows_export_01.png)
