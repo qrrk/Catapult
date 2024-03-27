@@ -39,7 +39,7 @@ None required. The launcher is a single, self-contained executable. Just [downlo
 ## System requirements
 
 - 64-bit operating system.
-- Windows 7+ or Linux/X11.
+- Windows 7+ or Linux.
 - OpenGL 2.1 support.
 
 ## Contributing
