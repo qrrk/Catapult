@@ -18,20 +18,6 @@ The project uses Godot 3.
 ![alt text](./.github/windows_export_01.png)
 ![alt text](./.github/windows_export_02.png)
 
-
-## Future plans
-
-These are tentative. They may or may not come to fruition.
-
-- ~~Translations~~. *Done!
-- ~~Setting in-game font from the launcher.~~ *Done!*
-- ~~Backups for user data.~~ *Savegame backups added!*
-- ~~Multiple launcher UI themes.~~ *Done!*
-- Download and installation of tilesets?
-  (Only if there are at least a couple of finished tilesets out there that don't already come with both games.)
-- Some kind of built-in knowledge base similar to Chezzo's [Item Browser](http://www.cdda-trunk.chezzo.com/).
-- *Maybe* an OSX version some day.
-
 ## Why I am making yet another launcher (by qrrk)
 
 I had had ideas about making my own launcher for a couple years, but it didn't go beyond small demos until August 2021. The main reasons for me to start active work on it were that:
