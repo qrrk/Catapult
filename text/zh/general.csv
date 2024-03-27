@@ -4,6 +4,7 @@
 "str_welcome","欢迎来到Catapult！"
 "str_tip_of_the_day","\n\n[u]小贴士：[/u]\n"
 "msg_unpacking_unzip","正在解压 unzip.exe..."
+"msg_unpacking_zip","正在解压 zip.exe..."
 "msg_theme_load_error","无法加载主题 %s。"
 "debug_test","这是一条测试文本。"
 ,

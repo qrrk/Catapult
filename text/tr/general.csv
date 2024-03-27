@@ -4,6 +4,7 @@
 "str_welcome","Catapult’a hoş geldin !"
 "str_tip_of_the_day","\n\n[u]Günün İpucu:[/u]\n"
 "msg_unpacking_unzip","unzip.exe çıkarılıyor..."
+"msg_unpacking_zip","zip.exe çıkarılıyor..."
 "msg_theme_load_error","Tema %s yüklenemedi."
 "debug_test","Bu,çeviri alımını test etmek için konulan bir hata ayıklama yazısıdır."
 ,

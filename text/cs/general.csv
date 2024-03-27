@@ -4,6 +4,7 @@
 "str_welcome","Vítejte v Catapultu!"
 "str_tip_of_the_day","\n\n[u]Tip dne:[/u]\n"
 "msg_unpacking_unzip","Rozbaluji unzip.exe..."
+"msg_unpacking_zip","Rozbaluji zip.exe..."
 "debug_test","Toto je debug text pro testování získání překladu."
 ,
 "tag_warning","varování"

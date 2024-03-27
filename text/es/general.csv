@@ -4,6 +4,7 @@
 "str_welcome","Bienvenido a Catapult!"
 "str_tip_of_the_day","\n\n[u]Consejo del dia:[/u]\n"
 "msg_unpacking_unzip","Descomprimiendo unzip.exe..."
+"msg_unpacking_zip","Descomprimiendo zip.exe..."
 "msg_theme_load_error","No se pudo cargar el tema %s."
 "debug_test","Este es un texto debug para probar la búsqueda de traducciones."
 ,

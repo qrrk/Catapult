@@ -136,7 +136,7 @@ func _unpack_utils() -> void:
 	if (OS.get_name() == "Windows") and (not d.file_exists(zip_exe)):
 		if not d.dir_exists(Paths.utils_dir):
 			d.make_dir(Paths.utils_dir)
-		Status.post(tr("msg_unpacking_unzip"))
+		Status.post(tr("msg_unpacking_zip"))
 		d.copy("res://utils/zip.exe", zip_exe)
 	
 
