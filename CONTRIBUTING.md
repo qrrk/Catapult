@@ -8,15 +8,15 @@ The project uses Godot 3.
 #### Linux
 
 - Enable `Binary Format` > `Embed PCK`
+- In `Resources` tab, set `Filters to export ...` to `utils/*,fonts/*`
 
 #### Windows
 
 - Enable `Binary Format` > `Embed PCK`
 - Configure Application section with apporpriate info according to the image bellow. (configure rcedit path if needed)
-- In `Resources` tab, set `Filters to export ...` to `*.exe` (this will make Godot bundle the programs from `utils` dir)
+- In `Resources` tab, set `Filters to export ...` to `utils/*,fonts/*`
 
 ![alt text](./.github/windows_export_01.png)
-![alt text](./.github/windows_export_02.png)
 
 ## Why I am making yet another launcher (by qrrk)
 
