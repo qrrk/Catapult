@@ -1,0 +1,5 @@
+"keys","pt"
+,
+"dlg_mod_reinstall_title","Confirmar Reinstalação do Mod"
+"dlg_mod_reinstall_text_single","Um dos mods selecionados já está instalado.\nDeletá-lo e reinstalá-lo?"
+"dlg_mod_reinstall_text_multiple","%s dos mods selecionados já estão instalados.\nDeletá-los e reinstalá-los?"

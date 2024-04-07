@@ -1,0 +1,9 @@
+"keys","pt"
+,
+"msg_no_sound_dir","Pasta Sound não existe: %s"
+"msg_deleting_sound","Deletando %s"
+"msg_soundpack_not_found","Não foi possível encontrar pacote de sons chamado \""%s\"""
+"msg_installing_sound","Instalando pacote de sons \""%s\""..."
+"msg_reinstalling_sound","Reinstalando pacote de sons \""%s\""..."
+"msg_sound_download_failed","Não foi possível baixar o arquivo de pacote de sons."
+"msg_sound_installed","Pacote de sons instalado."

@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://icons/info.svg" type="Texture" id=1]
 [ext_resource path="res://icons/buttons/tex_resume.tex" type="Texture" id=2]
@@ -43,6 +43,7 @@
 [ext_resource path="res://icons/buttons/tex_activate.tex" type="Texture" id=41]
 [ext_resource path="res://icons/lang/tex_lang_pl.res" type="Texture" id=42]
 [ext_resource path="res://icons/lang/tex_lang_tr.res" type="Texture" id=43]
+[ext_resource path="res://icons/lang/tex_lang_pt.res" type="Texture" id=44]
 
 [sub_resource type="StyleBoxEmpty" id=2]
 content_margin_left = 4.0
@@ -1030,7 +1031,7 @@ size_flags_horizontal = 10
 text = "English"
 icon = ExtResource( 22 )
 expand_icon = true
-items = [ "English", ExtResource( 22 ), false, 0, null, "Français", ExtResource( 10 ), false, 1, null, "Русский", ExtResource( 21 ), false, 2, null, "简体字", ExtResource( 31 ), false, 3, null, "Čeština", ExtResource( 7 ), false, 4, null, "Español", ExtResource( 19 ), false, 5, null, "Polski", ExtResource( 42 ), false, 6, null, "Türkçe", ExtResource( 43 ), false, 7, null ]
+items = [ "English", ExtResource( 22 ), false, 0, null, "Français", ExtResource( 10 ), false, 1, null, "Русский", ExtResource( 21 ), false, 2, null, "简体字", ExtResource( 31 ), false, 3, null, "Čeština", ExtResource( 7 ), false, 4, null, "Español", ExtResource( 19 ), false, 5, null, "Polski", ExtResource( 42 ), false, 6, null, "Türkçe", ExtResource( 43 ), false, 7, null, "Português (BR)", ExtResource( 44 ), false, 8, null ]
 selected = 0
 
 [node name="LauncherTheme" type="HBoxContainer" parent="Main/Tabs/Settings"]
