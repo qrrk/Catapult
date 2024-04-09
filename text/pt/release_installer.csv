@@ -1,0 +1,9 @@
+"keys","pt"
+,
+"msg_updating_game","Atualizando para %s..."
+"msg_installing_game","Instalando %s..."
+"msg_game_updated","Atualização concluída."
+"msg_game_installed","Instalação concluída."
+"msg_deleting_game","Removendo %s..."
+"msg_game_deleted","Remoção concluída."
+"msg_delete_not_found","Tentou remover a versão \"%s\", mas não é possível encontrá-la no disco."

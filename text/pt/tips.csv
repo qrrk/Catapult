@@ -1,0 +1,12 @@
+"keys","pt"
+,
+"tip_os_hopping","Você poderá levar sua pasta do Catapult do Windows para o Linux e vice versa. Mas você precisará baixar o executável do Catapult corretamente e atualizar seu jogo pelo menos uma vez."
+"tip_dual_install","Ambos [i]C:DDA[/i] e [i]C:BN[/i] podem ser instalados ao mesmo tempo. Suas instalações são completamente independentes, e suas atualizações, mods e pacotes de sons são gerenciados separadamente."
+"tip_downgrading","Você pode restaurar uma versão antiga clicando em \""atualizar\"" para uma versão anterior, mas tenha cuidado com problemas de compatibilidade dos seus jogos salvos."
+"tip_stock_mods","Mods quem vêm com o jogo base não são gerenciados pelo Catapult (exceto para impedir que eles sejam instalados uma segunda vez). O Catapult apenas lida com a pasta [i]/mods[/i], não [i]/data/mods[/i]."
+"tip_mod_multi_install","Você pode selecionar múltiplos mods para instalar/deletar apertando [i]Ctrl-clique[/i] e [i]Shift-clique[/i] nas listas."
+"tip_modpack_update","O Modpack do Kenan é atualizado frequentemente. Apenas clique em [i]Obter Modpack do Kenan[/i] novamente para baixá-lo novamente e substituir os mods no seu repositório local."
+"tip_debug_mode","Está recebendo mensagens de erro inúteis? Tente ativar o modo debug em [i]Opções[/i] para obter mais informações sobre os erros."
+"tip_bug_reporting","Se você estiver tendo um problema com o launcher que não tenha sido reportado [color=#3b93f7][url=https://github.com/AriaMoradi/Catapult/issues]no GitHub[/url][/color], então você pode muito bem ser a primeira pessoa a perceber isso! Considere a possibilidade de criar um ticket para ele, se você tiver uma conta no GitHub."
+"tip_backup_caveat","Se você mantém vários mundos em seu jogo, note que os backups de jogos salvos sempre operam na pasta de salvamento toda. Isso significa que, quando um backup é restaurado, todo o conteúdo anterior da pasta de salvamento é perdido (inclusive os mundos que não estavam nesse backup)."
+"tip_multi_install","Agora você pode ter várias versões do jogo instaladas ao mesmo tempo e alternar facilmente entre elas. Porém, os jogos salvos e outros dados do usuário são compartilhados entre as instalações, então tome cuidado com erros ou corrompimento ao alternar entre versões muito diferentes (por exemplo, estável e experimental)."
