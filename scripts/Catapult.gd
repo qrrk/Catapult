@@ -98,6 +98,10 @@ func assign_localized_text() -> void:
 		_game_desc.bbcode_text = tr("desc_dda")
 	elif game == "bn":
 		_game_desc.bbcode_text = tr("desc_bn")
+	elif game == "eod":
+		_game_desc.bbcode_text = tr("desc_eod")
+	elif game == "tish":
+		_game_desc.bbcode_text = tr("desc_tish")
 
 
 func load_ui_theme(theme_file: String) -> void:
@@ -128,6 +132,13 @@ func _unpack_utils() -> void:
 			d.make_dir(Paths.utils_dir)
 		Status.post(tr("msg_unpacking_unzip"))
 		d.copy("res://utils/unzip.exe", unzip_exe)
+	var zip_exe = Paths.utils_dir.plus_file("zip.exe")
+	if (OS.get_name() == "Windows") and (not d.file_exists(zip_exe)):
+		if not d.dir_exists(Paths.utils_dir):
+			d.make_dir(Paths.utils_dir)
+		Status.post(tr("msg_unpacking_zip"))
+		d.copy("res://utils/zip.exe", zip_exe)
+	
 
 
 func _smart_disable_controls(group_name: String) -> void:
@@ -174,6 +185,12 @@ func _on_GamesList_item_selected(index: int) -> void:
 		1:
 			Settings.store("game", "bn")
 			_game_desc.bbcode_text = tr("desc_bn")
+		2:
+			Settings.store("game", "eod")
+			_game_desc.bbcode_text = tr("desc_eod")
+		3:
+			Settings.store("game", "tish")
+			_game_desc.bbcode_text = tr("desc_tish")
 	
 	_tabs.current_tab = 0
 	apply_game_choice()
@@ -184,7 +201,10 @@ func _on_GamesList_item_selected(index: int) -> void:
 
 
 func _on_RBtnStable_toggled(button_pressed: bool) -> void:
-	
+	if (Settings.read("game") == "eod") or (Settings.read("game") == "tish"):
+		Settings.store("channel", "experimental")
+
+
 	if button_pressed:
 		Settings.store("channel", "stable")
 	else:
@@ -356,12 +376,18 @@ func apply_game_choice() -> void:
 	var game = Settings.read("game")
 	var channel = Settings.read("channel")
 	
-	_rbtn_exper.disabled = false
-	_rbtn_stable.disabled = false
-	if channel == "stable":
-		_rbtn_stable.pressed = true
-		_btn_refresh.disabled = true
-	else:
+	if (game == "dda") or (game == "bn"):
+		_rbtn_exper.disabled = false
+		_rbtn_stable.disabled = false
+		if channel == "stable":
+			_rbtn_stable.pressed = true
+			_btn_refresh.disabled = true
+		else:
+			_btn_refresh.disabled = false
+	elif (game == "eod") or (game == "tish"):
+		_rbtn_exper.pressed = true
+		_rbtn_exper.disabled = true
+		_rbtn_stable.disabled = true
 		_btn_refresh.disabled = false
 
 	match game:
@@ -372,6 +398,14 @@ func apply_game_choice() -> void:
 		"bn":
 			_lst_games.select(1)
 			_game_desc.bbcode_text = tr("desc_bn")
+
+		"eod":
+			_lst_games.select(2)
+			_game_desc.bbcode_text = tr("desc_eod")
+
+		"tish":
+			_lst_games.select(3)
+			_game_desc.bbcode_text = tr("desc_tish")
 	
 	if len(_releases.releases[_get_release_key()]) == 0:
 		_releases.fetch(_get_release_key())

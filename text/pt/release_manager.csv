@@ -1,0 +1,11 @@
+"keys","pt"
+,
+"msg_unsupported_platform","Plataforma não suportada: \""%s\"""
+"msg_releases_request_failed","A solicitação falhou. Você tem conexão com a Internet?"
+"msg_releases_api_failure","Não foi possível obter a lista de versões. GitHub diz: %s"
+"msg_got_n_releases","Obteve %s versões."
+"msg_fetching_releases_dda","Buscando versões para o DDA Experimental..."
+"msg_fetching_releases_bn","Buscando versões para o BN Experimental..."
+"msg_fetching_releases_eod","Buscando versões para o EOD Experimental..."
+"msg_fetching_releases_tish","Buscando versões para o TISH Experimental..."
+"msg_invalid_fetch_func_param","ReleaseManager.fetch() passou %s"

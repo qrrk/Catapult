@@ -43,7 +43,8 @@
 [ext_resource path="res://icons/buttons/tex_activate.tex" type="Texture" id=41]
 [ext_resource path="res://icons/lang/tex_lang_pl.res" type="Texture" id=42]
 [ext_resource path="res://icons/lang/tex_lang_tr.res" type="Texture" id=43]
-[ext_resource path="res://icons/lang/tex_lang_ko.res" type="Texture" id=44]
+[ext_resource path="res://icons/lang/tex_lang_pt.res" type="Texture" id=44]
+[ext_resource path="res://icons/lang/tex_lang_ko.res" type="Texture" id=45]
 
 [sub_resource type="StyleBoxEmpty" id=2]
 content_margin_left = 4.0
@@ -83,7 +84,7 @@ margin_bottom = 24.0
 hint_tooltip = "tooltip_game"
 size_flags_horizontal = 3
 text = "Cataclysm: Dark Days Ahead"
-items = [ "Cataclysm: Dark Days Ahead", null, false, 0, null, "Cataclysm: Bright Nights", null, false, 1, null ]
+items = [ "Cataclysm: Dark Days Ahead", null, false, 0, null, "Cataclysm: Bright Nights", null, false, 1, null, "Cataclysm: Era Of Decay", null, false, 2, null, "Cataclysm: There Is Still Hope", null, false, 3, null ]
 selected = 0
 
 [node name="GameInfo" type="HBoxContainer" parent="Main"]
@@ -1031,7 +1032,7 @@ size_flags_horizontal = 10
 text = "English"
 icon = ExtResource( 22 )
 expand_icon = true
-items = [ "English", ExtResource( 22 ), false, 0, null, "Français", ExtResource( 10 ), false, 1, null, "Русский", ExtResource( 21 ), false, 2, null, "简体字", ExtResource( 31 ), false, 3, null, "Čeština", ExtResource( 7 ), false, 4, null, "Español", ExtResource( 19 ), false, 5, null, "Polski", ExtResource( 42 ), false, 6, null, "Türkçe", ExtResource( 43 ), false, 7, null, "한국어", ExtResource( 44 ), false, 8, null ]
+items = [ "English", ExtResource( 22 ), false, 0, null, "Français", ExtResource( 10 ), false, 1, null, "Русский", ExtResource( 21 ), false, 2, null, "简体字", ExtResource( 31 ), false, 3, null, "Čeština", ExtResource( 7 ), false, 4, null, "Español", ExtResource( 19 ), false, 5, null, "Polski", ExtResource( 42 ), false, 6, null, "Türkçe", ExtResource( 43 ), false, 7, null, "Português (BR)", ExtResource( 44 ), false, 8, null, "한국어", ExtResource( 45 ), false, 8, null ]
 selected = 0
 
 [node name="LauncherTheme" type="HBoxContainer" parent="Main/Tabs/Settings"]
@@ -1304,6 +1305,10 @@ __meta__ = {
 
 [node name="HTTPRequest_BN" type="HTTPRequest" parent="Releases"]
 
+[node name="HTTPRequest_EOD" type="HTTPRequest" parent="Releases"]
+
+[node name="HTTPRequest_TISH" type="HTTPRequest" parent="Releases"]
+
 [node name="ReleaseInstaller" type="Node" parent="."]
 script = ExtResource( 9 )
 __meta__ = {
@@ -1415,6 +1420,8 @@ __meta__ = {
 [connection signal="started_fetching_releases" from="Releases" to="." method="_on_Releases_started_fetching_releases"]
 [connection signal="request_completed" from="Releases/HTTPRequest_DDA" to="Releases" method="_on_request_completed_dda"]
 [connection signal="request_completed" from="Releases/HTTPRequest_BN" to="Releases" method="_on_request_completed_bn"]
+[connection signal="request_completed" from="Releases/HTTPRequest_EOD" to="Releases" method="_on_request_completed_eod"]
+[connection signal="request_completed" from="Releases/HTTPRequest_TISH" to="Releases" method="_on_request_completed_tish"]
 [connection signal="operation_finished" from="ReleaseInstaller" to="." method="_on_ReleaseInstaller_operation_finished"]
 [connection signal="operation_started" from="ReleaseInstaller" to="." method="_on_ReleaseInstaller_operation_started"]
 [connection signal="mod_deletion_finished" from="Mods" to="." method="_on_mod_operation_finished"]

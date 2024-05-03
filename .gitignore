@@ -9,3 +9,6 @@ Catapult.exe
 /bin
 git_api.gdnlib
 git_api.gdns
+
+# vscode
+.vscode

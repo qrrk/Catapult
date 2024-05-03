@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+
+[deps]
+
+files=[ "res://text/pt/font_help_dialog.pt.translation" ]
+
+source_file="res://text/pt/font_help_dialog.csv"
+dest_files=[ "res://text/pt/font_help_dialog.pt.translation" ]
+
+[params]
+
+compress=true
+delimiter=0
