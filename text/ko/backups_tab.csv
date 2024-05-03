@@ -1,0 +1,13 @@
+keys,ko
+,
+lbl_save_backups,디렉터리 백업 저장:
+btn_restore_backup,복원
+btn_delete_backup,삭제
+btn_refresh_backups,새로고침
+lbl_manual_backup,수동 백업
+lbl_backup_name,이름:
+btn_create_backup,생성
+lbl_backup_info_placeholder,여기에서 세부정보를 보려면 존재하는 백업을 선택하세요.
+,
+backup_info_location,위치:
+backup_info_worlds,세계:

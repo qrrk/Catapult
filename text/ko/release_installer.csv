@@ -1,0 +1,9 @@
+keys,ko
+,
+msg_updating_game,%s(으)로 업데이트 중...
+msg_installing_game,%s 설치 중...
+msg_game_updated,업데이트가 완료되었습니다.
+msg_game_installed,설치가 완료되었습니다.
+msg_deleting_game,%s 제거 중...
+msg_game_deleted,제거가 완료되었습니다.
+msg_delete_not_found,"릴리스 \"%s\"을(를) 제거하려고 시도했지만, 디스크에서 찾을 수 없었습니다."
