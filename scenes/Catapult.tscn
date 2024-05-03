@@ -1032,7 +1032,7 @@ size_flags_horizontal = 10
 text = "English"
 icon = ExtResource( 22 )
 expand_icon = true
-items = [ "English", ExtResource( 22 ), false, 0, null, "Français", ExtResource( 10 ), false, 1, null, "Русский", ExtResource( 21 ), false, 2, null, "简体字", ExtResource( 31 ), false, 3, null, "Čeština", ExtResource( 7 ), false, 4, null, "Español", ExtResource( 19 ), false, 5, null, "Polski", ExtResource( 42 ), false, 6, null, "Türkçe", ExtResource( 43 ), false, 7, null, "Português (BR)", ExtResource( 44 ), false, 8, null, "한국어", ExtResource( 45 ), false, 8, null ]
+items = [ "English", ExtResource( 22 ), false, 0, null, "Français", ExtResource( 10 ), false, 1, null, "Русский", ExtResource( 21 ), false, 2, null, "简体字", ExtResource( 31 ), false, 3, null, "Čeština", ExtResource( 7 ), false, 4, null, "Español", ExtResource( 19 ), false, 5, null, "Polski", ExtResource( 42 ), false, 6, null, "Türkçe", ExtResource( 43 ), false, 7, null, "Português (BR)", ExtResource( 44 ), false, 8, null, "한국어", ExtResource( 45 ), false, 9, null ]
 selected = 0
 
 [node name="LauncherTheme" type="HBoxContainer" parent="Main/Tabs/Settings"]
