@@ -19,6 +19,9 @@
 "cbtn_ignore_cache","忽略缓存"
 "lbl_proxy_settings","代理服务器"
 "cbtn_enable_proxy","启用"
+"obtn_proxy_option_off", "关"
+"obtn_proxy_option_on", "开"
+"obtn_proxy_option_download", "仅用于下载"
 ,
 "tooltip_show_game_desc","为所选游戏展示描述"
 "tooltip_keep_launcher_open","如果关闭，点击播放或继续后启动器将关闭。\n请注意，如果游戏因任何原因无法启动，启动器仍会关闭。"
@@ -36,3 +39,4 @@
 "tooltip_keep_cache","当从网络上下载的内容（游戏版本、模组包、音乐等）安装完成时，\n不将下载的包删除， 而是留在缓存文件夹中。"
 "tooltip_ignore_cache","即使缓存文件夹中已有所需的包，也仍然从网络上进行下载。"
 "tooltip_proxy_settings","配置一个用于下载的代理服务器。"
+"tooltip_proxy_options","关 - 不启用代理\n开 - 在所有场合均使用代理（例如获取发布列表时）\n仅用于下载 - 仅在下载时使用代理"
