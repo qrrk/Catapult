@@ -23,8 +23,28 @@ func _enter_tree() -> void:
 	self.add_child(_http)
 	_http.connect("request_completed", self, "_on_HTTPRequest_request_completed")
 
+func set_proxy(host: String, port: int) -> void:
+	
+	_http.set_http_proxy(host, port)
+	_http.set_https_proxy(host, port)
 
 func download_file(url: String, target_dir: String, target_filename: String) -> void:
+	
+	if (Settings.read("proxy_enabled")):
+		var host = Settings.read("proxy_host")
+		var port = Settings.read("proxy_port") as int
+		Status.post(tr("msg_using_proxy") % [host, port])
+		set_proxy(host, port)
+	else:
+		set_proxy("", -1)
+	
+	var d = Directory.new()
+	if not d.dir_exists(target_dir):
+		var err = d.make_dir_recursive(target_dir)
+		if err:
+			Status.post(tr("msg_download_failed") % target_filename, Enums.MSG_ERROR)
+			emit_signal("download_finished")
+			return
 	
 	Status.post(tr("msg_downloading_file") % target_filename)
 	emit_signal("download_started")

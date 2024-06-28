@@ -1113,17 +1113,31 @@ margin_bottom = 290.0
 hint_tooltip = "tooltip_install_archived_mods"
 text = "cbtn_install_archived_mods"
 
-[node name="ShowDebug" type="CheckButton" parent="Main/Tabs/Settings"]
+[node name="KeepCache" type="CheckButton" parent="Main/Tabs/Settings"]
 margin_top = 292.0
 margin_right = 577.0
 margin_bottom = 320.0
+hint_tooltip = "tooltip_keep_cache"
+text = "cbtn_keep_cache"
+
+[node name="IgnoreCache" type="CheckButton" parent="Main/Tabs/Settings"]
+margin_top = 322.0
+margin_right = 577.0
+margin_bottom = 350.0
+hint_tooltip = "tooltip_ignore_cache"
+text = "cbtn_ignore_cache"
+
+[node name="ShowDebug" type="CheckButton" parent="Main/Tabs/Settings"]
+margin_top = 352.0
+margin_right = 577.0
+margin_bottom = 380.0
 hint_tooltip = "tooltip_debug_mode"
 text = "cbtn_debug_mode"
 
 [node name="NumReleases" type="HBoxContainer" parent="Main/Tabs/Settings"]
-margin_top = 322.0
+margin_top = 382.0
 margin_right = 577.0
-margin_bottom = 346.0
+margin_bottom = 406.0
 hint_tooltip = "tooltip_num_releases_to_request"
 
 [node name="Label" type="Label" parent="Main/Tabs/Settings/NumReleases"]
@@ -1141,9 +1155,9 @@ value = 30.0
 rounded = true
 
 [node name="NumPrs" type="HBoxContainer" parent="Main/Tabs/Settings"]
-margin_top = 348.0
+margin_top = 408.0
 margin_right = 577.0
-margin_bottom = 372.0
+margin_bottom = 432.0
 hint_tooltip = "tooltip_num_prs_to_request"
 
 [node name="Label" type="Label" parent="Main/Tabs/Settings/NumPrs"]
@@ -1161,10 +1175,45 @@ step = 10.0
 value = 100.0
 rounded = true
 
-[node name="ScaleOverride" type="HBoxContainer" parent="Main/Tabs/Settings"]
-margin_top = 374.0
+[node name="ProxySettings" type="HBoxContainer" parent="Main/Tabs/Settings"]
+margin_top = 434.0
 margin_right = 577.0
-margin_bottom = 402.0
+margin_bottom = 462.0
+hint_tooltip = "tooltip_proxy_settings"
+
+[node name="Label" type="Label" parent="Main/Tabs/Settings/ProxySettings"]
+margin_top = 2.0
+margin_right = 120.0
+margin_bottom = 26.0
+text = "lbl_proxy_settings"
+
+[node name="cbProxyEnable" type="CheckBox" parent="Main/Tabs/Settings/ProxySettings"]
+margin_left = 147.0
+margin_right = 295.0
+margin_bottom = 28.0
+size_flags_horizontal = 10
+size_flags_stretch_ratio = 20.0
+text = "cbtn_enable_proxy"
+
+[node name="leProxyHost" type="LineEdit" parent="Main/Tabs/Settings/ProxySettings"]
+margin_left = 301.0
+margin_right = 471.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 170, 0 )
+size_flags_horizontal = 10
+placeholder_text = "localhost"
+
+[node name="sbProxyPort" type="SpinBox" parent="Main/Tabs/Settings/ProxySettings"]
+margin_left = 477.0
+margin_right = 577.0
+margin_bottom = 28.0
+size_flags_horizontal = 10
+max_value = 65535.0
+
+[node name="ScaleOverride" type="HBoxContainer" parent="Main/Tabs/Settings"]
+margin_top = 464.0
+margin_right = 577.0
+margin_bottom = 492.0
 hint_tooltip = "tooltip_ui_scale_override"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1401,9 +1450,14 @@ __meta__ = {
 [connection signal="toggled" from="Main/Tabs/Settings/AlwaysShowInstalls" to="Main/Tabs/Settings" method="_on_AlwaysShowInstalls_toggled"]
 [connection signal="toggled" from="Main/Tabs/Settings/ShowObsoleteMods" to="Main/Tabs/Settings" method="_on_ShowObsoleteMods_toggled"]
 [connection signal="toggled" from="Main/Tabs/Settings/InstallArchivedMods" to="Main/Tabs/Settings" method="_on_InstallArchivedMods_toggled"]
+[connection signal="toggled" from="Main/Tabs/Settings/KeepCache" to="Main/Tabs/Settings" method="_on_KeepCache_toggled"]
+[connection signal="toggled" from="Main/Tabs/Settings/IgnoreCache" to="Main/Tabs/Settings" method="_on_IgnoreCache_toggled"]
 [connection signal="toggled" from="Main/Tabs/Settings/ShowDebug" to="Main/Tabs/Settings" method="_on_ShowDebug_toggled"]
 [connection signal="value_changed" from="Main/Tabs/Settings/NumReleases/sbNumReleases" to="Main/Tabs/Settings" method="_on_sbNumReleases_value_changed"]
 [connection signal="value_changed" from="Main/Tabs/Settings/NumPrs/sbNumPRs" to="Main/Tabs/Settings" method="_on_sbNumPRs_value_changed"]
+[connection signal="toggled" from="Main/Tabs/Settings/ProxySettings/cbProxyEnable" to="Main/Tabs/Settings" method="_on_cbProxyEnable_toggled"]
+[connection signal="text_changed" from="Main/Tabs/Settings/ProxySettings/leProxyHost" to="Main/Tabs/Settings" method="_on_leProxyHost_text_changed"]
+[connection signal="value_changed" from="Main/Tabs/Settings/ProxySettings/sbProxyPort" to="Main/Tabs/Settings" method="_on_sbProxyPort_value_changed"]
 [connection signal="toggled" from="Main/Tabs/Settings/ScaleOverride/cbScaleOverrideEnable" to="Main/Tabs/Settings" method="_on_cbScaleOverrideEnable_toggled"]
 [connection signal="value_changed" from="Main/Tabs/Settings/ScaleOverride/sbScaleOverride" to="Main/Tabs/Settings" method="_on_sbScaleOverride_value_changed"]
 [connection signal="pressed" from="Main/Tabs/Debug/Button" to="Main/Tabs/Debug" method="_on_Button_pressed"]

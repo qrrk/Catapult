@@ -11,3 +11,4 @@
 "msg_download_finished","已完成下载%s。"
 "msg_download_failed","下载%s失败。"
 "msg_http_request_info","[b]HTTPRequest信息：[/b]\n[u]结果：[/u] %s\n[u]响应代码：[/u] %s\n[u]头：[/u] %s"
+"msg_using_proxy","使用代理：%s:%s"
