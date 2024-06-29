@@ -31,6 +31,7 @@ None required. The launcher is a single, self-contained executable. Just [downlo
 - The game needs the following dependencies, Some distros come with these preinstalled, but others don't.: `sdl2`, `sdl2_image`, `sdl2_ttf`, `sdl2_mixer`, `freetype2`
     - On Debian based distros (Ubuntu, Mint, etc.): `sudo apt install libsdl2-image libsdl2-ttf libsdl2-mixer libfreetype6`
     - On Arch based distros `sudo pacman -S sdl2 sdl2_image sdl2_ttf sdl2_mixer`
+    - On Fedora based distros `sudo dnf install SDL2 SDL2_image SDL2_ttf SDL2_mixer freetype`
 
 #### Packaging
 
