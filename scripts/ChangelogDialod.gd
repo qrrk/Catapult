@@ -20,6 +20,17 @@ func open() -> void:
 	popup_centered_ratio(0.9)
 
 
+func _update_proxy(http: HTTPRequest) -> void:
+	if Settings.read("proxy_option") == "on":
+		var host = Settings.read("proxy_host")
+		var port = Settings.read("proxy_port") as int
+		http.set_http_proxy(host, port)
+		http.set_https_proxy(host, port)
+	else:
+		http.set_http_proxy("", -1)
+		http.set_https_proxy("", -1)
+
+
 func download_pull_requests():
 	var game_selected = Settings.read("game")
 	var prs = Settings.read("num_prs_to_request")
@@ -27,6 +38,7 @@ func download_pull_requests():
 	url += "+is%3Apr+is%3Amerged&per_page=" + prs
 	var headers = ["user-agent: CatapultGodotApp"]
 	_pr_data = tr("str_fetching_changes")
+	_update_proxy(_pullRequests)
 	_pullRequests.request(url, headers)
 	_changelogTextBox.clear()
 	_changelogTextBox.append_bbcode(_pr_data)

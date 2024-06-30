@@ -14,15 +14,18 @@ func install_release(release_info: Dictionary, game: String, update_in: String =
 	else:
 		Status.post(tr("msg_installing_game") % release_info["name"])
 	
-	Downloader.download_file(release_info["url"], Paths.own_dir, release_info["filename"])
-	yield(Downloader, "download_finished")
+	var archive: String = Paths.cache_dir.plus_file(release_info["filename"])
 	
-	var archive: String = Paths.own_dir.plus_file(release_info["filename"])
+	if Settings.read("ignore_cache") or not Directory.new().file_exists(archive):
+		Downloader.download_file(release_info["url"], Paths.cache_dir, release_info["filename"])
+		yield(Downloader, "download_finished")
+	
 	if Directory.new().file_exists(archive):
 		
 		FS.extract(archive, Paths.tmp_dir)
 		yield(FS, "extract_done")
-		Directory.new().remove(archive)
+		if not Settings.read("keep_cache"):
+			Directory.new().remove(archive)
 		
 		if FS.last_extract_result == 0:
 		

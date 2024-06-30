@@ -270,24 +270,20 @@ func _get_query_string() -> String:
 	return "?per_page=%s" % num_per_page
 
 
-func _request_dda() -> void:
+func _update_proxy(http: HTTPRequest) -> void:
+	if Settings.read("proxy_option") == "on":
+		var host = Settings.read("proxy_host")
+		var port = Settings.read("proxy_port") as int
+		http.set_http_proxy(host, port)
+		http.set_https_proxy(host, port)
+	else:
+		http.set_http_proxy("", -1)
+		http.set_https_proxy("", -1)
+
+func _request_releases(http: HTTPRequest, release: String) -> void:
 	emit_signal("started_fetching_releases")
-	$HTTPRequest_DDA.request(_RELEASE_URLS["dda-experimental"] + _get_query_string())
-
-
-func _request_bn() -> void:
-	emit_signal("started_fetching_releases")
-	$HTTPRequest_BN.request(_RELEASE_URLS["bn-experimental"] + _get_query_string())
-
-
-func _request_eod() -> void:
-	emit_signal("started_fetching_releases")
-	$HTTPRequest_EOD.request(_RELEASE_URLS["eod-experimental"] + _get_query_string())
-
-
-func _request_tish() -> void:
-	emit_signal("started_fetching_releases")
-	$HTTPRequest_TISH.request(_RELEASE_URLS["tish-experimental"] + _get_query_string())
+	_update_proxy(http)
+	http.request(_RELEASE_URLS[release] + _get_query_string())
 
 
 func _on_request_completed_dda(result: int, response_code: int,
@@ -387,7 +383,7 @@ func fetch(release_key: String) -> void:
 			emit_signal("done_fetching_releases")
 		"dda-experimental":
 			Status.post(tr("msg_fetching_releases_dda"))
-			_request_dda()
+			_request_releases($HTTPRequest_DDA, "dda-experimental")
 		"bn-stable":
 			match _platform:
 				"linux":
@@ -397,13 +393,13 @@ func fetch(release_key: String) -> void:
 			emit_signal("done_fetching_releases")
 		"bn-experimental":
 			Status.post(tr("msg_fetching_releases_bn"))
-			_request_bn()
+			_request_releases($HTTPRequest_BN, "bn-experimental")
 		"eod-experimental":
 			Status.post(tr("msg_fetching_releases_eod"))
-			_request_eod()
+			_request_releases($HTTPRequest_EOD, "eod-experimental")
 		"tish-experimental":
 			Status.post(tr("msg_fetching_releases_tish"))
-			_request_tish()
+			_request_releases($HTTPRequest_TISH, "tish-experimental")
 		_:
 			Status.post(tr("msg_invalid_fetch_func_param") % release_key, Enums.MSG_ERROR)
 

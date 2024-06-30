@@ -6,6 +6,7 @@ signal status_message
 
 var own_dir: String setget , _get_own_dir
 var installs_summary: Dictionary setget , _get_installs_summary
+var cache_dir: String setget , _get_cache_dir
 var game_dir: String setget , _get_game_dir
 var next_install_dir: String setget , _get_next_install_dir
 var userdata: String setget , _get_userdata_dir
@@ -59,6 +60,11 @@ func _get_installs_summary() -> Dictionary:
 			Settings.store("active_install_" + game, result[game].keys()[0])
 	
 	return result
+
+
+func _get_cache_dir() -> String:
+	
+	return _get_own_dir().plus_file("cache")
 
 
 func _get_game_dir() -> String:

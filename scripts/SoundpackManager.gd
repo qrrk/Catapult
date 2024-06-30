@@ -159,9 +159,10 @@ func install_pack(soundpack_index: int, from_file = null, reinstall = false, kee
 	if from_file:
 		archive = from_file
 	else:
-		Downloader.download_file(pack["url"], Paths.own_dir, pack["filename"])
-		yield(Downloader, "download_finished")
-		archive = Paths.own_dir.plus_file(pack["filename"])
+		archive = Paths.cache_dir.plus_file(pack["filename"])
+		if Settings.read("ignore_cache") or not Directory.new().file_exists(archive):
+			Downloader.download_file(pack["url"], Paths.cache_dir, pack["filename"])
+			yield(Downloader, "download_finished")
 		if not Directory.new().file_exists(archive):
 			Status.post(tr("msg_sound_download_failed"), Enums.MSG_ERROR)
 			emit_signal("soundpack_installation_finished")
@@ -173,7 +174,7 @@ func install_pack(soundpack_index: int, from_file = null, reinstall = false, kee
 		
 	FS.extract(archive, tmp_dir)
 	yield(FS, "extract_done")
-	if not keep_archive:
+	if not keep_archive and not Settings.read("keep_cache"):
 		Directory.new().remove(archive)
 	FS.move_dir(tmp_dir + "/" + pack["internal_path"], sound_dir + "/" + pack["name"])
 	yield(FS, "move_dir_done")

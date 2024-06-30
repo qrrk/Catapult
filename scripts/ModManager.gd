@@ -264,14 +264,17 @@ func retrieve_kenan_pack() -> void:
 	emit_signal("modpack_retrieval_started")
 	Status.post(tr("msg_getting_kenan_pack") % game.to_upper())
 	
-	Downloader.download_file(pack["url"], Paths.own_dir, pack["filename"])
-	yield(Downloader, "download_finished")
+	var archive = Paths.cache_dir.plus_file(pack["filename"])
 	
-	var archive = Paths.own_dir.plus_file(pack["filename"])
+	if Settings.read("ignore_cache") or not Directory.new().file_exists(archive):
+		Downloader.download_file(pack["url"], Paths.cache_dir, pack["filename"])
+		yield(Downloader, "download_finished")
+	
 	if Directory.new().file_exists(archive):
 		FS.extract(archive, Paths.tmp_dir)
 		yield(FS, "extract_done")
-		Directory.new().remove(archive)
+		if not Settings.read("keep_cache"):
+			Directory.new().remove(archive)
 		
 		Status.post(tr("msg_wiping_mod_repo"))
 		if (Directory.new().dir_exists(Paths.mod_repo)):
