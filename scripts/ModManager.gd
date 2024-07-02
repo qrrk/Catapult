@@ -264,10 +264,10 @@ func retrieve_kenan_pack() -> void:
 	emit_signal("modpack_retrieval_started")
 	Status.post(tr("msg_getting_kenan_pack") % game.to_upper())
 	
-	Downloader.download_file(pack["url"], Paths.own_dir, pack["filename"])
+	Downloader.download_file(pack["url"], Paths.catapult_dir, pack["filename"])
 	yield(Downloader, "download_finished")
 	
-	var archive = Paths.own_dir.plus_file(pack["filename"])
+	var archive = Paths.catapult_dir.plus_file(pack["filename"])
 	if Directory.new().file_exists(archive):
 		FS.extract(archive, Paths.tmp_dir)
 		yield(FS, "extract_done")
