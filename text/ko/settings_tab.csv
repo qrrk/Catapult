@@ -1,0 +1,30 @@
+keys,ko
+,
+cbtn_debug_mode,디버그 모드
+cbtn_enable_scale,활성화  
+cbtn_install_archived_mods,Kenan Modpack 설치 시 보관된 모드 포함
+cbtn_keep_launcher_open,게임 시작 후에도 런처를 열어두기
+cbtn_print_tips,시작 시 오늘의 팁 표시
+cbtn_shorten_release_names,실험판 릴리스 이름 축약
+cbtn_always_show_installs,항상 설치 목록 표시
+cbtn_show_game_desc,게임 설명 표시
+cbtn_show_obsolete_mods,설치된 모드에서 사용되지 않는 모드 나열
+cbtn_updating_to_same_build,"설치된 것과 동일한 빌드로 ""업데이트"" 허용"
+keys,ko
+lbl_launcher_language,런처 언어
+lbl_launcher_theme,런처 테마
+lbl_num_prs_to_request,변경 로그를 위해 다운로드할 결과 수:
+lbl_num_releases_to_request,요청할 릴리스 수:
+lbl_ui_scale_override,사용자 정의 UI 크기 조정:
+tooltip_debug_mode,일부 테스트 기능이 포함된 디버그 탭을 표시하고\n상태 창에서 디버그 메시지를 활성화합니다(문제 해결에 유용함).
+tooltip_install_archived_mods,Kenan Modpack을 설치할 때 *보관된* 모드도 포함합니다.\n이러한 모드는 Kenan에서 더 이상 유지 관리하지 않으며 오래되었을 수 있습니다.
+tooltip_keep_launcher_open,끄면 게임 시작 또는 이어하기를 클릭한 후 런처가 닫힙니다.\n어떤 이유로든 게임이 시작되지 않더라도 런처는 여전히 닫힙니다.
+tooltip_num_prs_to_request,변경 로그를 작성하기 위해 GitHub에서\n최근 끌어오기 요청(코드 추가)을 얼마나 많이 요청합니까?\n숫자가 높으면 응답이 느려지고 실패할 수 있습니다.
+tooltip_num_releases_to_request,"런처를 시작하거나, 게임을 선택하거나, 새로 고침을 클릭한 후\nGitHub에서 몇 개의 최신 릴리스가 요청됩니다."
+tooltip_print_tips,런처가 시작되면 상태 창에 임의의 팁을 인쇄합니다.
+tooltip_shorten_release_names,"릴리스 이름을 날짜와 번호만으로 줄입니다\n(예: ""Cataclysm-DDA experimental build 2021-09-08-1927""\n 대신 ""2021-09-08-1927"")."
+tooltip_always_show_installs,게임 사본이 하나만 설치되거나 전혀 설치되지 않은 경우에도 설치된 목록을 표시합니다.
+tooltip_show_game_desc,게임 목록에서 선택한 게임에 대한 설명을 표시합니다.
+tooltip_show_obsolete_mods,"게임과 함께 제공되지만 ""구식""으로 표시된 모드를 표시합니다.\n일반적으로 이러한 모드는 설치된 것으로 간주되지 않습니다."
+tooltip_ui_scale_override,"자동으로 추론된 UI 크기가 시스템에서 너무 크거나 너무 작아 보이는 경우\n이 방법을 사용하세요. (자동 크기 조정은 시스템 보고 디스플레이 DPI에 의존하는데,\n이는 모든 시스템에서 작동하지 않을 수도 있고 해상도가 너무 낮은 경우\n부적절한 결과를 제공할 수도 있습니다.)"
+tooltip_updating_to_same_build,선택한 릴리스가 현재 설치된 것과 동일한 경우에도\n업데이트 절차 시작을 허용합니다.

@@ -1,0 +1,4 @@
+keys,ko
+,
+msg_cannot_create_install_info,설치 정보 파일 %s을(를) 생성할 수 없습니다.
+msg_cannot_parse_install_info,설치 정보 파일 %s을(를) 읽을 수 없습니다.

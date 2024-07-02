@@ -1,0 +1,26 @@
+"keys","pt"
+,
+"window_title","Catapult — Launcher para Cataclysm: DDA e BN"
+"str_welcome","Bem-vindo ao Catapult!"
+"str_tip_of_the_day","\n\n[u]Dica do dia:[/u]\n"
+"msg_unpacking_unzip","Descompactando unzip.exe..."
+"msg_unpacking_zip","Compactando zip.exe..."
+"msg_theme_load_error","Não foi possível carregar o tema %s."
+"debug_test","Esta é uma mensagem de debug para testar o carregamento da tradução."
+,
+"tag_warning","aviso"
+"tag_error","erro"
+"tag_debug","debug"
+,
+"lbl_game","Game:"
+"desc_dda","[b]Cataclysm: Dark Days Ahead[/b] é um jogo de sobrevivência por turnos, ambientado em um mundo pós-apocalíptico. Explore, crie, construa, cultive, conserte e modifique veículos, instale biônicos, sofra mutações, defenda-se de [color=#009900]zumbis[/color] e inúmeras outras monstruosidades - tudo em um mundo ilimitado, gerado proceduralmente!"
+"desc_bn","[b]Cataclysm: Bright Nights[/b]. Rejeite o pedantismo, abrace a [color=#ff3300]!!diversão!![/color]. Esse fork leva o jogo de volta às suas raízes de ficção científica roguelike e reverte muitas mudanças controversas feitas pela equipe do DDA (bolsos, proficiências, congelamento e [color=#3b93f7][url=https://docs.cataclysmbn.org/en/game/changelog/]mais[/url][/color]). É dada atenção especial ao combate, ao balanceamento e ao ritmo do jogo."
+"desc_eod","[b]Cataclysm: Era of Decay[/b] é um fork de DDA com o objetivo principal de ter o máximo de configurabilidade acessível ao jogador possível, sem remover completamente nenhum dos recursos ou conteúdo original e deixando o jogo realista com as configurações padrão. Divirta-se da maneira que [color=#ff3300]você[/color] quiser."
+"desc_tish","[b]Cataclysm: There Is Still Hope[/b] é um fork de DDA com foco em o jogo ser interessante acima de tudo, rejeitando as dicotomias de ''realismo ou diversão'' e ''verossimilhança ou diversão''."
+,
+"tab_game","Jogo"
+"tab_mods","Mods"
+"tab_soundpacks","Sons"
+"tab_fonts","Fontes"
+"tab_backups","Backups"
+"tab_settings","Opções"

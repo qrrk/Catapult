@@ -1,0 +1,22 @@
+keys,ko
+,
+msg_game_option_not_found_get,"게임 옵션 \""%s\""을(를) 가져오려고 했지만 찾을 수 없습니다."
+msg_game_option_not_found_set,"게임 옵션 \""%s\""을(를) 설정하려고 시도했지만 찾을 수 없습니다."
+msg_failed_to_open_font_info,번들 글꼴 정보를 열지 못했습니다.
+msg_could_not_parse_font_info,번들 글꼴 정보를 구문 분석할 수 없습니다.
+msg_font_info_error_details,오류 코드: %s. 오류 줄: %s. 오류 메시지: %s
+msg_could_not_parse_font_config,글꼴 구성 파일 %s을(를) 구문 분석할 수 없습니다.
+msg_font_config_error_details,오류 코드: %s. 오류 줄: %s. 오류 메시지: %s
+msg_failed_to_open_font_config,글꼴 구성 파일 %s을(를) 열 수 없습니다(오류 코드: %s).
+msg_font_config_not_found,글꼴 구성 파일 %s을(를) 찾을 수 없습니다!
+msg_could_not_parse_game_options,게임 옵션 파일 %s을(를) 구문 분석할 수 없습니다.
+msg_game_options_error_details,오류 코드: %s. 오류 줄: %s. 오류 메시지: %s
+msg_could_not_open_game_options,게임 옵션 파일 %s을(를) 열 수 없습니다(오류 코드: %s).
+msg_game_options_not_found,게임 옵션 파일 %s을(를) 찾을 수 없습니다!
+msg_font_config_not_writable,쓰기 위해 글꼴 구성 파일 %s을(를) 열 수 없습니다.
+msg_game_options_saved,게임 옵션을 [i]options.json[/i]에 저장했습니다.
+msg_game_options_not_writable,쓰기 위해 게임 옵션 파일 %s을(를) 열 수 없습니다.
+msg_could_not_install_font,글꼴 파일 %s을(를) 설치할 수 없습니다(오류 코드: %s).
+msg_font_install_details,글꼴 소스: %s. 목적지: %s.
+msg_invalid_font_index_passed,set_font에 잘못된 글꼴 인덱스 %s이(가) 전달되었습니다.
+msg_font_config_field_missing,"글꼴 구성에 \""%s\"" 필드가 없습니다."

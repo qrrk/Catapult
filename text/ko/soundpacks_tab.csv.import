@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+
+[deps]
+
+files=[ "res://text/ko/soundpacks_tab.ko.translation" ]
+
+source_file="res://text/ko/soundpacks_tab.csv"
+dest_files=[ "res://text/ko/soundpacks_tab.ko.translation" ]
+
+[params]
+
+compress=true
+delimiter=0

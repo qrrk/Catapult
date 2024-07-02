@@ -1,0 +1,19 @@
+keys,ko
+,
+lbl_installed_sound,설치됨:
+lbl_avail_sound,다운로드 가능:
+cbtn_stock_sound,저장된 항목 표시
+btn_delete_sound,선택 항목 삭제
+btn_install_sound,선택 항목 설치
+btn_reinstall_sound,선택 항목 재설치
+,
+tooltip_stock_sound,데이터/사운드의 사운드팩을 목록에 표시합니다.
+tooltip_delete_sound,게임 설치에서 선택한 사운드팩을 제거합니다.
+tooltip_install_sound,선택한 사운드팩을 다운로드하여 게임 설치에 추가하세요.
+,
+dlg_sound_deletion_title,사운드팩 삭제 확인
+dlg_sound_deletion_text,%s을(를) 삭제하는 중입니다.
+dlg_sound_manual_dl_title,수동 다운로드 필요
+dlg_sound_manual_dl_text,이 사운드팩은 자동으로 다운로드할 수 없습니다. 확인을 클릭하여 브라우저에 다운로드한 다음 파일 선택 대화 상자에서 저장한 위치를 선택하세요.
+,
+str_no_sound_desc,설명이 제공되지 않았습니다.

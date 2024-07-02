@@ -16,3 +16,5 @@
 "msg_extract_error","Archive extraction command exited with an error (exit code: %s)"
 "msg_extract_failed_cmd","Failed command: %s"
 "msg_extract_fail_output","Output: %s"
+"msg_zipping_file","Zipping %s..."
+"msg_zip_error","Archive zip command exited with an error (exit code: %s)"

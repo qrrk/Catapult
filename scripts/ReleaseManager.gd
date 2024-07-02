@@ -12,6 +12,10 @@ const _RELEASE_URLS = {
 		"https://api.github.com/repos/CleverRaven/Cataclysm-DDA/releases",
 	"bn-experimental":
 		"https://api.github.com/repos/cataclysmbnteam/Cataclysm-BN/releases",
+	"eod-experimental":
+		"https://api.github.com/repos/AtomicFox556/Cataclysm-EOD/releases",
+	"tish-experimental":
+		"https://api.github.com/repos/Cataclysm-TISH-team/Cataclysm-TISH/releases",
 }
 
 const _ASSET_FILTERS = {
@@ -31,9 +35,30 @@ const _ASSET_FILTERS = {
 		"field": "name",
 		"substring": "cbn-windows-tiles-x64",
 	},
+	"eod-experimental-linux": {
+		"field": "name",
+		"substring": "eod-linux-tiles-x64",
+	},
+	"eod-experimental-win": {
+		"field": "name",
+		"substring": "eod-windows-tiles-x64",
+	},
+	"tish-experimental-linux": {
+		"field": "name",
+		"substring": "tish-linux-tiles-x64",
+	},
+	"tish-experimental-win": {
+		"field": "name",
+		"substring": "tish-windows-tiles-x64",
+	},
 }
 
 const _DDA_STABLE_LINUX = [
+	{
+		"name": "0.G Gaiman",
+		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.G/cdda-linux-tiles-x64-2023-03-01-0054.tar.gz",
+		"filename": "cdda-linux-tiles-x64-2023-03-01-0054.tar.gz"
+	},	
 	{
 		"name": "0.F-2 Frank-2",
 		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.F-2/cataclysmdda-0.F-Linux_x64-Tiles-0.F-2.tar.gz",
@@ -77,6 +102,11 @@ const _DDA_STABLE_LINUX = [
 ]
 
 const _DDA_STABLE_WIN = [
+	{
+		"name": "0.G Gaiman",
+		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.G/cdda-windows-tiles-x64-2023-03-01-0054.zip",
+		"filename": "cdda-windows-tiles-x64-2023-03-01-0054.zip"
+	},	
 	{
 		"name": "0.F-3 Frank-3",
 		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.F-3/cataclysmdda-0.F-Windows_x64-Tiles-0.F-3.zip",
@@ -124,10 +154,101 @@ const _DDA_STABLE_WIN = [
 	},
 ]
 
+const _BN_STABLE_LINUX = [
+	{
+		"name": "0.6.0",
+		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/v0.6.0/cbn-linux-tiles-x64-v0.6.0.tar.gz",
+		"filename": "cbn-linux-tiles-x64-v0.6.0.tar.gz"
+	},
+	{
+		"name": "0.5.2",
+		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/cbn-0.5.2/cbn-linux-tiles-x64-0.5.2.tar.gz",
+		"filename": "cbn-linux-tiles-x64-0.5.2.tar.gz"
+	},
+	{
+		"name": "0.5.1",
+		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/cbn-0.5.1/cbn-linux-tiles-x64-0.5.1.tar.gz",
+		"filename": "cbn-linux-tiles-x64-0.5.1.tar.gz"
+	},
+	{
+		"name": "0.5",
+		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/cbn-0.5/cbn-linux-tiles-x64-0.5.tar.gz",
+		"filename": "cbn-linux-tiles-x64-0.5.tar.gz"
+	},
+	{
+		"name": "0.4",
+		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/cbn-0.4/cbn-linux-tiles-x64-0.4.tar.gz",
+		"filename": "cbn-linux-tiles-x64-0.4.tar.gz"
+	},
+	{
+		"name": "0.3",
+		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/cbn-0.3/cbn-linux-tiles-x64-0.3.tar.gz",
+		"filename": "cbn-linux-tiles-x64-0.3.tar.gz"
+	},
+	{
+		"name": "0.2",
+		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/cbn-0.2/cbn-linux-tiles-x64-0.2.tar.gz",
+		"filename": "cbn-linux-tiles-x64-0.2.tar.gz"
+	},
+	{
+		"name": "0.1",
+		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/cbn-0.1/cbn-linux-tiles-x64-0.1.tar.gz",
+		"filename": "cbn-linux-tiles-x64-0.1.tar.gz"
+	},
+]
+
+const _BN_STABLE_WIN = [
+	{
+		"name": "0.6.0",
+		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/v0.6.0/cbn-windows-tiles-x64-v0.6.0.zip",
+		"filename": "cbn-windows-tiles-x64-v0.6.0.zip"
+	},
+	{
+		"name": "0.5.2",
+		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/v0.5.2/cbn-windows-tiles-x64-msvc-v0.5.2.zip",
+		"filename": "cbn-windows-tiles-x64-msvc-0.5.2.zip"
+	},
+	{
+		"name": "0.5.1",
+		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/cbn-0.5.1/cbn-windows-tiles-x64-msvc-0.5.1.zip",
+		"filename": "cbn-windows-tiles-x64-msvc-0.5.1.zip"
+	},
+	{
+		"name": "0.5",
+		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/cbn-0.5/cbn-windows-tiles-x64-msvc-0.5.zip",
+		"filename": "cbn-windows-tiles-x64-msvc-0.5.zip"
+	},
+	{
+		"name": "0.4",
+		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/cbn-0.4/cbn-windows-tiles-x64-msvc-0.4.zip",
+		"filename": "cbn-windows-tiles-x64-msvc-0.4.zip"
+	},
+	{
+		"name": "0.3",
+		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/cbn-0.3/cbn-windows-tiles-x64-msvc-0.3.zip",
+		"filename": "cbn-windows-tiles-x64-msvc-0.3.zip"
+	},
+	{
+		"name": "0.2",
+		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/cbn-0.2/cbn-windows-tiles-x64-msvc-0.2.zip",
+		"filename": "cbn-windows-tiles-x64-msvc-0.2.zip"
+	},
+	{
+		"name": "0.1",
+		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/cbn-0.1/cbn-windows-tiles-x64-msvc-0.1.zip",
+		"filename": "cbn-windows-tiles-x64-msvc-0.1.zip"
+	}
+]
+
 var releases = {
 	"dda-stable": [],
 	"dda-experimental": [],
+	"bn-stable": [],
 	"bn-experimental": [],
+	"eod-stable": [],
+	"eod-experimental": [],
+	"tish-stable": [],
+	"tish-experimental": [],
 }
 
 
@@ -159,6 +280,16 @@ func _request_bn() -> void:
 	$HTTPRequest_BN.request(_RELEASE_URLS["bn-experimental"] + _get_query_string())
 
 
+func _request_eod() -> void:
+	emit_signal("started_fetching_releases")
+	$HTTPRequest_EOD.request(_RELEASE_URLS["eod-experimental"] + _get_query_string())
+
+
+func _request_tish() -> void:
+	emit_signal("started_fetching_releases")
+	$HTTPRequest_TISH.request(_RELEASE_URLS["tish-experimental"] + _get_query_string())
+
+
 func _on_request_completed_dda(result: int, response_code: int,
 		headers: PoolStringArray, body: PoolByteArray) -> void:
 	
@@ -186,6 +317,31 @@ func _on_request_completed_bn(result: int, response_code: int,
 	
 	emit_signal("done_fetching_releases")
 
+func _on_request_completed_eod(result: int, response_code: int,
+		headers: PoolStringArray, body: PoolByteArray) -> void:
+	
+	Status.post(tr("msg_http_request_info") %
+			[result, response_code, headers], Enums.MSG_DEBUG)
+	
+	if result:
+		Status.post(tr("msg_releases_request_failed"), Enums.MSG_WARN)
+	else:
+		_parse_builds(body, releases["eod-experimental"], _ASSET_FILTERS["eod-experimental-" + _platform])
+	
+	emit_signal("done_fetching_releases")
+
+func _on_request_completed_tish(result: int, response_code: int,
+		headers: PoolStringArray, body: PoolByteArray) -> void:
+	
+	Status.post(tr("msg_http_request_info") %
+			[result, response_code, headers], Enums.MSG_DEBUG)
+	
+	if result:
+		Status.post(tr("msg_releases_request_failed"), Enums.MSG_WARN)
+	else:
+		_parse_builds(body, releases["tish-experimental"], _ASSET_FILTERS["tish-experimental-" + _platform])
+	
+	emit_signal("done_fetching_releases")
 
 func _parse_builds(data: PoolByteArray, write_to: Array, filter: Dictionary) -> void:
 	
@@ -232,9 +388,22 @@ func fetch(release_key: String) -> void:
 		"dda-experimental":
 			Status.post(tr("msg_fetching_releases_dda"))
 			_request_dda()
+		"bn-stable":
+			match _platform:
+				"linux":
+					releases["bn-stable"] = _BN_STABLE_LINUX
+				"win":
+					releases["bn-stable"] = _BN_STABLE_WIN
+			emit_signal("done_fetching_releases")
 		"bn-experimental":
 			Status.post(tr("msg_fetching_releases_bn"))
 			_request_bn()
+		"eod-experimental":
+			Status.post(tr("msg_fetching_releases_eod"))
+			_request_eod()
+		"tish-experimental":
+			Status.post(tr("msg_fetching_releases_tish"))
+			_request_tish()
 		_:
 			Status.post(tr("msg_invalid_fetch_func_param") % release_key, Enums.MSG_ERROR)
 

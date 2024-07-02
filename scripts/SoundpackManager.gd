@@ -10,9 +10,27 @@ signal soundpack_deletion_finished
 const SOUNDPACKS = [
 	{
 		"name": "CC-Sounds",
-		"url": "https://github.com/Fris0uman/CDDA-Soundpacks/releases/download/2022-03-20/CC-Sounds.zip",
+		"url": "https://github.com/Fris0uman/CDDA-Soundpacks/releases/latest/download/CC-Sounds.zip",
 		"filename": "CC-Sounds.zip",
 		"internal_path": "CC-Sounds",
+	},
+	{
+		"name": "CC-Sounds-sfx-only",
+		"url": "https://github.com/Fris0uman/CDDA-Soundpacks/releases/latest/download/CC-Sounds-sfx-only.zip",
+		"filename": "CC-Sounds-sfx-only.zip",
+		"internal_path": "CC-Sounds-sfx-only",
+	},
+	{
+		"name": "CO.AG-music-only",
+		"url": "https://github.com/Fris0uman/CDDA-Soundpacks/releases/latest/download/CO.AG-music-only.zip",
+		"filename": "CO.AG-music-only.zip",
+		"internal_path": "CO.AG-music-only",
+	},
+	{
+		"name": "BeepBoopBip",
+		"url": "https://github.com/Fris0uman/CDDA-Soundpacks/releases/latest/download/BeepBoopBip.zip",
+		"filename": "BeepBoopBip.zip",
+		"internal_path": "BeepBoopBip",
 	},
 	{
 		"name": "@'s soundpack",

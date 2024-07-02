@@ -1,0 +1,12 @@
+keys,ko
+,
+tip_os_hopping,Catapult 폴더를 Windows에서 Linux로(또는 그 반대로) 가져와 계속 사용할 수 있지만 올바른 Catapult 실행 파일을 다운로드하고 게임을 최소한 한 번 업데이트해야 합니다.
+tip_dual_install,"[i]C:DDA[/i]와 [i]C:BN[/i]를 동시에 설치할 수 있습니다. 설치는 완전히 독립적이며 업데이트, 모드 및 사운드팩은 별도로 관리됩니다."
+tip_downgrading,"이전 빌드로 \""업데이트\""를 선택하여 게임 버전을 다운그레이드할 수 있지만 저장 호환성 문제에 주의하세요."
+tip_stock_mods,게임과 함께 제공되는 모드는 Catapult에서 관리되지 않습니다(두 번째 설치를 방지하는 경우 제외). Catapult는 [i]/data/mods[/i]가 아닌 [i]/mods[/i] 폴더만 처리합니다.
+tip_mod_multi_install,목록에서 [i]Ctrl 키를 누른 채 클릭[/i] 및 [i]Shift 키를 누른 채 클릭[/i]하여 설치/삭제할 여러 모드를 선택할 수 있습니다.
+tip_modpack_update,Kenan의 Modpack은 꽤 자주 업데이트됩니다. [i]Kenan Modpack 받기[/i]를 다시 클릭하여 다시 다운로드하고 로컬 저장소의 모드를 교체하세요.
+tip_debug_mode,도움이 되지 않는 오류 메시지가 표시됩니까? 더 자세한 출력을 원하면 [i]설정[/i]에서 디버그 모드를 활성화해 보세요.
+tip_bug_reporting,"런처에 문제가 있고 이미 보고된 내용이 표시되지 않는 경우 [color=#3b93f7][url=https://github.com/qrrk/Catapult/issues]GitHub[/url][/color], 그렇다면 당신은 그것을 가장 먼저 알아차린 사람이 될 것입니다! GitHub 계정이 있는 경우 티켓을 생성해 보세요."
+tip_backup_caveat,게임에 여러 세계가 있는 경우 게임 세이브 백업은 항상 전체 저장 디렉터리에서 작동한다는 점에 유의하세요. 이는 백업이 복원되면 저장 디렉터리의 이전 내용이 모두 손실된다는 의미입니다(이 백업에 없었던 모든 월드 포함).
+tip_multi_install,이제 여러 버전의 게임을 동시에 설치할 수 있으며 버전 간에 쉽게 전환할 수 있습니다. 그러나 저장 및 기타 사용자 데이터는 설치 간에 공유되므로 너무 다른 버전(예: 안정 버전과 실험 버전) 간에 전환할 때 파손이나 손상에 주의하세요.
