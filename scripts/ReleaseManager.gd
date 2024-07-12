@@ -21,7 +21,7 @@ const _RELEASE_URLS = {
 const _ASSET_FILTERS = {
 	"dda-experimental-linux": {
 		"field": "name",
-		"substring": "cdda-linux-tiles-x64",
+		"substring": "cdda-linux-curses-x64",
 	},
 	"dda-experimental-win": {
 		"field": "name",
