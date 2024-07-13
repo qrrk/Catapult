@@ -371,8 +371,11 @@ func _parse_builds(data: PoolByteArray, write_to: Array, filter: Dictionary) -> 
 	
 	if len(tmp_arr) > 0:
 		write_to.clear()
-		if len(tmp_arr) > 10:
-			tmp_arr.resize(10) 
+	
+		var releases_to_display = Settings.read("releases_count_to_display")
+	
+		if len(tmp_arr) > releases_to_display:
+			tmp_arr.resize(releases_to_display) 
 		
 		write_to.append_array(tmp_arr)
 		Status.post(tr("msg_got_n_releases") % len(tmp_arr))

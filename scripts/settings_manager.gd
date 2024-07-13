@@ -31,6 +31,7 @@ const _HARDCODED_DEFAULTS = {
 	"show_game_desc": true,
 	"keep_open_after_starting_game": true,
 	"debug_mode": false,
+	"releases_count_to_display": 10
 }
 
 var _settings_file = ""
