@@ -435,10 +435,14 @@ func _start_game(world := "") -> void:
 				params.append_array(["--world", world])
 			OS.execute(Paths.game_dir.plus_file("cataclysm-launcher"), params, false)
 		"Windows":
+			var game = Settings.read("game")
 			var world_str := ""
 			if world != "":
 				world_str = "--world \"%s\"" % world
-			var command = "cd /d %s && start cataclysm-tiles.exe --userdir \"%s/\" %s" % [Paths.game_dir, Paths.userdata, world_str]
+			if game == "bn":
+				var command = "cd /d %s && start cataclysm-bn.exe --userdir \"%s/\" %s" % [Paths.game_dir, Paths.userdata, world_str]
+			else:
+				var command = "cd /d %s && start cataclysm-tiles.exe --userdir \"%s/\" %s" % [Paths.game_dir, Paths.userdata, world_str]
 			OS.execute("cmd", ["/C", command], false)
 		_:
 			return
