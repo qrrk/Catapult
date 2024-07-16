@@ -440,8 +440,8 @@ func _start_game(world := "") -> void:
 				world_str = "--world \"%s\"" % world
 
 			var exe_file = "cataclysm-tiles.exe"
-			if Settings.read("game") == "bn" and Directory.new().file_exists(Paths.game_dir.plus_file("cataclysm-tiles-bn.exe")):
-				exe_file = "cataclysm-tiles-bn.exe"
+			if Settings.read("game") == "bn" and Directory.new().file_exists(Paths.game_dir.plus_file("cataclysm-bn-tiles.exe")):
+				exe_file = "cataclysm-bn-tiles.exe"
 
 			var command = "cd /d %s && start %s --userdir \"%s/\" %s" % [Paths.game_dir, exe_file, Paths.userdata, world_str]
 			OS.execute("cmd", ["/C", command], false)
