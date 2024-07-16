@@ -440,7 +440,7 @@ func _start_game(world := "") -> void:
 			if world != "":
 				world_str = "--world \"%s\"" % world
 			if game == "bn":
-				var command = "cd /d %s && start cataclysm-bn.exe --userdir \"%s/\" %s" % [Paths.game_dir, Paths.userdata, world_str]
+				var command = "cd /d %s && start cataclysm-bn-tiles.exe --userdir \"%s/\" %s" % [Paths.game_dir, Paths.userdata, world_str]
 			else:
 				var command = "cd /d %s && start cataclysm-tiles.exe --userdir \"%s/\" %s" % [Paths.game_dir, Paths.userdata, world_str]
 			OS.execute("cmd", ["/C", command], false)
