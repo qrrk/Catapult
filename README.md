@@ -35,7 +35,7 @@ None required. The launcher is a single, self-contained executable. Just [downlo
 
 #### Packaging
 
-- For Arch Linux, an [unofficial AUR package](https://aur.archlinux.org/packages/catapult-bin) is available.
+- For Arch Linux, an [official AUR package](https://aur.archlinux.org/packages/catapult-bin) is available.
 
 ## System requirements
 
