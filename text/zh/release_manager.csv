@@ -2,7 +2,7 @@
 ,
 "msg_unsupported_platform","不支持的平台：\""%s\"""
 "msg_releases_request_failed","请求失败。你的网络正常连接吗？"
-"msg_releases_api_failure","无法获取构建列表。GitHub说：%s"
+"msg_releases_api_failure","无法获取版本列表。GitHub说：%s"
 "msg_got_n_releases","获取了%s个发布。"
 "msg_fetching_releases_dda","正在为DDA测试版获取发布... "
 "msg_fetching_releases_bn","正在为BN测试版获取发布..."

@@ -30,6 +30,11 @@ const _HARDCODED_DEFAULTS = {
 	"font_preview_cyrillic": false,
 	"show_game_desc": true,
 	"keep_open_after_starting_game": true,
+	"keep_cache": false,
+	"ignore_cache": false,
+	"proxy_option": "off",
+	"proxy_host": "",
+	"proxy_port": 0,
 	"debug_mode": false,
 }
 

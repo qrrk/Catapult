@@ -11,3 +11,4 @@
 "msg_download_finished","Finished downloading %s."
 "msg_download_failed","Failed to download %s."
 "msg_http_request_info","[b]HTTPRequest info:[/b]\n[u]Result:[/u] %s\n[u]Response code:[/u] %s\n[u]Headers:[/u] %s"
+"msg_using_proxy","Using proxy: %s:%s"

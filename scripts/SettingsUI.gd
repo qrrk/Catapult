@@ -11,6 +11,8 @@ var _themes := [
 	"Solarized_Light.res",
 ]
 
+var _proxy_options := ["off", "on", "download"]
+
 onready var _root = $"/root/Catapult"
 onready var _tabs = $"/root/Catapult/Main/Tabs"
 onready var _debug_ui = $"/root/Catapult/Main/Tabs/Debug"
@@ -41,9 +43,19 @@ func _ready() -> void:
 	$AlwaysShowInstalls.pressed = Settings.read("always_show_installs")
 	$ShowObsoleteMods.pressed = Settings.read("show_obsolete_mods")
 	$InstallArchivedMods.pressed = Settings.read("install_archived_mods")
+	$KeepCache.pressed = Settings.read("keep_cache")
+	$IgnoreCache.pressed = Settings.read("ignore_cache")
 	$ShowDebug.pressed = Settings.read("debug_mode")
 	$NumReleases/sbNumReleases.value = Settings.read("num_releases_to_request") as int
 	$NumPrs/sbNumPRs.value = Settings.read("num_prs_to_request") as int
+	
+	var proxy_option_idx := _proxy_options.find(Settings.read("proxy_option"))
+	if proxy_option_idx >= 0:
+		$ProxySettings/obtnProxyOption.selected = proxy_option_idx
+	else:
+		$ProxySettings/obtnProxyOption.selected = 0
+	$ProxySettings/leProxyHost.text = Settings.read("proxy_host")
+	$ProxySettings/sbProxyPort.value = Settings.read("proxy_port") as int
 	
 	$ScaleOverride/cbScaleOverrideEnable.pressed = Settings.read("ui_scale_override_enabled")
 	$ScaleOverride/sbScaleOverride.editable = Settings.read("ui_scale_override_enabled")
@@ -103,6 +115,14 @@ func _on_InstallArchivedMods_toggled(button_pressed: bool) -> void:
 	
 	Settings.store("install_archived_mods", button_pressed)
 
+func _on_KeepCache_toggled(button_pressed: bool) -> void:
+	
+	Settings.store("keep_cache", button_pressed)
+
+func _on_IgnoreCache_toggled(button_pressed: bool) -> void:
+	
+	Settings.store("ignore_cache", button_pressed)
+
 func _on_ShowDebug_toggled(button_pressed: bool) -> void:
 	
 	Settings.store("debug_mode", button_pressed)
@@ -121,6 +141,16 @@ func _on_sbNumReleases_value_changed(value: float) -> void:
 func _on_sbNumPRs_value_changed(value: float) -> void:
 	
 	Settings.store("num_prs_to_request", str(value))
+
+
+func _on_obtnProxyOption_item_selected(index):
+	Settings.store("proxy_option", _proxy_options[index])
+
+func _on_leProxyHost_text_changed(new_text):
+	Settings.store("proxy_host", new_text)
+
+func _on_sbProxyPort_value_changed(value):
+	Settings.store("proxy_port", value)
 
 
 func _on_cbScaleOverrideEnable_toggled(button_pressed: bool) -> void:
@@ -142,3 +172,5 @@ func _on_sbScaleOverride_value_changed(value: float) -> void:
 		Settings.store("ui_scale_override", value / 100.0)
 		Geom.scale = value / 100.0
 		_root.theme.apply_scale(Geom.scale)
+
+
