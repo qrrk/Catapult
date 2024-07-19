@@ -43,6 +43,9 @@ func _get_installs_summary() -> Dictionary:
 	for game in ["dda", "bn", "eod", "tish"]:
 		var installs = {}
 		var base_dir = Paths.own_dir.path_join(game)
+		if not DirAccess.dir_exists_absolute(base_dir):
+			continue
+			
 		for subdir in FS.list_dir(base_dir):
 			var info_file = base_dir.path_join(subdir).path_join(Helpers.INFO_FILENAME)
 			if FileAccess.file_exists(info_file):

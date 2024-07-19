@@ -68,16 +68,14 @@ func _read_from_file(path: String) -> Dictionary:
 	Status.post(tr("msg_loading_settings") % _SETTINGS_FILENAME)
 		
 	var f := FileAccess.open(path, FileAccess.READ)
-	var s = f.get_as_text()
-	var test_json_conv = JSON.new()
-	test_json_conv.parse(s)
-	var result: JSON = test_json_conv.get_data()
+	var json := JSON.new()
+	var error := json.parse(f.get_as_text())
 	
-	if result.error:
-		Status.post(tr("msg_settings_parse_error") % [result.error_line, result.error_string], Enums.MSG_ERROR)
+	if error:
+		Status.post(tr("msg_settings_parse_error") % [json.get_error_line(), json.get_error_message()], Enums.MSG_ERROR)
 		return {}
 	else:
-		return result.result
+		return json.data
 
 
 func _write_to_file(data: Dictionary, path: String) -> void:

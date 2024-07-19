@@ -238,16 +238,16 @@ func _save_texture_sizes() -> Dictionary:
 	for item_type in get_icon_type_list():
 		for icon_name in get_icon_list(item_type):
 			var icon := get_icon(icon_name, item_type)
-			if (icon is ImageTexture) and (not icon in tex_sizes) and (icon.size != Vector2.ZERO):
-				tex_sizes[icon] = icon.size
+			if (icon is ImageTexture) and (not icon in tex_sizes) and (icon.get_size() != Vector2.ZERO):
+				tex_sizes[icon] = icon.get_size()
 
 	for item_type in get_stylebox_type_list():
 		for sbox_name in get_stylebox_list(item_type):
 			var sbox = get_stylebox(sbox_name, item_type)
 			if sbox is StyleBoxTexture:
 				var texture = sbox.texture
-				if (texture is ImageTexture) and (not texture in tex_sizes) and (texture.size != Vector2.ZERO):
-					tex_sizes[texture] = texture.size
+				if (texture is ImageTexture) and (not texture in tex_sizes) and (texture.get_size() != Vector2.ZERO):
+					tex_sizes[texture] = texture.get_size()
 
 	return tex_sizes
 
@@ -301,7 +301,7 @@ func _save_stylebox_properties() -> Dictionary:
 							discard = true
 					TYPE_RECT2:
 						# Special case for region_rect
-						if value.has_no_area():
+						if not value.has_area():
 							discard = true
 					_:
 						if value <= 0:
@@ -326,7 +326,7 @@ func _scale_constants(factor: float) -> void:
 func _scale_textures(factor: float) -> void:
 
 	for texture in _saved_tex_sizes:
-		texture.size = _saved_tex_sizes[texture] * factor
+		texture.set_size_override(_saved_tex_sizes[texture] * factor)
 
 
 func _scale_fonts(factor: float) -> void:

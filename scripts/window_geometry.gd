@@ -69,17 +69,17 @@ func recover_window_state() -> void:
 	# and storing the resulting offset for compensation on the next launch.
 	
 	while get_window().size == get_window().get_size_with_decorations():
-		await get_tree().idle_frame
+		await get_tree().process_frame
 	decor_offset = pos - get_window().position
 
 
 func _on_SceneTree_idle():
 	
-	await get_tree().idle_frame
+	await get_tree().process_frame
 	ProjectSettings.call_deferred("set_setting", "display/window/per_pixel_transparency/allowed", false)
 	OS.set_deferred("window_per_pixel_transparency_enabled", false)
 	OS.set_deferred("window_borderless", false)
-	OS.call_deferred("set_icon", load("res://icons/appicon.svg").get_data())
+	OS.call_deferred("set_icon", load("res://icons/appicon.svg").get_image())
 	recover_window_state()
 	_apply_scale()
 
