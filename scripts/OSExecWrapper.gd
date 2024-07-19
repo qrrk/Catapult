@@ -10,13 +10,14 @@ var exit_code = null
 
 
 func _wrapper(path_and_args: Array) -> void:
-	
-	exit_code = OS.execute(path_and_args[0], path_and_args[1], true, output, true)
-	emit_signal("process_exited")
-	_worker.call_deferred("wait_to_finish")
+	pass # FIXME
+	#exit_code = OS.execute(path_and_args[0], path_and_args[1], true, output, true)
+	#emit_signal("process_exited")
+	#_worker.call_deferred("wait_to_finish")
 
-func execute(path: String, args: PoolStringArray) -> void:
+func execute(path: String, args: PackedStringArray) -> void:
 	
-	_worker = Thread.new()
-	_worker.start(self, "_wrapper", [path, args])
+	pass # FIXME
+	#_worker = Thread.new()
+	#_worker.start(Callable(self, "_wrapper").bind([path, args]))
 

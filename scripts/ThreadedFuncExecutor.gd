@@ -23,7 +23,7 @@ func execute(instance: Object, method: String, userdata = null,
 	_worker = Thread.new()
 	_result = null
 	var data = [instance, method, userdata]
-	_worker.start(self, "_wrapper", data, priority)
+	_worker.start(Callable(self, "_wrapper").bind(data), priority)
 	
 
 func collect():

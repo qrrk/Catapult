@@ -1,21 +1,21 @@
 extends VBoxContainer
 
 
-onready var _root = $"/root/Catapult"
-onready var _mods = $"../../../Mods"
-onready var _installed_list = $HBox/Installed/InstalledList
-onready var _available_list = $HBox/Available/AvailableList
-onready var _cbox_show_stock = $HBox/Installed/ShowStock
-onready var _btn_delete = $HBox/Installed/BtnDelete
-onready var _btn_add = $HBox/Available/VBox/BtnAddSelectedMod
-onready var _btn_add_all = $HBox/Available/VBox/BtnAddAllMods
-onready var _btn_get_kenan = $HBox/Available/BtnDownloadKenan
-onready var _cbox_show_installed = $HBox/Available/ShowInstalled
-onready var _lbl_mod_info = $ModInfo
-onready var _lbl_installed = $HBox/Installed/Label
-onready var _lbl_repo = $HBox/Available/Label
-onready var _dlg_reinstall = $ModReinstallDialog
-onready var _dlg_del_multiple = $DeleteMultipleDialog
+@onready var _root = $"/root/Catapult"
+@onready var _mods = $"../../../Mods"
+@onready var _installed_list = $HBox/Installed/InstalledList
+@onready var _available_list = $HBox/Available/AvailableList
+@onready var _cbox_show_stock = $HBox/Installed/ShowStock
+@onready var _btn_delete = $HBox/Installed/BtnDelete
+@onready var _btn_add = $HBox/Available/VBox/BtnAddSelectedMod
+@onready var _btn_add_all = $HBox/Available/VBox/BtnAddAllMods
+@onready var _btn_get_kenan = $HBox/Available/BtnDownloadKenan
+@onready var _cbox_show_installed = $HBox/Available/ShowInstalled
+@onready var _lbl_mod_info = $ModInfo
+@onready var _lbl_installed = $HBox/Installed/Label
+@onready var _lbl_repo = $HBox/Available/Label
+@onready var _dlg_reinstall = $ModReinstallDialog
+@onready var _dlg_del_multiple = $DeleteMultipleDialog
 
 var _installed_mods_view := []
 var _available_mods_view := []
@@ -73,7 +73,7 @@ func reload_installed() -> void:
 			if (show_obsolete) and (status == 3):
 				_installed_mods_view[-1]["name"] += " [obsolete]"
 	
-	_installed_mods_view.sort_custom(self, "_sorting_comparison")
+	_installed_mods_view.sort_custom(Callable(self, "_sorting_comparison"))
 	
 	_btn_delete.disabled = true
 	
@@ -116,7 +116,7 @@ func reload_available() -> void:
 		else:
 			hidden_mods += 1
 	
-	_available_mods_view.sort_custom(self, "_sorting_comparison")
+	_available_mods_view.sort_custom(Callable(self, "_sorting_comparison"))
 	
 	var hidden_str = ""
 	if hidden_mods > 0:
@@ -204,9 +204,9 @@ func _on_Tabs_tab_changed(tab: int) -> void:
 	if tab != 1:
 		return
 	
-	_cbox_show_stock.pressed = Settings.read("show_stock_mods")
-	_cbox_show_installed.pressed = Settings.read("show_installed_mods_in_available")
-	_lbl_mod_info.bbcode_text = tr("lbl_mod_info")
+	_cbox_show_stock.button_pressed = Settings.read("show_stock_mods")
+	_cbox_show_installed.button_pressed = Settings.read("show_installed_mods_in_available")
+	_lbl_mod_info.text = tr("lbl_mod_info")
 	_btn_delete.disabled = true
 	_btn_add.disabled = true
 	
@@ -224,7 +224,7 @@ func _on_InstalledList_multi_selected(index: int, selected: bool) -> void:
 		active_idx = selection.max()
 	
 	var active_id = _installed_mods_view[active_idx]["id"]
-	_lbl_mod_info.bbcode_text = _make_mod_info_string(_mods.installed[active_id])
+	_lbl_mod_info.text = _make_mod_info_string(_mods.installed[active_id])
 	_lbl_mod_info.scroll_to_line(0)
 	
 	var only_stock_selected = true
@@ -250,7 +250,7 @@ func _on_AvailableList_multi_selected(index: int, selected: bool) -> void:
 		active_idx = selection.max()
 	
 	var active_id = _available_mods_view[active_idx]["id"]
-	_lbl_mod_info.bbcode_text = _make_mod_info_string(_mods.available[active_id])
+	_lbl_mod_info.text = _make_mod_info_string(_mods.available[active_id])
 	_lbl_mod_info.scroll_to_line(0)
 	
 	var only_non_installable_selected = true
@@ -269,7 +269,7 @@ func _on_AvailableList_multi_selected(index: int, selected: bool) -> void:
 func _on_BtnDownloadKenan_pressed() -> void:
 	
 	_mods.retrieve_kenan_pack()
-	yield(_mods, "modpack_retrieval_finished")
+	await _mods.modpack_retrieval_finished
 	reload_available()
 
 
@@ -294,13 +294,13 @@ func _on_BtnDelete_pressed() -> void:
 	var num = len(_mods_to_delete)
 	if num > 1:
 		_dlg_del_multiple.dialog_text = tr("dlg_deleting_n_mods_text") % num
-		_dlg_del_multiple.get_cancel().text = tr("btn_cancel")
-		_dlg_del_multiple.rect_size = Vector2(250, 100)
+		_dlg_del_multiple.get_cancel_button().text = tr("btn_cancel")
+		_dlg_del_multiple.size = Vector2(250, 100)
 		_dlg_del_multiple.popup_centered()
 		return
 	
 	_mods.delete_mods(_mods_to_delete)
-	yield(_mods, "mod_deletion_finished")
+	await _mods.mod_deletion_finished
 	reload_installed()
 	reload_available()
 
@@ -308,7 +308,7 @@ func _on_BtnDelete_pressed() -> void:
 func _on_DeleteMultipleDialog_confirmed() -> void:
 	
 	_mods.delete_mods(_mods_to_delete)
-	yield(_mods, "mod_deletion_finished")
+	await _mods.mod_deletion_finished
 	reload_installed()
 	reload_available()
 
@@ -365,12 +365,12 @@ func _do_mod_installation() -> void:
 	
 	if len(_ids_to_delete) > 0:
 		_mods.delete_mods(_ids_to_reinstall)
-		yield(_mods, "mod_deletion_finished")
+		await _mods.mod_deletion_finished
 		_mods.install_mods(_ids_to_install + _ids_to_reinstall)
-		yield(_mods, "mod_installation_finished")
+		await _mods.mod_installation_finished
 	else:
 		_mods.install_mods(_ids_to_install)
-		yield(_mods, "mod_installation_finished")
+		await _mods.mod_installation_finished
 	
 	reload_installed()
 	reload_available()

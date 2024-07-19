@@ -2,12 +2,12 @@
 
 [ext_resource path="res://scripts/ModReinstallDialog.gd" type="Script" id=1]
 
-[node name="ModReinstallDialog" type="WindowDialog"]
+[node name="ModReinstallDialog" type="Window"]
 visible = true
 anchor_right = 1.0
 anchor_bottom = 0.268
-margin_right = -150.0
-margin_bottom = -14.4
+offset_right = -150.0
+offset_bottom = -14.4
 size_flags_horizontal = 3
 size_flags_vertical = 3
 window_title = "dlg_mod_reinstall_title"
@@ -24,65 +24,65 @@ __meta__ = {
 }
 
 [node name="Margin" type="MarginContainer" parent="Panel"]
-margin_left = 14.0
-margin_top = 14.0
-margin_right = 486.0
-margin_bottom = 186.0
-custom_constants/margin_right = 16
-custom_constants/margin_top = 16
-custom_constants/margin_left = 16
-custom_constants/margin_bottom = 16
+offset_left = 14.0
+offset_top = 14.0
+offset_right = 486.0
+offset_bottom = 186.0
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_bottom = 16
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBox" type="VBoxContainer" parent="Panel/Margin"]
-margin_left = 16.0
-margin_top = 31.0
-margin_right = 456.0
-margin_bottom = 140.0
+offset_left = 16.0
+offset_top = 31.0
+offset_right = 456.0
+offset_bottom = 140.0
 size_flags_vertical = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="Panel/Margin/VBox"]
-margin_right = 440.0
-margin_bottom = 56.0
+offset_right = 440.0
+offset_bottom = 56.0
 text = "(this text is assigned at runtime)
 (this text is assigned at runtime)"
 align = 1
 autowrap = true
 
 [node name="Spacer" type="Control" parent="Panel/Margin/VBox"]
-margin_top = 64.0
-margin_right = 440.0
-margin_bottom = 64.0
+offset_top = 64.0
+offset_right = 440.0
+offset_bottom = 64.0
 
 [node name="HBox" type="HBoxContainer" parent="Panel/Margin/VBox"]
-margin_left = 8.0
-margin_top = 72.0
-margin_right = 432.0
-margin_bottom = 109.0
+offset_left = 8.0
+offset_top = 72.0
+offset_right = 432.0
+offset_bottom = 109.0
 size_flags_horizontal = 4
 
 [node name="BtnYes" type="Button" parent="Panel/Margin/VBox/HBox"]
-margin_right = 157.0
-margin_bottom = 37.0
+offset_right = 157.0
+offset_bottom = 37.0
 size_flags_horizontal = 4
 text = "btn_reinstall"
 
 [node name="BtnNo" type="Button" parent="Panel/Margin/VBox/HBox"]
-margin_left = 165.0
-margin_right = 278.0
-margin_bottom = 37.0
+offset_left = 165.0
+offset_right = 278.0
+offset_bottom = 37.0
 size_flags_horizontal = 4
 text = "btn_skip"
 
 [node name="BtnCancel" type="Button" parent="Panel/Margin/VBox/HBox"]
-margin_left = 286.0
-margin_right = 424.0
-margin_bottom = 37.0
+offset_left = 286.0
+offset_right = 424.0
+offset_bottom = 37.0
 size_flags_horizontal = 4
 text = "btn_cancel"
 

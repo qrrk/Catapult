@@ -10,9 +10,9 @@ signal zip_done
 
 var _platform: String = ""
 
-var last_extract_result: int = 0 setget , _get_last_extract_result
+var last_extract_result: int = 0: get = _get_last_extract_result
 # Stores the exit code of the last extract operation (0 if successful).
-var last_zip_result: int = 0 setget , _get_last_zip_result
+var last_zip_result: int = 0: get = _get_last_zip_result
 # Stores the exit code of the last zip operation (0 if successful).
 
 
@@ -33,10 +33,9 @@ func _get_last_zip_result() -> int:
 func list_dir(path: String, recursive := false) -> Array:
 	# Lists the files and subdirectories within a directory.
 	
-	var d = Directory.new()
-	d.open(path)
+	var d := DirAccess.open(path)
 	
-	var error = d.list_dir_begin(true)
+	var error = d.list_dir_begin() # TODOConverter3To4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 	if error:
 		Status.post(tr("msg_list_dir_failed") % [path, error], Enums.MSG_ERROR)
 		return []
@@ -48,9 +47,9 @@ func list_dir(path: String, recursive := false) -> Array:
 		if name:
 			result.append(name)
 			if recursive and d.current_is_dir():
-				var subdir = list_dir(path.plus_file(name), true)
+				var subdir = list_dir(path.path_join(name), true)
 				for child in subdir:
-					result.append(name.plus_file(child))
+					result.append(name.path_join(child))
 		else:
 			break
 	
@@ -63,22 +62,21 @@ func _copy_dir_internal(data: Array) -> void:
 	var dest_dir: String = data[1]
 	
 	var dir = abs_path.get_file()
-	var d = Directory.new()
 	
-	var error = d.make_dir_recursive(dest_dir.plus_file(dir))
+	var error = DirAccess.make_dir_recursive_absolute(dest_dir.path_join(dir))
 	if error:
-		Status.post(tr("msg_cannot_create_target_dir") % [dest_dir.plus_file(dir), error], Enums.MSG_ERROR)
+		Status.post(tr("msg_cannot_create_target_dir") % [dest_dir.path_join(dir), error], Enums.MSG_ERROR)
 		return
 	
 	for item in list_dir(abs_path):
-		var path = abs_path.plus_file(item)
-		if d.file_exists(path):
-			error = d.copy(path, dest_dir.plus_file(dir).plus_file(item))
+		var path = abs_path.path_join(item)
+		if FileAccess.file_exists(path):
+			error = DirAccess.copy_absolute(path, dest_dir.path_join(dir).path_join(item))
 			if error:
 				Status.post(tr("msg_copy_file_failed") % [item, error], Enums.MSG_ERROR)
-				Status.post(tr("msg_copy_file_failed_details") % [path, dest_dir.plus_file(dir).plus_file(item)])
-		elif d.dir_exists(path):
-			_copy_dir_internal([path, dest_dir.plus_file(dir)])
+				Status.post(tr("msg_copy_file_failed_details") % [path, dest_dir.path_join(dir).path_join(item)])
+		elif DirAccess.dir_exists_absolute(path):
+			_copy_dir_internal([path, dest_dir.path_join(dir)])
 
 
 func copy_dir(abs_path: String, dest_dir: String) -> void:
@@ -86,7 +84,7 @@ func copy_dir(abs_path: String, dest_dir: String) -> void:
 	
 	var tfe = ThreadedFuncExecutor.new()
 	tfe.execute(self, "_copy_dir_internal", [abs_path, dest_dir])
-	yield(tfe, "func_returned")
+	await tfe.func_returned
 	tfe.collect()
 	emit_signal("copy_dir_done")
 
@@ -94,20 +92,18 @@ func copy_dir(abs_path: String, dest_dir: String) -> void:
 func _rm_dir_internal(data: Array) -> void:
 	
 	var abs_path = data[0]
-	var d = Directory.new()
 	var error
-	
 	for item in list_dir(abs_path):
-		var path = abs_path.plus_file(item)
-		if d.file_exists(path):
-			error = d.remove(path)
+		var path = abs_path.path_join(item)
+		if FileAccess.file_exists(path):
+			error = DirAccess.remove_absolute(path)
 			if error:
 				Status.post(tr("msg_remove_file_failed") % [item, error], Enums.MSG_ERROR)
 				Status.post(tr("msg_remove_file_failed_details") % path, Enums.MSG_DEBUG)
-		elif d.dir_exists(path):
+		elif DirAccess.dir_exists_absolute(path):
 			_rm_dir_internal([path])
 	
-	error = d.remove(abs_path)
+	error = DirAccess.remove_absolute(abs_path)
 	if error:
 		Status.post(tr("msg_rm_dir_failed") % [abs_path, error], Enums.MSG_ERROR)
 
@@ -117,7 +113,7 @@ func rm_dir(abs_path: String) -> void:
 	
 	var tfe = ThreadedFuncExecutor.new()
 	tfe.execute(self, "_rm_dir_internal", [abs_path])
-	yield(tfe, "func_returned")
+	await tfe.func_returned
 	tfe.collect()
 	emit_signal("rm_dir_done")
 
@@ -127,24 +123,23 @@ func _move_dir_internal(data: Array) -> void:
 	var abs_path: String = data[0]
 	var abs_dest: String = data[1]
 	
-	var d = Directory.new()
-	var error = d.make_dir_recursive(abs_dest)
+	var error = DirAccess.make_dir_recursive_absolute(abs_dest)
 	if error:
 		Status.post(tr("msg_create_dir_failed") % [abs_dest, error], Enums.MSG_ERROR)
 		return
 	
 	for item in list_dir(abs_path):
-		var path = abs_path.plus_file(item)
-		var dest = abs_dest.plus_file(item)
-		if d.file_exists(path):
-			error = d.rename(path, abs_dest.plus_file(item))
+		var path = abs_path.path_join(item)
+		var dest = abs_dest.path_join(item)
+		if FileAccess.file_exists(path):
+			error = DirAccess.rename_absolute(path, abs_dest.path_join(item))
 			if error:
 				Status.post(tr("msg_move_file_failed") % [item, error], Enums.MSG_ERROR)
 				Status.post(tr("msg_move_file_failed_details") % [path, dest])
-		elif d.dir_exists(path):
-			_move_dir_internal([path, abs_dest.plus_file(item)])
+		elif DirAccess.dir_exists_absolute(path):
+			_move_dir_internal([path, abs_dest.path_join(item)])
 	
-	error = d.remove(abs_path)
+	error = DirAccess.remove_absolute(abs_path)
 	if error:
 		Status.post(tr("msg_move_rmdir_failed") % [abs_path, error], Enums.MSG_ERROR)
 
@@ -155,7 +150,7 @@ func move_dir(abs_path: String, abs_dest: String) -> void:
 	
 	var tfe = ThreadedFuncExecutor.new()
 	tfe.execute(self, "_move_dir_internal", [abs_path, abs_dest])
-	yield(tfe, "func_returned")
+	await tfe.func_returned
 	tfe.collect()
 	emit_signal("move_dir_done")
 
@@ -164,7 +159,7 @@ func extract(path: String, dest_dir: String) -> void:
 	# Extracts a .zip or .tar.gz archive using the system utilities on Linux
 	# and bundled unzip.exe from InfoZip on Windows.
 	
-	var unzip_exe = Paths.utils_dir.plus_file("unzip.exe")
+	var unzip_exe = Paths.utils_dir.path_join("unzip.exe")
 	
 	var command_linux_zip = {
 		"name": "unzip",
@@ -193,15 +188,14 @@ func extract(path: String, dest_dir: String) -> void:
 		emit_signal("extract_done")
 		return
 		
-	var d = Directory.new()
-	if not d.dir_exists(dest_dir):
-		d.make_dir_recursive(dest_dir)
+	if not DirAccess.dir_exists_absolute(dest_dir):
+		DirAccess.make_dir_recursive_absolute(dest_dir)
 		
 	Status.post(tr("msg_extracting_file") % path.get_file())
 		
 	var oew = OSExecWrapper.new()
 	oew.execute(command["name"], command["args"])
-	yield(oew, "process_exited")
+	await oew.process_exited
 	last_extract_result = oew.exit_code
 	if oew.exit_code:
 		Status.post(tr("msg_extract_error") % oew.exit_code, Enums.MSG_ERROR)
@@ -220,7 +214,7 @@ func zip(parent: String, dir_to_zip: String, dest_zip: String) -> void:
 	# runs a command like:
 	# cd <userdata/save> && zip -r MyWorld.zip MyWorld
 	
-	var zip_exe = Paths.utils_dir.plus_file("zip.exe")
+	var zip_exe = Paths.utils_dir.path_join("zip.exe")
 	
 	var command_linux_zip = {
 		"name": "/bin/bash",
@@ -241,15 +235,14 @@ func zip(parent: String, dir_to_zip: String, dest_zip: String) -> void:
 		emit_signal("zip_done")
 		return
 		
-	var d = Directory.new()
-	if not d.dir_exists(Paths.tmp_dir):
-		d.make_dir_recursive(Paths.tmp_dir)
+	if not DirAccess.dir_exists_absolute(Paths.tmp_dir):
+		DirAccess.make_dir_recursive_absolute(Paths.tmp_dir)
 	
 	Status.post(tr("msg_zipping_file") % dest_zip.get_file())
 		
 	var oew = OSExecWrapper.new()
 	oew.execute(command["name"], command["args"])
-	yield(oew, "process_exited")
+	await oew.process_exited
 	last_zip_result = oew.exit_code
 	if oew.exit_code:
 		Status.post(tr("msg_zip_error") % oew.exit_code, Enums.MSG_ERROR)
