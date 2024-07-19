@@ -1,20 +1,20 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/ChangelogDialod.gd" type="Script" id=1]
-[ext_resource path="res://fonts/OpenSans-SemiboldItalic.tres" type="DynamicFont" id=2]
-[ext_resource path="res://fonts/OpenSans-Regular.tres" type="DynamicFont" id=3]
-[ext_resource path="res://fonts/OpenSans-Italic.tres" type="DynamicFont" id=4]
-[ext_resource path="res://fonts/OpenSans-Semibold.tres" type="DynamicFont" id=5]
+[ext_resource path="res://fonts/OpenSans-SemiboldItalic.tres" type="FontFile" id=2]
+[ext_resource path="res://fonts/OpenSans-Regular.tres" type="FontFile" id=3]
+[ext_resource path="res://fonts/OpenSans-Italic.tres" type="FontFile" id=4]
+[ext_resource path="res://fonts/OpenSans-Semibold.tres" type="FontFile" id=5]
 
-[node name="ChangelogDialog" type="WindowDialog"]
+[node name="ChangelogDialog" type="Window"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -240.0
-margin_top = -160.0
-margin_right = 240.0
-margin_bottom = 160.0
+offset_left = -240.0
+offset_top = -160.0
+offset_right = 240.0
+offset_bottom = 160.0
 window_title = "dlg_changelog_title"
 script = ExtResource( 1 )
 __meta__ = {
@@ -29,34 +29,34 @@ __meta__ = {
 }
 
 [node name="Margin" type="MarginContainer" parent="Panel"]
-margin_left = 9.0
-margin_top = 6.0
-margin_right = 471.0
-margin_bottom = 314.0
-custom_constants/margin_top = 8
-custom_constants/margin_bottom = 8
+offset_left = 9.0
+offset_top = 6.0
+offset_right = 471.0
+offset_bottom = 314.0
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_bottom = 8
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBox" type="VBoxContainer" parent="Panel/Margin"]
-margin_top = 8.0
-margin_right = 462.0
-margin_bottom = 300.0
-custom_constants/separation = 8
+offset_top = 8.0
+offset_right = 462.0
+offset_bottom = 300.0
+theme_override_constants/separation = 8
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ChangelogText" type="RichTextLabel" parent="Panel/Margin/VBox"]
-margin_right = 462.0
-margin_bottom = 255.0
+offset_right = 462.0
+offset_bottom = 255.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/bold_italics_font = ExtResource( 2 )
-custom_fonts/italics_font = ExtResource( 4 )
-custom_fonts/bold_font = ExtResource( 5 )
-custom_fonts/normal_font = ExtResource( 3 )
+theme_override_fonts/bold_italics_font = ExtResource( 2 )
+theme_override_fonts/italics_font = ExtResource( 4 )
+theme_override_fonts/bold_font = ExtResource( 5 )
+theme_override_fonts/normal_font = ExtResource( 3 )
 bbcode_enabled = true
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 __meta__ = {
@@ -64,10 +64,10 @@ __meta__ = {
 }
 
 [node name="BtnCloseChangelog" type="Button" parent="Panel/Margin/VBox"]
-margin_left = 201.0
-margin_top = 263.0
-margin_right = 260.0
-margin_bottom = 292.0
+offset_left = 201.0
+offset_top = 263.0
+offset_right = 260.0
+offset_bottom = 292.0
 size_flags_horizontal = 4
 text = "btn_close"
 __meta__ = {

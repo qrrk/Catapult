@@ -2,12 +2,13 @@
 
 importer="image"
 type="Image"
-path="res://.import/play.svg-56c236147ec6a3c20de6f1b933772dc4.image"
+uid="uid://dtxneotl0puo2"
+path="res://.godot/imported/play.svg-56c236147ec6a3c20de6f1b933772dc4.image"
 
 [deps]
 
 source_file="res://icons/buttons/play.svg"
-dest_files=[ "res://.import/play.svg-56c236147ec6a3c20de6f1b933772dc4.image" ]
+dest_files=["res://.godot/imported/play.svg-56c236147ec6a3c20de6f1b933772dc4.image"]
 
 [params]
 

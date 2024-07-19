@@ -2,13 +2,14 @@
 
 importer="csv_translation"
 type="Translation"
+uid="uid://bsin35ei2ar1h"
 
 [deps]
 
-files=[ "res://text/zh/fonts_tab.zh.translation" ]
+files=["res://text/zh/fonts_tab.zh.translation"]
 
 source_file="res://text/zh/fonts_tab.csv"
-dest_files=[ "res://text/zh/fonts_tab.zh.translation" ]
+dest_files=["res://text/zh/fonts_tab.zh.translation"]
 
 [params]
 

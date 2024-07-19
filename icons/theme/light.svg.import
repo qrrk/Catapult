@@ -2,12 +2,13 @@
 
 importer="image"
 type="Image"
-path="res://.import/light.svg-f8031eaab707e379bdbb80ebafd0a3a2.image"
+uid="uid://do887msxvdkdg"
+path="res://.godot/imported/light.svg-f8031eaab707e379bdbb80ebafd0a3a2.image"
 
 [deps]
 
 source_file="res://icons/theme/light.svg"
-dest_files=[ "res://.import/light.svg-f8031eaab707e379bdbb80ebafd0a3a2.image" ]
+dest_files=["res://.godot/imported/light.svg-f8031eaab707e379bdbb80ebafd0a3a2.image"]
 
 [params]
 

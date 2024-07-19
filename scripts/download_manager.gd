@@ -13,7 +13,7 @@ var _current_filename := ""
 var _current_file_path := ""
 var _download_ongoing := false
 
-onready var _http: HTTPRequest
+@onready var _http: HTTPRequest
 
 
 func _enter_tree() -> void:
@@ -21,7 +21,7 @@ func _enter_tree() -> void:
 	_http = HTTPRequest.new()
 	_http.use_threads = true
 	self.add_child(_http)
-	_http.connect("request_completed", self, "_on_HTTPRequest_request_completed")
+	_http.connect("request_completed", Callable(self, "_on_HTTPRequest_request_completed"))
 
 func set_proxy(host: String, port: int) -> void:
 	
@@ -38,9 +38,8 @@ func download_file(url: String, target_dir: String, target_filename: String) -> 
 	else:
 		set_proxy("", -1)
 	
-	var d = Directory.new()
-	if not d.dir_exists(target_dir):
-		var err = d.make_dir_recursive(target_dir)
+	if not DirAccess.dir_exists_absolute(target_dir):
+		var err := DirAccess.make_dir_recursive_absolute(target_dir)
 		if err:
 			Status.post(tr("msg_download_failed") % target_filename, Enums.MSG_ERROR)
 			emit_signal("download_finished")
@@ -49,11 +48,11 @@ func download_file(url: String, target_dir: String, target_filename: String) -> 
 	Status.post(tr("msg_downloading_file") % target_filename)
 	emit_signal("download_started")
 	_current_filename = target_filename
-	_current_file_path = target_dir.plus_file(target_filename)
+	_current_file_path = target_dir.path_join(target_filename)
 	_http.download_file = target_dir + "/" + target_filename
 	_http.request(url)
 	_download_ongoing = true
-	var last_progress_time = OS.get_system_time_msecs()
+	var last_progress_time = Time.get_ticks_msec()
 	var last_progress_bytes = 0
 	
 	while _download_ongoing:
@@ -62,18 +61,18 @@ func download_file(url: String, target_dir: String, target_filename: String) -> 
 		var total = _http.get_body_size()
 		
 		if downloaded < 1:
-			yield(get_tree(), "idle_frame")
+			await get_tree().idle_frame
 			continue
 		
-		var delta_time = OS.get_system_time_msecs() - last_progress_time
+		var delta_time = Time.get_ticks_msec() - last_progress_time
 		var delta_bytes = downloaded - last_progress_bytes
 		
 		if (delta_time >= _PROGRESS_AFTER_MSECS) or (delta_bytes >= _PROGRESS_AFTER_BYTES):
 			Status.post(_get_progress_string(downloaded, total, delta_time, delta_bytes))
-			last_progress_time = OS.get_system_time_msecs()
+			last_progress_time = Time.get_ticks_msec()
 			last_progress_bytes = downloaded
 		
-		yield(get_tree(), "idle_frame")
+		await get_tree().idle_frame
 
 
 func _get_progress_string(downloaded: int, total: int,
@@ -102,12 +101,12 @@ func _get_progress_string(downloaded: int, total: int,
 
 
 func _on_HTTPRequest_request_completed(_result: int, _response_code: int,
-		_headers: PoolStringArray, _body: PoolByteArray) -> void:
+		_headers: PackedStringArray, _body: PackedByteArray) -> void:
 	
 	_download_ongoing = false
 	Status.post(tr("msg_http_request_info") % [_result, _response_code, _headers], Enums.MSG_DEBUG)
 	
-	if Directory.new().file_exists(_current_file_path):
+	if FileAccess.file_exists(_current_file_path):
 		Status.post(tr("msg_download_finished") % _current_filename)
 	else:
 		Status.post(tr("msg_download_failed") % _current_filename, Enums.MSG_ERROR)

@@ -18,7 +18,7 @@ func _ready() -> void:
 			_flush_buffer()
 			break
 		else:
-			yield(get_tree().create_timer(0.2), "timeout")
+			await get_tree().create_timer(0.2).timeout
 
 
 func post(msg: String, type: int = Enums.MSG_INFO) -> void:
@@ -42,8 +42,8 @@ func post(msg: String, type: int = Enums.MSG_INFO) -> void:
 
 func _datetime_with_msecs(utc = false) -> Dictionary:
 	
-	var datetime = OS.get_datetime(utc)
-	datetime["millisecond"] = OS.get_system_time_msecs() % 1000
+	var datetime = Time.get_datetime_dict_from_system(utc)
+	datetime["millisecond"] = Time.get_ticks_msec() % 1000
 	return datetime
 
 

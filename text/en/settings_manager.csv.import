@@ -2,13 +2,14 @@
 
 importer="csv_translation"
 type="Translation"
+uid="uid://piyjqrqiigxp"
 
 [deps]
 
-files=[ "res://text/en/settings_manager.en.translation" ]
+files=["res://text/en/settings_manager.en.translation"]
 
 source_file="res://text/en/settings_manager.csv"
-dest_files=[ "res://text/en/settings_manager.en.translation" ]
+dest_files=["res://text/en/settings_manager.en.translation"]
 
 [params]
 

@@ -2,13 +2,14 @@
 
 importer="csv_translation"
 type="Translation"
+uid="uid://q1j5iva1mt57"
 
 [deps]
 
-files=[ "res://text/es/dialog_buttons.es.translation" ]
+files=["res://text/es/dialog_buttons.es.translation"]
 
 source_file="res://text/es/dialog_buttons.csv"
-dest_files=[ "res://text/es/dialog_buttons.es.translation" ]
+dest_files=["res://text/es/dialog_buttons.es.translation"]
 
 [params]
 
