@@ -13,4 +13,4 @@ func _init() -> void:
 
 func _on_ui_scale_changed(new_scale: float) -> void:
 	
-	self.size = _base_size * new_scale
+	self.set_size_override(_base_size * new_scale)

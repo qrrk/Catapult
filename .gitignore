@@ -5,6 +5,7 @@ Catapult.x86_64
 Catapult.exe
 *.translation
 *~lock*
+*.tmp
 
 # Godot Git plugin
 /bin

@@ -29,7 +29,7 @@ func post(msg: String, type: int = Enums.MSG_INFO) -> void:
 	var msg_data := _form_message(msg, type)
 	
 	if _status_view:
-		_status_view.append_bbcode(msg_data["bb_text"])
+		_status_view.append_text(msg_data["bb_text"])
 	else:
 		print("saving message to buffer")
 		_buffer.push_back(msg_data)
