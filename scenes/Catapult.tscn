@@ -1,13 +1,13 @@
-[gd_scene load_steps=28 format=3 uid="uid://j8v4j8uy58rl"]
+[gd_scene load_steps=43 format=3 uid="uid://j8v4j8uy58rl"]
 
 [ext_resource type="Texture2D" path="res://icons/buttons/tex_resume.tex" id="2"]
-[ext_resource type="Texture2D" path="res://icons/buttons/tex_download.tex" id="3"]
+[ext_resource type="Texture2D" uid="uid://uxhn3wij7008" path="res://icons/buttons/tex_download.tex" id="3"]
 [ext_resource type="Script" path="res://scripts/Catapult.gd" id="4"]
 [ext_resource type="Script" path="res://scripts/ReleaseManager.gd" id="5"]
 [ext_resource type="Script" path="res://scripts/InstallsList.gd" id="6"]
 [ext_resource type="Script" path="res://scripts/SettingsUI.gd" id="8"]
 [ext_resource type="Script" path="res://scripts/ReleaseInstaller.gd" id="9"]
-[ext_resource type="Theme" path="res://themes/Godot_3.res" id="11"]
+[ext_resource type="Theme" uid="uid://bqch7xqdrxh3i" path="res://themes/Godot_3.res" id="11"]
 [ext_resource type="Script" path="res://scripts/ModManager.gd" id="12"]
 [ext_resource type="Script" path="res://scripts/SoundpackManager.gd" id="13"]
 [ext_resource type="Script" path="res://scripts/Debug.gd" id="14"]
@@ -16,14 +16,29 @@
 [ext_resource type="Script" path="res://scripts/ItemList.gd" id="17"]
 [ext_resource type="Script" path="res://scripts/ModsUI.gd" id="18"]
 [ext_resource type="PackedScene" path="res://scenes/ModReinstallDialog.tscn" id="20"]
+[ext_resource type="Texture2D" uid="uid://blp7rq8cvi0u5" path="res://icons/lang/tex_lang_en.res" id="20_ey4vo"]
+[ext_resource type="Texture2D" path="res://icons/lang/tex_lang_fr.res" id="21_08o67"]
+[ext_resource type="Texture2D" path="res://icons/lang/tex_lang_ru.res" id="22_mts0p"]
+[ext_resource type="Texture2D" path="res://icons/lang/tex_lang_zh.res" id="23_2f1g3"]
+[ext_resource type="Texture2D" uid="uid://b2l4ulthnguk7" path="res://icons/lang/tex_lang_cs.res" id="24_xpbl2"]
 [ext_resource type="Texture2D" path="res://icons/buttons/tex_play.tex" id="25"]
-[ext_resource type="PackedScene" path="res://scenes/InlineIconButton.tscn" id="26"]
+[ext_resource type="Texture2D" path="res://icons/lang/tex_lang_es.res" id="25_ildj0"]
+[ext_resource type="PackedScene" uid="uid://snuvrmmyvlwd" path="res://scenes/InlineIconButton.tscn" id="26"]
+[ext_resource type="Texture2D" path="res://icons/lang/tex_lang_pl.res" id="26_3k2fu"]
 [ext_resource type="Script" path="res://scripts/FontsUI.gd" id="27"]
+[ext_resource type="Texture2D" path="res://icons/lang/tex_lang_tr.res" id="27_pnnps"]
 [ext_resource type="Script" path="res://scripts/FontManager.gd" id="28"]
+[ext_resource type="Texture2D" path="res://icons/lang/tex_lang_pt.res" id="28_0614g"]
 [ext_resource type="PackedScene" path="res://scenes/FontSizeHelpDialog.tscn" id="29"]
+[ext_resource type="Texture2D" path="res://icons/lang/tex_lang_ko.res" id="29_ryetc"]
+[ext_resource type="Texture2D" path="res://icons/theme/tex_godot3.res" id="30_mx4ch"]
+[ext_resource type="Texture2D" path="res://icons/theme/tex_light.res" id="31_nhi6l"]
 [ext_resource type="PackedScene" path="res://scenes/ChangelogDialog.tscn" id="32"]
+[ext_resource type="Texture2D" path="res://icons/theme/tex_grey.res" id="32_kej4f"]
 [ext_resource type="Script" path="res://scripts/BackupsUI.gd" id="33"]
+[ext_resource type="Texture2D" path="res://icons/theme/tex_solarized_dark.res" id="33_vl3fl"]
 [ext_resource type="Script" path="res://scripts/BackupManager.gd" id="34"]
+[ext_resource type="Texture2D" path="res://icons/theme/tex_solarized_light.res" id="34_knvof"]
 [ext_resource type="Texture2D" path="res://icons/buttons/tex_delete.tex" id="40"]
 [ext_resource type="Texture2D" path="res://icons/buttons/tex_activate.tex" id="41"]
 
@@ -60,6 +75,16 @@ text = "lbl_game"
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "tooltip_game"
+item_count = 4
+selected = 0
+popup/item_0/text = "Cataclysm: Dark Days Ahead"
+popup/item_0/id = 0
+popup/item_1/text = "Cataclysm: Bright Nights"
+popup/item_1/id = 1
+popup/item_2/text = "Cataclysm: Era of Decay"
+popup/item_2/id = 2
+popup/item_3/text = "Cataclysm: There Is Still Hope"
+popup/item_3/id = 3
 
 [node name="GameInfo" type="HBoxContainer" parent="Main"]
 layout_mode = 2
@@ -145,11 +170,13 @@ tooltip_text = "tooltip_refresh"
 text = "btn_refresh"
 
 [node name="BtnInstall" type="Button" parent="Main/TabBar/Game" groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "tooltip_install"
 text = "btn_install"
 icon = ExtResource("3")
+expand_icon = true
 
 [node name="UpdateCurrent" type="CheckBox" parent="Main/TabBar/Game" groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
 layout_mode = 2
@@ -189,18 +216,22 @@ layout_mode = 2
 size_flags_horizontal = 4
 
 [node name="BtnPlay" type="Button" parent="Main/TabBar/Game/ActiveInstall/Launch" groups=["disable_during_release_operations"]]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "tooltip_play"
 text = "btn_play"
 icon = ExtResource("25")
+expand_icon = true
 
 [node name="BtnResume" type="Button" parent="Main/TabBar/Game/ActiveInstall/Launch" groups=["disable_during_release_operations"]]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "tooltip_resume"
 text = "btn_resume"
 icon = ExtResource("2")
+expand_icon = true
 
 [node name="GameInstalls" type="VBoxContainer" parent="Main/TabBar/Game"]
 layout_mode = 2
@@ -232,18 +263,22 @@ script = ExtResource("6")
 layout_mode = 2
 
 [node name="btnMakeActive" type="Button" parent="Main/TabBar/Game/GameInstalls/HBox/VBox" groups=["disable_during_release_operations"]]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 tooltip_text = "tooltip_activate"
 disabled = true
 text = "btn_activate"
 icon = ExtResource("41")
+expand_icon = true
 
 [node name="btnDelete" type="Button" parent="Main/TabBar/Game/GameInstalls/HBox/VBox" groups=["disable_during_release_operations"]]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 tooltip_text = "tooltip_delete"
 disabled = true
 text = "btn_delete"
 icon = ExtResource("40")
+expand_icon = true
 
 [node name="ChangelogDialog" parent="Main/TabBar/Game" instance=ExtResource("32")]
 position = Vector2i(0, 36)
@@ -754,6 +789,38 @@ custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 expand_icon = true
+item_count = 10
+selected = 0
+popup/item_0/text = "English"
+popup/item_0/icon = ExtResource("20_ey4vo")
+popup/item_0/id = 0
+popup/item_1/text = "Français"
+popup/item_1/icon = ExtResource("21_08o67")
+popup/item_1/id = 1
+popup/item_2/text = "Русский"
+popup/item_2/icon = ExtResource("22_mts0p")
+popup/item_2/id = 2
+popup/item_3/text = "简体字"
+popup/item_3/icon = ExtResource("23_2f1g3")
+popup/item_3/id = 3
+popup/item_4/text = "Čeština"
+popup/item_4/icon = ExtResource("24_xpbl2")
+popup/item_4/id = 4
+popup/item_5/text = "Español"
+popup/item_5/icon = ExtResource("25_ildj0")
+popup/item_5/id = 5
+popup/item_6/text = "Polski"
+popup/item_6/icon = ExtResource("26_3k2fu")
+popup/item_6/id = 6
+popup/item_7/text = "Türkçe"
+popup/item_7/icon = ExtResource("27_pnnps")
+popup/item_7/id = 7
+popup/item_8/text = "Português (BR)"
+popup/item_8/icon = ExtResource("28_0614g")
+popup/item_8/id = 8
+popup/item_9/text = "한국어"
+popup/item_9/icon = ExtResource("29_ryetc")
+popup/item_9/id = 9
 
 [node name="LauncherTheme" type="HBoxContainer" parent="Main/TabBar/Settings"]
 layout_mode = 2
@@ -767,6 +834,23 @@ custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 expand_icon = true
+item_count = 5
+selected = 0
+popup/item_0/text = "Godot 3"
+popup/item_0/icon = ExtResource("30_mx4ch")
+popup/item_0/id = 0
+popup/item_1/text = "Light"
+popup/item_1/icon = ExtResource("31_nhi6l")
+popup/item_1/id = 1
+popup/item_2/text = "Grey"
+popup/item_2/icon = ExtResource("32_kej4f")
+popup/item_2/id = 2
+popup/item_3/text = "Solarized Dark"
+popup/item_3/icon = ExtResource("33_vl3fl")
+popup/item_3/id = 3
+popup/item_4/text = "Solarized Light"
+popup/item_4/icon = ExtResource("34_knvof")
+popup/item_4/id = 4
 
 [node name="ShowGameDesc" type="CheckButton" parent="Main/TabBar/Settings"]
 layout_mode = 2
@@ -911,6 +995,7 @@ script = ExtResource("14")
 [node name="Label" type="Label" parent="Main/TabBar/Debug"]
 layout_mode = 2
 text = "This tab contains functions helpful in debugging parts of the launcher during development. Useless for anything else."
+autowrap_mode = 2
 
 [node name="Button" type="Button" parent="Main/TabBar/Debug"]
 layout_mode = 2
