@@ -15,7 +15,7 @@
 [ext_resource type="Script" path="res://scripts/Tabs.gd" id="16"]
 [ext_resource type="Script" path="res://scripts/ItemList.gd" id="17"]
 [ext_resource type="Script" path="res://scripts/ModsUI.gd" id="18"]
-[ext_resource type="PackedScene" path="res://scenes/ModReinstallDialog.tscn" id="20"]
+[ext_resource type="PackedScene" uid="uid://chyqjehe0nmxq" path="res://scenes/ModReinstallDialog.tscn" id="20"]
 [ext_resource type="Texture2D" uid="uid://blp7rq8cvi0u5" path="res://icons/lang/tex_lang_en.res" id="20_ey4vo"]
 [ext_resource type="Texture2D" path="res://icons/lang/tex_lang_fr.res" id="21_08o67"]
 [ext_resource type="Texture2D" path="res://icons/lang/tex_lang_ru.res" id="22_mts0p"]
@@ -29,11 +29,11 @@
 [ext_resource type="Texture2D" path="res://icons/lang/tex_lang_tr.res" id="27_pnnps"]
 [ext_resource type="Script" path="res://scripts/FontManager.gd" id="28"]
 [ext_resource type="Texture2D" path="res://icons/lang/tex_lang_pt.res" id="28_0614g"]
-[ext_resource type="PackedScene" path="res://scenes/FontSizeHelpDialog.tscn" id="29"]
+[ext_resource type="PackedScene" uid="uid://ciqb5ygi2n5yp" path="res://scenes/FontSizeHelpDialog.tscn" id="29"]
 [ext_resource type="Texture2D" path="res://icons/lang/tex_lang_ko.res" id="29_ryetc"]
 [ext_resource type="Texture2D" path="res://icons/theme/tex_godot3.res" id="30_mx4ch"]
 [ext_resource type="Texture2D" path="res://icons/theme/tex_light.res" id="31_nhi6l"]
-[ext_resource type="PackedScene" path="res://scenes/ChangelogDialog.tscn" id="32"]
+[ext_resource type="PackedScene" uid="uid://b476fjhyidej5" path="res://scenes/ChangelogDialog.tscn" id="32"]
 [ext_resource type="Texture2D" path="res://icons/theme/tex_grey.res" id="32_kej4f"]
 [ext_resource type="Script" path="res://scripts/BackupsUI.gd" id="33"]
 [ext_resource type="Texture2D" path="res://icons/theme/tex_solarized_dark.res" id="33_vl3fl"]
@@ -395,7 +395,6 @@ dialog_text = "(this text is assigned at runtime)"
 dialog_autowrap = true
 
 [node name="ModReinstallDialog" parent="Main/TabBar/Mods" instance=ExtResource("20")]
-visible = false
 
 [node name="Soundpacks" type="VBoxContainer" parent="Main/TabBar"]
 visible = false

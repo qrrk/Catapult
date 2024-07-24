@@ -269,6 +269,9 @@ func _save_font_properties() -> Dictionary:
 			continue
 		for prop in _SCALABLE_FONT_PROPS:
 			var value = font.get(prop)
+			if value == null:
+				push_error("Font %s does not have the property %s." % [font, prop])
+				continue
 			if value > 0:
 				font_props[font][prop] = value
 
