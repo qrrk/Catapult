@@ -1,57 +1,40 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://ciqb5ygi2n5yp"]
 
-[ext_resource path="res://fonts/OpenSans-Regular.tres" type="FontFile" id=1]
-[ext_resource path="res://fonts/OpenSans-SemiboldItalic.tres" type="FontFile" id=2]
-[ext_resource path="res://fonts/OpenSans-Italic.tres" type="FontFile" id=3]
-[ext_resource path="res://fonts/OpenSans-Semibold.tres" type="FontFile" id=4]
-[ext_resource path="res://scripts/FontSizeHelpDialog.gd" type="Script" id=5]
+[ext_resource type="FontFile" path="res://fonts/OpenSans-Regular.tres" id="1"]
+[ext_resource type="FontFile" path="res://fonts/OpenSans-SemiboldItalic.tres" id="2"]
+[ext_resource type="FontFile" path="res://fonts/OpenSans-Italic.tres" id="3"]
+[ext_resource type="FontFile" path="res://fonts/OpenSans-Semibold.tres" id="4"]
+[ext_resource type="Script" path="res://scripts/FontSizeHelpDialog.gd" id="5"]
 
 [node name="FontSizeHelpDialog" type="Window"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-window_title = "dlg_font_size_help_title"
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+visible = false
+script = ExtResource("5")
 
 [node name="Panel" type="PanelContainer" parent="."]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Margin" type="MarginContainer" parent="Panel"]
-offset_left = 14.0
-offset_top = 14.0
-offset_right = 586.0
-offset_bottom = 686.0
+layout_mode = 2
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_bottom = 8
 
 [node name="VBox" type="VBoxContainer" parent="Panel/Margin"]
-offset_top = 8.0
-offset_right = 572.0
-offset_bottom = 664.0
+layout_mode = 2
 
 [node name="Help" type="RichTextLabel" parent="Panel/Margin/VBox"]
-offset_right = 572.0
-offset_bottom = 619.0
+layout_mode = 2
 size_flags_vertical = 3
-theme_override_fonts/bold_italics_font = ExtResource( 2 )
-theme_override_fonts/italics_font = ExtResource( 3 )
-theme_override_fonts/bold_font = ExtResource( 4 )
-theme_override_fonts/normal_font = ExtResource( 1 )
+theme_override_fonts/normal_font = ExtResource("1")
+theme_override_fonts/bold_font = ExtResource("4")
+theme_override_fonts/italics_font = ExtResource("3")
+theme_override_fonts/bold_italics_font = ExtResource("2")
 bbcode_enabled = true
-text = "dlg_font_config_help"
 text = "dlg_font_config_help"
 
 [node name="BtnOK" type="Button" parent="Panel/Margin/VBox"]
-offset_left = 245.0
-offset_top = 627.0
-offset_right = 327.0
-offset_bottom = 664.0
+layout_mode = 2
 size_flags_horizontal = 4
 text = "Close"
 

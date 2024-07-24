@@ -61,7 +61,7 @@ func download_file(url: String, target_dir: String, target_filename: String) -> 
 		var total = _http.get_body_size()
 		
 		if downloaded < 1:
-			await get_tree().idle_frame
+			await get_tree().process_frame
 			continue
 		
 		var delta_time = Time.get_ticks_msec() - last_progress_time
@@ -72,7 +72,7 @@ func download_file(url: String, target_dir: String, target_filename: String) -> 
 			last_progress_time = Time.get_ticks_msec()
 			last_progress_bytes = downloaded
 		
-		await get_tree().idle_frame
+		await get_tree().process_frame
 
 
 func _get_progress_string(downloaded: int, total: int,

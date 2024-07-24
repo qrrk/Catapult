@@ -41,9 +41,9 @@ func download_pull_requests():
 	_update_proxy(_pullRequests)
 	_pullRequests.request(url, headers)
 	_changelogTextBox.clear()
-	_changelogTextBox.append_bbcode(_pr_data)
+	_changelogTextBox.append_text(_pr_data)
 	_changelogTextBox.clear()
-	_changelogTextBox.append_bbcode(_pr_data)
+	_changelogTextBox.append_text(_pr_data)
 
 
 func _on_PullRequests_request_completed(result, response_code, headers, body):
@@ -59,7 +59,7 @@ func _on_PullRequests_request_completed(result, response_code, headers, body):
 	else:
 		_pr_data = process_pr_data(json)
 	_changelogTextBox.clear()
-	_changelogTextBox.append_bbcode(_pr_data)
+	_changelogTextBox.append_text(_pr_data)
 
 
 func process_pr_data(data):

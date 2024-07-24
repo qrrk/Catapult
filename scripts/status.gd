@@ -87,4 +87,4 @@ func _flush_buffer() -> void:
 	if _status_view:
 		while _buffer.size() > 0:
 			var msg = _buffer.pop_front()
-			_status_view.append_bbcode(msg["bb_text"])
+			_status_view.append_text(msg["bb_text"])
