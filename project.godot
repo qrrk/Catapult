@@ -41,7 +41,6 @@ TOTD="*res://scripts/totd.gd"
 
 window/size/viewport_width=600
 window/size/viewport_height=700
-window/size/borderless=true
 window/size/window_width_override=1
 window/size/window_height_override=1
 window/per_pixel_transparency/allowed=true
