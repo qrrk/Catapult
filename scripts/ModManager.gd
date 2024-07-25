@@ -141,7 +141,7 @@ func mod_status(id: String) -> int:
 
 func refresh_installed():
 	
-	installed = {}
+	var _installed = {}
 	
 	var non_stock := {}
 	if DirAccess.dir_exists_absolute(Paths.mods_user):
@@ -158,12 +158,14 @@ func refresh_installed():
 			stock[id]["is_obsolete"] = false
 			
 	for id in non_stock:
-		installed[id] = non_stock[id]
-		installed[id]["is_stock"] = false
-		installed[id]["is_obsolete"] = false
+		_installed[id] = non_stock[id]
+		_installed[id]["is_stock"] = false
+		_installed[id]["is_obsolete"] = false
 		
 	for id in stock:
-		installed[id] = stock[id]
+		_installed[id] = stock[id]
+	
+	installed = _installed
 
 
 func refresh_available():
