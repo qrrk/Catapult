@@ -200,19 +200,20 @@ var _saved_sbox_props: Dictionary
 
 
 func _init() -> void:
-	
-	_saved_constants = _save_constants()
-	_saved_tex_sizes = _save_texture_sizes()
-	_saved_font_props = _save_font_properties()
-	_saved_sbox_props = _save_stylebox_properties()
+	pass  # FIXME
+	#_saved_constants = _save_constants()
+	#_saved_tex_sizes = _save_texture_sizes()
+	#_saved_font_props = _save_font_properties()
+	#_saved_sbox_props = _save_stylebox_properties()
 
 
 func apply_scale(factor: float) -> void:
 
-	_scale_constants(factor)
-	_scale_textures(factor)
-	_scale_fonts(factor)
-	_scale_styleboxes(factor)
+	pass  # FIXME
+	#_scale_constants(factor)
+	#_scale_textures(factor)
+	#_scale_fonts(factor)
+	#_scale_styleboxes(factor)
 
 
 func _save_constants() -> Dictionary:
