@@ -62,11 +62,10 @@ func _on_Button3_pressed():
 	Status.post("Command data: " + str(command))
 	await get_tree().create_timer(2).timeout
 	
-	var oew = OSExecWrapper.new()
-	oew.execute(command["name"], command["args"])
-	await oew.process_exited
+	ThreadedExec.execute(command["name"], command["args"])
+	await ThreadedExec.execution_finished
 
-	Status.post("Command exited with code %s. Output:\n%s" % [oew.exit_code, oew.output[0]])
+	Status.post("Command exited with code %s. Output:\n%s" % [ThreadedExec.last_exit_code, ThreadedExec.output[0]])
 
 
 func _on_Button4_pressed() -> void:

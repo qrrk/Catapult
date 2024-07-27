@@ -192,15 +192,13 @@ func extract(path: String, dest_dir: String) -> void:
 		DirAccess.make_dir_recursive_absolute(dest_dir)
 		
 	Status.post(tr("msg_extracting_file") % path.get_file())
-		
-	var oew = OSExecWrapper.new()
-	oew.execute(command["name"], command["args"])
-	await oew.process_exited
-	last_extract_result = oew.exit_code
-	if oew.exit_code:
-		Status.post(tr("msg_extract_error") % oew.exit_code, Enums.MSG_ERROR)
+	
+	ThreadedExec.execute(command["name"], command["args"])
+	await ThreadedExec.execution_finished
+	if ThreadedExec.last_exit_code != 0:
+		Status.post(tr("msg_extract_error") % ThreadedExec.last_exit_code, Enums.MSG_ERROR)
 		Status.post(tr("msg_extract_failed_cmd") % str(command), Enums.MSG_DEBUG)
-		Status.post(tr("msg_extract_fail_output") % oew.output[0], Enums.MSG_DEBUG)
+		Status.post(tr("msg_extract_fail_output") % ThreadedExec.output[0], Enums.MSG_DEBUG)
 	emit_signal("extract_done")
 
 
@@ -239,14 +237,12 @@ func zip(parent: String, dir_to_zip: String, dest_zip: String) -> void:
 		DirAccess.make_dir_recursive_absolute(Paths.tmp_dir)
 	
 	Status.post(tr("msg_zipping_file") % dest_zip.get_file())
-		
-	var oew = OSExecWrapper.new()
-	oew.execute(command["name"], command["args"])
-	await oew.process_exited
-	last_zip_result = oew.exit_code
-	if oew.exit_code:
-		Status.post(tr("msg_zip_error") % oew.exit_code, Enums.MSG_ERROR)
+	
+	ThreadedExec.execute(command["name"], command["args"])
+	await ThreadedExec.execution_finished
+	if ThreadedExec.last_exit_code != 0:
+		Status.post(tr("msg_zip_error") % ThreadedExec.last_exit_code, Enums.MSG_ERROR)
 		Status.post(tr("msg_extract_failed_cmd") % str(command), Enums.MSG_DEBUG)
-		Status.post(tr("msg_extract_fail_output") % oew.output[0], Enums.MSG_DEBUG)
+		Status.post(tr("msg_extract_fail_output") % ThreadedExec.last_exit_code, Enums.MSG_DEBUG)
 	emit_signal("zip_done")
 	

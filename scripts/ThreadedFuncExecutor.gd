@@ -28,6 +28,6 @@ func execute(instance: Object, method: String, userdata = null,
 
 func collect():
 	
-	if _worker.is_active():
+	if _worker.is_alive():
 		_worker.wait_to_finish()
 		return _result

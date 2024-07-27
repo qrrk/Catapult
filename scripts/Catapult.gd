@@ -6,7 +6,7 @@ extends Node
 @onready var _game_info = $Main/GameInfo
 @onready var _game_desc = $Main/GameInfo/Description
 @onready var _mod_info = $Main/TabBar/Mods/ModInfo
-@onready var _tabs = $Main/TabBar
+@onready var _tabs = $Main/TabBar 
 @onready var _mods = $Mods  
 @onready var _releases = $Releases
 @onready var _installer = $ReleaseInstaller

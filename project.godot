@@ -36,6 +36,7 @@ Helpers="*res://scripts/helpers.gd"
 FS="*res://scripts/filesystem_helper.gd"
 Downloader="*res://scripts/download_manager.gd"
 TOTD="*res://scripts/totd.gd"
+ThreadedExec="*res://scripts/ThreadedExec.gd"
 
 [display]
 
