@@ -155,13 +155,10 @@ func _on_FontsList_item_selected(index: int) -> void:
 	
 	var font_info = _fonts.available_fonts[index]
 	var font_path := "res://fonts/ingame".path_join(font_info["file"])
-	var font_res = FontFile.new()
-	
-	font_res.font_data = load(font_path)
-	font_res.size = 15.0 * Geom.scale
-	font_res.use_filter = true
+	var font_res: FontFile = load(font_path)
 	
 	_preview.add_theme_font_override("normal_font", font_res)
+	_preview.add_theme_font_size_override("normal_font_size", 15.0 * Geom.scale)
 	_preview.text = _make_preview_string(Settings.read("font_preview_cyrillic"))
 	
 	for btn in [_btn_set_ui, _btn_set_map, _btn_set_om, _btn_set_all]:
@@ -206,7 +203,7 @@ func _on_BtnSaveFontOptions_pressed() -> void:
 	
 	_fonts.set_font_sizes(size_ui, size_map, size_om)
 	
-	_fonts.set_game_option("FONT_BLENDING", str(_cbtn_blending.pressed))
+	_fonts.set_game_option("FONT_BLENDING", str(_cbtn_blending.button_pressed))
 	_fonts.write_game_options()
 
 

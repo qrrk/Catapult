@@ -78,6 +78,7 @@ func load_font_config() -> void:
 				Status.post(tr("msg_could_not_parse_font_config") % config_file, Enums.MSG_ERROR)
 				Status.post(tr("msg_font_config_error_details")
 						% [error, json.get_error_line(), json.get_error_message()], Enums.MSG_DEBUG)
+			result = json.data
 		else:
 			Status.post(tr("msg_failed_to_open_font_config") % [config_file, FileAccess.get_open_error()], Enums.MSG_ERROR)
 	else:
