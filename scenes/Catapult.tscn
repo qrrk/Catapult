@@ -680,6 +680,7 @@ text = "Existing font configuration will be shown here.
 ...
 ...
 ..."
+fit_content = true
 
 [node name="FontSizeHelpDialog" parent="Main/TabBar/Fonts" instance=ExtResource("29")]
 position = Vector2i(0, 36)
@@ -1117,6 +1118,10 @@ script = ExtResource("34")
 [connection signal="confirmed" from="Main/TabBar/Soundpacks/ConfirmManualDownload" to="Main/TabBar/Soundpacks" method="_on_ConfirmManualDownload_confirmed"]
 [connection signal="file_selected" from="Main/TabBar/Soundpacks/InstallFromFileDialog" to="Main/TabBar/Soundpacks" method="_on_InstallFromFileDialog_file_selected"]
 [connection signal="item_selected" from="Main/TabBar/Fonts/FontSelection/RightPane/FontsList" to="Main/TabBar/Fonts" method="_on_FontsList_item_selected"]
+[connection signal="pressed" from="Main/TabBar/Fonts/FontSelection/RightPane/Buttons/BtnSetFontUI" to="Main/TabBar/Fonts" method="_on_BtnSetFontX_pressed" binds= [true, false, false]]
+[connection signal="pressed" from="Main/TabBar/Fonts/FontSelection/RightPane/Buttons/BtnSetFontMap" to="Main/TabBar/Fonts" method="_on_BtnSetFontX_pressed" binds= [false, true, false]]
+[connection signal="pressed" from="Main/TabBar/Fonts/FontSelection/RightPane/Buttons/BtnSetFontOvermap" to="Main/TabBar/Fonts" method="_on_BtnSetFontX_pressed" binds= [false, false, true]]
+[connection signal="pressed" from="Main/TabBar/Fonts/FontSelection/RightPane/Buttons/BtnSetFontAll" to="Main/TabBar/Fonts" method="_on_BtnSetFontX_pressed" binds= [true, true, true]]
 [connection signal="pressed" from="Main/TabBar/Fonts/FontSelection/RightPane/Buttons/BtnResetFont" to="Main/TabBar/Fonts" method="_on_BtnResetFont_pressed"]
 [connection signal="toggled" from="Main/TabBar/Fonts/FontSelection/LeftPane/PreviewCyrillic" to="Main/TabBar/Fonts" method="_on_PreviewCyrillic_toggled"]
 [connection signal="pressed" from="Main/TabBar/Fonts/FontSelection/LeftPane/OtherSettings/HelpIcon" to="Main/TabBar/Fonts" method="_on_HelpIcon_pressed"]
