@@ -427,30 +427,30 @@ func _on_BtnResume_pressed() -> void:
 
 func _start_game(world := "") -> void:
 	
-	pass # FIXME
+	#pass # FIXME
 	
-	#match OS.get_name():
-		#"X11":
-			#var params := ["--userdir", Paths.userdata + "/"]
-			#if world != "":
-				#params.append_array(["--world", world])
-			#OS.execute(Paths.game_dir.path_join("cataclysm-launcher"), params, false)
-		#"Windows":
-			#var world_str := ""
-			#if world != "":
-				#world_str = "--world \"%s\"" % world
-#
-			#var exe_file = "cataclysm-tiles.exe"
-			#if Settings.read("game") == "bn" and DirAccess.new().file_exists(Paths.game_dir.path_join("cataclysm-bn-tiles.exe")):
-				#exe_file = "cataclysm-bn-tiles.exe"
-#
-			#var command = "cd /d %s && start %s --userdir \"%s/\" %s" % [Paths.game_dir, exe_file, Paths.userdata, world_str]
-			#OS.execute("cmd", ["/C", command], false)
-		#_:
-			#return
-	#
-	#if not Settings.read("keep_open_after_starting_game"):
-		#get_tree().quit()
+	match OS.get_name():
+		"X11":
+			var params := ["--userdir", Paths.userdata + "/"]
+			if world != "":
+				params.append_array(["--world", world])
+			OS.execute(Paths.game_dir.path_join("cataclysm-launcher"), params, [])
+		"Windows":
+			var world_str := ""
+			if world != "":
+				world_str = "--world \"%s\"" % world
+
+			var exe_file = "cataclysm-tiles.exe"
+			if Settings.read("game") == "bn" and FileAccess.file_exists(Paths.game_dir.path_join("cataclysm-bn-tiles.exe")):
+				exe_file = "cataclysm-bn-tiles.exe"
+
+			var command = "cd /d %s && start %s --userdir \"%s/\" %s" % [Paths.game_dir, exe_file, Paths.userdata, world_str]
+			OS.execute("cmd", ["/C", command], [])
+		_:
+			return
+	
+	if not Settings.read("keep_open_after_starting_game"):
+		get_tree().quit()
 
 
 func _on_InstallsList_item_selected(index: int) -> void:
