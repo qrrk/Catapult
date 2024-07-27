@@ -33,20 +33,24 @@ func _get_last_zip_result() -> int:
 func list_dir(path: String, recursive := false) -> Array:
 	# Lists the files and subdirectories within a directory.
 	
-	var d := DirAccess.open(path)
-	
-	var error = d.list_dir_begin() # TODOConverter3To4 fill missing arguments https://github.com/godotengine/godot/pull/40547
-	if error:
+	var result := []
+	var dir := DirAccess.open(path)
+	dir.include_hidden = true
+	var error := DirAccess.get_open_error()
+	if error != OK:
 		Status.post(tr("msg_list_dir_failed") % [path, error], Enums.MSG_ERROR)
-		return []
+		return result
 	
-	var result = []
+	error = dir.list_dir_begin()
+	if error != OK:
+		Status.post(tr("msg_list_dir_failed") % [path, error], Enums.MSG_ERROR)
+		return result
 	
 	while true:
-		var name = d.get_next()
+		var name = dir.get_next()
 		if name:
 			result.append(name)
-			if recursive and d.current_is_dir():
+			if recursive and dir.current_is_dir():
 				var subdir = list_dir(path.path_join(name), true)
 				for child in subdir:
 					result.append(name.path_join(child))
@@ -73,7 +77,6 @@ func _copy_dir_internal(abs_path: String, dest_dir: String) -> void:
 				Status.post(tr("msg_copy_file_failed") % [item, error], Enums.MSG_ERROR)
 				Status.post(tr("msg_copy_file_failed_details") % [path, dest_dir.path_join(dir).path_join(item)])
 		elif DirAccess.dir_exists_absolute(path):
-			#_copy_dir_internal([path, dest_dir.path_join(dir)])
 			_copy_dir_internal(path, dest_dir.path_join(dir))
 			
 

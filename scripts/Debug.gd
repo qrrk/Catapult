@@ -14,9 +14,10 @@ func _on_Button_pressed() -> void:
 	
 	Status.post("Looking for mods in %s" % mods_dir)
 	
-	for mod in _mods.parse_mods_dir(mods_dir):
-		message += "\n" + mod["modinfo"]["name"]
-		message += "\n(%s)" % mod["location"]
+	var mods: Dictionary = _mods.parse_mods_dir(mods_dir)
+	for mod in mods:
+		message += "\n" + mods[mod]["modinfo"]["name"]
+		message += "\n(%s)" % mods[mod]["location"]
 	
 	Status.post(message)
 
