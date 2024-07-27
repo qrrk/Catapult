@@ -56,11 +56,8 @@ func list_dir(path: String, recursive := false) -> Array:
 	return result
 
 
-func _copy_dir_internal(data: Array) -> void:
-	
-	var abs_path: String = data[0]
-	var dest_dir: String = data[1]
-	
+func _copy_dir_internal(abs_path: String, dest_dir: String) -> void:
+
 	var dir = abs_path.get_file()
 	
 	var error = DirAccess.make_dir_recursive_absolute(dest_dir.path_join(dir))
@@ -76,22 +73,24 @@ func _copy_dir_internal(data: Array) -> void:
 				Status.post(tr("msg_copy_file_failed") % [item, error], Enums.MSG_ERROR)
 				Status.post(tr("msg_copy_file_failed_details") % [path, dest_dir.path_join(dir).path_join(item)])
 		elif DirAccess.dir_exists_absolute(path):
-			_copy_dir_internal([path, dest_dir.path_join(dir)])
+			#_copy_dir_internal([path, dest_dir.path_join(dir)])
+			_copy_dir_internal(path, dest_dir.path_join(dir))
+			
 
 
 func copy_dir(abs_path: String, dest_dir: String) -> void:
 	# Recursively copies a directory *into* a new location.
 	
-	var tfe = ThreadedFuncExecutor.new()
-	tfe.execute(self, "_copy_dir_internal", [abs_path, dest_dir])
-	await tfe.func_returned
-	tfe.collect()
+	var thread := Thread.new()
+	thread.start(_copy_dir_internal.bind(abs_path, dest_dir))
+	while thread.is_alive():
+		await get_tree().process_frame
+	thread.wait_to_finish()
 	emit_signal("copy_dir_done")
 
 
-func _rm_dir_internal(data: Array) -> void:
+func _rm_dir_internal(abs_path: String) -> void:
 	
-	var abs_path = data[0]
 	var error
 	for item in list_dir(abs_path):
 		var path = abs_path.path_join(item)
@@ -101,7 +100,7 @@ func _rm_dir_internal(data: Array) -> void:
 				Status.post(tr("msg_remove_file_failed") % [item, error], Enums.MSG_ERROR)
 				Status.post(tr("msg_remove_file_failed_details") % path, Enums.MSG_DEBUG)
 		elif DirAccess.dir_exists_absolute(path):
-			_rm_dir_internal([path])
+			_rm_dir_internal(path)
 	
 	error = DirAccess.remove_absolute(abs_path)
 	if error:
@@ -111,17 +110,15 @@ func _rm_dir_internal(data: Array) -> void:
 func rm_dir(abs_path: String) -> void:
 	# Recursively removes a directory.
 	
-	var tfe = ThreadedFuncExecutor.new()
-	tfe.execute(self, "_rm_dir_internal", [abs_path])
-	await tfe.func_returned
-	tfe.collect()
+	var thread := Thread.new()
+	thread.start(_rm_dir_internal.bind(abs_path))
+	while thread.is_alive():
+		await get_tree().process_frame
+	thread.wait_to_finish()
 	emit_signal("rm_dir_done")
 
 
-func _move_dir_internal(data: Array) -> void:
-	
-	var abs_path: String = data[0]
-	var abs_dest: String = data[1]
+func _move_dir_internal(abs_path: String, abs_dest: String) -> void:
 	
 	var error = DirAccess.make_dir_recursive_absolute(abs_dest)
 	if error:
@@ -137,7 +134,7 @@ func _move_dir_internal(data: Array) -> void:
 				Status.post(tr("msg_move_file_failed") % [item, error], Enums.MSG_ERROR)
 				Status.post(tr("msg_move_file_failed_details") % [path, dest])
 		elif DirAccess.dir_exists_absolute(path):
-			_move_dir_internal([path, abs_dest.path_join(item)])
+			_move_dir_internal(path, abs_dest.path_join(item))
 	
 	error = DirAccess.remove_absolute(abs_path)
 	if error:
@@ -148,10 +145,11 @@ func move_dir(abs_path: String, abs_dest: String) -> void:
 	# Moves the specified directory (this is move with rename, so the last
 	# part of dest is the new name for the directory).
 	
-	var tfe = ThreadedFuncExecutor.new()
-	tfe.execute(self, "_move_dir_internal", [abs_path, abs_dest])
-	await tfe.func_returned
-	tfe.collect()
+	var thread := Thread.new()
+	thread.start(_move_dir_internal.bind(abs_path, abs_dest))
+	while thread.is_alive():
+		await get_tree().process_frame
+	thread.wait_to_finish()
 	emit_signal("move_dir_done")
 
 
@@ -170,6 +168,7 @@ func extract(path: String, dest_dir: String) -> void:
 		"args": ["-xzf", "\"\"%s\"\"" % path, "-C", "\"\"%s\"\"" % dest_dir,
 				"--exclude=*doc/CONTRIBUTING.md", "--exclude=*doc/JSON_LOADING_ORDER.md"]
 				# Godot can't operate on symlinks just yet, so we have to avoid them.
+				# TODO: Check if this has changed in Godot 4.
 	}
 	var command_windows = {
 		"name": "cmd",
