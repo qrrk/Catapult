@@ -531,7 +531,7 @@ func _refresh_currently_installed() -> void:
 		_panel_installs.visible = false
 
 	for i in [1, 2, 3, 4]:
-		_tabs.set_tab_disabled(i, not game in _installs)
+		_tabs.set_individual_tab_disabled(i, not game in _installs)
 
 
 func _on_InfoIcon_gui_input(event: InputEvent) -> void:
