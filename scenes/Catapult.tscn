@@ -1,7 +1,8 @@
-[gd_scene load_steps=44 format=3 uid="uid://j8v4j8uy58rl"]
+[gd_scene load_steps=45 format=3 uid="uid://j8v4j8uy58rl"]
 
 [ext_resource type="Texture2D" path="res://icons/buttons/tex_resume.tex" id="2"]
 [ext_resource type="Texture2D" uid="uid://uxhn3wij7008" path="res://icons/buttons/tex_download.tex" id="3"]
+[ext_resource type="Texture2D" uid="uid://dbd0vhgo2wdv2" path="res://icons/info.svg" id="3_rr64d"]
 [ext_resource type="Script" path="res://scripts/Catapult.gd" id="4"]
 [ext_resource type="Script" path="res://scripts/ReleaseManager.gd" id="5"]
 [ext_resource type="Script" path="res://scripts/InstallsList.gd" id="6"]
@@ -100,6 +101,7 @@ custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+texture = ExtResource("3_rr64d")
 expand_mode = 1
 stretch_mode = 6
 
@@ -109,6 +111,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 bbcode_enabled = true
 text = "Game Title is a game in which... This is a placeholder text to gauge how much space will be taken for the game description that will be loaded into this label at runtime. The descriptions are around 4 lines each at this width, so the placeholder text mush have a similar length to perform its function. This length is about right."
+fit_content = true
 
 [node name="Spacer" type="Control" parent="Main"]
 layout_mode = 2

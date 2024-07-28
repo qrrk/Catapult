@@ -549,7 +549,7 @@ func _activate_easter_egg() -> void:
 	for node in Helpers.get_all_nodes_within(self):
 		if node is Control:
 			node.pivot_offset = node.size / 2.0
-			node.rotation = randf() * 2.0 - 1.0
+			node.rotation = (randf() * 2.0 - 1.0) * PI / 180.0
 	
 	Status.rainbow_text = true
 	
