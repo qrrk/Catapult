@@ -1,7 +1,7 @@
 extends TextureButton
 
 
-@export var _scale_when_hovered = 1.1 # (float, 1.0, 1.5)
+@export var _scale_when_hovered := 1.1
 
 var _normal_position := Vector2()
 

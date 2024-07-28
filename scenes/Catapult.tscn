@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://j8v4j8uy58rl"]
+[gd_scene load_steps=48 format=3 uid="uid://j8v4j8uy58rl"]
 
 [ext_resource type="Texture2D" path="res://icons/buttons/tex_resume.tex" id="2"]
 [ext_resource type="Texture2D" uid="uid://uxhn3wij7008" path="res://icons/buttons/tex_download.tex" id="3"]
@@ -6,7 +6,9 @@
 [ext_resource type="Script" path="res://scripts/Catapult.gd" id="4"]
 [ext_resource type="Script" path="res://scripts/ReleaseManager.gd" id="5"]
 [ext_resource type="Script" path="res://scripts/InstallsList.gd" id="6"]
+[ext_resource type="Texture2D" uid="uid://c8pe3ckwjamrl" path="res://icons/folder_game.svg" id="7_ffy77"]
 [ext_resource type="Script" path="res://scripts/SettingsUI.gd" id="8"]
+[ext_resource type="Texture2D" uid="uid://boe62hlvfx4sk" path="res://icons/folder_user.svg" id="8_wd72u"]
 [ext_resource type="Script" path="res://scripts/ReleaseInstaller.gd" id="9"]
 [ext_resource type="Theme" uid="uid://bqch7xqdrxh3i" path="res://themes/Godot_3.res" id="11"]
 [ext_resource type="Script" path="res://scripts/ModManager.gd" id="12"]
@@ -18,6 +20,7 @@
 [ext_resource type="Script" path="res://scripts/ModsUI.gd" id="18"]
 [ext_resource type="PackedScene" uid="uid://chyqjehe0nmxq" path="res://scenes/ModReinstallDialog.tscn" id="20"]
 [ext_resource type="Texture2D" uid="uid://blp7rq8cvi0u5" path="res://icons/lang/tex_lang_en.res" id="20_ey4vo"]
+[ext_resource type="Texture2D" uid="uid://bmifbdmqep5f2" path="res://icons/help.svg" id="20_pq48u"]
 [ext_resource type="Texture2D" path="res://icons/lang/tex_lang_fr.res" id="21_08o67"]
 [ext_resource type="Texture2D" path="res://icons/lang/tex_lang_ru.res" id="22_mts0p"]
 [ext_resource type="Texture2D" path="res://icons/lang/tex_lang_zh.res" id="23_2f1g3"]
@@ -213,10 +216,12 @@ text = "lbl_build_none"
 [node name="GameDir" parent="Main/TabBar/Game/ActiveInstall/Build" instance=ExtResource("26")]
 layout_mode = 2
 tooltip_text = "tooltip_game_dir"
+texture_normal = ExtResource("7_ffy77")
 
 [node name="UserDir" parent="Main/TabBar/Game/ActiveInstall/Build" instance=ExtResource("26")]
 layout_mode = 2
 tooltip_text = "tooltip_user_dir"
+texture_normal = ExtResource("8_wd72u")
 
 [node name="Launch" type="HBoxContainer" parent="Main/TabBar/Game/ActiveInstall"]
 layout_mode = 2
@@ -614,6 +619,7 @@ text = "lbl_other_settings"
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 tooltip_text = "View detailed description of these settings."
+texture_normal = ExtResource("20_pq48u")
 
 [node name="FontSizeUI" type="HBoxContainer" parent="Main/TabBar/Fonts/FontSelection/LeftPane"]
 layout_mode = 2
