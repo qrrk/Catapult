@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://j8v4j8uy58rl"]
+[gd_scene load_steps=44 format=3 uid="uid://j8v4j8uy58rl"]
 
 [ext_resource type="Texture2D" path="res://icons/buttons/tex_resume.tex" id="2"]
 [ext_resource type="Texture2D" uid="uid://uxhn3wij7008" path="res://icons/buttons/tex_download.tex" id="3"]
@@ -47,6 +47,8 @@ content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_nlnc6"]
 
 [node name="Catapult" type="Panel"]
 anchors_preset = 15
@@ -144,11 +146,13 @@ layout_mode = 2
 [node name="RBtnStable" type="CheckBox" parent="Main/TabBar/Game/Channel/Group" groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
 layout_mode = 2
 tooltip_text = "tooltip_stable"
+button_group = SubResource("ButtonGroup_nlnc6")
 text = "rbtn_stable"
 
 [node name="RBtnExperimental" type="CheckBox" parent="Main/TabBar/Game/Channel/Group" groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
 layout_mode = 2
 tooltip_text = "tooltip_experimental"
+button_group = SubResource("ButtonGroup_nlnc6")
 text = "rbtn_experimental"
 
 [node name="Builds" type="HBoxContainer" parent="Main/TabBar/Game"]
