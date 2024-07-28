@@ -19,13 +19,12 @@ func _set_disabled(value: bool) -> void:
 	
 	disabled = value
 
-# FIXME!!
-#func set_tab_disabled(index: int, value: bool) -> void:
-	#
-	#if (value == true) and (not index in _manually_disabled):
-		#_manually_disabled.append(index)
-	#elif index in _manually_disabled:
-		#_manually_disabled.erase(index)
-	#
-	#if not disabled:
-		#super.set_tab_disabled(index, value)
+func set_individual_tab_disabled(index: int, value: bool) -> void:
+	
+	if (value == true) and (not index in _manually_disabled):
+		_manually_disabled.append(index)
+	elif index in _manually_disabled:
+		_manually_disabled.erase(index)
+	
+	if not disabled:
+		super.set_tab_disabled(index, value)
