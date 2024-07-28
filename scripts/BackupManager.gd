@@ -8,8 +8,13 @@ signal backup_restoration_finished
 signal backup_deletion_started
 signal backup_deletion_finished
 
-var available = null: get = _get_available
+var available: Array:
+	get:
+		if not _available_backups:
+			refresh_available()
+		return _available_backups as Array
 
+var _available_backups = null
 
 func backup_current(backup_name: String) -> void:
 	# Create a backup of the save dir for the current game.
@@ -50,24 +55,16 @@ func get_save_summary(path: String) -> Dictionary:
 	return summary
 
 
-func _get_available() -> Array:
-	
-	if not available:
-		refresh_available()
-	
-	return available
-
-
 func refresh_available():
 
-	available = []
+	_available_backups = []
 	
 	if not DirAccess.dir_exists_absolute(Paths.save_backups):
 		return
 	
 	for backup in FS.list_dir(Paths.save_backups):
 		var path = Paths.save_backups.path_join(backup)
-		available.append(get_save_summary(path))
+		_available_backups.append(get_save_summary(path))
 
 
 func restore(backup_index: int) -> void:
