@@ -80,17 +80,16 @@ const SOUNDPACKS = [
 
 func parse_sound_dir(sound_dir: String) -> Array:
 	
-	if not Directory.new().dir_exists(sound_dir):
+	if not DirAccess.dir_exists_absolute(sound_dir):
 		Status.post(tr("msg_no_sound_dir") % sound_dir, Enums.MSG_ERROR)
 		return []
 	
 	var result = []
 	
 	for subdir in FS.list_dir(sound_dir):
-		var f = File.new()
-		var info = sound_dir.plus_file(subdir).plus_file("soundpack.txt")
-		if f.file_exists(info):
-			f.open(info, File.READ)
+		var info = sound_dir.path_join(subdir).path_join("soundpack.txt")
+		if FileAccess.file_exists(info):
+			var f := FileAccess.open(info, FileAccess.READ)
 			var lines = f.get_as_text().split("\n", false)
 			var name = ""
 			var desc = ""
@@ -102,7 +101,7 @@ func parse_sound_dir(sound_dir: String) -> Array:
 			var item = {}
 			item["name"] = name
 			item["description"] = desc
-			item["location"] = sound_dir.plus_file(subdir)
+			item["location"] = sound_dir.path_join(subdir)
 			result.append(item)
 			f.close()
 		
@@ -113,7 +112,7 @@ func get_installed(include_stock = false) -> Array:
 	
 	var packs = []
 	
-	if Directory.new().dir_exists(Paths.sound_user):
+	if DirAccess.dir_exists_absolute(Paths.sound_user):
 		packs.append_array(parse_sound_dir(Paths.sound_user))
 		for pack in packs:
 			pack["is_stock"] = false
@@ -134,7 +133,7 @@ func delete_pack(name: String) -> void:
 			emit_signal("soundpack_deletion_started")
 			Status.post(tr("msg_deleting_sound") % pack["location"])
 			FS.rm_dir(pack["location"])
-			yield(FS, "rm_dir_done")
+			await FS.rm_dir_done
 			emit_signal("soundpack_deletion_finished")
 			return
 			
@@ -146,7 +145,7 @@ func install_pack(soundpack_index: int, from_file = null, reinstall = false, kee
 	var pack = SOUNDPACKS[soundpack_index]
 	var game = Settings.read("game")
 	var sound_dir = Paths.sound_user
-	var tmp_dir = Paths.tmp_dir.plus_file(pack["name"])
+	var tmp_dir = Paths.tmp_dir.path_join(pack["name"])
 	var archive = ""
 	
 	emit_signal("soundpack_installation_started")
@@ -159,27 +158,27 @@ func install_pack(soundpack_index: int, from_file = null, reinstall = false, kee
 	if from_file:
 		archive = from_file
 	else:
-		archive = Paths.cache_dir.plus_file(pack["filename"])
-		if Settings.read("ignore_cache") or not Directory.new().file_exists(archive):
+		archive = Paths.cache_dir.path_join(pack["filename"])
+		if Settings.read("ignore_cache") or not FileAccess.file_exists(archive):
 			Downloader.download_file(pack["url"], Paths.cache_dir, pack["filename"])
-			yield(Downloader, "download_finished")
-		if not Directory.new().file_exists(archive):
+			await Downloader.download_finished
+		if not FileAccess.file_exists(archive):
 			Status.post(tr("msg_sound_download_failed"), Enums.MSG_ERROR)
 			emit_signal("soundpack_installation_finished")
 			return
 		
 	if reinstall:
 		FS.rm_dir(sound_dir + "/" + pack["name"])
-		yield(FS, "rm_dir_done")
+		await FS.rm_dir_done
 		
 	FS.extract(archive, tmp_dir)
-	yield(FS, "extract_done")
+	await FS.extract_done
 	if not keep_archive and not Settings.read("keep_cache"):
-		Directory.new().remove(archive)
+		DirAccess.remove_absolute(archive)
 	FS.move_dir(tmp_dir + "/" + pack["internal_path"], sound_dir + "/" + pack["name"])
-	yield(FS, "move_dir_done")
+	await FS.move_dir_done
 	FS.rm_dir(tmp_dir)
-	yield(FS, "rm_dir_done")
+	await FS.rm_dir_done
 	
 	Status.post(tr("msg_sound_installed"))
 	emit_signal("soundpack_installation_finished")

@@ -1,10 +1,10 @@
-extends WindowDialog
+extends Window
 
 
 signal response_yes
 signal response_no
 
-onready var _label = $Panel/Margin/VBox/Label
+@onready var _label = $Panel/Margin/VBox/Label
 
 
 func open(num_mods: int) -> void:
@@ -14,7 +14,7 @@ func open(num_mods: int) -> void:
 	else:
 		_label.text = tr("dlg_mod_reinstall_text_multiple") % num_mods
 	
-	rect_size = Vector2(400, 150)
+	size = Vector2(400, 150)
 	popup_centered()
 
 

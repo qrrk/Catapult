@@ -2,12 +2,13 @@
 
 importer="image"
 type="Image"
-path="res://.import/lang_ru.svg-eb492fa34f52caedca6c1d0aa2d16a63.image"
+uid="uid://dxsec1r1urdtv"
+path="res://.godot/imported/lang_ru.svg-eb492fa34f52caedca6c1d0aa2d16a63.image"
 
 [deps]
 
 source_file="res://icons/lang/lang_ru.svg"
-dest_files=[ "res://.import/lang_ru.svg-eb492fa34f52caedca6c1d0aa2d16a63.image" ]
+dest_files=["res://.godot/imported/lang_ru.svg-eb492fa34f52caedca6c1d0aa2d16a63.image"]
 
 [params]
 
