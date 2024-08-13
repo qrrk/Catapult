@@ -1,0 +1,23 @@
+id: "com.github.qrrk.catapult"
+runtime: "org.freedesktop.Platform"
+runtime-version: '23.08'
+sdk: org.freedesktop.Sdk
+command: catapult
+finish-args:
+  - --socket=pulseaudio
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --share=ipc
+  - --device=dri
+  - --share=network
+
+modules:
+  - name: catapult
+    buildsystem: simple
+    build-commands:
+      - install -Dm755 catapult /app/bin/catapult
+    sources:
+      - type: file
+        url: "https://github.com/qrrk/Catapult/releases/download/24.07a/catapult-linux-x64-24.07a"
+        sha256: "5894dc413a249da9ee2437c830ff34cd1cd6daf1fffef3d31f4e5c9b2968eea7"
+        dest-filename: "catapult"
