@@ -28,9 +28,9 @@ const SOUNDPACKS = [
 	},
 	{
 		"name": "BeepBoopBip",
-		"url": "https://github.com/Fris0uman/CDDA-Soundpacks/releases/latest/download/BeepBoopBip.zip",
+		"url": "https://github.com/Golfavel/CDDA-Soundpacks_BeepBoop/archive/refs/heads/master.zip",
 		"filename": "BeepBoopBip.zip",
-		"internal_path": "BeepBoopBip",
+		"internal_path": "CDDA-Soundpacks_BeepBoop-master/sound/BeepBoopBip",
 	},
 	{
 		"name": "@'s soundpack",
@@ -46,19 +46,19 @@ const SOUNDPACKS = [
 	},
 	{
 		"name": "ChestHole",
-		"url": "http://chezzo.com/cdda/ChestHoleSoundSet.zip",
+		"url": "https://web.archive.org/web/20240122133501if_/https://chezzo.com/cdda/ChestHoleSoundSet.zip",
 		"filename": "chesthole-soundpack.zip",
 		"internal_path": "ChestHole",
 	},
 	{
 		"name": "ChestHoleCC",
-		"url": "http://chezzo.com/cdda/ChestHoleCCSoundset.zip",
+		"url": "https://web.archive.org/web/20210401095201if_/http://chezzo.com/cdda/ChestHoleCCSoundset.zip",
 		"filename": "chesthole-cc-soundpack.zip",
 		"internal_path": "ChestHoleCC",
 	},
 	{
 		"name": "ChestOldTimey",
-		"url": "http://chezzo.com/cdda/ChestOldTimeyLessismore.zip",
+		"url": "https://web.archive.org/web/20210401095200if_/http://chezzo.com/cdda/ChestOldTimeyLessismore.zip",
 		"filename": "chest-old-timey-soundpack.zip",
 		"internal_path": "ChestHoleOldTimey",
 	},
@@ -70,10 +70,9 @@ const SOUNDPACKS = [
 	},
 	{
 		"name": "RRFSounds",
-		"url": "https://www.dropbox.com/s/d8dfmb2facvkdh6/RRFSounds.zip",
+		"url": "https://dl.dropboxusercontent.com/s/d8dfmb2facvkdh6/RRFSounds.zip",
 		"filename": "rrfsounds.zip",
 		"internal_path": "data/sound/RRFSounds",
-		"manual_download": true,
 	},
 ]
 
