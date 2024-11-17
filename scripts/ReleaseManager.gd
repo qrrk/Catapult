@@ -21,11 +21,11 @@ const _RELEASE_URLS = {
 const _ASSET_FILTERS = {
 	"dda-experimental-linux": {
 		"field": "name",
-		"substring": "cdda-linux-tiles-x64",
+		"substring": "cdda-linux-with-graphics-and-sounds-x64",
 	},
 	"dda-experimental-win": {
 		"field": "name",
-		"substring": "cdda-windows-tiles-x64",
+		"substring": "cdda-windows-with-graphics-and-sounds-x64",
 	},
 	"bn-experimental-linux": {
 		"field": "name",
