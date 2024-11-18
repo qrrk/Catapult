@@ -2,13 +2,14 @@
 
 importer="csv_translation"
 type="Translation"
+uid="uid://gm1xd4ojx7p"
 
 [deps]
 
-files=[ "res://text/ko/changelog_dialog.ko.translation" ]
+files=["res://text/ko/changelog_dialog.ko.translation"]
 
 source_file="res://text/ko/changelog_dialog.csv"
-dest_files=[ "res://text/ko/changelog_dialog.ko.translation" ]
+dest_files=["res://text/ko/changelog_dialog.ko.translation"]
 
 [params]
 

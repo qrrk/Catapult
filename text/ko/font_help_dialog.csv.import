@@ -2,13 +2,14 @@
 
 importer="csv_translation"
 type="Translation"
+uid="uid://qf0vhn2oybo4"
 
 [deps]
 
-files=[ "res://text/ko/font_help_dialog.ko.translation" ]
+files=["res://text/ko/font_help_dialog.ko.translation"]
 
 source_file="res://text/ko/font_help_dialog.csv"
-dest_files=[ "res://text/ko/font_help_dialog.ko.translation" ]
+dest_files=["res://text/ko/font_help_dialog.ko.translation"]
 
 [params]
 
