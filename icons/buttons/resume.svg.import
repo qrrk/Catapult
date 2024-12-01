@@ -2,12 +2,13 @@
 
 importer="image"
 type="Image"
-path="res://.import/resume.svg-7e6eedb6256fc04995eef3be7c7de11e.image"
+uid="uid://coqdqp806dnle"
+path="res://.godot/imported/resume.svg-7e6eedb6256fc04995eef3be7c7de11e.image"
 
 [deps]
 
 source_file="res://icons/buttons/resume.svg"
-dest_files=[ "res://.import/resume.svg-7e6eedb6256fc04995eef3be7c7de11e.image" ]
+dest_files=["res://.godot/imported/resume.svg-7e6eedb6256fc04995eef3be7c7de11e.image"]
 
 [params]
 

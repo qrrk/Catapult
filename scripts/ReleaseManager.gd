@@ -297,7 +297,7 @@ func _request_releases(http: HTTPRequest, release: String) -> void:
 
 
 func _on_request_completed_dda(result: int, response_code: int,
-		headers: PoolStringArray, body: PoolByteArray) -> void:
+		headers: PackedStringArray, body: PackedByteArray) -> void:
 	
 	Status.post(tr("msg_http_request_info") %
 			[result, response_code, headers], Enums.MSG_DEBUG)
@@ -311,7 +311,7 @@ func _on_request_completed_dda(result: int, response_code: int,
 
 
 func _on_request_completed_bn(result: int, response_code: int,
-		headers: PoolStringArray, body: PoolByteArray) -> void:
+		headers: PackedStringArray, body: PackedByteArray) -> void:
 	
 	Status.post(tr("msg_http_request_info") %
 			[result, response_code, headers], Enums.MSG_DEBUG)
@@ -324,7 +324,7 @@ func _on_request_completed_bn(result: int, response_code: int,
 	emit_signal("done_fetching_releases")
 
 func _on_request_completed_eod(result: int, response_code: int,
-		headers: PoolStringArray, body: PoolByteArray) -> void:
+		headers: PackedStringArray, body: PackedByteArray) -> void:
 	
 	Status.post(tr("msg_http_request_info") %
 			[result, response_code, headers], Enums.MSG_DEBUG)
@@ -337,7 +337,7 @@ func _on_request_completed_eod(result: int, response_code: int,
 	emit_signal("done_fetching_releases")
 
 func _on_request_completed_tish(result: int, response_code: int,
-		headers: PoolStringArray, body: PoolByteArray) -> void:
+		headers: PackedStringArray, body: PackedByteArray) -> void:
 	
 	Status.post(tr("msg_http_request_info") %
 			[result, response_code, headers], Enums.MSG_DEBUG)
@@ -349,9 +349,11 @@ func _on_request_completed_tish(result: int, response_code: int,
 	
 	emit_signal("done_fetching_releases")
 
-func _parse_builds(data: PoolByteArray, write_to: Array, filter: Dictionary) -> void:
+func _parse_builds(data: PackedByteArray, write_to: Array, filter: Dictionary) -> void:
 	
-	var json = JSON.parse(data.get_string_from_utf8()).result
+	var json_conv := JSON.new()
+	json_conv.parse(data.get_string_from_utf8())
+	var json = json_conv.data
 	
 	# Check if API rate limit is exceeded
 	if "message" in json:

@@ -2,12 +2,13 @@
 
 importer="image"
 type="Image"
-path="res://.import/download.svg-9c96e819818866701a8a985608394973.image"
+uid="uid://dsil04ws401dm"
+path="res://.godot/imported/download.svg-9c96e819818866701a8a985608394973.image"
 
 [deps]
 
 source_file="res://icons/buttons/download.svg"
-dest_files=[ "res://.import/download.svg-9c96e819818866701a8a985608394973.image" ]
+dest_files=["res://.godot/imported/download.svg-9c96e819818866701a8a985608394973.image"]
 
 [params]
 

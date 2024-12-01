@@ -2,12 +2,13 @@
 
 importer="image"
 type="Image"
-path="res://.import/godot3.svg-93abcd24d98a0a648490dad29b216bee.image"
+uid="uid://bg64ueq5b5qk"
+path="res://.godot/imported/godot3.svg-93abcd24d98a0a648490dad29b216bee.image"
 
 [deps]
 
 source_file="res://icons/theme/godot3.svg"
-dest_files=[ "res://.import/godot3.svg-93abcd24d98a0a648490dad29b216bee.image" ]
+dest_files=["res://.godot/imported/godot3.svg-93abcd24d98a0a648490dad29b216bee.image"]
 
 [params]
 
