@@ -55,6 +55,11 @@ const _ASSET_FILTERS = {
 
 const _DDA_STABLE_LINUX = [
 	{
+		"name": "0.H Herbert",
+		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.H-RELEASE/cdda-linux-with-graphics-x64-2024-11-23-1857.tar.gz",
+		"filename": "cdda-linux-with-graphics-x64-2024-11-23-1857.tar.gz"
+	},	
+	{
 		"name": "0.G Gaiman",
 		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.G/cdda-linux-tiles-x64-2023-03-01-0054.tar.gz",
 		"filename": "cdda-linux-tiles-x64-2023-03-01-0054.tar.gz"
@@ -102,6 +107,11 @@ const _DDA_STABLE_LINUX = [
 ]
 
 const _DDA_STABLE_WIN = [
+	{
+		"name": "0.H Herbert",
+		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.H-RELEASE/cdda-windows-with-graphics-x64-2024-11-23-1857.zip",
+		"filename": "cdda-windows-with-graphics-x64-2024-11-23-1857.zip"
+	},	
 	{
 		"name": "0.G Gaiman",
 		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.G/cdda-windows-tiles-x64-2023-03-01-0054.zip",
