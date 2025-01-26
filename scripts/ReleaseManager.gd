@@ -166,6 +166,11 @@ const _DDA_STABLE_WIN = [
 
 const _BN_STABLE_LINUX = [
 	{
+		"name": "0.7.0",
+		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/v0.7.0/cbn-linux-tiles-x64-v0.7.0.tar.gz",
+		"filename": "cbn-linux-tiles-x64-v0.7.0.tar.gz"
+	},
+	{
 		"name": "0.6.0",
 		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/v0.6.0/cbn-linux-tiles-x64-v0.6.0.tar.gz",
 		"filename": "cbn-linux-tiles-x64-v0.6.0.tar.gz"
@@ -208,6 +213,11 @@ const _BN_STABLE_LINUX = [
 ]
 
 const _BN_STABLE_WIN = [
+	{
+		"name": "0.7.0",
+		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/v0.7.0/cbn-windows-tiles-x64-v0.7.0.zip",
+		"filename": "cbn-windows-tiles-x64-v0.7.0.zip"
+	},
 	{
 		"name": "0.6.0",
 		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/v0.6.0/cbn-windows-tiles-x64-v0.6.0.zip",
