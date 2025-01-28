@@ -1,7 +1,7 @@
 extends ItemList
 
 
-var disabled: bool setget _set_disabled, _get_disabled
+var disabled: bool: get = _get_disabled, set = _set_disabled
 
 
 func _set_disabled(value: bool) -> void:
@@ -10,7 +10,7 @@ func _set_disabled(value: bool) -> void:
 		set_item_disabled(i, value)
 	
 	if value == true:
-		unselect_all()
+		deselect_all()
 	
 	disabled = value
 

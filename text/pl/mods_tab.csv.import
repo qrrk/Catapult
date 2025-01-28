@@ -2,13 +2,14 @@
 
 importer="csv_translation"
 type="Translation"
+uid="uid://cbj47qs3walma"
 
 [deps]
 
-files=[ "res://text/pl/mods_tab.pl.translation" ]
+files=["res://text/pl/mods_tab.pl.translation"]
 
 source_file="res://text/pl/mods_tab.csv"
-dest_files=[ "res://text/pl/mods_tab.pl.translation" ]
+dest_files=["res://text/pl/mods_tab.pl.translation"]
 
 [params]
 

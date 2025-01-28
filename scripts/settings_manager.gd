@@ -48,9 +48,9 @@ func _exit_tree() -> void:
 
 func _load() -> void:
 	
-	_settings_file = Paths.own_dir.plus_file(_SETTINGS_FILENAME)
+	_settings_file = Paths.own_dir.path_join(_SETTINGS_FILENAME)
 	
-	if File.new().file_exists(_settings_file):
+	if FileAccess.file_exists(_settings_file):
 		_current = _read_from_file(_settings_file)
 		
 	else:
@@ -61,30 +61,27 @@ func _load() -> void:
 
 func _read_from_file(path: String) -> Dictionary:
 	
-	var f = File.new()
-	
-	if not f.file_exists(path):
+	if not FileAccess.file_exists(path):
 		Status.post(tr("msg_nonexistent_attempt") % path, Enums.MSG_ERROR)
 		return {}
 		
 	Status.post(tr("msg_loading_settings") % _SETTINGS_FILENAME)
 		
-	f.open(path, File.READ)
-	var s = f.get_as_text()
-	var result: JSONParseResult = JSON.parse(s)
+	var f := FileAccess.open(path, FileAccess.READ)
+	var json := JSON.new()
+	var error := json.parse(f.get_as_text())
 	
-	if result.error:
-		Status.post(tr("msg_settings_parse_error") % [result.error_line, result.error_string], Enums.MSG_ERROR)
+	if error:
+		Status.post(tr("msg_settings_parse_error") % [json.get_error_line(), json.get_error_message()], Enums.MSG_ERROR)
 		return {}
 	else:
-		return result.result
+		return json.data
 
 
 func _write_to_file(data: Dictionary, path: String) -> void:
 	
-	var f = File.new()
-	var content = JSON.print(data, "    ")
-	f.open(path, File.WRITE)
+	var content = JSON.stringify(data, "    ")
+	var f := FileAccess.open(path, FileAccess.WRITE)
 	f.store_string(content)
 	f.close()
 

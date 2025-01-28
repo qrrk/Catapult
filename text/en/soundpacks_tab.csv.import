@@ -2,13 +2,14 @@
 
 importer="csv_translation"
 type="Translation"
+uid="uid://boqed2j8xsdm6"
 
 [deps]
 
-files=[ "res://text/en/soundpacks_tab.en.translation" ]
+files=["res://text/en/soundpacks_tab.en.translation"]
 
 source_file="res://text/en/soundpacks_tab.csv"
-dest_files=[ "res://text/en/soundpacks_tab.en.translation" ]
+dest_files=["res://text/en/soundpacks_tab.en.translation"]
 
 [params]
 

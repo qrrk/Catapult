@@ -2,12 +2,13 @@
 
 importer="image"
 type="Image"
-path="res://.import/lang_ko.svg-f51eed7c559719025da85b9243c061b5.image"
+uid="uid://dat7xnrpw42ri"
+path="res://.godot/imported/lang_ko.svg-f51eed7c559719025da85b9243c061b5.image"
 
 [deps]
 
 source_file="res://icons/lang/lang_ko.svg"
-dest_files=[ "res://.import/lang_ko.svg-f51eed7c559719025da85b9243c061b5.image" ]
+dest_files=["res://.godot/imported/lang_ko.svg-f51eed7c559719025da85b9243c061b5.image"]
 
 [params]
 

@@ -2,12 +2,13 @@
 
 importer="image"
 type="Image"
-path="res://.import/solarized_dark.svg-8d2b2730c48d9b8eb47bd56826ff4833.image"
+uid="uid://chkx4g6ro6dif"
+path="res://.godot/imported/solarized_dark.svg-8d2b2730c48d9b8eb47bd56826ff4833.image"
 
 [deps]
 
 source_file="res://icons/theme/solarized_dark.svg"
-dest_files=[ "res://.import/solarized_dark.svg-8d2b2730c48d9b8eb47bd56826ff4833.image" ]
+dest_files=["res://.godot/imported/solarized_dark.svg-8d2b2730c48d9b8eb47bd56826ff4833.image"]
 
 [params]
 

@@ -2,7 +2,7 @@ extends ItemList
 # A small extension that adds the "disabled" propertry to ItemList.
 
 
-export var disabled: bool = false setget _set_disabled
+@export var disabled: bool = false: set = _set_disabled
 
 
 func _set_disabled(value: bool) -> void:

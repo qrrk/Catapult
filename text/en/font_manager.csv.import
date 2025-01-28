@@ -2,13 +2,14 @@
 
 importer="csv_translation"
 type="Translation"
+uid="uid://cfdm8f6c7m7bc"
 
 [deps]
 
-files=[ "res://text/en/font_manager.en.translation" ]
+files=["res://text/en/font_manager.en.translation"]
 
 source_file="res://text/en/font_manager.csv"
-dest_files=[ "res://text/en/font_manager.en.translation" ]
+dest_files=["res://text/en/font_manager.en.translation"]
 
 [params]
 

@@ -2,12 +2,13 @@
 
 importer="image"
 type="Image"
-path="res://.import/lang_es.svg-8eb9cd0ec415153b0fe37dc2cd38a75c.image"
+uid="uid://bo2wlxw615mah"
+path="res://.godot/imported/lang_es.svg-8eb9cd0ec415153b0fe37dc2cd38a75c.image"
 
 [deps]
 
 source_file="res://icons/lang/lang_es.svg"
-dest_files=[ "res://.import/lang_es.svg-8eb9cd0ec415153b0fe37dc2cd38a75c.image" ]
+dest_files=["res://.godot/imported/lang_es.svg-8eb9cd0ec415153b0fe37dc2cd38a75c.image"]
 
 [params]
 
