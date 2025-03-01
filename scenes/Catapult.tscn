@@ -84,7 +84,7 @@ margin_bottom = 24.0
 hint_tooltip = "tooltip_game"
 size_flags_horizontal = 3
 text = "Cataclysm: Dark Days Ahead"
-items = [ "Cataclysm: Dark Days Ahead", null, false, 0, null, "Cataclysm: Bright Nights", null, false, 1, null, "Cataclysm: Era Of Decay", null, false, 2, null, "Cataclysm: There Is Still Hope", null, false, 3, null ]
+items = [ "Cataclysm: Dark Days Ahead", null, false, 0, null, "Cataclysm: Bright Nights", null, false, 1, null, "Cataclysm: Era Of Decay", null, false, 2, null, "Cataclysm: There Is Still Hope", null, false, 3, null, "Cataclysm: The Last Generation", null, false, 4, null ]
 selected = 0
 
 [node name="GameInfo" type="HBoxContainer" parent="Main"]
@@ -1360,6 +1360,8 @@ __meta__ = {
 
 [node name="HTTPRequest_TISH" type="HTTPRequest" parent="Releases"]
 
+[node name="HTTPRequest_TLG" type="HTTPRequest" parent="Releases"]
+
 [node name="ReleaseInstaller" type="Node" parent="."]
 script = ExtResource( 9 )
 __meta__ = {
@@ -1478,6 +1480,7 @@ __meta__ = {
 [connection signal="request_completed" from="Releases/HTTPRequest_BN" to="Releases" method="_on_request_completed_bn"]
 [connection signal="request_completed" from="Releases/HTTPRequest_EOD" to="Releases" method="_on_request_completed_eod"]
 [connection signal="request_completed" from="Releases/HTTPRequest_TISH" to="Releases" method="_on_request_completed_tish"]
+[connection signal="request_completed" from="Releases/HTTPRequest_TLG" to="Releases" method="_on_request_completed_tlg"]
 [connection signal="operation_finished" from="ReleaseInstaller" to="." method="_on_ReleaseInstaller_operation_finished"]
 [connection signal="operation_started" from="ReleaseInstaller" to="." method="_on_ReleaseInstaller_operation_started"]
 [connection signal="mod_deletion_finished" from="Mods" to="." method="_on_mod_operation_finished"]

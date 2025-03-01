@@ -28,6 +28,7 @@ onready var _lst_installs = $Main/Tabs/Game/GameInstalls/HBox/InstallsList
 onready var _btn_make_active = $Main/Tabs/Game/GameInstalls/HBox/VBox/btnMakeActive
 onready var _btn_delete = $Main/Tabs/Game/GameInstalls/HBox/VBox/btnDelete
 onready var _panel_installs = $Main/Tabs/Game/GameInstalls
+onready var _btn_get_kenan = $Main/Tabs/Mods/HBox/Available/BtnDownloadKenan
 
 var _disable_savestate := {}
 var _installs := {}
@@ -102,6 +103,8 @@ func assign_localized_text() -> void:
 		_game_desc.bbcode_text = tr("desc_eod")
 	elif game == "tish":
 		_game_desc.bbcode_text = tr("desc_tish")
+	elif game == "tlg":
+		_game_desc.bbcode_text = tr("desc_tlg")
 
 
 func load_ui_theme(theme_file: String) -> void:
@@ -191,6 +194,9 @@ func _on_GamesList_item_selected(index: int) -> void:
 		3:
 			Settings.store("game", "tish")
 			_game_desc.bbcode_text = tr("desc_tish")
+		4:
+			Settings.store("game", "tlg")
+			_game_desc.bbcode_text = tr("desc_tlg")
 	
 	_tabs.current_tab = 0
 	apply_game_choice()
@@ -379,16 +385,25 @@ func apply_game_choice() -> void:
 	if (game == "dda") or (game == "bn"):
 		_rbtn_exper.disabled = false
 		_rbtn_stable.disabled = false
+		# Thes Forks do have the Kenan Modpack
+		_btn_get_kenan.disabled = false
+		_btn_get_kenan.hint_tooltip = tr("tooltip_get_kenan_pack")
 		if channel == "stable":
 			_rbtn_stable.pressed = true
 			_btn_refresh.disabled = true
 		else:
 			_btn_refresh.disabled = false
-	elif (game == "eod") or (game == "tish"):
+	elif game in ["eod", "tish", "tlg"]:
+		# These Forks do not have a stable channel
 		_rbtn_exper.pressed = true
 		_rbtn_exper.disabled = true
 		_rbtn_stable.disabled = true
 		_btn_refresh.disabled = false
+		# These Forks do not have the Kenan Modpack
+		_btn_get_kenan.disabled = true
+		_btn_get_kenan.hint_tooltip = tr("tooltip_no_kenan_pack")
+	
+		
 
 	match game:
 		"dda":
@@ -406,7 +421,11 @@ func apply_game_choice() -> void:
 		"tish":
 			_lst_games.select(3)
 			_game_desc.bbcode_text = tr("desc_tish")
-	
+			
+		"tlg":
+			_lst_games.select(4)
+			_game_desc.bbcode_text = tr("desc_tlg")
+
 	if len(_releases.releases[_get_release_key()]) == 0:
 		_releases.fetch(_get_release_key())
 	else:

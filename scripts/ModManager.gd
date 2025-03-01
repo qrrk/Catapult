@@ -259,6 +259,9 @@ func install_mods(mod_ids: Array) -> void:
 func retrieve_kenan_pack() -> void:
 	
 	var game = Settings.read("game")
+	if( !game == "dda" || !game == "bn" ):
+		Status.post(tr("msg_kenan_unavailable") % game.to_upper())
+		return
 	var pack = _MODPACKS["kenan-" + game]
 	
 	emit_signal("modpack_retrieval_started")
