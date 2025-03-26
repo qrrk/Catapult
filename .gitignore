@@ -12,3 +12,7 @@ git_api.gdns
 
 # vscode
 .vscode
+
+# Godot Engine
+builds/
+exports/

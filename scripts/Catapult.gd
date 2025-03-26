@@ -103,7 +103,7 @@ func assign_localized_text() -> void:
 	elif game == "tish":
 		_game_desc.bbcode_text = tr("desc_tish")
 	elif game == "tlg":
-		_game_desc.bbcode_text = tr("desc_tlg)
+		_game_desc.bbcode_text = tr("desc_tlg")
 
 
 func load_ui_theme(theme_file: String) -> void:

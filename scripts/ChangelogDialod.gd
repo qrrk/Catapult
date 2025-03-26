@@ -85,9 +85,9 @@ func process_pr_data(data):
 		"tish":
 			game_title = "Cataclysm: There Is Still Hope"
 		"tlg":
-		game_title = "Cataclysm: The Last Generation"
+			game_title = "Cataclysm: The Last Generation"
 		_:
-		game_title = "{BUG!!}" 
+			game_title = "{BUG!!}" 
 	
 	var r_val = tr("str_changelog_intro") % [Settings.read("num_prs_to_request"), game_title]
 	
