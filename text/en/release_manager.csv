@@ -8,4 +8,5 @@
 "msg_fetching_releases_bn","Fetching releases for BN Experimental..."
 "msg_fetching_releases_eod","Fetching releases for EOD Experimental..."
 "msg_fetching_releases_tish","Fetching releases for TISH Experimental..."
+"msg_fetching_releases_tlg","Fetching releases for TLG Experimental..."
 "msg_invalid_fetch_func_param","ReleaseManager.fetch() was passed %s"

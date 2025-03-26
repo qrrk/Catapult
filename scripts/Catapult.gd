@@ -102,6 +102,8 @@ func assign_localized_text() -> void:
 		_game_desc.bbcode_text = tr("desc_eod")
 	elif game == "tish":
 		_game_desc.bbcode_text = tr("desc_tish")
+	elif game == "tlg":
+		_game_desc.bbcode_text = tr("desc_tlg)
 
 
 func load_ui_theme(theme_file: String) -> void:
@@ -191,6 +193,10 @@ func _on_GamesList_item_selected(index: int) -> void:
 		3:
 			Settings.store("game", "tish")
 			_game_desc.bbcode_text = tr("desc_tish")
+		4:	
+			Settings.store("game", "tlg")
+			_game_desc.bbcode_text = tr("desc_tlg")
+	
 	
 	_tabs.current_tab = 0
 	apply_game_choice()
@@ -406,7 +412,11 @@ func apply_game_choice() -> void:
 		"tish":
 			_lst_games.select(3)
 			_game_desc.bbcode_text = tr("desc_tish")
-	
+		
+		"tlg":
+			_lst_games.select(4)
+			_game_desc.bbcode_text = tr("desc_tlg")
+
 	if len(_releases.releases[_get_release_key()]) == 0:
 		_releases.fetch(_get_release_key())
 	else:
