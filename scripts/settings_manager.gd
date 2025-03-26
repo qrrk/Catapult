@@ -10,6 +10,7 @@ const _HARDCODED_DEFAULTS = {
 	"active_install_bn": "",
 	"active_install_eod": "",
 	"active_install_tish": "",
+	"active_install_tlg": "", 
 	"update_current_when_installing": true,
 	"launcher_locale": "",
 	"launcher_theme": "Godot_3.res",

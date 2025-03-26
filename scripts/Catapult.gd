@@ -390,7 +390,7 @@ func apply_game_choice() -> void:
 			_btn_refresh.disabled = true
 		else:
 			_btn_refresh.disabled = false
-	elif (game == "eod") or (game == "tish"):
+	elif (game == "eod") or (game == "tish") or (game == "tlg"):
 		_rbtn_exper.pressed = true
 		_rbtn_exper.disabled = true
 		_rbtn_stable.disabled = true
