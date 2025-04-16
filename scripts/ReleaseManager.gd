@@ -220,7 +220,7 @@ const _BN_STABLE_LINUX = [
 const _BN_STABLE_WIN = [
 	{
 		"name": "0.7.1",
-		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/v0.7.1/cbn-windows-tiles-x64-v0.7.1.zip",
+		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/v0.7.1/cbn-windows-tiles-x64-msvc-v0.7.1.zip",
 		"filename": "cbn-windows-tiles-x64-v0.7.1.zip"
 	},
 	{
