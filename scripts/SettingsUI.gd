@@ -31,6 +31,8 @@ func _ready() -> void:
 	if lang_idx >= 0:
 		$LauncherLanguage/obtnLanguage.selected = lang_idx
 	
+	# Loads themes & assets from user dir, then adds to themes array.
+	FS.load_pck_themes_from_user_dir(_themes, $LauncherTheme/obtnTheme)
 	var theme_idx := _themes.find(Settings.read("launcher_theme"))
 	if theme_idx >= 0:
 		$LauncherTheme/obtnTheme.selected = theme_idx

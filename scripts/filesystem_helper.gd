@@ -256,4 +256,35 @@ func zip(parent: String, dir_to_zip: String, dest_zip: String) -> void:
 		Status.post(tr("msg_extract_failed_cmd") % str(command), Enums.MSG_DEBUG)
 		Status.post(tr("msg_extract_fail_output") % oew.output[0], Enums.MSG_DEBUG)
 	emit_signal("zip_done")
-	
+
+## Loads theme `.pck` files from the user-specific `user://themes` directory.
+## If themes are found and successfully loaded as resource packs, their icons and paths
+## are added to the launcher theme UI and internal theme list.
+func load_pck_themes_from_user_dir(themes_array, theme_dropdown_list) -> void:
+	var THEME_DIR := "user://themes"
+	var dir := Directory.new()
+	# Ensure theme directory exists
+	if not dir.dir_exists(THEME_DIR) and dir.make_dir(THEME_DIR) != OK:
+		push_error("Could not create theme directory: %s" % THEME_DIR)
+		return
+	if dir.open(THEME_DIR) != OK:
+		push_error("Could not open theme directory: %s" % THEME_DIR)
+		return
+	dir.list_dir_begin()
+	var file_name := dir.get_next()
+	while file_name != "":
+		if file_name.ends_with(".pck") and not dir.current_is_dir():
+			var base_name := file_name.get_basename()
+			var full_path := "%s/%s" % [THEME_DIR, file_name]
+			if ProjectSettings.load_resource_pack(full_path):
+				var icon_path := "res://themes/custom/%s/%s_logo.res" % [base_name, base_name]
+				var theme_res_path := "custom/%s/%s.res" % [base_name, base_name]
+				var icon := load(icon_path)
+				if (!is_instance_valid(icon)):
+					icon = load("res://icons/theme/tex_godot3.res")
+				themes_array.append(theme_res_path)
+				theme_dropdown_list.add_icon_item(icon, base_name)
+			else:
+				push_warning("Failed to load theme pack: %s" % file_name)
+		file_name = dir.get_next()
+	dir.list_dir_end()
