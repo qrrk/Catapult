@@ -7,25 +7,60 @@
    viewBox="0 0 238.12501 158.75"
    version="1.1"
    id="svg5"
+   sodipodi:docname="lang_ru.svg"
+   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.70710678"
+     inkscape:cx="444.06306"
+     inkscape:cy="193.04015"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="1272"
+     inkscape:window-y="390"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
   <defs
      id="defs2" />
   <g
      id="layer1">
     <rect
-       style="fill:#ffffff;stroke-width:0.305866"
-       id="rect43"
+       style="fill:#d52b1e;fill-opacity:1;stroke-width:0.293829"
+       id="rect45-8"
        width="238.125"
-       height="158.75"
-       x="0"
-       y="-8.8817842e-16" />
+       height="52.916668"
+       x="2.4999999e-06"
+       y="-158.75"
+       transform="scale(1,-1)"
+       inkscape:label="red" />
     <rect
-       style="fill:#088ce8;fill-opacity:1;stroke-width:0.30817"
+       style="fill:#0039a6;fill-opacity:1;stroke-width:0.293829"
        id="rect45"
        width="238.125"
-       height="58.208332"
-       x="0"
-       y="50.270832" />
+       height="52.916668"
+       x="2.4999999e-06"
+       y="-105.83334"
+       transform="scale(1,-1)"
+       inkscape:label="blue" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke-width:0.293829"
+       id="rect45-9"
+       width="238.125"
+       height="52.916668"
+       x="2.4999999e-06"
+       y="-52.916668"
+       transform="scale(1,-1)"
+       inkscape:label="white" />
   </g>
 </svg>
