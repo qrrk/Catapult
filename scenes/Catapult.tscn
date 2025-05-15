@@ -84,7 +84,7 @@ margin_bottom = 24.0
 hint_tooltip = "tooltip_game"
 size_flags_horizontal = 3
 text = "Cataclysm: Dark Days Ahead"
-items = [ "Cataclysm: Dark Days Ahead", null, false, 0, null, "Cataclysm: Bright Nights", null, false, 1, null, "Cataclysm: Era Of Decay", null, false, 2, null, "Cataclysm: There Is Still Hope", null, false, 3, null ]
+items = [ "Cataclysm: Dark Days Ahead", null, false, 0, null, "Cataclysm: Bright Nights", null, false, 1, null, "Cataclysm: Era Of Decay", null, false, 2, null, "Cataclysm: There Is Still Hope", null, false, 3, null, "Cataclysm: The Last Generation", null, false, 4, null ]
 selected = 0
 
 [node name="GameInfo" type="HBoxContainer" parent="Main"]
