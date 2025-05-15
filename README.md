@@ -23,7 +23,7 @@
 
 ## Installation
 
-None required. The launcher is a single, self-contained executable. Just [download](https://github.com/qrrk/Catapult/releases/latest) it to a separate folder and run.
+None required. The launcher is a single, self-contained executable. Just [download](https://github.com/Hihahahalol/Catapult_TLG/releases/latest) it to a separate folder and run.
 
 ### Linux
 - You need write permission in the folder that contains the Catapult executable.
