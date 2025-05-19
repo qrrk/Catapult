@@ -31,6 +31,7 @@ onready var _btn_make_active = $Main/Tabs/Game/GameInstalls/HBox/VBox/btnMakeAct
 onready var _btn_delete = $Main/Tabs/Game/GameInstalls/HBox/VBox/btnDelete
 onready var _panel_installs = $Main/Tabs/Game/GameInstalls
 onready var _btn_get_kenan = $Main/Tabs/Mods/HBox/Available/BtnDownloadKenan
+onready var _version_check_request = HTTPRequest.new()
 
 var _disable_savestate := {}
 var _installs := {}
@@ -41,8 +42,16 @@ var _base_icon_sizes := {}
 
 var _easter_egg_counter := 0
 
+const VERSION_CHECK_URL = "https://api.github.com/repos/Hihahahalol/Catapult_Dabdoob/releases/latest"
+var _latest_version = ""
+var _is_update_available = false
+
 
 func _ready() -> void:
+	
+	# Add the HTTPRequest node for version checking
+	add_child(_version_check_request)
+	_version_check_request.connect("request_completed", self, "_on_version_check_completed")
 	
 	# Apply UI theme
 	var theme_file = Settings.read("launcher_theme")
@@ -90,6 +99,7 @@ func _save_icon_sizes() -> void:
 
 func assign_localized_text() -> void:
 	
+	var version = Settings.read("version")
 	OS.set_window_title(tr("window_title"))	
 	
 	_tabs.set_tab_title(0, tr("tab_game"))
@@ -584,12 +594,89 @@ func _activate_easter_egg() -> void:
 
 
 func _on_BtnCheck_pressed() -> void:
-	# This function will be implemented later.
-	# For now, the button does nothing
-	pass
+	var current_version = Settings.read("version")
+	Status.post(tr("Checking for updates... Current version: v%s") % current_version)
+	
+	# Disable the button while checking
+	_btn_check.disabled = true
+	_btn_update.disabled = true
+	
+	# Make the HTTP request to GitHub
+	var error = _version_check_request.request(VERSION_CHECK_URL)
+	if error != OK:
+		Status.post(tr("Error making HTTP request"), Enums.MSG_ERROR)
+		_btn_check.disabled = false
 
+func _on_version_check_completed(result, response_code, headers, body):
+	_btn_check.disabled = false
+	
+	if result != HTTPRequest.RESULT_SUCCESS:
+		Status.post(tr("Failed to connect to update server"), Enums.MSG_ERROR)
+		return
+		
+	if response_code != 200:
+		Status.post(tr("Error response from update server: %d") % response_code, Enums.MSG_ERROR)
+		return
+	
+	# Parse the JSON response
+	var json = JSON.parse(body.get_string_from_utf8())
+	if json.error != OK:
+		Status.post(tr("Error parsing response from server"), Enums.MSG_ERROR)
+		return
+	
+	var response = json.result
+	if typeof(response) != TYPE_DICTIONARY:
+		Status.post(tr("Invalid response format from server"), Enums.MSG_ERROR)
+		return
+	
+	if "name" in response:
+		_latest_version = response["name"]
+		var current_version = Settings.read("version")
+		
+		Status.post(tr("Latest version available: v%s") % _latest_version)
+		
+		# Simple version comparison (this assumes versions are in format like "24.2" or "24.12")
+		# For more complex version strings, would need a more sophisticated comparison
+		if _is_newer_version(_latest_version, current_version):
+			Status.post(tr("A new version is available! You can update to v%s") % _latest_version, Enums.MSG_SUCCESS)
+			_btn_update.disabled = false
+			_is_update_available = true
+		else:
+			Status.post(tr("You have the latest version!"), Enums.MSG_SUCCESS)
+			_btn_update.disabled = true
+			_is_update_available = false
+	else:
+		Status.post(tr("Could not determine latest version"), Enums.MSG_ERROR)
+
+func _is_newer_version(latest: String, current: String) -> bool:
+	# Split version strings and convert to integers
+	var latest_parts = latest.split(".")
+	var current_parts = current.split(".")
+	
+	# Compare major version first
+	if latest_parts.size() > 0 and current_parts.size() > 0:
+		var latest_major = int(latest_parts[0])
+		var current_major = int(current_parts[0])
+		
+		if latest_major > current_major:
+			return true
+		elif latest_major < current_major:
+			return false
+	
+	# If major versions are equal, compare minor version
+	if latest_parts.size() > 1 and current_parts.size() > 1:
+		var latest_minor = int(latest_parts[1])
+		var current_minor = int(current_parts[1])
+		
+		if latest_minor > current_minor:
+			return true
+	
+	return false
 
 func _on_BtnUpdate_pressed() -> void:
-	# This function will be implemented later.
-	# For now, the button does nothing
-	pass
+	if _is_update_available:
+		# In a real implementation, this would trigger the update process
+		Status.post(tr("Starting update to version v%s...") % _latest_version)
+		OS.shell_open("https://github.com/Hihahahalol/Catapult_Dabdoob/releases/latest")
+	else:
+		Status.post(tr("No update available"))
