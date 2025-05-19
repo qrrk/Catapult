@@ -1,12 +1,12 @@
 "keys","zh"
 ,
-"tip_os_hopping","您可以将Catapult文件夹从Windows带到Linux（或者相反）并继续使用，但您必须下载正确的Catapult可执行文件并至少更新一次游戏。"
+"tip_os_hopping","您可以将Dabdoob文件夹从Windows带到Linux（或者相反）并继续使用，但您必须下载正确的Dabdoob可执行文件并至少更新一次游戏。"
 "tip_dual_install","[i]C:DDA[/i]和[i]C:BN[/i]可以同时安装。他们的安装是完全独立的，他们的更新、模组和音效包是分开管理的。"
 "tip_downgrading","您可以通过选择“更新”到较早的版本来降级您的游戏版本，但要注意存档的兼容性问题。"
-"tip_stock_mods","游戏自带的模组不受Catapult管理（为了防止它们被二次安装）。Catapult只处理[i]/mods[/i]文件夹，而不是[i]/data/mods[/i]。"
+"tip_stock_mods","游戏自带的模组不受Dabdoob管理（为了防止它们被二次安装）。Dabdoob只处理[i]/mods[/i]文件夹，而不是[i]/data/mods[/i]。"
 "tip_mod_multi_install","您可以通过[i]Ctrl+左键[/i]和[i]Shift+左键[/i]多选模组以删除或安装多个模组。"
 "tip_modpack_update","Kenan's modpack更新频繁。再次点击[i]获取Kenan Modpack[/i]可以将其重新下载并替换本地存储的模组。"
 "tip_debug_mode","总是报错却不知为何？尝试启用[i]设置[/i]选项卡下的调试模式以获取更详细的信息。"
-"tip_bug_reporting","如果你使用该启动器时遇到了问题却没见到别人[color=#3b93f7][url=https://github.com/qrrk/Catapult/issues]在GitHub上[/url][/color]报告相同问题，那么你可能是第一个发现它的！如果你有Github账号的话，尝试汇报它。"
+"tip_bug_reporting","如果你使用该启动器时遇到了问题却没见到别人[color=#3b93f7][url=https://github.com/Hihahahalol/Catapult_Dabdoob/issues]在GitHub上[/url][/color]报告相同问题，那么你可能是第一个发现它的！如果你有Github账号的话，尝试汇报它。"
 "tip_backup_caveat","如果您在游戏中保存有多个世界，请注意备份会覆盖目前存档目录里的所有内容。这意味着当恢复备份时，存档目录的所有先前内容都将丢失（包括任何不在此备份中的世界）。"
 "tip_multi_install","您现在可以同时安装游戏的多个版本，并在它们之间轻松切换。但是，保存和其他用户数据在安装之间共享，因此在过于不同的版本之间切换时要小心损坏或损坏 （例如稳定的和实验性的）。”

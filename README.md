@@ -1,12 +1,12 @@
-# Catapult
+# Dabdoob
 
-**Catapult** is a cross-platform launcher and content manager for [Cataclysm: Dark Days Ahead](https://github.com/CleverRaven/Cataclysm-DDA) and [Cataclysm: Bright Nights](https://github.com/cataclysmbnteam/Cataclysm-BN). It is in part inspired by earlier versions of [Rémy Roy's launcher](https://github.com/remyroy/CDDA-Game-Launcher).
+**Dabdoob** is a cross-platform launcher and content manager for [Cataclysm: Dark Days Ahead](https://github.com/CleverRaven/Cataclysm-DDA) and it's forks, such as [Cataclysm: The Last Generation](https://github.com/Cataclysm-TLG/Cataclysm-TLG/). It is based on [qrrk's Catapult launcher](https://github.com/qrrk/Catapult).
 
 [**Download latest release**](https://github.com/Hihahahalol/Catapult_Dabdoob/releases/latest)  |  [**See all releases**](https://github.com/Hihahahalol/Catapult_Dabdoob/releases)
 
 
 
-![Catapult UI](./.github/catapult_ui.gif)
+![Dabdoob UI](./.github/Dabdoob_ui.gif)
 
 ## Features
 
@@ -26,8 +26,8 @@
 None required. The launcher is a single, self-contained executable. Just [download](https://github.com/Hihahahalol/Catapult_TLG/releases/latest) it to a separate folder and run.
 
 ### Linux
-- You need write permission in the folder that contains the Catapult executable.
-- The catapult executable [should have execution permission enabled](https://askubuntu.com/a/485001).
+- You need write permission in the folder that contains the Dabdoob executable.
+- The Dabdoob executable [should have execution permission enabled](https://askubuntu.com/a/485001).
 - The game needs the following dependencies, Some distros come with these preinstalled, but others don't.: `sdl2`, `sdl2_image`, `sdl2_ttf`, `sdl2_mixer`, `freetype2`, `zip`
     - On Debian based distros (Ubuntu, Mint, etc.): `sudo apt install libsdl2-image libsdl2-ttf libsdl2-mixer libfreetype6 zip`
     - On Arch based distros `sudo pacman -S sdl2 sdl2_image sdl2_ttf sdl2_mixer zip`
@@ -43,6 +43,11 @@ None required. The launcher is a single, self-contained executable. Just [downlo
 - Windows 7+ or Linux.
 - OpenGL 2.1 support.
 
+## Contact
+
+Feel free to create an issue on the github. You can also find me on [TLG's Discord](https://discord.com/invite/zT9sXmZNCK)
+
 ## Contributing
 
-Checkout [CONTRIBUTING.md](./CONTRIBUTING.md).
+While this will likely change, for the time being, the launcher is solo maintained by me. Consider donating to my [ko-fi](https://ko-fi.com/hihahahalol)
+
