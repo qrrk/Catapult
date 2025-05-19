@@ -44,8 +44,8 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Catapult"
-config/description="A cross-platform launcher for Cataclysm: DDA and BN"
+config/name="Dabdoob"
+config/description="A cross-platform launcher for Cataclysm"
 run/main_scene="res://scenes/Catapult.tscn"
 run/low_processor_mode=true
 boot_splash/image="res://icons/transparent.png"

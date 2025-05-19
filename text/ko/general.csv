@@ -1,7 +1,7 @@
 keys,ko
 ,
-window_title,Catapult — Cataclysm: DDA 및 BN 런처
-str_welcome,Catapult에 오신 것을 환영합니다!
+window_title,Dabdoob — Cataclysm: DDA 및 BN 런처
+str_welcome,Dabdoob에 오신 것을 환영합니다!
 str_tip_of_the_day,\n\n[u]오늘의 팁:[/u]\n
 msg_unpacking_unzip,unzip.exe 압축을 푸는 중...
 msg_theme_load_error,%s 테마를 로드할 수 없습니다.

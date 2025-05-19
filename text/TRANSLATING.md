@@ -1,4 +1,4 @@
-This document explains how translations work in Catapult, how the data is structured, and how to start working on a new translation.
+This document explains how translations work in Dabdoob, how the data is structured, and how to start working on a new translation.
 
 # Translations in Godot
 
@@ -14,9 +14,9 @@ Almost every piece of text appearing anywhere in the application (button names, 
 
 A CSV file can contain multiple languages, or just one. Also, all strings used in the app can be crammed into a single CSV file or spread over multiple. The system is rather flexible.
 
-# How translations are organized in Catapult
+# How translations are organized in Dabdoob
 
-Until recently, almost all translated strings in Catapult were stored in a single large CSV file, which was getting increasingly hard to work with as more languages were added. Now, the arrangement is much more granular:
+Until recently, almost all translated strings in Dabdoob were stored in a single large CSV file, which was getting increasingly hard to work with as more languages were added. Now, the arrangement is much more granular:
 
 - Every supported language has a dedicated folder in `text/`.
 - Each language folder has a number of CSV files, containing only strings in that one language.
@@ -32,7 +32,7 @@ _Tip:_ you can use Excel, LibreOffice, or even a plain text editor like Notepad 
 2. Duplicate the `text/en/` directory and name it with the two-letter code of your language. Translating from other languages is not recommended. English is the original language for this project, so it's best to use it as the base for your translation to avoid distortions.
 3. Edit each CSV file inside your language folder. Replace `en` in the header row with your own language (do not forget this step!), then replace the strings in English with your translations.
 4. Open the project in Godot and go to _Project → Project Settings → Localization → Translations_. Click _Add_ and navigate to your language folder. Select all of `.translation` files generated from your CSVs and click _Open_.
-5. Now you can "play-test" your translation by editing the config file of Catapult, `catapult_settings.json`, and replacing the value of `launcher_locale` with your new localization. Run the launcher from Godot editor, look around and make sure everything looks good.
+5. Now you can "play-test" your translation by editing the config file of Dabdoob, `catapult_settings.json`, and replacing the value of `launcher_locale` with your new localization. Run the launcher from Godot editor, look around and make sure everything looks good.
 6. Optionally, integrate your translation into launcher settings. This usually involves adding a new item to the language drop-down and editing `SettingsUI.gd`. If you don't feel comfortable doing that, I can do this step for you later.
 7. Commit your changes and create a pull request!
 
