@@ -49,5 +49,5 @@ Feel free to create an issue on the github. You can also find me on [TLG's Disco
 
 ## Contributing
 
-While this will likely change, for the time being, the launcher is solo maintained by me. Consider donating to my [ko-fi](https://ko-fi.com/hihahahalol)
+While this will likely change, for the time being, the launcher is solo maintained by me. Consider buying me a [ko-fi](https://ko-fi.com/hihahahalol)
 
