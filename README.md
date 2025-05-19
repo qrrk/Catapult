@@ -1,6 +1,6 @@
 # Dabdoob
 
-**Dabdoob** is a cross-platform launcher and content manager for [Cataclysm: Dark Days Ahead](https://github.com/CleverRaven/Cataclysm-DDA) and it's forks, such as [Cataclysm: The Last Generation](https://github.com/Cataclysm-TLG/Cataclysm-TLG/). It is based on [qrrk's Catapult launcher](https://github.com/qrrk/Catapult).
+**Dabdoob** is a cross-platform launcher and content manager for [Cataclysm: Dark Days Ahead](https://github.com/CleverRaven/Cataclysm-DDA) and it's forks, such as [Cataclysm: The Last Generation](https://github.com/Cataclysm-TLG/Cataclysm-TLG/). It is based on [qrrk's Catapult launcher](https://github.com/qrrk/Catapult) to resume it's development.
 
 [**Download latest release**](https://github.com/Hihahahalol/Catapult_Dabdoob/releases/latest)  |  [**See all releases**](https://github.com/Hihahahalol/Catapult_Dabdoob/releases)
 
@@ -49,5 +49,5 @@ Feel free to create an issue on the github. You can also find me on [TLG's Disco
 
 ## Contributing
 
-While this will likely change, for the time being, the launcher is solo maintained by me. Consider donating to my [ko-fi](https://ko-fi.com/hihahahalol)
+While this will likely change, for the time being, the launcher is solo maintained by me. Consider buying me a [ko-fi](https://ko-fi.com/hihahahalol)
 
