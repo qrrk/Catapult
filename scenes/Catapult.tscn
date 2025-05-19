@@ -310,18 +310,18 @@ size_flags_horizontal = 4
 [node name="BtnCheck" type="Button" parent="Main/Tabs/Game/ActiveInstall/Update" groups=["disable_during_release_operations"]]
 margin_right = 97.0
 margin_bottom = 32.0
-hint_tooltip = "tooltip_check"
+hint_tooltip = "Check for new versions of Dabdoob"
 size_flags_horizontal = 4
-text = "btn_check"
+text = "Check for Updates"
 icon = ExtResource( 41 )
 
 [node name="BtnUpdate" type="Button" parent="Main/Tabs/Game/ActiveInstall/Update" groups=["disable_during_release_operations"]]
 margin_left = 103.0
 margin_right = 209.0
 margin_bottom = 32.0
-hint_tooltip = "tooltip_update"
+hint_tooltip = "Update the current installation of Dabdoob to the latest version"
 size_flags_horizontal = 4
-text = "btn_update"
+text = "Update Dabdoob"
 icon = ExtResource( 3 )
 
 [node name="GameInstalls" type="VBoxContainer" parent="Main/Tabs/Game"]
