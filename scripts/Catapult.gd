@@ -18,6 +18,8 @@ onready var _btn_game_dir = $Main/Tabs/Game/ActiveInstall/Build/GameDir
 onready var _btn_user_dir = $Main/Tabs/Game/ActiveInstall/Build/UserDir
 onready var _btn_play = $Main/Tabs/Game/ActiveInstall/Launch/BtnPlay
 onready var _btn_resume = $Main/Tabs/Game/ActiveInstall/Launch/BtnResume
+onready var _btn_check = $Main/Tabs/Game/ActiveInstall/Update/BtnCheck
+onready var _btn_update = $Main/Tabs/Game/ActiveInstall/Update/BtnUpdate
 onready var _lst_builds = $Main/Tabs/Game/Builds/BuildsList
 onready var _lst_games = $Main/GameChoice/GamesList
 onready var _rbtn_stable = $Main/Tabs/Game/Channel/Group/RBtnStable
@@ -61,6 +63,11 @@ func _ready() -> void:
 	
 	_unpack_utils()
 	_setup_ui()
+	
+	# Connect the BtnCheck button signal
+	_btn_check.connect("pressed", self, "_on_BtnCheck_pressed")
+	# Connect the BtnUpdate button signal
+	_btn_update.connect("pressed", self, "_on_BtnUpdate_pressed")
 
 
 func _save_control_min_sizes() -> void:
@@ -574,3 +581,15 @@ func _activate_easter_egg() -> void:
 	for i in range(20):
 		Status.post(tr("msg_easter_egg_activated"))
 		yield(get_tree().create_timer(0.1), "timeout")
+
+
+func _on_BtnCheck_pressed() -> void:
+	# This function will be implemented later.
+	# For now, the button does nothing
+	pass
+
+
+func _on_BtnUpdate_pressed() -> void:
+	# This function will be implemented later.
+	# For now, the button does nothing
+	pass

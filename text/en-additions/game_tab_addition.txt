@@ -1,0 +1,5 @@
+# Additional translations for the Check and Update buttons
+btn_check=Check for updates
+tooltip_check=Check if there are updates available for the current installation
+btn_update=Update
+tooltip_update=Update the current installation to the latest version 
