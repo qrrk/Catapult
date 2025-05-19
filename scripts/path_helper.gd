@@ -41,7 +41,7 @@ func _get_installs_summary() -> Dictionary:
 	var result = {}
 	var d = Directory.new()
 	
-	for game in ["dda", "bn", "eod", "tish"]:
+	for game in ["dda", "bn", "eod", "tish", "tlg"]:
 		var installs = {}
 		var base_dir = Paths.own_dir.plus_file(game)
 		for subdir in FS.list_dir(base_dir):

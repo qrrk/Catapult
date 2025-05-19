@@ -5,10 +5,10 @@ type="Translation"
 
 [deps]
 
-files=[ "res://text/zh/backups_tab.zh.translation" ]
+files=[ "res://text/zh/backups_tab.zh_Hans_CN.translation" ]
 
 source_file="res://text/zh/backups_tab.csv"
-dest_files=[ "res://text/zh/backups_tab.zh.translation" ]
+dest_files=[ "res://text/zh/backups_tab.zh_Hans_CN.translation" ]
 
 [params]
 

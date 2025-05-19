@@ -8,6 +8,7 @@
 "msg_mod_installed","Installed %s"
 "msg_installing_n_mods","Installing %s mods..."
 "msg_getting_kenan_pack","Retrieving Kenan Modpack for %s..."
+"msg_kenan_unavailable", "The Kenan Modpack is not available for %s.."
 "msg_wiping_mod_repo","Wiping the repository..."
 "msg_unpacking_kenan_mods","Adding mods from the pack to repository..."
 "msg_unpacking_archived_mods","Adding archived mods to repository..."
