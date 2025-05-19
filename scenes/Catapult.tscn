@@ -127,7 +127,7 @@ margin_bottom = 100.0
 [node name="Tabs" type="TabContainer" parent="Main" groups=["disable_during_backup_operations", "disable_during_mod_operations", "disable_during_release_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases"]]
 margin_top = 104.0
 margin_right = 592.0
-margin_bottom = 535.0
+margin_bottom = 571.0
 tab_align = 0
 script = ExtResource( 16 )
 
@@ -238,7 +238,7 @@ margin_bottom = 164.0
 [node name="ActiveInstall" type="VBoxContainer" parent="Main/Tabs/Game"]
 margin_top = 168.0
 margin_right = 577.0
-margin_bottom = 256.0
+margin_bottom = 292.0
 
 [node name="Label" type="Label" parent="Main/Tabs/Game/ActiveInstall"]
 margin_right = 577.0
@@ -300,10 +300,34 @@ size_flags_horizontal = 4
 text = "btn_resume"
 icon = ExtResource( 2 )
 
+[node name="Update" type="HBoxContainer" parent="Main/Tabs/Game/ActiveInstall"]
+margin_left = 184.0
+margin_top = 92.0
+margin_right = 393.0
+margin_bottom = 124.0
+size_flags_horizontal = 4
+
+[node name="BtnCheck" type="Button" parent="Main/Tabs/Game/ActiveInstall/Update" groups=["disable_during_release_operations"]]
+margin_right = 97.0
+margin_bottom = 32.0
+hint_tooltip = "tooltip_check"
+size_flags_horizontal = 4
+text = "btn_check"
+icon = ExtResource( 41 )
+
+[node name="BtnUpdate" type="Button" parent="Main/Tabs/Game/ActiveInstall/Update" groups=["disable_during_release_operations"]]
+margin_left = 103.0
+margin_right = 209.0
+margin_bottom = 32.0
+hint_tooltip = "tooltip_update"
+size_flags_horizontal = 4
+text = "btn_update"
+icon = ExtResource( 3 )
+
 [node name="GameInstalls" type="VBoxContainer" parent="Main/Tabs/Game"]
-margin_top = 260.0
+margin_top = 296.0
 margin_right = 577.0
-margin_bottom = 390.0
+margin_bottom = 426.0
 
 [node name="HSeparator2" type="HSeparator" parent="Main/Tabs/Game/GameInstalls"]
 margin_right = 577.0
@@ -1337,7 +1361,7 @@ size_flags_horizontal = 4
 text = "Print screen info"
 
 [node name="Log" type="RichTextLabel" parent="Main"]
-margin_top = 539.0
+margin_top = 575.0
 margin_right = 592.0
 margin_bottom = 692.0
 focus_mode = 2
