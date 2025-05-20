@@ -15,6 +15,7 @@ const _TOTD = [
 	"tip_bug_reporting",
 	"tip_backup_caveat",
 	"tip_multi_install",
+	"tip_discord",
 ]
 
 
