@@ -52,6 +52,7 @@ const _ASSET_FILTERS = {
 	"tish-experimental-win": {
 		"field": "name",
 		"substring": "tish-windows-tiles-x64",
+	},
 	"tlg-experimental-linux": {
 		"field": "name",
 		"substring": "ctlg-linux-tiles-x64",
@@ -59,7 +60,6 @@ const _ASSET_FILTERS = {
 	"tlg-experimental-win": {
 		"field": "name",
 		"substring": "ctlg-windows-tiles-x64",
-	},
 	},
 }
 
