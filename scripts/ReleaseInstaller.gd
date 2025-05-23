@@ -33,6 +33,8 @@ func install_release(release_info: Dictionary, game: String, update_in: String =
 			match OS.get_name():
 				"X11":
 					extracted_root = Paths.tmp_dir.path_join(FS.list_dir(Paths.tmp_dir)[0])
+				"Linux":
+					extracted_root = Paths.tmp_dir.path_join(FS.list_dir(Paths.tmp_dir)[0])
 				"Windows":
 					extracted_root = Paths.tmp_dir
 			

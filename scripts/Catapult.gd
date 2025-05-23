@@ -430,6 +430,11 @@ func _start_game(world := "") -> void:
 	#pass # FIXME
 	
 	match OS.get_name():
+		"Linux":
+			var params := ["--userdir", Paths.userdata + "/"]
+			if world != "":
+				params.append_array(["--world", world])
+			OS.execute(Paths.game_dir.path_join("cataclysm-launcher"), params, [])
 		"X11":
 			var params := ["--userdir", Paths.userdata + "/"]
 			if world != "":
