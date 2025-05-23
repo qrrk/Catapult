@@ -179,9 +179,9 @@ func extract(path: String, dest_dir: String) -> void:
 	}
 	var command
 	
-	if (_platform == "X11") and (path.to_lower().ends_with(".tar.gz")):
+	if (_platform == "X11" || _platform == "Linux") and (path.to_lower().ends_with(".tar.gz")):
 		command = command_linux_gz
-	elif (_platform == "X11") and (path.to_lower().ends_with(".zip")):
+	elif (_platform == "X11" || _platform == "Linux") and (path.to_lower().ends_with(".zip")):
 		command = command_linux_zip
 	elif (_platform == "Windows") and (path.to_lower().ends_with(".zip")):
 		command = command_windows
@@ -226,7 +226,7 @@ func zip(parent: String, dir_to_zip: String, dest_zip: String) -> void:
 	}
 	var command
 	
-	if (_platform == "X11") and (dest_zip.to_lower().ends_with(".zip")):
+	if (_platform == "X11" || _platform == "Linux") and (dest_zip.to_lower().ends_with(".zip")):
 		command = command_linux_zip
 	elif (_platform == "Windows") and (dest_zip.to_lower().ends_with(".zip")):
 		command = command_windows

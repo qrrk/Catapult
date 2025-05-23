@@ -278,6 +278,8 @@ func _ready() -> void:
 	match p:
 		"X11":
 			_platform = "linux"
+		"Linux":
+			_platform = "linux"
 		"Windows":
 			_platform = "win"
 		_:
