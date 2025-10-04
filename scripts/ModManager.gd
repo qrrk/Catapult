@@ -24,8 +24,8 @@ const _MODPACKS = {
 	},
 	"kenan-bn": {
 		"name": "BN Kenan Modpack",
-		"url": "https://github.com/Kenan2000/Bright-Nights-Kenan-Mod-Pack/archive/refs/heads/master.zip",
-		"filename": "Bright-Nights-Kenan-Mod-Pack-master.zip",
+		"url": "https://github.com/Zlorthishen/BrightNights-Structured-Kenan-Modpack/archive/refs/heads/master.zip",
+		"filename": "BrightNights-Structured-Kenan-Modpack-master.zip",
 		"internal_paths": [
 			"BrightNights-Structured-Kenan-Modpack-master/Kenan-BrightNights-Structured-Modpack/High-Maintenance-Huge-Mods",
 			"BrightNights-Structured-Kenan-Modpack-master/Kenan-BrightNights-Structured-Modpack/Medium-Maintenance-Small-Mods",

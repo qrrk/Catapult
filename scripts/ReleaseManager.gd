@@ -21,11 +21,11 @@ const _RELEASE_URLS = {
 const _ASSET_FILTERS = {
 	"dda-experimental-linux": {
 		"field": "name",
-		"substring": "cdda-linux-tiles-x64",
+		"substring": "cdda-linux-with-graphics-and-sounds-x64",
 	},
 	"dda-experimental-win": {
 		"field": "name",
-		"substring": "cdda-windows-tiles-x64",
+		"substring": "cdda-windows-with-graphics-and-sounds-x64",
 	},
 	"bn-experimental-linux": {
 		"field": "name",
@@ -54,6 +54,11 @@ const _ASSET_FILTERS = {
 }
 
 const _DDA_STABLE_LINUX = [
+	{
+		"name": "0.H Herbert",
+		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.H-RELEASE/cdda-linux-with-graphics-x64-2024-11-23-1857.tar.gz",
+		"filename": "cdda-linux-with-graphics-x64-2024-11-23-1857.tar.gz"
+	},	
 	{
 		"name": "0.G Gaiman",
 		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.G/cdda-linux-tiles-x64-2023-03-01-0054.tar.gz",
@@ -102,6 +107,11 @@ const _DDA_STABLE_LINUX = [
 ]
 
 const _DDA_STABLE_WIN = [
+	{
+		"name": "0.H Herbert",
+		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.H-RELEASE/cdda-windows-with-graphics-x64-2024-11-23-1857.zip",
+		"filename": "cdda-windows-with-graphics-x64-2024-11-23-1857.zip"
+	},	
 	{
 		"name": "0.G Gaiman",
 		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.G/cdda-windows-tiles-x64-2023-03-01-0054.zip",
@@ -156,6 +166,11 @@ const _DDA_STABLE_WIN = [
 
 const _BN_STABLE_LINUX = [
 	{
+		"name": "0.7.0",
+		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/v0.7.0/cbn-linux-tiles-x64-v0.7.0.tar.gz",
+		"filename": "cbn-linux-tiles-x64-v0.7.0.tar.gz"
+	},
+	{
 		"name": "0.6.0",
 		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/v0.6.0/cbn-linux-tiles-x64-v0.6.0.tar.gz",
 		"filename": "cbn-linux-tiles-x64-v0.6.0.tar.gz"
@@ -198,6 +213,11 @@ const _BN_STABLE_LINUX = [
 ]
 
 const _BN_STABLE_WIN = [
+	{
+		"name": "0.7.0",
+		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/v0.7.0/cbn-windows-tiles-x64-v0.7.0.zip",
+		"filename": "cbn-windows-tiles-x64-v0.7.0.zip"
+	},
 	{
 		"name": "0.6.0",
 		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/v0.6.0/cbn-windows-tiles-x64-v0.6.0.zip",
@@ -257,6 +277,8 @@ func _ready() -> void:
 	var p = OS.get_name()
 	match p:
 		"X11":
+			_platform = "linux"
+		"Linux":
 			_platform = "linux"
 		"Windows":
 			_platform = "win"
