@@ -5,8 +5,8 @@ const _SETTINGS_FILENAME = "catapult_settings.json"
 
 const _HARDCODED_DEFAULTS = {
 	"game": "dda",
-	"channel": "stable",  # Currently used only for DDA.
-	"active_install_dda": "Cataclysm-DDA experimental build 2022-07-26-0606",
+	"channel": "stable",
+	"active_install_dda": "",
 	"active_install_bn": "",
 	"active_install_eod": "",
 	"active_install_tish": "",
@@ -54,7 +54,7 @@ func _load() -> void:
 		_current = _read_from_file(_settings_file)
 		
 	else:
-		_current = _HARDCODED_DEFAULTS
+		_current = _HARDCODED_DEFAULTS.duplicate(true)
 		Status.post(tr("msg_creating_settings") % _SETTINGS_FILENAME)
 		_write_to_file(_HARDCODED_DEFAULTS, _settings_file)
 

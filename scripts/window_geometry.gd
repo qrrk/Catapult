@@ -51,6 +51,9 @@ func save_window_state() -> void:
 func recover_window_state() -> void:
 	
 	var state: Dictionary = Settings.read("window_state")
+
+	if state.is_empty() or state.size() == 0:
+		return
 	
 	base_size =  Vector2i(state["size_x"] as int, state["size_y"] as int)
 	var pos := Vector2i(state["position_x"] as int, state["position_y"] as int)
