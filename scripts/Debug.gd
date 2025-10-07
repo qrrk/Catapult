@@ -134,13 +134,15 @@ func _on_Button9_pressed() -> void:
 	Screen position: %s
 	Screen size: %s
 	Window position: %s
+	Window position with decorations: %s
 	Window size: %s
-	Real window size: %s\n""" % [ \
+	Window size with decorations: %s\n""" % [ \
 	DisplayServer.get_screen_count(),
 	get_window().current_screen,
 	DisplayServer.screen_get_position(),
 	DisplayServer.screen_get_size(),
 	get_window().position,
+	get_window().get_position_with_decorations(),
 	get_window().size,
 	get_window().get_size_with_decorations()]
 	
