@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://snuvrmmyvlwd"]
 
 [ext_resource type="Texture2D" uid="uid://cdnsgm0254oda" path="res://icons/placeholder.svg" id="1"]
-[ext_resource type="Script" path="res://scripts/InlineIconButton.gd" id="2"]
+[ext_resource type="Script" uid="uid://cteujtsgpkt4p" path="res://scripts/InlineIconButton.gd" id="2"]
 
 [node name="InlineIconButton" type="TextureButton"]
 custom_minimum_size = Vector2(18, 18)

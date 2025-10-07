@@ -3,21 +3,21 @@
 [ext_resource type="Texture2D" uid="uid://qcrcxsadl0kv" path="res://icons/buttons/tex_resume.tex" id="2"]
 [ext_resource type="Texture2D" uid="uid://uxhn3wij7008" path="res://icons/buttons/tex_download.tex" id="3"]
 [ext_resource type="Texture2D" uid="uid://dbd0vhgo2wdv2" path="res://icons/info.svg" id="3_rr64d"]
-[ext_resource type="Script" path="res://scripts/Catapult.gd" id="4"]
-[ext_resource type="Script" path="res://scripts/ReleaseManager.gd" id="5"]
-[ext_resource type="Script" path="res://scripts/InstallsList.gd" id="6"]
+[ext_resource type="Script" uid="uid://drnrbqdw1iua4" path="res://scripts/Catapult.gd" id="4"]
+[ext_resource type="Script" uid="uid://ctewoab2y1ofp" path="res://scripts/ReleaseManager.gd" id="5"]
+[ext_resource type="Script" uid="uid://4eua2dsbxhy7" path="res://scripts/InstallsList.gd" id="6"]
 [ext_resource type="Texture2D" uid="uid://c8pe3ckwjamrl" path="res://icons/folder_game.svg" id="7_ffy77"]
-[ext_resource type="Script" path="res://scripts/SettingsUI.gd" id="8"]
+[ext_resource type="Script" uid="uid://dcjaj7pear8qg" path="res://scripts/SettingsUI.gd" id="8"]
 [ext_resource type="Texture2D" uid="uid://boe62hlvfx4sk" path="res://icons/folder_user.svg" id="8_wd72u"]
-[ext_resource type="Script" path="res://scripts/ReleaseInstaller.gd" id="9"]
+[ext_resource type="Script" uid="uid://bytuv427hgvxg" path="res://scripts/ReleaseInstaller.gd" id="9"]
 [ext_resource type="Theme" uid="uid://bqch7xqdrxh3i" path="res://themes/Godot_3.res" id="11"]
-[ext_resource type="Script" path="res://scripts/ModManager.gd" id="12"]
-[ext_resource type="Script" path="res://scripts/SoundpackManager.gd" id="13"]
-[ext_resource type="Script" path="res://scripts/Debug.gd" id="14"]
-[ext_resource type="Script" path="res://scripts/SoundpacksUI.gd" id="15"]
-[ext_resource type="Script" path="res://scripts/Tabs.gd" id="16"]
-[ext_resource type="Script" path="res://scripts/ItemList.gd" id="17"]
-[ext_resource type="Script" path="res://scripts/ModsUI.gd" id="18"]
+[ext_resource type="Script" uid="uid://bumr0i4oc7gl0" path="res://scripts/ModManager.gd" id="12"]
+[ext_resource type="Script" uid="uid://cgvtqevpi0vvm" path="res://scripts/SoundpackManager.gd" id="13"]
+[ext_resource type="Script" uid="uid://6ein2nethlx5" path="res://scripts/Debug.gd" id="14"]
+[ext_resource type="Script" uid="uid://jyw1c7gc21tb" path="res://scripts/SoundpacksUI.gd" id="15"]
+[ext_resource type="Script" uid="uid://dws64rera28nf" path="res://scripts/Tabs.gd" id="16"]
+[ext_resource type="Script" uid="uid://bcxy21m818jf1" path="res://scripts/ItemList.gd" id="17"]
+[ext_resource type="Script" uid="uid://clo0n7jb6x8qy" path="res://scripts/ModsUI.gd" id="18"]
 [ext_resource type="PackedScene" uid="uid://chyqjehe0nmxq" path="res://scenes/ModReinstallDialog.tscn" id="20"]
 [ext_resource type="Texture2D" uid="uid://blp7rq8cvi0u5" path="res://icons/lang/tex_lang_en.res" id="20_ey4vo"]
 [ext_resource type="Texture2D" uid="uid://bmifbdmqep5f2" path="res://icons/help.svg" id="20_pq48u"]
@@ -29,9 +29,9 @@
 [ext_resource type="Texture2D" uid="uid://b00s81wfgdws" path="res://icons/lang/tex_lang_es.res" id="25_ildj0"]
 [ext_resource type="PackedScene" uid="uid://snuvrmmyvlwd" path="res://scenes/InlineIconButton.tscn" id="26"]
 [ext_resource type="Texture2D" uid="uid://debwokjgp7i1" path="res://icons/lang/tex_lang_pl.res" id="26_3k2fu"]
-[ext_resource type="Script" path="res://scripts/FontsUI.gd" id="27"]
+[ext_resource type="Script" uid="uid://1fbsdu2e5x4h" path="res://scripts/FontsUI.gd" id="27"]
 [ext_resource type="Texture2D" uid="uid://ci02k8m77njbp" path="res://icons/lang/tex_lang_tr.res" id="27_pnnps"]
-[ext_resource type="Script" path="res://scripts/FontManager.gd" id="28"]
+[ext_resource type="Script" uid="uid://c0fsp73p75yx2" path="res://scripts/FontManager.gd" id="28"]
 [ext_resource type="Texture2D" uid="uid://bsllqes4brm0c" path="res://icons/lang/tex_lang_pt.res" id="28_0614g"]
 [ext_resource type="PackedScene" uid="uid://ciqb5ygi2n5yp" path="res://scenes/FontSizeHelpDialog.tscn" id="29"]
 [ext_resource type="Texture2D" uid="uid://b7illlxrqfq74" path="res://icons/lang/tex_lang_ko.res" id="29_ryetc"]
@@ -39,9 +39,9 @@
 [ext_resource type="Texture2D" uid="uid://rk0u6q32qjje" path="res://icons/theme/tex_light.res" id="31_nhi6l"]
 [ext_resource type="PackedScene" uid="uid://b476fjhyidej5" path="res://scenes/ChangelogDialog.tscn" id="32"]
 [ext_resource type="Texture2D" uid="uid://bsruvk3ypvicv" path="res://icons/theme/tex_grey.res" id="32_kej4f"]
-[ext_resource type="Script" path="res://scripts/BackupsUI.gd" id="33"]
+[ext_resource type="Script" uid="uid://bchhsc0w03a5c" path="res://scripts/BackupsUI.gd" id="33"]
 [ext_resource type="Texture2D" uid="uid://0aqps1ij1nbk" path="res://icons/theme/tex_solarized_dark.res" id="33_vl3fl"]
-[ext_resource type="Script" path="res://scripts/BackupManager.gd" id="34"]
+[ext_resource type="Script" uid="uid://d0a1urlp1mp4l" path="res://scripts/BackupManager.gd" id="34"]
 [ext_resource type="Texture2D" uid="uid://pnomke2vhtxo" path="res://icons/theme/tex_solarized_light.res" id="34_knvof"]
 [ext_resource type="Texture2D" uid="uid://bhpjqmc7pvv3j" path="res://icons/buttons/tex_delete.tex" id="40"]
 [ext_resource type="Texture2D" uid="uid://bne67n27nnwwx" path="res://icons/buttons/tex_activate.tex" id="41"]
@@ -81,8 +81,8 @@ text = "lbl_game"
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "tooltip_game"
-item_count = 4
 selected = 0
+item_count = 4
 popup/item_0/text = "Cataclysm: Dark Days Ahead"
 popup/item_0/id = 0
 popup/item_1/text = "Cataclysm: Bright Nights"
@@ -121,10 +121,12 @@ layout_mode = 2
 
 [node name="TabBar" type="TabContainer" parent="Main" groups=["disable_during_backup_operations", "disable_during_mod_operations", "disable_during_release_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases"]]
 layout_mode = 2
+current_tab = 0
 script = ExtResource("16")
 
 [node name="Game" type="VBoxContainer" parent="Main/TabBar"]
 layout_mode = 2
+metadata/_tab_index = 0
 
 [node name="Channel" type="VBoxContainer" parent="Main/TabBar/Game"]
 layout_mode = 2
@@ -299,6 +301,7 @@ position = Vector2i(0, 36)
 visible = false
 layout_mode = 2
 script = ExtResource("18")
+metadata/_tab_index = 1
 
 [node name="HBox" type="HBoxContainer" parent="Main/TabBar/Mods"]
 layout_mode = 2
@@ -413,6 +416,7 @@ visible = false
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("15")
+metadata/_tab_index = 2
 
 [node name="HBox" type="HBoxContainer" parent="Main/TabBar/Soundpacks"]
 layout_mode = 2
@@ -514,6 +518,7 @@ filters = PackedStringArray("*.zip")
 visible = false
 layout_mode = 2
 script = ExtResource("27")
+metadata/_tab_index = 3
 
 [node name="FontSelection" type="HBoxContainer" parent="Main/TabBar/Fonts"]
 layout_mode = 2
@@ -702,6 +707,7 @@ position = Vector2i(0, 36)
 visible = false
 layout_mode = 2
 script = ExtResource("33")
+metadata/_tab_index = 4
 
 [node name="Available" type="VBoxContainer" parent="Main/TabBar/Backups"]
 layout_mode = 2
@@ -789,6 +795,7 @@ visible = false
 layout_mode = 2
 theme_override_constants/separation = 2
 script = ExtResource("8")
+metadata/_tab_index = 5
 
 [node name="LauncherLanguage" type="HBoxContainer" parent="Main/TabBar/Settings"]
 layout_mode = 2
@@ -802,8 +809,8 @@ custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 expand_icon = true
-item_count = 10
 selected = 0
+item_count = 10
 popup/item_0/text = "English"
 popup/item_0/icon = ExtResource("20_ey4vo")
 popup/item_0/id = 0
@@ -847,8 +854,8 @@ custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 expand_icon = true
-item_count = 5
 selected = 0
+item_count = 5
 popup/item_0/text = "Godot 3"
 popup/item_0/icon = ExtResource("30_mx4ch")
 popup/item_0/id = 0
@@ -1004,6 +1011,7 @@ suffix = "%"
 visible = false
 layout_mode = 2
 script = ExtResource("14")
+metadata/_tab_index = 6
 
 [node name="Label" type="Label" parent="Main/TabBar/Debug"]
 layout_mode = 2

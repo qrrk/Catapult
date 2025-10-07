@@ -4,7 +4,7 @@
 [ext_resource type="FontFile" path="res://fonts/OpenSans-SemiboldItalic.tres" id="2"]
 [ext_resource type="FontFile" path="res://fonts/OpenSans-Italic.tres" id="3"]
 [ext_resource type="FontFile" path="res://fonts/OpenSans-Semibold.tres" id="4"]
-[ext_resource type="Script" path="res://scripts/FontSizeHelpDialog.gd" id="5"]
+[ext_resource type="Script" uid="uid://6pyxuc2b5lym" path="res://scripts/FontSizeHelpDialog.gd" id="5"]
 
 [node name="FontSizeHelpDialog" type="Window"]
 visible = false
@@ -28,8 +28,8 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/normal_font = ExtResource("1")
 theme_override_fonts/bold_font = ExtResource("4")
-theme_override_fonts/italics_font = ExtResource("3")
 theme_override_fonts/bold_italics_font = ExtResource("2")
+theme_override_fonts/italics_font = ExtResource("3")
 bbcode_enabled = true
 text = "dlg_font_config_help"
 
