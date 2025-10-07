@@ -75,9 +75,8 @@ func recover_window_state() -> void:
 func _on_SceneTree_idle():
 	
 	await get_tree().process_frame
-	ProjectSettings.call_deferred("set_setting", "display/window/per_pixel_transparency/allowed", false)
-	OS.set_deferred("window_per_pixel_transparency_enabled", false)
-	OS.set_deferred("window_borderless", false)
+	get_window().set_deferred("borderless", false)
+	get_window().set_deferred("transparent", false)
 	recover_window_state()
 	_apply_scale()
 

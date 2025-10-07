@@ -16,8 +16,7 @@ run/main_scene="res://scenes/Catapult.tscn"
 config/features=PackedStringArray("4.5")
 run/low_processor_mode=true
 boot_splash/bg_color=Color(0, 0, 0, 0)
-boot_splash/use_filter=false
-boot_splash/image="res://icons/appicon.png"
+boot_splash/show_image=false
 config/icon="res://icons/appicon.svg"
 config/windows_native_icon="res://icons/appicon.ico"
 
@@ -42,10 +41,11 @@ ThreadedExec="*res://scripts/ThreadedExec.gd"
 
 window/size/viewport_width=600
 window/size/viewport_height=700
+window/size/borderless=true
+window/size/transparent=true
 window/size/window_width_override=1
 window/size/window_height_override=1
 window/per_pixel_transparency/allowed=true
-window/per_pixel_transparency/enabled=true
 
 [gdnative]
 
@@ -113,6 +113,7 @@ common/enable_pause_aware_picking=true
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)
+viewport/transparent_background=true
 quality/driver/driver_name="GLES2"
 quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=1
