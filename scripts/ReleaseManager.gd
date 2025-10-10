@@ -16,6 +16,8 @@ const _RELEASE_URLS = {
 		"https://api.github.com/repos/AtomicFox556/Cataclysm-EOD/releases",
 	"tish-experimental":
 		"https://api.github.com/repos/Cataclysm-TISH-team/Cataclysm-TISH/releases",
+	"tlg-experimental":
+		"https://api.github.com/repos/Cataclysm-TLG/Cataclysm-TLG/releases",
 }
 
 const _ASSET_FILTERS = {
@@ -50,6 +52,14 @@ const _ASSET_FILTERS = {
 	"tish-experimental-win": {
 		"field": "name",
 		"substring": "tish-windows-tiles-x64",
+	},
+	"tlg-experimental-linux": {
+		"field": "name",
+		"substring": "ctlg-linux-tiles-x64",
+	},
+	"tlg-experimental-win": {
+		"field": "name",
+		"substring": "ctlg-windows-tiles-x64",
 	},
 }
 
@@ -269,6 +279,8 @@ var releases = {
 	"eod-experimental": [],
 	"tish-stable": [],
 	"tish-experimental": [],
+	"tlg-stable": [],
+	"tlg-experimental": [],
 }
 
 
@@ -361,6 +373,19 @@ func _on_request_completed_tish(result: int, response_code: int,
 	
 	emit_signal("done_fetching_releases")
 
+func _on_request_completed_tlg(result: int, response_code: int,
+		headers: PackedStringArray, body: PackedByteArray) -> void:
+	
+	Status.post(tr("msg_http_request_info") %
+			[result, response_code, headers], Enums.MSG_DEBUG)
+	
+	if result:
+		Status.post(tr("msg_releases_request_failed"), Enums.MSG_WARN)
+	else:
+		_parse_builds(body, releases["tlg-experimental"], _ASSET_FILTERS["tlg-experimental-" + _platform])
+	
+	emit_signal("done_fetching_releases")
+
 func _parse_builds(data: PackedByteArray, write_to: Array, filter: Dictionary) -> void:
 	
 	var json_conv := JSON.new()
@@ -424,6 +449,8 @@ func fetch(release_key: String) -> void:
 		"tish-experimental":
 			Status.post(tr("msg_fetching_releases_tish"))
 			_request_releases($HTTPRequest_TISH, "tish-experimental")
+		"tlg-experimental":
+			Status.post(tr("msg_fetching_releases_tlg"))
+			_request_releases($HTTPRequest_TLG, "tlg-experimental")
 		_:
 			Status.post(tr("msg_invalid_fetch_func_param") % release_key, Enums.MSG_ERROR)
-
