@@ -4,8 +4,9 @@ extends VBoxContainer
 var _langs := ["en", "fr", "ru", "zh", "cs", "es", "pl", "tr", "pt", "ko"]
 
 var _themes := [
+	"Godot_4_test.tres",
 	"Godot_3.res",
-	"Light3D.res",
+	"Light.res",
 	"Grey.res",
 	"Solarized_Dark.res",
 	"Solarized_Light.res",
@@ -172,5 +173,3 @@ func _on_sbScaleOverride_value_changed(value: float) -> void:
 		Settings.store("ui_scale_override", value / 100.0)
 		Geom.scale = value / 100.0
 		_root.theme.apply_scale(Geom.scale)
-
-

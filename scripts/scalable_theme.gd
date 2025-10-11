@@ -6,124 +6,147 @@ const _SCALABLE_CONSTANTS := {
 	# Theme item constants that need to be scaled (by item type).
 	# Editor types are not included.
 	
-	"BoxContainer": [
-		"separation"
-	],
-	"Button": [
-		"h_separation"
-	],
-	"CheckBox": [
-		"check_v_offset",
-		"h_separation",
-	],
-	"CheckButton": [
-		"check_v_offset",
-		"h_separation",
-	],
-	"ColorPicker": [
-		"h_width",
-		"label_width",
-		"margin",
-		"sv_height",
-		"sv_width",
-	],
-	"ColorPickerButton": [
-		"h_separation",
-	],
-	"GridContainer": [
-		"h_separation",
-		"v_separation",
-	],
-	"HBoxContainer": [
-		"separation",
-	],
-	"HSeparator": [
-		"separation",
-	],
-	"HSplitContainer": [
-		"separation",
-	],
-	"ItemList": [
-		"h_separation",
-		"icon_margin",
-		"line_separation",
-		"v_separation",
-	],
-	"Label": [
-		"line_spacing",
-		"shadow_offset_x",
-		"shadow_offset_y",
-	],
-	"LinkButton": [
-		"underline_spacing",
-	],
-	"MarginContainer": [
-		"offset_bottom",
-		"offset_left",
-		"offset_right",
-		"offset_top",
-	],
-	"MenuButton": [
-		"h_separation",
-	],
-	"OptionButton": [
-		"arrow_margin",
-		"h_separation",
-	],
-	"PopupMenu": [
-		"h_separation",
-		"v_separation",
-	],
-	"RichTextLabel": [
-		"line_separation",
-		"shadow_offset_x",
-		"shadow_offset_y",
-		"table_h_separation",
-		"table_v_separation",
-	],
-	"TabContainer": [
-		"h_separation",
-		"label_valign_bg",
-		"label_valign_fg",
-		"side_margin",
-		"top_margin",
-	],
-	"TabBar": [
-		"h_separation",
-		"label_valign_bg",
-		"label_valign_fg",
-		"top_margin",
-	],
-	"TextEdit": [
-		"line_spacing",
-	],
-	"TooltipLabel": [
-		"shadow_offset_x",
-		"shadow_offset_y",
-	],
-	"Tree": [
-		"button_margin",
-		"h_separation",
-		"item_margin",
-		"scroll_border",
-		"scroll_speed",
-		"v_separation",
-	],
-	"VBoxContainer": [
-		"separation",
-	],
-	"VSeparator": [
-		"separation",
-	],
-	"VSplitContainer": [
-		"separation",
-	],
-	"Window": [
-		"close_h_offset",
-		"close_v_offset",
-		"scaleborder_size",
-		"title_height",
-	],
+    "AcceptDialog": [
+        "buttons_min_height",
+        "buttons_min_width",
+        "buttons_separation",
+    ],
+    "BoxContainer": [
+        "separation",
+    ],
+    "Button": [
+        "h_separation",
+        "outline_size",
+    ],
+    "CheckBox": [
+        "check_v_offset",
+        "h_separation",
+        "outline_size",
+    ],
+    "CheckButton": [
+        "check_v_offset",
+        "h_separation",
+        "outline_size",
+    ],
+    "FlowContainer": [
+        "h_separation",
+        "v_separation",
+    ],
+    "FoldableContainer": [
+        "h_separation",
+        "outline_size",
+    ],
+    "GridContainer": [
+        "h_separation",
+        "v_separation",
+    ],
+    "HBoxContainer": [
+        "separation",
+    ],
+    "HFlowContainer": [
+        "h_separation",
+        "v_separation",
+    ],
+    "HSlider": [
+        "center_grabber",
+        "grabber_offset",
+    ],
+    "HSplitContainer": [
+        "minimum_grab_thickness",
+        "separation",
+    ],
+    "ItemList": [
+        "h_separation",
+        "icon_margin",
+        "line_separation",
+        "outline_size",
+        "v_separation",
+    ],
+    "Label": [
+        "line_spacing",
+        "outline_size",
+        "shadow_offset_x",
+        "shadow_offset_y",
+        "shadow_outline_size",
+    ],
+    "LineEdit": [
+        "caret_width",
+        "minimum_character_width",
+        "outline_size",
+    ],
+    "LinkButton": [
+        "outline_size",
+    ],
+    "MarginContainer": [
+        "margin_bottom",
+        "margin_left",
+        "margin_right",
+        "margin_top",
+    ],
+    "MenuBar": [
+        "h_separation",
+        "outline_size",
+    ],
+    "MenuButton": [
+        "outline_size",
+    ],
+    "OptionButton": [
+        "arrow_margin",
+        "h_separation",
+        "outline_size",
+    ],
+    "ProgressBar": [
+        "outline_size",
+    ],
+    "RichTextLabel": [
+        "outline_size",
+        "shadow_offset_x",
+        "shadow_offset_y",
+        "shadow_outline_size",
+    ],
+    "SpinBox": [
+        "buttons_vertical_separation",
+        "buttons_width",
+        "field_and_buttons_separation",
+    ],
+    "SplitContainer": [
+        "minimum_grab_thickness",
+        "separation",
+    ],
+    "TabBar": [
+        "h_separation",
+        "outline_size",
+    ],
+    "TabContainer": [
+        "outline_size",
+        "side_margin",
+    ],
+    "TextEdit": [
+        "caret_width",
+        "line_spacing",
+        "outline_size",
+    ],
+    "VBoxContainer": [
+        "separation",
+    ],
+    "VFlowContainer": [
+        "h_separation",
+        "v_separation",
+    ],
+    "VSlider": [
+        "center_grabber",
+        "grabber_offset",
+    ],
+    "VSplitContainer": [
+        "minimum_grab_thickness",
+        "separation",
+    ],
+    "Window": [
+        "close_h_offset",
+        "close_v_offset",
+        "resize_margin",
+        "title_height",
+    ],
 }
 
 const _SCALABLE_FONT_PROPS := [
@@ -200,8 +223,8 @@ var _saved_sbox_props: Dictionary
 
 
 func _init() -> void:
-	pass  # FIXME
-	#_saved_constants = _save_constants()
+	# pass  # FIXME
+	_saved_constants = _save_constants()
 	#_saved_tex_sizes = _save_texture_sizes()
 	#_saved_font_props = _save_font_properties()
 	#_saved_sbox_props = _save_stylebox_properties()
@@ -209,8 +232,8 @@ func _init() -> void:
 
 func apply_scale(factor: float) -> void:
 
-	pass  # FIXME
-	#_scale_constants(factor)
+	# pass  # FIXME
+	_scale_constants(factor)
 	#_scale_textures(factor)
 	#_scale_fonts(factor)
 	#_scale_styleboxes(factor)
