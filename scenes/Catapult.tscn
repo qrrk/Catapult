@@ -82,7 +82,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "tooltip_game"
 selected = 0
-item_count = 4
+item_count = 5
 popup/item_0/text = "Cataclysm: Dark Days Ahead"
 popup/item_0/id = 0
 popup/item_1/text = "Cataclysm: Bright Nights"
@@ -91,6 +91,8 @@ popup/item_2/text = "Cataclysm: Era of Decay"
 popup/item_2/id = 2
 popup/item_3/text = "Cataclysm: There Is Still Hope"
 popup/item_3/id = 3
+popup/item_4/text = "Cataclysm: The Last Generation"
+popup/item_4/id = 4
 
 [node name="GameInfo" type="HBoxContainer" parent="Main"]
 layout_mode = 2
@@ -1084,6 +1086,8 @@ script = ExtResource("5")
 
 [node name="HTTPRequest_TISH" type="HTTPRequest" parent="Releases"]
 
+[node name="HTTPRequest_TLG" type="HTTPRequest" parent="Releases"]
+
 [node name="ReleaseInstaller" type="Node" parent="."]
 script = ExtResource("9")
 
@@ -1193,6 +1197,7 @@ script = ExtResource("34")
 [connection signal="request_completed" from="Releases/HTTPRequest_BN" to="Releases" method="_on_request_completed_bn"]
 [connection signal="request_completed" from="Releases/HTTPRequest_EOD" to="Releases" method="_on_request_completed_eod"]
 [connection signal="request_completed" from="Releases/HTTPRequest_TISH" to="Releases" method="_on_request_completed_tish"]
+[connection signal="request_completed" from="Releases/HTTPRequest_TLG" to="Releases" method="_on_request_completed_tlg"]
 [connection signal="operation_finished" from="ReleaseInstaller" to="." method="_on_ReleaseInstaller_operation_finished"]
 [connection signal="operation_started" from="ReleaseInstaller" to="." method="_on_ReleaseInstaller_operation_started"]
 [connection signal="mod_deletion_finished" from="Mods" to="." method="_on_mod_operation_finished"]

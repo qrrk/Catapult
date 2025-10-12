@@ -40,7 +40,7 @@ func _get_installs_summary() -> Dictionary:
 	
 	var result = {}
 	
-	for game in ["dda", "bn", "eod", "tish"]:
+	for game in ["dda", "bn", "eod", "tish", "tlg"]:
 		var installs = {}
 		var base_dir = Paths.own_dir.path_join(game)
 		if not DirAccess.dir_exists_absolute(base_dir):
