@@ -149,30 +149,20 @@ const _SCALABLE_CONSTANTS := {
 	],
 }
 
-const _SCALABLE_FONT_PROPS := [
-	# Font properties subject to scaling (for DynamicFont).
-	
-	"size",
-	"outline_size",
-	"spacing_top",
-	"spacing_bottom",
-	"extra_spacing_char",
-	"extra_spacing_space",
-]
 
 const _SCALABLE_SBOX_PROPS := {
 	# Stylebox properties subject to scaling (by stylebox type).
 	
 	"StyleBoxEmpty": [
 		"content_margin_left",
-		"content_margin_right",
 		"content_margin_top",
+		"content_margin_right",
 		"content_margin_bottom",
 	],
 	"StyleBoxLine": [
 		"content_margin_left",
-		"content_margin_right",
 		"content_margin_top",
+		"content_margin_right",
 		"content_margin_bottom",
 		"grow_begin",
 		"grow_end",
@@ -180,18 +170,17 @@ const _SCALABLE_SBOX_PROPS := {
 	],
 	"StyleBoxTexture": [
 		"content_margin_left",
-		"content_margin_right",
 		"content_margin_top",
+		"content_margin_right",
 		"content_margin_bottom",
+		"texture_margin_left",
+		"texture_margin_top",
+		"texture_margin_right",
+		"texture_margin_bottom",
 		"expand_margin_left",
-		"expand_margin_right",
 		"expand_margin_top",
+		"expand_margin_right",
 		"expand_margin_bottom",
-		"offset_left",
-		"offset_right",
-		"offset_top",
-		"offset_bottom",
-		"region_rect",
 	],
 	"StyleBoxFlat": [
 		"content_margin_left",
@@ -210,7 +199,6 @@ const _SCALABLE_SBOX_PROPS := {
 		"corner_radius_top_right",
 		"corner_radius_bottom_right",
 		"corner_radius_bottom_left",
-		"corner_detail",
 		"shadow_size",
 		"shadow_offset",
 	]
@@ -226,16 +214,15 @@ func _init() -> void:
 	
 	_save_constants()
 	_save_font_sizes()
-	#_saved_sbox_props = _save_stylebox_properties()
+	_save_stylebox_properties()
 
 
 func apply_scale(factor: float) -> void:
-
-	# pass  # FIXME
+	
 	_scale_constants(factor)
 	_scale_textures(factor)
 	_scale_font_sizes(factor)
-	#_scale_styleboxes(factor)
+	_scale_styleboxes(factor)
 
 
 func _save_constants() -> void:
@@ -254,27 +241,6 @@ func _save_constants() -> void:
 	_saved_constants = constants
 
 
-func _save_texture_sizes() -> Dictionary:
-
-	var tex_sizes := {}
-
-	for item_type in get_icon_type_list():
-		for icon_name in get_icon_list(item_type):
-			var icon := get_icon(icon_name, item_type)
-			if (icon is ImageTexture) and (not icon in tex_sizes) and (icon.get_size() != Vector2.ZERO):
-				tex_sizes[icon] = icon.get_size()
-
-	for item_type in get_stylebox_type_list():
-		for sbox_name in get_stylebox_list(item_type):
-			var sbox = get_stylebox(sbox_name, item_type)
-			if sbox is StyleBoxTexture:
-				var texture = sbox.texture
-				if (texture is ImageTexture) and (not texture in tex_sizes) and (texture.get_size() != Vector2.ZERO):
-					tex_sizes[texture] = texture.get_size()
-
-	return tex_sizes
-
-
 func _save_font_sizes() -> void:
 	
 	_saved_default_font_size = default_font_size
@@ -287,7 +253,7 @@ func _save_font_sizes() -> void:
 	_saved_font_sizes = font_sizes
 
 
-func _save_stylebox_properties() -> Dictionary:
+func _save_stylebox_properties() -> void:
 
 	var sbox_props := {}
 
@@ -322,8 +288,7 @@ func _save_stylebox_properties() -> Dictionary:
 				if not discard:
 					sbox_props[sbox][prop] = value
 
-
-	return sbox_props
+	_saved_sbox_props = sbox_props
 
 
 func _scale_constants(factor: float) -> void:
@@ -337,9 +302,6 @@ func _scale_constants(factor: float) -> void:
 
 func _scale_textures(factor: float) -> void:
 
-	#for texture in _saved_tex_sizes:
-		#texture.set_size_override(_saved_tex_sizes[texture] * factor)
-	
 	for tex_type in get_icon_type_list():
 		for tex_name in get_icon_list(tex_type):
 			var tex := get_icon(tex_name, tex_type) as DPITexture
@@ -357,7 +319,7 @@ func _scale_font_sizes(factor: float) -> void:
 
 
 func _scale_styleboxes(factor: float) -> void:
-
+	
 	for sbox in _saved_sbox_props:
 		for prop in _saved_sbox_props[sbox]:
 			var value = _saved_sbox_props[sbox][prop]
@@ -373,3 +335,5 @@ func _scale_styleboxes(factor: float) -> void:
 					new_value = value * factor
 					new_value = max(1, new_value)
 			sbox.set(prop, new_value)
+		if (sbox is StyleBoxTexture) and (sbox.texture is DPITexture):
+			sbox.texture.base_scale = factor
