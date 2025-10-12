@@ -217,7 +217,6 @@ const _SCALABLE_SBOX_PROPS := {
 }
 
 var _saved_constants: Dictionary
-var _saved_tex_sizes: Dictionary
 var _saved_font_sizes: Dictionary
 var _saved_default_font_size: int
 var _saved_sbox_props: Dictionary
@@ -226,7 +225,6 @@ var _saved_sbox_props: Dictionary
 func _init() -> void:
 	
 	_save_constants()
-	#_saved_tex_sizes = _save_texture_sizes()
 	_save_font_sizes()
 	#_saved_sbox_props = _save_stylebox_properties()
 
@@ -235,7 +233,7 @@ func apply_scale(factor: float) -> void:
 
 	# pass  # FIXME
 	_scale_constants(factor)
-	#_scale_textures(factor)
+	_scale_textures(factor)
 	_scale_font_sizes(factor)
 	#_scale_styleboxes(factor)
 
@@ -339,8 +337,14 @@ func _scale_constants(factor: float) -> void:
 
 func _scale_textures(factor: float) -> void:
 
-	for texture in _saved_tex_sizes:
-		texture.set_size_override(_saved_tex_sizes[texture] * factor)
+	#for texture in _saved_tex_sizes:
+		#texture.set_size_override(_saved_tex_sizes[texture] * factor)
+	
+	for tex_type in get_icon_type_list():
+		for tex_name in get_icon_list(tex_type):
+			var tex := get_icon(tex_name, tex_type) as DPITexture
+			if tex:
+				tex.base_scale = factor
 
 
 func _scale_font_sizes(factor: float) -> void:
