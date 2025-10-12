@@ -1,5 +1,4 @@
-extends Theme
-class_name ScalableTheme
+class_name ThemeScaler
 
 
 const _SCALABLE_CONSTANTS := {
@@ -204,136 +203,80 @@ const _SCALABLE_SBOX_PROPS := {
 	]
 }
 
-var _saved_constants: Dictionary
-var _saved_font_sizes: Dictionary
-var _saved_default_font_size: int
-var _saved_sbox_props: Dictionary
 
-
-func _init() -> void:
+func make_scaled_theme(proto_path: String, scale_factor: float) -> Theme:
 	
-	_save_constants()
-	_save_font_sizes()
-	_save_stylebox_properties()
+	var theme: Theme = load(proto_path)
+	if theme is Theme:
+		var new_theme := theme.duplicate_deep(Resource.DEEP_DUPLICATE_INTERNAL)
+		_apply_scale(new_theme, scale_factor)
+		return new_theme
+	else:
+		Status.post(tr("msg_theme_load_error") % proto_path, Enums.MSG_ERROR)
+		return null
 
 
-func apply_scale(factor: float) -> void:
-	
-	_scale_constants(factor)
-	_scale_textures(factor)
-	_scale_font_sizes(factor)
-	_scale_styleboxes(factor)
+func _apply_scale(theme: Theme, factor: float) -> void:
+	pass
+	_scale_constants(theme, factor)
+	_scale_textures(theme, factor)
+	_scale_font_sizes(theme, factor)
+	_scale_styleboxes(theme, factor)
 
 
-func _save_constants() -> void:
+func _scale_constants(theme: Theme, factor: float) -> void:
 
-	var constants := {}
-
-	for item_type in get_constant_type_list():
-		if item_type in _SCALABLE_CONSTANTS:
-			constants[item_type] = {}
-			for const_name in get_constant_list(item_type):
-				if const_name in _SCALABLE_CONSTANTS[item_type]:
-					var value = get_constant(const_name, item_type)
-					if value > 0:
-						constants[item_type][const_name] = value
-
-	_saved_constants = constants
-
-
-func _save_font_sizes() -> void:
-	
-	_saved_default_font_size = default_font_size
-	var font_sizes := {}
-	for sz_type in get_font_size_type_list():
-		font_sizes[sz_type] = {}
-		for sz_name in get_font_size_list(sz_type):
-			var sz_value = get_font_size(sz_name, sz_type)
-			font_sizes[sz_type][sz_name] = sz_value
-	_saved_font_sizes = font_sizes
-
-
-func _save_stylebox_properties() -> void:
-
-	var sbox_props := {}
-
-	for item_type in get_stylebox_type_list():
-		for sbox_name in get_stylebox_list(item_type):
-			var sbox = get_stylebox(sbox_name, item_type)
-
-			if not sbox in sbox_props:
-				sbox_props[sbox] = {}
-
-			var sbox_type = sbox.get_class()
-			for prop in _SCALABLE_SBOX_PROPS[sbox_type]:
-
-				if not prop in sbox:
-					continue
-				var value = sbox.get(prop)
-				var discard := false
-
-				match typeof(value):
-					TYPE_VECTOR2:
-						# Special case for shadow_offset
-						if value == Vector2.ZERO:
-							discard = true
-					TYPE_RECT2:
-						# Special case for region_rect
-						if not value.has_area():
-							discard = true
-					_:
-						if value <= 0:
-							discard = true
-
-				if not discard:
-					sbox_props[sbox][prop] = value
-
-	_saved_sbox_props = sbox_props
-
-
-func _scale_constants(factor: float) -> void:
-
-	for item_type in _saved_constants:
-		for const_name in _saved_constants[item_type]:
-			var new_value = _saved_constants[item_type][const_name] * factor
+	for item_type in theme.get_constant_type_list():
+		if not item_type in _SCALABLE_CONSTANTS:
+			continue
+		for const_name in theme.get_constant_list(item_type):
+			if not const_name in _SCALABLE_CONSTANTS[item_type]:
+				continue
+			var new_value = theme.get_constant(const_name, item_type) * factor
 			new_value = max(1, new_value)
-			set_constant(const_name, item_type, new_value)
+			theme.set_constant(const_name, item_type, new_value)
 
 
-func _scale_textures(factor: float) -> void:
+func _scale_textures(theme: Theme, factor: float) -> void:
 
-	for tex_type in get_icon_type_list():
-		for tex_name in get_icon_list(tex_type):
-			var tex := get_icon(tex_name, tex_type) as DPITexture
+	for tex_type in theme.get_icon_type_list():
+		for tex_name in theme.get_icon_list(tex_type):
+			var tex := theme.get_icon(tex_name, tex_type) as DPITexture
 			if tex:
 				tex.base_scale = factor
-
-
-func _scale_font_sizes(factor: float) -> void:
+#
+#
+func _scale_font_sizes(theme: Theme, factor: float) -> void:
 	
-	default_font_size = max(1, _saved_default_font_size * factor)
-	for sz_type in _saved_font_sizes:
-		for sz_name in _saved_font_sizes[sz_type]:
-			var new_value: int = max(1, _saved_font_sizes[sz_type][sz_name] * factor)
-			set_font_size(sz_name, sz_type, new_value)
-
-
-func _scale_styleboxes(factor: float) -> void:
+	theme.default_font_size = max(1, theme.default_font_size * factor)
+	for sz_type in theme.get_font_size_type_list():
+		for sz_name in theme.get_font_size_list(sz_type):
+			var new_value: int = max(1, theme.get_font_size(sz_name, sz_type) * factor)
+			theme.set_font_size(sz_name, sz_type, new_value)
+#
+#
+func _scale_styleboxes(theme: Theme, factor: float) -> void:
 	
-	for sbox in _saved_sbox_props:
-		for prop in _saved_sbox_props[sbox]:
-			var value = _saved_sbox_props[sbox][prop]
+	var unique_styleboxes := []
+	for sb_type in theme.get_stylebox_type_list():
+		for sb_name in theme.get_stylebox_list(sb_type):
+			var sbox := theme.get_stylebox(sb_name, sb_type)
+			if not sbox in unique_styleboxes:
+				unique_styleboxes.append(sbox)
+	
+	for sbox in unique_styleboxes:
+		for prop in _SCALABLE_SBOX_PROPS[sbox.get_class()]:
+			if not prop in sbox:
+				continue
+			var value = sbox.get(prop)
 			var new_value
 			match typeof(value):
 				TYPE_RECT2:
 					# Special case for region_rect
 					new_value = Rect2(value.position * factor, value.size * factor)
-				TYPE_VECTOR2:
-					# Special case for shadow_offset
-					new_value = value * factor
 				_:
 					new_value = value * factor
-					new_value = max(1, new_value)
 			sbox.set(prop, new_value)
+			
 		if (sbox is StyleBoxTexture) and (sbox.texture is DPITexture):
 			sbox.texture.base_scale = factor

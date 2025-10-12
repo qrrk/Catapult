@@ -108,21 +108,10 @@ func assign_localized_text() -> void:
 
 func load_ui_theme(theme_file: String) -> void:
 	
-	# Since we've got multiple themes that have some shared elements (like fonts),
-	# we have to make sure old theme's *scaled* sizes don't become new theme's
-	# *base* sizes. To avoid that, we have to reset the scale of the old theme
-	# before replacing it, and we have to do that before we even attempt to load
-	# the new theme.
-	
-	self.theme.apply_scale(1.0)
-	var new_theme := load("res://themes".path_join(theme_file)) as ScalableTheme
-	
-	if new_theme:
-		new_theme.apply_scale(Geom.scale)
+	var new_theme: Theme = ThemeScaler.new().make_scaled_theme(
+		"res://themes".path_join(theme_file), Geom.scale)
+	if new_theme is Theme:
 		self.theme = new_theme
-	else:
-		self.theme.apply_scale(Geom.scale)
-		Status.post(tr("msg_theme_load_error") % theme_file, Enums.MSG_ERROR)
 
 
 func _unpack_utils() -> void:

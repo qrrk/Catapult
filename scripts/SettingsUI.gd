@@ -164,7 +164,7 @@ func _on_cbScaleOverrideEnable_toggled(button_pressed: bool) -> void:
 	else:
 		Geom.scale = Geom.calculate_scale_from_dpi()
 	
-	_root.theme.apply_scale(Geom.scale)
+	_root.load_ui_theme(Settings.read("launcher_theme"))
 
 
 func _on_sbScaleOverride_value_changed(value: float) -> void:
@@ -172,4 +172,4 @@ func _on_sbScaleOverride_value_changed(value: float) -> void:
 	if Settings.read("ui_scale_override_enabled"):
 		Settings.store("ui_scale_override", value / 100.0)
 		Geom.scale = value / 100.0
-		_root.theme.apply_scale(Geom.scale)
+		_root.load_ui_theme(Settings.read("launcher_theme"))
