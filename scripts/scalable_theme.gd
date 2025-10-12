@@ -6,147 +6,147 @@ const _SCALABLE_CONSTANTS := {
 	# Theme item constants that need to be scaled (by item type).
 	# Editor types are not included.
 	
-    "AcceptDialog": [
-        "buttons_min_height",
-        "buttons_min_width",
-        "buttons_separation",
-    ],
-    "BoxContainer": [
-        "separation",
-    ],
-    "Button": [
-        "h_separation",
-        "outline_size",
-    ],
-    "CheckBox": [
-        "check_v_offset",
-        "h_separation",
-        "outline_size",
-    ],
-    "CheckButton": [
-        "check_v_offset",
-        "h_separation",
-        "outline_size",
-    ],
-    "FlowContainer": [
-        "h_separation",
-        "v_separation",
-    ],
-    "FoldableContainer": [
-        "h_separation",
-        "outline_size",
-    ],
-    "GridContainer": [
-        "h_separation",
-        "v_separation",
-    ],
-    "HBoxContainer": [
-        "separation",
-    ],
-    "HFlowContainer": [
-        "h_separation",
-        "v_separation",
-    ],
-    "HSlider": [
-        "center_grabber",
-        "grabber_offset",
-    ],
-    "HSplitContainer": [
-        "minimum_grab_thickness",
-        "separation",
-    ],
-    "ItemList": [
-        "h_separation",
-        "icon_margin",
-        "line_separation",
-        "outline_size",
-        "v_separation",
-    ],
-    "Label": [
-        "line_spacing",
-        "outline_size",
-        "shadow_offset_x",
-        "shadow_offset_y",
-        "shadow_outline_size",
-    ],
-    "LineEdit": [
-        "caret_width",
-        "minimum_character_width",
-        "outline_size",
-    ],
-    "LinkButton": [
-        "outline_size",
-    ],
-    "MarginContainer": [
-        "margin_bottom",
-        "margin_left",
-        "margin_right",
-        "margin_top",
-    ],
-    "MenuBar": [
-        "h_separation",
-        "outline_size",
-    ],
-    "MenuButton": [
-        "outline_size",
-    ],
-    "OptionButton": [
-        "arrow_margin",
-        "h_separation",
-        "outline_size",
-    ],
-    "ProgressBar": [
-        "outline_size",
-    ],
-    "RichTextLabel": [
-        "outline_size",
-        "shadow_offset_x",
-        "shadow_offset_y",
-        "shadow_outline_size",
-    ],
-    "SpinBox": [
-        "buttons_vertical_separation",
-        "buttons_width",
-        "field_and_buttons_separation",
-    ],
-    "SplitContainer": [
-        "minimum_grab_thickness",
-        "separation",
-    ],
-    "TabBar": [
-        "h_separation",
-        "outline_size",
-    ],
-    "TabContainer": [
-        "outline_size",
-        "side_margin",
-    ],
-    "TextEdit": [
-        "caret_width",
-        "line_spacing",
-        "outline_size",
-    ],
-    "VBoxContainer": [
-        "separation",
-    ],
-    "VFlowContainer": [
-        "h_separation",
-        "v_separation",
-    ],
-    "VSlider": [
-        "center_grabber",
-        "grabber_offset",
-    ],
-    "VSplitContainer": [
-        "minimum_grab_thickness",
-        "separation",
-    ],
-    "Window": [
-        "close_h_offset",
-        "close_v_offset",
-        "resize_margin",
-        "title_height",
-    ],
+	"AcceptDialog": [
+		"buttons_min_height",
+		"buttons_min_width",
+		"buttons_separation",
+	],
+	"BoxContainer": [
+		"separation",
+	],
+	"Button": [
+		"h_separation",
+		"outline_size",
+	],
+	"CheckBox": [
+		"check_v_offset",
+		"h_separation",
+		"outline_size",
+	],
+	"CheckButton": [
+		"check_v_offset",
+		"h_separation",
+		"outline_size",
+	],
+	"FlowContainer": [
+		"h_separation",
+		"v_separation",
+	],
+	"FoldableContainer": [
+		"h_separation",
+		"outline_size",
+	],
+	"GridContainer": [
+		"h_separation",
+		"v_separation",
+	],
+	"HBoxContainer": [
+		"separation",
+	],
+	"HFlowContainer": [
+		"h_separation",
+		"v_separation",
+	],
+	"HSlider": [
+		"center_grabber",
+		"grabber_offset",
+	],
+	"HSplitContainer": [
+		"minimum_grab_thickness",
+		"separation",
+	],
+	"ItemList": [
+		"h_separation",
+		"icon_margin",
+		"line_separation",
+		"outline_size",
+		"v_separation",
+	],
+	"Label": [
+		"line_spacing",
+		"outline_size",
+		"shadow_offset_x",
+		"shadow_offset_y",
+		"shadow_outline_size",
+	],
+	"LineEdit": [
+		"caret_width",
+		"minimum_character_width",
+		"outline_size",
+	],
+	"LinkButton": [
+		"outline_size",
+	],
+	"MarginContainer": [
+		"margin_bottom",
+		"margin_left",
+		"margin_right",
+		"margin_top",
+	],
+	"MenuBar": [
+		"h_separation",
+		"outline_size",
+	],
+	"MenuButton": [
+		"outline_size",
+	],
+	"OptionButton": [
+		"arrow_margin",
+		"h_separation",
+		"outline_size",
+	],
+	"ProgressBar": [
+		"outline_size",
+	],
+	"RichTextLabel": [
+		"outline_size",
+		"shadow_offset_x",
+		"shadow_offset_y",
+		"shadow_outline_size",
+	],
+	"SpinBox": [
+		"buttons_vertical_separation",
+		"buttons_width",
+		"field_and_buttons_separation",
+	],
+	"SplitContainer": [
+		"minimum_grab_thickness",
+		"separation",
+	],
+	"TabBar": [
+		"h_separation",
+		"outline_size",
+	],
+	"TabContainer": [
+		"outline_size",
+		"side_margin",
+	],
+	"TextEdit": [
+		"caret_width",
+		"line_spacing",
+		"outline_size",
+	],
+	"VBoxContainer": [
+		"separation",
+	],
+	"VFlowContainer": [
+		"h_separation",
+		"v_separation",
+	],
+	"VSlider": [
+		"center_grabber",
+		"grabber_offset",
+	],
+	"VSplitContainer": [
+		"minimum_grab_thickness",
+		"separation",
+	],
+	"Window": [
+		"close_h_offset",
+		"close_v_offset",
+		"resize_margin",
+		"title_height",
+	],
 }
 
 const _SCALABLE_FONT_PROPS := [
@@ -218,15 +218,16 @@ const _SCALABLE_SBOX_PROPS := {
 
 var _saved_constants: Dictionary
 var _saved_tex_sizes: Dictionary
-var _saved_font_props: Dictionary
+var _saved_font_sizes: Dictionary
+var _saved_default_font_size: int
 var _saved_sbox_props: Dictionary
 
 
 func _init() -> void:
-	# pass  # FIXME
-	_saved_constants = _save_constants()
+	
+	_save_constants()
 	#_saved_tex_sizes = _save_texture_sizes()
-	#_saved_font_props = _save_font_properties()
+	_save_font_sizes()
 	#_saved_sbox_props = _save_stylebox_properties()
 
 
@@ -235,11 +236,11 @@ func apply_scale(factor: float) -> void:
 	# pass  # FIXME
 	_scale_constants(factor)
 	#_scale_textures(factor)
-	#_scale_fonts(factor)
+	_scale_font_sizes(factor)
 	#_scale_styleboxes(factor)
 
 
-func _save_constants() -> Dictionary:
+func _save_constants() -> void:
 
 	var constants := {}
 
@@ -252,7 +253,7 @@ func _save_constants() -> Dictionary:
 					if value > 0:
 						constants[item_type][const_name] = value
 
-	return constants
+	_saved_constants = constants
 
 
 func _save_texture_sizes() -> Dictionary:
@@ -276,30 +277,16 @@ func _save_texture_sizes() -> Dictionary:
 	return tex_sizes
 
 
-func _save_font_properties() -> Dictionary:
-
-	var font_props := {
-		default_font: {}
-	}
-
-	for item_type in get_font_type_list():
-		for font_name in get_font_list(item_type):
-			var font := get_font(font_name, item_type)
-			if (font is FontFile) and (not font in font_props):
-				font_props[font] = {}
-
-	for font in font_props:
-		if not font:
-			continue
-		for prop in _SCALABLE_FONT_PROPS:
-			var value = font.get(prop)
-			if value == null:
-				push_error("Font %s does not have the property %s." % [font, prop])
-				continue
-			if value > 0:
-				font_props[font][prop] = value
-
-	return font_props
+func _save_font_sizes() -> void:
+	
+	_saved_default_font_size = default_font_size
+	var font_sizes := {}
+	for sz_type in get_font_size_type_list():
+		font_sizes[sz_type] = {}
+		for sz_name in get_font_size_list(sz_type):
+			var sz_value = get_font_size(sz_name, sz_type)
+			font_sizes[sz_type][sz_name] = sz_value
+	_saved_font_sizes = font_sizes
 
 
 func _save_stylebox_properties() -> Dictionary:
@@ -356,13 +343,13 @@ func _scale_textures(factor: float) -> void:
 		texture.set_size_override(_saved_tex_sizes[texture] * factor)
 
 
-func _scale_fonts(factor: float) -> void:
-
-	for font in _saved_font_props:
-		for prop in _saved_font_props[font]:
-			var new_value = _saved_font_props[font][prop] * factor
-			new_value = max(1, new_value)
-			font.set(prop, new_value)
+func _scale_font_sizes(factor: float) -> void:
+	
+	default_font_size = max(1, _saved_default_font_size * factor)
+	for sz_type in _saved_font_sizes:
+		for sz_name in _saved_font_sizes[sz_type]:
+			var new_value: int = max(1, _saved_font_sizes[sz_type][sz_name] * factor)
+			set_font_size(sz_name, sz_type, new_value)
 
 
 func _scale_styleboxes(factor: float) -> void:
