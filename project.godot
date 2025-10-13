@@ -51,10 +51,6 @@ window/per_pixel_transparency/allowed=true
 
 singletons=[]
 
-[gui]
-
-theme/use_hidpi=true
-
 [input]
 
 ui_accept={

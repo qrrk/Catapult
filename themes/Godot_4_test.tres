@@ -1,4 +1,9 @@
-[gd_resource type="Theme" load_steps=134 format=3 uid="uid://bym2ql8ifky1c"]
+[gd_resource type="Theme" load_steps=138 format=3 uid="uid://bym2ql8ifky1c"]
+
+[ext_resource type="FontVariation" uid="uid://d0kdjlgh0c5dn" path="res://fonts/default_variation_bold.tres" id="1_7l1ks"]
+[ext_resource type="FontVariation" uid="uid://c5demt1ms6lvi" path="res://fonts/default_variation_bold_italic.tres" id="2_tm14v"]
+[ext_resource type="FontVariation" uid="uid://7twf0uibagrg" path="res://fonts/default_variation_italic.tres" id="3_eicbn"]
+[ext_resource type="FontVariation" uid="uid://dcvgay2daepql" path="res://fonts/default_variation_regular.tres" id="4_e8sit"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3oq7j"]
 content_margin_left = 9.0
@@ -1309,6 +1314,7 @@ shadow_size = 4
 anti_aliasing = false
 
 [resource]
+default_font = ExtResource("4_e8sit")
 default_font_size = 12
 AcceptDialog/constants/buttons_min_height = 34
 AcceptDialog/constants/buttons_min_width = 105
@@ -1602,6 +1608,10 @@ RichTextLabel/constants/outline_size = 0
 RichTextLabel/constants/shadow_offset_x = 1
 RichTextLabel/constants/shadow_offset_y = 1
 RichTextLabel/constants/shadow_outline_size = 1
+RichTextLabel/fonts/bold_font = ExtResource("1_7l1ks")
+RichTextLabel/fonts/bold_italics_font = ExtResource("2_tm14v")
+RichTextLabel/fonts/italics_font = ExtResource("3_eicbn")
+RichTextLabel/fonts/normal_font = ExtResource("4_e8sit")
 RichTextLabel/styles/focus = SubResource("StyleBoxEmpty_van1i")
 RichTextLabel/styles/normal = SubResource("StyleBoxFlat_slyen")
 ScrollContainer/styles/focus = SubResource("StyleBoxFlat_g5nud")
