@@ -264,7 +264,7 @@ func _scale_styleboxes(theme: Theme, factor: float) -> void:
 			if not sbox in unique_styleboxes:
 				unique_styleboxes.append(sbox)
 	
-	for sbox in unique_styleboxes:
+	for sbox:StyleBox in unique_styleboxes:
 		for prop in _SCALABLE_SBOX_PROPS[sbox.get_class()]:
 			if not prop in sbox:
 				continue
@@ -280,3 +280,6 @@ func _scale_styleboxes(theme: Theme, factor: float) -> void:
 			
 		if (sbox is StyleBoxTexture) and (sbox.texture is DPITexture):
 			sbox.texture.base_scale = factor
+		
+		if "anti_aliasing" in sbox:
+			sbox.set("anti_aliasing", true)
