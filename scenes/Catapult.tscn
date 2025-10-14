@@ -1,6 +1,5 @@
-[gd_scene load_steps=48 format=3 uid="uid://j8v4j8uy58rl"]
+[gd_scene load_steps=47 format=3 uid="uid://j8v4j8uy58rl"]
 
-[ext_resource type="Theme" uid="uid://dhruwrew66qvm" path="res://themes/Godot_4.tres" id="1_no8b7"]
 [ext_resource type="Texture2D" uid="uid://qcrcxsadl0kv" path="res://icons/buttons/tex_resume.tex" id="2"]
 [ext_resource type="Texture2D" uid="uid://uxhn3wij7008" path="res://icons/buttons/tex_download.tex" id="3"]
 [ext_resource type="Texture2D" uid="uid://dbd0vhgo2wdv2" path="res://icons/info.svg" id="3_rr64d"]
@@ -58,7 +57,6 @@ content_margin_bottom = 4.0
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource("1_no8b7")
 script = ExtResource("4")
 
 [node name="Main" type="VBoxContainer" parent="."]

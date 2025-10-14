@@ -204,16 +204,11 @@ const _SCALABLE_SBOX_PROPS := {
 }
 
 
-func make_scaled_theme(proto_path: String, scale_factor: float) -> Theme:
+func make_scaled_theme(proto: Theme, scale_factor: float) -> Theme:
 	
-	var theme: Theme = load(proto_path)
-	if theme is Theme:
-		var new_theme := theme.duplicate_deep(Resource.DEEP_DUPLICATE_INTERNAL)
-		_apply_scale(new_theme, scale_factor)
-		return new_theme
-	else:
-		Status.post(tr("msg_theme_load_error") % proto_path, Enums.MSG_ERROR)
-		return null
+	var new_theme := proto.duplicate_deep(Resource.DEEP_DUPLICATE_INTERNAL)
+	_apply_scale(new_theme, scale_factor)
+	return new_theme
 
 
 func _apply_scale(theme: Theme, factor: float) -> void:

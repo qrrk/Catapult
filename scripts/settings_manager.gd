@@ -13,7 +13,7 @@ const _HARDCODED_DEFAULTS = {
 	"active_install_tlg": "",
 	"update_current_when_installing": true,
 	"launcher_locale": "",
-	"launcher_theme": "Godot_3.res",
+	"launcher_theme": "Godot_4.tres",
 	"window_state": {},
 	"print_tips_of_the_day": true,
 	"update_to_same_build_allowed": false,

@@ -108,10 +108,16 @@ func assign_localized_text() -> void:
 
 func load_ui_theme(theme_file: String) -> void:
 	
-	var new_theme: Theme = ThemeScaler.new().make_scaled_theme(
-		"res://themes".path_join(theme_file), Geom.scale)
-	if new_theme is Theme:
+	var ts := ThemeScaler.new()
+	var proto = load("res://themes".path_join(theme_file))
+	if proto is Theme:
+		var new_theme: Theme = ts.make_scaled_theme(proto, Geom.scale)
 		self.theme = new_theme
+	else:
+		Status.post(tr("msg_theme_load_error") % theme_file, Enums.MSG_ERROR)
+		proto = ThemeDB.get_project_theme()
+		self.theme = ts.make_scaled_theme(proto, Geom.scale)
+		
 
 
 func _unpack_utils() -> void:

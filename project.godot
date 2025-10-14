@@ -51,6 +51,10 @@ window/per_pixel_transparency/allowed=true
 
 singletons=[]
 
+[gui]
+
+theme/custom="uid://dhruwrew66qvm"
+
 [input]
 
 ui_accept={
