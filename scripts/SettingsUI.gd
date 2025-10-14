@@ -4,12 +4,11 @@ extends VBoxContainer
 var _langs := ["en", "fr", "ru", "zh", "cs", "es", "pl", "tr", "pt", "ko"]
 
 var _themes := [
-	"Godot_4_test.tres",
-	"Godot_3.res",
-	"Light.res",
-	"Grey.res",
-	"Solarized_Dark.res",
-	"Solarized_Light.res",
+	"Godot_4.tres",
+	"Light.tres",
+	"Gray.tres",
+	"Solarized_Dark.tres",
+	"Solarized_Light.tres",
 ]
 
 var _proxy_options := ["off", "on", "download"]

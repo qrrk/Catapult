@@ -1,6 +1,6 @@
 [gd_scene load_steps=48 format=3 uid="uid://j8v4j8uy58rl"]
 
-[ext_resource type="Theme" uid="uid://bym2ql8ifky1c" path="res://themes/Godot_4_test.tres" id="1_no8b7"]
+[ext_resource type="Theme" uid="uid://dhruwrew66qvm" path="res://themes/Godot_4.tres" id="1_no8b7"]
 [ext_resource type="Texture2D" uid="uid://qcrcxsadl0kv" path="res://icons/buttons/tex_resume.tex" id="2"]
 [ext_resource type="Texture2D" uid="uid://uxhn3wij7008" path="res://icons/buttons/tex_download.tex" id="3"]
 [ext_resource type="Texture2D" uid="uid://dbd0vhgo2wdv2" path="res://icons/info.svg" id="3_rr64d"]
@@ -35,14 +35,14 @@
 [ext_resource type="Texture2D" uid="uid://bsllqes4brm0c" path="res://icons/lang/tex_lang_pt.res" id="28_0614g"]
 [ext_resource type="PackedScene" uid="uid://ciqb5ygi2n5yp" path="res://scenes/FontSizeHelpDialog.tscn" id="29"]
 [ext_resource type="Texture2D" uid="uid://b7illlxrqfq74" path="res://icons/lang/tex_lang_ko.res" id="29_ryetc"]
-[ext_resource type="Texture2D" uid="uid://bd2xuhnxv2txm" path="res://icons/theme/tex_godot3.res" id="30_mx4ch"]
-[ext_resource type="Texture2D" uid="uid://rk0u6q32qjje" path="res://icons/theme/tex_light.res" id="31_nhi6l"]
 [ext_resource type="PackedScene" uid="uid://b476fjhyidej5" path="res://scenes/ChangelogDialog.tscn" id="32"]
-[ext_resource type="Texture2D" uid="uid://bsruvk3ypvicv" path="res://icons/theme/tex_grey.res" id="32_kej4f"]
 [ext_resource type="Script" uid="uid://bchhsc0w03a5c" path="res://scripts/BackupsUI.gd" id="33"]
-[ext_resource type="Texture2D" uid="uid://0aqps1ij1nbk" path="res://icons/theme/tex_solarized_dark.res" id="33_vl3fl"]
 [ext_resource type="Script" uid="uid://d0a1urlp1mp4l" path="res://scripts/BackupManager.gd" id="34"]
-[ext_resource type="Texture2D" uid="uid://pnomke2vhtxo" path="res://icons/theme/tex_solarized_light.res" id="34_knvof"]
+[ext_resource type="Texture2D" uid="uid://vjo780kdsk2k" path="res://icons/theme/tex_godot4.tres" id="34_no8b7"]
+[ext_resource type="Texture2D" uid="uid://c72sb8nwud547" path="res://icons/theme/tex_light.tres" id="35_no8b7"]
+[ext_resource type="Texture2D" uid="uid://bgc0jqaoheylx" path="res://icons/theme/tex_gray.tres" id="36_cyylm"]
+[ext_resource type="Texture2D" uid="uid://blvxgapecxw31" path="res://icons/theme/tex_solarized_dark.tres" id="37_5ug7j"]
+[ext_resource type="Texture2D" uid="uid://ckqrpp6s8he8e" path="res://icons/theme/tex_solzrized_light.tres" id="38_65f1m"]
 [ext_resource type="Texture2D" uid="uid://bhpjqmc7pvv3j" path="res://icons/buttons/tex_delete.tex" id="40"]
 [ext_resource type="Texture2D" uid="uid://bne67n27nnwwx" path="res://icons/buttons/tex_activate.tex" id="41"]
 
@@ -857,24 +857,22 @@ layout_mode = 2
 size_flags_horizontal = 10
 expand_icon = true
 selected = 0
-item_count = 6
+item_count = 5
 popup/item_0/text = "Godot 4"
+popup/item_0/icon = ExtResource("34_no8b7")
 popup/item_0/id = 0
-popup/item_1/text = "Godot 3"
-popup/item_1/icon = ExtResource("30_mx4ch")
+popup/item_1/text = "Light"
+popup/item_1/icon = ExtResource("35_no8b7")
 popup/item_1/id = 1
-popup/item_2/text = "Light"
-popup/item_2/icon = ExtResource("31_nhi6l")
+popup/item_2/text = "Gray"
+popup/item_2/icon = ExtResource("36_cyylm")
 popup/item_2/id = 2
-popup/item_3/text = "Grey"
-popup/item_3/icon = ExtResource("32_kej4f")
+popup/item_3/text = "Solarized Dark"
+popup/item_3/icon = ExtResource("37_5ug7j")
 popup/item_3/id = 3
-popup/item_4/text = "Solarized Dark"
-popup/item_4/icon = ExtResource("33_vl3fl")
+popup/item_4/text = "Solarized Light"
+popup/item_4/icon = ExtResource("38_65f1m")
 popup/item_4/id = 4
-popup/item_5/text = "Solarized Light"
-popup/item_5/icon = ExtResource("34_knvof")
-popup/item_5/id = 5
 
 [node name="ShowGameDesc" type="CheckButton" parent="Main/TabBar/Settings"]
 layout_mode = 2
