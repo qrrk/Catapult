@@ -383,5 +383,6 @@ func _on_ModReinstallDialog_response_yes() -> void:
 
 func _on_ModReinstallDialog_response_no() -> void:
 	
+	_ids_to_delete.clear()
 	_ids_to_reinstall.clear()
 	_do_mod_installation()
