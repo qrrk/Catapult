@@ -1,17 +1,16 @@
 [gd_scene load_steps=3 format=3 uid="uid://snuvrmmyvlwd"]
 
-[ext_resource type="Texture2D" uid="uid://cdnsgm0254oda" path="res://icons/placeholder.svg" id="1"]
+[ext_resource type="Texture2D" uid="uid://2k40kivg410d" path="res://icons/tex_placeholder.tres" id="1_4hy50"]
 [ext_resource type="Script" uid="uid://cteujtsgpkt4p" path="res://scripts/InlineIconButton.gd" id="2"]
 
 [node name="InlineIconButton" type="TextureButton"]
-custom_minimum_size = Vector2(18, 18)
-offset_right = 20.0
-offset_bottom = 20.0
+texture_filter = 1
+offset_right = 17.6
+offset_bottom = 17.6
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture_normal = ExtResource("1")
-ignore_texture_size = true
-stretch_mode = 0
+texture_normal = ExtResource("1_4hy50")
+stretch_mode = 3
 script = ExtResource("2")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

@@ -1,0 +1,14 @@
+[gd_resource type="DPITexture" script_class="SVGTexture" load_steps=2 format=3 uid="uid://531jnkg07go2"]
+
+[ext_resource type="Script" uid="uid://c1wwv5d56m6r" path="res://scripts/svg_texture.gd" id="1_15bem"]
+
+[resource]
+_source = "<svg width=\"30\" height=\"20\" viewBox=\"0 0 30 20\" xmlns=\"http://www.w3.org/2000/svg\">
+  <rect x=\"0\" y=\"0\" width=\"30\" height=\"20\" rx=\"3\" ry=\"3\" fill=\"#de2910\" />
+  <!-- <path fill=\"#de2910\" d=\"M0 0h30v20H0z\" /> -->
+  <g fill=\"#ffde00\">
+    <path d=\"M5 2l1.764 5.427-4.62-3.354h5.712l-4.62 3.354zM10.391 1.08l-.167 1.894-.98-1.631 1.753.745-1.855.426zM12.718 3.304l-.89 1.682-.27-1.884 1.327 1.366-1.875-.326zM12.94 6.658L11.441 7.83 11.964 6l.653 1.789-1.578-1.063zM10.353 8.065l-.088 1.9-1.047-1.59L11 9.047l-1.836.503z\" />
+  </g>
+</svg>"
+script = ExtResource("1_15bem")
+metadata/_custom_type_script = "uid://c1wwv5d56m6r"

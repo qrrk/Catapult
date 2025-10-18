@@ -1,6 +1,6 @@
 [gd_resource type="DPITexture" script_class="ScalingDPITexture" load_steps=2 format=3 uid="uid://vjo780kdsk2k"]
 
-[ext_resource type="Script" uid="uid://c1wwv5d56m6r" path="res://scripts/scaling_dpi_texture.gd" id="1_hcp1c"]
+[ext_resource type="Script" uid="uid://c1wwv5d56m6r" path="res://scripts/svg_texture.gd" id="1_hcp1c"]
 
 [resource]
 _source = "<svg width=\"20\" height=\"20\" xmlns=\"http://www.w3.org/2000/svg\">

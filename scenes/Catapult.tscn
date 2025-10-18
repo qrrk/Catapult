@@ -1,40 +1,42 @@
 [gd_scene load_steps=47 format=3 uid="uid://j8v4j8uy58rl"]
 
-[ext_resource type="Texture2D" uid="uid://qcrcxsadl0kv" path="res://icons/buttons/tex_resume.tex" id="2"]
-[ext_resource type="Texture2D" uid="uid://uxhn3wij7008" path="res://icons/buttons/tex_download.tex" id="3"]
-[ext_resource type="Texture2D" uid="uid://dbd0vhgo2wdv2" path="res://icons/info.svg" id="3_rr64d"]
+[ext_resource type="Texture2D" uid="uid://ma1wiy6trs4k" path="res://icons/tex_info.tres" id="2_rcpd3"]
 [ext_resource type="Script" uid="uid://drnrbqdw1iua4" path="res://scripts/Catapult.gd" id="4"]
+[ext_resource type="Texture2D" uid="uid://d0qh43un40sje" path="res://icons/buttons/tex_download.tres" id="4_rcpd3"]
 [ext_resource type="Script" uid="uid://ctewoab2y1ofp" path="res://scripts/ReleaseManager.gd" id="5"]
 [ext_resource type="Script" uid="uid://4eua2dsbxhy7" path="res://scripts/InstallsList.gd" id="6"]
-[ext_resource type="Texture2D" uid="uid://c8pe3ckwjamrl" path="res://icons/folder_game.svg" id="7_ffy77"]
+[ext_resource type="Texture2D" uid="uid://qxwxismomgkm" path="res://icons/tex_folder_game.tres" id="6_rcpd3"]
+[ext_resource type="Texture2D" uid="uid://brhwrcsh73jvf" path="res://icons/tex_folder_user.tres" id="7_rcpd3"]
 [ext_resource type="Script" uid="uid://dcjaj7pear8qg" path="res://scripts/SettingsUI.gd" id="8"]
-[ext_resource type="Texture2D" uid="uid://boe62hlvfx4sk" path="res://icons/folder_user.svg" id="8_wd72u"]
+[ext_resource type="Texture2D" uid="uid://b0jpa8dfc0a24" path="res://icons/buttons/tex_play.tres" id="8_no8b7"]
 [ext_resource type="Script" uid="uid://bytuv427hgvxg" path="res://scripts/ReleaseInstaller.gd" id="9"]
+[ext_resource type="Texture2D" uid="uid://hewqi4dmaa7g" path="res://icons/buttons/tex_resume.tres" id="9_rcpd3"]
+[ext_resource type="Texture2D" uid="uid://b8dk0p0gt16n2" path="res://icons/buttons/tex_activate.tres" id="11_rcpd3"]
 [ext_resource type="Script" uid="uid://bumr0i4oc7gl0" path="res://scripts/ModManager.gd" id="12"]
+[ext_resource type="Texture2D" uid="uid://dcr7g2lehmtk5" path="res://icons/buttons/tex_delete.tres" id="12_no8b7"]
 [ext_resource type="Script" uid="uid://cgvtqevpi0vvm" path="res://scripts/SoundpackManager.gd" id="13"]
 [ext_resource type="Script" uid="uid://6ein2nethlx5" path="res://scripts/Debug.gd" id="14"]
 [ext_resource type="Script" uid="uid://jyw1c7gc21tb" path="res://scripts/SoundpacksUI.gd" id="15"]
 [ext_resource type="Script" uid="uid://dws64rera28nf" path="res://scripts/Tabs.gd" id="16"]
 [ext_resource type="Script" uid="uid://bcxy21m818jf1" path="res://scripts/ItemList.gd" id="17"]
 [ext_resource type="Script" uid="uid://clo0n7jb6x8qy" path="res://scripts/ModsUI.gd" id="18"]
+[ext_resource type="Texture2D" uid="uid://cihncwpvk3c5e" path="res://icons/tex_help.tres" id="19_rcpd3"]
 [ext_resource type="PackedScene" uid="uid://chyqjehe0nmxq" path="res://scenes/ModReinstallDialog.tscn" id="20"]
-[ext_resource type="Texture2D" uid="uid://blp7rq8cvi0u5" path="res://icons/lang/tex_lang_en.res" id="20_ey4vo"]
-[ext_resource type="Texture2D" uid="uid://bmifbdmqep5f2" path="res://icons/help.svg" id="20_pq48u"]
-[ext_resource type="Texture2D" uid="uid://cvnhkhpwio6q3" path="res://icons/lang/tex_lang_fr.res" id="21_08o67"]
-[ext_resource type="Texture2D" uid="uid://6x2u0csb485n" path="res://icons/lang/tex_lang_ru.res" id="22_mts0p"]
-[ext_resource type="Texture2D" uid="uid://fi5pyip8h2ct" path="res://icons/lang/tex_lang_zh.res" id="23_2f1g3"]
-[ext_resource type="Texture2D" uid="uid://b2l4ulthnguk7" path="res://icons/lang/tex_lang_cs.res" id="24_xpbl2"]
-[ext_resource type="Texture2D" uid="uid://d33v8267drgjr" path="res://icons/buttons/tex_play.tex" id="25"]
-[ext_resource type="Texture2D" uid="uid://b00s81wfgdws" path="res://icons/lang/tex_lang_es.res" id="25_ildj0"]
+[ext_resource type="Texture2D" uid="uid://gbpu5l6l5g8w" path="res://icons/lang/tex_lang_en.tres" id="23_rcpd3"]
+[ext_resource type="Texture2D" uid="uid://bp51vrvh3v23d" path="res://icons/lang/tex_lang_fr.tres" id="24_rcpd3"]
+[ext_resource type="Texture2D" uid="uid://olv67q6pu442" path="res://icons/lang/tex_lang_ru.tres" id="25_rcpd3"]
 [ext_resource type="PackedScene" uid="uid://snuvrmmyvlwd" path="res://scenes/InlineIconButton.tscn" id="26"]
-[ext_resource type="Texture2D" uid="uid://debwokjgp7i1" path="res://icons/lang/tex_lang_pl.res" id="26_3k2fu"]
+[ext_resource type="Texture2D" uid="uid://531jnkg07go2" path="res://icons/lang/tex_lang_zh.tres" id="26_no8b7"]
 [ext_resource type="Script" uid="uid://1fbsdu2e5x4h" path="res://scripts/FontsUI.gd" id="27"]
-[ext_resource type="Texture2D" uid="uid://ci02k8m77njbp" path="res://icons/lang/tex_lang_tr.res" id="27_pnnps"]
+[ext_resource type="Texture2D" uid="uid://cc3qhav1qwwan" path="res://icons/lang/tex_lang_cs.tres" id="27_rcpd3"]
 [ext_resource type="Script" uid="uid://c0fsp73p75yx2" path="res://scripts/FontManager.gd" id="28"]
-[ext_resource type="Texture2D" uid="uid://bsllqes4brm0c" path="res://icons/lang/tex_lang_pt.res" id="28_0614g"]
+[ext_resource type="Texture2D" uid="uid://bveffavlx71dw" path="res://icons/lang/tex_lang_es.tres" id="28_rcpd3"]
 [ext_resource type="PackedScene" uid="uid://ciqb5ygi2n5yp" path="res://scenes/FontSizeHelpDialog.tscn" id="29"]
-[ext_resource type="Texture2D" uid="uid://b7illlxrqfq74" path="res://icons/lang/tex_lang_ko.res" id="29_ryetc"]
+[ext_resource type="Texture2D" uid="uid://cai3bc7gyqp3h" path="res://icons/lang/tex_lang_pl.tres" id="29_rcpd3"]
+[ext_resource type="Texture2D" uid="uid://bsdlafyrhvxuy" path="res://icons/lang/tex_lang_tr.tres" id="30_rcpd3"]
+[ext_resource type="Texture2D" uid="uid://b1udfk28ye354" path="res://icons/lang/tex_lang_pt.tres" id="31_rcpd3"]
 [ext_resource type="PackedScene" uid="uid://b476fjhyidej5" path="res://scenes/ChangelogDialog.tscn" id="32"]
+[ext_resource type="Texture2D" uid="uid://dd8pqrxv02itm" path="res://icons/lang/tex_lang_ko.tres" id="32_rcpd3"]
 [ext_resource type="Script" uid="uid://bchhsc0w03a5c" path="res://scripts/BackupsUI.gd" id="33"]
 [ext_resource type="Script" uid="uid://d0a1urlp1mp4l" path="res://scripts/BackupManager.gd" id="34"]
 [ext_resource type="Texture2D" uid="uid://vjo780kdsk2k" path="res://icons/theme/tex_godot4.tres" id="34_no8b7"]
@@ -42,8 +44,6 @@
 [ext_resource type="Texture2D" uid="uid://bgc0jqaoheylx" path="res://icons/theme/tex_gray.tres" id="36_cyylm"]
 [ext_resource type="Texture2D" uid="uid://blvxgapecxw31" path="res://icons/theme/tex_solarized_dark.tres" id="37_5ug7j"]
 [ext_resource type="Texture2D" uid="uid://ckqrpp6s8he8e" path="res://icons/theme/tex_solzrized_light.tres" id="38_65f1m"]
-[ext_resource type="Texture2D" uid="uid://bhpjqmc7pvv3j" path="res://icons/buttons/tex_delete.tex" id="40"]
-[ext_resource type="Texture2D" uid="uid://bne67n27nnwwx" path="res://icons/buttons/tex_activate.tex" id="41"]
 
 [sub_resource type="StyleBoxEmpty" id="2"]
 content_margin_left = 4.0
@@ -100,13 +100,10 @@ theme_override_constants/separation = 8
 layout_mode = 2
 
 [node name="Icon" type="TextureRect" parent="Main/GameInfo"]
-custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("3_rr64d")
-expand_mode = 1
-stretch_mode = 6
+texture = ExtResource("2_rcpd3")
 
 [node name="Description" type="RichTextLabel" parent="Main/GameInfo"]
 layout_mode = 2
@@ -187,7 +184,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "tooltip_install"
 text = "btn_install"
-icon = ExtResource("3")
+icon = ExtResource("4_rcpd3")
 expand_icon = true
 
 [node name="UpdateCurrent" type="CheckBox" parent="Main/TabBar/Game" groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
@@ -216,14 +213,16 @@ layout_mode = 2
 text = "lbl_build_none"
 
 [node name="GameDir" parent="Main/TabBar/Game/ActiveInstall/Build" instance=ExtResource("26")]
+custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 tooltip_text = "tooltip_game_dir"
-texture_normal = ExtResource("7_ffy77")
+texture_normal = ExtResource("6_rcpd3")
 
 [node name="UserDir" parent="Main/TabBar/Game/ActiveInstall/Build" instance=ExtResource("26")]
+custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 tooltip_text = "tooltip_user_dir"
-texture_normal = ExtResource("8_wd72u")
+texture_normal = ExtResource("7_rcpd3")
 
 [node name="Launch" type="HBoxContainer" parent="Main/TabBar/Game/ActiveInstall"]
 layout_mode = 2
@@ -235,7 +234,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "tooltip_play"
 text = "btn_play"
-icon = ExtResource("25")
+icon = ExtResource("8_no8b7")
 expand_icon = true
 
 [node name="BtnResume" type="Button" parent="Main/TabBar/Game/ActiveInstall/Launch" groups=["disable_during_release_operations"]]
@@ -244,7 +243,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "tooltip_resume"
 text = "btn_resume"
-icon = ExtResource("2")
+icon = ExtResource("9_rcpd3")
 expand_icon = true
 
 [node name="GameInstalls" type="VBoxContainer" parent="Main/TabBar/Game"]
@@ -282,7 +281,7 @@ layout_mode = 2
 tooltip_text = "tooltip_activate"
 disabled = true
 text = "btn_activate"
-icon = ExtResource("41")
+icon = ExtResource("11_rcpd3")
 expand_icon = true
 
 [node name="btnDelete" type="Button" parent="Main/TabBar/Game/GameInstalls/HBox/VBox" groups=["disable_during_release_operations"]]
@@ -291,7 +290,7 @@ layout_mode = 2
 tooltip_text = "tooltip_delete"
 disabled = true
 text = "btn_delete"
-icon = ExtResource("40")
+icon = ExtResource("12_no8b7")
 expand_icon = true
 
 [node name="ChangelogDialog" parent="Main/TabBar/Game" instance=ExtResource("32")]
@@ -621,10 +620,10 @@ size_flags_horizontal = 4
 text = "lbl_other_settings"
 
 [node name="HelpIcon" parent="Main/TabBar/Fonts/FontSelection/LeftPane/OtherSettings" instance=ExtResource("26")]
-custom_minimum_size = Vector2(20, 20)
+custom_minimum_size = Vector2(22, 22)
 layout_mode = 2
 tooltip_text = "View detailed description of these settings."
-texture_normal = ExtResource("20_pq48u")
+texture_normal = ExtResource("19_rcpd3")
 
 [node name="FontSizeUI" type="HBoxContainer" parent="Main/TabBar/Fonts/FontSelection/LeftPane"]
 layout_mode = 2
@@ -812,34 +811,34 @@ expand_icon = true
 selected = 0
 item_count = 10
 popup/item_0/text = "English"
-popup/item_0/icon = ExtResource("20_ey4vo")
+popup/item_0/icon = ExtResource("23_rcpd3")
 popup/item_0/id = 0
 popup/item_1/text = "Français"
-popup/item_1/icon = ExtResource("21_08o67")
+popup/item_1/icon = ExtResource("24_rcpd3")
 popup/item_1/id = 1
 popup/item_2/text = "Русский"
-popup/item_2/icon = ExtResource("22_mts0p")
+popup/item_2/icon = ExtResource("25_rcpd3")
 popup/item_2/id = 2
 popup/item_3/text = "简体字"
-popup/item_3/icon = ExtResource("23_2f1g3")
+popup/item_3/icon = ExtResource("26_no8b7")
 popup/item_3/id = 3
 popup/item_4/text = "Čeština"
-popup/item_4/icon = ExtResource("24_xpbl2")
+popup/item_4/icon = ExtResource("27_rcpd3")
 popup/item_4/id = 4
 popup/item_5/text = "Español"
-popup/item_5/icon = ExtResource("25_ildj0")
+popup/item_5/icon = ExtResource("28_rcpd3")
 popup/item_5/id = 5
 popup/item_6/text = "Polski"
-popup/item_6/icon = ExtResource("26_3k2fu")
+popup/item_6/icon = ExtResource("29_rcpd3")
 popup/item_6/id = 6
 popup/item_7/text = "Türkçe"
-popup/item_7/icon = ExtResource("27_pnnps")
+popup/item_7/icon = ExtResource("30_rcpd3")
 popup/item_7/id = 7
 popup/item_8/text = "Português (BR)"
-popup/item_8/icon = ExtResource("28_0614g")
+popup/item_8/icon = ExtResource("31_rcpd3")
 popup/item_8/id = 8
 popup/item_9/text = "한국어"
-popup/item_9/icon = ExtResource("29_ryetc")
+popup/item_9/icon = ExtResource("32_rcpd3")
 popup/item_9/id = 9
 
 [node name="LauncherTheme" type="HBoxContainer" parent="Main/TabBar/Settings"]

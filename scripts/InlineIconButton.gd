@@ -1,20 +1,18 @@
+@tool
 extends TextureButton
 
-
-@export var _scale_when_hovered := 1.1
-
-var _normal_position := Vector2()
+@export var hovered_scale := 1.1
+@export_tool_button("Reserve Space for Hovered Size") var reserve := func():
+	custom_minimum_size = ceil(texture_normal.get_size() * hovered_scale)
 
 
 func _on_mouse_entered() -> void:
 	
-	_normal_position = position
-	size = custom_minimum_size * _scale_when_hovered
-	var offset := (size - custom_minimum_size) / 2.0
-	position -= offset
+	if texture_normal is DPITexture:
+		texture_normal.base_scale *= hovered_scale
 
 
 func _on_mouse_exited() -> void:
 	
-	size = custom_minimum_size
-	position = _normal_position
+	if texture_normal is DPITexture:
+		texture_normal.base_scale = Geom.scale
