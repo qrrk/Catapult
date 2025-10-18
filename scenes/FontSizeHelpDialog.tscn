@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://6pyxuc2b5lym" path="res://scripts/FontSizeHelpDialog.gd" id="5"]
 
 [node name="FontSizeHelpDialog" type="Window"]
+oversampling_override = 1.0
 visible = false
 script = ExtResource("5")
 
@@ -10,10 +11,11 @@ script = ExtResource("5")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Margin" type="MarginContainer" parent="Panel"]
 layout_mode = 2
-theme_override_constants/margin_top = 8
 theme_override_constants/margin_bottom = 8
 
 [node name="VBox" type="VBoxContainer" parent="Panel/Margin"]
@@ -28,6 +30,7 @@ text = "dlg_font_config_help"
 [node name="BtnOK" type="Button" parent="Panel/Margin/VBox"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Close"
+text = "btn_close"
 
-[connection signal="pressed" from="Panel/Margin/VBox/BtnOK" to="." method="_on_BtnOK_pressed"]
+[connection signal="close_requested" from="." to="." method="hide"]
+[connection signal="pressed" from="Panel/Margin/VBox/BtnOK" to="." method="hide"]

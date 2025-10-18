@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=131 format=3 uid="uid://cm57a71adbojk"]
+[gd_resource type="Theme" load_steps=132 format=3 uid="uid://cm57a71adbojk"]
 
 [ext_resource type="FontVariation" uid="uid://dcvgay2daepql" path="res://fonts/default_variation_regular.tres" id="1_ml7e8"]
 [ext_resource type="FontVariation" uid="uid://d0kdjlgh0c5dn" path="res://fonts/default_variation_bold.tres" id="2_26whi"]
@@ -795,6 +795,16 @@ corner_radius_bottom_left = 3
 corner_detail = 3
 anti_aliasing = false
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_38txo"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.16799998, 0.16799998, 0.16799998, 1)
+border_color = Color(0.132, 0.132, 0.132, 1)
+corner_detail = 3
+anti_aliasing = false
+
 [sub_resource type="DPITexture" id="DPITexture_xfipk"]
 _source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><path fill=\"none\" stroke=\"#e0e0e0\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M5 8h7L8 4m4 4-4 4\"/></svg>
 "
@@ -1509,7 +1519,7 @@ OptionButton/styles/normal_mirrored = SubResource("StyleBoxFlat_umget")
 OptionButton/styles/pressed = SubResource("StyleBoxFlat_yr7qs")
 OptionButton/styles/pressed_mirrored = SubResource("StyleBoxFlat_sh286")
 Panel/styles/panel = SubResource("StyleBoxFlat_bbw63")
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_da2in")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_38txo")
 PopupMenu/colors/font_accelerator_color = Color(1, 1, 1, 0.35)
 PopupMenu/colors/font_color = Color(0.81, 0.81, 0.81, 1)
 PopupMenu/colors/font_disabled_color = Color(1, 1, 1, 0.35)

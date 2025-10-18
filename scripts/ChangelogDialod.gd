@@ -189,7 +189,3 @@ class PullRequest:
 
 	func print_date():
 		return str(year) + "-" + str(month) + "-" + str(day)
-
-
-func _on_BtnCloseChangelog_pressed() -> void:
-	hide()

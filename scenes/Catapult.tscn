@@ -53,20 +53,14 @@ content_margin_bottom = 4.0
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_nlnc6"]
 
-[node name="Catapult" type="Panel"]
+[node name="Catapult" type="PanelContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource("4")
 
 [node name="Main" type="VBoxContainer" parent="."]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = 4.0
-offset_right = -4.0
-offset_bottom = -4.0
+layout_mode = 2
 
 [node name="GameChoice" type="HBoxContainer" parent="Main"]
 layout_mode = 2

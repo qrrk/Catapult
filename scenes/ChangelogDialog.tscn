@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://d1i6a38xr4gc" path="res://scripts/ChangelogDialod.gd" id="1"]
 
 [node name="ChangelogDialog" type="Window"]
+oversampling_override = 1.0
 visible = false
 script = ExtResource("1")
 
@@ -10,10 +11,13 @@ script = ExtResource("1")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Margin" type="MarginContainer" parent="Panel"]
 layout_mode = 2
-theme_override_constants/margin_top = 8
 theme_override_constants/margin_bottom = 8
 
 [node name="VBox" type="VBoxContainer" parent="Panel/Margin"]
@@ -35,6 +39,7 @@ text = "btn_close"
 [node name="PullRequests" type="HTTPRequest" parent="."]
 timeout = 20.0
 
+[connection signal="close_requested" from="." to="." method="hide"]
 [connection signal="meta_clicked" from="Panel/Margin/VBox/ChangelogText" to="." method="_on_ChangelogText_meta_clicked"]
-[connection signal="pressed" from="Panel/Margin/VBox/BtnCloseChangelog" to="." method="_on_BtnCloseChangelog_pressed"]
+[connection signal="pressed" from="Panel/Margin/VBox/BtnCloseChangelog" to="." method="hide"]
 [connection signal="request_completed" from="PullRequests" to="." method="_on_PullRequests_request_completed"]
