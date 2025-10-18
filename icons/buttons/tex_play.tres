@@ -3,6 +3,6 @@
 [ext_resource type="Script" uid="uid://c1wwv5d56m6r" path="res://scripts/svg_texture.gd" id="1_0rmd4"]
 
 [resource]
-_source = "<svg width=\"20\" height=\"20\" viewBox=\"0.1 0 128 128\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M19 114V14l90 50z\" fill=\"gray\"/></svg>"
+_source = "<svg width=\"18\" height=\"18\" viewBox=\"0.1 0 128 128\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M19 114V14l90 50z\" fill=\"gray\"/></svg>"
 script = ExtResource("1_0rmd4")
 metadata/_custom_type_script = "uid://c1wwv5d56m6r"

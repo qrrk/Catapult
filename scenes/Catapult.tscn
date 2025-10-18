@@ -1,7 +1,8 @@
-[gd_scene load_steps=47 format=3 uid="uid://j8v4j8uy58rl"]
+[gd_scene load_steps=48 format=3 uid="uid://j8v4j8uy58rl"]
 
 [ext_resource type="Texture2D" uid="uid://ma1wiy6trs4k" path="res://icons/tex_info.tres" id="2_rcpd3"]
 [ext_resource type="Script" uid="uid://drnrbqdw1iua4" path="res://scripts/Catapult.gd" id="4"]
+[ext_resource type="Texture2D" uid="uid://cemdop8232nt1" path="res://icons/buttons/tex_refresh.tres" id="4_no8b7"]
 [ext_resource type="Texture2D" uid="uid://d0qh43un40sje" path="res://icons/buttons/tex_download.tres" id="4_rcpd3"]
 [ext_resource type="Script" uid="uid://ctewoab2y1ofp" path="res://scripts/ReleaseManager.gd" id="5"]
 [ext_resource type="Script" uid="uid://4eua2dsbxhy7" path="res://scripts/InstallsList.gd" id="6"]
@@ -171,15 +172,14 @@ clip_text = true
 layout_mode = 2
 tooltip_text = "tooltip_refresh"
 text = "btn_refresh"
+icon = ExtResource("4_no8b7")
 
 [node name="BtnInstall" type="Button" parent="Main/TabBar/Game" groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
-custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "tooltip_install"
 text = "btn_install"
 icon = ExtResource("4_rcpd3")
-expand_icon = true
 
 [node name="UpdateCurrent" type="CheckBox" parent="Main/TabBar/Game" groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
 layout_mode = 2
@@ -223,22 +223,18 @@ layout_mode = 2
 size_flags_horizontal = 4
 
 [node name="BtnPlay" type="Button" parent="Main/TabBar/Game/ActiveInstall/Launch" groups=["disable_during_release_operations"]]
-custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "tooltip_play"
 text = "btn_play"
 icon = ExtResource("8_no8b7")
-expand_icon = true
 
 [node name="BtnResume" type="Button" parent="Main/TabBar/Game/ActiveInstall/Launch" groups=["disable_during_release_operations"]]
-custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "tooltip_resume"
 text = "btn_resume"
 icon = ExtResource("9_rcpd3")
-expand_icon = true
 
 [node name="GameInstalls" type="VBoxContainer" parent="Main/TabBar/Game"]
 layout_mode = 2
@@ -270,22 +266,18 @@ script = ExtResource("6")
 layout_mode = 2
 
 [node name="btnMakeActive" type="Button" parent="Main/TabBar/Game/GameInstalls/HBox/VBox" groups=["disable_during_release_operations"]]
-custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 tooltip_text = "tooltip_activate"
 disabled = true
 text = "btn_activate"
 icon = ExtResource("11_rcpd3")
-expand_icon = true
 
 [node name="btnDelete" type="Button" parent="Main/TabBar/Game/GameInstalls/HBox/VBox" groups=["disable_during_release_operations"]]
-custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 tooltip_text = "tooltip_delete"
 disabled = true
 text = "btn_delete"
 icon = ExtResource("12_no8b7")
-expand_icon = true
 
 [node name="ChangelogDialog" parent="Main/TabBar/Game" instance=ExtResource("32")]
 position = Vector2i(0, 36)
