@@ -1,9 +1,6 @@
 extends Node
 # This is a cetralized place for all path resolution logic.
 
-
-signal status_message
-
 var own_dir: String: get = _get_own_dir
 var installs_summary: Dictionary: get = _get_installs_summary
 var cache_dir: String: get = _get_cache_dir

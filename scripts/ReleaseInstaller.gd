@@ -5,7 +5,7 @@ signal operation_started
 signal operation_finished
 
 
-func install_release(release_info: Dictionary, game: String, update_in: String = "") -> void:
+func install_release(release_info: Dictionary, update_in: String = "") -> void:
 	
 	emit_signal("operation_started")
 	
@@ -60,20 +60,20 @@ func install_release(release_info: Dictionary, game: String, update_in: String =
 	emit_signal("operation_finished")
 
 
-func remove_release_by_name(name: String) -> void:
+func remove_release_by_name(release_name: String) -> void:
 	
 	emit_signal("operation_started")
 	
 	var installs := Paths.installs_summary
 	var game = Settings.read("game")
 	
-	if (game in installs) and (name in installs[game]):
-		Status.post(tr("msg_deleting_game") % name)
-		var location = installs[game][name]
+	if (game in installs) and (release_name in installs[game]):
+		Status.post(tr("msg_deleting_game") % release_name)
+		var location = installs[game][release_name]
 		FS.rm_dir(location)
 		await FS.rm_dir_done
 		Status.post(tr("msg_game_deleted"))
 	else:
-		Status.post(tr("msg_delete_not_found") % name, Enums.MSG_ERROR)
+		Status.post(tr("msg_delete_not_found") % release_name, Enums.MSG_ERROR)
 	
 	emit_signal("operation_finished")

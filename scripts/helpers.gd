@@ -4,9 +4,9 @@ extends Node
 const INFO_FILENAME := "catapult_install_info.json"
 
 
-func create_info_file(location: String, name: String) -> void:
+func create_info_file(location: String, install_name: String) -> void:
 	
-	var info = {"name": name}
+	var info = {"name": install_name}
 	var path = location + "/" + INFO_FILENAME
 	var info_file := FileAccess.open(path, FileAccess.WRITE)
 	if info_file:

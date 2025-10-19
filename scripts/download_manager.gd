@@ -83,7 +83,7 @@ func _get_progress_string(downloaded: int, total: int,
 		amount_str = "%.1f %s" % [(downloaded / 1048576.0), tr("unit_mb")]
 	else:
 		# warning-ignore:integer_division
-		amount_str = "%s %s" % [(downloaded / 1024), tr("unit_kb")]
+		amount_str = "%s %s" % [(downloaded / 1024.0), tr("unit_kb")]
 		
 	var percent_str = ""
 	if total > 0:

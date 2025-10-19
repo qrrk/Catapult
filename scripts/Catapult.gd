@@ -2,10 +2,8 @@ extends Node
 
 
 @onready var _debug_ui = $Main/TabBar/Debug
-@onready var _log = $Main/Log
 @onready var _game_info = $Main/GameInfo
 @onready var _game_desc = $Main/GameInfo/Description
-@onready var _mod_info = $Main/TabBar/Mods/ModInfo
 @onready var _tabs = $Main/TabBar 
 @onready var _mods = $Mods  
 @onready var _releases = $Releases
@@ -34,7 +32,6 @@ var _installs := {}
 
 # For UI scaling on the fly
 var _base_min_sizes := {}
-var _base_icon_sizes := {}
 
 var _easter_egg_counter := 0
 
@@ -73,11 +70,6 @@ func _scale_control_min_sizes(factor: float) -> void:
 	
 	for node in _base_min_sizes:
 		node.custom_minimum_size = _base_min_sizes[node] * factor
-
-
-func _save_icon_sizes() -> void:
-	
-	var resources = load("res://")
 
 
 func assign_localized_text() -> void:
@@ -167,7 +159,7 @@ func _on_ui_scale_changed(new_scale: float) -> void:
 	_scale_control_min_sizes(new_scale)
 
 
-func _on_Tabs_tab_changed(tab: int) -> void:
+func _on_Tabs_tab_changed(_tab: int) -> void:
 	
 	_refresh_currently_installed()
 
@@ -270,7 +262,7 @@ func _on_Description_meta_clicked(meta) -> void:
 	OS.shell_open(meta)
 
 
-func _on_ChangelogLink_meta_clicked(meta) -> void:
+func _on_ChangelogLink_meta_clicked(_meta) -> void:
 	
 	_changelog.open()
 
@@ -310,7 +302,7 @@ func _on_BtnInstall_pressed() -> void:
 		var active_name = Settings.read("active_install_" + game)
 		if (game in _installs) and (active_name in _installs[game]):
 			update_path = _installs[game][active_name]
-	_installer.install_release(release, Settings.read("game"), update_path)
+	_installer.install_release(release, update_path)
 
 
 func _on_cbUpdateCurrent_toggled(button_pressed: bool) -> void:
@@ -382,6 +374,7 @@ func apply_game_choice() -> void:
 			_rbtn_stable.button_pressed = true
 			_btn_refresh.disabled = true
 		else:
+			_rbtn_exper.button_pressed = true
 			_btn_refresh.disabled = false
 	elif (game == "eod") or (game == "tish") or (game == "tlg"):
 		_rbtn_exper.button_pressed = true
@@ -464,31 +457,31 @@ func _start_game(world := "") -> void:
 
 func _on_InstallsList_item_selected(index: int) -> void:
 	
-	var name = _lst_installs.get_item_text(index)
+	var release_name = _lst_installs.get_item_text(index)
 	_btn_delete.disabled = false
-	_btn_make_active.disabled = (name == Settings.read("active_install_" + Settings.read("game")))
+	_btn_make_active.disabled = (release_name == Settings.read("active_install_" + Settings.read("game")))
 
 
 func _on_InstallsList_item_activated(index: int) -> void:
 	
-	var name = _lst_installs.get_item_text(index)
-	var path = _installs[Settings.read("game")][name]
+	var release_name = _lst_installs.get_item_text(index)
+	var path = _installs[Settings.read("game")][release_name]
 	if DirAccess.dir_exists_absolute(path):
 		OS.shell_open(path)
 
 
 func _on_btnMakeActive_pressed() -> void:
 	
-	var name = _lst_installs.get_item_text(_lst_installs.get_selected_items()[0])
-	Status.post(tr("msg_set_active") % name)
-	Settings.store("active_install_" + Settings.read("game"), name)
+	var release_name = _lst_installs.get_item_text(_lst_installs.get_selected_items()[0])
+	Status.post(tr("msg_set_active") % release_name)
+	Settings.store("active_install_" + Settings.read("game"), release_name)
 	_refresh_currently_installed()
 
 
 func _on_btnDelete_pressed() -> void:
 	
-	var name = _lst_installs.get_item_text(_lst_installs.get_selected_items()[0])
-	_installer.remove_release_by_name(name)
+	var release_name = _lst_installs.get_item_text(_lst_installs.get_selected_items()[0])
+	_installer.remove_release_by_name(release_name)
 
 
 func _refresh_currently_installed() -> void:
@@ -500,12 +493,10 @@ func _refresh_currently_installed() -> void:
 	_installs = Paths.installs_summary
 	var active_name = Settings.read("active_install_" + game)
 	if game in _installs:
-		for name in _installs[game]:
-			_lst_installs.add_item(name)
+		for inst_name in _installs[game]:
+			_lst_installs.add_item(inst_name)
 			var curr_idx = _lst_installs.get_item_count() - 1
-			_lst_installs.set_item_tooltip(curr_idx, tr("tooltip_installs_item") % _installs[game][name])
-#			if name == active_name:
-#				_lst_installs.set_item_custom_fg_color(curr_idx, Color(0, 0.8, 0))
+			_lst_installs.set_item_tooltip(curr_idx, tr("tooltip_installs_item") % _installs[game][inst_name])
 	
 	_lst_builds.select(-1)
 	_btn_make_active.disabled = true

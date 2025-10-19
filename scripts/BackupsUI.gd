@@ -5,7 +5,6 @@ extends VBoxContainer
 @onready var _edit_name = $Current/HBox/EditName
 @onready var _btn_create = $Current/HBox/BtnCreate
 @onready var _list_backups = $Available/HBox/BackupsList
-@onready var _btn_refresh = $Available/Buttons/BtnRefresh
 @onready var _btn_restore = $Available/Buttons/BtnRestore
 @onready var _btn_delete = $Available/Buttons/BtnDelete
 @onready var _lbl_info = $Available/HBox/BackupInfo
@@ -60,7 +59,7 @@ func _on_BtnCreate_pressed():
 		_refresh_available()
 
 
-func _on_EditName_text_entered(new_text):
+func _on_EditName_text_entered():
 	
 	_on_BtnCreate_pressed()
 

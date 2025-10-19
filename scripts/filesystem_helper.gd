@@ -47,13 +47,13 @@ func list_dir(path: String, recursive := false) -> Array:
 		return result
 	
 	while true:
-		var name = dir.get_next()
-		if name:
-			result.append(name)
+		var item = dir.get_next()
+		if item:
+			result.append(item)
 			if recursive and dir.current_is_dir():
-				var subdir = list_dir(path.path_join(name), true)
+				var subdir = list_dir(path.path_join(item), true)
 				for child in subdir:
-					result.append(name.path_join(child))
+					result.append(item.path_join(child))
 		else:
 			break
 	
@@ -146,7 +146,7 @@ func _move_dir_internal(abs_path: String, abs_dest: String) -> void:
 
 func move_dir(abs_path: String, abs_dest: String) -> void:
 	# Moves the specified directory (this is move with rename, so the last
-	# part of dest is the new name for the directory).
+	# part of dest is the new item for the directory).
 	
 	var thread := Thread.new()
 	thread.start(_move_dir_internal.bind(abs_path, abs_dest))
@@ -163,18 +163,18 @@ func extract(path: String, dest_dir: String) -> void:
 	var unzip_exe = Paths.utils_dir.path_join("unzip.exe")
 	
 	var command_linux_zip = {
-		"name": "unzip",
+		"item": "unzip",
 		"args": ["-o", "%s" % path, "-d", "%s" % dest_dir]
 	}
 	var command_linux_gz = {
-		"name": "tar",
+		"item": "tar",
 		"args": ["-xzf", "\"\"%s\"\"" % path, "-C", "\"\"%s\"\"" % dest_dir,
 				"--exclude=*doc/CONTRIBUTING.md", "--exclude=*doc/JSON_LOADING_ORDER.md"]
 				# Godot can't operate on symlinks just yet, so we have to avoid them.
 				# TODO: Check if this has changed in Godot 4.
 	}
 	var command_windows = {
-		"name": "cmd",
+		"item": "cmd",
 		"args": ["/C", "\"%s\" -o \"%s\" -d \"%s\"" % [unzip_exe, path, dest_dir]]
 	}
 	var command
@@ -195,7 +195,7 @@ func extract(path: String, dest_dir: String) -> void:
 		
 	Status.post(tr("msg_extracting_file") % path.get_file())
 	
-	ThreadedExec.execute(command["name"], command["args"])
+	ThreadedExec.execute(command["item"], command["args"])
 	await ThreadedExec.execution_finished
 	if ThreadedExec.last_exit_code != 0:
 		Status.post(tr("msg_extract_error") % ThreadedExec.last_exit_code, Enums.MSG_ERROR)
@@ -209,7 +209,7 @@ func zip(parent: String, dir_to_zip: String, dest_zip: String) -> void:
 	# and bundled zip.exe from InfoZip on Windows.
 	# parent: directory that zip command is run from  (Path.savegames)
 	# dir_to_zip: relative folder to zip up  (world_name)
-	# dest_zip: zip name   (world_name.zip)
+	# dest_zip: zip item   (world_name.zip)
 	# 
 	# runs a command like:
 	# cd <userdata/save> && zip -r MyWorld.zip MyWorld
@@ -217,11 +217,11 @@ func zip(parent: String, dir_to_zip: String, dest_zip: String) -> void:
 	var zip_exe = Paths.utils_dir.path_join("zip.exe")
 	
 	var command_linux_zip = {
-		"name": "/bin/bash",
+		"item": "/bin/bash",
 		"args": ["-c", "cd '%s' && zip -b '%s' -r '%s' '%s'" % [parent, Paths.tmp_dir, dest_zip, dir_to_zip]]
 	}
 	var command_windows = {
-		"name": "cmd",
+		"item": "cmd",
 		"args": ["/C", "cd /d \"%s\" && \"%s\" -b \"%s\" -r \"%s\" \"%s\"" % [parent, zip_exe, Paths.tmp_dir, dest_zip, dir_to_zip]]
 	}
 	var command
@@ -240,7 +240,7 @@ func zip(parent: String, dir_to_zip: String, dest_zip: String) -> void:
 	
 	Status.post(tr("msg_zipping_file") % dest_zip.get_file())
 	
-	ThreadedExec.execute(command["name"], command["args"])
+	ThreadedExec.execute(command["item"], command["args"])
 	await ThreadedExec.execution_finished
 	if ThreadedExec.last_exit_code != 0:
 		Status.post(tr("msg_zip_error") % ThreadedExec.last_exit_code, Enums.MSG_ERROR)

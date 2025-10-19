@@ -90,16 +90,16 @@ func parse_sound_dir(sound_dir: String) -> Array:
 		if FileAccess.file_exists(info):
 			var f := FileAccess.open(info, FileAccess.READ)
 			var lines = f.get_as_text().split("\n", false)
-			var name = ""
-			var desc = ""
+			var pack_name = ""
+			var pack_desc = ""
 			for line in lines:
 				if line.begins_with("VIEW: "):
-					name = line.trim_prefix("VIEW: ")
+					pack_name = line.trim_prefix("VIEW: ")
 				elif line.begins_with("DESCRIPTION: "):
-					desc = line.trim_prefix("DESCRIPTION: ")
+					pack_desc = line.trim_prefix("DESCRIPTION: ")
 			var item = {}
-			item["name"] = name
-			item["description"] = desc
+			item["name"] = pack_name
+			item["description"] = pack_desc
 			item["location"] = sound_dir.path_join(subdir)
 			result.append(item)
 			f.close()
@@ -125,10 +125,10 @@ func get_installed(include_stock = false) -> Array:
 	return packs
 
 
-func delete_pack(name: String) -> void:
+func delete_pack(pack_name: String) -> void:
 	
 	for pack in get_installed():
-		if pack["name"] == name:
+		if pack["name"] == pack_name:
 			emit_signal("soundpack_deletion_started")
 			Status.post(tr("msg_deleting_sound") % pack["location"])
 			FS.rm_dir(pack["location"])
@@ -136,13 +136,12 @@ func delete_pack(name: String) -> void:
 			emit_signal("soundpack_deletion_finished")
 			return
 			
-	Status.post(tr("msg_soundpack_not_found") % name, Enums.MSG_ERROR)
+	Status.post(tr("msg_soundpack_not_found") % pack_name, Enums.MSG_ERROR)
 
 
 func install_pack(soundpack_index: int, from_file = null, reinstall = false, keep_archive = false) -> void:
 	
 	var pack = SOUNDPACKS[soundpack_index]
-	var game = Settings.read("game")
 	var sound_dir = Paths.sound_user
 	var tmp_dir = Paths.tmp_dir.path_join(pack["name"])
 	var archive = ""
