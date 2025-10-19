@@ -21,7 +21,7 @@ func _enter_tree() -> void:
 	_http = HTTPRequest.new()
 	_http.use_threads = true
 	self.add_child(_http)
-	_http.connect("request_completed", Callable(self, "_on_HTTPRequest_request_completed"))
+	_http.request_completed.connect(_on_HTTPRequest_request_completed)
 
 func set_proxy(host: String, port: int) -> void:
 	

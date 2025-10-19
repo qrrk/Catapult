@@ -71,7 +71,7 @@ func reload_installed() -> void:
 			if (show_obsolete) and (status == 3):
 				_installed_mods_view[-1]["name"] += " [obsolete]"
 	
-	_installed_mods_view.sort_custom(Callable(self, "_sorting_comparison"))
+	_installed_mods_view.sort_custom(_sorting_comparison)
 	
 	_btn_delete.disabled = true
 	
@@ -114,7 +114,7 @@ func reload_available() -> void:
 		else:
 			hidden_mods += 1
 	
-	_available_mods_view.sort_custom(Callable(self, "_sorting_comparison"))
+	_available_mods_view.sort_custom(_sorting_comparison)
 	
 	var hidden_str = ""
 	if hidden_mods > 0:

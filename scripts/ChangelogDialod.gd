@@ -67,7 +67,7 @@ func process_pr_data(data):
 	for json in data["items"]:
 		var pr = PullRequest.pullrequest_from_datestring(json["closed_at"], json["title"], json["html_url"])
 		pr_array.push_back(pr)
-	pr_array.sort_custom(Callable(PullRequest, "compare_to"))
+	pr_array.sort_custom(PullRequest.compare_to)
 	var now = Time.get_datetime_dict_from_system(true)
 	var latest_year = now["year"] + 1
 	var latest_month = now["month"]

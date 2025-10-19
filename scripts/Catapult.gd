@@ -44,7 +44,7 @@ func _ready() -> void:
 	
 	_save_control_min_sizes()
 	_scale_control_min_sizes(Geom.scale)
-	Geom.connect("scale_changed", Callable(self, "_on_ui_scale_changed"))
+	Geom.scale_changed.connect(_on_ui_scale_changed)
 	
 	assign_localized_text()
 	
@@ -344,8 +344,8 @@ func _setup_ui() -> void:
 	
 	apply_game_choice()
 	
-	_lst_games.connect("item_selected", Callable(self, "_on_GamesList_item_selected"))
-	_rbtn_stable.connect("toggled", Callable(self, "_on_RBtnStable_toggled"))
+	_lst_games.item_selected.connect(_on_GamesList_item_selected)
+	_rbtn_stable.toggled.connect(_on_RBtnStable_toggled)
 	# Had to leave these signals unconnected in the editor and only connect
 	# them now from code to avoid cyclic calls of apply_game_choice.
 	

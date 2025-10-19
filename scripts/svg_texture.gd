@@ -11,7 +11,7 @@ extends DPITexture
 
 func _init() -> void:
 	
-	Geom.connect("scale_changed", func(new_scale):
+	Geom.scale_changed.connect(func(new_scale):
 		base_scale = new_scale
 	)
 
