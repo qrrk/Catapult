@@ -11,9 +11,10 @@ extends DPITexture
 
 func _init() -> void:
 	
-	Geom.scale_changed.connect(func(new_scale):
-		base_scale = new_scale
-	)
+	if not Engine.is_editor_hint():
+		Geom.scale_changed.connect(func(new_scale):
+			base_scale = new_scale
+		)
 
 
 func _validate_property(property: Dictionary) -> void:
