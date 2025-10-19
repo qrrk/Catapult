@@ -424,19 +424,12 @@ func _on_BtnResume_pressed() -> void:
 
 func _start_game(world := "") -> void:
 	
-	#pass # FIXME
-	
 	match OS.get_name():
 		"Linux":
 			var params := ["--userdir", Paths.userdata + "/"]
 			if world != "":
 				params.append_array(["--world", world])
-			OS.execute(Paths.game_dir.path_join("cataclysm-launcher"), params, [])
-		"X11":
-			var params := ["--userdir", Paths.userdata + "/"]
-			if world != "":
-				params.append_array(["--world", world])
-			OS.execute(Paths.game_dir.path_join("cataclysm-launcher"), params, [])
+			OS.execute_with_pipe(Paths.game_dir.path_join("cataclysm-launcher"), params)
 		"Windows":
 			var world_str := ""
 			if world != "":
@@ -447,7 +440,7 @@ func _start_game(world := "") -> void:
 				exe_file = "cataclysm-bn-tiles.exe"
 
 			var command = "cd /d %s && start %s --userdir \"%s/\" %s" % [Paths.game_dir, exe_file, Paths.userdata, world_str]
-			OS.execute("cmd", ["/C", command], [])
+			OS.execute_with_pipe("cmd", ["/C", command])
 		_:
 			return
 	

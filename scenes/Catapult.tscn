@@ -498,7 +498,6 @@ dialog_autowrap = true
 [node name="InstallFromFileDialog" type="FileDialog" parent="Main/TabBar/Soundpacks"]
 access = 2
 filters = PackedStringArray("*.zip")
-show_hidden_files = false
 
 [node name="Fonts" type="VBoxContainer" parent="Main/TabBar"]
 visible = false
