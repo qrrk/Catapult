@@ -107,9 +107,9 @@ func _on_Button7_pressed() -> void:
 	var msg = "PathHelper properties:"
 	
 	for prop in Paths.get_property_list():
-		var name = prop["name"]
+		var p_name = prop["name"]
 		if (prop["type"] == 4):
-			msg += "\n%s: %s" % [name, Paths.get(name)]
+			msg += "\n%s: %s" % [p_name, Paths.get(p_name)]
 	
 	Status.post(msg, Enums.MSG_DEBUG)
 

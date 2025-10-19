@@ -53,10 +53,10 @@ func _populate_available() -> void:
 		_available_list.add_item(pack["name"])
 		
 		
-func _is_pack_installed(name: String) -> bool:
+func _is_pack_installed(pack_name: String) -> bool:
 	
 	for pack in _installed_packs:
-		if pack["name"] == name:
+		if pack["name"] == pack_name:
 			return true
 			
 	return false
@@ -96,8 +96,8 @@ func _on_InstalledList_item_selected(index: int) -> void:
 
 func _on_BtnDelete_pressed() -> void:
 	
-	var name = _installed_packs[_installed_list.get_selected_items()[0]]["name"]
-	_dlg_confirm_del.dialog_text = tr("dlg_sound_deletion_text") % name
+	var pack_name = _installed_packs[_installed_list.get_selected_items()[0]]["name"]
+	_dlg_confirm_del.dialog_text = tr("dlg_sound_deletion_text") % pack_name
 	_dlg_confirm_del.get_cancel_button().text = tr("btn_cancel")
 	_dlg_confirm_del.size = Vector2(200, 100)
 	_dlg_confirm_del.popup_centered()
@@ -157,9 +157,9 @@ func _on_ConfirmManualDownload_confirmed() -> void:
 func _on_InstallFromFileDialog_file_selected(path: String) -> void:
 	
 	var index = _available_list.get_selected_items()[0]
-	var name = _sound.SOUNDPACKS[index]["name"]
+	var pack_name = _sound.SOUNDPACKS[index]["name"]
 	
-	if _is_pack_installed(name):
+	if _is_pack_installed(pack_name):
 		_sound.install_pack(index, path, true, true)
 	else:
 		_sound.install_pack(index, path, false, true)

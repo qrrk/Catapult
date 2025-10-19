@@ -1,7 +1,6 @@
 extends VBoxContainer
 
 
-@onready var _root = $"/root/Catapult"
 @onready var _mods = $"../../../Mods"
 @onready var _installed_list = $HBox/Installed/InstalledList
 @onready var _available_list = $HBox/Available/AvailableList
@@ -9,7 +8,6 @@ extends VBoxContainer
 @onready var _btn_delete = $HBox/Installed/BtnDelete
 @onready var _btn_add = $HBox/Available/VBox/BtnAddSelectedMod
 @onready var _btn_add_all = $HBox/Available/VBox/BtnAddAllMods
-@onready var _btn_get_kenan = $HBox/Available/BtnDownloadKenan
 @onready var _cbox_show_installed = $HBox/Available/ShowInstalled
 @onready var _lbl_mod_info = $ModInfo
 @onready var _lbl_installed = $HBox/Installed/Label
@@ -48,23 +46,23 @@ func reload_installed() -> void:
 	for id in _mods.installed:
 		
 		var mod = _mods.installed[id]
-		var show: bool
+		var show_mod: bool
 		
 		var status = _mods.mod_status(id)
 		if status in [0, 1]:
-			show = true
+			show_mod = true
 		elif status in [3, 4]:
 			if show_obsolete:
 				if show_stock:
-					show = true
+					show_mod = true
 				else:
 					hidden_mods += 1
 		elif status == 2:
-			show = show_stock
-			if !show:
+			show_mod = show_stock
+			if !show_mod:
 				hidden_mods += 1
 		
-		if show:
+		if show_mod:
 			_installed_mods_view.append({
 				"id": id,
 				"name": mod["modinfo"]["name"],
@@ -100,14 +98,14 @@ func reload_available() -> void:
 	
 	for id in _mods.available:
 		var mod = _mods.available[id]
-		var show: bool
+		var show_mod: bool
 		
 		if _mods.mod_status(id) in [0, 3]:
-			show = true
+			show_mod = true
 		else:
-			show = include_installed
+			show_mod = include_installed
 	
-		if show:
+		if show_mod:
 			_available_mods_view.append({
 				"id": id,
 				"name": mod["modinfo"]["name"],

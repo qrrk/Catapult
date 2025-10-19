@@ -19,23 +19,23 @@ func _get_font_config() -> Dictionary:
 	return font_config
 
 
-func get_game_option(name: String):
+func get_game_option(option_name: String):
 	
 	for item in _game_options:
-		if item["name"] == name:
+		if item["name"] == option_name:
 			return item["value"]
 	
-	Status.post(tr("msg_game_option_not_found_get") % name, Enums.MSG_ERROR)
+	Status.post(tr("msg_game_option_not_found_get") % option_name, Enums.MSG_ERROR)
 
 
-func set_game_option(name: String, value: String):
+func set_game_option(option_name: String, value: String):
 	
 	for item in _game_options:
-		if item["name"] == name:
+		if item["name"] == option_name:
 			item["value"] = value
 			return
 	
-	Status.post(tr("msg_game_option_not_found_set") % name, Enums.MSG_ERROR)
+	Status.post(tr("msg_game_option_not_found_set") % option_name, Enums.MSG_ERROR)
 
 
 func load_available_fonts() -> void:

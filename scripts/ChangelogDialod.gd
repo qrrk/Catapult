@@ -33,7 +33,6 @@ func _update_proxy(http: HTTPRequest) -> void:
 
 
 func download_pull_requests():
-	var game_selected = Settings.read("game")
 	var prs = Settings.read("num_prs_to_request")
 	var url = _PR_URL[Settings.read("game")]
 	url += "+is%3Apr+is%3Amerged&per_page=" + prs
@@ -47,7 +46,7 @@ func download_pull_requests():
 	_changelogTextBox.append_text(_pr_data)
 
 
-func _on_PullRequests_request_completed(result, response_code, headers, body):
+func _on_PullRequests_request_completed(_result, response_code, _headers, body):
 	var test_json_conv = JSON.new()
 	test_json_conv.parse(body.get_string_from_utf8())
 	var json = test_json_conv.get_data()
@@ -164,7 +163,7 @@ class PullRequest:
 		return a.timestring > b.timestring
 	
 	# We just need to get Github API strings. Nothing else.
-	static func pullrequest_from_datestring(date, sum, link):
+	static func pullrequest_from_datestring(date, sum, lnk):
 		var r_val = PullRequest.new(
 			int(date.substr(0,4)),
 			int(date.substr(5,2)),
@@ -173,7 +172,7 @@ class PullRequest:
 			int(date.substr(14,2)),
 			int(date.substr(16,2)),
 			sum,
-			link)
+			lnk)
 		r_val.set_timestring(date)
 		return r_val
 
