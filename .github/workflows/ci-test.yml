@@ -1,0 +1,14 @@
+name: CI Test Build
+
+on:
+  push:
+    branches:
+      - ci-test
+
+jobs:
+  test-export:
+    uses: ./.github/workflows/export-base.yml
+    with:
+      GODOT_RELEASE: '4.5.1-stable'
+      BUILD_DEBUG: false
+      BUILD_RELEASE: true
