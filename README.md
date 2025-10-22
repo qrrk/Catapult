@@ -29,7 +29,7 @@ None required. The launcher is a single, self-contained executable. Just [downlo
 - You need write permission in the folder that contains the Catapult executable.
 - The catapult executable [should have execution permission enabled](https://askubuntu.com/a/485001).
 - The game needs the following dependencies, Some distros come with these preinstalled, but others don't.: `sdl2`, `sdl2_image`, `sdl2_ttf`, `sdl2_mixer`, `freetype2`, `zip`
-    - On Debian based distros (Ubuntu, Mint, etc.): `sudo apt install libsdl2-image libsdl2-ttf libsdl2-mixer libfreetype6 zip`
+    - On Debian based distros (Ubuntu, Mint, etc.): `sudo apt install libsdl2-image-dev libsdl2-ttf-dev libsdl2-mixer-dev libfreetype6-dev zip`
     - On Arch based distros `sudo pacman -S sdl2 sdl2_image sdl2_ttf sdl2_mixer zip`
     - On Fedora based distros `sudo dnf install SDL2 SDL2_image SDL2_ttf SDL2_mixer freetype zip`
 
