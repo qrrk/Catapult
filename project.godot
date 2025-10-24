@@ -22,8 +22,8 @@ config/windows_native_icon="res://icons/appicon.ico"
 
 [audio]
 
-buses/default_bus_layout=""
-driver="Dummy"
+driver/driver="Dummy"
+text_to_speech/enabled=false
 
 [autoload]
 
