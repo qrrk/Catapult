@@ -1,12 +1,12 @@
-name: CI Test Build
+name: Export (master)
 
 on:
   push:
     branches:
-      - ci-test
+      - master
 
 jobs:
-  test-export:
+  export:
     uses: ./.github/workflows/export-base.yml
     with:
       GODOT_RELEASE: '4.5.1-stable'

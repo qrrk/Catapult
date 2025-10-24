@@ -40,7 +40,7 @@ on:
         default: true
 
 jobs:
-  export-configurable:
+  export-base:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
