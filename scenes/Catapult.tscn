@@ -1048,6 +1048,14 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Print screen info"
 
+[node name="Button10" type="Button" parent="Main/TabBar/Debug"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Browse internal filesystem"
+
+[node name="BrowseResourcesDialog" type="FileDialog" parent="Main/TabBar/Debug"]
+unique_name_in_owner = true
+
 [node name="Log" type="RichTextLabel" parent="Main"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -1171,6 +1179,7 @@ script = ExtResource("34")
 [connection signal="pressed" from="Main/TabBar/Debug/Button7" to="Main/TabBar/Debug" method="_on_Button7_pressed"]
 [connection signal="pressed" from="Main/TabBar/Debug/Button8" to="Main/TabBar/Debug" method="_on_Button8_pressed"]
 [connection signal="pressed" from="Main/TabBar/Debug/Button9" to="Main/TabBar/Debug" method="_on_Button9_pressed"]
+[connection signal="pressed" from="Main/TabBar/Debug/Button10" to="Main/TabBar/Debug" method="_on_button_10_pressed"]
 [connection signal="meta_clicked" from="Main/Log" to="." method="_on_Log_meta_clicked"]
 [connection signal="done_fetching_releases" from="Releases" to="." method="_on_Releases_done_fetching_releases"]
 [connection signal="started_fetching_releases" from="Releases" to="." method="_on_Releases_started_fetching_releases"]

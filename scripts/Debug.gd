@@ -147,3 +147,11 @@ func _on_Button9_pressed() -> void:
 	get_window().get_size_with_decorations()]
 	
 	Status.post(msg, Enums.MSG_DEBUG)
+
+
+func _on_button_10_pressed() -> void:
+	
+	$%BrowseResourcesDialog.current_dir = "res://"
+	$%BrowseResourcesDialog.popup_centered_ratio(0.9)
+	
+	
