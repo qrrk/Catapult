@@ -155,7 +155,8 @@ func _on_FontsList_item_selected(index: int) -> void:
 	
 	var font_info = _fonts.available_fonts[index]
 	var font_path := "res://fonts/ingame".path_join(font_info["file"])
-	var font_res: FontFile = load(font_path)
+	var font_res := FontFile.new()
+	font_res.load_dynamic_font(font_path)
 	
 	_preview.add_theme_font_override("normal_font", font_res)
 	_preview.add_theme_font_size_override("normal_font_size", 15.0 * Geom.scale)
