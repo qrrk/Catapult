@@ -1,0 +1,16 @@
+[gd_resource type="DPITexture" script_class="SVGTexture" load_steps=2 format=3 uid="uid://cai3bc7gyqp3h"]
+
+[ext_resource type="Script" uid="uid://c1wwv5d56m6r" path="res://scripts/svg_texture.gd" id="1_q0ep6"]
+
+[resource]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"30\" height=\"20\" viewBox=\"0 0 648 432\">
+  <defs>
+    <clipPath id=\"a\">
+      <rect width=\"648\" height=\"432\" rx=\"60\" ry=\"60\" />
+    </clipPath>
+  </defs>
+  <path fill=\"#d7141a\" d=\"M0 0h648v432H0z\" clip-path=\"url(#a)\" />
+  <path fill=\"#fff\" d=\"M0 0h648v216H0z\" clip-path=\"url(#a)\" />
+</svg>"
+script = ExtResource("1_q0ep6")
+metadata/_custom_type_script = "uid://c1wwv5d56m6r"

@@ -1,4 +1,4 @@
-extends WindowDialog
+extends Window
 
 
 const _PR_URL = {
@@ -6,10 +6,11 @@ const _PR_URL = {
 	"bn": "https://api.github.com/search/issues?q=repo%3Acataclysmbnteam/Cataclysm-BN",
 	"eod": "https://api.github.com/search/issues?q=repo%3AAtomicFox556/Cataclysm-EOD",
 	"tish": "https://api.github.com/search/issues?q=repo%3ACataclysm-TISH-team/Cataclysm-TISH/",
+	"tlg": "https://api.github.com/search/issues?q=repo%3ACataclysm-TLG/Cataclysm-TLG",
 }
 
-onready var _pullRequests := $PullRequests
-onready var _changelogTextBox := $Panel/Margin/VBox/ChangelogText
+@onready var _pullRequests := $PullRequests
+@onready var _changelogTextBox := $Panel/Margin/VBox/ChangelogText
 
 var _pr_data = ""
 
@@ -32,7 +33,6 @@ func _update_proxy(http: HTTPRequest) -> void:
 
 
 func download_pull_requests():
-	var game_selected = Settings.read("game")
 	var prs = Settings.read("num_prs_to_request")
 	var url = _PR_URL[Settings.read("game")]
 	url += "+is%3Apr+is%3Amerged&per_page=" + prs
@@ -41,13 +41,15 @@ func download_pull_requests():
 	_update_proxy(_pullRequests)
 	_pullRequests.request(url, headers)
 	_changelogTextBox.clear()
-	_changelogTextBox.append_bbcode(_pr_data)
+	_changelogTextBox.append_text(_pr_data)
 	_changelogTextBox.clear()
-	_changelogTextBox.append_bbcode(_pr_data)
+	_changelogTextBox.append_text(_pr_data)
 
 
-func _on_PullRequests_request_completed(result, response_code, headers, body):
-	var json = parse_json(body.get_string_from_utf8())
+func _on_PullRequests_request_completed(_result, response_code, _headers, body):
+	var test_json_conv = JSON.new()
+	test_json_conv.parse(body.get_string_from_utf8())
+	var json = test_json_conv.get_data()
 	if response_code != 200:
 		_pr_data = tr("str_error_retrieving_data")
 		_pr_data += tr("str_hhtp_response_code") % response_code
@@ -57,7 +59,7 @@ func _on_PullRequests_request_completed(result, response_code, headers, body):
 	else:
 		_pr_data = process_pr_data(json)
 	_changelogTextBox.clear()
-	_changelogTextBox.append_bbcode(_pr_data)
+	_changelogTextBox.append_text(_pr_data)
 
 
 func process_pr_data(data):
@@ -65,8 +67,8 @@ func process_pr_data(data):
 	for json in data["items"]:
 		var pr = PullRequest.pullrequest_from_datestring(json["closed_at"], json["title"], json["html_url"])
 		pr_array.push_back(pr)
-	pr_array.sort_custom(PullRequest, "compare_to")
-	var now = OS.get_datetime(true)
+	pr_array.sort_custom(PullRequest.compare_to)
+	var now = Time.get_datetime_dict_from_system(true)
 	var latest_year = now["year"] + 1
 	var latest_month = now["month"]
 	var latest_day = now["day"]
@@ -83,6 +85,8 @@ func process_pr_data(data):
 			game_title = "Cataclysm: Era of Decay"
 		"tish":
 			game_title = "Cataclysm: There Is Still Hope"
+		"tlg":
+			game_title = "Cataclysm: The Last Generation"
 		_:
 			game_title = "{BUG!!}"
 	
@@ -109,15 +113,15 @@ func _on_ChangelogText_meta_clicked(meta):
 
 
 class PullRequest:
-	var timestring setget set_timestring,get_timestring
-	var year setget ,get_year
-	var month setget ,get_month
-	var day setget ,get_day
-	var hour setget ,get_hour
-	var minute setget ,get_minute
-	var second setget ,get_second
-	var summary setget ,get_summary
-	var link setget ,get_link
+	var timestring : get = get_timestring, set = set_timestring
+	var year : get = get_year
+	var month : get = get_month
+	var day : get = get_day
+	var hour : get = get_hour
+	var minute : get = get_minute
+	var second : get = get_second
+	var summary : get = get_summary
+	var link : get = get_link
 	
 	func get_year():
 		return year
@@ -159,7 +163,7 @@ class PullRequest:
 		return a.timestring > b.timestring
 	
 	# We just need to get Github API strings. Nothing else.
-	static func pullrequest_from_datestring(date, sum, link):
+	static func pullrequest_from_datestring(date, sum, lnk):
 		var r_val = PullRequest.new(
 			int(date.substr(0,4)),
 			int(date.substr(5,2)),
@@ -168,7 +172,7 @@ class PullRequest:
 			int(date.substr(14,2)),
 			int(date.substr(16,2)),
 			sum,
-			link)
+			lnk)
 		r_val.set_timestring(date)
 		return r_val
 
@@ -184,7 +188,3 @@ class PullRequest:
 
 	func print_date():
 		return str(year) + "-" + str(month) + "-" + str(day)
-
-
-func _on_BtnCloseChangelog_pressed() -> void:
-	hide()

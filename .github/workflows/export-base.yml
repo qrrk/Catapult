@@ -1,0 +1,282 @@
+name: Export (base)
+
+on:
+  workflow_call:
+    inputs:
+      GODOT_RELEASE:
+        required: true
+        type: string
+      REVISION_STRING:
+        required: false
+        type: string
+        default: ''
+      BUILD_DEBUG:
+        required: false
+        type: boolean
+        default: true
+      BUILD_RELEASE:
+        required: false
+        type: boolean
+        default: true
+  workflow_dispatch:
+    inputs:
+      GODOT_RELEASE:
+        description: 'Godot release to use (e.g. 4.5.1-stable, 4.6-dev2)'
+        required: true
+        type: string
+      REVISION_STRING:
+        description: 'Version to put on the app. Leave empty to use short commit SHA.'
+        required: false
+        type: string
+      BUILD_DEBUG:
+        description: 'Make debug mode exports'
+        required: false
+        type: boolean
+        default: true
+      BUILD_RELEASE:
+        description: 'Make release mode exports'
+        required: false
+        type: boolean
+        default: true
+
+jobs:
+  export-base:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      REVISION_STRING: ''
+    
+    steps:
+      - name: Prepare tool download URLs
+        run: |
+          set -euo pipefail
+          
+          # Default REVISION_STRING to short SHA if empty
+          REVISION_STRING="${{ inputs.REVISION_STRING }}"
+          if [ -z "$REVISION_STRING" ]; then
+            REVISION_STRING="${GITHUB_SHA:0:7}"
+          fi
+          echo "REVISION_STRING=$REVISION_STRING" >> $GITHUB_ENV
+          echo "ℹ️  Using REVISION_STRING: $REVISION_STRING"
+          
+          GD_RELEASE_VERSION="${{ inputs.GODOT_RELEASE }}"
+          GD_RELEASE_VERSION="${GD_RELEASE_VERSION%%-*}"
+          GD_RELEASE_FLAVOR="${{ inputs.GODOT_RELEASE }}"
+          GD_RELEASE_FLAVOR="${GD_RELEASE_FLAVOR#*-}"
+          if [ "$GD_RELEASE_FLAVOR" = "${{ inputs.GODOT_RELEASE }}" ] || [ -z "$GD_RELEASE_VERSION" ] || [ -z "$GD_RELEASE_FLAVOR" ]; then
+            echo "❌ GODOT_RELEASE must be <version>-<flavor>, e.g. 4.5.1-stable or 4.6-dev2"
+            echo "❌ Current: GODOT_RELEASE=${{ inputs.GODOT_RELEASE }}"
+            exit 1
+          fi
+
+          GODOT_URL="https://downloads.godotengine.org/?version=${GD_RELEASE_VERSION}&flavor=${GD_RELEASE_FLAVOR}&slug=linux.x86_64.zip&platform=linux.64"
+          TEMPLATES_URL="https://downloads.godotengine.org/?version=${GD_RELEASE_VERSION}&flavor=${GD_RELEASE_FLAVOR}&slug=export_templates.tpz&platform=templates"
+          TEMPLATES_SUBDIR="${GD_RELEASE_VERSION}.${GD_RELEASE_FLAVOR}"
+
+          {
+            echo "GODOT_URL=$GODOT_URL"
+            echo "TEMPLATES_URL=$TEMPLATES_URL"
+            echo "TEMPLATES_SUBDIR=$TEMPLATES_SUBDIR"
+          } >> "$GITHUB_ENV"
+
+          echo "🌐 Download URLs:"
+          echo "  GODOT_URL=$GODOT_URL"
+          echo "  TEMPLATES_URL=$TEMPLATES_URL"
+          echo "TEMPLATES_SUBDIR=$TEMPLATES_SUBDIR"
+
+      - name: Use cached Godot and export templates
+        uses: actions/cache@v4
+        with:
+          path: |
+            godot
+            ._sc_
+            editor_data/export_templates
+          key: godot-and-templates-${{ inputs.GODOT_RELEASE }}
+
+      - name: Verify Godot engine/templates and re-download if needed
+        run: |
+          set -euo pipefail
+          echo "⏳ Checking Godot tools cache..."
+          GODOT_READY=false
+          TEMPLATES_READY=false
+
+          if [ -f godot ] && [ -x godot ]; then
+            echo "✅ Godot binary found in cache"
+            ./godot --version
+            GODOT_READY=true
+          fi
+
+          if [ -d editor_data/export_templates/"$TEMPLATES_SUBDIR" ] && [ -n "$(ls -A editor_data/export_templates/"$TEMPLATES_SUBDIR" 2>/dev/null)" ]; then
+            echo "✅ Export templates found in cache"
+            TEMPLATES_READY=true
+          fi
+
+          if [ "$GODOT_READY" = true ] && [ "$TEMPLATES_READY" = true ]; then
+            echo "✅ Both Godot and templates are cached"
+            tree -a
+            exit 0
+          fi
+
+          echo "⬇️  Downloading missing tools..."
+
+          # Download and setup Godot engine if needed
+          if [ "$GODOT_READY" = false ]; then
+            echo "⬇️  Downloading Godot engine..."
+            wget -q -O godot.zip "$GODOT_URL"
+            unzip -q godot.zip -d .
+            rm -f *.zip
+            BIN="$(ls Godot* 2>/dev/null | head -n1 || true)"
+            mv "$BIN" godot
+            chmod +x godot
+            touch ./._sc_
+            ./godot --version
+          fi
+
+          # Download and setup templates if needed
+          if [ "$TEMPLATES_READY" = false ]; then
+            echo "⬇️  Downloading export templates..."
+            wget -q -O templates.zip "$TEMPLATES_URL"
+            unzip -q templates.zip -d templates_unpack
+            rm -f templates.zip
+            mkdir -p editor_data/export_templates/"$TEMPLATES_SUBDIR"
+            mv templates_unpack/templates/* editor_data/export_templates/"$TEMPLATES_SUBDIR"/
+            rm -rf templates_unpack
+          fi
+
+          echo "✅ Tools ready"
+          tree -a
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          path: project
+
+      - name: Parse export_presets.cfg
+        run: |
+          set -euo pipefail
+          PRESET_FILE="project/export_presets.cfg"
+          echo "Parsing presets from $PRESET_FILE"
+          awk '
+            /^\[preset\./ { if (name) print name "||" path; name=""; path=""; next }
+            $0 ~ /^name=/ {
+              if (match($0, /name=\"(.*)\"/, m)) { name = m[1] } else { sub(/^name=/,""); gsub(/"/,""); name=$0 }
+            }
+            $0 ~ /^export_path=/ {
+              if (match($0, /export_path=\"(.*)\"/, m)) { path = m[1] } else { sub(/^export_path=/,""); gsub(/"/,""); path=$0 }
+            }
+            END { if (name) print name "||" path }
+          ' "$PRESET_FILE" > /tmp/presets.list
+          echo "Found presets:"
+          cat -n /tmp/presets.list
+          if [ ! -s /tmp/presets.list ]; then
+            echo "No presets found in $PRESET_FILE"
+            exit 1
+          fi
+
+      - name: Inject REVISION_STRING into export_presets.cfg
+        run: |
+          set -euo pipefail
+          FILE="project/export_presets.cfg"
+          if [ ! -f "$FILE" ]; then
+            echo "$FILE not found"
+            exit 1
+          fi
+
+          # Replace application/product_version with REVISION_STRING
+          perl -0777 -pe "s/(application\/product_version=)\"[^\"]*\"/\$1\"$REVISION_STRING\"/g" -i "$FILE"
+
+          echo "Updated fields in $FILE:"
+          grep -E 'application\/product_version=' -n "$FILE" || true
+          
+      - name: Pre-import resources (cache)
+        run: |
+          set -euo pipefail
+          echo "⏳ Pre-importing project resources to warm the import cache..."
+          ./godot -q --path project --headless --import || true
+          echo "✅ Pre-import finished"
+
+      - name: Export presets (loop)
+        run: |
+          set -euo pipefail
+          echo "⏳ Starting exports..."
+          BUILD_FAILED=0
+
+          export_preset() {
+            mode="$1"       # "debug" or "release"
+            preset="$2"
+            out="$3"
+
+            if [ "$mode" = "debug" ]; then
+              flag="--export-debug"
+            else
+              flag="--export-release"
+            fi
+
+            mkdir -p "$(dirname "$out")"
+
+            echo "-----------------------------------------"
+            echo "⏳ Exporting (${mode}) preset: '$preset'"
+            if ! ./godot -q --path project --headless "$flag" "$preset" "$out"; then
+              echo "❌ ${mode^} export failed for preset: '$preset' (output: $out)"
+              BUILD_FAILED=1
+              return 1
+            fi
+            echo "✅ ${mode^} export succeeded"
+            return 0
+          }
+
+          while IFS='||' read -r PRESET_NAME PRESET_PATH; do
+            PRESET_NAME="$(printf '%s' "$PRESET_NAME" | tr -d '\r' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')"
+            PRESET_PATH="$(printf '%s' "$PRESET_PATH" | tr -d '\r' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')"
+
+            if [ -z "$PRESET_PATH" ]; then
+              echo "⚠️  Skipping preset '$PRESET_NAME' (no export_path)"
+              continue
+            fi
+
+            ORIG_NAME="$(basename "$PRESET_PATH")"
+            if [[ "$ORIG_NAME" == *.* ]]; then
+              BASE="${ORIG_NAME%.*}"
+              EXT=".${ORIG_NAME##*.}"
+            else
+              BASE="$ORIG_NAME"
+              EXT=""
+            fi
+
+            NEW_NAME="${BASE}_${REVISION_STRING}${EXT}"
+
+            if [ "${{ inputs.BUILD_DEBUG }}" = "true" ]; then
+              DEBUG_OUTPUT="$PWD/build/debug/$NEW_NAME"
+              export_preset debug "$PRESET_NAME" "$DEBUG_OUTPUT"
+            fi
+
+            if [ "${{ inputs.BUILD_RELEASE }}" = "true" ]; then
+              RELEASE_OUTPUT="$PWD/build/release/$NEW_NAME"
+              export_preset release "$PRESET_NAME" "$RELEASE_OUTPUT"
+            fi
+
+          done < /tmp/presets.list
+
+          echo "BUILD_FAILED=$BUILD_FAILED" >> $GITHUB_ENV
+
+      - name: Verify build results
+        run: |
+          set -euo pipefail
+          echo "BUILD_FAILED=${BUILD_FAILED:-}"
+          if [ "${BUILD_FAILED:-0}" -ne 0 ]; then
+            echo "❌ One or more exports failed."
+            exit 1
+          fi
+
+          if [ -z "$(ls -A build 2>/dev/null || true)" ]; then
+            echo "❌ No artifacts produced in build/ — failing."
+            exit 1
+          fi
+          
+          echo "✅ All exports completed successfully"
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: Catapult_${{ env.REVISION_STRING }}
+          path: build/

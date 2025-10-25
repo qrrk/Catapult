@@ -2,13 +2,14 @@
 
 importer="csv_translation"
 type="Translation"
+uid="uid://dnblo3ryeqdfk"
 
 [deps]
 
-files=[ "res://text/ru/game_tab.ru.translation" ]
+files=["res://text/ru/game_tab.ru.translation"]
 
 source_file="res://text/ru/game_tab.csv"
-dest_files=[ "res://text/ru/game_tab.ru.translation" ]
+dest_files=["res://text/ru/game_tab.ru.translation"]
 
 [params]
 

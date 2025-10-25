@@ -10,3 +10,4 @@
 "tip_bug_reporting","Pokud máte problém s Catapultem a nevidíte ho oznámený na [color=#3b93f7][url=https://github.com/qrrk/Catapult/issues]on GitHub[/url][/color], je možné, že jste první kdo si toho všimnul! Zvažte pro něj založit ticket, pokud máte GitHub účet."
 "tip_backup_caveat","Pokud máte více světů ve své hře, dejte si pozor protože zálohování uložených her vždy funguje na celé složce s uloženými hrami. To znamená, že pokud je záloha obnovena, všechna předchozí data v této složce jsou ztracena (včetně jakýchkoliv světů co nebyly v této záloze)."
 "tip_multi_install","Nyní můžete mít nainstalovaných více verzí hry současně a snadno mezi nimi přepínat. Mezi instalacemi se však sdílí uložená data a další uživatelská data, takže si dejte pozor na poškození při přepínání mezi příliš odlišnými verzemi (např. stabilní a experimentální).“
+"
