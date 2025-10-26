@@ -4,14 +4,14 @@ extends Node
 const INFO_FILENAME := "catapult_install_info.json"
 
 
-func create_info_file(location: String, name: String) -> void:
+func create_info_file(location: String, install_name: String) -> void:
 	
-	var info = {"name": name}
+	var info = {"name": install_name}
 	var path = location + "/" + INFO_FILENAME
-	var f = File.new()
-	if (f.open(path, File.WRITE) == 0):
-		f.store_string(JSON.print(info, "    "))
-		f.close()
+	var info_file := FileAccess.open(path, FileAccess.WRITE)
+	if info_file:
+		info_file.store_string(JSON.stringify(info, "    "))
+		info_file.close()
 	else:
 		Status.post(tr("msg_cannot_create_install_info") % path, Enums.MSG_ERROR)
 
@@ -26,38 +26,38 @@ func get_all_nodes_within(n: Node) -> Array:
 	return result
 
 
-func load_json_file(file: String):
+func load_json_file(file: String) -> Variant:
 	
-	var f := File.new()
-	var err := f.open(file, File.READ)
+	var f := FileAccess.open(file, FileAccess.READ)
 	
-	if err:
-		Status.post(tr("msg_file_read_fail") % [file.get_file(), err], Enums.MSG_ERROR)
+	if f == null:
+		Status.post(tr("msg_file_read_fail") % [file.get_file(), FileAccess.get_open_error()], Enums.MSG_ERROR)
 		Status.post(tr("msg_debug_file_path") % file, Enums.MSG_DEBUG)
 		return null
 	
-	var r := JSON.parse(f.get_as_text())
+	var json := JSON.new()
+	var err := json.parse(f.get_as_text())
+	var data = json.get_data()
 	f.close()
 	
-	if r.error:
+	if err:
 		Status.post(tr("msg_json_parse_fail") % file.get_file(), Enums.MSG_ERROR)
-		Status.post(tr("msg_debug_json_result") % [r.error, r.error_string, r.error_line], Enums.MSG_DEBUG)
+		Status.post(tr("msg_debug_json_result") % [err, json.get_error_message(), json.get_error_line()], Enums.MSG_DEBUG)
 		return null
 	
-	return r.result
+	return data
 
 
 func save_to_json_file(data, file: String) -> bool:
 	
-	var f := File.new()
-	var err := f.open(file, File.WRITE)
+	var f := FileAccess.open(file, FileAccess.WRITE)
 	
-	if err:
-		Status.post(tr("msg_file_write_fail") % [file.get_file(), err], Enums.MSG_ERROR)
+	if f == null:
+		Status.post(tr("msg_file_write_fail") % [file.get_file(), FileAccess.get_open_error()], Enums.MSG_ERROR)
 		Status.post(tr("msg_debug_file_path") % file, Enums.MSG_DEBUG)
 		return false
 	
-	var text := JSON.print(data, "    ")
+	var text := JSON.stringify(data, "    ")
 	f.store_string(text)
 	f.close()
 	

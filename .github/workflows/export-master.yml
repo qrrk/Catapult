@@ -1,0 +1,14 @@
+name: Export (master)
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  export:
+    uses: ./.github/workflows/export-base.yml
+    with:
+      GODOT_RELEASE: '4.5.1-stable'
+      BUILD_DEBUG: false
+      BUILD_RELEASE: true

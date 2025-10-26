@@ -1,40 +1,37 @@
 extends Node
 
 
-onready var _debug_ui = $Main/Tabs/Debug
-onready var _log = $Main/Log
-onready var _game_info = $Main/GameInfo
-onready var _game_desc = $Main/GameInfo/Description
-onready var _mod_info = $Main/Tabs/Mods/ModInfo
-onready var _tabs = $Main/Tabs
-onready var _mods = $Mods  
-onready var _releases = $Releases
-onready var _installer = $ReleaseInstaller
-onready var _btn_install = $Main/Tabs/Game/BtnInstall
-onready var _btn_refresh = $Main/Tabs/Game/Builds/BtnRefresh
-onready var _changelog = $Main/Tabs/Game/ChangelogDialog
-onready var _lbl_changelog = $Main/Tabs/Game/Channel/HBox/ChangelogLink
-onready var _btn_game_dir = $Main/Tabs/Game/ActiveInstall/Build/GameDir
-onready var _btn_user_dir = $Main/Tabs/Game/ActiveInstall/Build/UserDir
-onready var _btn_play = $Main/Tabs/Game/ActiveInstall/Launch/BtnPlay
-onready var _btn_resume = $Main/Tabs/Game/ActiveInstall/Launch/BtnResume
-onready var _lst_builds = $Main/Tabs/Game/Builds/BuildsList
-onready var _lst_games = $Main/GameChoice/GamesList
-onready var _rbtn_stable = $Main/Tabs/Game/Channel/Group/RBtnStable
-onready var _rbtn_exper = $Main/Tabs/Game/Channel/Group/RBtnExperimental
-onready var _lbl_build = $Main/Tabs/Game/ActiveInstall/Build/Name
-onready var _cb_update = $Main/Tabs/Game/UpdateCurrent
-onready var _lst_installs = $Main/Tabs/Game/GameInstalls/HBox/InstallsList
-onready var _btn_make_active = $Main/Tabs/Game/GameInstalls/HBox/VBox/btnMakeActive
-onready var _btn_delete = $Main/Tabs/Game/GameInstalls/HBox/VBox/btnDelete
-onready var _panel_installs = $Main/Tabs/Game/GameInstalls
+@onready var _debug_ui = $Main/TabBar/Debug
+@onready var _game_info = $Main/GameInfo
+@onready var _game_desc = $Main/GameInfo/Description
+@onready var _tabs = $Main/TabBar 
+@onready var _mods = $Mods  
+@onready var _releases = $Releases
+@onready var _installer = $ReleaseInstaller
+@onready var _btn_install = $Main/TabBar/Game/BtnInstall
+@onready var _btn_refresh = $Main/TabBar/Game/Builds/BtnRefresh
+@onready var _changelog = $Main/TabBar/Game/ChangelogDialog
+@onready var _lbl_changelog = $Main/TabBar/Game/Channel/HBox/ChangelogLink
+@onready var _btn_game_dir = $Main/TabBar/Game/ActiveInstall/Build/GameDir
+@onready var _btn_user_dir = $Main/TabBar/Game/ActiveInstall/Build/UserDir
+@onready var _btn_play = $Main/TabBar/Game/ActiveInstall/Launch/BtnPlay
+@onready var _btn_resume = $Main/TabBar/Game/ActiveInstall/Launch/BtnResume
+@onready var _lst_builds = $Main/TabBar/Game/Builds/BuildsList
+@onready var _lst_games = $Main/GameChoice/GamesList
+@onready var _rbtn_stable = $Main/TabBar/Game/Channel/Group/RBtnStable
+@onready var _rbtn_exper = $Main/TabBar/Game/Channel/Group/RBtnExperimental
+@onready var _lbl_build = $Main/TabBar/Game/ActiveInstall/Build/Name
+@onready var _cb_update = $Main/TabBar/Game/UpdateCurrent
+@onready var _lst_installs = $Main/TabBar/Game/GameInstalls/HBox/InstallsList
+@onready var _btn_make_active = $Main/TabBar/Game/GameInstalls/HBox/VBox/btnMakeActive
+@onready var _btn_delete = $Main/TabBar/Game/GameInstalls/HBox/VBox/btnDelete
+@onready var _panel_installs = $Main/TabBar/Game/GameInstalls
 
 var _disable_savestate := {}
 var _installs := {}
 
 # For UI scaling on the fly
 var _base_min_sizes := {}
-var _base_icon_sizes := {}
 
 var _easter_egg_counter := 0
 
@@ -47,7 +44,7 @@ func _ready() -> void:
 	
 	_save_control_min_sizes()
 	_scale_control_min_sizes(Geom.scale)
-	Geom.connect("scale_changed", self, "_on_ui_scale_changed")
+	Geom.scale_changed.connect(_on_ui_scale_changed)
 	
 	assign_localized_text()
 	
@@ -65,24 +62,19 @@ func _ready() -> void:
 func _save_control_min_sizes() -> void:
 	
 	for node in Helpers.get_all_nodes_within(self):
-		if ("rect_min_size" in node) and (node.rect_min_size != Vector2.ZERO):
-			_base_min_sizes[node] = node.rect_min_size
+		if ("custom_minimum_size" in node) and (node.custom_minimum_size != Vector2.ZERO):
+			_base_min_sizes[node] = node.custom_minimum_size
 
 
 func _scale_control_min_sizes(factor: float) -> void:
 	
 	for node in _base_min_sizes:
-		node.rect_min_size = _base_min_sizes[node] * factor
-
-
-func _save_icon_sizes() -> void:
-	
-	var resources = load("res://")
+		node.custom_minimum_size = _base_min_sizes[node] * factor
 
 
 func assign_localized_text() -> void:
 	
-	OS.set_window_title(tr("window_title"))	
+	get_window().set_title(tr("window_title"))	
 	
 	_tabs.set_tab_title(0, tr("tab_game"))
 	_tabs.set_tab_title(1, tr("tab_mods"))
@@ -91,53 +83,49 @@ func assign_localized_text() -> void:
 	_tabs.set_tab_title(4, tr("tab_backups"))
 	_tabs.set_tab_title(5, tr("tab_settings"))
 	
-	_lbl_changelog.bbcode_text = tr("lbl_changelog")
+	_lbl_changelog.text = tr("lbl_changelog")
 	
 	var game = Settings.read("game")
 	if game == "dda":
-		_game_desc.bbcode_text = tr("desc_dda")
+		_game_desc.text = tr("desc_dda")
 	elif game == "bn":
-		_game_desc.bbcode_text = tr("desc_bn")
+		_game_desc.text = tr("desc_bn")
 	elif game == "eod":
-		_game_desc.bbcode_text = tr("desc_eod")
+		_game_desc.text = tr("desc_eod")
 	elif game == "tish":
-		_game_desc.bbcode_text = tr("desc_tish")
+		_game_desc.text = tr("desc_tish")
+	elif game == "tlg":
+		_game_desc.text = tr("desc_tlg")
 
 
 func load_ui_theme(theme_file: String) -> void:
 	
-	# Since we've got multiple themes that have some shared elements (like fonts),
-	# we have to make sure old theme's *scaled* sizes don't become new theme's
-	# *base* sizes. To avoid that, we have to reset the scale of the old theme
-	# before replacing it, and we have to do that before we even attempt to load
-	# the new theme.
-	
-	self.theme.apply_scale(1.0)
-	var new_theme := load("res://themes".plus_file(theme_file)) as ScalableTheme
-	
-	if new_theme:
-		new_theme.apply_scale(Geom.scale)
+	var ts := ThemeScaler.new()
+	var proto = load("res://themes".path_join(theme_file))
+	if proto is Theme:
+		var new_theme: Theme = ts.make_scaled_theme(proto, Geom.scale)
 		self.theme = new_theme
 	else:
-		self.theme.apply_scale(Geom.scale)
 		Status.post(tr("msg_theme_load_error") % theme_file, Enums.MSG_ERROR)
+		proto = ThemeDB.get_project_theme()
+		self.theme = ts.make_scaled_theme(proto, Geom.scale)
+		
 
 
 func _unpack_utils() -> void:
 	
-	var d = Directory.new()
-	var unzip_exe = Paths.utils_dir.plus_file("unzip.exe")
-	if (OS.get_name() == "Windows") and (not d.file_exists(unzip_exe)):
-		if not d.dir_exists(Paths.utils_dir):
-			d.make_dir(Paths.utils_dir)
+	var unzip_exe = Paths.utils_dir.path_join("unzip.exe")
+	if (OS.get_name() == "Windows") and (not FileAccess.file_exists(unzip_exe)):
+		if not DirAccess.dir_exists_absolute(Paths.utils_dir):
+			DirAccess.make_dir_absolute(Paths.utils_dir)
 		Status.post(tr("msg_unpacking_unzip"))
-		d.copy("res://utils/unzip.exe", unzip_exe)
-	var zip_exe = Paths.utils_dir.plus_file("zip.exe")
-	if (OS.get_name() == "Windows") and (not d.file_exists(zip_exe)):
-		if not d.dir_exists(Paths.utils_dir):
-			d.make_dir(Paths.utils_dir)
+		DirAccess.copy_absolute("res://utils/unzip.exe", unzip_exe)
+	var zip_exe = Paths.utils_dir.path_join("zip.exe")
+	if (OS.get_name() == "Windows") and (not FileAccess.file_exists(zip_exe)):
+		if not DirAccess.dir_exists_absolute(Paths.utils_dir):
+			DirAccess.make_dir_absolute(Paths.utils_dir)
 		Status.post(tr("msg_unpacking_zip"))
-		d.copy("res://utils/zip.exe", zip_exe)
+		DirAccess.copy_absolute("res://utils/zip.exe", zip_exe)
 	
 
 
@@ -171,7 +159,7 @@ func _on_ui_scale_changed(new_scale: float) -> void:
 	_scale_control_min_sizes(new_scale)
 
 
-func _on_Tabs_tab_changed(tab: int) -> void:
+func _on_Tabs_tab_changed(_tab: int) -> void:
 	
 	_refresh_currently_installed()
 
@@ -181,16 +169,19 @@ func _on_GamesList_item_selected(index: int) -> void:
 	match index:
 		0:
 			Settings.store("game", "dda")
-			_game_desc.bbcode_text = tr("desc_dda")
+			_game_desc.text = tr("desc_dda")
 		1:
 			Settings.store("game", "bn")
-			_game_desc.bbcode_text = tr("desc_bn")
+			_game_desc.text = tr("desc_bn")
 		2:
 			Settings.store("game", "eod")
-			_game_desc.bbcode_text = tr("desc_eod")
+			_game_desc.text = tr("desc_eod")
 		3:
 			Settings.store("game", "tish")
-			_game_desc.bbcode_text = tr("desc_tish")
+			_game_desc.text = tr("desc_tish")
+		4:
+			Settings.store("game", "tlg")
+			_game_desc.text = tr("desc_tlg")
 	
 	_tabs.current_tab = 0
 	apply_game_choice()
@@ -201,7 +192,7 @@ func _on_GamesList_item_selected(index: int) -> void:
 
 
 func _on_RBtnStable_toggled(button_pressed: bool) -> void:
-	if (Settings.read("game") == "eod") or (Settings.read("game") == "tish"):
+	if (Settings.read("game") == "eod") or (Settings.read("game") == "tish") or (Settings.read("game") == "tlg"):
 		Settings.store("channel", "experimental")
 
 
@@ -271,7 +262,7 @@ func _on_Description_meta_clicked(meta) -> void:
 	OS.shell_open(meta)
 
 
-func _on_ChangelogLink_meta_clicked(meta) -> void:
+func _on_ChangelogLink_meta_clicked(_meta) -> void:
 	
 	_changelog.open()
 
@@ -311,7 +302,7 @@ func _on_BtnInstall_pressed() -> void:
 		var active_name = Settings.read("active_install_" + game)
 		if (game in _installs) and (active_name in _installs[game]):
 			update_path = _installs[game][active_name]
-	_installer.install_release(release, Settings.read("game"), update_path)
+	_installer.install_release(release, update_path)
 
 
 func _on_cbUpdateCurrent_toggled(button_pressed: bool) -> void:
@@ -332,14 +323,14 @@ func _get_release_key() -> String:
 func _on_GameDir_pressed() -> void:
 	
 	var gamedir = Paths.game_dir
-	if Directory.new().dir_exists(gamedir):
+	if DirAccess.dir_exists_absolute(gamedir):
 		OS.shell_open(gamedir)
 
 
 func _on_UserDir_pressed() -> void:
 	
 	var userdir = Paths.userdata
-	if Directory.new().dir_exists(userdir):
+	if DirAccess.dir_exists_absolute(userdir):
 		OS.shell_open(userdir)
 
 
@@ -349,12 +340,12 @@ func _setup_ui() -> void:
 	if not Settings.read("debug_mode"):
 		_tabs.remove_child(_debug_ui)
 	
-	_cb_update.pressed = Settings.read("update_current_when_installing")
+	_cb_update.button_pressed = Settings.read("update_current_when_installing")
 	
 	apply_game_choice()
 	
-	_lst_games.connect("item_selected", self, "_on_GamesList_item_selected")
-	_rbtn_stable.connect("toggled", self, "_on_RBtnStable_toggled")
+	_lst_games.item_selected.connect(_on_GamesList_item_selected)
+	_rbtn_stable.toggled.connect(_on_RBtnStable_toggled)
 	# Had to leave these signals unconnected in the editor and only connect
 	# them now from code to avoid cyclic calls of apply_game_choice.
 	
@@ -380,12 +371,13 @@ func apply_game_choice() -> void:
 		_rbtn_exper.disabled = false
 		_rbtn_stable.disabled = false
 		if channel == "stable":
-			_rbtn_stable.pressed = true
+			_rbtn_stable.button_pressed = true
 			_btn_refresh.disabled = true
 		else:
+			_rbtn_exper.button_pressed = true
 			_btn_refresh.disabled = false
-	elif (game == "eod") or (game == "tish"):
-		_rbtn_exper.pressed = true
+	elif (game == "eod") or (game == "tish") or (game == "tlg"):
+		_rbtn_exper.button_pressed = true
 		_rbtn_exper.disabled = true
 		_rbtn_stable.disabled = true
 		_btn_refresh.disabled = false
@@ -393,19 +385,23 @@ func apply_game_choice() -> void:
 	match game:
 		"dda":
 			_lst_games.select(0)
-			_game_desc.bbcode_text = tr("desc_dda")
+			_game_desc.text = tr("desc_dda")
 				
 		"bn":
 			_lst_games.select(1)
-			_game_desc.bbcode_text = tr("desc_bn")
+			_game_desc.text = tr("desc_bn")
 
 		"eod":
 			_lst_games.select(2)
-			_game_desc.bbcode_text = tr("desc_eod")
+			_game_desc.text = tr("desc_eod")
 
 		"tish":
 			_lst_games.select(3)
-			_game_desc.bbcode_text = tr("desc_tish")
+			_game_desc.text = tr("desc_tish")
+			
+		"tlg":
+			_lst_games.select(4)
+			_game_desc.text = tr("desc_tlg")
 	
 	if len(_releases.releases[_get_release_key()]) == 0:
 		_releases.fetch(_get_release_key())
@@ -420,7 +416,7 @@ func _on_BtnPlay_pressed() -> void:
 
 func _on_BtnResume_pressed() -> void:
 	
-	var lastworld: String = Paths.config.plus_file("lastworld.json")
+	var lastworld: String = Paths.config.path_join("lastworld.json")
 	var info = Helpers.load_json_file(lastworld)
 	if info:
 		_start_game(info["world_name"])
@@ -429,22 +425,22 @@ func _on_BtnResume_pressed() -> void:
 func _start_game(world := "") -> void:
 	
 	match OS.get_name():
-		"X11":
+		"Linux":
 			var params := ["--userdir", Paths.userdata + "/"]
 			if world != "":
 				params.append_array(["--world", world])
-			OS.execute(Paths.game_dir.plus_file("cataclysm-launcher"), params, false)
+			OS.execute_with_pipe(Paths.game_dir.path_join("cataclysm-launcher"), params)
 		"Windows":
 			var world_str := ""
 			if world != "":
 				world_str = "--world \"%s\"" % world
 
 			var exe_file = "cataclysm-tiles.exe"
-			if Settings.read("game") == "bn" and Directory.new().file_exists(Paths.game_dir.plus_file("cataclysm-bn-tiles.exe")):
+			if Settings.read("game") == "bn" and FileAccess.file_exists(Paths.game_dir.path_join("cataclysm-bn-tiles.exe")):
 				exe_file = "cataclysm-bn-tiles.exe"
 
 			var command = "cd /d %s && start %s --userdir \"%s/\" %s" % [Paths.game_dir, exe_file, Paths.userdata, world_str]
-			OS.execute("cmd", ["/C", command], false)
+			OS.execute_with_pipe("cmd", ["/C", command])
 		_:
 			return
 	
@@ -454,31 +450,31 @@ func _start_game(world := "") -> void:
 
 func _on_InstallsList_item_selected(index: int) -> void:
 	
-	var name = _lst_installs.get_item_text(index)
+	var release_name = _lst_installs.get_item_text(index)
 	_btn_delete.disabled = false
-	_btn_make_active.disabled = (name == Settings.read("active_install_" + Settings.read("game")))
+	_btn_make_active.disabled = (release_name == Settings.read("active_install_" + Settings.read("game")))
 
 
 func _on_InstallsList_item_activated(index: int) -> void:
 	
-	var name = _lst_installs.get_item_text(index)
-	var path = _installs[Settings.read("game")][name]
-	if Directory.new().dir_exists(path):
+	var release_name = _lst_installs.get_item_text(index)
+	var path = _installs[Settings.read("game")][release_name]
+	if DirAccess.dir_exists_absolute(path):
 		OS.shell_open(path)
 
 
 func _on_btnMakeActive_pressed() -> void:
 	
-	var name = _lst_installs.get_item_text(_lst_installs.get_selected_items()[0])
-	Status.post(tr("msg_set_active") % name)
-	Settings.store("active_install_" + Settings.read("game"), name)
+	var release_name = _lst_installs.get_item_text(_lst_installs.get_selected_items()[0])
+	Status.post(tr("msg_set_active") % release_name)
+	Settings.store("active_install_" + Settings.read("game"), release_name)
 	_refresh_currently_installed()
 
 
 func _on_btnDelete_pressed() -> void:
 	
-	var name = _lst_installs.get_item_text(_lst_installs.get_selected_items()[0])
-	_installer.remove_release_by_name(name)
+	var release_name = _lst_installs.get_item_text(_lst_installs.get_selected_items()[0])
+	_installer.remove_release_by_name(release_name)
 
 
 func _refresh_currently_installed() -> void:
@@ -490,12 +486,10 @@ func _refresh_currently_installed() -> void:
 	_installs = Paths.installs_summary
 	var active_name = Settings.read("active_install_" + game)
 	if game in _installs:
-		for name in _installs[game]:
-			_lst_installs.add_item(name)
+		for inst_name in _installs[game]:
+			_lst_installs.add_item(inst_name)
 			var curr_idx = _lst_installs.get_item_count() - 1
-			_lst_installs.set_item_tooltip(curr_idx, tr("tooltip_installs_item") % _installs[game][name])
-#			if name == active_name:
-#				_lst_installs.set_item_custom_fg_color(curr_idx, Color(0, 0.8, 0))
+			_lst_installs.set_item_tooltip(curr_idx, tr("tooltip_installs_item") % _installs[game][inst_name])
 	
 	_lst_builds.select(-1)
 	_btn_make_active.disabled = true
@@ -504,7 +498,7 @@ func _refresh_currently_installed() -> void:
 	if game in _installs:
 		_lbl_build.text = active_name
 		_btn_play.disabled = false
-		_btn_resume.disabled = not (Directory.new().file_exists(Paths.config.plus_file("lastworld.json")))
+		_btn_resume.disabled = not (FileAccess.file_exists(Paths.config.path_join("lastworld.json")))
 		_btn_game_dir.visible = true
 		_btn_user_dir.visible = true
 		if (_lst_builds.selected != -1) and (_lst_builds.selected < len(releases)):
@@ -530,12 +524,12 @@ func _refresh_currently_installed() -> void:
 		_panel_installs.visible = false
 
 	for i in [1, 2, 3, 4]:
-		_tabs.set_tab_disabled(i, not game in _installs)
+		_tabs.set_individual_tab_disabled(i, not game in _installs)
 
 
 func _on_InfoIcon_gui_input(event: InputEvent) -> void:
 	
-	if (event is InputEventMouseButton) and (event.button_index == BUTTON_LEFT) and (event.is_pressed()):
+	if (event is InputEventMouseButton) and (event.button_index == MOUSE_BUTTON_LEFT) and (event.is_pressed()):
 		_easter_egg_counter += 1
 		if _easter_egg_counter == 3:
 			Status.post("[color=red]%s[/color]" % tr("msg_easter_egg_warning"))
@@ -547,11 +541,11 @@ func _activate_easter_egg() -> void:
 	
 	for node in Helpers.get_all_nodes_within(self):
 		if node is Control:
-			node.rect_pivot_offset = node.rect_size / 2.0
-			node.rect_rotation = randf() * 2.0 - 1.0
+			node.pivot_offset = node.size / 2.0
+			node.rotation = (randf() * 2.0 - 1.0) * PI / 180.0
 	
 	Status.rainbow_text = true
 	
 	for i in range(20):
 		Status.post(tr("msg_easter_egg_activated"))
-		yield(get_tree().create_timer(0.1), "timeout")
+		await get_tree().create_timer(0.1).timeout
