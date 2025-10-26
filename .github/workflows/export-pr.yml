@@ -1,0 +1,16 @@
+name: Export (PR)
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  export:
+    uses: ./.github/workflows/export-base.yml
+    with:
+      GODOT_RELEASE: '4.5.1-stable'
+      BUILD_DEBUG: true
+      BUILD_RELEASE: false

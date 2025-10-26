@@ -1,0 +1,8 @@
+[gd_resource type="DPITexture" script_class="SVGTexture" load_steps=2 format=3 uid="uid://hewqi4dmaa7g"]
+
+[ext_resource type="Script" uid="uid://c1wwv5d56m6r" path="res://scripts/svg_texture.gd" id="1_fipxs"]
+
+[resource]
+_source = "<svg width=\"18\" height=\"18\" viewBox=\"0 0 128 128\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M44 114V14l65 50zM31.561 114H19V14h12.561z\" fill=\"gray\"/></svg>"
+script = ExtResource("1_fipxs")
+metadata/_custom_type_script = "uid://c1wwv5d56m6r"
