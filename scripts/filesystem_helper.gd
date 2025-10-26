@@ -167,11 +167,9 @@ func extract(path: String, dest_dir: String) -> void:
 		"args": ["-o", "%s" % path, "-d", "%s" % dest_dir]
 	}
 	var command_linux_gz = {
-		"item": "tar",
-		"args": ["-xzf", "\"\"%s\"\"" % path, "-C", "\"\"%s\"\"" % dest_dir,
-				"--exclude=*doc/CONTRIBUTING.md", "--exclude=*doc/JSON_LOADING_ORDER.md"]
-				# Godot can't operate on symlinks just yet, so we have to avoid them.
-				# TODO: Check if this has changed in Godot 4.
+		"item": "/bin/bash",
+		"args": ["-c", "tar -xzf \"%s\" -C \"%s\" && find \"%s\" -type l -delete" % [path, dest_dir, dest_dir]]
+		# Godot can't operate on symlinks, so we have to clean them up with find.
 	}
 	var command_windows = {
 		"item": "cmd",
