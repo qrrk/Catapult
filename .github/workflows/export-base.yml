@@ -243,7 +243,7 @@ jobs:
               EXT=""
             fi
 
-            NEW_NAME="${BASE}_${REVISION_STRING}${EXT}"
+            NEW_NAME="${BASE}-${REVISION_STRING}${EXT}"
 
             if [ "${{ inputs.BUILD_DEBUG }}" = "true" ]; then
               DEBUG_OUTPUT="$PWD/build/debug/$NEW_NAME"
