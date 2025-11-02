@@ -159,8 +159,12 @@ func _on_ui_scale_changed(new_scale: float) -> void:
 	_scale_control_min_sizes(new_scale)
 
 
-func _on_Tabs_tab_changed(_tab: int) -> void:
+func _on_Tabs_tab_changed(tab: int) -> void:
 	
+	if tab == 5:
+		$Main/Log.hide()
+	else:
+		$Main/Log.show()
 	_refresh_currently_installed()
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://j8v4j8uy58rl"]
+[gd_scene load_steps=49 format=3 uid="uid://j8v4j8uy58rl"]
 
 [ext_resource type="Texture2D" uid="uid://ma1wiy6trs4k" path="res://icons/tex_info.tres" id="2_rcpd3"]
 [ext_resource type="Script" uid="uid://drnrbqdw1iua4" path="res://scripts/Catapult.gd" id="4"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://cihncwpvk3c5e" path="res://icons/tex_help.tres" id="19_rcpd3"]
 [ext_resource type="PackedScene" uid="uid://chyqjehe0nmxq" path="res://scenes/ModReinstallDialog.tscn" id="20"]
 [ext_resource type="Texture2D" uid="uid://gbpu5l6l5g8w" path="res://icons/lang/tex_lang_en.tres" id="23_rcpd3"]
+[ext_resource type="PackedScene" uid="uid://cgups4yvvknaj" path="res://scenes/LicensesDialog.tscn" id="24_cyylm"]
 [ext_resource type="Texture2D" uid="uid://bp51vrvh3v23d" path="res://icons/lang/tex_lang_fr.tres" id="24_rcpd3"]
 [ext_resource type="Texture2D" uid="uid://olv67q6pu442" path="res://icons/lang/tex_lang_ru.tres" id="25_rcpd3"]
 [ext_resource type="PackedScene" uid="uid://snuvrmmyvlwd" path="res://scenes/InlineIconButton.tscn" id="26"]
@@ -113,6 +114,7 @@ layout_mode = 2
 
 [node name="TabBar" type="TabContainer" parent="Main" groups=["disable_during_backup_operations", "disable_during_mod_operations", "disable_during_release_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases"]]
 layout_mode = 2
+size_flags_vertical = 3
 current_tab = 0
 script = ExtResource("16")
 
@@ -782,6 +784,18 @@ theme_override_constants/separation = 2
 script = ExtResource("8")
 metadata/_tab_index = 5
 
+[node name="LicensesDialog" parent="Main/TabBar/Settings" instance=ExtResource("24_cyylm")]
+
+[node name="lblLicenses" type="RichTextLabel" parent="Main/TabBar/Settings"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("2")
+bbcode_enabled = true
+text = "lbl_licenses"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
 [node name="LauncherLanguage" type="HBoxContainer" parent="Main/TabBar/Settings"]
 layout_mode = 2
 
@@ -1150,6 +1164,7 @@ script = ExtResource("34")
 [connection signal="text_changed" from="Main/TabBar/Backups/Current/HBox/EditName" to="Main/TabBar/Backups" method="_on_EditName_text_changed"]
 [connection signal="text_submitted" from="Main/TabBar/Backups/Current/HBox/EditName" to="Main/TabBar/Backups" method="_on_EditName_text_entered"]
 [connection signal="pressed" from="Main/TabBar/Backups/Current/HBox/BtnCreate" to="Main/TabBar/Backups" method="_on_BtnCreate_pressed"]
+[connection signal="meta_clicked" from="Main/TabBar/Settings/lblLicenses" to="Main/TabBar/Settings/LicensesDialog" method="_on_lbl_licenses_meta_clicked"]
 [connection signal="item_selected" from="Main/TabBar/Settings/LauncherLanguage/obtnLanguage" to="Main/TabBar/Settings" method="_on_obtnLanguage_item_selected"]
 [connection signal="item_selected" from="Main/TabBar/Settings/LauncherTheme/obtnTheme" to="Main/TabBar/Settings" method="_on_obtnTheme_item_selected"]
 [connection signal="toggled" from="Main/TabBar/Settings/ShowGameDesc" to="Main/TabBar/Settings" method="_on_ShowGameDesc_toggled"]

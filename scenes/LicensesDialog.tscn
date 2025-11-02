@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgups4yvvknaj"]
+
+[ext_resource type="Script" uid="uid://d1necdrjltchh" path="res://scripts/licenses_dialog.gd" id="2_kjbkf"]
+
+[node name="LicensesDialog" type="Window"]
+oversampling_override = 1.0
+visible = false
+script = ExtResource("2_kjbkf")
+
+[node name="Panel" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Margin" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 8
+
+[node name="VBox" type="VBoxContainer" parent="Panel/Margin"]
+layout_mode = 2
+
+[node name="rtlLicenses" type="RichTextLabel" parent="Panel/Margin/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 2
+bbcode_enabled = true
+selection_enabled = true
+deselect_on_focus_loss_enabled = false
+
+[node name="BtnOK" type="Button" parent="Panel/Margin/VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "btn_close"
+
+[connection signal="about_to_popup" from="." to="." method="_on_about_to_popup"]
+[connection signal="close_requested" from="." to="." method="hide"]
+[connection signal="pressed" from="Panel/Margin/VBox/BtnOK" to="." method="hide"]
