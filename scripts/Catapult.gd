@@ -1,31 +1,31 @@
 extends Node
 
 
-@onready var _debug_ui = $Main/TabBar/Debug
-@onready var _game_info = $Main/GameInfo
-@onready var _game_desc = $Main/GameInfo/Description
-@onready var _tabs = $Main/TabBar 
-@onready var _mods = $Mods  
-@onready var _releases = $Releases
-@onready var _installer = $ReleaseInstaller
-@onready var _btn_install = $Main/TabBar/Game/BtnInstall
-@onready var _btn_refresh = $Main/TabBar/Game/Builds/BtnRefresh
-@onready var _changelog = $Main/TabBar/Game/ChangelogDialog
-@onready var _lbl_changelog = $Main/TabBar/Game/Channel/HBox/ChangelogLink
-@onready var _btn_game_dir = $Main/TabBar/Game/ActiveInstall/Build/GameDir
-@onready var _btn_user_dir = $Main/TabBar/Game/ActiveInstall/Build/UserDir
-@onready var _btn_play = $Main/TabBar/Game/ActiveInstall/Launch/BtnPlay
-@onready var _btn_resume = $Main/TabBar/Game/ActiveInstall/Launch/BtnResume
-@onready var _lst_builds = $Main/TabBar/Game/Builds/BuildsList
-@onready var _lst_games = $Main/GameChoice/GamesList
-@onready var _rbtn_stable = $Main/TabBar/Game/Channel/Group/RBtnStable
-@onready var _rbtn_exper = $Main/TabBar/Game/Channel/Group/RBtnExperimental
-@onready var _lbl_build = $Main/TabBar/Game/ActiveInstall/Build/Name
-@onready var _cb_update = $Main/TabBar/Game/UpdateCurrent
-@onready var _lst_installs = $Main/TabBar/Game/GameInstalls/HBox/InstallsList
-@onready var _btn_make_active = $Main/TabBar/Game/GameInstalls/HBox/VBox/btnMakeActive
-@onready var _btn_delete = $Main/TabBar/Game/GameInstalls/HBox/VBox/btnDelete
-@onready var _panel_installs = $Main/TabBar/Game/GameInstalls
+# @onready var _debug_ui = $Main/TabBar/Debug
+# @onready var _game_info = $Main/GameInfo
+# @onready var %GameDescText = $Main/GameInfo/Description
+# @onready var %TabbedLayout = $Main/TabBar 
+# @onready var %ModManager = $Mods  
+# @onready var %ReleaseManager = $Releases
+# @onready var %ReleaseInstaller = $ReleaseInstaller
+# @onready var %InstallReleaseBtn = $Main/TabBar/Game/BtnInstall
+# @onready var %RefreshReleasesBtn = $Main/TabBar/Game/Builds/BtnRefresh
+# @onready var %ChangelogDialog = $Main/TabBar/Game/ChangelogDialog
+# @onready var %ChangelogLinkLabel = $Main/TabBar/Game/Channel/HBox/ChangelogLink
+# @onready var %GameDirBtn = $Main/TabBar/Game/ActiveInstall/Build/GameDir
+# @onready var %UserDirBtn = $Main/TabBar/Game/ActiveInstall/Build/UserDir
+# @onready var %LaunchGameBtn = $Main/TabBar/Game/ActiveInstall/Launch/BtnPlay
+# @onready var %QuickLoadBtn = $Main/TabBar/Game/ActiveInstall/Launch/BtnResume
+# @onready var %ReleasesList = $Main/TabBar/Game/Builds/BuildsList
+# @onready var %GamesList = $Main/GameChoice/GamesList
+# @onready var %StableSwitch = $Main/TabBar/Game/Channel/Group/RBtnStable
+# @onready var %ExperimentalSwitch = $Main/TabBar/Game/Channel/Group/RBtnExperimental
+# @onready var %ActiveInstallNameLabel = $Main/TabBar/Game/ActiveInstall/Build/Name
+# @onready var %UpdateCurrentSwitch = $Main/TabBar/Game/UpdateCurrent
+# @onready var %GameInstallsList = $Main/TabBar/Game/GameInstalls/HBox/InstallsList
+# @onready var %MakeInstallActiveBtn = $Main/TabBar/Game/GameInstalls/HBox/VBox/btnMakeActive
+# @onready var %DeleteGameInstallBtn = $Main/TabBar/Game/GameInstalls/HBox/VBox/btnDelete
+# @onready var %GameInstallsGroup = $Main/TabBar/Game/GameInstalls
 
 var _disable_savestate := {}
 var _installs := {}
@@ -48,7 +48,7 @@ func _ready() -> void:
 	
 	assign_localized_text()
 	
-	_btn_resume.grab_focus()
+	%QuickLoadBtn.grab_focus()
 	
 	var welcome_msg = tr("str_welcome")
 	if Settings.read("print_tips_of_the_day"):
@@ -76,26 +76,26 @@ func assign_localized_text() -> void:
 	
 	get_window().set_title(tr("window_title"))	
 	
-	_tabs.set_tab_title(0, tr("tab_game"))
-	_tabs.set_tab_title(1, tr("tab_mods"))
-	_tabs.set_tab_title(2, tr("tab_soundpacks"))
-	_tabs.set_tab_title(3, tr("tab_fonts"))
-	_tabs.set_tab_title(4, tr("tab_backups"))
-	_tabs.set_tab_title(5, tr("tab_settings"))
+	%TabbedLayout.set_tab_title(0, tr("tab_game"))
+	%TabbedLayout.set_tab_title(1, tr("tab_mods"))
+	%TabbedLayout.set_tab_title(2, tr("tab_soundpacks"))
+	%TabbedLayout.set_tab_title(3, tr("tab_fonts"))
+	%TabbedLayout.set_tab_title(4, tr("tab_backups"))
+	%TabbedLayout.set_tab_title(5, tr("tab_settings"))
 	
-	_lbl_changelog.text = tr("lbl_changelog")
+	%ChangelogLinkLabel.text = tr("lbl_changelog")
 	
 	var game = Settings.read("game")
 	if game == "dda":
-		_game_desc.text = tr("desc_dda")
+		%GameDescText.text = tr("desc_dda")
 	elif game == "bn":
-		_game_desc.text = tr("desc_bn")
+		%GameDescText.text = tr("desc_bn")
 	elif game == "eod":
-		_game_desc.text = tr("desc_eod")
+		%GameDescText.text = tr("desc_eod")
 	elif game == "tish":
-		_game_desc.text = tr("desc_tish")
+		%GameDescText.text = tr("desc_tish")
 	elif game == "tlg":
-		_game_desc.text = tr("desc_tlg")
+		%GameDescText.text = tr("desc_tlg")
 
 
 func load_ui_theme(theme_file: String) -> void:
@@ -162,9 +162,9 @@ func _on_ui_scale_changed(new_scale: float) -> void:
 func _on_Tabs_tab_changed(tab: int) -> void:
 	
 	if tab == 5:
-		$Main/Log.hide()
+		%LogText.hide()
 	else:
-		$Main/Log.show()
+		%LogText.show()
 	_refresh_currently_installed()
 
 
@@ -173,26 +173,26 @@ func _on_GamesList_item_selected(index: int) -> void:
 	match index:
 		0:
 			Settings.store("game", "dda")
-			_game_desc.text = tr("desc_dda")
+			%GameDescText.text = tr("desc_dda")
 		1:
 			Settings.store("game", "bn")
-			_game_desc.text = tr("desc_bn")
+			%GameDescText.text = tr("desc_bn")
 		2:
 			Settings.store("game", "eod")
-			_game_desc.text = tr("desc_eod")
+			%GameDescText.text = tr("desc_eod")
 		3:
 			Settings.store("game", "tish")
-			_game_desc.text = tr("desc_tish")
+			%GameDescText.text = tr("desc_tish")
 		4:
 			Settings.store("game", "tlg")
-			_game_desc.text = tr("desc_tlg")
+			%GameDescText.text = tr("desc_tlg")
 	
-	_tabs.current_tab = 0
+	%TabbedLayout.current_tab = 0
 	apply_game_choice()
 	_refresh_currently_installed()
 	
-	_mods.refresh_installed()
-	_mods.refresh_available()
+	%ModManager.refresh_installed()
+	%ModManager.refresh_available()
 
 
 func _on_RBtnStable_toggled(button_pressed: bool) -> void:
@@ -268,7 +268,7 @@ func _on_Description_meta_clicked(meta) -> void:
 
 func _on_ChangelogLink_meta_clicked(_meta) -> void:
 	
-	_changelog.open()
+	%ChangelogDialog.open()
 
 
 func _on_Log_meta_clicked(meta) -> void:
@@ -278,7 +278,7 @@ func _on_Log_meta_clicked(meta) -> void:
 
 func _on_BtnRefresh_pressed() -> void:
 	
-	_releases.fetch(_get_release_key())
+	%ReleaseManager.fetch(_get_release_key())
 
 
 func _on_BuildsList_item_selected(index: int) -> void:
@@ -288,25 +288,25 @@ func _on_BuildsList_item_selected(index: int) -> void:
 	
 	if (not Settings.read("update_to_same_build_allowed")) \
 			and (game in info) \
-			and (_releases.releases[_get_release_key()][index]["name"] in info[game]):
-		_btn_install.disabled = true
-		_cb_update.disabled = true
+			and (%ReleaseManager.releases[_get_release_key()][index]["name"] in info[game]):
+		%InstallReleaseBtn.disabled = true
+		%UpdateCurrentSwitch.disabled = true
 	else:
-		_btn_install.disabled = false
-		_cb_update.disabled = false
+		%InstallReleaseBtn.disabled = false
+		%UpdateCurrentSwitch.disabled = false
 
 
 func _on_BtnInstall_pressed() -> void:
 	
-	var index = _lst_builds.selected
-	var release = _releases.releases[_get_release_key()][index]
+	var index = %ReleasesList.selected
+	var release = %ReleaseManager.releases[_get_release_key()][index]
 	var update_path := ""
 	if Settings.read("update_current_when_installing"):
 		var game = Settings.read("game")
 		var active_name = Settings.read("active_install_" + game)
 		if (game in _installs) and (active_name in _installs[game]):
 			update_path = _installs[game][active_name]
-	_installer.install_release(release, update_path)
+	%ReleaseInstaller.install_release(release, update_path)
 
 
 func _on_cbUpdateCurrent_toggled(button_pressed: bool) -> void:
@@ -340,16 +340,16 @@ func _on_UserDir_pressed() -> void:
 
 func _setup_ui() -> void:
 
-	_game_info.visible = Settings.read("show_game_desc")
+	%GameInfoBox.visible = Settings.read("show_game_desc")
 	if not Settings.read("debug_mode"):
-		_tabs.remove_child(_debug_ui)
+		%TabbedLayout.remove_child(%DebugArea)
 	
-	_cb_update.button_pressed = Settings.read("update_current_when_installing")
+	%UpdateCurrentSwitch.button_pressed = Settings.read("update_current_when_installing")
 	
 	apply_game_choice()
 	
-	_lst_games.item_selected.connect(_on_GamesList_item_selected)
-	_rbtn_stable.toggled.connect(_on_RBtnStable_toggled)
+	%GamesList.item_selected.connect(_on_GamesList_item_selected)
+	%StableSwitch.toggled.connect(_on_RBtnStable_toggled)
 	# Had to leave these signals unconnected in the editor and only connect
 	# them now from code to avoid cyclic calls of apply_game_choice.
 	
@@ -358,9 +358,9 @@ func _setup_ui() -> void:
 
 func reload_builds_list() -> void:
 	
-	_lst_builds.clear()
-	for rec in _releases.releases[_get_release_key()]:
-			_lst_builds.add_item(rec["name"])
+	%ReleasesList.clear()
+	for rec in %ReleaseManager.releases[_get_release_key()]:
+			%ReleasesList.add_item(rec["name"])
 	_refresh_currently_installed()
 
 
@@ -372,43 +372,43 @@ func apply_game_choice() -> void:
 	var channel = Settings.read("channel")
 	
 	if (game == "dda") or (game == "bn"):
-		_rbtn_exper.disabled = false
-		_rbtn_stable.disabled = false
+		%ExperimentalSwitch.disabled = false
+		%StableSwitch.disabled = false
 		if channel == "stable":
-			_rbtn_stable.button_pressed = true
-			_btn_refresh.disabled = true
+			%StableSwitch.button_pressed = true
+			%RefreshReleasesBtn.disabled = true
 		else:
-			_rbtn_exper.button_pressed = true
-			_btn_refresh.disabled = false
+			%ExperimentalSwitch.button_pressed = true
+			%RefreshReleasesBtn.disabled = false
 	elif (game == "eod") or (game == "tish") or (game == "tlg"):
-		_rbtn_exper.button_pressed = true
-		_rbtn_exper.disabled = true
-		_rbtn_stable.disabled = true
-		_btn_refresh.disabled = false
+		%ExperimentalSwitch.button_pressed = true
+		%ExperimentalSwitch.disabled = true
+		%StableSwitch.disabled = true
+		%RefreshReleasesBtn.disabled = false
 
 	match game:
 		"dda":
-			_lst_games.select(0)
-			_game_desc.text = tr("desc_dda")
+			%GamesList.select(0)
+			%GameDescText.text = tr("desc_dda")
 				
 		"bn":
-			_lst_games.select(1)
-			_game_desc.text = tr("desc_bn")
+			%GamesList.select(1)
+			%GameDescText.text = tr("desc_bn")
 
 		"eod":
-			_lst_games.select(2)
-			_game_desc.text = tr("desc_eod")
+			%GamesList.select(2)
+			%GameDescText.text = tr("desc_eod")
 
 		"tish":
-			_lst_games.select(3)
-			_game_desc.text = tr("desc_tish")
+			%GamesList.select(3)
+			%GameDescText.text = tr("desc_tish")
 			
 		"tlg":
-			_lst_games.select(4)
-			_game_desc.text = tr("desc_tlg")
+			%GamesList.select(4)
+			%GameDescText.text = tr("desc_tlg")
 	
-	if len(_releases.releases[_get_release_key()]) == 0:
-		_releases.fetch(_get_release_key())
+	if len(%ReleaseManager.releases[_get_release_key()]) == 0:
+		%ReleaseManager.fetch(_get_release_key())
 	else:
 		reload_builds_list()
 
@@ -454,14 +454,14 @@ func _start_game(world := "") -> void:
 
 func _on_InstallsList_item_selected(index: int) -> void:
 	
-	var release_name = _lst_installs.get_item_text(index)
-	_btn_delete.disabled = false
-	_btn_make_active.disabled = (release_name == Settings.read("active_install_" + Settings.read("game")))
+	var release_name = %GameInstallsList.get_item_text(index)
+	%DeleteGameInstallBtn.disabled = false
+	%MakeInstallActiveBtn.disabled = (release_name == Settings.read("active_install_" + Settings.read("game")))
 
 
 func _on_InstallsList_item_activated(index: int) -> void:
 	
-	var release_name = _lst_installs.get_item_text(index)
+	var release_name = %GameInstallsList.get_item_text(index)
 	var path = _installs[Settings.read("game")][release_name]
 	if DirAccess.dir_exists_absolute(path):
 		OS.shell_open(path)
@@ -469,7 +469,7 @@ func _on_InstallsList_item_activated(index: int) -> void:
 
 func _on_btnMakeActive_pressed() -> void:
 	
-	var release_name = _lst_installs.get_item_text(_lst_installs.get_selected_items()[0])
+	var release_name = %GameInstallsList.get_item_text(%GameInstallsList.get_selected_items()[0])
 	Status.post(tr("msg_set_active") % release_name)
 	Settings.store("active_install_" + Settings.read("game"), release_name)
 	_refresh_currently_installed()
@@ -477,58 +477,58 @@ func _on_btnMakeActive_pressed() -> void:
 
 func _on_btnDelete_pressed() -> void:
 	
-	var release_name = _lst_installs.get_item_text(_lst_installs.get_selected_items()[0])
-	_installer.remove_release_by_name(release_name)
+	var release_name = %GameInstallsList.get_item_text(%GameInstallsList.get_selected_items()[0])
+	%ReleaseInstaller.remove_release_by_name(release_name)
 
 
 func _refresh_currently_installed() -> void:
 	
-	var releases = _releases.releases[_get_release_key()]
+	var releases = %ReleaseManager.releases[_get_release_key()]
 
-	_lst_installs.clear()
+	%GameInstallsList.clear()
 	var game = Settings.read("game")
 	_installs = Paths.installs_summary
 	var active_name = Settings.read("active_install_" + game)
 	if game in _installs:
 		for inst_name in _installs[game]:
-			_lst_installs.add_item(inst_name)
-			var curr_idx = _lst_installs.get_item_count() - 1
-			_lst_installs.set_item_tooltip(curr_idx, tr("tooltip_installs_item") % _installs[game][inst_name])
+			%GameInstallsList.add_item(inst_name)
+			var curr_idx = %GameInstallsList.get_item_count() - 1
+			%GameInstallsList.set_item_tooltip(curr_idx, tr("tooltip_installs_item") % _installs[game][inst_name])
 	
-	_lst_builds.select(-1)
-	_btn_make_active.disabled = true
-	_btn_delete.disabled = true
+	%ReleasesList.select(-1)
+	%MakeInstallActiveBtn.disabled = true
+	%DeleteGameInstallBtn.disabled = true
 	
 	if game in _installs:
-		_lbl_build.text = active_name
-		_btn_play.disabled = false
-		_btn_resume.disabled = not (FileAccess.file_exists(Paths.config.path_join("lastworld.json")))
-		_btn_game_dir.visible = true
-		_btn_user_dir.visible = true
-		if (_lst_builds.selected != -1) and (_lst_builds.selected < len(releases)):
+		%ActiveInstallNameLabel.text = active_name
+		%LaunchGameBtn.disabled = false
+		%QuickLoadBtn.disabled = not (FileAccess.file_exists(Paths.config.path_join("lastworld.json")))
+		%GameDirBtn.visible = true
+		%UserDirBtn.visible = true
+		if (%ReleasesList.selected != -1) and (%ReleasesList.selected < len(releases)):
 				if not Settings.read("update_to_same_build_allowed"):
-					_btn_install.disabled = (releases[_lst_builds.selected]["name"] in _installs[game])
-					_cb_update.disabled = _btn_install.disabled
+					%InstallReleaseBtn.disabled = (releases[%ReleasesList.selected]["name"] in _installs[game])
+					%UpdateCurrentSwitch.disabled = %InstallReleaseBtn.disabled
 		else:
-			_btn_install.disabled = true
+			%InstallReleaseBtn.disabled = true
 
 	else:
-		_lbl_build.text = tr("lbl_none")
-		_btn_install.disabled = false
-		_cb_update.disabled = true
-		_btn_play.disabled = true
-		_btn_resume.disabled = true
-		_btn_game_dir.visible = false
-		_btn_user_dir.visible = false
+		%ActiveInstallNameLabel.text = tr("lbl_none")
+		%InstallReleaseBtn.disabled = false
+		%UpdateCurrentSwitch.disabled = true
+		%LaunchGameBtn.disabled = true
+		%QuickLoadBtn.disabled = true
+		%GameDirBtn.visible = false
+		%UserDirBtn.visible = false
 	
 	if (game in _installs and _installs[game].size() > 1) or \
 			(Settings.read("always_show_installs") == true):
-		_panel_installs.visible = true
+		%GameInstallsGroup.visible = true
 	else:
-		_panel_installs.visible = false
+		%GameInstallsGroup.visible = false
 
 	for i in [1, 2, 3, 4]:
-		_tabs.set_individual_tab_disabled(i, not game in _installs)
+		%TabbedLayout.set_individual_tab_disabled(i, not game in _installs)
 
 
 func _on_InfoIcon_gui_input(event: InputEvent) -> void:

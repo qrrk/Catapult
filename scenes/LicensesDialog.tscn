@@ -21,7 +21,7 @@ theme_override_constants/margin_bottom = 8
 [node name="VBox" type="VBoxContainer" parent="Panel/Margin"]
 layout_mode = 2
 
-[node name="rtlLicenses" type="RichTextLabel" parent="Panel/Margin/VBox"]
+[node name="LicensesText" type="RichTextLabel" parent="Panel/Margin/VBox"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
@@ -30,11 +30,11 @@ bbcode_enabled = true
 selection_enabled = true
 deselect_on_focus_loss_enabled = false
 
-[node name="BtnOK" type="Button" parent="Panel/Margin/VBox"]
+[node name="CloseButton" type="Button" parent="Panel/Margin/VBox"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "btn_close"
 
 [connection signal="about_to_popup" from="." to="." method="_on_about_to_popup"]
 [connection signal="close_requested" from="." to="." method="hide"]
-[connection signal="pressed" from="Panel/Margin/VBox/BtnOK" to="." method="hide"]
+[connection signal="pressed" from="Panel/Margin/VBox/CloseButton" to="." method="hide"]

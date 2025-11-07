@@ -3,8 +3,8 @@ extends Window
 
 func _on_about_to_popup() -> void:
 	
-	%rtlLicenses.clear()
-	%rtlLicenses.scroll_to_line(0)
+	%LicensesText.clear()
+	%LicensesText.scroll_to_line(0)
 	
 	_add_section("Catapult", FileAccess.get_file_as_string("res://LICENSE"))
 	_add_section("Godot Engine", Engine.get_license_text())
@@ -22,5 +22,5 @@ func _on_lbl_licenses_meta_clicked(_meta: Variant) -> void:
 
 func _add_section(heading: String, contents: String) -> void:
 	
-	%rtlLicenses.append_text("[br][p align=c][b]" + heading + "[/b][/p][br][br]")
-	%rtlLicenses.append_text("[p align=l]" + contents + "[/p][br][hr][br]")
+	%LicensesText.append_text("[br][p align=c][b]" + heading + "[/b][/p][br][br]")
+	%LicensesText.append_text("[p align=l]" + contents + "[/p][br][hr][br]")
