@@ -1,32 +1,6 @@
 extends Node
 
 
-# @onready var _debug_ui = $Main/TabBar/Debug
-# @onready var _game_info = $Main/GameInfo
-# @onready var %GameDescText = $Main/GameInfo/Description
-# @onready var %TabbedLayout = $Main/TabBar 
-# @onready var %ModManager = $Mods  
-# @onready var %ReleaseManager = $Releases
-# @onready var %ReleaseInstaller = $ReleaseInstaller
-# @onready var %InstallReleaseBtn = $Main/TabBar/Game/BtnInstall
-# @onready var %RefreshReleasesBtn = $Main/TabBar/Game/Builds/BtnRefresh
-# @onready var %ChangelogDialog = $Main/TabBar/Game/ChangelogDialog
-# @onready var %ChangelogLinkLabel = $Main/TabBar/Game/Channel/HBox/ChangelogLink
-# @onready var %GameDirBtn = $Main/TabBar/Game/ActiveInstall/Build/GameDir
-# @onready var %UserDirBtn = $Main/TabBar/Game/ActiveInstall/Build/UserDir
-# @onready var %LaunchGameBtn = $Main/TabBar/Game/ActiveInstall/Launch/BtnPlay
-# @onready var %QuickLoadBtn = $Main/TabBar/Game/ActiveInstall/Launch/BtnResume
-# @onready var %ReleasesList = $Main/TabBar/Game/Builds/BuildsList
-# @onready var %GamesList = $Main/GameChoice/GamesList
-# @onready var %StableSwitch = $Main/TabBar/Game/Channel/Group/RBtnStable
-# @onready var %ExperimentalSwitch = $Main/TabBar/Game/Channel/Group/RBtnExperimental
-# @onready var %ActiveInstallNameLabel = $Main/TabBar/Game/ActiveInstall/Build/Name
-# @onready var %UpdateCurrentSwitch = $Main/TabBar/Game/UpdateCurrent
-# @onready var %GameInstallsList = $Main/TabBar/Game/GameInstalls/HBox/InstallsList
-# @onready var %MakeInstallActiveBtn = $Main/TabBar/Game/GameInstalls/HBox/VBox/btnMakeActive
-# @onready var %DeleteGameInstallBtn = $Main/TabBar/Game/GameInstalls/HBox/VBox/btnDelete
-# @onready var %GameInstallsGroup = $Main/TabBar/Game/GameInstalls
-
 var _disable_savestate := {}
 var _installs := {}
 
@@ -342,7 +316,9 @@ func _setup_ui() -> void:
 
 	%GameInfoBox.visible = Settings.read("show_game_desc")
 	if not Settings.read("debug_mode"):
-		%TabbedLayout.remove_child(%DebugArea)
+		# %TabbedLayout.remove_child(%DebugArea)
+		%DebugArea.hide()
+		%DebugArea.reparent(self)
 	
 	%UpdateCurrentSwitch.button_pressed = Settings.read("update_current_when_installing")
 	

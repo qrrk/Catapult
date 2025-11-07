@@ -126,10 +126,10 @@ func _on_ShowDebug_toggled(button_pressed: bool) -> void:
 	Settings.store("debug_mode", button_pressed)
 	
 	if button_pressed:
-		if %DebugArea.get_parent() != %TabbedLayout:
-			%TabbedLayout.call_deferred("add_child", %DebugArea)
+		%DebugArea.reparent(%TabbedLayout)
 	elif %DebugArea.get_parent() == %TabbedLayout:
-		%TabbedLayout.call_deferred("remove_child", %DebugArea)
+		%DebugArea.hide()
+		%DebugArea.reparent(_root)
 
 
 func _on_sbNumReleases_value_changed(value: float) -> void:
