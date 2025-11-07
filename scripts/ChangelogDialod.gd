@@ -33,9 +33,9 @@ func _update_proxy(http: HTTPRequest) -> void:
 
 
 func download_pull_requests():
-	var prs = Settings.read("num_prs_to_request")
+	var prs := Settings.read("num_prs_to_request") as int
 	var url = _PR_URL[Settings.read("game")]
-	url += "+is%3Apr+is%3Amerged&per_page=" + prs
+	url += "+is%3Apr+is%3Amerged&per_page=" + str(prs)
 	var headers = ["user-agent: CatapultGodotApp"]
 	_pr_data = tr("str_fetching_changes")
 	_update_proxy(_pullRequests)

@@ -321,7 +321,7 @@ func _ready() -> void:
 func _get_query_string() -> String:
 	
 	var num_per_page = Settings.read("num_releases_to_request")
-	return "?per_page=%s" % num_per_page
+	return "?per_page=%s" % int(num_per_page)
 
 
 func _update_proxy(http: HTTPRequest) -> void:
