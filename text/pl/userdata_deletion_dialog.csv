@@ -1,0 +1,6 @@
+"keys","pl"
+,
+"dlg_userdata_deletion_title","Potwierdź usunięcie danych użytkownika"
+"dlg_userdata_deletion_text_pt1","Stop! Wykryto nieprawidłowo umieszczone dane użytkownika w katalogu gry. Może się to zdarzyć, jeśli uruchomiłeś grę bezpośrednio z pliku wykonywalnego zamiast używać Catapult. To nie jest obsługiwane, a jeśli będziesz kontynuować, wszystkie te dane zostaną nieodwracalnie usunięte.[br][br] Dane użytkownika znaleziono w następujących folderach:[br]"
+"dlg_userdata_deletion_text_pt2","Sprawdź te foldery i wykonaj kopię zapasową wszystkiego, co ważne, przed potwierdzeniem."
+"dlg_userdata_deletion_safety_hint","Wpisz tutaj \"delete\", aby potwierdzić"

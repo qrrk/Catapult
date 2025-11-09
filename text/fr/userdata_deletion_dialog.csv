@@ -1,0 +1,6 @@
+"keys","fr"
+,
+"dlg_userdata_deletion_title","Confirmer la suppression des données utilisateur"
+"dlg_userdata_deletion_text_pt1","Stop! Des données utilisateur mal placées ont été détectées dans le répertoire du jeu. Cela peut se produire si vous avez lancé le jeu directement depuis son exécutable au lieu d'utiliser Catapult. Ce n'est pas supporté, et si vous continuez, toutes ces données seront supprimées de manière irréversible.[br][br] Des données utilisateur ont été trouvées dans les dossiers suivants:[br]"
+"dlg_userdata_deletion_text_pt2","Vérifiez ces dossiers et sauvegardez tout ce qui est important avant de confirmer."
+"dlg_userdata_deletion_safety_hint","Tapez \"delete\" ici pour confirmer"

@@ -1,0 +1,6 @@
+"keys","es"
+,
+"dlg_userdata_deletion_title","Confirmar eliminación de datos de usuario"
+"dlg_userdata_deletion_text_pt1","¡Alto! Se detectaron datos de usuario mal ubicados en el directorio del juego. Esto puede suceder si ejecutaste el juego directamente desde su ejecutable en lugar de usar Catapult. Esto no está soportado, y si continúas, todos esos datos se eliminarán de forma irrecuperable.[br][br] Se encontraron datos de usuario en las siguientes carpetas:[br]"
+"dlg_userdata_deletion_text_pt2","Revisa estas carpetas y haz una copia de seguridad de cualquier cosa importante antes de confirmar."
+"dlg_userdata_deletion_safety_hint","Escribe \"delete\" aquí para confirmar"

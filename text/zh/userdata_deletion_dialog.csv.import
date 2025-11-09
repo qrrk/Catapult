@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://jqsv9b0bn4mghvqw"
+
+[deps]
+
+files=["res://text/zh/userdata_deletion_dialog.zh.translation"]
+
+source_file="res://text/zh/userdata_deletion_dialog.csv"
+dest_files=["res://text/zh/userdata_deletion_dialog.zh.translation"]
+
+[params]
+
+compress=true
+delimiter=0
