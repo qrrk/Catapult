@@ -13,6 +13,11 @@ func _ready() -> void:
 		self.size = %MainPanel.size
 		self.move_to_center()
 		)
+	
+	get_tree().process_frame.connect(func():
+		if visible:
+			self.size = %MainPanel.size
+		)
 
 func open(folders_list: Array[String]) -> void:
 	
