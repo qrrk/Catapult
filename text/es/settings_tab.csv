@@ -28,3 +28,19 @@
 "tooltip_num_releases_to_request","Cuantos de los últimos lanzamientos serán solicitados\ndesde GitHub luego de iniciar el launcher,\nal elegir el juego o hacer clic en Refrescar."
 "tooltip_num_prs_to_request","Cuantas pull requests (código añadido)\nserán solicitados desde GitHub para armar la lista de cambios.\nUn numero alto puede resultar en respuestas lentas o fallos."
 "tooltip_ui_scale_override","Usa esto si la escala de interfaz automáticamente se ve demasiado grande\no muy pequeña en tu sistema. (La escala automática depende los DPI \nreportados por el sistema, que puede no funcionar en todos los sistemas, \no dar resultados inadecuados cuando la resolución es demasiado baja)."
+"cbtn_enable_proxy","Habilitar  "
+"cbtn_ignore_cache","Ignorar caché de descarga"
+"cbtn_keep_cache","Mantener caché de descarga"
+"lbl_licenses","[color=#3b93f7][url]Ver licencias de código abierto[/url][/color]"
+"lbl_proxy_settings","Servidor proxy:"
+"obtn_proxy_option_download","Solo para descargar"
+"obtn_proxy_option_off","Deshabilitado"
+"obtn_proxy_option_on","Habilitado"
+"tooltip_ignore_cache","Siempre descargar contenido de la web,
+incluso si ya está en la carpeta de caché."
+"tooltip_keep_cache","Mantener el contenido descargado (lanzamientos del juego, modpacks, soundpacks) en la carpeta de caché
+cuando se complete la instalación, en lugar de eliminarlo."
+"tooltip_proxy_options","Deshabilitado - No usar proxy
+Habilitado - Usar proxy en todas las ocasiones (p. ej., solicitar lanzamientos)
+Solo para descargar - Usar proxy solo al descargar"
+"tooltip_proxy_settings","Configurar un servidor proxy para descargar."

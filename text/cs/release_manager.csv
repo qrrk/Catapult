@@ -7,3 +7,5 @@
 "msg_fetching_releases_dda","Získávám vydání pro DDA Experimental..."
 "msg_fetching_releases_bn","Získávám vydání pro BN Experimental..."
 "msg_invalid_fetch_func_param","ReleaseManager.fetch() dostal %s"
+"msg_fetching_releases_eod","Získávám vydání pro EOD Experimental..."
+"msg_fetching_releases_tish","Získávám vydání pro TISH Experimental..."

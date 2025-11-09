@@ -6,6 +6,7 @@
 [node name="UserDataDeletionDialog" type="Window"]
 oversampling_override = 1.0
 title = "dlg_userdata_deletion_title"
+position = Vector2i(0, 24)
 exclusive = true
 unresizable = true
 script = ExtResource("1_nax53")
@@ -54,7 +55,7 @@ layout_mode = 2
 [node name="SafetyField" type="LineEdit" parent="MainPanel/Margin/MainLayout"]
 unique_name_in_owner = true
 layout_mode = 2
-placeholder_text = "Type \"delete\" here to confirm"
+placeholder_text = "dlg_userdata_deletion_safety_hint"
 
 [node name="Spacer2" type="Control" parent="MainPanel/Margin/MainLayout"]
 layout_mode = 2

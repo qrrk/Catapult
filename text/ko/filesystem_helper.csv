@@ -16,3 +16,5 @@ msg_extracting_file,%s 압축 해제 중...
 msg_extract_error,오류로 인해 아카이브 추출 명령이 종료되었습니다(종료 코드: %s).
 msg_extract_failed_cmd,실패한 명령: %s
 msg_extract_fail_output,출력: %s
+"msg_zipping_file","%s 압축 중..."
+"msg_zip_error","아카이브 압축 명령이 오류로 종료되었습니다 (종료 코드: %s)"

@@ -7,3 +7,5 @@
 "msg_fetching_releases_dda","Получение списка экспериментальных релизов DDA..."
 "msg_fetching_releases_bn","Получение списка экспериментальных релизов BN..."
 "msg_invalid_fetch_func_param","В ReleaseManager.fetch() был передан аргумент %s"
+"msg_fetching_releases_eod","Получение релизов для EOD Experimental..."
+"msg_fetching_releases_tish","Получение релизов для TISH Experimental..."

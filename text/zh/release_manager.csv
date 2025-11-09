@@ -7,3 +7,5 @@
 "msg_fetching_releases_dda","正在为DDA测试版获取发布... "
 "msg_fetching_releases_bn","正在为BN测试版获取发布..."
 "msg_invalid_fetch_func_param","ReleaseManager.fetch()已传至%s"
+"msg_fetching_releases_eod","正在获取 EOD Experimental 的版本..."
+"msg_fetching_releases_tish","正在获取 TISH Experimental 的版本..."

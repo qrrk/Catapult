@@ -1,0 +1,6 @@
+"keys","cs"
+,
+"dlg_userdata_deletion_title","Potvrďte smazání uživatelských dat"
+"dlg_userdata_deletion_text_pt1","Stůj! V adresáři hry byla zjištěna nesprávně umístěná uživatelská data. K tomu mohlo dojít, pokud jste hru spustili přímo ze spustitelného souboru místo použití Catapultu. Toto není podporováno a pokud budete pokračovat, budou všechna tato data nenávratně smazána.[br][br] Uživatelská data byla nalezena v následujících složkách:[br]"
+"dlg_userdata_deletion_text_pt2","Zkontrolujte tyto složky a před potvrzením zálohujte vše důležité."
+"dlg_userdata_deletion_safety_hint","Napište sem 'delete' pro potvrzení"
