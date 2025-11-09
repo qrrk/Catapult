@@ -24,4 +24,5 @@
 "tab_backups","Zálohy"
 "tab_settings","Nastavení"
 "desc_tlg","[b]Cataclysm: The Last Generation[/b]. Lidstvo to nepřežije, ale vy jste to nezaznamenali, [i]zatím[/i]. Tento fork DDA, vedený WormGirl, obsahuje významné převážení celé hry, s důrazem na přežití a simulaci života. Přežití je záměrné a všechny vaše volby jsou důležité. Prozkoumejte tento téměř věrohodný blízkou budoucnost svět se všemi zbraněmi, bionikami a uhlíkovými udírny, které můžete postavit, nebo při tom zemřete!"
+"msg_auto_scale_failsafe_triggered","Zjištěna potenciálně nepřiměřená hodnota pro automatické škálování UI: %s. Vynuceno měřítko 1.0."
 "msg_theme_load_error","Nepodařilo se načíst téma %s."

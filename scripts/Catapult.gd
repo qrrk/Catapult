@@ -131,6 +131,7 @@ func _smart_reenable_controls(group_name: String) -> void:
 func _on_ui_scale_changed(new_scale: float) -> void:
 	
 	_scale_control_min_sizes(new_scale)
+	load_ui_theme(Settings.read("launcher_theme"))
 
 
 func _on_Tabs_tab_changed(tab: int) -> void:
