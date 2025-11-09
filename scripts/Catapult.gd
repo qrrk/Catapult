@@ -275,11 +275,16 @@ func _on_BtnInstall_pressed() -> void:
 	var index = %ReleasesList.selected
 	var release = %ReleaseManager.releases[_get_release_key()][index]
 	var update_path := ""
+	
 	if Settings.read("update_current_when_installing"):
 		var game = Settings.read("game")
 		var active_name = Settings.read("active_install_" + game)
 		if (game in _installs) and (active_name in _installs[game]):
 			update_path = _installs[game][active_name]
+		var safe_to_delete := await _confirm_game_safe_to_delete(active_name)
+		if not safe_to_delete:
+			return
+	
 	%ReleaseInstaller.install_release(release, update_path)
 
 
@@ -449,12 +454,26 @@ func _on_btnMakeActive_pressed() -> void:
 	Status.post(tr("msg_set_active") % release_name)
 	Settings.store("active_install_" + Settings.read("game"), release_name)
 	_refresh_currently_installed()
+	print(%ReleaseInstaller.check_game_dir_for_userdata(release_name))
 
 
 func _on_btnDelete_pressed() -> void:
 	
 	var release_name = %GameInstallsList.get_item_text(%GameInstallsList.get_selected_items()[0])
-	%ReleaseInstaller.remove_release_by_name(release_name)
+	var safe_to_delete := await _confirm_game_safe_to_delete(release_name)
+	if safe_to_delete == true:
+		%ReleaseInstaller.remove_release_by_name(release_name)
+
+
+func _confirm_game_safe_to_delete(release_name: String) -> bool:
+	
+	var misplaced_userdata: Array[String] = %ReleaseInstaller.check_game_dir_for_userdata(release_name)
+	if not misplaced_userdata.is_empty():
+		%UserDataDeletionDlg.open(misplaced_userdata)
+		var delete_confirmed: bool = await %UserDataDeletionDlg.response_given
+		return delete_confirmed
+	else:
+		return true
 
 
 func _refresh_currently_installed() -> void:

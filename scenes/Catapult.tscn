@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://j8v4j8uy58rl"]
+[gd_scene load_steps=50 format=3 uid="uid://j8v4j8uy58rl"]
 
 [ext_resource type="Texture2D" uid="uid://ma1wiy6trs4k" path="res://icons/tex_info.tres" id="2_rcpd3"]
 [ext_resource type="Script" uid="uid://drnrbqdw1iua4" path="res://scripts/Catapult.gd" id="4"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://cgvtqevpi0vvm" path="res://scripts/SoundpackManager.gd" id="13"]
 [ext_resource type="Script" uid="uid://6ein2nethlx5" path="res://scripts/Debug.gd" id="14"]
 [ext_resource type="Script" uid="uid://jyw1c7gc21tb" path="res://scripts/SoundpacksUI.gd" id="15"]
+[ext_resource type="PackedScene" uid="uid://c1axg2lq1dhit" path="res://scenes/UserDataDeletionDialog.tscn" id="15_5ug7j"]
 [ext_resource type="Script" uid="uid://dws64rera28nf" path="res://scripts/Tabs.gd" id="16"]
 [ext_resource type="Script" uid="uid://bcxy21m818jf1" path="res://scripts/ItemList.gd" id="17"]
 [ext_resource type="Script" uid="uid://clo0n7jb6x8qy" path="res://scripts/ModsUI.gd" id="18"]
@@ -304,6 +305,10 @@ icon = ExtResource("12_no8b7")
 [node name="ChangelogDialog" parent="MainLayout/TabbedLayout/GameArea" instance=ExtResource("32")]
 unique_name_in_owner = true
 position = Vector2i(0, 36)
+
+[node name="UserDataDeletionDlg" parent="MainLayout/TabbedLayout/GameArea" instance=ExtResource("15_5ug7j")]
+unique_name_in_owner = true
+visible = false
 
 [node name="ModsArea" type="VBoxContainer" parent="MainLayout/TabbedLayout"]
 visible = false
