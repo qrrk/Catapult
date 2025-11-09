@@ -5,6 +5,7 @@
 
 [node name="UserDataDeletionDialog" type="Window"]
 oversampling_override = 1.0
+title = "dlg_userdata_deletion_title"
 exclusive = true
 unresizable = true
 script = ExtResource("1_nax53")
