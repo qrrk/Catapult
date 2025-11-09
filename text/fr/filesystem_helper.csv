@@ -16,3 +16,5 @@
 "msg_extract_error","Commande d’extraction d’archive terminée avec une erreur (code de sortie %s)."
 "msg_extract_failed_cmd","Commande échouée: %s"
 "msg_extract_fail_output","Sortie: %s"
+"msg_zipping_file","Compression de %s..."
+"msg_zip_error","La commande de compression d'archive s'est terminée avec une erreur (code de sortie: %s)"

@@ -16,3 +16,5 @@
 "msg_extract_error","Příkaz na extrakci archívu skončil s chybou (chybová hláška: %s)"
 "msg_extract_failed_cmd","Příkaz selhal: %s"
 "msg_extract_fail_output","Výstup: %s"
+"msg_zipping_file","Zipuji %s..."
+"msg_zip_error","Příkaz na zip archívu skončil s chybou (chybový kód: %s)"

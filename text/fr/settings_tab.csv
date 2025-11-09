@@ -28,3 +28,19 @@
 "tooltip_num_releases_to_request","Combien de dernières versions vont être demandées depuis GitHub\naprès le démarrage du lanceur, en choisissant un jeu ou en appuyant\nsur le bouton Actualiser."
 "tooltip_num_prs_to_request","Combien de récents ajouts de code (Pull Requests) vont être demandées\ndepuis GitHub pour créer la liste des modifications. Les nombres\nélevés peuvent provoquer des ralentissements ou des échecs."
 "tooltip_ui_scale_override","Utilisez ceci si l’échelle de l’interface graphique est trop grande\nou trop petite sur votre système. (L’échelle automatique dépend\ndes DPI d’affichage, ce qui ne marche pas sur tous les systèmes,\nou peut provoquer des résultats inattendus si la résolution est\ntrop basse)."
+"cbtn_enable_proxy","Activer  "
+"cbtn_ignore_cache","Ignorer le cache de téléchargement"
+"cbtn_keep_cache","Conserver le cache de téléchargement"
+"lbl_licenses","[color=#3b93f7][url]Voir les licences open source[/url][/color]"
+"lbl_proxy_settings","Serveur proxy:"
+"obtn_proxy_option_download","Pour téléchargement uniquement"
+"obtn_proxy_option_off","Désactivé"
+"obtn_proxy_option_on","Activé"
+"tooltip_ignore_cache","Toujours télécharger le contenu du web,
+même s'il est déjà dans le dossier de cache."
+"tooltip_keep_cache","Conserver le contenu téléchargé (versions de jeu, modpacks, soundpacks) dans le dossier de cache
+lorsque l'installation est terminée, au lieu de le supprimer."
+"tooltip_proxy_options","Désactivé - Ne pas utiliser de proxy
+Activé - Utiliser le proxy en toutes occasions (par ex. demander des versions)
+Pour téléchargement uniquement - Utiliser le proxy uniquement lors du téléchargement"
+"tooltip_proxy_settings","Configurer un serveur proxy pour le téléchargement."
