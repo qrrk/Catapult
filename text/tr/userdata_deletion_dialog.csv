@@ -3,4 +3,4 @@
 "dlg_userdata_deletion_title","Kullanıcı verisi silme işlemini onayla"
 "dlg_userdata_deletion_text_pt1","Dur! Oyun dizininde yanlış yerleştirilmiş kullanıcı verisi tespit edildi. Bu, oyunu Catapult kullanmak yerine doğrudan yürütülebilir dosyasından çalıştırdıysanız gerçekleşebilir. Bu desteklenmez ve devam ederseniz, tüm bu veriler geri alınamaz şekilde silinecektir.[br][br] Kullanıcı verisi şu klasörlerde bulundu:[br]"
 "dlg_userdata_deletion_text_pt2","Bu klasörleri gözden geçirin ve onaylamadan önce önemli olan her şeyi yedekleyin."
-"dlg_userdata_deletion_safety_hint","Onaylamak için buraya \"delete\" yazın"
+"dlg_userdata_deletion_safety_hint","Onaylamak için buraya 'delete' yazın"

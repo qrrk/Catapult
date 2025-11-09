@@ -3,4 +3,4 @@
 "dlg_userdata_deletion_title","Confirmar exclusão de dados do usuário"
 "dlg_userdata_deletion_text_pt1","Pare! Dados de usuário mal colocados foram detectados no diretório do jogo. Isso pode acontecer se você executou o jogo diretamente de seu executável em vez de usar o Catapult. Isso não é suportado e, se você prosseguir, todos esses dados serão excluídos de forma irrecuperável.[br][br] Dados de usuário foram encontrados nas seguintes pastas:[br]"
 "dlg_userdata_deletion_text_pt2","Revise essas pastas e faça backup de qualquer coisa importante antes de confirmar."
-"dlg_userdata_deletion_safety_hint","Digite \"delete\" aqui para confirmar"
+"dlg_userdata_deletion_safety_hint","Digite 'delete' aqui para confirmar"

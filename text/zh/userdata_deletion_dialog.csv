@@ -3,4 +3,4 @@
 "dlg_userdata_deletion_title","确认删除用户数据"
 "dlg_userdata_deletion_text_pt1","停止！在游戏目录中检测到位置错误的用户数据。如果您直接从可执行文件运行游戏而不是使用 Catapult，可能会发生这种情况。这不受支持，如果您继续，所有这些数据将被不可恢复地删除。[br][br] 在以下文件夹中发现了用户数据：[br]"
 "dlg_userdata_deletion_text_pt2","在确认之前，请检查这些文件夹并备份任何重要内容。"
-"dlg_userdata_deletion_safety_hint","在此输入 \"delete\" 以确认"
+"dlg_userdata_deletion_safety_hint","在此输入 'delete' 以确认"
