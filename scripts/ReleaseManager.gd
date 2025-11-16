@@ -176,6 +176,16 @@ const _DDA_STABLE_WIN = [
 
 const _BN_STABLE_LINUX = [
 	{
+		"name": "0.9.1",
+		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/v0.9.1/cbn-linux-tiles-x64-v0.9.1.tar.gz",
+		"filename": "cbn-linux-tiles-x64-v0.9.1.tar.gz"
+	},
+	{
+		"name": "0.9.0",
+		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/v0.9.0/cbn-linux-tiles-x64-v0.9.0.tar.gz",
+		"filename": "cbn-linux-tiles-x64-v0.9.0.tar.gz"
+	},
+	{
 		"name": "0.8.0",
 		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/v0.8.0/cbn-linux-tiles-x64-v0.8.0.tar.gz",
 		"filename": "cbn-linux-tiles-x64-v0.8.0.tar.gz"
@@ -233,6 +243,16 @@ const _BN_STABLE_LINUX = [
 ]
 
 const _BN_STABLE_WIN = [
+	{
+		"name": "0.9.1",
+		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/v0.9.1/cbn-windows-tiles-x64-msvc-v0.9.1.zip",
+		"filename": "cbn-windows-tiles-x64-msvc-v0.9.1.zip"
+	},
+	{
+		"name": "0.9.0",
+		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/v0.9.0/cbn-windows-tiles-x64-msvc-v0.9.0.zip",
+		"filename": "cbn-windows-tiles-x64-msvc-v0.9.0.zip"
+	},
 	{
 		"name": "0.8.0",
 		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/v0.8.0/cbn-windows-tiles-x64-msvc-v0.8.0.zip",
