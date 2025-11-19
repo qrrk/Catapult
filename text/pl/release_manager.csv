@@ -7,3 +7,5 @@
 "msg_fetching_releases_dda","Sprowadzanie kompilacji dla for DDA Experimental..."
 "msg_fetching_releases_bn","Sprowadzanie kompilacji dla BN Experimental..."
 "msg_invalid_fetch_func_param","ReleaseManager.fetch() przeszło %s"
+"msg_fetching_releases_eod","Pobieranie wydań dla EOD Experimental..."
+"msg_fetching_releases_tish","Pobieranie wydań dla TISH Experimental..."

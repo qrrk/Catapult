@@ -3,7 +3,7 @@
 "lbl_channel","Channel:"
 "rbtn_stable","Stable"
 "rbtn_experimental","Experimental"
-"lbl_changelog","[right][color=#3b93f7][url]View Experimental Changelog[/url][/color][/right]"
+"lbl_changelog","[right][color=#3b93f7][url]View experimental changelog[/url][/color][/right]"
 "lbl_builds","Available builds:"
 "btn_refresh","Refresh"
 "btn_install","Install Selected"

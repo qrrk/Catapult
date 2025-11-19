@@ -64,7 +64,24 @@ func recover_window_state() -> void:
 		await  get_tree().process_frame
 	if get_window().position != pos:
 		get_window().position = pos
-
+	
+	# Failsafe in case window ends up off-screen after display config changes, etc.
+	var screen_rect := Rect2i(DisplayServer.screen_get_position(), DisplayServer.screen_get_size())
+	var window_rect := Rect2i(get_window().position, get_window().get_size_with_decorations())
+	if not screen_rect.encloses(window_rect):
+		# Reset both size and position, to be safe
+		get_window().size = get_window().min_size
+		get_window().move_to_center()
+	
+	# If after that the window is still larger than the screen, check if auto-scale is reasonable.
+	if (Settings.read("ui_scale_override_enabled") == false) and (scale > 1.0):
+		var screen_size := DisplayServer.screen_get_size()
+		if (get_window().min_size.y > screen_size.y) or (get_window().min_size.x > screen_size.x):
+			Status.post(tr("msg_auto_scale_failsafe_triggered") % snapped(scale, 0.01), Enums.MSG_WARN)
+			Settings.store("ui_scale_override_enabled", true)
+			Settings.store("ui_scale_override", 1.0)
+			_set_scale(1.0)
+			get_window().move_to_center.call_deferred()
 
 func _on_SceneTree_idle():
 	

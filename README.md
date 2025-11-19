@@ -2,8 +2,31 @@
 
 **Catapult** is a cross-platform launcher and content manager for [Cataclysm: Dark Days Ahead](https://github.com/CleverRaven/Cataclysm-DDA) and [Cataclysm: Bright Nights](https://github.com/cataclysmbnteam/Cataclysm-BN). It is in part inspired by earlier versions of [Rémy Roy's launcher](https://github.com/remyroy/CDDA-Game-Launcher).
 
-[**Download latest release**](https://github.com/qrrk/Catapult/releases/latest)  |  [**See all releases**](https://github.com/qrrk/Catapult/releases)
 
+<table>
+  <tr><th colspan="2">Releases</th></tr>
+  <tr>
+    <td>Latest</td>
+    <td><a href="https://github.com/qrrk/Catapult/releases/latest"><img src="https://img.shields.io/github/v/release/qrrk/Catapult" alt="Latest Release"></a></td>
+  </tr>
+  <tr>
+    <td>All</td>
+    <td><a href="https://github.com/qrrk/Catapult/releases"><img src="https://img.shields.io/github/downloads/qrrk/Catapult/total" alt="All Releases"></a></td>
+  </tr>
+</table>
+
+<table>
+  <tr><th>Development builds</th></tr>
+  <tr>
+    <td>
+      <a href="https://github.com/qrrk/Catapult/actions/workflows/export-master.yml"><img src="https://github.com/qrrk/Catapult/actions/workflows/export-master.yml/badge.svg" alt="CI Status"></a>
+      <br>
+      ℹ️ Need GitHub account to download<br>
+      ⚠️ May be unstable; not recommended for everyday use
+    </td>
+  </tr>
+</table>
+<br>
 
 
 ![Catapult UI](./.github/catapult_ui.gif)

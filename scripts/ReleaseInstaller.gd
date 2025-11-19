@@ -77,3 +77,21 @@ func remove_release_by_name(release_name: String) -> void:
 		Status.post(tr("msg_delete_not_found") % release_name, Enums.MSG_ERROR)
 	
 	emit_signal("operation_finished")
+
+
+func check_game_dir_for_userdata(release_name: String) -> Array[String]:
+	
+	var installs := Paths.installs_summary
+	var game := Settings.read("game") as String
+	var result: Array[String]
+	
+	if (not game in installs) or (not release_name in installs[game]):
+		return result
+	
+	var game_path := installs[game][release_name] as String
+	for sub_path in ["config", "font", "graveyard", "memorial", "mods", "save", "sound", "templates"]:
+		var full_path := game_path.path_join(sub_path)
+		if DirAccess.dir_exists_absolute(full_path) and not FS.list_dir(full_path).is_empty():
+			result.append(full_path)
+	
+	return result

@@ -14,8 +14,6 @@ var _themes := [
 var _proxy_options := ["off", "on", "download"]
 
 @onready var _root = $"/root/Catapult"
-@onready var _tabs = $"/root/Catapult/Main/TabBar"
-@onready var _debug_ui = $"/root/Catapult/Main/TabBar/Debug"
 
 
 func _ready() -> void:
@@ -29,37 +27,37 @@ func _ready() -> void:
 	TranslationServer.set_locale(locale)
 	var lang_idx := _langs.find(locale)
 	if lang_idx >= 0:
-		$LauncherLanguage/obtnLanguage.selected = lang_idx
+		%LauncherLanguageList.selected = lang_idx
 	
 	var theme_idx := _themes.find(Settings.read("launcher_theme"))
 	if theme_idx >= 0:
-		$LauncherTheme/obtnTheme.selected = theme_idx
+		%LauncherThemeList.selected = theme_idx
 	
-	$ShowGameDesc.button_pressed = Settings.read("show_game_desc")
-	$KeepLauncherOpen.button_pressed = Settings.read("keep_open_after_starting_game")
-	$PrintTips.button_pressed = Settings.read("print_tips_of_the_day")
-	$UpdateToSame.button_pressed = Settings.read("update_to_same_build_allowed")
-	$ShortenNames.button_pressed = Settings.read("shorten_release_names")
-	$AlwaysShowInstalls.button_pressed = Settings.read("always_show_installs")
-	$ShowObsoleteMods.button_pressed = Settings.read("show_obsolete_mods")
-	$InstallArchivedMods.button_pressed = Settings.read("install_archived_mods")
-	$KeepCache.button_pressed = Settings.read("keep_cache")
-	$IgnoreCache.button_pressed = Settings.read("ignore_cache")
-	$ShowDebug.button_pressed = Settings.read("debug_mode")
-	$NumReleases/sbNumReleases.value = Settings.read("num_releases_to_request") as int
-	$NumPrs/sbNumPRs.value = Settings.read("num_prs_to_request") as int
+	%ShowGameDescSwitch.button_pressed = Settings.read("show_game_desc")
+	%KeepLauncherOpenSwitch.button_pressed = Settings.read("keep_open_after_starting_game")
+	%PrintTipsSwitch.button_pressed = Settings.read("print_tips_of_the_day")
+	%UpdateToSameVerSwitch.button_pressed = Settings.read("update_to_same_build_allowed")
+	%ShortenNamesSwitch.button_pressed = Settings.read("shorten_release_names")
+	%AlwaysShowInstallsSwitch.button_pressed = Settings.read("always_show_installs")
+	%ShowObsoleteModsSwitch.button_pressed = Settings.read("show_obsolete_mods")
+	%InstallArchivedModsSwitch.button_pressed = Settings.read("install_archived_mods")
+	%KeepDownloadCacheSwitch.button_pressed = Settings.read("keep_cache")
+	%IgnoreDownloadCacheSwitch.button_pressed = Settings.read("ignore_cache")
+	%DebugModeSwitch.button_pressed = Settings.read("debug_mode")
+	%NumReleasesField.value = Settings.read("num_releases_to_request") as int
+	%NumPrsField.value = Settings.read("num_prs_to_request") as int
 	
 	var proxy_option_idx := _proxy_options.find(Settings.read("proxy_option"))
 	if proxy_option_idx >= 0:
-		$ProxySettings/obtnProxyOption.selected = proxy_option_idx
+		%ProxyOptionList.selected = proxy_option_idx
 	else:
-		$ProxySettings/obtnProxyOption.selected = 0
-	$ProxySettings/leProxyHost.text = Settings.read("proxy_host")
-	$ProxySettings/sbProxyPort.value = Settings.read("proxy_port") as int
+		%ProxyOptionList.selected = 0
+	%ProxyHostField.text = Settings.read("proxy_host")
+	%ProxyPortField.value = Settings.read("proxy_port") as int
 	
-	$ScaleOverride/cbScaleOverrideEnable.button_pressed = Settings.read("ui_scale_override_enabled")
-	$ScaleOverride/sbScaleOverride.editable = Settings.read("ui_scale_override_enabled")
-	$ScaleOverride/sbScaleOverride.value = (Settings.read("ui_scale_override") as float) * 100.0
+	%CustomScaleEnableSwitch.button_pressed = Settings.read("ui_scale_override_enabled")
+	%CustomScaleValueField.editable = Settings.read("ui_scale_override_enabled")
+	%CustomScaleValueField.value = (Settings.read("ui_scale_override") as float) * 100.0
 
 
 func _on_obtnLanguage_item_selected(index: int) -> void:
@@ -79,7 +77,7 @@ func _on_obtnTheme_item_selected(index: int) -> void:
 func _on_ShowGameDesc_toggled(button_pressed: bool) -> void:
 	
 	Settings.store("show_game_desc", button_pressed)
-	$"../../GameInfo".visible = button_pressed
+	%GameInfoBox.visible = button_pressed
 
 
 func _on_KeepLauncherOpen_toggled(button_pressed: bool) -> void:
@@ -128,10 +126,10 @@ func _on_ShowDebug_toggled(button_pressed: bool) -> void:
 	Settings.store("debug_mode", button_pressed)
 	
 	if button_pressed:
-		if _debug_ui.get_parent() != _tabs:
-			_tabs.call_deferred("add_child", _debug_ui)
-	elif _debug_ui.get_parent() == _tabs:
-		_tabs.call_deferred("remove_child", _debug_ui)
+		%DebugArea.reparent(%TabbedLayout)
+	elif %DebugArea.get_parent() == %TabbedLayout:
+		%DebugArea.hide()
+		%DebugArea.reparent(_root)
 
 
 func _on_sbNumReleases_value_changed(value: float) -> void:
@@ -156,14 +154,12 @@ func _on_sbProxyPort_value_changed(value):
 func _on_cbScaleOverrideEnable_toggled(button_pressed: bool) -> void:
 	
 	Settings.store("ui_scale_override_enabled", button_pressed)
-	$ScaleOverride/sbScaleOverride.editable = button_pressed
+	%CustomScaleValueField.editable = button_pressed
 	
 	if button_pressed:
 		Geom.scale = Settings.read("ui_scale_override")
 	else:
 		Geom.scale = Geom.calculate_scale_from_dpi()
-	
-	_root.load_ui_theme(Settings.read("launcher_theme"))
 
 
 func _on_sbScaleOverride_value_changed(value: float) -> void:
@@ -171,4 +167,3 @@ func _on_sbScaleOverride_value_changed(value: float) -> void:
 	if Settings.read("ui_scale_override_enabled"):
 		Settings.store("ui_scale_override", value / 100.0)
 		Geom.scale = value / 100.0
-		_root.load_ui_theme(Settings.read("launcher_theme"))

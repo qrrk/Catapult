@@ -7,3 +7,5 @@
 "msg_fetching_releases_dda","Cherche les dernières versions de DDA Expérimental..."
 "msg_fetching_releases_bn","Cherche les dernières versions de BN Expérimental..."
 "msg_invalid_fetch_func_param","ReleaseManager.fetch() a passé %s"
+"msg_fetching_releases_eod","Récupération des versions pour EOD Experimental..."
+"msg_fetching_releases_tish","Récupération des versions pour TISH Experimental..."

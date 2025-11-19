@@ -1,0 +1,6 @@
+"keys","en"
+,
+"dlg_userdata_deletion_title","Confirm user data deletion"
+"dlg_userdata_deletion_text_pt1","Stop! Misplaced user data was detected in the game directory. This could happen if you ran the game directly from its executable instead of using Catapult. This is not supported, and if you proceed, all that data will be deleted irrecoverably.[br][br] User data was found in the following folders:[br]"
+"dlg_userdata_deletion_text_pt2","Review these folders and back up anything important before confirming."
+"dlg_userdata_deletion_safety_hint","Type 'delete' here to confirm"
