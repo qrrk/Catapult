@@ -421,9 +421,11 @@ func _start_game(world := "") -> void:
 			if world != "":
 				world_str = "--world \"%s\"" % world
 
-			var exe_file = "cataclysm-tiles.exe"
-			if Settings.read("game") == "bn" and FileAccess.file_exists(Paths.game_dir.path_join("cataclysm-bn-tiles.exe")):
-				exe_file = "cataclysm-bn-tiles.exe"
+			var matches := FS.list_dir(Paths.game_dir, false, "(?i).*cataclysm.*\\.exe$")
+			Status.post(str(matches), Enums.MSG_DEBUG)
+			if matches.is_empty():
+				return
+			var exe_file: String = matches[0]
 
 			var command = "cd /d %s && start %s --userdir \"%s/\" %s" % [Paths.game_dir, exe_file, Paths.userdata, world_str]
 			OS.execute_with_pipe("cmd", ["/C", command])
