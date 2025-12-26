@@ -415,7 +415,7 @@ func _start_game(world := "") -> void:
 			var params := ["--userdir", Paths.userdata + "/"]
 			if world != "":
 				params.append_array(["--world", world])
-			OS.execute_with_pipe(Paths.game_dir.path_join("cataclysm-launcher"), params)
+			OS.create_process(Paths.game_dir.path_join("cataclysm-launcher"), params, false)
 		"Windows":
 			var world_str := ""
 			if world != "":
