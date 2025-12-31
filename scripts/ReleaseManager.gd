@@ -11,7 +11,7 @@ const _RELEASE_URLS = {
 	"dda-experimental":
 		"https://api.github.com/repos/CleverRaven/Cataclysm-DDA/releases",
 	"bn-experimental":
-		"https://api.github.com/repos/cataclysmbnteam/Cataclysm-BN/releases",
+		"https://api.github.com/repos/cataclysmbn/Cataclysm-BN/releases",
 	"eod-experimental":
 		"https://api.github.com/repos/AtomicFox556/Cataclysm-EOD/releases",
 	"tish-experimental":
@@ -177,67 +177,67 @@ const _DDA_STABLE_WIN = [
 const _BN_STABLE_LINUX = [
 	{
 		"name": "0.9.1",
-		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/v0.9.1/cbn-linux-tiles-x64-v0.9.1.tar.gz",
+		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/v0.9.1/cbn-linux-tiles-x64-v0.9.1.tar.gz",
 		"filename": "cbn-linux-tiles-x64-v0.9.1.tar.gz"
 	},
 	{
 		"name": "0.9.0",
-		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/v0.9.0/cbn-linux-tiles-x64-v0.9.0.tar.gz",
+		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/v0.9.0/cbn-linux-tiles-x64-v0.9.0.tar.gz",
 		"filename": "cbn-linux-tiles-x64-v0.9.0.tar.gz"
 	},
 	{
 		"name": "0.8.0",
-		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/v0.8.0/cbn-linux-tiles-x64-v0.8.0.tar.gz",
+		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/v0.8.0/cbn-linux-tiles-x64-v0.8.0.tar.gz",
 		"filename": "cbn-linux-tiles-x64-v0.8.0.tar.gz"
 	},
 	{
 		"name": "0.7.1",
-		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/v0.7.1/cbn-linux-tiles-x64-v0.7.1.tar.gz",
+		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/v0.7.1/cbn-linux-tiles-x64-v0.7.1.tar.gz",
 		"filename": "cbn-linux-tiles-x64-v0.7.1.tar.gz"
 	},
 	{
 		"name": "0.7.0",
-		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/v0.7.0/cbn-linux-tiles-x64-v0.7.0.tar.gz",
+		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/v0.7.0/cbn-linux-tiles-x64-v0.7.0.tar.gz",
 		"filename": "cbn-linux-tiles-x64-v0.7.0.tar.gz"
 	},
 	{
 		"name": "0.6.0",
-		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/v0.6.0/cbn-linux-tiles-x64-v0.6.0.tar.gz",
+		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/v0.6.0/cbn-linux-tiles-x64-v0.6.0.tar.gz",
 		"filename": "cbn-linux-tiles-x64-v0.6.0.tar.gz"
 	},
 	{
 		"name": "0.5.2",
-		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/cbn-0.5.2/cbn-linux-tiles-x64-0.5.2.tar.gz",
+		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/cbn-0.5.2/cbn-linux-tiles-x64-0.5.2.tar.gz",
 		"filename": "cbn-linux-tiles-x64-0.5.2.tar.gz"
 	},
 	{
 		"name": "0.5.1",
-		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/cbn-0.5.1/cbn-linux-tiles-x64-0.5.1.tar.gz",
+		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/cbn-0.5.1/cbn-linux-tiles-x64-0.5.1.tar.gz",
 		"filename": "cbn-linux-tiles-x64-0.5.1.tar.gz"
 	},
 	{
 		"name": "0.5",
-		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/cbn-0.5/cbn-linux-tiles-x64-0.5.tar.gz",
+		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/cbn-0.5/cbn-linux-tiles-x64-0.5.tar.gz",
 		"filename": "cbn-linux-tiles-x64-0.5.tar.gz"
 	},
 	{
 		"name": "0.4",
-		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/cbn-0.4/cbn-linux-tiles-x64-0.4.tar.gz",
+		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/cbn-0.4/cbn-linux-tiles-x64-0.4.tar.gz",
 		"filename": "cbn-linux-tiles-x64-0.4.tar.gz"
 	},
 	{
 		"name": "0.3",
-		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/cbn-0.3/cbn-linux-tiles-x64-0.3.tar.gz",
+		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/cbn-0.3/cbn-linux-tiles-x64-0.3.tar.gz",
 		"filename": "cbn-linux-tiles-x64-0.3.tar.gz"
 	},
 	{
 		"name": "0.2",
-		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/cbn-0.2/cbn-linux-tiles-x64-0.2.tar.gz",
+		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/cbn-0.2/cbn-linux-tiles-x64-0.2.tar.gz",
 		"filename": "cbn-linux-tiles-x64-0.2.tar.gz"
 	},
 	{
 		"name": "0.1",
-		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/cbn-0.1/cbn-linux-tiles-x64-0.1.tar.gz",
+		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/cbn-0.1/cbn-linux-tiles-x64-0.1.tar.gz",
 		"filename": "cbn-linux-tiles-x64-0.1.tar.gz"
 	},
 ]
@@ -245,67 +245,67 @@ const _BN_STABLE_LINUX = [
 const _BN_STABLE_WIN = [
 	{
 		"name": "0.9.1",
-		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/v0.9.1/cbn-windows-tiles-x64-msvc-v0.9.1.zip",
+		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/v0.9.1/cbn-windows-tiles-x64-msvc-v0.9.1.zip",
 		"filename": "cbn-windows-tiles-x64-msvc-v0.9.1.zip"
 	},
 	{
 		"name": "0.9.0",
-		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/v0.9.0/cbn-windows-tiles-x64-msvc-v0.9.0.zip",
+		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/v0.9.0/cbn-windows-tiles-x64-msvc-v0.9.0.zip",
 		"filename": "cbn-windows-tiles-x64-msvc-v0.9.0.zip"
 	},
 	{
 		"name": "0.8.0",
-		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/v0.8.0/cbn-windows-tiles-x64-msvc-v0.8.0.zip",
+		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/v0.8.0/cbn-windows-tiles-x64-msvc-v0.8.0.zip",
 		"filename": "cbn-windows-tiles-x64-msvc-v0.8.0.zip"
 	},
 	{
 		"name": "0.7.1",
-		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/v0.7.1/cbn-windows-tiles-x64-msvc-v0.7.1.zip",
+		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/v0.7.1/cbn-windows-tiles-x64-msvc-v0.7.1.zip",
 		"filename": "cbn-windows-tiles-x64-msvc-v0.7.1.zip"
 	},
 	{
 		"name": "0.7.0",
-		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/v0.7.0/cbn-windows-tiles-x64-v0.7.0.zip",
+		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/v0.7.0/cbn-windows-tiles-x64-v0.7.0.zip",
 		"filename": "cbn-windows-tiles-x64-v0.7.0.zip"
 	},
 	{
 		"name": "0.6.0",
-		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/v0.6.0/cbn-windows-tiles-x64-v0.6.0.zip",
+		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/v0.6.0/cbn-windows-tiles-x64-v0.6.0.zip",
 		"filename": "cbn-windows-tiles-x64-v0.6.0.zip"
 	},
 	{
 		"name": "0.5.2",
-		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/v0.5.2/cbn-windows-tiles-x64-msvc-v0.5.2.zip",
+		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/v0.5.2/cbn-windows-tiles-x64-msvc-v0.5.2.zip",
 		"filename": "cbn-windows-tiles-x64-msvc-0.5.2.zip"
 	},
 	{
 		"name": "0.5.1",
-		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/cbn-0.5.1/cbn-windows-tiles-x64-msvc-0.5.1.zip",
+		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/cbn-0.5.1/cbn-windows-tiles-x64-msvc-0.5.1.zip",
 		"filename": "cbn-windows-tiles-x64-msvc-0.5.1.zip"
 	},
 	{
 		"name": "0.5",
-		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/cbn-0.5/cbn-windows-tiles-x64-msvc-0.5.zip",
+		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/cbn-0.5/cbn-windows-tiles-x64-msvc-0.5.zip",
 		"filename": "cbn-windows-tiles-x64-msvc-0.5.zip"
 	},
 	{
 		"name": "0.4",
-		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/cbn-0.4/cbn-windows-tiles-x64-msvc-0.4.zip",
+		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/cbn-0.4/cbn-windows-tiles-x64-msvc-0.4.zip",
 		"filename": "cbn-windows-tiles-x64-msvc-0.4.zip"
 	},
 	{
 		"name": "0.3",
-		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/cbn-0.3/cbn-windows-tiles-x64-msvc-0.3.zip",
+		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/cbn-0.3/cbn-windows-tiles-x64-msvc-0.3.zip",
 		"filename": "cbn-windows-tiles-x64-msvc-0.3.zip"
 	},
 	{
 		"name": "0.2",
-		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/cbn-0.2/cbn-windows-tiles-x64-msvc-0.2.zip",
+		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/cbn-0.2/cbn-windows-tiles-x64-msvc-0.2.zip",
 		"filename": "cbn-windows-tiles-x64-msvc-0.2.zip"
 	},
 	{
 		"name": "0.1",
-		"url": "https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download/cbn-0.1/cbn-windows-tiles-x64-msvc-0.1.zip",
+		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/cbn-0.1/cbn-windows-tiles-x64-msvc-0.1.zip",
 		"filename": "cbn-windows-tiles-x64-msvc-0.1.zip"
 	}
 ]
