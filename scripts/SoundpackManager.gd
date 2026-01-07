@@ -69,6 +69,12 @@ const SOUNDPACKS = [
 		"internal_path": "Otopack-Mods-Updates-master/Otopack+ModsUpdates",
 	},
 	{
+		"name": "Otopack-BN-Mk-2",
+		"url": "https://github.com/NarandBD/Otopack-BN-Mk-2/archive/main.zip",
+		"filename": "otopack-bn-mk2.zip",
+		"internal_path": "Otopack-BN-Mk-2-main/Otopack+ModsUpdates BN",
+	},
+	{
 		"name": "RRFSounds",
 		"url": "https://dl.dropboxusercontent.com/s/d8dfmb2facvkdh6/RRFSounds.zip",
 		"filename": "rrfsounds.zip",
