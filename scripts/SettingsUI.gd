@@ -47,6 +47,8 @@ func _ready() -> void:
 	%NumReleasesField.value = Settings.read("num_releases_to_request") as int
 	%NumPrsField.value = Settings.read("num_prs_to_request") as int
 	
+	for option in _proxy_options:
+		%ProxyOptionList.add_item(option)
 	var proxy_option_idx := _proxy_options.find(Settings.read("proxy_option"))
 	if proxy_option_idx >= 0:
 		%ProxyOptionList.selected = proxy_option_idx
