@@ -9,7 +9,8 @@ _source = "<svg width=\"30\" height=\"20\" viewBox=\"0 0 238.125 158.75\" xmlns=
   </clipPath>
   <g clip-path=\"url(#roundedCorners)\">
     <path fill=\"#fff\" d=\"M0 0h238.125v158.75H0z\" />
-    <path fill=\"#088ce8\" d=\"M0 50.271h238.125v58.208H0z\" />
+    <path fill=\"#0039A6\" d=\"M0 52.9167h238.125v52.9166H0z\" />
+    <path fill=\"#D52B1E\" d=\"M0 105.8333h238.125v52.9167H0z\" />
   </g>
 </svg>"
 script = ExtResource("1_krqhf")
