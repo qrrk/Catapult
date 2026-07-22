@@ -28,3 +28,19 @@
 "tooltip_num_prs_to_request","Değişiklik listesini belirlemek için\nkaç pull request (kod eklemeleri) istenecek.\nYüksek sayılar yavaş isteklere ve hatalara sebep olabilir"
 "tooltip_ui_scale_override","Otomatik olarak çıkarılan arayüz ölçeği sisteminizde\nçok büyük\veya çok küçük görünüyorsa bunu kullanın.\n(Otomatik ölçek,tüm sistemlerde çalışmayabilen veya\nçözünürlük çok düşük olduğunda yetersiz sonuçlar veren\nsistem tarafından bildirilen ekran DPI'sına dayanır.)"
 "tooltip_data_to_migrate","Oyun sürümünü güncellerken hangi oyun verilerinin taşınacağını seçin."
+"cbtn_enable_proxy","Etkinleştir  "
+"cbtn_ignore_cache","İndirme önbelleğini yoksay"
+"cbtn_keep_cache","İndirme önbelleğini koru"
+"lbl_licenses","[color=#3b93f7][url]Açık kaynak lisanslarını görüntüle[/url][/color]"
+"lbl_proxy_settings","Proxy sunucusu:"
+"obtn_proxy_option_download","Yalnızca indirme için"
+"obtn_proxy_option_off","Devre dışı"
+"obtn_proxy_option_on","Etkin"
+"tooltip_ignore_cache","Önbellek klasöründe zaten olsa bile
+her zaman web'den içerik indir."
+"tooltip_keep_cache","Kurulum tamamlandığında silmek yerine
+indirilen içeriği (oyun sürümleri, modpakler, ses paketleri) önbellek klasöründe sakla."
+"tooltip_proxy_options","Devre dışı - Proxy kullanma
+Etkin - Her durumda proxy kullan (örn. sürüm isteme)
+Yalnızca indirme için - Sadece indirme sırasında proxy kullan"
+"tooltip_proxy_settings","İndirme için bir proxy sunucusu yapılandır."

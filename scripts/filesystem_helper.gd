@@ -30,32 +30,53 @@ func _get_last_zip_result() -> int:
 	return last_zip_result
 	
 
-func list_dir(path: String, recursive := false) -> Array:
+func list_dir(path: String, recursive := false, filter_pattern: String = "") -> Array:
 	# Lists the files and subdirectories within a directory.
+	# Optionally filters results using a regex pattern string matched against full relative paths.
 	
 	var result := []
-	var dir := DirAccess.open(path)
-	dir.include_hidden = true
-	var error := DirAccess.get_open_error()
-	if error != OK:
-		Status.post(tr("msg_list_dir_failed") % [path, error], Enums.MSG_ERROR)
-		return result
+	var filter_regex: RegEx = null
 	
-	error = dir.list_dir_begin()
-	if error != OK:
-		Status.post(tr("msg_list_dir_failed") % [path, error], Enums.MSG_ERROR)
-		return result
+	if filter_pattern != "":
+		filter_regex = RegEx.new()
+		var compile_error = filter_regex.compile(filter_pattern)
+		if compile_error != OK:
+			Status.post(tr("msg_list_dir_failed") % [path, compile_error], Enums.MSG_ERROR)
+			return result
 	
-	while true:
-		var item = dir.get_next()
-		if item:
-			result.append(item)
+	var stack: Array[String]
+	stack.append("")
+	
+	while stack.size() > 0:
+		var current_rel: String = stack.pop_back()
+		var current_abs: String = path.path_join(current_rel) if current_rel != "" else path
+		
+		var dir := DirAccess.open(current_abs)
+		if dir == null:
+			var open_error := DirAccess.get_open_error()
+			Status.post(tr("msg_list_dir_failed") % [current_abs, open_error], Enums.MSG_ERROR)
+			continue
+		
+		dir.include_hidden = true
+		var error := dir.list_dir_begin()
+		if error != OK:
+			Status.post(tr("msg_list_dir_failed") % [current_abs, error], Enums.MSG_ERROR)
+			continue
+		
+		while true:
+			var item: String = dir.get_next()
+			if item == "":
+				break
+			
+			var item_rel_path = current_rel.path_join(item) if current_rel != "" else item
+
+			if (filter_regex == null) or (filter_regex.search(item_rel_path) != null):
+				result.append(item_rel_path)
+			
 			if recursive and dir.current_is_dir():
-				var subdir = list_dir(path.path_join(item), true)
-				for child in subdir:
-					result.append(item.path_join(child))
-		else:
-			break
+				stack.append(item_rel_path)
+		
+		dir.list_dir_end()
 	
 	return result
 

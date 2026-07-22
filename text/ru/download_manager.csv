@@ -11,3 +11,4 @@
 "msg_download_finished","Завершена загрузка %s."
 "msg_download_failed","Не удалось загрузить %s."
 "msg_http_request_info","[b]Информация от HTTPRequest:[/b]\n[u]Результат:[/u] %s\n[u]Код ответа:[/u] %s\n[u]Заголовки:[/u] %s"
+"msg_using_proxy","Использование прокси: %s:%s"

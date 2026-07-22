@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://j8v4j8uy58rl"]
+[gd_scene load_steps=50 format=3 uid="uid://j8v4j8uy58rl"]
 
 [ext_resource type="Texture2D" uid="uid://ma1wiy6trs4k" path="res://icons/tex_info.tres" id="2_rcpd3"]
 [ext_resource type="Script" uid="uid://drnrbqdw1iua4" path="res://scripts/Catapult.gd" id="4"]
@@ -18,12 +18,14 @@
 [ext_resource type="Script" uid="uid://cgvtqevpi0vvm" path="res://scripts/SoundpackManager.gd" id="13"]
 [ext_resource type="Script" uid="uid://6ein2nethlx5" path="res://scripts/Debug.gd" id="14"]
 [ext_resource type="Script" uid="uid://jyw1c7gc21tb" path="res://scripts/SoundpacksUI.gd" id="15"]
+[ext_resource type="PackedScene" uid="uid://c1axg2lq1dhit" path="res://scenes/UserDataDeletionDialog.tscn" id="15_5ug7j"]
 [ext_resource type="Script" uid="uid://dws64rera28nf" path="res://scripts/Tabs.gd" id="16"]
 [ext_resource type="Script" uid="uid://bcxy21m818jf1" path="res://scripts/ItemList.gd" id="17"]
 [ext_resource type="Script" uid="uid://clo0n7jb6x8qy" path="res://scripts/ModsUI.gd" id="18"]
 [ext_resource type="Texture2D" uid="uid://cihncwpvk3c5e" path="res://icons/tex_help.tres" id="19_rcpd3"]
 [ext_resource type="PackedScene" uid="uid://chyqjehe0nmxq" path="res://scenes/ModReinstallDialog.tscn" id="20"]
 [ext_resource type="Texture2D" uid="uid://gbpu5l6l5g8w" path="res://icons/lang/tex_lang_en.tres" id="23_rcpd3"]
+[ext_resource type="PackedScene" uid="uid://cgups4yvvknaj" path="res://scenes/LicensesDialog.tscn" id="24_cyylm"]
 [ext_resource type="Texture2D" uid="uid://bp51vrvh3v23d" path="res://icons/lang/tex_lang_fr.tres" id="24_rcpd3"]
 [ext_resource type="Texture2D" uid="uid://olv67q6pu442" path="res://icons/lang/tex_lang_ru.tres" id="25_rcpd3"]
 [ext_resource type="PackedScene" uid="uid://snuvrmmyvlwd" path="res://scenes/InlineIconButton.tscn" id="26"]
@@ -60,17 +62,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource("4")
 
-[node name="Main" type="VBoxContainer" parent="."]
+[node name="MainLayout" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="GameChoice" type="HBoxContainer" parent="Main"]
+[node name="GameChoiceBox" type="HBoxContainer" parent="MainLayout"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Main/GameChoice"]
+[node name="GameLabel" type="Label" parent="MainLayout/GameChoiceBox"]
 layout_mode = 2
 text = "lbl_game"
 
-[node name="GamesList" type="OptionButton" parent="Main/GameChoice" groups=["disable_during_mod_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases", "disable_while_installing_game"]]
+[node name="GamesList" type="OptionButton" parent="MainLayout/GameChoiceBox" groups=["disable_during_mod_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases", "disable_while_installing_game"]]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "tooltip_game"
@@ -87,20 +90,22 @@ popup/item_3/id = 3
 popup/item_4/text = "Cataclysm: The Last Generation"
 popup/item_4/id = 4
 
-[node name="GameInfo" type="HBoxContainer" parent="Main"]
+[node name="GameInfoBox" type="HBoxContainer" parent="MainLayout"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Spacer" type="Control" parent="Main/GameInfo"]
+[node name="Spacer" type="Control" parent="MainLayout/GameInfoBox"]
 layout_mode = 2
 
-[node name="Icon" type="TextureRect" parent="Main/GameInfo"]
+[node name="GameDescIcon" type="TextureRect" parent="MainLayout/GameInfoBox"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("2_rcpd3")
 
-[node name="Description" type="RichTextLabel" parent="Main/GameInfo"]
+[node name="GameDescText" type="RichTextLabel" parent="MainLayout/GameInfoBox"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -108,29 +113,32 @@ bbcode_enabled = true
 text = "Game Title is a game in which... This is a placeholder text to gauge how much space will be taken for the game description that will be loaded into this label at runtime. The descriptions are around 4 lines each at this width, so the placeholder text mush have a similar length to perform its function. This length is about right."
 fit_content = true
 
-[node name="Spacer" type="Control" parent="Main"]
+[node name="Spacer" type="Control" parent="MainLayout"]
 layout_mode = 2
 
-[node name="TabBar" type="TabContainer" parent="Main" groups=["disable_during_backup_operations", "disable_during_mod_operations", "disable_during_release_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases"]]
+[node name="TabbedLayout" type="TabContainer" parent="MainLayout" groups=["disable_during_backup_operations", "disable_during_mod_operations", "disable_during_release_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases"]]
+unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 3
 current_tab = 0
 script = ExtResource("16")
 
-[node name="Game" type="VBoxContainer" parent="Main/TabBar"]
+[node name="GameArea" type="VBoxContainer" parent="MainLayout/TabbedLayout"]
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="Channel" type="VBoxContainer" parent="Main/TabBar/Game"]
+[node name="ChannelSelectGroup" type="VBoxContainer" parent="MainLayout/TabbedLayout/GameArea"]
 layout_mode = 2
 
-[node name="HBox" type="HBoxContainer" parent="Main/TabBar/Game/Channel"]
+[node name="ChannelTitleBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/GameArea/ChannelSelectGroup"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Main/TabBar/Game/Channel/HBox"]
+[node name="ChannelLabel" type="Label" parent="MainLayout/TabbedLayout/GameArea/ChannelSelectGroup/ChannelTitleBox"]
 layout_mode = 2
 text = "lbl_channel"
 
-[node name="ChangelogLink" type="RichTextLabel" parent="Main/TabBar/Game/Channel/HBox"]
+[node name="ChangelogLinkLabel" type="RichTextLabel" parent="MainLayout/TabbedLayout/GameArea/ChannelSelectGroup/ChannelTitleBox"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -140,116 +148,129 @@ bbcode_enabled = true
 text = "lbl_changelog"
 scroll_active = false
 
-[node name="Group" type="HBoxContainer" parent="Main/TabBar/Game/Channel"]
+[node name="ChannelSwitchesGroup" type="HBoxContainer" parent="MainLayout/TabbedLayout/GameArea/ChannelSelectGroup"]
 layout_mode = 2
 
-[node name="RBtnStable" type="CheckBox" parent="Main/TabBar/Game/Channel/Group" groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
+[node name="StableSwitch" type="CheckBox" parent="MainLayout/TabbedLayout/GameArea/ChannelSelectGroup/ChannelSwitchesGroup" groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
+unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_stable"
 button_group = SubResource("ButtonGroup_nlnc6")
 text = "rbtn_stable"
 
-[node name="RBtnExperimental" type="CheckBox" parent="Main/TabBar/Game/Channel/Group" groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
+[node name="ExperimentalSwitch" type="CheckBox" parent="MainLayout/TabbedLayout/GameArea/ChannelSelectGroup/ChannelSwitchesGroup" groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
+unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_experimental"
 button_group = SubResource("ButtonGroup_nlnc6")
 text = "rbtn_experimental"
 
-[node name="Builds" type="HBoxContainer" parent="Main/TabBar/Game"]
+[node name="ReleaseSelectGroup" type="HBoxContainer" parent="MainLayout/TabbedLayout/GameArea"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Main/TabBar/Game/Builds"]
+[node name="ReleasesLabel" type="Label" parent="MainLayout/TabbedLayout/GameArea/ReleaseSelectGroup"]
 layout_mode = 2
 text = "lbl_builds"
 
-[node name="BuildsList" type="OptionButton" parent="Main/TabBar/Game/Builds" groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
+[node name="ReleasesList" type="OptionButton" parent="MainLayout/TabbedLayout/GameArea/ReleaseSelectGroup" groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "tooltip_builds"
 clip_text = true
 
-[node name="BtnRefresh" type="Button" parent="Main/TabBar/Game/Builds" groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
+[node name="RefreshReleasesBtn" type="Button" parent="MainLayout/TabbedLayout/GameArea/ReleaseSelectGroup" groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
+unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_refresh"
 text = "btn_refresh"
 icon = ExtResource("4_no8b7")
 
-[node name="BtnInstall" type="Button" parent="Main/TabBar/Game" groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
+[node name="InstallReleaseBtn" type="Button" parent="MainLayout/TabbedLayout/GameArea" groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "tooltip_install"
 text = "btn_install"
 icon = ExtResource("4_rcpd3")
 
-[node name="UpdateCurrent" type="CheckBox" parent="Main/TabBar/Game" groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
+[node name="UpdateCurrentSwitch" type="CheckBox" parent="MainLayout/TabbedLayout/GameArea" groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "tooltip_update"
 text = "cb_update_active"
 
-[node name="HSeparator" type="HSeparator" parent="Main/TabBar/Game"]
+[node name="HSeparator" type="HSeparator" parent="MainLayout/TabbedLayout/GameArea"]
 layout_mode = 2
 
-[node name="ActiveInstall" type="VBoxContainer" parent="Main/TabBar/Game"]
+[node name="ActiveInstallGroup" type="VBoxContainer" parent="MainLayout/TabbedLayout/GameArea"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Main/TabBar/Game/ActiveInstall"]
+[node name="ActiveInstallLabel" type="Label" parent="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup"]
 layout_mode = 2
 text = "lbl_active_install"
 
-[node name="Build" type="HBoxContainer" parent="Main/TabBar/Game/ActiveInstall"]
+[node name="ActiveInstallNameBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 4
 
-[node name="Name" type="Label" parent="Main/TabBar/Game/ActiveInstall/Build"]
+[node name="ActiveInstallNameLabel" type="Label" parent="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup/ActiveInstallNameBox"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "lbl_build_none"
 
-[node name="GameDir" parent="Main/TabBar/Game/ActiveInstall/Build" instance=ExtResource("26")]
+[node name="GameDirBtn" parent="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup/ActiveInstallNameBox" instance=ExtResource("26")]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 tooltip_text = "tooltip_game_dir"
 texture_normal = ExtResource("6_rcpd3")
 
-[node name="UserDir" parent="Main/TabBar/Game/ActiveInstall/Build" instance=ExtResource("26")]
+[node name="UserDirBtn" parent="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup/ActiveInstallNameBox" instance=ExtResource("26")]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 tooltip_text = "tooltip_user_dir"
 texture_normal = ExtResource("7_rcpd3")
 
-[node name="Launch" type="HBoxContainer" parent="Main/TabBar/Game/ActiveInstall"]
+[node name="LaunchGameBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="BtnPlay" type="Button" parent="Main/TabBar/Game/ActiveInstall/Launch" groups=["disable_during_release_operations"]]
+[node name="LaunchGameBtn" type="Button" parent="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup/LaunchGameBox" groups=["disable_during_release_operations"]]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "tooltip_play"
 text = "btn_play"
 icon = ExtResource("8_no8b7")
 
-[node name="BtnResume" type="Button" parent="Main/TabBar/Game/ActiveInstall/Launch" groups=["disable_during_release_operations"]]
+[node name="QuickLoadBtn" type="Button" parent="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup/LaunchGameBox" groups=["disable_during_release_operations"]]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "tooltip_resume"
 text = "btn_resume"
 icon = ExtResource("9_rcpd3")
 
-[node name="GameInstalls" type="VBoxContainer" parent="Main/TabBar/Game"]
+[node name="GameInstallsGroup" type="VBoxContainer" parent="MainLayout/TabbedLayout/GameArea"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="HSeparator2" type="HSeparator" parent="Main/TabBar/Game/GameInstalls"]
+[node name="HSeparator2" type="HSeparator" parent="MainLayout/TabbedLayout/GameArea/GameInstallsGroup"]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="Main/TabBar/Game/GameInstalls"]
+[node name="GameInstallsLabel" type="Label" parent="MainLayout/TabbedLayout/GameArea/GameInstallsGroup"]
 layout_mode = 2
 text = "lbl_installs"
 
-[node name="HBox" type="HBoxContainer" parent="Main/TabBar/Game/GameInstalls"]
+[node name="GameInstallsMgmtGroup" type="HBoxContainer" parent="MainLayout/TabbedLayout/GameArea/GameInstallsGroup"]
 layout_mode = 2
 
-[node name="InstallsList" type="ItemList" parent="Main/TabBar/Game/GameInstalls/HBox" groups=["disable_during_release_operations"]]
+[node name="GameInstallsList" type="ItemList" parent="MainLayout/TabbedLayout/GameArea/GameInstallsGroup/GameInstallsMgmtGroup" groups=["disable_during_release_operations"]]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -262,44 +283,53 @@ item_4/text = "Item 4"
 item_5/text = "Item 5"
 script = ExtResource("6")
 
-[node name="VBox" type="VBoxContainer" parent="Main/TabBar/Game/GameInstalls/HBox"]
+[node name="GameInstallActionsBox" type="VBoxContainer" parent="MainLayout/TabbedLayout/GameArea/GameInstallsGroup/GameInstallsMgmtGroup"]
 layout_mode = 2
 
-[node name="btnMakeActive" type="Button" parent="Main/TabBar/Game/GameInstalls/HBox/VBox" groups=["disable_during_release_operations"]]
+[node name="MakeInstallActiveBtn" type="Button" parent="MainLayout/TabbedLayout/GameArea/GameInstallsGroup/GameInstallsMgmtGroup/GameInstallActionsBox" groups=["disable_during_release_operations"]]
+unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_activate"
 disabled = true
 text = "btn_activate"
 icon = ExtResource("11_rcpd3")
 
-[node name="btnDelete" type="Button" parent="Main/TabBar/Game/GameInstalls/HBox/VBox" groups=["disable_during_release_operations"]]
+[node name="DeleteGameInstallBtn" type="Button" parent="MainLayout/TabbedLayout/GameArea/GameInstallsGroup/GameInstallsMgmtGroup/GameInstallActionsBox" groups=["disable_during_release_operations"]]
+unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_delete"
 disabled = true
 text = "btn_delete"
 icon = ExtResource("12_no8b7")
 
-[node name="ChangelogDialog" parent="Main/TabBar/Game" instance=ExtResource("32")]
+[node name="ChangelogDialog" parent="MainLayout/TabbedLayout/GameArea" instance=ExtResource("32")]
+unique_name_in_owner = true
 position = Vector2i(0, 36)
 
-[node name="Mods" type="VBoxContainer" parent="Main/TabBar"]
+[node name="UserDataDeletionDlg" parent="MainLayout/TabbedLayout/GameArea" instance=ExtResource("15_5ug7j")]
+unique_name_in_owner = true
+visible = false
+
+[node name="ModsArea" type="VBoxContainer" parent="MainLayout/TabbedLayout"]
 visible = false
 layout_mode = 2
 script = ExtResource("18")
 metadata/_tab_index = 1
 
-[node name="HBox" type="HBoxContainer" parent="Main/TabBar/Mods"]
+[node name="ModsManagementGroup" type="HBoxContainer" parent="MainLayout/TabbedLayout/ModsArea"]
 layout_mode = 2
 
-[node name="Installed" type="VBoxContainer" parent="Main/TabBar/Mods/HBox"]
+[node name="InstalledModsGroup" type="VBoxContainer" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="Main/TabBar/Mods/HBox/Installed"]
+[node name="InstalledModsLabel" type="Label" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/InstalledModsGroup"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "lbl_installed_mods"
 
-[node name="InstalledList" type="ItemList" parent="Main/TabBar/Mods/HBox/Installed" groups=["disable_during_mod_operations"]]
+[node name="InstalledModsList" type="ItemList" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/InstalledModsGroup" groups=["disable_during_mod_operations"]]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 180)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -313,31 +343,35 @@ item_2/text = "Item 2"
 item_3/text = "Item 3"
 script = ExtResource("17")
 
-[node name="ShowStock" type="CheckBox" parent="Main/TabBar/Mods/HBox/Installed" groups=["disable_during_mod_operations"]]
+[node name="ShowStockModsSwitch" type="CheckBox" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/InstalledModsGroup" groups=["disable_during_mod_operations"]]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "tooltip_stock_mods"
 text = "cbtn_stock_mods"
 
-[node name="BtnDelete" type="Button" parent="Main/TabBar/Mods/HBox/Installed" groups=["disable_during_mod_operations"]]
+[node name="DeleteModsBtn" type="Button" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/InstalledModsGroup" groups=["disable_during_mod_operations"]]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "tooltip_delete_mods"
 disabled = true
 text = "btn_delete_mods"
 
-[node name="VSeparator" type="VSeparator" parent="Main/TabBar/Mods/HBox"]
+[node name="VSeparator" type="VSeparator" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup"]
 layout_mode = 2
 
-[node name="Available" type="VBoxContainer" parent="Main/TabBar/Mods/HBox"]
+[node name="AvailableModsGroup" type="VBoxContainer" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="Main/TabBar/Mods/HBox/Available"]
+[node name="ModRepoLabel" type="Label" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "lbl_mod_repo"
 
-[node name="AvailableList" type="ItemList" parent="Main/TabBar/Mods/HBox/Available" groups=["disable_during_mod_operations"]]
+[node name="AvailableModsList" type="ItemList" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup" groups=["disable_during_mod_operations"]]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 180)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -351,37 +385,41 @@ item_2/text = "Item 2"
 item_3/text = "Item 3"
 script = ExtResource("17")
 
-[node name="ShowInstalled" type="CheckBox" parent="Main/TabBar/Mods/HBox/Available" groups=["disable_during_mod_operations"]]
+[node name="ShowInstalledModsSwitch" type="CheckBox" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup" groups=["disable_during_mod_operations"]]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "tooltip_installed_mods"
 text = "cbtn_installed_mods"
 
-[node name="VBox" type="HBoxContainer" parent="Main/TabBar/Mods/HBox/Available"]
+[node name="AddModsActionsBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup"]
 layout_mode = 2
 alignment = 1
 
-[node name="BtnAddSelectedMod" type="Button" parent="Main/TabBar/Mods/HBox/Available/VBox" groups=["disable_during_mod_operations"]]
+[node name="AddSelectedModsBtn" type="Button" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup/AddModsActionsBox" groups=["disable_during_mod_operations"]]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "tooltip_add_sel_mods"
 text = "btn_add_sel_mods"
 
-[node name="BtnAddAllMods" type="Button" parent="Main/TabBar/Mods/HBox/Available/VBox" groups=["disable_during_mod_operations"]]
+[node name="AddAllModsBtn" type="Button" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup/AddModsActionsBox" groups=["disable_during_mod_operations"]]
+unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_add_all_mods"
 text = "btn_add_all_mods"
 
-[node name="BtnDownloadKenan" type="Button" parent="Main/TabBar/Mods/HBox/Available" groups=["disable_during_mod_operations"]]
+[node name="GetKenanModpackBtn" type="Button" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup" groups=["disable_during_mod_operations"]]
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "tooltip_get_kenan_pack"
 text = "btn_get_kenan_pack"
 
-[node name="HSeparator" type="HSeparator" parent="Main/TabBar/Mods"]
+[node name="HSeparator" type="HSeparator" parent="MainLayout/TabbedLayout/ModsArea"]
 layout_mode = 2
 
-[node name="ModInfo" type="RichTextLabel" parent="Main/TabBar/Mods"]
+[node name="ModInfoText" type="RichTextLabel" parent="MainLayout/TabbedLayout/ModsArea"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 focus_mode = 2
@@ -390,31 +428,34 @@ bbcode_enabled = true
 text = "Mod info will appear here."
 selection_enabled = true
 
-[node name="DeleteMultipleDialog" type="ConfirmationDialog" parent="Main/TabBar/Mods"]
+[node name="DeleteMultipleModsDlg" type="ConfirmationDialog" parent="MainLayout/TabbedLayout/ModsArea"]
+unique_name_in_owner = true
 dialog_text = "(this text is assigned at runtime)"
 dialog_autowrap = true
 
-[node name="ModReinstallDialog" parent="Main/TabBar/Mods" instance=ExtResource("20")]
+[node name="ModReinstallDialog" parent="MainLayout/TabbedLayout/ModsArea" instance=ExtResource("20")]
+unique_name_in_owner = true
 
-[node name="Soundpacks" type="VBoxContainer" parent="Main/TabBar"]
+[node name="SoundArea" type="VBoxContainer" parent="MainLayout/TabbedLayout"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("15")
 metadata/_tab_index = 2
 
-[node name="HBox" type="HBoxContainer" parent="Main/TabBar/Soundpacks"]
+[node name="SoundManagementGroup" type="HBoxContainer" parent="MainLayout/TabbedLayout/SoundArea"]
 layout_mode = 2
 
-[node name="Installed" type="VBoxContainer" parent="Main/TabBar/Soundpacks/HBox"]
+[node name="InstalledSoundsGroup" type="VBoxContainer" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="Main/TabBar/Soundpacks/HBox/Installed"]
+[node name="InstalledSoundsLabel" type="Label" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup/InstalledSoundsGroup"]
 layout_mode = 2
 text = "lbl_installed_sound"
 
-[node name="InstalledList" type="ItemList" parent="Main/TabBar/Soundpacks/HBox/Installed" groups=["disable_during_soundpack_operations"]]
+[node name="InstalledSoundsList" type="ItemList" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup/InstalledSoundsGroup" groups=["disable_during_soundpack_operations"]]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -444,31 +485,34 @@ item_20/text = "Item 20"
 item_21/text = "Item 21"
 script = ExtResource("17")
 
-[node name="ShowStock" type="CheckBox" parent="Main/TabBar/Soundpacks/HBox/Installed" groups=["disable_during_soundpack_operations"]]
+[node name="ShowStockSoundsSwitch" type="CheckBox" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup/InstalledSoundsGroup" groups=["disable_during_soundpack_operations"]]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "tooltip_stock_sound"
 text = "cbtn_stock_sound"
 
-[node name="BtnDelete" type="Button" parent="Main/TabBar/Soundpacks/HBox/Installed" groups=["disable_during_soundpack_operations"]]
+[node name="DeleteSoundBtn" type="Button" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup/InstalledSoundsGroup" groups=["disable_during_soundpack_operations"]]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "tooltip_delete_sound"
 disabled = true
 text = "btn_delete_sound"
 
-[node name="VSeparator" type="VSeparator" parent="Main/TabBar/Soundpacks/HBox"]
+[node name="VSeparator" type="VSeparator" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup"]
 layout_mode = 2
 
-[node name="Downloadable" type="VBoxContainer" parent="Main/TabBar/Soundpacks/HBox"]
+[node name="AvailableSoundsGroup" type="VBoxContainer" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="Main/TabBar/Soundpacks/HBox/Downloadable"]
+[node name="AvailableSoundsLabel" type="Label" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup/AvailableSoundsGroup"]
 layout_mode = 2
 text = "lbl_avail_sound"
 
-[node name="AvailableList" type="ItemList" parent="Main/TabBar/Soundpacks/HBox/Downloadable" groups=["disable_during_soundpack_operations"]]
+[node name="AvailableSoundsList" type="ItemList" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup/AvailableSoundsGroup" groups=["disable_during_soundpack_operations"]]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -480,45 +524,50 @@ item_2/text = "Item 2"
 item_3/text = "Item 3"
 script = ExtResource("17")
 
-[node name="BtnInstall" type="Button" parent="Main/TabBar/Soundpacks/HBox/Downloadable" groups=["disable_during_soundpack_operations"]]
+[node name="InstallSoundBtn" type="Button" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup/AvailableSoundsGroup" groups=["disable_during_soundpack_operations"]]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "tooltip_install_sound"
 disabled = true
 text = "btn_install_sound"
 
-[node name="ConfirmDelete" type="ConfirmationDialog" parent="Main/TabBar/Soundpacks"]
+[node name="ConfirmDeleteSoundDlg" type="ConfirmationDialog" parent="MainLayout/TabbedLayout/SoundArea"]
+unique_name_in_owner = true
 dialog_text = "dlg_sound_deletion_text"
 dialog_autowrap = true
 
-[node name="ConfirmManualDownload" type="ConfirmationDialog" parent="Main/TabBar/Soundpacks"]
+[node name="ManualSoundDownloadDlg" type="ConfirmationDialog" parent="MainLayout/TabbedLayout/SoundArea"]
+unique_name_in_owner = true
 dialog_text = "dlg_sound_manual_dl_text"
 dialog_autowrap = true
 
-[node name="InstallFromFileDialog" type="FileDialog" parent="Main/TabBar/Soundpacks"]
+[node name="InstallFromFileDialog" type="FileDialog" parent="MainLayout/TabbedLayout/SoundArea"]
+unique_name_in_owner = true
 access = 2
 filters = PackedStringArray("*.zip")
 
-[node name="Fonts" type="VBoxContainer" parent="Main/TabBar"]
+[node name="FontsArea" type="VBoxContainer" parent="MainLayout/TabbedLayout"]
 visible = false
 layout_mode = 2
 script = ExtResource("27")
 metadata/_tab_index = 3
 
-[node name="FontSelection" type="HBoxContainer" parent="Main/TabBar/Fonts"]
+[node name="FontConfigMainGroup" type="HBoxContainer" parent="MainLayout/TabbedLayout/FontsArea"]
 layout_mode = 2
 
-[node name="RightPane" type="VBoxContainer" parent="Main/TabBar/Fonts/FontSelection"]
+[node name="FontConfigLeftGroup" type="VBoxContainer" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="Label" type="Label" parent="Main/TabBar/Fonts/FontSelection/RightPane"]
+[node name="AvailableFontsLabel" type="Label" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigLeftGroup"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "lbl_avail_fonts"
 
-[node name="FontsList" type="ItemList" parent="Main/TabBar/Fonts/FontSelection/RightPane"]
+[node name="FontsList" type="ItemList" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigLeftGroup"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 180)
 layout_mode = 2
 size_flags_stretch_ratio = 2.0
@@ -529,154 +578,166 @@ item_1/text = "Item 1"
 item_2/text = "Item 2"
 item_3/text = "Item 3"
 
-[node name="Buttons" type="VBoxContainer" parent="Main/TabBar/Fonts/FontSelection/RightPane"]
+[node name="FontfaceSettingBox" type="VBoxContainer" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigLeftGroup"]
 layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 6
 
-[node name="BtnSetFontUI" type="Button" parent="Main/TabBar/Fonts/FontSelection/RightPane/Buttons"]
+[node name="SetFontUIBtn" type="Button" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigLeftGroup/FontfaceSettingBox"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 5
 tooltip_text = "tooltip_set_font_ui"
 text = "btn_set_font_ui"
 
-[node name="BtnSetFontMap" type="Button" parent="Main/TabBar/Fonts/FontSelection/RightPane/Buttons"]
+[node name="SetFontMapBtn" type="Button" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigLeftGroup/FontfaceSettingBox"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 5
 tooltip_text = "tooltip_set_font_map"
 text = "btn_set_font_map"
 
-[node name="BtnSetFontOvermap" type="Button" parent="Main/TabBar/Fonts/FontSelection/RightPane/Buttons"]
+[node name="SetFontOvermapBtn" type="Button" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigLeftGroup/FontfaceSettingBox"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 5
 tooltip_text = "tooltip_set_font_omap"
 text = "btn_set_font_omap"
 
-[node name="BtnSetFontAll" type="Button" parent="Main/TabBar/Fonts/FontSelection/RightPane/Buttons"]
+[node name="SetFontAllBtn" type="Button" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigLeftGroup/FontfaceSettingBox"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 5
 tooltip_text = "tooltip_set_font_all"
 text = "btn_set_font_all"
 
-[node name="BtnResetFont" type="Button" parent="Main/TabBar/Fonts/FontSelection/RightPane/Buttons"]
+[node name="ResetFontBtn" type="Button" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigLeftGroup/FontfaceSettingBox"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 5
 tooltip_text = "tooltip_reset_font"
 text = "btn_reset_font"
 
-[node name="VSeparator" type="VSeparator" parent="Main/TabBar/Fonts/FontSelection"]
+[node name="VSeparator" type="VSeparator" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup"]
 layout_mode = 2
 
-[node name="LeftPane" type="VBoxContainer" parent="Main/TabBar/Fonts/FontSelection"]
+[node name="FontConfigRightGroup" type="VBoxContainer" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 size_flags_stretch_ratio = 3.0
 theme_override_constants/separation = 4
 
-[node name="Label" type="Label" parent="Main/TabBar/Fonts/FontSelection/LeftPane"]
+[node name="FontPreviewLabel" type="Label" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "lbl_font_preview"
 
-[node name="Preview" type="RichTextLabel" parent="Main/TabBar/Fonts/FontSelection/LeftPane"]
+[node name="FontPreviewText" type="RichTextLabel" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_constants/line_separation = -2
 bbcode_enabled = true
 
-[node name="PreviewCyrillic" type="CheckBox" parent="Main/TabBar/Fonts/FontSelection/LeftPane"]
+[node name="PreviewCyrillicSwitch" type="CheckBox" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "tooltip_preview_cyrillics"
 text = "cbtn_preview_cyrillics"
 
-[node name="HSeparator" type="HSeparator" parent="Main/TabBar/Fonts/FontSelection/LeftPane"]
+[node name="HSeparator" type="HSeparator" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="OtherSettings" type="HBoxContainer" parent="Main/TabBar/Fonts/FontSelection/LeftPane"]
+[node name="OtherSettingsBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Label" type="Label" parent="Main/TabBar/Fonts/FontSelection/LeftPane/OtherSettings"]
+[node name="OtherSettingsLabel" type="Label" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup/OtherSettingsBox"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "lbl_other_settings"
 
-[node name="HelpIcon" parent="Main/TabBar/Fonts/FontSelection/LeftPane/OtherSettings" instance=ExtResource("26")]
+[node name="FontSettingsHelpBtn" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup/OtherSettingsBox" instance=ExtResource("26")]
 custom_minimum_size = Vector2(22, 22)
 layout_mode = 2
 tooltip_text = "View detailed description of these settings."
 texture_normal = ExtResource("19_rcpd3")
 
-[node name="FontSizeUI" type="HBoxContainer" parent="Main/TabBar/Fonts/FontSelection/LeftPane"]
+[node name="FontSizeUIBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup"]
 layout_mode = 2
 size_flags_vertical = 6
 tooltip_text = "tooltip_font_sz_ui"
 
-[node name="Label" type="Label" parent="Main/TabBar/Fonts/FontSelection/LeftPane/FontSizeUI"]
+[node name="FontSizeUILabel" type="Label" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup/FontSizeUIBox"]
 layout_mode = 2
 text = "lbl_font_sz_ui"
 
-[node name="sbFontSizeUI" type="SpinBox" parent="Main/TabBar/Fonts/FontSelection/LeftPane/FontSizeUI"]
+[node name="FontSizeUIField" type="SpinBox" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup/FontSizeUIBox"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 min_value = 8.0
 max_value = 64.0
 value = 8.0
 
-[node name="FontSizeMap" type="HBoxContainer" parent="Main/TabBar/Fonts/FontSelection/LeftPane"]
+[node name="FontSizeMapBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup"]
 layout_mode = 2
 size_flags_vertical = 6
 tooltip_text = "tooltip_font_sz_map"
 
-[node name="Label" type="Label" parent="Main/TabBar/Fonts/FontSelection/LeftPane/FontSizeMap"]
+[node name="FontSizeMapLabel" type="Label" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup/FontSizeMapBox"]
 layout_mode = 2
 tooltip_text = "tooltip_font_sz_map"
 text = "lbl_font_sz_map"
 
-[node name="sbFontSizeMap" type="SpinBox" parent="Main/TabBar/Fonts/FontSelection/LeftPane/FontSizeMap"]
+[node name="FontSizeMapField" type="SpinBox" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup/FontSizeMapBox"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 min_value = 8.0
 max_value = 64.0
 value = 8.0
 
-[node name="FontSizeOvermap" type="HBoxContainer" parent="Main/TabBar/Fonts/FontSelection/LeftPane"]
+[node name="FontSizeOvermapBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup"]
 layout_mode = 2
 size_flags_vertical = 6
 tooltip_text = "tooltip_font_sz_overmap"
 
-[node name="Label" type="Label" parent="Main/TabBar/Fonts/FontSelection/LeftPane/FontSizeOvermap"]
+[node name="FontSizeOvermapLabel" type="Label" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup/FontSizeOvermapBox"]
 layout_mode = 2
 tooltip_text = "tooltip_font_sz_overmap"
 text = "lbl_font_sz_overmap"
 
-[node name="sbFontSizeOM" type="SpinBox" parent="Main/TabBar/Fonts/FontSelection/LeftPane/FontSizeOvermap"]
+[node name="FontSizeOvermapField" type="SpinBox" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup/FontSizeOvermapBox"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 min_value = 8.0
 max_value = 64.0
 value = 8.0
 
-[node name="FontBlending" type="CheckButton" parent="Main/TabBar/Fonts/FontSelection/LeftPane"]
+[node name="FontBlendingSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup"]
+unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_font_blending"
 text = "cbtn_font_blending"
 
-[node name="BtnSaveFontOptions" type="Button" parent="Main/TabBar/Fonts/FontSelection/LeftPane"]
+[node name="SaveFontOptionsBtn" type="Button" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup"]
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "tooltip_save_font"
 text = "btn_save_font"
 
-[node name="HSeparator" type="HSeparator" parent="Main/TabBar/Fonts"]
+[node name="HSeparator" type="HSeparator" parent="MainLayout/TabbedLayout/FontsArea"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="FontConfigInfo" type="RichTextLabel" parent="Main/TabBar/Fonts"]
+[node name="CurrentFontConfigInfo" type="RichTextLabel" parent="MainLayout/TabbedLayout/FontsArea"]
+unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
 text = "Existing font configuration will be shown here.
@@ -685,26 +746,28 @@ text = "Existing font configuration will be shown here.
 ..."
 fit_content = true
 
-[node name="FontSizeHelpDialog" parent="Main/TabBar/Fonts" instance=ExtResource("29")]
+[node name="FontSizeHelpDialog" parent="MainLayout/TabbedLayout/FontsArea" instance=ExtResource("29")]
+unique_name_in_owner = true
 position = Vector2i(0, 36)
 
-[node name="Backups" type="VBoxContainer" parent="Main/TabBar"]
+[node name="BackupsArea" type="VBoxContainer" parent="MainLayout/TabbedLayout"]
 visible = false
 layout_mode = 2
 script = ExtResource("33")
 metadata/_tab_index = 4
 
-[node name="Available" type="VBoxContainer" parent="Main/TabBar/Backups"]
+[node name="ExistingBackupsGroup" type="VBoxContainer" parent="MainLayout/TabbedLayout/BackupsArea"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Main/TabBar/Backups/Available"]
+[node name="ExistingBackupsLabel" type="Label" parent="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup"]
 layout_mode = 2
 text = "lbl_save_backups"
 
-[node name="HBox" type="HBoxContainer" parent="Main/TabBar/Backups/Available"]
+[node name="BackupsDisplayBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup"]
 layout_mode = 2
 
-[node name="BackupsList" type="ItemList" parent="Main/TabBar/Backups/Available/HBox" groups=["disable_during_backup_operations"]]
+[node name="BackupsList" type="ItemList" parent="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup/BackupsDisplayBox" groups=["disable_during_backup_operations"]]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -721,7 +784,8 @@ item_7/text = "Item 7"
 item_8/text = "Item 8"
 item_9/text = "Item 9"
 
-[node name="BackupInfo" type="RichTextLabel" parent="Main/TabBar/Backups/Available/HBox"]
+[node name="BackupInfo" type="RichTextLabel" parent="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup/BackupsDisplayBox"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 2
@@ -729,67 +793,84 @@ bbcode_enabled = true
 text = "Backup details will appear here."
 selection_enabled = true
 
-[node name="Buttons" type="HBoxContainer" parent="Main/TabBar/Backups/Available"]
+[node name="BackupActionsBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup"]
 layout_mode = 2
 alignment = 1
 
-[node name="BtnRestore" type="Button" parent="Main/TabBar/Backups/Available/Buttons" groups=["disable_during_backup_operations"]]
+[node name="RestoreBackupBtn" type="Button" parent="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup/BackupActionsBox" groups=["disable_during_backup_operations"]]
+unique_name_in_owner = true
 layout_mode = 2
 text = "btn_restore_backup"
 
-[node name="BtnDelete" type="Button" parent="Main/TabBar/Backups/Available/Buttons" groups=["disable_during_backup_operations"]]
+[node name="DeleteBackupBtn" type="Button" parent="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup/BackupActionsBox" groups=["disable_during_backup_operations"]]
+unique_name_in_owner = true
 layout_mode = 2
 text = "btn_delete_backup"
 
-[node name="BtnRefresh" type="Button" parent="Main/TabBar/Backups/Available/Buttons" groups=["disable_during_backup_operations"]]
+[node name="RefreshBackupsBtn" type="Button" parent="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup/BackupActionsBox" groups=["disable_during_backup_operations"]]
 layout_mode = 2
 text = "btn_refresh_backups"
 
-[node name="HSeparator" type="HSeparator" parent="Main/TabBar/Backups"]
+[node name="HSeparator" type="HSeparator" parent="MainLayout/TabbedLayout/BackupsArea"]
 layout_mode = 2
 
-[node name="Current" type="VBoxContainer" parent="Main/TabBar/Backups"]
+[node name="ManualBackupGroup" type="VBoxContainer" parent="MainLayout/TabbedLayout/BackupsArea"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Main/TabBar/Backups/Current"]
+[node name="ManualBackupLabel" type="Label" parent="MainLayout/TabbedLayout/BackupsArea/ManualBackupGroup"]
 layout_mode = 2
 text = "lbl_manual_backup"
 
-[node name="HBox" type="HBoxContainer" parent="Main/TabBar/Backups/Current"]
+[node name="CreateBackupGroup" type="HBoxContainer" parent="MainLayout/TabbedLayout/BackupsArea/ManualBackupGroup"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Main/TabBar/Backups/Current/HBox"]
+[node name="BackupNameLabel" type="Label" parent="MainLayout/TabbedLayout/BackupsArea/ManualBackupGroup/CreateBackupGroup"]
 layout_mode = 2
 text = "lbl_backup_name"
 
-[node name="EditName" type="LineEdit" parent="Main/TabBar/Backups/Current/HBox"]
+[node name="BackupNameField" type="LineEdit" parent="MainLayout/TabbedLayout/BackupsArea/ManualBackupGroup/CreateBackupGroup"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Enter name for new backup"
 
-[node name="BtnCreate" type="Button" parent="Main/TabBar/Backups/Current/HBox" groups=["disable_during_backup_operations"]]
+[node name="CreateBackupBtn" type="Button" parent="MainLayout/TabbedLayout/BackupsArea/ManualBackupGroup/CreateBackupGroup" groups=["disable_during_backup_operations"]]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "btn_create_backup"
 
-[node name="Spacer" type="Control" parent="Main/TabBar/Backups/Current"]
+[node name="Spacer" type="Control" parent="MainLayout/TabbedLayout/BackupsArea/ManualBackupGroup"]
 layout_mode = 2
 
-[node name="Settings" type="VBoxContainer" parent="Main/TabBar"]
+[node name="SettingsArea" type="VBoxContainer" parent="MainLayout/TabbedLayout"]
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 2
 script = ExtResource("8")
 metadata/_tab_index = 5
 
-[node name="LauncherLanguage" type="HBoxContainer" parent="Main/TabBar/Settings"]
+[node name="ViewLicensesDialog" parent="MainLayout/TabbedLayout/SettingsArea" instance=ExtResource("24_cyylm")]
+
+[node name="ViewLicensesLabel" type="RichTextLabel" parent="MainLayout/TabbedLayout/SettingsArea"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("2")
+bbcode_enabled = true
+text = "lbl_licenses"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="LauncherLanguageBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/SettingsArea"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Main/TabBar/Settings/LauncherLanguage"]
+[node name="LauncherLanguageLabel" type="Label" parent="MainLayout/TabbedLayout/SettingsArea/LauncherLanguageBox"]
 layout_mode = 2
 text = "lbl_launcher_language"
 
-[node name="obtnLanguage" type="OptionButton" parent="Main/TabBar/Settings/LauncherLanguage"]
+[node name="LauncherLanguageList" type="OptionButton" parent="MainLayout/TabbedLayout/SettingsArea/LauncherLanguageBox"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 size_flags_horizontal = 10
@@ -827,14 +908,15 @@ popup/item_9/text = "한국어"
 popup/item_9/icon = ExtResource("32_rcpd3")
 popup/item_9/id = 9
 
-[node name="LauncherTheme" type="HBoxContainer" parent="Main/TabBar/Settings"]
+[node name="LauncherThemeBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/SettingsArea"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Main/TabBar/Settings/LauncherTheme"]
+[node name="LauncherThemeLabel" type="Label" parent="MainLayout/TabbedLayout/SettingsArea/LauncherThemeBox"]
 layout_mode = 2
 text = "lbl_launcher_theme"
 
-[node name="obtnTheme" type="OptionButton" parent="Main/TabBar/Settings/LauncherTheme"]
+[node name="LauncherThemeList" type="OptionButton" parent="MainLayout/TabbedLayout/SettingsArea/LauncherThemeBox"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 size_flags_horizontal = 10
@@ -857,85 +939,98 @@ popup/item_4/text = "Solarized Light"
 popup/item_4/icon = ExtResource("38_65f1m")
 popup/item_4/id = 4
 
-[node name="ShowGameDesc" type="CheckButton" parent="Main/TabBar/Settings"]
+[node name="ShowGameDescSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/SettingsArea"]
+unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_show_game_desc"
 text = "cbtn_show_game_desc"
 
-[node name="KeepLauncherOpen" type="CheckButton" parent="Main/TabBar/Settings"]
+[node name="KeepLauncherOpenSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/SettingsArea"]
+unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_keep_launcher_open"
 text = "cbtn_keep_launcher_open"
 
-[node name="PrintTips" type="CheckButton" parent="Main/TabBar/Settings"]
+[node name="PrintTipsSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/SettingsArea"]
+unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_print_tips"
 text = "cbtn_print_tips"
 
-[node name="UpdateToSame" type="CheckButton" parent="Main/TabBar/Settings"]
+[node name="UpdateToSameVerSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/SettingsArea"]
+unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_updating_to_same_build"
 text = "cbtn_updating_to_same_build"
 
-[node name="ShortenNames" type="CheckButton" parent="Main/TabBar/Settings"]
+[node name="ShortenNamesSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/SettingsArea"]
+unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_shorten_release_names"
 text = "cbtn_shorten_release_names"
 
-[node name="AlwaysShowInstalls" type="CheckButton" parent="Main/TabBar/Settings"]
+[node name="AlwaysShowInstallsSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/SettingsArea"]
+unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_always_show_installs"
 text = "cbtn_always_show_installs"
 
-[node name="ShowObsoleteMods" type="CheckButton" parent="Main/TabBar/Settings"]
+[node name="ShowObsoleteModsSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/SettingsArea"]
+unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_show_obsolete_mods"
 text = "cbtn_show_obsolete_mods"
 
-[node name="InstallArchivedMods" type="CheckButton" parent="Main/TabBar/Settings"]
+[node name="InstallArchivedModsSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/SettingsArea"]
+unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_install_archived_mods"
 text = "cbtn_install_archived_mods"
 
-[node name="KeepCache" type="CheckButton" parent="Main/TabBar/Settings"]
+[node name="KeepDownloadCacheSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/SettingsArea"]
+unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_keep_cache"
 text = "cbtn_keep_cache"
 
-[node name="IgnoreCache" type="CheckButton" parent="Main/TabBar/Settings"]
+[node name="IgnoreDownloadCacheSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/SettingsArea"]
+unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_ignore_cache"
 text = "cbtn_ignore_cache"
 
-[node name="ShowDebug" type="CheckButton" parent="Main/TabBar/Settings"]
+[node name="DebugModeSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/SettingsArea"]
+unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_debug_mode"
 text = "cbtn_debug_mode"
 
-[node name="NumReleases" type="HBoxContainer" parent="Main/TabBar/Settings"]
+[node name="NumReleasesBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/SettingsArea"]
 layout_mode = 2
 tooltip_text = "tooltip_num_releases_to_request"
 
-[node name="Label" type="Label" parent="Main/TabBar/Settings/NumReleases"]
+[node name="NumReleasesLabel" type="Label" parent="MainLayout/TabbedLayout/SettingsArea/NumReleasesBox"]
 layout_mode = 2
 text = "lbl_num_releases_to_request"
 
-[node name="sbNumReleases" type="SpinBox" parent="Main/TabBar/Settings/NumReleases"]
+[node name="NumReleasesField" type="SpinBox" parent="MainLayout/TabbedLayout/SettingsArea/NumReleasesBox"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 min_value = 1.0
 value = 30.0
 rounded = true
 
-[node name="NumPrs" type="HBoxContainer" parent="Main/TabBar/Settings"]
+[node name="NumPrsBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/SettingsArea"]
 layout_mode = 2
 tooltip_text = "tooltip_num_prs_to_request"
 
-[node name="Label" type="Label" parent="Main/TabBar/Settings/NumPrs"]
+[node name="NumPrsLabel" type="Label" parent="MainLayout/TabbedLayout/SettingsArea/NumPrsBox"]
 layout_mode = 2
 text = "lbl_num_prs_to_request"
 
-[node name="sbNumPRs" type="SpinBox" parent="Main/TabBar/Settings/NumPrs"]
+[node name="NumPrsField" type="SpinBox" parent="MainLayout/TabbedLayout/SettingsArea/NumPrsBox"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 min_value = 10.0
@@ -943,46 +1038,51 @@ step = 10.0
 value = 100.0
 rounded = true
 
-[node name="ProxySettings" type="HBoxContainer" parent="Main/TabBar/Settings"]
+[node name="ProxySettingsBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/SettingsArea"]
 layout_mode = 2
 tooltip_text = "tooltip_proxy_settings"
 
-[node name="Label" type="Label" parent="Main/TabBar/Settings/ProxySettings"]
+[node name="ProxySettingsLabel" type="Label" parent="MainLayout/TabbedLayout/SettingsArea/ProxySettingsBox"]
 layout_mode = 2
 text = "lbl_proxy_settings"
 
-[node name="obtnProxyOption" type="OptionButton" parent="Main/TabBar/Settings/ProxySettings"]
+[node name="ProxyOptionList" type="OptionButton" parent="MainLayout/TabbedLayout/SettingsArea/ProxySettingsBox"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_stretch_ratio = 20.0
 tooltip_text = "tooltip_proxy_options"
 
-[node name="leProxyHost" type="LineEdit" parent="Main/TabBar/Settings/ProxySettings"]
+[node name="ProxyHostField" type="LineEdit" parent="MainLayout/TabbedLayout/SettingsArea/ProxySettingsBox"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 placeholder_text = "localhost"
 
-[node name="sbProxyPort" type="SpinBox" parent="Main/TabBar/Settings/ProxySettings"]
+[node name="ProxyPortField" type="SpinBox" parent="MainLayout/TabbedLayout/SettingsArea/ProxySettingsBox"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 max_value = 65535.0
 
-[node name="ScaleOverride" type="HBoxContainer" parent="Main/TabBar/Settings"]
+[node name="CustomScaleBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/SettingsArea"]
 layout_mode = 2
 tooltip_text = "tooltip_ui_scale_override"
 
-[node name="Label" type="Label" parent="Main/TabBar/Settings/ScaleOverride"]
+[node name="CustomScaleLabel" type="Label" parent="MainLayout/TabbedLayout/SettingsArea/CustomScaleBox"]
 layout_mode = 2
 text = "lbl_ui_scale_override"
 
-[node name="cbScaleOverrideEnable" type="CheckBox" parent="Main/TabBar/Settings/ScaleOverride"]
+[node name="CustomScaleEnableSwitch" type="CheckBox" parent="MainLayout/TabbedLayout/SettingsArea/CustomScaleBox"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_stretch_ratio = 20.0
 text = "cbtn_enable_scale"
 
-[node name="sbScaleOverride" type="SpinBox" parent="Main/TabBar/Settings/ScaleOverride"]
+[node name="CustomScaleValueField" type="SpinBox" parent="MainLayout/TabbedLayout/SettingsArea/CustomScaleBox"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 min_value = 75.0
@@ -992,71 +1092,73 @@ value = 100.0
 editable = false
 suffix = "%"
 
-[node name="Debug" type="VBoxContainer" parent="Main/TabBar"]
+[node name="DebugArea" type="VBoxContainer" parent="MainLayout/TabbedLayout"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 script = ExtResource("14")
 metadata/_tab_index = 6
 
-[node name="Label" type="Label" parent="Main/TabBar/Debug"]
+[node name="Label" type="Label" parent="MainLayout/TabbedLayout/DebugArea"]
 layout_mode = 2
 text = "This tab contains functions helpful in debugging parts of the launcher during development. Useless for anything else."
 autowrap_mode = 2
 
-[node name="Button" type="Button" parent="Main/TabBar/Debug"]
+[node name="Button" type="Button" parent="MainLayout/TabbedLayout/DebugArea"]
 layout_mode = 2
 size_flags_horizontal = 6
 text = "Test mod directory parsing"
 
-[node name="Button2" type="Button" parent="Main/TabBar/Debug"]
+[node name="Button2" type="Button" parent="MainLayout/TabbedLayout/DebugArea"]
 layout_mode = 2
 size_flags_horizontal = 6
 text = "Test sound directory parsing"
 
-[node name="Button3" type="Button" parent="Main/TabBar/Debug"]
+[node name="Button3" type="Button" parent="MainLayout/TabbedLayout/DebugArea"]
 layout_mode = 2
 size_flags_horizontal = 6
 text = "Test passing of arguments to shell commands"
 
-[node name="Button4" type="Button" parent="Main/TabBar/Debug"]
+[node name="Button4" type="Button" parent="MainLayout/TabbedLayout/DebugArea"]
 layout_mode = 2
 size_flags_horizontal = 6
 text = "Test different types of status messages"
 
-[node name="Button5" type="Button" parent="Main/TabBar/Debug"]
+[node name="Button5" type="Button" parent="MainLayout/TabbedLayout/DebugArea"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Test recursive directory listing"
 
-[node name="Button6" type="Button" parent="Main/TabBar/Debug"]
+[node name="Button6" type="Button" parent="MainLayout/TabbedLayout/DebugArea"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Print a random Tip of the Day"
 
-[node name="Button7" type="Button" parent="Main/TabBar/Debug"]
+[node name="Button7" type="Button" parent="MainLayout/TabbedLayout/DebugArea"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Test path resolution in PathHelper"
 
-[node name="Button8" type="Button" parent="Main/TabBar/Debug"]
+[node name="Button8" type="Button" parent="MainLayout/TabbedLayout/DebugArea"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Test position retrieval"
 
-[node name="Button9" type="Button" parent="Main/TabBar/Debug"]
+[node name="Button9" type="Button" parent="MainLayout/TabbedLayout/DebugArea"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Print screen info"
 
-[node name="Button10" type="Button" parent="Main/TabBar/Debug"]
+[node name="Button10" type="Button" parent="MainLayout/TabbedLayout/DebugArea"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Browse internal filesystem"
 
-[node name="BrowseResourcesDialog" type="FileDialog" parent="Main/TabBar/Debug"]
+[node name="BrowseResourcesDialog" type="FileDialog" parent="MainLayout/TabbedLayout/DebugArea"]
 unique_name_in_owner = true
 
-[node name="Log" type="RichTextLabel" parent="Main"]
+[node name="LogText" type="RichTextLabel" parent="MainLayout"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 2
@@ -1064,145 +1166,152 @@ bbcode_enabled = true
 scroll_following = true
 selection_enabled = true
 
-[node name="Releases" type="Node" parent="."]
+[node name="ReleaseManager" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("5")
 
-[node name="HTTPRequest_DDA" type="HTTPRequest" parent="Releases"]
+[node name="HTTPRequest_DDA" type="HTTPRequest" parent="ReleaseManager"]
 
-[node name="HTTPRequest_BN" type="HTTPRequest" parent="Releases"]
+[node name="HTTPRequest_BN" type="HTTPRequest" parent="ReleaseManager"]
 
-[node name="HTTPRequest_EOD" type="HTTPRequest" parent="Releases"]
+[node name="HTTPRequest_EOD" type="HTTPRequest" parent="ReleaseManager"]
 
-[node name="HTTPRequest_TISH" type="HTTPRequest" parent="Releases"]
+[node name="HTTPRequest_TISH" type="HTTPRequest" parent="ReleaseManager"]
 
-[node name="HTTPRequest_TLG" type="HTTPRequest" parent="Releases"]
+[node name="HTTPRequest_TLG" type="HTTPRequest" parent="ReleaseManager"]
 
 [node name="ReleaseInstaller" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("9")
 
-[node name="Mods" type="Node" parent="."]
+[node name="ModManager" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("12")
 
-[node name="Sound" type="Node" parent="."]
+[node name="SoundpackManager" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("13")
 
-[node name="Fonts" type="Node" parent="."]
+[node name="FontManager" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("28")
 
-[node name="Backups" type="Node" parent="."]
+[node name="BackupManager" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("34")
 
-[connection signal="gui_input" from="Main/GameInfo/Icon" to="." method="_on_InfoIcon_gui_input"]
-[connection signal="meta_clicked" from="Main/GameInfo/Description" to="." method="_on_Description_meta_clicked"]
-[connection signal="tab_changed" from="Main/TabBar" to="." method="_on_Tabs_tab_changed"]
-[connection signal="tab_changed" from="Main/TabBar" to="Main/TabBar/Mods" method="_on_Tabs_tab_changed"]
-[connection signal="tab_changed" from="Main/TabBar" to="Main/TabBar/Soundpacks" method="_on_Tabs_tab_changed"]
-[connection signal="tab_changed" from="Main/TabBar" to="Main/TabBar/Fonts" method="_on_Tabs_tab_changed"]
-[connection signal="tab_changed" from="Main/TabBar" to="Main/TabBar/Backups" method="_on_Tabs_tab_changed"]
-[connection signal="meta_clicked" from="Main/TabBar/Game/Channel/HBox/ChangelogLink" to="." method="_on_ChangelogLink_meta_clicked"]
-[connection signal="item_selected" from="Main/TabBar/Game/Builds/BuildsList" to="." method="_on_BuildsList_item_selected"]
-[connection signal="pressed" from="Main/TabBar/Game/Builds/BtnRefresh" to="." method="_on_BtnRefresh_pressed"]
-[connection signal="pressed" from="Main/TabBar/Game/BtnInstall" to="." method="_on_BtnInstall_pressed"]
-[connection signal="toggled" from="Main/TabBar/Game/UpdateCurrent" to="." method="_on_cbUpdateCurrent_toggled"]
-[connection signal="pressed" from="Main/TabBar/Game/ActiveInstall/Build/GameDir" to="." method="_on_GameDir_pressed"]
-[connection signal="pressed" from="Main/TabBar/Game/ActiveInstall/Build/UserDir" to="." method="_on_UserDir_pressed"]
-[connection signal="pressed" from="Main/TabBar/Game/ActiveInstall/Launch/BtnPlay" to="." method="_on_BtnPlay_pressed"]
-[connection signal="pressed" from="Main/TabBar/Game/ActiveInstall/Launch/BtnResume" to="." method="_on_BtnResume_pressed"]
-[connection signal="item_activated" from="Main/TabBar/Game/GameInstalls/HBox/InstallsList" to="." method="_on_InstallsList_item_activated"]
-[connection signal="item_selected" from="Main/TabBar/Game/GameInstalls/HBox/InstallsList" to="." method="_on_InstallsList_item_selected"]
-[connection signal="pressed" from="Main/TabBar/Game/GameInstalls/HBox/VBox/btnMakeActive" to="." method="_on_btnMakeActive_pressed"]
-[connection signal="pressed" from="Main/TabBar/Game/GameInstalls/HBox/VBox/btnDelete" to="." method="_on_btnDelete_pressed"]
-[connection signal="item_selected" from="Main/TabBar/Mods/HBox/Installed/InstalledList" to="Main/TabBar/Mods" method="_on_InstalledList_item_selected"]
-[connection signal="multi_selected" from="Main/TabBar/Mods/HBox/Installed/InstalledList" to="Main/TabBar/Mods" method="_on_InstalledList_multi_selected"]
-[connection signal="toggled" from="Main/TabBar/Mods/HBox/Installed/ShowStock" to="Main/TabBar/Mods" method="_on_ShowStock_toggled"]
-[connection signal="pressed" from="Main/TabBar/Mods/HBox/Installed/BtnDelete" to="Main/TabBar/Mods" method="_on_BtnDelete_pressed"]
-[connection signal="item_selected" from="Main/TabBar/Mods/HBox/Available/AvailableList" to="Main/TabBar/Mods" method="_on_AvailableList_item_selected"]
-[connection signal="multi_selected" from="Main/TabBar/Mods/HBox/Available/AvailableList" to="Main/TabBar/Mods" method="_on_AvailableList_multi_selected"]
-[connection signal="toggled" from="Main/TabBar/Mods/HBox/Available/ShowInstalled" to="Main/TabBar/Mods" method="_on_ShowInstalled_toggled"]
-[connection signal="pressed" from="Main/TabBar/Mods/HBox/Available/VBox/BtnAddSelectedMod" to="Main/TabBar/Mods" method="_on_BtnAddSelectedMod_pressed"]
-[connection signal="pressed" from="Main/TabBar/Mods/HBox/Available/VBox/BtnAddAllMods" to="Main/TabBar/Mods" method="_on_BtnAddAllMods_pressed"]
-[connection signal="pressed" from="Main/TabBar/Mods/HBox/Available/BtnDownloadKenan" to="Main/TabBar/Mods" method="_on_BtnDownloadKenan_pressed"]
-[connection signal="confirmed" from="Main/TabBar/Mods/DeleteMultipleDialog" to="Main/TabBar/Mods" method="_on_DeleteMultipleDialog_confirmed"]
-[connection signal="response_no" from="Main/TabBar/Mods/ModReinstallDialog" to="Main/TabBar/Mods" method="_on_ModReinstallDialog_response_no"]
-[connection signal="response_yes" from="Main/TabBar/Mods/ModReinstallDialog" to="Main/TabBar/Mods" method="_on_ModReinstallDialog_response_yes"]
-[connection signal="item_selected" from="Main/TabBar/Soundpacks/HBox/Installed/InstalledList" to="Main/TabBar/Soundpacks" method="_on_InstalledList_item_selected"]
-[connection signal="toggled" from="Main/TabBar/Soundpacks/HBox/Installed/ShowStock" to="Main/TabBar/Soundpacks" method="_on_ShowStock_toggled"]
-[connection signal="pressed" from="Main/TabBar/Soundpacks/HBox/Installed/BtnDelete" to="Main/TabBar/Soundpacks" method="_on_BtnDelete_pressed"]
-[connection signal="item_selected" from="Main/TabBar/Soundpacks/HBox/Downloadable/AvailableList" to="Main/TabBar/Soundpacks" method="_on_AvailableList_item_selected"]
-[connection signal="pressed" from="Main/TabBar/Soundpacks/HBox/Downloadable/BtnInstall" to="Main/TabBar/Soundpacks" method="_on_BtnInstall_pressed"]
-[connection signal="confirmed" from="Main/TabBar/Soundpacks/ConfirmDelete" to="Main/TabBar/Soundpacks" method="_on_ConfirmDelete_confirmed"]
-[connection signal="confirmed" from="Main/TabBar/Soundpacks/ConfirmManualDownload" to="Main/TabBar/Soundpacks" method="_on_ConfirmManualDownload_confirmed"]
-[connection signal="file_selected" from="Main/TabBar/Soundpacks/InstallFromFileDialog" to="Main/TabBar/Soundpacks" method="_on_InstallFromFileDialog_file_selected"]
-[connection signal="item_selected" from="Main/TabBar/Fonts/FontSelection/RightPane/FontsList" to="Main/TabBar/Fonts" method="_on_FontsList_item_selected"]
-[connection signal="pressed" from="Main/TabBar/Fonts/FontSelection/RightPane/Buttons/BtnSetFontUI" to="Main/TabBar/Fonts" method="_on_BtnSetFontX_pressed" binds= [true, false, false]]
-[connection signal="pressed" from="Main/TabBar/Fonts/FontSelection/RightPane/Buttons/BtnSetFontMap" to="Main/TabBar/Fonts" method="_on_BtnSetFontX_pressed" binds= [false, true, false]]
-[connection signal="pressed" from="Main/TabBar/Fonts/FontSelection/RightPane/Buttons/BtnSetFontOvermap" to="Main/TabBar/Fonts" method="_on_BtnSetFontX_pressed" binds= [false, false, true]]
-[connection signal="pressed" from="Main/TabBar/Fonts/FontSelection/RightPane/Buttons/BtnSetFontAll" to="Main/TabBar/Fonts" method="_on_BtnSetFontX_pressed" binds= [true, true, true]]
-[connection signal="pressed" from="Main/TabBar/Fonts/FontSelection/RightPane/Buttons/BtnResetFont" to="Main/TabBar/Fonts" method="_on_BtnResetFont_pressed"]
-[connection signal="toggled" from="Main/TabBar/Fonts/FontSelection/LeftPane/PreviewCyrillic" to="Main/TabBar/Fonts" method="_on_PreviewCyrillic_toggled"]
-[connection signal="pressed" from="Main/TabBar/Fonts/FontSelection/LeftPane/OtherSettings/HelpIcon" to="Main/TabBar/Fonts" method="_on_HelpIcon_pressed"]
-[connection signal="pressed" from="Main/TabBar/Fonts/FontSelection/LeftPane/BtnSaveFontOptions" to="Main/TabBar/Fonts" method="_on_BtnSaveFontOptions_pressed"]
-[connection signal="item_selected" from="Main/TabBar/Backups/Available/HBox/BackupsList" to="Main/TabBar/Backups" method="_on_BackupsList_item_selected"]
-[connection signal="meta_clicked" from="Main/TabBar/Backups/Available/HBox/BackupInfo" to="Main/TabBar/Backups" method="_on_BackupInfo_meta_clicked"]
-[connection signal="pressed" from="Main/TabBar/Backups/Available/Buttons/BtnRestore" to="Main/TabBar/Backups" method="_on_BtnRestore_pressed"]
-[connection signal="pressed" from="Main/TabBar/Backups/Available/Buttons/BtnDelete" to="Main/TabBar/Backups" method="_on_BtnDelete_pressed"]
-[connection signal="pressed" from="Main/TabBar/Backups/Available/Buttons/BtnRefresh" to="Main/TabBar/Backups" method="_on_BtnRefresh_pressed"]
-[connection signal="text_changed" from="Main/TabBar/Backups/Current/HBox/EditName" to="Main/TabBar/Backups" method="_on_EditName_text_changed"]
-[connection signal="text_submitted" from="Main/TabBar/Backups/Current/HBox/EditName" to="Main/TabBar/Backups" method="_on_EditName_text_entered"]
-[connection signal="pressed" from="Main/TabBar/Backups/Current/HBox/BtnCreate" to="Main/TabBar/Backups" method="_on_BtnCreate_pressed"]
-[connection signal="item_selected" from="Main/TabBar/Settings/LauncherLanguage/obtnLanguage" to="Main/TabBar/Settings" method="_on_obtnLanguage_item_selected"]
-[connection signal="item_selected" from="Main/TabBar/Settings/LauncherTheme/obtnTheme" to="Main/TabBar/Settings" method="_on_obtnTheme_item_selected"]
-[connection signal="toggled" from="Main/TabBar/Settings/ShowGameDesc" to="Main/TabBar/Settings" method="_on_ShowGameDesc_toggled"]
-[connection signal="toggled" from="Main/TabBar/Settings/KeepLauncherOpen" to="Main/TabBar/Settings" method="_on_KeepLauncherOpen_toggled"]
-[connection signal="toggled" from="Main/TabBar/Settings/PrintTips" to="Main/TabBar/Settings" method="_on_PrintTips_toggled"]
-[connection signal="toggled" from="Main/TabBar/Settings/UpdateToSame" to="Main/TabBar/Settings" method="_on_UpdateToSame_toggled"]
-[connection signal="toggled" from="Main/TabBar/Settings/ShortenNames" to="Main/TabBar/Settings" method="_on_ShortenNames_toggled"]
-[connection signal="toggled" from="Main/TabBar/Settings/AlwaysShowInstalls" to="Main/TabBar/Settings" method="_on_AlwaysShowInstalls_toggled"]
-[connection signal="toggled" from="Main/TabBar/Settings/ShowObsoleteMods" to="Main/TabBar/Settings" method="_on_ShowObsoleteMods_toggled"]
-[connection signal="toggled" from="Main/TabBar/Settings/InstallArchivedMods" to="Main/TabBar/Settings" method="_on_InstallArchivedMods_toggled"]
-[connection signal="toggled" from="Main/TabBar/Settings/KeepCache" to="Main/TabBar/Settings" method="_on_KeepCache_toggled"]
-[connection signal="toggled" from="Main/TabBar/Settings/IgnoreCache" to="Main/TabBar/Settings" method="_on_IgnoreCache_toggled"]
-[connection signal="toggled" from="Main/TabBar/Settings/ShowDebug" to="Main/TabBar/Settings" method="_on_ShowDebug_toggled"]
-[connection signal="value_changed" from="Main/TabBar/Settings/NumReleases/sbNumReleases" to="Main/TabBar/Settings" method="_on_sbNumReleases_value_changed"]
-[connection signal="value_changed" from="Main/TabBar/Settings/NumPrs/sbNumPRs" to="Main/TabBar/Settings" method="_on_sbNumPRs_value_changed"]
-[connection signal="item_selected" from="Main/TabBar/Settings/ProxySettings/obtnProxyOption" to="Main/TabBar/Settings" method="_on_obtnProxyOption_item_selected"]
-[connection signal="text_changed" from="Main/TabBar/Settings/ProxySettings/leProxyHost" to="Main/TabBar/Settings" method="_on_leProxyHost_text_changed"]
-[connection signal="value_changed" from="Main/TabBar/Settings/ProxySettings/sbProxyPort" to="Main/TabBar/Settings" method="_on_sbProxyPort_value_changed"]
-[connection signal="toggled" from="Main/TabBar/Settings/ScaleOverride/cbScaleOverrideEnable" to="Main/TabBar/Settings" method="_on_cbScaleOverrideEnable_toggled"]
-[connection signal="value_changed" from="Main/TabBar/Settings/ScaleOverride/sbScaleOverride" to="Main/TabBar/Settings" method="_on_sbScaleOverride_value_changed"]
-[connection signal="pressed" from="Main/TabBar/Debug/Button" to="Main/TabBar/Debug" method="_on_Button_pressed"]
-[connection signal="pressed" from="Main/TabBar/Debug/Button2" to="Main/TabBar/Debug" method="_on_Button2_pressed"]
-[connection signal="pressed" from="Main/TabBar/Debug/Button3" to="Main/TabBar/Debug" method="_on_Button3_pressed"]
-[connection signal="pressed" from="Main/TabBar/Debug/Button4" to="Main/TabBar/Debug" method="_on_Button4_pressed"]
-[connection signal="pressed" from="Main/TabBar/Debug/Button5" to="Main/TabBar/Debug" method="_on_Button5_pressed"]
-[connection signal="pressed" from="Main/TabBar/Debug/Button6" to="Main/TabBar/Debug" method="_on_Button6_pressed"]
-[connection signal="pressed" from="Main/TabBar/Debug/Button7" to="Main/TabBar/Debug" method="_on_Button7_pressed"]
-[connection signal="pressed" from="Main/TabBar/Debug/Button8" to="Main/TabBar/Debug" method="_on_Button8_pressed"]
-[connection signal="pressed" from="Main/TabBar/Debug/Button9" to="Main/TabBar/Debug" method="_on_Button9_pressed"]
-[connection signal="pressed" from="Main/TabBar/Debug/Button10" to="Main/TabBar/Debug" method="_on_button_10_pressed"]
-[connection signal="meta_clicked" from="Main/Log" to="." method="_on_Log_meta_clicked"]
-[connection signal="done_fetching_releases" from="Releases" to="." method="_on_Releases_done_fetching_releases"]
-[connection signal="started_fetching_releases" from="Releases" to="." method="_on_Releases_started_fetching_releases"]
-[connection signal="request_completed" from="Releases/HTTPRequest_DDA" to="Releases" method="_on_request_completed_dda"]
-[connection signal="request_completed" from="Releases/HTTPRequest_BN" to="Releases" method="_on_request_completed_bn"]
-[connection signal="request_completed" from="Releases/HTTPRequest_EOD" to="Releases" method="_on_request_completed_eod"]
-[connection signal="request_completed" from="Releases/HTTPRequest_TISH" to="Releases" method="_on_request_completed_tish"]
-[connection signal="request_completed" from="Releases/HTTPRequest_TLG" to="Releases" method="_on_request_completed_tlg"]
+[connection signal="gui_input" from="MainLayout/GameInfoBox/GameDescIcon" to="." method="_on_InfoIcon_gui_input"]
+[connection signal="meta_clicked" from="MainLayout/GameInfoBox/GameDescText" to="." method="_on_Description_meta_clicked"]
+[connection signal="tab_changed" from="MainLayout/TabbedLayout" to="." method="_on_Tabs_tab_changed"]
+[connection signal="tab_changed" from="MainLayout/TabbedLayout" to="MainLayout/TabbedLayout/ModsArea" method="_on_Tabs_tab_changed"]
+[connection signal="tab_changed" from="MainLayout/TabbedLayout" to="MainLayout/TabbedLayout/SoundArea" method="_on_Tabs_tab_changed"]
+[connection signal="tab_changed" from="MainLayout/TabbedLayout" to="MainLayout/TabbedLayout/FontsArea" method="_on_Tabs_tab_changed"]
+[connection signal="tab_changed" from="MainLayout/TabbedLayout" to="MainLayout/TabbedLayout/BackupsArea" method="_on_Tabs_tab_changed"]
+[connection signal="meta_clicked" from="MainLayout/TabbedLayout/GameArea/ChannelSelectGroup/ChannelTitleBox/ChangelogLinkLabel" to="." method="_on_ChangelogLink_meta_clicked"]
+[connection signal="item_selected" from="MainLayout/TabbedLayout/GameArea/ReleaseSelectGroup/ReleasesList" to="." method="_on_BuildsList_item_selected"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/GameArea/ReleaseSelectGroup/RefreshReleasesBtn" to="." method="_on_BtnRefresh_pressed"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/GameArea/InstallReleaseBtn" to="." method="_on_BtnInstall_pressed"]
+[connection signal="toggled" from="MainLayout/TabbedLayout/GameArea/UpdateCurrentSwitch" to="." method="_on_cbUpdateCurrent_toggled"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup/ActiveInstallNameBox/GameDirBtn" to="." method="_on_GameDir_pressed"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup/ActiveInstallNameBox/UserDirBtn" to="." method="_on_UserDir_pressed"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup/LaunchGameBox/LaunchGameBtn" to="." method="_on_BtnPlay_pressed"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup/LaunchGameBox/QuickLoadBtn" to="." method="_on_BtnResume_pressed"]
+[connection signal="item_activated" from="MainLayout/TabbedLayout/GameArea/GameInstallsGroup/GameInstallsMgmtGroup/GameInstallsList" to="." method="_on_InstallsList_item_activated"]
+[connection signal="item_selected" from="MainLayout/TabbedLayout/GameArea/GameInstallsGroup/GameInstallsMgmtGroup/GameInstallsList" to="." method="_on_InstallsList_item_selected"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/GameArea/GameInstallsGroup/GameInstallsMgmtGroup/GameInstallActionsBox/MakeInstallActiveBtn" to="." method="_on_btnMakeActive_pressed"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/GameArea/GameInstallsGroup/GameInstallsMgmtGroup/GameInstallActionsBox/DeleteGameInstallBtn" to="." method="_on_btnDelete_pressed"]
+[connection signal="item_selected" from="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/InstalledModsGroup/InstalledModsList" to="MainLayout/TabbedLayout/ModsArea" method="_on_InstalledList_item_selected"]
+[connection signal="multi_selected" from="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/InstalledModsGroup/InstalledModsList" to="MainLayout/TabbedLayout/ModsArea" method="_on_InstalledList_multi_selected"]
+[connection signal="toggled" from="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/InstalledModsGroup/ShowStockModsSwitch" to="MainLayout/TabbedLayout/ModsArea" method="_on_ShowStock_toggled"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/InstalledModsGroup/DeleteModsBtn" to="MainLayout/TabbedLayout/ModsArea" method="_on_BtnDelete_pressed"]
+[connection signal="item_selected" from="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup/AvailableModsList" to="MainLayout/TabbedLayout/ModsArea" method="_on_AvailableList_item_selected"]
+[connection signal="multi_selected" from="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup/AvailableModsList" to="MainLayout/TabbedLayout/ModsArea" method="_on_AvailableList_multi_selected"]
+[connection signal="toggled" from="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup/ShowInstalledModsSwitch" to="MainLayout/TabbedLayout/ModsArea" method="_on_ShowInstalled_toggled"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup/AddModsActionsBox/AddSelectedModsBtn" to="MainLayout/TabbedLayout/ModsArea" method="_on_BtnAddSelectedMod_pressed"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup/AddModsActionsBox/AddAllModsBtn" to="MainLayout/TabbedLayout/ModsArea" method="_on_BtnAddAllMods_pressed"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup/GetKenanModpackBtn" to="MainLayout/TabbedLayout/ModsArea" method="_on_BtnDownloadKenan_pressed"]
+[connection signal="confirmed" from="MainLayout/TabbedLayout/ModsArea/DeleteMultipleModsDlg" to="MainLayout/TabbedLayout/ModsArea" method="_on_DeleteMultipleDialog_confirmed"]
+[connection signal="response_no" from="MainLayout/TabbedLayout/ModsArea/ModReinstallDialog" to="MainLayout/TabbedLayout/ModsArea" method="_on_ModReinstallDialog_response_no"]
+[connection signal="response_yes" from="MainLayout/TabbedLayout/ModsArea/ModReinstallDialog" to="MainLayout/TabbedLayout/ModsArea" method="_on_ModReinstallDialog_response_yes"]
+[connection signal="item_selected" from="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup/InstalledSoundsGroup/InstalledSoundsList" to="MainLayout/TabbedLayout/SoundArea" method="_on_InstalledList_item_selected"]
+[connection signal="toggled" from="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup/InstalledSoundsGroup/ShowStockSoundsSwitch" to="MainLayout/TabbedLayout/SoundArea" method="_on_ShowStock_toggled"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup/InstalledSoundsGroup/DeleteSoundBtn" to="MainLayout/TabbedLayout/SoundArea" method="_on_BtnDelete_pressed"]
+[connection signal="item_selected" from="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup/AvailableSoundsGroup/AvailableSoundsList" to="MainLayout/TabbedLayout/SoundArea" method="_on_AvailableList_item_selected"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup/AvailableSoundsGroup/InstallSoundBtn" to="MainLayout/TabbedLayout/SoundArea" method="_on_BtnInstall_pressed"]
+[connection signal="confirmed" from="MainLayout/TabbedLayout/SoundArea/ConfirmDeleteSoundDlg" to="MainLayout/TabbedLayout/SoundArea" method="_on_ConfirmDelete_confirmed"]
+[connection signal="confirmed" from="MainLayout/TabbedLayout/SoundArea/ManualSoundDownloadDlg" to="MainLayout/TabbedLayout/SoundArea" method="_on_ConfirmManualDownload_confirmed"]
+[connection signal="file_selected" from="MainLayout/TabbedLayout/SoundArea/InstallFromFileDialog" to="MainLayout/TabbedLayout/SoundArea" method="_on_InstallFromFileDialog_file_selected"]
+[connection signal="item_selected" from="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigLeftGroup/FontsList" to="MainLayout/TabbedLayout/FontsArea" method="_on_FontsList_item_selected"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigLeftGroup/FontfaceSettingBox/SetFontUIBtn" to="MainLayout/TabbedLayout/FontsArea" method="_on_BtnSetFontX_pressed" binds= [true, false, false]]
+[connection signal="pressed" from="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigLeftGroup/FontfaceSettingBox/SetFontMapBtn" to="MainLayout/TabbedLayout/FontsArea" method="_on_BtnSetFontX_pressed" binds= [false, true, false]]
+[connection signal="pressed" from="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigLeftGroup/FontfaceSettingBox/SetFontOvermapBtn" to="MainLayout/TabbedLayout/FontsArea" method="_on_BtnSetFontX_pressed" binds= [false, false, true]]
+[connection signal="pressed" from="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigLeftGroup/FontfaceSettingBox/SetFontAllBtn" to="MainLayout/TabbedLayout/FontsArea" method="_on_BtnSetFontX_pressed" binds= [true, true, true]]
+[connection signal="pressed" from="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigLeftGroup/FontfaceSettingBox/ResetFontBtn" to="MainLayout/TabbedLayout/FontsArea" method="_on_BtnResetFont_pressed"]
+[connection signal="toggled" from="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup/PreviewCyrillicSwitch" to="MainLayout/TabbedLayout/FontsArea" method="_on_PreviewCyrillic_toggled"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup/OtherSettingsBox/FontSettingsHelpBtn" to="MainLayout/TabbedLayout/FontsArea" method="_on_HelpIcon_pressed"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup/SaveFontOptionsBtn" to="MainLayout/TabbedLayout/FontsArea" method="_on_BtnSaveFontOptions_pressed"]
+[connection signal="item_selected" from="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup/BackupsDisplayBox/BackupsList" to="MainLayout/TabbedLayout/BackupsArea" method="_on_BackupsList_item_selected"]
+[connection signal="meta_clicked" from="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup/BackupsDisplayBox/BackupInfo" to="MainLayout/TabbedLayout/BackupsArea" method="_on_BackupInfo_meta_clicked"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup/BackupActionsBox/RestoreBackupBtn" to="MainLayout/TabbedLayout/BackupsArea" method="_on_BtnRestore_pressed"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup/BackupActionsBox/DeleteBackupBtn" to="MainLayout/TabbedLayout/BackupsArea" method="_on_BtnDelete_pressed"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup/BackupActionsBox/RefreshBackupsBtn" to="MainLayout/TabbedLayout/BackupsArea" method="_on_BtnRefresh_pressed"]
+[connection signal="text_changed" from="MainLayout/TabbedLayout/BackupsArea/ManualBackupGroup/CreateBackupGroup/BackupNameField" to="MainLayout/TabbedLayout/BackupsArea" method="_on_EditName_text_changed"]
+[connection signal="text_submitted" from="MainLayout/TabbedLayout/BackupsArea/ManualBackupGroup/CreateBackupGroup/BackupNameField" to="MainLayout/TabbedLayout/BackupsArea" method="_on_EditName_text_entered"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/BackupsArea/ManualBackupGroup/CreateBackupGroup/CreateBackupBtn" to="MainLayout/TabbedLayout/BackupsArea" method="_on_BtnCreate_pressed"]
+[connection signal="meta_clicked" from="MainLayout/TabbedLayout/SettingsArea/ViewLicensesLabel" to="MainLayout/TabbedLayout/SettingsArea/ViewLicensesDialog" method="_on_lbl_licenses_meta_clicked"]
+[connection signal="item_selected" from="MainLayout/TabbedLayout/SettingsArea/LauncherLanguageBox/LauncherLanguageList" to="MainLayout/TabbedLayout/SettingsArea" method="_on_obtnLanguage_item_selected"]
+[connection signal="item_selected" from="MainLayout/TabbedLayout/SettingsArea/LauncherThemeBox/LauncherThemeList" to="MainLayout/TabbedLayout/SettingsArea" method="_on_obtnTheme_item_selected"]
+[connection signal="toggled" from="MainLayout/TabbedLayout/SettingsArea/ShowGameDescSwitch" to="MainLayout/TabbedLayout/SettingsArea" method="_on_ShowGameDesc_toggled"]
+[connection signal="toggled" from="MainLayout/TabbedLayout/SettingsArea/KeepLauncherOpenSwitch" to="MainLayout/TabbedLayout/SettingsArea" method="_on_KeepLauncherOpen_toggled"]
+[connection signal="toggled" from="MainLayout/TabbedLayout/SettingsArea/PrintTipsSwitch" to="MainLayout/TabbedLayout/SettingsArea" method="_on_PrintTips_toggled"]
+[connection signal="toggled" from="MainLayout/TabbedLayout/SettingsArea/UpdateToSameVerSwitch" to="MainLayout/TabbedLayout/SettingsArea" method="_on_UpdateToSame_toggled"]
+[connection signal="toggled" from="MainLayout/TabbedLayout/SettingsArea/ShortenNamesSwitch" to="MainLayout/TabbedLayout/SettingsArea" method="_on_ShortenNames_toggled"]
+[connection signal="toggled" from="MainLayout/TabbedLayout/SettingsArea/AlwaysShowInstallsSwitch" to="MainLayout/TabbedLayout/SettingsArea" method="_on_AlwaysShowInstalls_toggled"]
+[connection signal="toggled" from="MainLayout/TabbedLayout/SettingsArea/ShowObsoleteModsSwitch" to="MainLayout/TabbedLayout/SettingsArea" method="_on_ShowObsoleteMods_toggled"]
+[connection signal="toggled" from="MainLayout/TabbedLayout/SettingsArea/InstallArchivedModsSwitch" to="MainLayout/TabbedLayout/SettingsArea" method="_on_InstallArchivedMods_toggled"]
+[connection signal="toggled" from="MainLayout/TabbedLayout/SettingsArea/KeepDownloadCacheSwitch" to="MainLayout/TabbedLayout/SettingsArea" method="_on_KeepCache_toggled"]
+[connection signal="toggled" from="MainLayout/TabbedLayout/SettingsArea/IgnoreDownloadCacheSwitch" to="MainLayout/TabbedLayout/SettingsArea" method="_on_IgnoreCache_toggled"]
+[connection signal="toggled" from="MainLayout/TabbedLayout/SettingsArea/DebugModeSwitch" to="MainLayout/TabbedLayout/SettingsArea" method="_on_ShowDebug_toggled"]
+[connection signal="value_changed" from="MainLayout/TabbedLayout/SettingsArea/NumReleasesBox/NumReleasesField" to="MainLayout/TabbedLayout/SettingsArea" method="_on_sbNumReleases_value_changed"]
+[connection signal="value_changed" from="MainLayout/TabbedLayout/SettingsArea/NumPrsBox/NumPrsField" to="MainLayout/TabbedLayout/SettingsArea" method="_on_sbNumPRs_value_changed"]
+[connection signal="item_selected" from="MainLayout/TabbedLayout/SettingsArea/ProxySettingsBox/ProxyOptionList" to="MainLayout/TabbedLayout/SettingsArea" method="_on_obtnProxyOption_item_selected"]
+[connection signal="text_changed" from="MainLayout/TabbedLayout/SettingsArea/ProxySettingsBox/ProxyHostField" to="MainLayout/TabbedLayout/SettingsArea" method="_on_leProxyHost_text_changed"]
+[connection signal="value_changed" from="MainLayout/TabbedLayout/SettingsArea/ProxySettingsBox/ProxyPortField" to="MainLayout/TabbedLayout/SettingsArea" method="_on_sbProxyPort_value_changed"]
+[connection signal="toggled" from="MainLayout/TabbedLayout/SettingsArea/CustomScaleBox/CustomScaleEnableSwitch" to="MainLayout/TabbedLayout/SettingsArea" method="_on_cbScaleOverrideEnable_toggled"]
+[connection signal="value_changed" from="MainLayout/TabbedLayout/SettingsArea/CustomScaleBox/CustomScaleValueField" to="MainLayout/TabbedLayout/SettingsArea" method="_on_sbScaleOverride_value_changed"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/DebugArea/Button" to="MainLayout/TabbedLayout/DebugArea" method="_on_Button_pressed"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/DebugArea/Button2" to="MainLayout/TabbedLayout/DebugArea" method="_on_Button2_pressed"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/DebugArea/Button3" to="MainLayout/TabbedLayout/DebugArea" method="_on_Button3_pressed"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/DebugArea/Button4" to="MainLayout/TabbedLayout/DebugArea" method="_on_Button4_pressed"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/DebugArea/Button5" to="MainLayout/TabbedLayout/DebugArea" method="_on_Button5_pressed"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/DebugArea/Button6" to="MainLayout/TabbedLayout/DebugArea" method="_on_Button6_pressed"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/DebugArea/Button7" to="MainLayout/TabbedLayout/DebugArea" method="_on_Button7_pressed"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/DebugArea/Button8" to="MainLayout/TabbedLayout/DebugArea" method="_on_Button8_pressed"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/DebugArea/Button9" to="MainLayout/TabbedLayout/DebugArea" method="_on_Button9_pressed"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/DebugArea/Button10" to="MainLayout/TabbedLayout/DebugArea" method="_on_button_10_pressed"]
+[connection signal="meta_clicked" from="MainLayout/LogText" to="." method="_on_Log_meta_clicked"]
+[connection signal="done_fetching_releases" from="ReleaseManager" to="." method="_on_Releases_done_fetching_releases"]
+[connection signal="started_fetching_releases" from="ReleaseManager" to="." method="_on_Releases_started_fetching_releases"]
+[connection signal="request_completed" from="ReleaseManager/HTTPRequest_DDA" to="ReleaseManager" method="_on_request_completed_dda"]
+[connection signal="request_completed" from="ReleaseManager/HTTPRequest_BN" to="ReleaseManager" method="_on_request_completed_bn"]
+[connection signal="request_completed" from="ReleaseManager/HTTPRequest_EOD" to="ReleaseManager" method="_on_request_completed_eod"]
+[connection signal="request_completed" from="ReleaseManager/HTTPRequest_TISH" to="ReleaseManager" method="_on_request_completed_tish"]
+[connection signal="request_completed" from="ReleaseManager/HTTPRequest_TLG" to="ReleaseManager" method="_on_request_completed_tlg"]
 [connection signal="operation_finished" from="ReleaseInstaller" to="." method="_on_ReleaseInstaller_operation_finished"]
 [connection signal="operation_started" from="ReleaseInstaller" to="." method="_on_ReleaseInstaller_operation_started"]
-[connection signal="mod_deletion_finished" from="Mods" to="." method="_on_mod_operation_finished"]
-[connection signal="mod_deletion_started" from="Mods" to="." method="_on_mod_operation_started"]
-[connection signal="mod_installation_finished" from="Mods" to="." method="_on_mod_operation_finished"]
-[connection signal="mod_installation_started" from="Mods" to="." method="_on_mod_operation_started"]
-[connection signal="modpack_retrieval_finished" from="Mods" to="." method="_on_mod_operation_finished"]
-[connection signal="modpack_retrieval_started" from="Mods" to="." method="_on_mod_operation_started"]
-[connection signal="soundpack_deletion_finished" from="Sound" to="." method="_on_soundpack_operation_finished"]
-[connection signal="soundpack_deletion_started" from="Sound" to="." method="_on_soundpack_operation_started"]
-[connection signal="soundpack_installation_finished" from="Sound" to="." method="_on_soundpack_operation_finished"]
-[connection signal="soundpack_installation_started" from="Sound" to="." method="_on_soundpack_operation_started"]
-[connection signal="backup_creation_finished" from="Backups" to="." method="_on_backup_operation_finished"]
-[connection signal="backup_creation_started" from="Backups" to="." method="_on_backup_operation_started"]
-[connection signal="backup_deletion_finished" from="Backups" to="." method="_on_backup_operation_finished"]
-[connection signal="backup_deletion_started" from="Backups" to="." method="_on_backup_operation_started"]
-[connection signal="backup_restoration_finished" from="Backups" to="." method="_on_backup_operation_finished"]
-[connection signal="backup_restoration_started" from="Backups" to="." method="_on_backup_operation_started"]
+[connection signal="mod_deletion_finished" from="ModManager" to="." method="_on_mod_operation_finished"]
+[connection signal="mod_deletion_started" from="ModManager" to="." method="_on_mod_operation_started"]
+[connection signal="mod_installation_finished" from="ModManager" to="." method="_on_mod_operation_finished"]
+[connection signal="mod_installation_started" from="ModManager" to="." method="_on_mod_operation_started"]
+[connection signal="modpack_retrieval_finished" from="ModManager" to="." method="_on_mod_operation_finished"]
+[connection signal="modpack_retrieval_started" from="ModManager" to="." method="_on_mod_operation_started"]
+[connection signal="soundpack_deletion_finished" from="SoundpackManager" to="." method="_on_soundpack_operation_finished"]
+[connection signal="soundpack_deletion_started" from="SoundpackManager" to="." method="_on_soundpack_operation_started"]
+[connection signal="soundpack_installation_finished" from="SoundpackManager" to="." method="_on_soundpack_operation_finished"]
+[connection signal="soundpack_installation_started" from="SoundpackManager" to="." method="_on_soundpack_operation_started"]
+[connection signal="backup_creation_finished" from="BackupManager" to="." method="_on_backup_operation_finished"]
+[connection signal="backup_creation_started" from="BackupManager" to="." method="_on_backup_operation_started"]
+[connection signal="backup_deletion_finished" from="BackupManager" to="." method="_on_backup_operation_finished"]
+[connection signal="backup_deletion_started" from="BackupManager" to="." method="_on_backup_operation_started"]
+[connection signal="backup_restoration_finished" from="BackupManager" to="." method="_on_backup_operation_finished"]
+[connection signal="backup_restoration_started" from="BackupManager" to="." method="_on_backup_operation_started"]

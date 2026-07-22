@@ -25,3 +25,5 @@
 "tab_fonts","Fonts"
 "tab_backups","Backups"
 "tab_settings","Settings"
+,
+"msg_auto_scale_failsafe_triggered","Detected potentially unreasonable value for automatic UI scale: %s. Forcing scale to 1.0."

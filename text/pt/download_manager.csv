@@ -11,3 +11,4 @@
 "msg_download_finished","Terminou de baixar %s."
 "msg_download_failed","Falhou em baixar %s."
 "msg_http_request_info","[b]Info do HTTPRequest:[/b]\n[u]Resultado:[/u] %s\n[u]Código de resposta:[/u] %s\n[u]Cabeçalhos:[/u] %s"
+"msg_using_proxy","Usando proxy: %s:%s"

@@ -28,3 +28,19 @@
 "tooltip_show_obsolete_mods","Pokazuje mody wbudowane w grę, które zostały oznaczone jako ""przestarzałe"".\nNormalnie, mody jak te, nie są uznawane jako zainstalowane."
 "tooltip_ui_scale_override","Użyj tej opcji, jeżeli automatycznie sugerowana skala UI wydaje się\nzbyt wielka\zbyt mała dla twojego systemu.\n(Automatyczna skala opiera się na systemowo ustawionym DPI,\nco może nie działać poprawnie na wszystkich systemach \nlub dawać nieadekwatne rezultaty, kiedy rozdzielczość jest zbyt mała.)"
 "tooltip_updating_to_same_build","Pozwól na uruchamianie procedury aktualizacji, nawet jeśli wybrane\nwydanie jest takie same jak obecnie zainstalowane."
+"cbtn_enable_proxy","Włącz  "
+"cbtn_ignore_cache","Ignoruj pamięć podręczną pobierania"
+"cbtn_keep_cache","Zachowaj pamięć podręczną pobierania"
+"lbl_licenses","[color=#3b93f7][url]Zobacz licencje open source[/url][/color]"
+"lbl_proxy_settings","Serwer proxy:"
+"obtn_proxy_option_download","Tylko do pobierania"
+"obtn_proxy_option_off","Wyłączone"
+"obtn_proxy_option_on","Włączone"
+"tooltip_ignore_cache","Zawsze pobieraj zawartość z sieci,
+nawet jeśli jest już w folderze pamięci podręcznej."
+"tooltip_keep_cache","Zachowaj pobraną zawartość (wydania gier, modpacki, soundpacki) w folderze pamięci podręcznej
+po zakończeniu instalacji, zamiast ją usuwać."
+"tooltip_proxy_options","Wyłączone - Nie używaj proxy
+Włączone - Używaj proxy przy wszystkich okazjach (np. żądanie wydań)
+Tylko do pobierania - Używaj proxy tylko podczas pobierania"
+"tooltip_proxy_settings","Skonfiguruj serwer proxy do pobierania."

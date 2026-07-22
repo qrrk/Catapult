@@ -12,3 +12,5 @@
 "msg_download_failed","%s nın indirilmesi başarısız oldu."
 "msg_http_request_info","[b]HTTPRequest bilgisi:[/b]\n[u]Sonuç:[/u] %s\n[u]Tepki kodu:[/u] %s\n[u]Başlıklar:[/u] %s"
 "
+"msg_download_finished","%s indirme tamamlandı."
+"msg_using_proxy","Proxy kullanılıyor: %s:%s"

@@ -11,3 +11,4 @@
 "msg_download_finished","Téléchargement terminé: %s"
 "msg_download_failed","Échec de téléchargement: %s"
 "msg_http_request_info","[b]Info Requête HTTP:[/b]\n[u]Résultat:[/u] %s\n[u]Réponse[/u] %s\n[u]En-tête[/u] %s"
+"msg_using_proxy","Utilisation du proxy: %s:%s"

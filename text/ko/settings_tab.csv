@@ -28,3 +28,19 @@ tooltip_show_game_desc,게임 목록에서 선택한 게임에 대한 설명을 
 tooltip_show_obsolete_mods,"게임과 함께 제공되지만 ""구식""으로 표시된 모드를 표시합니다.\n일반적으로 이러한 모드는 설치된 것으로 간주되지 않습니다."
 tooltip_ui_scale_override,"자동으로 추론된 UI 크기가 시스템에서 너무 크거나 너무 작아 보이는 경우\n이 방법을 사용하세요. (자동 크기 조정은 시스템 보고 디스플레이 DPI에 의존하는데,\n이는 모든 시스템에서 작동하지 않을 수도 있고 해상도가 너무 낮은 경우\n부적절한 결과를 제공할 수도 있습니다.)"
 tooltip_updating_to_same_build,선택한 릴리스가 현재 설치된 것과 동일한 경우에도\n업데이트 절차 시작을 허용합니다.
+"cbtn_enable_proxy","활성화  "
+"cbtn_ignore_cache","다운로드 캐시 무시"
+"cbtn_keep_cache","다운로드 캐시 유지"
+"lbl_licenses","[color=#3b93f7][url]오픈소스 라이센스 보기[/url][/color]"
+"lbl_proxy_settings","프록시 서버:"
+"obtn_proxy_option_download","다운로드 전용"
+"obtn_proxy_option_off","비활성화"
+"obtn_proxy_option_on","활성화"
+"tooltip_ignore_cache","캐시 폴더에 이미 있더라도
+항상 웹에서 콘텐츠를 다운로드합니다."
+"tooltip_keep_cache","설치가 완료되면 삭제하는 대신
+다운로드한 콘텐츠(게임 릴리스, 모드팩, 사운드팩)를 캐시 폴더에 보관합니다."
+"tooltip_proxy_options","비활성화 - 프록시를 사용하지 않음
+활성화 - 모든 경우에 프록시 사용(예: 릴리스 요청)
+다운로드 전용 - 다운로드할 때만 프록시 사용"
+"tooltip_proxy_settings","다운로드용 프록시 서버를 구성합니다."

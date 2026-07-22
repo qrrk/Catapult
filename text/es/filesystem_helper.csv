@@ -16,3 +16,5 @@
 "msg_extract_error","Comando de extracción de archivo salio de forma errónea (Código de salida: %s)."
 "msg_extract_failed_cmd","Comando erróneo: %s."
 "msg_extract_fail_output","Salida: %s."
+"msg_zipping_file","Comprimiendo %s..."
+"msg_zip_error","El comando de compresión del archivo finalizó con un error (código de salida: %s)"

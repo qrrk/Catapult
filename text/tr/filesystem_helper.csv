@@ -16,3 +16,5 @@
 "msg_extract_error","Arşiv çıkartma komutu hata ile son buldu (hata kodu: %s)"
 "msg_extract_failed_cmd","%s komudu başarısız oldu."
 "msg_extract_fail_output","Çıkış: %s"
+"msg_zipping_file","%s sıkıştırılıyor..."
+"msg_zip_error","Arşiv sıkıştırma komutu hatayla sonuçlandı (çıkış kodu: %s)"

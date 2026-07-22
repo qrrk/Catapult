@@ -24,3 +24,5 @@
 "tab_fonts","字体"
 "tab_backups","备份"
 "tab_settings","设置"
+"desc_tlg","[b]Cataclysm: The Last Generation[/b]。人类将无法幸存，但你还没有收到通知。这个由 WormGirl 指导的 DDA 分支在整个游戏中进行了重大的重新平衡，重点放在生存和生活模拟上。生存是有意的，你的所有选择都很重要。探索这个几乎可信的近未来世界，拥有你可以建造的所有枪支、生物电子和木炭烟熏器，或者在尝试中死亡！"
+"msg_auto_scale_failsafe_triggered","检测到自动 UI 缩放的潜在不合理值：%s。强制缩放为 1.0。"

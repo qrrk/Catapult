@@ -27,3 +27,20 @@
 "tooltip_num_releases_to_request","Kolik posledních vydání bude vyžadováno\nz GitHubu po spuštění Catapultu,\nvybráním hry a nebo kliknutím na Obnovit."
 "tooltip_num_prs_to_request","Kolik nedávných pull requestů (přídavků kódu)\nbude vyžadováno z GitHubu na vytvoření seznamu změn.\nVysoká čísla můžou vést k pomalým odpovědím a selháním."
 "tooltip_ui_scale_override","Použijte tohle pokud automaticky získaná škála UI je příliš velká too large\nnebo příliš malá na vašem systému. (Automatické škálování se spoléhá na\nDPI displeje hlášené systémem, což nemusí fungovat na všech systémech,\nnebo poskytuje neadekvátní výsledky pokud je rozlišení příliš malé.)"
+"cbtn_enable_proxy","Zapnout  "
+"cbtn_ignore_cache","Ignorovat cache stahování"
+"cbtn_keep_cache","Ponechat cache stahování"
+"lbl_launcher_theme","Téma spouštěče"
+"lbl_licenses","[color=#3b93f7][url]Zobrazit open source licence[/url][/color]"
+"lbl_proxy_settings","Proxy server:"
+"obtn_proxy_option_download","Pouze pro stahování"
+"obtn_proxy_option_off","Vypnuto"
+"obtn_proxy_option_on","Zapnuto"
+"tooltip_ignore_cache","Vždy stahovat obsah z webu,
+i když je již v cache složce."
+"tooltip_keep_cache","Ponechat stažený obsah (herní vydání, modpacky, soundpacky) v cache složce
+při dokončení instalace, místo jeho smazání."
+"tooltip_proxy_options","Vypnuto - Nepoužívat proxy
+Zapnuto - Použít proxy při všech příležitostech (např. žádání vydání)
+Pouze pro stahování - Použít proxy pouze při stahování"
+"tooltip_proxy_settings","Nastavit proxy server pro stahování."

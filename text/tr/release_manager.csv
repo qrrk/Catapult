@@ -7,3 +7,5 @@
 "msg_fetching_releases_dda","Deneysel DDA için sürümler alınıyor..."
 "msg_fetching_releases_bn","Deneysel BN için sürümler alınıyor..."
 "msg_invalid_fetch_func_param","ReleaseManager.fetch() fonksiyonu %s çıktısını verdi."
+"msg_fetching_releases_eod","EOD Experimental için sürümler alınıyor..."
+"msg_fetching_releases_tish","TISH Experimental için sürümler alınıyor..."

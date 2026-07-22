@@ -16,3 +16,5 @@
 "msg_extract_error","解压命令报错中断（中断代码：%s)"
 "msg_extract_failed_cmd","失败命令：%s"
 "msg_extract_fail_output","输出：%s"
+"msg_zipping_file","正在压缩 %s..."
+"msg_zip_error","存档压缩命令退出并出现错误（退出代码：%s）"

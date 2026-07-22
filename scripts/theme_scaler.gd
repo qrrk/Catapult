@@ -212,7 +212,7 @@ func make_scaled_theme(proto: Theme, scale_factor: float) -> Theme:
 
 
 func _apply_scale(theme: Theme, factor: float) -> void:
-	pass
+	
 	_scale_constants(theme, factor)
 	_scale_textures(theme, factor)
 	_scale_font_sizes(theme, factor)
@@ -239,8 +239,8 @@ func _scale_textures(theme: Theme, factor: float) -> void:
 			var tex := theme.get_icon(tex_name, tex_type) as DPITexture
 			if tex:
 				tex.base_scale = factor
-#
-#
+
+
 func _scale_font_sizes(theme: Theme, factor: float) -> void:
 	
 	theme.default_font_size = max(1, theme.default_font_size * factor)
@@ -248,8 +248,8 @@ func _scale_font_sizes(theme: Theme, factor: float) -> void:
 		for sz_name in theme.get_font_size_list(sz_type):
 			var new_value: int = max(1, theme.get_font_size(sz_name, sz_type) * factor)
 			theme.set_font_size(sz_name, sz_type, new_value)
-#
-#
+
+
 func _scale_styleboxes(theme: Theme, factor: float) -> void:
 	
 	var unique_styleboxes := []

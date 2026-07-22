@@ -1,0 +1,84 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1axg2lq1dhit"]
+
+[ext_resource type="Script" uid="uid://71olaoenl8s5" path="res://scripts/user_data_deletion_dlg.gd" id="1_nax53"]
+[ext_resource type="Texture2D" uid="uid://cuf7472h7y6cy" path="res://icons/tex_stop.tres" id="2_3eji3"]
+
+[node name="UserDataDeletionDialog" type="Window"]
+oversampling_override = 1.0
+title = "dlg_userdata_deletion_title"
+position = Vector2i(0, 24)
+exclusive = true
+unresizable = true
+script = ExtResource("1_nax53")
+
+[node name="MainPanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 154.0
+grow_horizontal = 2
+size_flags_vertical = 0
+
+[node name="Margin" type="MarginContainer" parent="MainPanel"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="MainLayout" type="VBoxContainer" parent="MainPanel/Margin"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="WarningBox" type="HBoxContainer" parent="MainPanel/Margin/MainLayout"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MainPanel/Margin/MainLayout/WarningBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_3eji3")
+stretch_mode = 2
+
+[node name="WarningText" type="RichTextLabel" parent="MainPanel/Margin/MainLayout/WarningBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+bbcode_enabled = true
+text = "(this text is assigned at runtime)
+.
+.
+."
+fit_content = true
+
+[node name="Spacer" type="Control" parent="MainPanel/Margin/MainLayout"]
+layout_mode = 2
+
+[node name="SafetyField" type="LineEdit" parent="MainPanel/Margin/MainLayout"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "dlg_userdata_deletion_safety_hint"
+
+[node name="Spacer2" type="Control" parent="MainPanel/Margin/MainLayout"]
+layout_mode = 2
+
+[node name="ButtonsBox" type="HBoxContainer" parent="MainPanel/Margin/MainLayout"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ConfirmButton" type="Button" parent="MainPanel/Margin/MainLayout/ButtonsBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+disabled = true
+text = "btn_confirm"
+
+[node name="CancelButton" type="Button" parent="MainPanel/Margin/MainLayout/ButtonsBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "btn_cancel"
+
+[connection signal="close_requested" from="." to="." method="close" binds= [false]]
+[connection signal="text_changed" from="MainPanel/Margin/MainLayout/SafetyField" to="." method="_on_DeleteSafetyField_text_changed"]
+[connection signal="pressed" from="MainPanel/Margin/MainLayout/ButtonsBox/ConfirmButton" to="." method="close" binds= [true]]
+[connection signal="pressed" from="MainPanel/Margin/MainLayout/ButtonsBox/CancelButton" to="." method="close" binds= [false]]

@@ -7,3 +7,5 @@
 "msg_fetching_releases_dda","Buscando lanzamientos para DDA Experimental..."
 "msg_fetching_releases_bn","Buscando lanzamientos para BN Experimental..."
 "msg_invalid_fetch_func_param","ReleaseManager.fetch() pasó %s"
+"msg_fetching_releases_eod","Obteniendo lanzamientos para EOD Experimental..."
+"msg_fetching_releases_tish","Obteniendo lanzamientos para TISH Experimental..."
