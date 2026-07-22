@@ -265,10 +265,10 @@ func retrieve_kenan_pack() -> void:
 	emit_signal("modpack_retrieval_started")
 	Status.post(tr("msg_getting_kenan_pack") % game.to_upper())
 	
-	var archive = Paths.cache_dir.path_join(pack["filename"])
+	var archive = Paths.cache_dir.path_join(Helpers.sanitize_filename(pack["filename"]))
 	
 	if Settings.read("ignore_cache") or not FileAccess.file_exists(archive):
-		Downloader.download_file(pack["url"], Paths.cache_dir, pack["filename"])
+		Downloader.download_file(pack["url"], Paths.cache_dir, Helpers.sanitize_filename(pack["filename"]))
 		await Downloader.download_finished
 	
 	if FileAccess.file_exists(archive):

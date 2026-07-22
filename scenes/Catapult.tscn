@@ -46,7 +46,7 @@
 [ext_resource type="Texture2D" uid="uid://c72sb8nwud547" path="res://icons/theme/tex_light.tres" id="35_no8b7"]
 [ext_resource type="Texture2D" uid="uid://bgc0jqaoheylx" path="res://icons/theme/tex_gray.tres" id="36_cyylm"]
 [ext_resource type="Texture2D" uid="uid://blvxgapecxw31" path="res://icons/theme/tex_solarized_dark.tres" id="37_5ug7j"]
-[ext_resource type="Texture2D" uid="uid://ckqrpp6s8he8e" path="res://icons/theme/tex_solzrized_light.tres" id="38_65f1m"]
+[ext_resource type="Texture2D" uid="uid://ckqrpp6s8he8e" path="res://icons/theme/tex_Solarized_Light.tres" id="38_65f1m"]
 
 [sub_resource type="StyleBoxEmpty" id="2"]
 content_margin_left = 4.0

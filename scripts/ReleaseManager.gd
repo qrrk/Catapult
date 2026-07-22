@@ -373,10 +373,10 @@ func _request_releases(http: HTTPRequest, release: String) -> void:
 func _on_request_completed_dda(result: int, response_code: int,
 		headers: PackedStringArray, body: PackedByteArray) -> void:
 	
-	Status.post(tr("msg_http_request_info") %
+	Status.post(tr("msg_http_request_info") % 
 			[result, response_code, headers], Enums.MSG_DEBUG)
 	
-	if result:
+	if result or response_code != 200:
 		Status.post(tr("msg_releases_request_failed"), Enums.MSG_WARN)
 	else:
 		_parse_builds(body, releases["dda-experimental"], _ASSET_FILTERS["dda-experimental-" + _platform])
@@ -387,10 +387,10 @@ func _on_request_completed_dda(result: int, response_code: int,
 func _on_request_completed_bn(result: int, response_code: int,
 		headers: PackedStringArray, body: PackedByteArray) -> void:
 	
-	Status.post(tr("msg_http_request_info") %
+	Status.post(tr("msg_http_request_info") % 
 			[result, response_code, headers], Enums.MSG_DEBUG)
 	
-	if result:
+	if result or response_code != 200:
 		Status.post(tr("msg_releases_request_failed"), Enums.MSG_WARN)
 	else:
 		_parse_builds(body, releases["bn-experimental"], _ASSET_FILTERS["bn-experimental-" + _platform])
@@ -400,10 +400,10 @@ func _on_request_completed_bn(result: int, response_code: int,
 func _on_request_completed_eod(result: int, response_code: int,
 		headers: PackedStringArray, body: PackedByteArray) -> void:
 	
-	Status.post(tr("msg_http_request_info") %
+	Status.post(tr("msg_http_request_info") % 
 			[result, response_code, headers], Enums.MSG_DEBUG)
 	
-	if result:
+	if result or response_code != 200:
 		Status.post(tr("msg_releases_request_failed"), Enums.MSG_WARN)
 	else:
 		_parse_builds(body, releases["eod-experimental"], _ASSET_FILTERS["eod-experimental-" + _platform])
@@ -413,10 +413,10 @@ func _on_request_completed_eod(result: int, response_code: int,
 func _on_request_completed_tish(result: int, response_code: int,
 		headers: PackedStringArray, body: PackedByteArray) -> void:
 	
-	Status.post(tr("msg_http_request_info") %
+	Status.post(tr("msg_http_request_info") % 
 			[result, response_code, headers], Enums.MSG_DEBUG)
 	
-	if result:
+	if result or response_code != 200:
 		Status.post(tr("msg_releases_request_failed"), Enums.MSG_WARN)
 	else:
 		_parse_builds(body, releases["tish-experimental"], _ASSET_FILTERS["tish-experimental-" + _platform])
@@ -426,10 +426,10 @@ func _on_request_completed_tish(result: int, response_code: int,
 func _on_request_completed_tlg(result: int, response_code: int,
 		headers: PackedStringArray, body: PackedByteArray) -> void:
 	
-	Status.post(tr("msg_http_request_info") %
+	Status.post(tr("msg_http_request_info") % 
 			[result, response_code, headers], Enums.MSG_DEBUG)
 	
-	if result:
+	if result or response_code != 200:
 		Status.post(tr("msg_releases_request_failed"), Enums.MSG_WARN)
 	else:
 		_parse_builds(body, releases["tlg-experimental"], _ASSET_FILTERS["tlg-experimental-" + _platform])
@@ -444,7 +444,7 @@ func _parse_builds(data: PackedByteArray, write_to: Array, filter: Dictionary) -
 	
 	# Check if API rate limit is exceeded
 	if "message" in json:
-		print(tr("msg_releases_api_failure") % json["message"])
+		Status.post(tr("msg_releases_api_failure") % json["message"], Enums.MSG_WARN)
 		return
 		
 	var tmp_arr = []

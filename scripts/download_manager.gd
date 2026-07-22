@@ -12,6 +12,7 @@ const _PROGRESS_AFTER_BYTES := 1024 * 1024 * 5
 var _current_filename := ""
 var _current_file_path := ""
 var _download_ongoing := false
+var _expected_hash := ""
 
 @onready var _http: HTTPRequest
 
@@ -28,8 +29,9 @@ func set_proxy(host: String, port: int) -> void:
 	_http.set_http_proxy(host, port)
 	_http.set_https_proxy(host, port)
 
-func download_file(url: String, target_dir: String, target_filename: String) -> void:
+func download_file(url: String, target_dir: String, target_filename: String, expected_sha256 := "") -> void:
 	
+	_expected_hash = expected_sha256
 	if Settings.read("proxy_option") == "on" or Settings.read("proxy_option") == "download":
 		var host = Settings.read("proxy_host")
 		var port = Settings.read("proxy_port") as int
@@ -107,7 +109,11 @@ func _on_HTTPRequest_request_completed(_result: int, _response_code: int,
 	Status.post(tr("msg_http_request_info") % [_result, _response_code, _headers], Enums.MSG_DEBUG)
 	
 	if FileAccess.file_exists(_current_file_path):
-		Status.post(tr("msg_download_finished") % _current_filename)
+		if not Helpers.verify_sha256(_current_file_path, _expected_hash):
+			Status.post(tr("msg_download_failed") % _current_filename + " (checksum mismatch)", Enums.MSG_ERROR)
+			DirAccess.remove_absolute(_current_file_path)
+		else:
+			Status.post(tr("msg_download_finished") % _current_filename)
 	else:
 		Status.post(tr("msg_download_failed") % _current_filename, Enums.MSG_ERROR)
 	

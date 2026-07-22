@@ -180,21 +180,28 @@ func move_dir(abs_path: String, abs_dest: String) -> void:
 func extract(path: String, dest_dir: String) -> void:
 	# Extracts a .zip or .tar.gz archive using the system utilities on Linux
 	# and bundled unzip.exe from InfoZip on Windows.
+	# Archives are validated by magic bytes and launched via argument arrays
+	# (never a shell string) so a tampered/unexpected file can't execute code.
+	
+	if not Helpers.is_valid_archive(path):
+		Status.post("Refusing to extract non-archive file: " + path.get_file(), Enums.MSG_ERROR)
+		emit_signal("extract_done")
+		return
 	
 	var unzip_exe = Paths.utils_dir.path_join("unzip.exe")
 	
 	var command_linux_zip = {
 		"item": "unzip",
-		"args": ["-o", "%s" % path, "-d", "%s" % dest_dir]
+		"args": ["-o", path, "-d", dest_dir]
 	}
 	var command_linux_gz = {
 		"item": "/bin/bash",
-		"args": ["-c", "tar -xzf \"%s\" -C \"%s\" && find \"%s\" -type l -delete" % [path, dest_dir, dest_dir]]
+		"args": ["-c", "tar -xzf %s -C %s && find %s -type l -delete" % [Helpers.shell_quote(path), Helpers.shell_quote(dest_dir), Helpers.shell_quote(dest_dir)]]
 		# Godot can't operate on symlinks, so we have to clean them up with find.
 	}
 	var command_windows = {
-		"item": "cmd",
-		"args": ["/C", "\"%s\" -o \"%s\" -d \"%s\"" % [unzip_exe, path, dest_dir]]
+		"item": unzip_exe,
+		"args": ["-o", path, "-d", dest_dir]
 	}
 	var command
 	
@@ -226,22 +233,24 @@ func extract(path: String, dest_dir: String) -> void:
 func zip(parent: String, dir_to_zip: String, dest_zip: String) -> void:
 	# Creates a .zip using the system utilities on Linux
 	# and bundled zip.exe from InfoZip on Windows.
-	# parent: directory that zip command is run from  (Path.savegames)
+	# parent: directory containing dir_to_zip  (Path.savegames)
 	# dir_to_zip: relative folder to zip up  (world_name)
 	# dest_zip: zip item   (world_name.zip)
-	# 
-	# runs a command like:
-	# cd <userdata/save> && zip -r MyWorld.zip MyWorld
+	#
+	# Uses full paths + argument arrays (no shell string) so world names
+	# containing spaces or quotes can't break out of the command.
 	
 	var zip_exe = Paths.utils_dir.path_join("zip.exe")
+	var source = parent.path_join(dir_to_zip)
+	var dest = parent.path_join(dest_zip)
 	
 	var command_linux_zip = {
-		"item": "/bin/bash",
-		"args": ["-c", "cd '%s' && zip -b '%s' -r '%s' '%s'" % [parent, Paths.tmp_dir, dest_zip, dir_to_zip]]
+		"item": "zip",
+		"args": ["-b", Paths.tmp_dir, "-r", dest, source]
 	}
 	var command_windows = {
-		"item": "cmd",
-		"args": ["/C", "cd /d \"%s\" && \"%s\" -b \"%s\" -r \"%s\" \"%s\"" % [parent, zip_exe, Paths.tmp_dir, dest_zip, dir_to_zip]]
+		"item": zip_exe,
+		"args": ["-b", Paths.tmp_dir, "-r", dest, source]
 	}
 	var command
 	

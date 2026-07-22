@@ -148,7 +148,7 @@ func _on_ConfirmManualDownload_confirmed() -> void:
 	
 	var pack = %SoundpackManager.SOUNDPACKS[%AvailableSoundsList.get_selected_items()[0]]
 	
-	OS.shell_open(pack["url"])
+	Helpers.safe_shell_open(pack["url"])
 	%InstallFromFileDialog.current_dir = Paths.own_dir
 	%InstallFromFileDialog.popup_centered_ratio(0.9)
 	

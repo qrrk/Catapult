@@ -36,7 +36,7 @@ func download_pull_requests():
 	var prs := Settings.read("num_prs_to_request") as int
 	var url = _PR_URL[Settings.read("game")]
 	url += "+is%3Apr+is%3Amerged&per_page=" + str(prs)
-	var headers = ["user-agent: CatapultGodotApp"]
+	var headers = ["user-agent: CatapultGodotApp", "accept: application/vnd.github+json"]
 	_pr_data = tr("str_fetching_changes")
 	_update_proxy(_pullRequests)
 	_pullRequests.request(url, headers)
@@ -109,7 +109,7 @@ func process_pr_data(data):
 
 
 func _on_ChangelogText_meta_clicked(meta):
-	OS.shell_open(str(meta))
+	Helpers.safe_shell_open(str(meta))
 
 
 class PullRequest:

@@ -238,7 +238,7 @@ func _on_backup_operation_finished() -> void:
 
 func _on_Description_meta_clicked(meta) -> void:
 	
-	OS.shell_open(meta)
+	Helpers.safe_shell_open(meta)
 
 
 func _on_ChangelogLink_meta_clicked(_meta) -> void:
@@ -248,7 +248,7 @@ func _on_ChangelogLink_meta_clicked(_meta) -> void:
 
 func _on_Log_meta_clicked(meta) -> void:
 	
-	OS.shell_open(meta)
+	Helpers.safe_shell_open(meta)
 
 
 func _on_BtnRefresh_pressed() -> void:
@@ -308,14 +308,14 @@ func _on_GameDir_pressed() -> void:
 	
 	var gamedir = Paths.game_dir
 	if DirAccess.dir_exists_absolute(gamedir):
-		OS.shell_open(gamedir)
+		Helpers.safe_shell_open(gamedir)
 
 
 func _on_UserDir_pressed() -> void:
 	
 	var userdir = Paths.userdata
 	if DirAccess.dir_exists_absolute(userdir):
-		OS.shell_open(userdir)
+		Helpers.safe_shell_open(userdir)
 
 
 func _setup_ui() -> void:
@@ -417,18 +417,22 @@ func _start_game(world := "") -> void:
 				params.append_array(["--world", world])
 			OS.create_process(Paths.game_dir.path_join("cataclysm-launcher"), params, false)
 		"Windows":
-			var world_str := ""
-			if world != "":
-				world_str = "--world \"%s\"" % world
-
 			var matches := FS.list_dir(Paths.game_dir, false, "(?i).*cataclysm.*\\.exe$")
 			Status.post(str(matches), Enums.MSG_DEBUG)
 			if matches.is_empty():
 				return
-			var exe_file: String = matches[0]
-
-			var command = "cd /d %s && start %s --userdir \"%s/\" %s" % [Paths.game_dir, exe_file, Paths.userdata, world_str]
-			OS.execute_with_pipe("cmd", ["/C", command])
+			# list_dir returns bare filenames, so join with game_dir to get the
+			# full path OS.create_process needs to actually find the executable.
+			var exe_file: String = Paths.game_dir.path_join(matches[0])
+			# Launch via argument array (no cmd /C string) so world names with
+			# spaces/quotes can't be reinterpreted as shell syntax.
+			# --basepath tells Cataclysm where its data/ dir is, since
+			# OS.create_process can't set a working directory (the old cmd /C
+			# used "cd /d game_dir" for this).
+			var params := ["--basepath", Paths.game_dir + "/", "--userdir", Paths.userdata + "/"]
+			if world != "":
+				params.append_array(["--world", world])
+			OS.create_process(exe_file, params, false)
 		_:
 			return
 	
@@ -448,7 +452,7 @@ func _on_InstallsList_item_activated(index: int) -> void:
 	var release_name = %GameInstallsList.get_item_text(index)
 	var path = _installs[Settings.read("game")][release_name]
 	if DirAccess.dir_exists_absolute(path):
-		OS.shell_open(path)
+		Helpers.safe_shell_open(path)
 
 
 func _on_btnMakeActive_pressed() -> void:
@@ -457,7 +461,6 @@ func _on_btnMakeActive_pressed() -> void:
 	Status.post(tr("msg_set_active") % release_name)
 	Settings.store("active_install_" + Settings.read("game"), release_name)
 	_refresh_currently_installed()
-	print(%ReleaseInstaller.check_game_dir_for_userdata(release_name))
 
 
 func _on_btnDelete_pressed() -> void:

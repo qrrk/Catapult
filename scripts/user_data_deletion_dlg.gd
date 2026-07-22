@@ -6,7 +6,7 @@ signal response_given(delete_confirmed: bool)
 func _ready() -> void:
 	
 	%WarningText.meta_clicked.connect(func(meta):
-		OS.shell_open(meta)
+		Helpers.safe_shell_open(meta)
 		)
 	
 	%MainPanel.resized.connect(func():

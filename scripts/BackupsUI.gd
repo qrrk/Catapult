@@ -120,4 +120,4 @@ func _make_backup_info_string(index: int) -> String:
 
 func _on_BackupInfo_meta_clicked(meta) -> void:
 	
-	OS.shell_open(meta)
+	Helpers.safe_shell_open(meta)

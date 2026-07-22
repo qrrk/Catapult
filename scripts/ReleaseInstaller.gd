@@ -14,7 +14,7 @@ func install_release(release_info: Dictionary, update_in: String = "") -> void:
 	else:
 		Status.post(tr("msg_installing_game") % release_info["name"])
 	
-	var archive: String = Paths.cache_dir.path_join(release_info["filename"])
+	var archive: String = Paths.cache_dir.path_join(Helpers.sanitize_filename(release_info["filename"]))
 	
 	if Settings.read("ignore_cache") or not FileAccess.file_exists(archive):
 		Downloader.download_file(release_info["url"], Paths.cache_dir, release_info["filename"])

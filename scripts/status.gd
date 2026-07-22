@@ -31,7 +31,6 @@ func post(msg: String, type: int = Enums.MSG_INFO) -> void:
 	if _log_text:
 		_log_text.append_text(msg_data["bb_text"])
 	else:
-		print("saving message to buffer")
 		_buffer.push_back(msg_data)
 	
 	if type == Enums.MSG_WARN:
