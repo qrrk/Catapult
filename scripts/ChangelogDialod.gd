@@ -3,7 +3,7 @@ extends Window
 
 const _PR_URL = {
 	"dda": "https://api.github.com/search/issues?q=repo%3Acleverraven/Cataclysm-DDA",
-	"bn": "https://api.github.com/search/issues?q=repo%3Acataclysmbnteam/Cataclysm-BN",
+	"bn": "https://api.github.com/search/issues?q=repo%3Acataclysmbn/Cataclysm-BN",
 	"eod": "https://api.github.com/search/issues?q=repo%3AAtomicFox556/Cataclysm-EOD",
 	"tish": "https://api.github.com/search/issues?q=repo%3ACataclysm-TISH-team/Cataclysm-TISH/",
 	"tlg": "https://api.github.com/search/issues?q=repo%3ACataclysm-TLG/Cataclysm-TLG",
