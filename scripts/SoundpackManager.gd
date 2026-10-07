@@ -18,7 +18,7 @@ const SOUNDPACKS = [
 		"name": "CC-Sounds-sfx-only",
 		"url": "https://github.com/Fris0uman/CDDA-Soundpacks/releases/latest/download/CC-Sounds-sfx-only.zip",
 		"filename": "CC-Sounds-sfx-only.zip",
-		"internal_path": "CC-Sounds-sfx-only",
+		"internal_path": "CC-Sounds",
 	},
 	{
 		"name": "CO.AG-music-only",
