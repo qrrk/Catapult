@@ -26,9 +26,13 @@ func backup_current(backup_name: String) -> void:
 	
 	if not DirAccess.dir_exists_absolute(dest_dir):
 		DirAccess.make_dir_recursive_absolute(dest_dir)
-		for world in FS.list_dir(Paths.savegames):
-			FS.zip(Paths.savegames, world, dest_dir.path_join(world + ".zip"))
-			await FS.zip_done
+		for item in FS.list_dir(Paths.savegames):
+			var item_path = Paths.savegames.path_join(item)
+			if DirAccess.dir_exists_absolute(item_path):
+				FS.zip(Paths.savegames, item, dest_dir.path_join(item + ".zip"))
+				await FS.zip_done
+			elif FileAccess.file_exists(item_path):
+				DirAccess.copy_absolute(item_path, dest_dir.path_join(item))
 		
 		Status.post(tr("msg_backup_created"))
 	else:
@@ -84,9 +88,13 @@ func restore(backup_index: int) -> void:
 			await FS.rm_dir_done
 		
 		DirAccess.make_dir_absolute(dest_dir)
-		for world_zip in FS.list_dir(source_dir):
-			FS.extract(source_dir.path_join(world_zip), dest_dir)
-			await FS.extract_done
+		for item in FS.list_dir(source_dir):
+			var source_item_path = source_dir.path_join(item)
+			if item.to_lower().ends_with(".zip"):
+				FS.extract(source_item_path, dest_dir)
+				await FS.extract_done
+			elif FileAccess.file_exists(source_item_path):
+				DirAccess.copy_absolute(source_item_path, dest_dir.path_join(item))
 		
 		Status.post(tr("msg_backup_restored"))
 	else:
