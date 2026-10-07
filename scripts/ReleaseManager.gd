@@ -65,6 +65,16 @@ const _ASSET_FILTERS = {
 
 const _DDA_STABLE_LINUX = [
 	{
+		"name": "0.I-1 Ito-1",
+		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.I-1/cdda-linux-with-graphics-x64-2026-09-19-2324.tar.gz",
+		"filename": "cdda-linux-with-graphics-x64-2026-09-19-2324.tar.gz"
+	},
+	{
+		"name": "0.I Ito",
+		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.I/cdda-linux-with-graphics-x64-2026-06-06-1535.tar.gz",
+		"filename": "cdda-linux-with-graphics-x64-2026-06-06-1535.tar.gz"
+	},
+	{
 		"name": "0.H Herbert",
 		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.H-RELEASE/cdda-linux-with-graphics-x64-2024-11-23-1857.tar.gz",
 		"filename": "cdda-linux-with-graphics-x64-2024-11-23-1857.tar.gz"
@@ -117,6 +127,16 @@ const _DDA_STABLE_LINUX = [
 ]
 
 const _DDA_STABLE_WIN = [
+	{
+		"name": "0.I-1 Ito-1",
+		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.I-1/cdda-windows-with-graphics-x64-2026-09-19-2324.zip",
+		"filename": "cdda-windows-with-graphics-x64-2026-09-19-2324.zip"
+	},
+	{
+		"name": "0.I Ito",
+		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.I/cdda-windows-with-graphics-x64-2026-06-06-1535.zip",
+		"filename": "cdda-windows-with-graphics-x64-2026-06-06-1535.zip"
+	},
 	{
 		"name": "0.H Herbert",
 		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.H-RELEASE/cdda-windows-with-graphics-x64-2024-11-23-1857.zip",
