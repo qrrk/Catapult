@@ -29,7 +29,6 @@ func _ready() -> void:
 		welcome_msg += tr("str_tip_of_the_day") + TOTD.get_tip() + "\n"
 	Status.post(welcome_msg)
 	
-	_unpack_utils()
 	_setup_ui()
 
 
@@ -84,23 +83,6 @@ func load_ui_theme(theme_file: String) -> void:
 		proto = ThemeDB.get_project_theme()
 		self.theme = ts.make_scaled_theme(proto, Geom.scale)
 		
-
-
-func _unpack_utils() -> void:
-	
-	var unzip_exe = Paths.utils_dir.path_join("unzip.exe")
-	if (OS.get_name() == "Windows") and (not FileAccess.file_exists(unzip_exe)):
-		if not DirAccess.dir_exists_absolute(Paths.utils_dir):
-			DirAccess.make_dir_absolute(Paths.utils_dir)
-		Status.post(tr("msg_unpacking_unzip"))
-		DirAccess.copy_absolute("res://utils/unzip.exe", unzip_exe)
-	var zip_exe = Paths.utils_dir.path_join("zip.exe")
-	if (OS.get_name() == "Windows") and (not FileAccess.file_exists(zip_exe)):
-		if not DirAccess.dir_exists_absolute(Paths.utils_dir):
-			DirAccess.make_dir_absolute(Paths.utils_dir)
-		Status.post(tr("msg_unpacking_zip"))
-		DirAccess.copy_absolute("res://utils/zip.exe", zip_exe)
-	
 
 
 func _smart_disable_controls(group_name: String) -> void:

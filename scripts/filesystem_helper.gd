@@ -177,93 +177,139 @@ func move_dir(abs_path: String, abs_dest: String) -> void:
 	emit_signal("move_dir_done")
 
 
+func _extract_zip_internal(archive_path: String, dest_dir: String) -> int:
+	var reader := ZIPReader.new()
+	var err := reader.open(archive_path)
+	if err != OK:
+		return err
+	
+	var files := reader.get_files()
+	for file_path in files:
+		var norm_path: String = (file_path as String).replace("\\", "/")
+		if norm_path.ends_with("/"):
+			var dir_err = DirAccess.make_dir_recursive_absolute(dest_dir.path_join(norm_path))
+			if dir_err != OK and dir_err != ERR_ALREADY_EXISTS:
+				reader.close()
+				return dir_err
+		else:
+			var target_file_path := dest_dir.path_join(norm_path)
+			var dir_err = DirAccess.make_dir_recursive_absolute(target_file_path.get_base_dir())
+			if dir_err != OK and dir_err != ERR_ALREADY_EXISTS:
+				reader.close()
+				return dir_err
+			
+			var buffer := reader.read_file(file_path)
+			var fa := FileAccess.open(target_file_path, FileAccess.WRITE)
+			if fa == null:
+				var open_err = FileAccess.get_open_error()
+				reader.close()
+				return open_err
+			fa.store_buffer(buffer)
+			fa.close()
+	
+	reader.close()
+	return OK
+
+
 func extract(path: String, dest_dir: String) -> void:
-	# Extracts a .zip or .tar.gz archive using the system utilities on Linux
-	# and bundled unzip.exe from InfoZip on Windows.
+	# Extracts a .zip archive natively using Godot's ZIPReader,
+	# or a .tar.gz archive using system tar on Linux.
 	
-	var unzip_exe = Paths.utils_dir.path_join("unzip.exe")
-	
-	var command_linux_zip = {
-		"item": "unzip",
-		"args": ["-o", "%s" % path, "-d", "%s" % dest_dir]
-	}
-	var command_linux_gz = {
-		"item": "/bin/bash",
-		"args": ["-c", "tar -xzf \"%s\" -C \"%s\" && find \"%s\" -type l -delete" % [path, dest_dir, dest_dir]]
-		# Godot can't operate on symlinks, so we have to clean them up with find.
-	}
-	var command_windows = {
-		"item": "cmd",
-		"args": ["/C", "\"%s\" -o \"%s\" -d \"%s\"" % [unzip_exe, path, dest_dir]]
-	}
-	var command
-	
-	if (_platform == "X11" || _platform == "Linux") and (path.to_lower().ends_with(".tar.gz")):
-		command = command_linux_gz
-	elif (_platform == "X11" || _platform == "Linux") and (path.to_lower().ends_with(".zip")):
-		command = command_linux_zip
-	elif (_platform == "Windows") and (path.to_lower().ends_with(".zip")):
-		command = command_windows
-	else:
-		Status.post(tr("msg_extract_unsupported") % path.get_file(), Enums.MSG_ERROR)
-		emit_signal("extract_done")
-		return
-		
 	if not DirAccess.dir_exists_absolute(dest_dir):
 		DirAccess.make_dir_recursive_absolute(dest_dir)
-		
-	Status.post(tr("msg_extracting_file") % path.get_file())
 	
-	ThreadedExec.execute(command["item"], command["args"])
-	await ThreadedExec.execution_finished
-	if ThreadedExec.last_exit_code != 0:
-		Status.post(tr("msg_extract_error") % ThreadedExec.last_exit_code, Enums.MSG_ERROR)
-		Status.post(tr("msg_extract_failed_cmd") % str(command), Enums.MSG_DEBUG)
-		Status.post(tr("msg_extract_fail_output") % ThreadedExec.output[0], Enums.MSG_DEBUG)
+	if (_platform == "X11" || _platform == "Linux") and (path.to_lower().ends_with(".tar.gz")):
+		var command_linux_gz = {
+			"item": "/bin/bash",
+			"args": ["-c", "tar -xzf \"%s\" -C \"%s\" && find \"%s\" -type l -delete" % [path, dest_dir, dest_dir]]
+			# Godot can't operate on symlinks, so we have to clean them up with find.
+		}
+		Status.post(tr("msg_extracting_file") % path.get_file())
+		ThreadedExec.execute(command_linux_gz["item"], command_linux_gz["args"])
+		await ThreadedExec.execution_finished
+		last_extract_result = ThreadedExec.last_exit_code
+		if last_extract_result != 0:
+			Status.post(tr("msg_extract_error") % last_extract_result, Enums.MSG_ERROR)
+			Status.post(tr("msg_extract_failed_cmd") % str(command_linux_gz), Enums.MSG_DEBUG)
+			Status.post(tr("msg_extract_fail_output") % ThreadedExec.output[0], Enums.MSG_DEBUG)
+		emit_signal("extract_done")
+		return
+	
+	if path.to_lower().ends_with(".zip"):
+		Status.post(tr("msg_extracting_file") % path.get_file())
+		var thread := Thread.new()
+		thread.start(_extract_zip_internal.bind(path, dest_dir))
+		while thread.is_alive():
+			await get_tree().process_frame
+		last_extract_result = thread.wait_to_finish()
+		if last_extract_result != OK:
+			Status.post(tr("msg_extract_error") % last_extract_result, Enums.MSG_ERROR)
+		emit_signal("extract_done")
+		return
+	
+	Status.post(tr("msg_extract_unsupported") % path.get_file(), Enums.MSG_ERROR)
+	last_extract_result = ERR_FILE_UNRECOGNIZED
 	emit_signal("extract_done")
 
 
+func _zip_dir_internal(parent: String, dir_to_zip: String, dest_zip: String) -> int:
+	var packer := ZIPPacker.new()
+	var err := packer.open(dest_zip)
+	if err != OK:
+		return err
+	
+	var source_root := parent.path_join(dir_to_zip)
+	
+	packer.start_file(dir_to_zip.replace("\\", "/") + "/")
+	packer.close_file()
+	
+	for rel_path in list_dir(source_root, true):
+		var abs_path: String = source_root.path_join(rel_path)
+		var norm_rel: String = (rel_path as String).replace("\\", "/")
+		var entry_name: String = dir_to_zip.replace("\\", "/").path_join(norm_rel)
+		
+		if DirAccess.dir_exists_absolute(abs_path):
+			packer.start_file(entry_name + "/")
+			packer.close_file()
+		elif FileAccess.file_exists(abs_path):
+			var fa := FileAccess.open(abs_path, FileAccess.READ)
+			if fa == null:
+				packer.close()
+				return FileAccess.get_open_error()
+			var data := fa.get_buffer(fa.get_length())
+			fa.close()
+			packer.start_file(entry_name)
+			packer.write_file(data)
+			packer.close_file()
+	
+	packer.close()
+	return OK
+
+
 func zip(parent: String, dir_to_zip: String, dest_zip: String) -> void:
-	# Creates a .zip using the system utilities on Linux
-	# and bundled zip.exe from InfoZip on Windows.
-	# parent: directory that zip command is run from  (Path.savegames)
-	# dir_to_zip: relative folder to zip up  (world_name)
-	# dest_zip: zip item   (world_name.zip)
-	# 
-	# runs a command like:
-	# cd <userdata/save> && zip -r MyWorld.zip MyWorld
+	# Creates a .zip archive natively using Godot's ZIPPacker.
+	# parent: directory that contains dir_to_zip (e.g. Paths.savegames)
+	# dir_to_zip: relative folder to zip up (e.g. world_name)
+	# dest_zip: full path to destination zip file
 	
-	var zip_exe = Paths.utils_dir.path_join("zip.exe")
-	
-	var command_linux_zip = {
-		"item": "/bin/bash",
-		"args": ["-c", "cd '%s' && zip -b '%s' -r '%s' '%s'" % [parent, Paths.tmp_dir, dest_zip, dir_to_zip]]
-	}
-	var command_windows = {
-		"item": "cmd",
-		"args": ["/C", "cd /d \"%s\" && \"%s\" -b \"%s\" -r \"%s\" \"%s\"" % [parent, zip_exe, Paths.tmp_dir, dest_zip, dir_to_zip]]
-	}
-	var command
-	
-	if (_platform == "X11" || _platform == "Linux") and (dest_zip.to_lower().ends_with(".zip")):
-		command = command_linux_zip
-	elif (_platform == "Windows") and (dest_zip.to_lower().ends_with(".zip")):
-		command = command_windows
-	else:
+	if not dest_zip.to_lower().ends_with(".zip"):
 		Status.post(tr("msg_extract_unsupported") % dest_zip.get_file(), Enums.MSG_ERROR)
+		last_zip_result = ERR_FILE_UNRECOGNIZED
 		emit_signal("zip_done")
 		return
-		
-	if not DirAccess.dir_exists_absolute(Paths.tmp_dir):
-		DirAccess.make_dir_recursive_absolute(Paths.tmp_dir)
+	
+	var dest_parent := dest_zip.get_base_dir()
+	if not DirAccess.dir_exists_absolute(dest_parent):
+		DirAccess.make_dir_recursive_absolute(dest_parent)
 	
 	Status.post(tr("msg_zipping_file") % dest_zip.get_file())
 	
-	ThreadedExec.execute(command["item"], command["args"])
-	await ThreadedExec.execution_finished
-	if ThreadedExec.last_exit_code != 0:
-		Status.post(tr("msg_zip_error") % ThreadedExec.last_exit_code, Enums.MSG_ERROR)
-		Status.post(tr("msg_extract_failed_cmd") % str(command), Enums.MSG_DEBUG)
-		Status.post(tr("msg_extract_fail_output") % ThreadedExec.last_exit_code, Enums.MSG_DEBUG)
+	var thread := Thread.new()
+	thread.start(_zip_dir_internal.bind(parent, dir_to_zip, dest_zip))
+	while thread.is_alive():
+		await get_tree().process_frame
+	last_zip_result = thread.wait_to_finish()
+	if last_zip_result != OK:
+		Status.post(tr("msg_zip_error") % last_zip_result, Enums.MSG_ERROR)
 	emit_signal("zip_done")
 	
