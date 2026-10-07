@@ -12,27 +12,9 @@ signal _done_installing_mod
 signal _done_deleting_mod
 
 
-const _MODPACKS = {
-	"kenan-dda": {
-		"name": "CDDA Kenan Modpack",
-		"url": "https://github.com/Kenan2000/CDDA-Kenan-Modpack/archive/refs/heads/master.zip",
-		"filename": "CDDA-Kenan-Modpack-master.zip",
-		"internal_paths": [
-			"CDDA-Structured-Kenan-Modpack-master/Kenan-Structured-Modpack/High-Maintenance-Huge-Mods",
-			],
-		"archived_path": "CDDA-Structured-Kenan-Modpack-master/Kenan-Structured-Modpack/Archived-Mods",
-	},
-	"kenan-bn": {
-		"name": "BN Kenan Modpack",
-		"url": "https://github.com/Zlorthishen/BrightNights-Structured-Kenan-Modpack/archive/refs/heads/master.zip",
-		"filename": "BrightNights-Structured-Kenan-Modpack-master.zip",
-		"internal_paths": [
-			"BrightNights-Structured-Kenan-Modpack-master/Kenan-BrightNights-Structured-Modpack/High-Maintenance-Huge-Mods",
-			"BrightNights-Structured-Kenan-Modpack-master/Kenan-BrightNights-Structured-Modpack/Medium-Maintenance-Small-Mods",
-			],
-		"archived_path": "BrightNights-Structured-Kenan-Modpack-master/Kenan-BrightNights-Structured-Modpack/Archived-Mods",
-	}
-}
+const _MODPACKS_PATH = "res://data/modpacks.json"
+
+var _modpacks := {}
 
 
 var installed: Dictionary = {}: get = _get_installed
@@ -259,8 +241,16 @@ func install_mods(mod_ids: Array) -> void:
 
 func retrieve_kenan_pack() -> void:
 	
+	if _modpacks.is_empty():
+		_modpacks = Helpers.load_json_file(_MODPACKS_PATH)
+		if _modpacks == null:
+			_modpacks = {}
+	
 	var game = Settings.read("game")
-	var pack = _MODPACKS["kenan-" + game]
+	var pack_key = "kenan-" + game
+	if not pack_key in _modpacks:
+		return
+	var pack = _modpacks[pack_key]
 	
 	emit_signal("modpack_retrieval_started")
 	Status.post(tr("msg_getting_kenan_pack") % game.to_upper())
