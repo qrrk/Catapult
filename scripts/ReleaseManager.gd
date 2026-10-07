@@ -7,378 +7,12 @@ signal done_fetching_releases
 var _platform = ""
 
 
-const _RELEASE_URLS = {
-	"dda-experimental":
-		"https://api.github.com/repos/CleverRaven/Cataclysm-DDA/releases",
-	"bn-experimental":
-		"https://api.github.com/repos/cataclysmbn/Cataclysm-BN/releases",
-	"eod-experimental":
-		"https://api.github.com/repos/AtomicFox556/Cataclysm-EOD/releases",
-	"tish-experimental":
-		"https://api.github.com/repos/Cataclysm-TISH-team/Cataclysm-TISH/releases",
-	"tlg-experimental":
-		"https://api.github.com/repos/Cataclysm-TLG/Cataclysm-TLG/releases",
-}
+const _RELEASE_SOURCES_PATH = "res://data/release_sources.json"
+const _STABLE_RELEASES_PATH = "res://data/stable_releases.json"
 
-const _ASSET_FILTERS = {
-	"dda-experimental-linux": {
-		"field": "name",
-		"substring": "cdda-linux-with-graphics-and-sounds-x64",
-	},
-	"dda-experimental-win": {
-		"field": "name",
-		"substring": "cdda-windows-with-graphics-and-sounds-x64",
-	},
-	"bn-experimental-linux": {
-		"field": "name",
-		"substring": "cbn-linux-tiles-x64",
-	},
-	"bn-experimental-win": {
-		"field": "name",
-		"substring": "cbn-windows-tiles-x64",
-	},
-	"eod-experimental-linux": {
-		"field": "name",
-		"substring": "eod-linux-tiles-x64",
-	},
-	"eod-experimental-win": {
-		"field": "name",
-		"substring": "eod-windows-tiles-x64",
-	},
-	"tish-experimental-linux": {
-		"field": "name",
-		"substring": "tish-linux-tiles-x64",
-	},
-	"tish-experimental-win": {
-		"field": "name",
-		"substring": "tish-windows-tiles-x64",
-	},
-	"tlg-experimental-linux": {
-		"field": "name",
-		"substring": "ctlg-linux-tiles-x64",
-	},
-	"tlg-experimental-win": {
-		"field": "name",
-		"substring": "ctlg-windows-tiles-x64",
-	},
-}
+var _release_sources: Dictionary = {}
+var _stable_releases: Dictionary = {}
 
-const _DDA_STABLE_LINUX = [
-	{
-		"name": "0.I-1 Ito-1",
-		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.I-1/cdda-linux-with-graphics-x64-2026-09-19-2324.tar.gz",
-		"filename": "cdda-linux-with-graphics-x64-2026-09-19-2324.tar.gz"
-	},
-	{
-		"name": "0.I Ito",
-		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.I/cdda-linux-with-graphics-x64-2026-06-06-1535.tar.gz",
-		"filename": "cdda-linux-with-graphics-x64-2026-06-06-1535.tar.gz"
-	},
-	{
-		"name": "0.H Herbert",
-		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.H-RELEASE/cdda-linux-with-graphics-x64-2024-11-23-1857.tar.gz",
-		"filename": "cdda-linux-with-graphics-x64-2024-11-23-1857.tar.gz"
-	},	
-	{
-		"name": "0.G Gaiman",
-		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.G/cdda-linux-tiles-x64-2023-03-01-0054.tar.gz",
-		"filename": "cdda-linux-tiles-x64-2023-03-01-0054.tar.gz"
-	},	
-	{
-		"name": "0.F-2 Frank-2",
-		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.F-2/cataclysmdda-0.F-Linux_x64-Tiles-0.F-2.tar.gz",
-		"filename": "cataclysmdda-0.F-Linux_x64-Tiles-0.F-2.tar.gz"
-	},
-	{
-		"name": "0.F-1 Frank-1",
-		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.F-1/cataclysmdda-0.F-Linux_x64-Tiles-0.F-1.tar.gz",
-		"filename": "cataclysmdda-0.F-Linux_x64-Tiles-0.F-1.tar.gz"
-	},
-	{
-		"name": "0.F Frank",
-		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.F/cdda-linux-tiles-x64-2021-07-03-0512.tar.gz",
-		"filename": "cdda-linux-tiles-x64-2021-07-03-0512.tar.gz"
-	},
-	{
-		"name": "0.E-3 Ellison-3",
-		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.E-3/cataclysmdda-0.E-Linux_x64-Tiles-0.E-3.tar.gz",
-		"filename": "cataclysmdda-0.E-Linux_x64-Tiles-0.E-3.tar.gz"
-	},
-	{
-		"name": "0.E-2 Ellison-2",
-		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.E-2/cataclysmdda-0.E-Linux_x64-Tiles-0.E-2.tar.gz",
-		"filename": "cataclysmdda-0.E-Linux_x64-Tiles-0.E-2.tar.gz"
-	},
-	{
-		"name": "0.E-1 Ellison-1",
-		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.E-1/cataclysmdda-0.E-Linux_x64-Tiles-0.E-1.tar.gz",
-		"filename": "cataclysmdda-0.E-Linux_x64-Tiles-0.E-1.tar.gz"
-	},
-	{
-		"name": "0.E Ellison",
-		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.E/cataclysmdda-0.E-Linux_x64-Tiles-10478.tar.gz",
-		"filename": "cataclysmdda-0.E-Linux_x64-Tiles-10478.tar.gz"
-	},
-	{
-		"name": "0.D Danny",
-		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.D/cataclysmdda-0.D-8574-Linux-Tiles.tar.gz",
-		"filename": "cataclysmdda-0.D-8574-Linux-Tiles.tar.gz"
-	},
-]
-
-const _DDA_STABLE_WIN = [
-	{
-		"name": "0.I-1 Ito-1",
-		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.I-1/cdda-windows-with-graphics-x64-2026-09-19-2324.zip",
-		"filename": "cdda-windows-with-graphics-x64-2026-09-19-2324.zip"
-	},
-	{
-		"name": "0.I Ito",
-		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.I/cdda-windows-with-graphics-x64-2026-06-06-1535.zip",
-		"filename": "cdda-windows-with-graphics-x64-2026-06-06-1535.zip"
-	},
-	{
-		"name": "0.H Herbert",
-		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.H-RELEASE/cdda-windows-with-graphics-x64-2024-11-23-1857.zip",
-		"filename": "cdda-windows-with-graphics-x64-2024-11-23-1857.zip"
-	},	
-	{
-		"name": "0.G Gaiman",
-		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.G/cdda-windows-tiles-x64-2023-03-01-0054.zip",
-		"filename": "cdda-windows-tiles-x64-2023-03-01-0054.zip"
-	},	
-	{
-		"name": "0.F-3 Frank-3",
-		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.F-3/cataclysmdda-0.F-Windows_x64-Tiles-0.F-3.zip",
-		"filename": "cataclysmdda-0.F-Windows_x64-Tiles-0.F-3.zip"
-	},	
-	{
-		"name": "0.F-2 Frank-2",
-		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.F-2/cataclysmdda-0.F-Windows_x64-Tiles-0.F-2.zip",
-		"filename": "cataclysmdda-0.F-Windows_x64-Tiles-0.F-2.zip"
-	},
-	{
-		"name": "0.F-1 Frank-1",
-		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.F-1/cataclysmdda-0.F-Windows_x64-Tiles-0.F-1.zip",
-		"filename": "cataclysmdda-0.F-Windows_x64-Tiles-0.F-1.zip"
-	},
-	{
-		"name": "0.F Frank",
-		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.F/cdda-windows-tiles-x64-2021-07-03-0512.zip",
-		"filename": "cdda-windows-tiles-x64-2021-07-03-0512.zip"
-	},
-	{
-		"name": "0.E-3 Ellison-3",
-		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.E-3/cataclysmdda-0.E-Windows_x64-Tiles-0.E-3.zip",
-		"filename": "cataclysmdda-0.E-Windows_x64-Tiles-0.E-3.zip"
-	},
-	{
-		"name": "0.E-2 Ellison-2",
-		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.E-2/cataclysmdda-0.E-Windows_x64-Tiles-0.E-2.zip",
-		"filename": "cataclysmdda-0.E-Windows_x64-Tiles-0.E-2.zip"
-	},
-	{
-		"name": "0.E-1 Ellison-1",
-		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.E-1/cataclysmdda-0.E-Windows_x64-Tiles-0.E-1.zip",
-		"filename": "cataclysmdda-0.E-Windows_x64-Tiles-0.E-1.zip"
-	},
-	{
-		"name": "0.E Ellison",
-		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.E/cataclysmdda-0.E-Windows_x64-Tiles-10478.zip",
-		"filename": "cataclysmdda-0.E-Windows_x64-Tiles-10478.zip"
-	},
-	{
-		"name": "0.D Danny",
-		"url": "https://github.com/CleverRaven/Cataclysm-DDA/releases/download/0.D/cataclysmdda-0.D-8574-Win64-Tiles.zip",
-		"filename": "cataclysmdda-0.D-8574-Win64-Tiles.zip"
-	},
-]
-
-const _BN_STABLE_LINUX = [
-	{
-		"name": "0.13.0",
-		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/v0.13.0/cbn-linux-tiles-x64-v0.13.0.tar.gz",
-		"filename": "cbn-linux-tiles-x64-v0.13.0.tar.gz"
-	},
-	{
-		"name": "0.12.0",
-		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/v0.12.0/cbn-linux-tiles-x64-v0.12.0.tar.gz",
-		"filename": "cbn-linux-tiles-x64-v0.12.0.tar.gz"
-	},
-	{
-		"name": "0.11.1",
-		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/v0.11.1/cbn-linux-tiles-x64-v0.11.1.tar.gz",
-		"filename": "cbn-linux-tiles-x64-v0.11.1.tar.gz"
-	},
-	{
-		"name": "0.11.0",
-		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/v0.11.0/cbn-linux-tiles-x64-v0.11.0.tar.gz",
-		"filename": "cbn-linux-tiles-x64-v0.11.0.tar.gz"
-	},
-	{
-		"name": "0.10.0",
-		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/v0.10.0/cbn-linux-tiles-x64-v0.10.0.tar.gz",
-		"filename": "cbn-linux-tiles-x64-v0.10.0.tar.gz"
-	},
-	{
-		"name": "0.9.1",
-		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/v0.9.1/cbn-linux-tiles-x64-v0.9.1.tar.gz",
-		"filename": "cbn-linux-tiles-x64-v0.9.1.tar.gz"
-	},
-	{
-		"name": "0.9.0",
-		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/v0.9.0/cbn-linux-tiles-x64-v0.9.0.tar.gz",
-		"filename": "cbn-linux-tiles-x64-v0.9.0.tar.gz"
-	},
-	{
-		"name": "0.8.0",
-		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/v0.8.0/cbn-linux-tiles-x64-v0.8.0.tar.gz",
-		"filename": "cbn-linux-tiles-x64-v0.8.0.tar.gz"
-	},
-	{
-		"name": "0.7.1",
-		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/v0.7.1/cbn-linux-tiles-x64-v0.7.1.tar.gz",
-		"filename": "cbn-linux-tiles-x64-v0.7.1.tar.gz"
-	},
-	{
-		"name": "0.7.0",
-		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/v0.7.0/cbn-linux-tiles-x64-v0.7.0.tar.gz",
-		"filename": "cbn-linux-tiles-x64-v0.7.0.tar.gz"
-	},
-	{
-		"name": "0.6.0",
-		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/v0.6.0/cbn-linux-tiles-x64-v0.6.0.tar.gz",
-		"filename": "cbn-linux-tiles-x64-v0.6.0.tar.gz"
-	},
-	{
-		"name": "0.5.2",
-		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/cbn-0.5.2/cbn-linux-tiles-x64-0.5.2.tar.gz",
-		"filename": "cbn-linux-tiles-x64-0.5.2.tar.gz"
-	},
-	{
-		"name": "0.5.1",
-		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/cbn-0.5.1/cbn-linux-tiles-x64-0.5.1.tar.gz",
-		"filename": "cbn-linux-tiles-x64-0.5.1.tar.gz"
-	},
-	{
-		"name": "0.5",
-		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/cbn-0.5/cbn-linux-tiles-x64-0.5.tar.gz",
-		"filename": "cbn-linux-tiles-x64-0.5.tar.gz"
-	},
-	{
-		"name": "0.4",
-		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/cbn-0.4/cbn-linux-tiles-x64-0.4.tar.gz",
-		"filename": "cbn-linux-tiles-x64-0.4.tar.gz"
-	},
-	{
-		"name": "0.3",
-		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/cbn-0.3/cbn-linux-tiles-x64-0.3.tar.gz",
-		"filename": "cbn-linux-tiles-x64-0.3.tar.gz"
-	},
-	{
-		"name": "0.2",
-		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/cbn-0.2/cbn-linux-tiles-x64-0.2.tar.gz",
-		"filename": "cbn-linux-tiles-x64-0.2.tar.gz"
-	},
-	{
-		"name": "0.1",
-		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/cbn-0.1/cbn-linux-tiles-x64-0.1.tar.gz",
-		"filename": "cbn-linux-tiles-x64-0.1.tar.gz"
-	},
-]
-
-const _BN_STABLE_WIN = [
-	{
-		"name": "0.13.0",
-		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/v0.13.0/cbn-windows-tiles-x64-msvc-v0.13.0.zip",
-		"filename": "cbn-windows-tiles-x64-msvc-v0.13.0.zip"
-	},
-	{
-		"name": "0.12.0",
-		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/v0.12.0/cbn-windows-tiles-x64-msvc-v0.12.0.zip",
-		"filename": "cbn-windows-tiles-x64-msvc-v0.12.0.zip"
-	},
-	{
-		"name": "0.11.1",
-		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/v0.11.1/cbn-windows-tiles-x64-msvc-v0.11.1.zip",
-		"filename": "cbn-windows-tiles-x64-msvc-v0.11.1.zip"
-	},
-	{
-		"name": "0.11.0",
-		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/v0.11.0/cbn-windows-tiles-x64-msvc-v0.11.0.zip",
-		"filename": "cbn-windows-tiles-x64-msvc-v0.11.0.zip"
-	},
-	{
-		"name": "0.10.0",
-		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/v0.10.0/cbn-windows-tiles-x64-msvc-v0.10.0.zip",
-		"filename": "cbn-windows-tiles-x64-msvc-v0.10.0.zip"
-	},
-	{
-		"name": "0.9.1",
-		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/v0.9.1/cbn-windows-tiles-x64-msvc-v0.9.1.zip",
-		"filename": "cbn-windows-tiles-x64-msvc-v0.9.1.zip"
-	},
-	{
-		"name": "0.9.0",
-		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/v0.9.0/cbn-windows-tiles-x64-msvc-v0.9.0.zip",
-		"filename": "cbn-windows-tiles-x64-msvc-v0.9.0.zip"
-	},
-	{
-		"name": "0.8.0",
-		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/v0.8.0/cbn-windows-tiles-x64-msvc-v0.8.0.zip",
-		"filename": "cbn-windows-tiles-x64-msvc-v0.8.0.zip"
-	},
-	{
-		"name": "0.7.1",
-		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/v0.7.1/cbn-windows-tiles-x64-msvc-v0.7.1.zip",
-		"filename": "cbn-windows-tiles-x64-msvc-v0.7.1.zip"
-	},
-	{
-		"name": "0.7.0",
-		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/v0.7.0/cbn-windows-tiles-x64-v0.7.0.zip",
-		"filename": "cbn-windows-tiles-x64-v0.7.0.zip"
-	},
-	{
-		"name": "0.6.0",
-		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/v0.6.0/cbn-windows-tiles-x64-v0.6.0.zip",
-		"filename": "cbn-windows-tiles-x64-v0.6.0.zip"
-	},
-	{
-		"name": "0.5.2",
-		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/v0.5.2/cbn-windows-tiles-x64-msvc-v0.5.2.zip",
-		"filename": "cbn-windows-tiles-x64-msvc-0.5.2.zip"
-	},
-	{
-		"name": "0.5.1",
-		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/cbn-0.5.1/cbn-windows-tiles-x64-msvc-0.5.1.zip",
-		"filename": "cbn-windows-tiles-x64-msvc-0.5.1.zip"
-	},
-	{
-		"name": "0.5",
-		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/cbn-0.5/cbn-windows-tiles-x64-msvc-0.5.zip",
-		"filename": "cbn-windows-tiles-x64-msvc-0.5.zip"
-	},
-	{
-		"name": "0.4",
-		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/cbn-0.4/cbn-windows-tiles-x64-msvc-0.4.zip",
-		"filename": "cbn-windows-tiles-x64-msvc-0.4.zip"
-	},
-	{
-		"name": "0.3",
-		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/cbn-0.3/cbn-windows-tiles-x64-msvc-0.3.zip",
-		"filename": "cbn-windows-tiles-x64-msvc-0.3.zip"
-	},
-	{
-		"name": "0.2",
-		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/cbn-0.2/cbn-windows-tiles-x64-msvc-0.2.zip",
-		"filename": "cbn-windows-tiles-x64-msvc-0.2.zip"
-	},
-	{
-		"name": "0.1",
-		"url": "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/cbn-0.1/cbn-windows-tiles-x64-msvc-0.1.zip",
-		"filename": "cbn-windows-tiles-x64-msvc-0.1.zip"
-	}
-]
 
 var releases = {
 	"dda-stable": [],
@@ -395,6 +29,7 @@ var releases = {
 
 
 func _ready() -> void:
+	_load_sources()
 	
 	var p = OS.get_name()
 	match p:
@@ -406,6 +41,26 @@ func _ready() -> void:
 			_platform = "win"
 		_:
 			Status.post(tr("msg_unsupported_platform") % p, Enums.MSG_ERROR)
+
+
+func _load_sources() -> void:
+	var sources = Helpers.load_json_file(_RELEASE_SOURCES_PATH)
+	if sources is Dictionary:
+		_release_sources = sources
+	else:
+		_release_sources = {}
+	
+	var stables = Helpers.load_json_file(_STABLE_RELEASES_PATH)
+	if stables is Dictionary:
+		_stable_releases = stables
+	else:
+		_stable_releases = {}
+
+
+func _get_asset_filter(release_type: String) -> Dictionary:
+	if _release_sources.is_empty():
+		_load_sources()
+	return _release_sources.get("asset_filters", {}).get(release_type + "-" + _platform, {})
 
 
 func _get_query_string() -> String:
@@ -425,9 +80,12 @@ func _update_proxy(http: HTTPRequest) -> void:
 		http.set_https_proxy("", -1)
 
 func _request_releases(http: HTTPRequest, release: String) -> void:
+	if _release_sources.is_empty():
+		_load_sources()
 	emit_signal("started_fetching_releases")
 	_update_proxy(http)
-	http.request(_RELEASE_URLS[release] + _get_query_string())
+	var urls = _release_sources.get("urls", {})
+	http.request(urls[release] + _get_query_string())
 
 
 func _on_request_completed_dda(result: int, response_code: int,
@@ -439,7 +97,7 @@ func _on_request_completed_dda(result: int, response_code: int,
 	if result:
 		Status.post(tr("msg_releases_request_failed"), Enums.MSG_WARN)
 	else:
-		_parse_builds(body, releases["dda-experimental"], _ASSET_FILTERS["dda-experimental-" + _platform])
+		_parse_builds(body, releases["dda-experimental"], _get_asset_filter("dda-experimental"))
 	
 	emit_signal("done_fetching_releases")
 
@@ -453,7 +111,7 @@ func _on_request_completed_bn(result: int, response_code: int,
 	if result:
 		Status.post(tr("msg_releases_request_failed"), Enums.MSG_WARN)
 	else:
-		_parse_builds(body, releases["bn-experimental"], _ASSET_FILTERS["bn-experimental-" + _platform])
+		_parse_builds(body, releases["bn-experimental"], _get_asset_filter("bn-experimental"))
 	
 	emit_signal("done_fetching_releases")
 
@@ -466,7 +124,7 @@ func _on_request_completed_eod(result: int, response_code: int,
 	if result:
 		Status.post(tr("msg_releases_request_failed"), Enums.MSG_WARN)
 	else:
-		_parse_builds(body, releases["eod-experimental"], _ASSET_FILTERS["eod-experimental-" + _platform])
+		_parse_builds(body, releases["eod-experimental"], _get_asset_filter("eod-experimental"))
 	
 	emit_signal("done_fetching_releases")
 
@@ -479,7 +137,7 @@ func _on_request_completed_tish(result: int, response_code: int,
 	if result:
 		Status.post(tr("msg_releases_request_failed"), Enums.MSG_WARN)
 	else:
-		_parse_builds(body, releases["tish-experimental"], _ASSET_FILTERS["tish-experimental-" + _platform])
+		_parse_builds(body, releases["tish-experimental"], _get_asset_filter("tish-experimental"))
 	
 	emit_signal("done_fetching_releases")
 
@@ -492,7 +150,7 @@ func _on_request_completed_tlg(result: int, response_code: int,
 	if result:
 		Status.post(tr("msg_releases_request_failed"), Enums.MSG_WARN)
 	else:
-		_parse_builds(body, releases["tlg-experimental"], _ASSET_FILTERS["tlg-experimental-" + _platform])
+		_parse_builds(body, releases["tlg-experimental"], _get_asset_filter("tlg-experimental"))
 	
 	emit_signal("done_fetching_releases")
 
@@ -531,25 +189,16 @@ func _parse_builds(data: PackedByteArray, write_to: Array, filter: Dictionary) -
 
 
 func fetch(release_key: String) -> void:
+	if _stable_releases.is_empty():
+		_load_sources()
 	
 	match release_key:
-		"dda-stable":
-			match _platform:
-				"linux":
-					releases["dda-stable"] = _DDA_STABLE_LINUX
-				"win":
-					releases["dda-stable"] = _DDA_STABLE_WIN
+		"dda-stable", "bn-stable":
+			releases[release_key] = _stable_releases.get(release_key, {}).get(_platform, [])
 			emit_signal("done_fetching_releases")
 		"dda-experimental":
 			Status.post(tr("msg_fetching_releases_dda"))
 			_request_releases($HTTPRequest_DDA, "dda-experimental")
-		"bn-stable":
-			match _platform:
-				"linux":
-					releases["bn-stable"] = _BN_STABLE_LINUX
-				"win":
-					releases["bn-stable"] = _BN_STABLE_WIN
-			emit_signal("done_fetching_releases")
 		"bn-experimental":
 			Status.post(tr("msg_fetching_releases_bn"))
 			_request_releases($HTTPRequest_BN, "bn-experimental")
