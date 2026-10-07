@@ -178,34 +178,82 @@ func move_dir(abs_path: String, abs_dest: String) -> void:
 
 
 func _extract_zip_internal(archive_path: String, dest_dir: String) -> int:
+	var master_reader := ZIPReader.new()
+	var err := master_reader.open(archive_path)
+	if err != OK:
+		return err
+	
+	var all_files := master_reader.get_files()
+	master_reader.close()
+	
+	var regular_files: Array = []
+	var unique_dirs := {}
+	
+	for file_path in all_files:
+		var norm_path: String = (file_path as String).replace("\\", "/")
+		if norm_path.ends_with("/"):
+			unique_dirs[norm_path] = true
+		else:
+			regular_files.append({"raw": file_path, "norm": norm_path})
+			var base_dir := norm_path.get_base_dir()
+			if base_dir != "":
+				unique_dirs[base_dir] = true
+	
+	for dir_path in unique_dirs.keys():
+		var target_dir := dest_dir.path_join(dir_path)
+		var dir_err = DirAccess.make_dir_recursive_absolute(target_dir)
+		if dir_err != OK and dir_err != ERR_ALREADY_EXISTS:
+			return dir_err
+	
+	if regular_files.is_empty():
+		return OK
+	
+	var cpu_count := OS.get_processor_count()
+	var thread_count := clampi(cpu_count, 2, 16)
+	thread_count = mini(thread_count, len(regular_files))
+	
+	if thread_count <= 1:
+		return _worker_extract_files(archive_path, dest_dir, regular_files)
+	
+	var chunks: Array = []
+	for i in range(thread_count):
+		chunks.append([])
+	for i in range(len(regular_files)):
+		chunks[i % thread_count].append(regular_files[i])
+	
+	var workers: Array[Thread] = []
+	for i in range(thread_count):
+		var worker := Thread.new()
+		worker.start(_worker_extract_files.bind(archive_path, dest_dir, chunks[i]))
+		workers.append(worker)
+	
+	var result := OK
+	for worker in workers:
+		var worker_res = worker.wait_to_finish()
+		if worker_res != OK and result == OK:
+			result = worker_res
+	
+	return result
+
+
+func _worker_extract_files(archive_path: String, dest_dir: String, files: Array) -> int:
 	var reader := ZIPReader.new()
 	var err := reader.open(archive_path)
 	if err != OK:
 		return err
 	
-	var files := reader.get_files()
-	for file_path in files:
-		var norm_path: String = (file_path as String).replace("\\", "/")
-		if norm_path.ends_with("/"):
-			var dir_err = DirAccess.make_dir_recursive_absolute(dest_dir.path_join(norm_path))
-			if dir_err != OK and dir_err != ERR_ALREADY_EXISTS:
-				reader.close()
-				return dir_err
-		else:
-			var target_file_path := dest_dir.path_join(norm_path)
-			var dir_err = DirAccess.make_dir_recursive_absolute(target_file_path.get_base_dir())
-			if dir_err != OK and dir_err != ERR_ALREADY_EXISTS:
-				reader.close()
-				return dir_err
-			
-			var buffer := reader.read_file(file_path)
-			var fa := FileAccess.open(target_file_path, FileAccess.WRITE)
-			if fa == null:
-				var open_err = FileAccess.get_open_error()
-				reader.close()
-				return open_err
-			fa.store_buffer(buffer)
-			fa.close()
+	for item in files:
+		var raw_path: String = item["raw"]
+		var norm_path: String = item["norm"]
+		var buffer := reader.read_file(raw_path)
+		var target_file_path := dest_dir.path_join(norm_path)
+		var fa := FileAccess.open(target_file_path, FileAccess.WRITE)
+		if fa == null:
+			var open_err = FileAccess.get_open_error()
+			reader.close()
+			return open_err
+		fa.store_buffer(buffer)
+		fa.close()
 	
 	reader.close()
 	return OK
