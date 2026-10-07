@@ -2,43 +2,9 @@ extends Node
 
 
 const _SETTINGS_FILENAME = "catapult_settings.json"
+const _DEFAULTS_FILENAME = "res://data/default_settings.json"
 
-const _HARDCODED_DEFAULTS = {
-	"game": "dda",
-	"channel": "stable",
-	"active_install_dda": "",
-	"active_install_bn": "",
-	"active_install_eod": "",
-	"active_install_tish": "",
-	"active_install_tlg": "",
-	"update_current_when_installing": true,
-	"launcher_locale": "",
-	"launcher_theme": "Godot_4.tres",
-	"window_state": {},
-	"print_tips_of_the_day": true,
-	"update_to_same_build_allowed": false,
-	"shorten_release_names": false,
-	"always_show_installs": false,
-	"num_releases_to_request": 10,
-	"num_prs_to_request": 50,
-	"ui_scale_override": 1.0,
-	"ui_scale_override_enabled": false,
-	"show_stock_mods": false,
-	"show_installed_mods_in_available": false,
-	"show_obsolete_mods": false,
-	"install_archived_mods": false,
-	"show_stock_sound": false,
-	"font_preview_cyrillic": false,
-	"show_game_desc": true,
-	"keep_open_after_starting_game": true,
-	"keep_cache": false,
-	"ignore_cache": false,
-	"proxy_option": "off",
-	"proxy_host": "",
-	"proxy_port": 0,
-	"debug_mode": false,
-}
-
+var _defaults := {}
 var _settings_file = ""
 var _current = {}
 
@@ -49,15 +15,20 @@ func _exit_tree() -> void:
 
 func _load() -> void:
 	
+	if _defaults.is_empty():
+		_defaults = Helpers.load_json_file(_DEFAULTS_FILENAME)
+		if _defaults == null:
+			_defaults = {}
+	
 	_settings_file = Paths.own_dir.path_join(_SETTINGS_FILENAME)
 	
 	if FileAccess.file_exists(_settings_file):
 		_current = _read_from_file(_settings_file)
 		
 	else:
-		_current = _HARDCODED_DEFAULTS.duplicate(true)
+		_current = _defaults.duplicate(true)
 		Status.post(tr("msg_creating_settings") % _SETTINGS_FILENAME)
-		_write_to_file(_HARDCODED_DEFAULTS, _settings_file)
+		_write_to_file(_defaults, _settings_file)
 
 
 func _read_from_file(path: String) -> Dictionary:
@@ -93,8 +64,12 @@ func read(setting_name: String):
 		_load()
 	
 	if not setting_name in _current:
-		if setting_name in _HARDCODED_DEFAULTS:
-			_current[setting_name] = _HARDCODED_DEFAULTS[setting_name]
+		if _defaults.is_empty():
+			_defaults = Helpers.load_json_file(_DEFAULTS_FILENAME)
+			if _defaults == null:
+				_defaults = {}
+		if setting_name in _defaults:
+			_current[setting_name] = _defaults[setting_name]
 		else:
 			Status.post(tr("msg_nonexisting_setting") % setting_name, Enums.MSG_ERROR)
 			return null
