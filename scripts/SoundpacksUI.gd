@@ -49,7 +49,7 @@ func _break_up_string(text: String, approx_width_chars: int) -> String:
 func _populate_available() -> void:
 	
 	%AvailableSoundsList.clear()
-	for pack in %SoundpackManager.SOUNDPACKS:
+	for pack in %SoundpackManager.soundpacks:
 		%AvailableSoundsList.add_item(pack["name"])
 		
 		
@@ -119,7 +119,7 @@ func _on_AvailableList_item_selected(index: int) -> void:
 		return  # https://github.com/godotengine/godot/issues/37277
 	
 	%InstallSoundBtn.disabled = false
-	var pack_name = %SoundpackManager.SOUNDPACKS[index]["name"]
+	var pack_name = %SoundpackManager.soundpacks[index]["name"]
 	if _is_pack_installed(pack_name):
 		%InstallSoundBtn.text = tr("btn_reinstall_sound")
 	else:
@@ -129,7 +129,7 @@ func _on_AvailableList_item_selected(index: int) -> void:
 func _on_BtnInstall_pressed() -> void:
 	
 	var pack_index = %AvailableSoundsList.get_selected_items()[0]
-	var pack = %SoundpackManager.SOUNDPACKS[pack_index]
+	var pack = %SoundpackManager.soundpacks[pack_index]
 	
 	if ("manual_download" in pack) and (pack["manual_download"] == true):
 		%ManualSoundDownloadDlg.size = Vector2(300, 150)
@@ -146,7 +146,7 @@ func _on_BtnInstall_pressed() -> void:
 
 func _on_ConfirmManualDownload_confirmed() -> void:
 	
-	var pack = %SoundpackManager.SOUNDPACKS[%AvailableSoundsList.get_selected_items()[0]]
+	var pack = %SoundpackManager.soundpacks[%AvailableSoundsList.get_selected_items()[0]]
 	
 	OS.shell_open(pack["url"])
 	%InstallFromFileDialog.current_dir = Paths.own_dir
@@ -157,7 +157,7 @@ func _on_ConfirmManualDownload_confirmed() -> void:
 func _on_InstallFromFileDialog_file_selected(path: String) -> void:
 	
 	var index = %AvailableSoundsList.get_selected_items()[0]
-	var pack_name = %SoundpackManager.SOUNDPACKS[index]["name"]
+	var pack_name = %SoundpackManager.soundpacks[index]["name"]
 	
 	if _is_pack_installed(pack_name):
 		%SoundpackManager.install_pack(index, path, true, true)
