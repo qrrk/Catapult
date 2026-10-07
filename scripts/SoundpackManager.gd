@@ -7,80 +7,22 @@ signal soundpack_deletion_started
 signal soundpack_deletion_finished
 
 
-const SOUNDPACKS = [
-	{
-		"name": "CC-Sounds",
-		"url": "https://github.com/Fris0uman/CDDA-Soundpacks/releases/latest/download/CC-Sounds.zip",
-		"filename": "CC-Sounds.zip",
-		"internal_path": "CC-Sounds",
-	},
-	{
-		"name": "CC-Sounds-sfx-only",
-		"url": "https://github.com/Fris0uman/CDDA-Soundpacks/releases/latest/download/CC-Sounds-sfx-only.zip",
-		"filename": "CC-Sounds-sfx-only.zip",
-		"internal_path": "CC-Sounds",
-	},
-	{
-		"name": "CO.AG-music-only",
-		"url": "https://github.com/Fris0uman/CDDA-Soundpacks/releases/latest/download/CO.AG-music-only.zip",
-		"filename": "CO.AG-music-only.zip",
-		"internal_path": "CO.AG-music-only",
-	},
-	{
-		"name": "BeepBoopBip",
-		"url": "https://github.com/Golfavel/CDDA-Soundpacks_BeepBoop/archive/refs/heads/master.zip",
-		"filename": "BeepBoopBip.zip",
-		"internal_path": "CDDA-Soundpacks_BeepBoop-master/sound/BeepBoopBip",
-	},
-	{
-		"name": "@'s soundpack",
-		"url": "https://github.com/damalsk/damalsksoundpack/archive/refs/heads/master.zip",
-		"filename": "ats-soundpack.zip",
-		"internal_path": "damalsksoundpack-master",
-	},
-	{
-		"name": "CDDA-Soundpack",
-		"url": "https://github.com/budg3/CDDA-Soundpack/archive/master.zip",
-		"filename": "cdda-soundpack.zip",
-		"internal_path": "CDDA-Soundpack-master/CDDA-Soundpack",
-	},
-	{
-		"name": "ChestHole",
-		"url": "https://web.archive.org/web/20240122133501if_/https://chezzo.com/cdda/ChestHoleSoundSet.zip",
-		"filename": "chesthole-soundpack.zip",
-		"internal_path": "ChestHole",
-	},
-	{
-		"name": "ChestHoleCC",
-		"url": "https://web.archive.org/web/20210401095201if_/http://chezzo.com/cdda/ChestHoleCCSoundset.zip",
-		"filename": "chesthole-cc-soundpack.zip",
-		"internal_path": "ChestHoleCC",
-	},
-	{
-		"name": "ChestOldTimey",
-		"url": "https://web.archive.org/web/20210401095200if_/http://chezzo.com/cdda/ChestOldTimeyLessismore.zip",
-		"filename": "chest-old-timey-soundpack.zip",
-		"internal_path": "ChestHoleOldTimey",
-	},
-	{
-		"name": "Otopack",
-		"url": "https://github.com/Kenan2000/Otopack-Mods-Updates/archive/master.zip",
-		"filename": "otopack.zip",
-		"internal_path": "Otopack-Mods-Updates-master/Otopack+ModsUpdates",
-	},
-	{
-		"name": "Otopack-BN-Mk-2",
-		"url": "https://github.com/NarandBD/Otopack-BN-Mk-2/archive/main.zip",
-		"filename": "otopack-bn-mk2.zip",
-		"internal_path": "Otopack-BN-Mk-2-main/Otopack+ModsUpdates BN",
-	},
-	{
-		"name": "RRFSounds",
-		"url": "https://dl.dropboxusercontent.com/s/d8dfmb2facvkdh6/RRFSounds.zip",
-		"filename": "rrfsounds.zip",
-		"internal_path": "data/sound/RRFSounds",
-	},
-]
+const _SOUNDPACKS_PATH = "res://data/soundpacks.json"
+
+var soundpacks: Array = []
+
+
+func _ready() -> void:
+	load_soundpacks()
+
+
+func load_soundpacks() -> void:
+	var loaded = Helpers.load_json_file(_SOUNDPACKS_PATH)
+	if loaded is Array:
+		soundpacks = loaded
+	else:
+		soundpacks = []
+
 
 
 func parse_sound_dir(sound_dir: String) -> Array:
@@ -147,7 +89,7 @@ func delete_pack(pack_name: String) -> void:
 
 func install_pack(soundpack_index: int, from_file = null, reinstall = false, keep_archive = false) -> void:
 	
-	var pack = SOUNDPACKS[soundpack_index]
+	var pack = soundpacks[soundpack_index]
 	var sound_dir = Paths.sound_user
 	var tmp_dir = Paths.tmp_dir.path_join(pack["name"])
 	var archive = ""
