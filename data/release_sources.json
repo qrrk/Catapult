@@ -1,0 +1,51 @@
+{
+    "urls": {
+        "dda-experimental": "https://api.github.com/repos/CleverRaven/Cataclysm-DDA/releases",
+        "bn-experimental": "https://api.github.com/repos/cataclysmbn/Cataclysm-BN/releases",
+        "eod-experimental": "https://api.github.com/repos/AtomicFox556/Cataclysm-EOD/releases",
+        "tish-experimental": "https://api.github.com/repos/Cataclysm-TISH-team/Cataclysm-TISH/releases",
+        "tlg-experimental": "https://api.github.com/repos/Cataclysm-TLG/Cataclysm-TLG/releases"
+    },
+    "asset_filters": {
+        "dda-experimental-linux": {
+            "field": "name",
+            "substring": "cdda-linux-with-graphics-and-sounds-x64"
+        },
+        "dda-experimental-win": {
+            "field": "name",
+            "substring": "cdda-windows-with-graphics-and-sounds-x64"
+        },
+        "bn-experimental-linux": {
+            "field": "name",
+            "substring": "cbn-linux-tiles-x64"
+        },
+        "bn-experimental-win": {
+            "field": "name",
+            "substring": "cbn-windows-tiles-x64"
+        },
+        "eod-experimental-linux": {
+            "field": "name",
+            "substring": "eod-linux-tiles-x64"
+        },
+        "eod-experimental-win": {
+            "field": "name",
+            "substring": "eod-windows-tiles-x64"
+        },
+        "tish-experimental-linux": {
+            "field": "name",
+            "substring": "tish-linux-tiles-x64"
+        },
+        "tish-experimental-win": {
+            "field": "name",
+            "substring": "tish-windows-tiles-x64"
+        },
+        "tlg-experimental-linux": {
+            "field": "name",
+            "substring": "ctlg-linux-tiles-x64"
+        },
+        "tlg-experimental-win": {
+            "field": "name",
+            "substring": "ctlg-windows-tiles-x64"
+        }
+    }
+}
