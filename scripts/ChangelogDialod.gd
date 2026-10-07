@@ -1,17 +1,12 @@
 extends Window
 
 
-const _PR_URL = {
-	"dda": "https://api.github.com/search/issues?q=repo%3Acleverraven/Cataclysm-DDA",
-	"bn": "https://api.github.com/search/issues?q=repo%3Acataclysmbn/Cataclysm-BN",
-	"eod": "https://api.github.com/search/issues?q=repo%3AAtomicFox556/Cataclysm-EOD",
-	"tish": "https://api.github.com/search/issues?q=repo%3ACataclysm-TISH-team/Cataclysm-TISH/",
-	"tlg": "https://api.github.com/search/issues?q=repo%3ACataclysm-TLG/Cataclysm-TLG",
-}
+const _PR_ENDPOINTS_PATH = "res://data/pr_endpoints.json"
 
 @onready var _pullRequests := $PullRequests
 @onready var _changelogTextBox := $Panel/Margin/VBox/ChangelogText
 
+var _pr_urls := {}
 var _pr_data = ""
 
 
@@ -33,8 +28,15 @@ func _update_proxy(http: HTTPRequest) -> void:
 
 
 func download_pull_requests():
+	if _pr_urls.is_empty():
+		_pr_urls = Helpers.load_json_file(_PR_ENDPOINTS_PATH)
+		if _pr_urls == null:
+			_pr_urls = {}
+	var game = Settings.read("game")
+	if not game in _pr_urls:
+		return
 	var prs := Settings.read("num_prs_to_request") as int
-	var url = _PR_URL[Settings.read("game")]
+	var url = _pr_urls[game]
 	url += "+is%3Apr+is%3Amerged&per_page=" + str(prs)
 	var headers = ["user-agent: CatapultGodotApp"]
 	_pr_data = tr("str_fetching_changes")
