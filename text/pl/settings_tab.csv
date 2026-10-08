@@ -45,4 +45,4 @@ Włączone - Używaj proxy przy wszystkich okazjach (np. żądanie wydań)
 Tylko do pobierania - Używaj proxy tylko podczas pobierania"
 "tooltip_proxy_settings","Skonfiguruj serwer proxy do pobierania."
 "cbtn_check_external_stable_release_source","Sprawdzaj w sieci nowe stabilne wydania gry"
-"tooltip_check_external_stable_release_source","Przy uruchomieniu sprawdza skonfigurowane źródło zewnętrzne (domyślnie repozytorium Catapult) pod kątem nowszych stabilnych wydań gry, które mogły pojawić się po skompilowaniu tej wersji launchera."
+"tooltip_check_external_stable_release_source","Przy uruchomieniu sprawdza skonfigurowane źródło\nzewnętrzne (domyślnie repozytorium Catapult) pod kątem\nnowszych stabilnych wydań gry, które mogły pojawić się\npo skompilowaniu tej wersji launchera."

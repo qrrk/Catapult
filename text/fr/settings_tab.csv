@@ -45,4 +45,4 @@ Activé - Utiliser le proxy en toutes occasions (par ex. demander des versions)
 Pour téléchargement uniquement - Utiliser le proxy uniquement lors du téléchargement"
 "tooltip_proxy_settings","Configurer un serveur proxy pour le téléchargement."
 "cbtn_check_external_stable_release_source","Vérifier en ligne les nouvelles versions stables du jeu"
-"tooltip_check_external_stable_release_source","Au démarrage, vérifie la source externe configurée (dépôt Catapult par défaut) pour les nouvelles versions stables du jeu parues après la compilation de cette version du lanceur."
+"tooltip_check_external_stable_release_source","Au démarrage, vérifie la source externe configurée\n(dépôt Catapult par défaut) pour les nouvelles versions\nstables du jeu parues après la compilation de cette\nversion du lanceur."

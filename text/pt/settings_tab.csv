@@ -41,4 +41,4 @@
 "tooltip_proxy_options","Desativado - Não usar proxy\nAtivado - Usar proxy em todas as ocasiões (por exemplo, solicitação de lançamentos)\nApenas para download - Usar proxy apenas ao baixar"
 "tooltip_proxy_settings","Configurar um servidor proxy para download."
 "cbtn_check_external_stable_release_source","Verificar online por novas versões estáveis do jogo"
-"tooltip_check_external_stable_release_source","Ao iniciar, verifica a fonte externa configurada (repositório do Catapult por padrão) por versões estáveis mais recentes do jogo que possam ter sido lançadas após a compilação desta versão do inicializador."
+"tooltip_check_external_stable_release_source","Ao iniciar, verifica a fonte externa configurada\n(repositório do Catapult por padrão) por versões\nestáveis mais recentes do jogo que possam ter sido\nlançadas após a compilação desta versão do inicializador."
