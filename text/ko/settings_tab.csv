@@ -45,4 +45,4 @@ tooltip_updating_to_same_build,선택한 릴리스가 현재 설치된 것과 �
 다운로드 전용 - 다운로드할 때만 프록시 사용"
 "tooltip_proxy_settings","다운로드용 프록시 서버를 구성합니다."
 "cbtn_check_external_stable_release_source","Check online for new stable game releases"
-"tooltip_check_external_stable_release_source","On startup, check the configured external source (Catapult repository by default) for newer stable game releases that may have come out after this launcher version was built. Turning this on also runs a check immediately."
+"tooltip_check_external_stable_release_source","On startup, check the configured external source (Catapult repository by default) for newer stable game releases that may have come out after this launcher version was built."

@@ -39,6 +39,6 @@
 "tooltip_updating_to_same_build","Allow starting the update procedure even when the selected\nrelease is the same as currently installed."
 "tooltip_keep_cache","Keep downloaded contents (game releases, modpacks, soundpacks) in cache folder\nwhen install completes, instead of having it deleted."
 "tooltip_ignore_cache","Always download contents from the web,\neven if it's already inside cache folder."
-"tooltip_check_external_stable_release_source","On startup, check the configured external source (Catapult repository by default) for newer stable game releases that may have come out after this launcher version was built. Turning this on also runs a check immediately."
+"tooltip_check_external_stable_release_source","On startup, check the configured external source (Catapult repository by default) for newer stable game releases that may have come out after this launcher version was built."
 "tooltip_proxy_settings","Configure a proxy server for downloading."
 "tooltip_proxy_options","Disabled - Do not use proxy\nEnabled - Use proxy on all occasions (e.g. requesting releases)\nFor Downloading Only - Use proxy only when downloading"
