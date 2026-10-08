@@ -41,3 +41,5 @@
 "tooltip_proxy_settings","配置一个用于下载的代理服务器。"
 "tooltip_proxy_options","关 - 不启用代理\n开 - 在所有场合均使用代理（例如获取发布列表时）\n仅用于下载 - 仅在下载时使用代理"
 "lbl_licenses","[color=#3b93f7][url]查看开源许可证[/url][/color]"
+"cbtn_check_external_stable_release_source","Check online for new stable game releases"
+"tooltip_check_external_stable_release_source","On startup, check the configured external source (Catapult repository by default) for newer stable game releases that may have come out after this launcher version was built. Turning this on also runs a check immediately."

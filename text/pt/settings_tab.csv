@@ -40,3 +40,5 @@
 "tooltip_keep_cache","Manter o conteúdo baixado (lançamentos de jogos, modpacks, soundpacks) na pasta de cache\nquando a instalação for concluída, em vez de excluí-lo."
 "tooltip_proxy_options","Desativado - Não usar proxy\nAtivado - Usar proxy em todas as ocasiões (por exemplo, solicitação de lançamentos)\nApenas para download - Usar proxy apenas ao baixar"
 "tooltip_proxy_settings","Configurar um servidor proxy para download."
+"cbtn_check_external_stable_release_source","Check online for new stable game releases"
+"tooltip_check_external_stable_release_source","On startup, check the configured external source (Catapult repository by default) for newer stable game releases that may have come out after this launcher version was built. Turning this on also runs a check immediately."

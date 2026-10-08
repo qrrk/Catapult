@@ -999,6 +999,12 @@ layout_mode = 2
 tooltip_text = "tooltip_ignore_cache"
 text = "cbtn_ignore_cache"
 
+[node name="CheckExternalStablesSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/SettingsArea"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "tooltip_check_external_stable_release_source"
+text = "cbtn_check_external_stable_release_source"
+
 [node name="DebugModeSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/SettingsArea"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -1271,6 +1277,7 @@ script = ExtResource("34")
 [connection signal="toggled" from="MainLayout/TabbedLayout/SettingsArea/InstallArchivedModsSwitch" to="MainLayout/TabbedLayout/SettingsArea" method="_on_InstallArchivedMods_toggled"]
 [connection signal="toggled" from="MainLayout/TabbedLayout/SettingsArea/KeepDownloadCacheSwitch" to="MainLayout/TabbedLayout/SettingsArea" method="_on_KeepCache_toggled"]
 [connection signal="toggled" from="MainLayout/TabbedLayout/SettingsArea/IgnoreDownloadCacheSwitch" to="MainLayout/TabbedLayout/SettingsArea" method="_on_IgnoreCache_toggled"]
+[connection signal="toggled" from="MainLayout/TabbedLayout/SettingsArea/CheckExternalStablesSwitch" to="MainLayout/TabbedLayout/SettingsArea" method="_on_CheckExternalStables_toggled"]
 [connection signal="toggled" from="MainLayout/TabbedLayout/SettingsArea/DebugModeSwitch" to="MainLayout/TabbedLayout/SettingsArea" method="_on_ShowDebug_toggled"]
 [connection signal="value_changed" from="MainLayout/TabbedLayout/SettingsArea/NumReleasesBox/NumReleasesField" to="MainLayout/TabbedLayout/SettingsArea" method="_on_sbNumReleases_value_changed"]
 [connection signal="value_changed" from="MainLayout/TabbedLayout/SettingsArea/NumPrsBox/NumPrsField" to="MainLayout/TabbedLayout/SettingsArea" method="_on_sbNumPRs_value_changed"]

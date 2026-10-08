@@ -44,3 +44,5 @@ indirilen içeriği (oyun sürümleri, modpakler, ses paketleri) önbellek klas�
 Etkin - Her durumda proxy kullan (örn. sürüm isteme)
 Yalnızca indirme için - Sadece indirme sırasında proxy kullan"
 "tooltip_proxy_settings","İndirme için bir proxy sunucusu yapılandır."
+"cbtn_check_external_stable_release_source","Check online for new stable game releases"
+"tooltip_check_external_stable_release_source","On startup, check the configured external source (Catapult repository by default) for newer stable game releases that may have come out after this launcher version was built. Turning this on also runs a check immediately."

@@ -43,6 +43,7 @@ func _ready() -> void:
 	%InstallArchivedModsSwitch.button_pressed = Settings.read("install_archived_mods")
 	%KeepDownloadCacheSwitch.button_pressed = Settings.read("keep_cache")
 	%IgnoreDownloadCacheSwitch.button_pressed = Settings.read("ignore_cache")
+	%CheckExternalStablesSwitch.button_pressed = Settings.read("check_external_stable_release_source")
 	%DebugModeSwitch.button_pressed = Settings.read("debug_mode")
 	%NumReleasesField.value = Settings.read("num_releases_to_request") as int
 	%NumPrsField.value = Settings.read("num_prs_to_request") as int
@@ -120,6 +121,12 @@ func _on_KeepCache_toggled(button_pressed: bool) -> void:
 func _on_IgnoreCache_toggled(button_pressed: bool) -> void:
 	
 	Settings.store("ignore_cache", button_pressed)
+
+func _on_CheckExternalStables_toggled(button_pressed: bool) -> void:
+	
+	Settings.store("check_external_stable_release_source", button_pressed)
+	if button_pressed:
+		%ReleaseManager.check_external_stable_releases()
 
 func _on_ShowDebug_toggled(button_pressed: bool) -> void:
 	

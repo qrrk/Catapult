@@ -340,7 +340,7 @@ func apply_game_choice() -> void:
 		%StableSwitch.disabled = false
 		if channel == "stable":
 			%StableSwitch.button_pressed = true
-			%RefreshReleasesBtn.disabled = true
+			%RefreshReleasesBtn.disabled = not Settings.read("check_external_stable_release_source")
 		else:
 			%ExperimentalSwitch.button_pressed = true
 			%RefreshReleasesBtn.disabled = false
