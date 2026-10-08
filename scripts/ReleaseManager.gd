@@ -156,9 +156,13 @@ func _count_stable_releases(stables: Dictionary) -> int:
 	var total := 0
 	for ch in stables.values():
 		if ch is Dictionary:
+			var channel_names := {}
 			for p in ch.values():
 				if p is Array:
-					total += p.size()
+					for item in p:
+						if item is Dictionary and "name" in item:
+							channel_names[item["name"]] = true
+			total += channel_names.size()
 	return total
 
 
