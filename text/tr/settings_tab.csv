@@ -45,4 +45,4 @@ Etkin - Her durumda proxy kullan (örn. sürüm isteme)
 Yalnızca indirme için - Sadece indirme sırasında proxy kullan"
 "tooltip_proxy_settings","İndirme için bir proxy sunucusu yapılandır."
 "cbtn_check_external_stable_release_source","Yeni kararlı oyun sürümlerini çevrimiçi kontrol et"
-"tooltip_check_external_stable_release_source","Başlangıçta, bu başlatıcı sürümü derlendikten sonra çıkmış olabilecek daha yeni kararlı oyun sürümleri için yapılandırılmış harici kaynağı (varsayılan olarak Catapult deposu) kontrol eder."
+"tooltip_check_external_stable_release_source","Başlangıçta, bu başlatıcı sürümü derlendikten sonra\nçıkmış olabilecek daha yeni kararlı oyun sürümleri için\nyapılandırılmış harici kaynağı (varsayılan olarak Catapult\ndeposu) kontrol eder."

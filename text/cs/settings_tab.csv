@@ -45,4 +45,4 @@ Zapnuto - Použít proxy při všech příležitostech (např. žádání vydán
 Pouze pro stahování - Použít proxy pouze při stahování"
 "tooltip_proxy_settings","Nastavit proxy server pro stahování."
 "cbtn_check_external_stable_release_source","Zkontrolovat na internetu nová stabilní vydání hry"
-"tooltip_check_external_stable_release_source","Při spuštění zkontroluje nakonfigurovaný externí zdroj (ve výchozím stavu repozitář Catapult) pro novější stabilní vydání hry, která mohla vyjít po sestavení této verze spouštěče."
+"tooltip_check_external_stable_release_source","Při spuštění zkontroluje nakonfigurovaný externí\nzdroj (ve výchozím stavu repozitář Catapult) pro novější\nstabilní vydání hry, která mohla vyjít po sestavení\ntéto verze spouštěče."

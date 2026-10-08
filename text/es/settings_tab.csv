@@ -45,4 +45,4 @@ Habilitado - Usar proxy en todas las ocasiones (p. ej., solicitar lanzamientos)
 Solo para descargar - Usar proxy solo al descargar"
 "tooltip_proxy_settings","Configurar un servidor proxy para descargar."
 "cbtn_check_external_stable_release_source","Buscar en línea nuevas versiones estables del juego"
-"tooltip_check_external_stable_release_source","Al iniciar, verifica la fuente externa configurada (repositorio de Catapult por defecto) en busca de versiones estables más recientes que hayan salido después de compilar esta versión del iniciador."
+"tooltip_check_external_stable_release_source","Al iniciar, verifica la fuente externa configurada\n(repositorio de Catapult por defecto) en busca de\nversiones estables más recientes que hayan salido\ndespués de compilar esta versión del iniciador."
