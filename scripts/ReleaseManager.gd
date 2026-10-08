@@ -161,10 +161,10 @@ func check_external_stable_releases(silent: bool = false) -> void:
 	if _checking_external_stables:
 		return
 	
-	var source_address = Settings.read("external_stable_release_source")
-	if source_address == null:
-		source_address = ""
-	source_address = str(source_address).strip_edges()
+	var raw_address = Settings.read("external_stable_release_source")
+	if raw_address == null:
+		return
+	var source_address: String = str(raw_address).strip_edges()
 	if source_address.is_empty():
 		return
 	
@@ -183,7 +183,7 @@ func check_external_stable_releases(silent: bool = false) -> void:
 		return
 	
 	# Local file path
-	var file_path := source_address
+	var file_path: String = source_address
 	if not file_path.is_absolute_path():
 		file_path = Paths.own_dir.path_join(source_address)
 	
