@@ -9,3 +9,7 @@
 "msg_invalid_fetch_func_param","ReleaseManager.fetch() fonksiyonu %s çıktısını verdi."
 "msg_fetching_releases_eod","EOD Experimental için sürümler alınıyor..."
 "msg_fetching_releases_tish","TISH Experimental için sürümler alınıyor..."
+"msg_fetching_releases_stable","Checking for new stable releases..."
+"msg_got_n_new_stables","Found %s new stable release(s)."
+"msg_no_new_stables","No new stable releases found."
+"msg_check_stables_failed","Checking for new stable releases failed."

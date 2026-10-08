@@ -31,5 +31,7 @@
     "proxy_option": "off",
     "proxy_host": "",
     "proxy_port": 0,
-    "debug_mode": false
+    "debug_mode": false,
+    "check_external_stable_release_source": true,
+    "external_stable_release_source": "https://raw.githubusercontent.com/qrrk/Catapult/master/data/stable_releases.json"
 }
