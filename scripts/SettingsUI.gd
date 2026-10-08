@@ -125,8 +125,6 @@ func _on_IgnoreCache_toggled(button_pressed: bool) -> void:
 func _on_CheckExternalStables_toggled(button_pressed: bool) -> void:
 	
 	Settings.store("check_external_stable_release_source", button_pressed)
-	if button_pressed:
-		%ReleaseManager.check_external_stable_releases()
 
 func _on_ShowDebug_toggled(button_pressed: bool) -> void:
 	

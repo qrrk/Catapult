@@ -33,10 +33,15 @@ var releases = {
 }
 
 
+func _ensure_http_stable() -> void:
+	if _http_stable == null:
+		_http_stable = HTTPRequest.new()
+		add_child(_http_stable)
+		_http_stable.request_completed.connect(_on_request_completed_stable)
+
+
 func _ready() -> void:
-	_http_stable = HTTPRequest.new()
-	add_child(_http_stable)
-	_http_stable.request_completed.connect(_on_request_completed_stable)
+	_ensure_http_stable()
 	
 	_load_sources()
 	
@@ -173,6 +178,7 @@ func check_external_stable_releases(silent: bool = false) -> void:
 		if not silent:
 			emit_signal("started_fetching_releases")
 			Status.post(tr("msg_fetching_releases_stable"))
+		_ensure_http_stable()
 		_update_proxy(_http_stable)
 		var err := _http_stable.request(source_address)
 		if err != OK:
@@ -250,6 +256,8 @@ func _get_query_string() -> String:
 
 
 func _update_proxy(http: HTTPRequest) -> void:
+	if http == null:
+		return
 	if Settings.read("proxy_option") == "on":
 		var host = Settings.read("proxy_host")
 		var port = Settings.read("proxy_port") as int
