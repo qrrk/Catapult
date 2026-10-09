@@ -21,7 +21,7 @@ on:
   workflow_dispatch:
     inputs:
       GODOT_RELEASE:
-        description: 'Godot release to use (e.g. 4.5.1-stable, 4.6-dev2)'
+        description: 'Godot release to use (e.g. 4.7.2-stable, 4.8-dev1)'
         required: true
         type: string
       REVISION_STRING:
@@ -64,7 +64,7 @@ jobs:
           GD_RELEASE_FLAVOR="${{ inputs.GODOT_RELEASE }}"
           GD_RELEASE_FLAVOR="${GD_RELEASE_FLAVOR#*-}"
           if [ "$GD_RELEASE_FLAVOR" = "${{ inputs.GODOT_RELEASE }}" ] || [ -z "$GD_RELEASE_VERSION" ] || [ -z "$GD_RELEASE_FLAVOR" ]; then
-            echo "❌ GODOT_RELEASE must be <version>-<flavor>, e.g. 4.5.1-stable or 4.6-dev2"
+            echo "❌ GODOT_RELEASE must be <version>-<flavor>, e.g. 4.7.2-stable or 4.8-dev1"
             echo "❌ Current: GODOT_RELEASE=${{ inputs.GODOT_RELEASE }}"
             exit 1
           fi
