@@ -15,3 +15,5 @@ dest_files=["res://text/ko/release_manager.ko.translation"]
 
 compress=true
 delimiter=0
+unescape_keys=false
+unescape_translations=true
