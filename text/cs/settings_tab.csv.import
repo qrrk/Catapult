@@ -15,3 +15,5 @@ dest_files=["res://text/cs/settings_tab.cs.translation"]
 
 compress=true
 delimiter=0
+unescape_keys=false
+unescape_translations=true

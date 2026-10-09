@@ -15,3 +15,5 @@ dest_files=["res://text/tr/settings_tab.tr.translation"]
 
 compress=true
 delimiter=0
+unescape_keys=false
+unescape_translations=true
