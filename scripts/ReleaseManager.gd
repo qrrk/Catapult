@@ -177,11 +177,12 @@ func check_external_stable_releases(silent: bool = false) -> void:
 	if source_address.is_empty():
 		return
 	
+	Status.post(tr("msg_fetching_releases_stable") + " (%s)" % source_address, Enums.MSG_DEBUG)
+	
 	if source_address.begins_with("http://") or source_address.begins_with("https://"):
 		_checking_external_stables = true
 		if not silent:
 			emit_signal("started_fetching_releases")
-			Status.post(tr("msg_fetching_releases_stable"))
 		_ensure_http_stable()
 		_update_proxy(_http_stable)
 		var err := _http_stable.request(source_address)
@@ -238,11 +239,10 @@ func _process_and_merge_stables(incoming: Dictionary, silent: bool = false) -> v
 	_save_stable_cache(_stable_releases)
 	_update_stable_releases_arrays()
 	
-	if not silent:
-		if new_total > prev_total:
-			Status.post(tr("msg_got_n_new_stables") % (new_total - prev_total))
-		else:
-			Status.post(tr("msg_no_new_stables"))
+	if new_total > prev_total:
+		Status.post(tr("msg_got_n_new_stables") % (new_total - prev_total))
+	else:
+		Status.post(tr("msg_no_new_stables"), Enums.MSG_DEBUG)
 	
 	emit_signal("done_fetching_releases")
 
