@@ -47,8 +47,7 @@ func _ready() -> void:
 	%NumReleasesField.value = Settings.read("num_releases_to_request") as int
 	%NumPrsField.value = Settings.read("num_prs_to_request") as int
 	
-	for option in _proxy_options:
-		%ProxyOptionList.add_item(option)
+	_populate_proxy_options()
 	var proxy_option_idx := _proxy_options.find(Settings.read("proxy_option"))
 	if proxy_option_idx >= 0:
 		%ProxyOptionList.selected = proxy_option_idx
@@ -68,6 +67,7 @@ func _on_obtnLanguage_item_selected(index: int) -> void:
 	Settings.store("launcher_locale", locale)
 	TranslationServer.set_locale(locale)
 	_root.assign_localized_text()
+	_populate_proxy_options()
 
 
 func _on_obtnTheme_item_selected(index: int) -> void:
@@ -151,6 +151,15 @@ func _on_leProxyHost_text_changed(new_text):
 
 func _on_sbProxyPort_value_changed(value):
 	Settings.store("proxy_port", value)
+
+
+func _populate_proxy_options() -> void:
+	var prev_selected = %ProxyOptionList.selected
+	%ProxyOptionList.clear()
+	for option in _proxy_options:
+		%ProxyOptionList.add_item(tr("obtn_proxy_option_" + option))
+	if prev_selected >= 0 and prev_selected < %ProxyOptionList.item_count:
+		%ProxyOptionList.selected = prev_selected
 
 
 func _on_cbScaleOverrideEnable_toggled(button_pressed: bool) -> void:
