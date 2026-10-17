@@ -88,10 +88,17 @@ func check_game_dir_for_userdata(release_name: String) -> Array[String]:
 	if (not game in installs) or (not release_name in installs[game]):
 		return result
 	
+	const IGNORED_FILES := [
+		"put-your-third-party-mods-here.txt",
+		"put-your-soundpacks-here.txt",
+	]
+	
 	var game_path := installs[game][release_name] as String
 	for sub_path in ["config", "font", "graveyard", "memorial", "mods", "save", "sound", "templates"]:
 		var full_path := game_path.path_join(sub_path)
-		if DirAccess.dir_exists_absolute(full_path) and not FS.list_dir(full_path).is_empty():
-			result.append(full_path)
+		if DirAccess.dir_exists_absolute(full_path):
+			var contents := FS.list_dir(full_path).filter(func(item: String) -> bool: return not item in IGNORED_FILES)
+			if not contents.is_empty():
+				result.append(full_path)
 	
 	return result

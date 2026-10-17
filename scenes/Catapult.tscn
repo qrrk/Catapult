@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://j8v4j8uy58rl"]
+[gd_scene format=3 uid="uid://j8v4j8uy58rl"]
 
 [ext_resource type="Texture2D" uid="uid://ma1wiy6trs4k" path="res://icons/tex_info.tres" id="2_rcpd3"]
 [ext_resource type="Script" uid="uid://drnrbqdw1iua4" path="res://scripts/Catapult.gd" id="4"]
@@ -56,23 +56,23 @@ content_margin_bottom = 4.0
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_nlnc6"]
 
-[node name="Catapult" type="PanelContainer"]
+[node name="Catapult" type="PanelContainer" unique_id=344876453]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource("4")
 
-[node name="MainLayout" type="VBoxContainer" parent="."]
+[node name="MainLayout" type="VBoxContainer" parent="." unique_id=558953761]
 layout_mode = 2
 
-[node name="GameChoiceBox" type="HBoxContainer" parent="MainLayout"]
+[node name="GameChoiceBox" type="HBoxContainer" parent="MainLayout" unique_id=1864132946]
 layout_mode = 2
 
-[node name="GameLabel" type="Label" parent="MainLayout/GameChoiceBox"]
+[node name="GameLabel" type="Label" parent="MainLayout/GameChoiceBox" unique_id=1672083306]
 layout_mode = 2
 text = "lbl_game"
 
-[node name="GamesList" type="OptionButton" parent="MainLayout/GameChoiceBox" groups=["disable_during_backup_operations", "disable_during_mod_operations", "disable_during_release_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases"]]
+[node name="GamesList" type="OptionButton" parent="MainLayout/GameChoiceBox" unique_id=142668540 groups=["disable_during_backup_operations", "disable_during_mod_operations", "disable_during_release_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases"]]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -90,21 +90,21 @@ popup/item_3/id = 3
 popup/item_4/text = "Cataclysm: The Last Generation"
 popup/item_4/id = 4
 
-[node name="GameInfoBox" type="HBoxContainer" parent="MainLayout"]
+[node name="GameInfoBox" type="HBoxContainer" parent="MainLayout" unique_id=1634427562]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Spacer" type="Control" parent="MainLayout/GameInfoBox"]
+[node name="Spacer" type="Control" parent="MainLayout/GameInfoBox" unique_id=506162931]
 layout_mode = 2
 
-[node name="GameDescIcon" type="TextureRect" parent="MainLayout/GameInfoBox"]
+[node name="GameDescIcon" type="TextureRect" parent="MainLayout/GameInfoBox" unique_id=819599207]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("2_rcpd3")
 
-[node name="GameDescText" type="RichTextLabel" parent="MainLayout/GameInfoBox"]
+[node name="GameDescText" type="RichTextLabel" parent="MainLayout/GameInfoBox" unique_id=1727683215]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -113,31 +113,31 @@ bbcode_enabled = true
 text = "Game Title is a game in which... This is a placeholder text to gauge how much space will be taken for the game description that will be loaded into this label at runtime. The descriptions are around 4 lines each at this width, so the placeholder text mush have a similar length to perform its function. This length is about right."
 fit_content = true
 
-[node name="Spacer" type="Control" parent="MainLayout"]
+[node name="Spacer" type="Control" parent="MainLayout" unique_id=596619454]
 layout_mode = 2
 
-[node name="TabbedLayout" type="TabContainer" parent="MainLayout" groups=["disable_during_backup_operations", "disable_during_mod_operations", "disable_during_release_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases"]]
+[node name="TabbedLayout" type="TabContainer" parent="MainLayout" unique_id=1572574515 groups=["disable_during_backup_operations", "disable_during_mod_operations", "disable_during_release_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases"]]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 current_tab = 0
 script = ExtResource("16")
 
-[node name="GameArea" type="VBoxContainer" parent="MainLayout/TabbedLayout"]
+[node name="GameArea" type="VBoxContainer" parent="MainLayout/TabbedLayout" unique_id=290305386]
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="ChannelSelectGroup" type="VBoxContainer" parent="MainLayout/TabbedLayout/GameArea"]
+[node name="ChannelSelectGroup" type="VBoxContainer" parent="MainLayout/TabbedLayout/GameArea" unique_id=1174608383]
 layout_mode = 2
 
-[node name="ChannelTitleBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/GameArea/ChannelSelectGroup"]
+[node name="ChannelTitleBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/GameArea/ChannelSelectGroup" unique_id=564679603]
 layout_mode = 2
 
-[node name="ChannelLabel" type="Label" parent="MainLayout/TabbedLayout/GameArea/ChannelSelectGroup/ChannelTitleBox"]
+[node name="ChannelLabel" type="Label" parent="MainLayout/TabbedLayout/GameArea/ChannelSelectGroup/ChannelTitleBox" unique_id=556617793]
 layout_mode = 2
 text = "lbl_channel"
 
-[node name="ChangelogLinkLabel" type="RichTextLabel" parent="MainLayout/TabbedLayout/GameArea/ChannelSelectGroup/ChannelTitleBox"]
+[node name="ChangelogLinkLabel" type="RichTextLabel" parent="MainLayout/TabbedLayout/GameArea/ChannelSelectGroup/ChannelTitleBox" unique_id=1008745106]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
@@ -148,45 +148,45 @@ bbcode_enabled = true
 text = "lbl_changelog"
 scroll_active = false
 
-[node name="ChannelSwitchesGroup" type="HBoxContainer" parent="MainLayout/TabbedLayout/GameArea/ChannelSelectGroup"]
+[node name="ChannelSwitchesGroup" type="HBoxContainer" parent="MainLayout/TabbedLayout/GameArea/ChannelSelectGroup" unique_id=1335302617]
 layout_mode = 2
 
-[node name="StableSwitch" type="CheckBox" parent="MainLayout/TabbedLayout/GameArea/ChannelSelectGroup/ChannelSwitchesGroup" groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
+[node name="StableSwitch" type="CheckBox" parent="MainLayout/TabbedLayout/GameArea/ChannelSelectGroup/ChannelSwitchesGroup" unique_id=31254995 groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_stable"
 button_group = SubResource("ButtonGroup_nlnc6")
 text = "rbtn_stable"
 
-[node name="ExperimentalSwitch" type="CheckBox" parent="MainLayout/TabbedLayout/GameArea/ChannelSelectGroup/ChannelSwitchesGroup" groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
+[node name="ExperimentalSwitch" type="CheckBox" parent="MainLayout/TabbedLayout/GameArea/ChannelSelectGroup/ChannelSwitchesGroup" unique_id=131726776 groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_experimental"
 button_group = SubResource("ButtonGroup_nlnc6")
 text = "rbtn_experimental"
 
-[node name="ReleaseSelectGroup" type="HBoxContainer" parent="MainLayout/TabbedLayout/GameArea"]
+[node name="ReleaseSelectGroup" type="HBoxContainer" parent="MainLayout/TabbedLayout/GameArea" unique_id=1476265493]
 layout_mode = 2
 
-[node name="ReleasesLabel" type="Label" parent="MainLayout/TabbedLayout/GameArea/ReleaseSelectGroup"]
+[node name="ReleasesLabel" type="Label" parent="MainLayout/TabbedLayout/GameArea/ReleaseSelectGroup" unique_id=1118820989]
 layout_mode = 2
 text = "lbl_builds"
 
-[node name="ReleasesList" type="OptionButton" parent="MainLayout/TabbedLayout/GameArea/ReleaseSelectGroup" groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
+[node name="ReleasesList" type="OptionButton" parent="MainLayout/TabbedLayout/GameArea/ReleaseSelectGroup" unique_id=886086064 groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "tooltip_builds"
 clip_text = true
 
-[node name="RefreshReleasesBtn" type="Button" parent="MainLayout/TabbedLayout/GameArea/ReleaseSelectGroup" groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
+[node name="RefreshReleasesBtn" type="Button" parent="MainLayout/TabbedLayout/GameArea/ReleaseSelectGroup" unique_id=656702003 groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_refresh"
 text = "btn_refresh"
 icon = ExtResource("4_no8b7")
 
-[node name="InstallReleaseBtn" type="Button" parent="MainLayout/TabbedLayout/GameArea" groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
+[node name="InstallReleaseBtn" type="Button" parent="MainLayout/TabbedLayout/GameArea" unique_id=1776255929 groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -194,52 +194,52 @@ tooltip_text = "tooltip_install"
 text = "btn_install"
 icon = ExtResource("4_rcpd3")
 
-[node name="UpdateCurrentSwitch" type="CheckBox" parent="MainLayout/TabbedLayout/GameArea" groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
+[node name="UpdateCurrentSwitch" type="CheckBox" parent="MainLayout/TabbedLayout/GameArea" unique_id=1218191551 groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "tooltip_update"
 text = "cb_update_active"
 
-[node name="HSeparator" type="HSeparator" parent="MainLayout/TabbedLayout/GameArea"]
+[node name="HSeparator" type="HSeparator" parent="MainLayout/TabbedLayout/GameArea" unique_id=318550366]
 layout_mode = 2
 
-[node name="ActiveInstallGroup" type="VBoxContainer" parent="MainLayout/TabbedLayout/GameArea"]
+[node name="ActiveInstallGroup" type="VBoxContainer" parent="MainLayout/TabbedLayout/GameArea" unique_id=1808504430]
 layout_mode = 2
 
-[node name="ActiveInstallLabel" type="Label" parent="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup"]
+[node name="ActiveInstallLabel" type="Label" parent="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup" unique_id=530214591]
 layout_mode = 2
 text = "lbl_active_install"
 
-[node name="ActiveInstallNameBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup"]
+[node name="ActiveInstallNameBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup" unique_id=1799574466]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 4
 
-[node name="ActiveInstallNameLabel" type="Label" parent="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup/ActiveInstallNameBox"]
+[node name="ActiveInstallNameLabel" type="Label" parent="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup/ActiveInstallNameBox" unique_id=335923734]
 unique_name_in_owner = true
 layout_mode = 2
 text = "lbl_build_none"
 
-[node name="GameDirBtn" parent="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup/ActiveInstallNameBox" instance=ExtResource("26")]
+[node name="GameDirBtn" parent="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup/ActiveInstallNameBox" unique_id=1226808202 instance=ExtResource("26")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 tooltip_text = "tooltip_game_dir"
 texture_normal = ExtResource("6_rcpd3")
 
-[node name="UserDirBtn" parent="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup/ActiveInstallNameBox" instance=ExtResource("26")]
+[node name="UserDirBtn" parent="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup/ActiveInstallNameBox" unique_id=320321661 instance=ExtResource("26")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 tooltip_text = "tooltip_user_dir"
 texture_normal = ExtResource("7_rcpd3")
 
-[node name="LaunchGameBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup"]
+[node name="LaunchGameBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup" unique_id=201330262]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="LaunchGameBtn" type="Button" parent="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup/LaunchGameBox" groups=["disable_during_release_operations"]]
+[node name="LaunchGameBtn" type="Button" parent="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup/LaunchGameBox" unique_id=896121665 groups=["disable_during_release_operations"]]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -247,7 +247,7 @@ tooltip_text = "tooltip_play"
 text = "btn_play"
 icon = ExtResource("8_no8b7")
 
-[node name="QuickLoadBtn" type="Button" parent="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup/LaunchGameBox" groups=["disable_during_release_operations"]]
+[node name="QuickLoadBtn" type="Button" parent="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup/LaunchGameBox" unique_id=839086089 groups=["disable_during_release_operations"]]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -255,21 +255,21 @@ tooltip_text = "tooltip_resume"
 text = "btn_resume"
 icon = ExtResource("9_rcpd3")
 
-[node name="GameInstallsGroup" type="VBoxContainer" parent="MainLayout/TabbedLayout/GameArea"]
+[node name="GameInstallsGroup" type="VBoxContainer" parent="MainLayout/TabbedLayout/GameArea" unique_id=1679105239]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="HSeparator2" type="HSeparator" parent="MainLayout/TabbedLayout/GameArea/GameInstallsGroup"]
+[node name="HSeparator2" type="HSeparator" parent="MainLayout/TabbedLayout/GameArea/GameInstallsGroup" unique_id=122763308]
 layout_mode = 2
 
-[node name="GameInstallsLabel" type="Label" parent="MainLayout/TabbedLayout/GameArea/GameInstallsGroup"]
+[node name="GameInstallsLabel" type="Label" parent="MainLayout/TabbedLayout/GameArea/GameInstallsGroup" unique_id=2090301243]
 layout_mode = 2
 text = "lbl_installs"
 
-[node name="GameInstallsMgmtGroup" type="HBoxContainer" parent="MainLayout/TabbedLayout/GameArea/GameInstallsGroup"]
+[node name="GameInstallsMgmtGroup" type="HBoxContainer" parent="MainLayout/TabbedLayout/GameArea/GameInstallsGroup" unique_id=710218868]
 layout_mode = 2
 
-[node name="GameInstallsList" type="ItemList" parent="MainLayout/TabbedLayout/GameArea/GameInstallsGroup/GameInstallsMgmtGroup" groups=["disable_during_release_operations"]]
+[node name="GameInstallsList" type="ItemList" parent="MainLayout/TabbedLayout/GameArea/GameInstallsGroup/GameInstallsMgmtGroup" unique_id=1746976822 groups=["disable_during_release_operations"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
@@ -283,10 +283,10 @@ item_4/text = "Item 4"
 item_5/text = "Item 5"
 script = ExtResource("6")
 
-[node name="GameInstallActionsBox" type="VBoxContainer" parent="MainLayout/TabbedLayout/GameArea/GameInstallsGroup/GameInstallsMgmtGroup"]
+[node name="GameInstallActionsBox" type="VBoxContainer" parent="MainLayout/TabbedLayout/GameArea/GameInstallsGroup/GameInstallsMgmtGroup" unique_id=1656300452]
 layout_mode = 2
 
-[node name="MakeInstallActiveBtn" type="Button" parent="MainLayout/TabbedLayout/GameArea/GameInstallsGroup/GameInstallsMgmtGroup/GameInstallActionsBox" groups=["disable_during_release_operations"]]
+[node name="MakeInstallActiveBtn" type="Button" parent="MainLayout/TabbedLayout/GameArea/GameInstallsGroup/GameInstallsMgmtGroup/GameInstallActionsBox" unique_id=1559368420 groups=["disable_during_release_operations"]]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_activate"
@@ -294,7 +294,7 @@ disabled = true
 text = "btn_activate"
 icon = ExtResource("11_rcpd3")
 
-[node name="DeleteGameInstallBtn" type="Button" parent="MainLayout/TabbedLayout/GameArea/GameInstallsGroup/GameInstallsMgmtGroup/GameInstallActionsBox" groups=["disable_during_release_operations"]]
+[node name="DeleteGameInstallBtn" type="Button" parent="MainLayout/TabbedLayout/GameArea/GameInstallsGroup/GameInstallsMgmtGroup/GameInstallActionsBox" unique_id=330239878 groups=["disable_during_release_operations"]]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_delete"
@@ -302,33 +302,33 @@ disabled = true
 text = "btn_delete"
 icon = ExtResource("12_no8b7")
 
-[node name="ChangelogDialog" parent="MainLayout/TabbedLayout/GameArea" instance=ExtResource("32")]
+[node name="ChangelogDialog" parent="MainLayout/TabbedLayout/GameArea" unique_id=834789439 instance=ExtResource("32")]
 unique_name_in_owner = true
 position = Vector2i(0, 36)
 
-[node name="UserDataDeletionDlg" parent="MainLayout/TabbedLayout/GameArea" instance=ExtResource("15_5ug7j")]
+[node name="UserDataDeletionDlg" parent="MainLayout/TabbedLayout/GameArea" unique_id=519582338 instance=ExtResource("15_5ug7j")]
 unique_name_in_owner = true
 visible = false
 
-[node name="ModsArea" type="VBoxContainer" parent="MainLayout/TabbedLayout"]
+[node name="ModsArea" type="VBoxContainer" parent="MainLayout/TabbedLayout" unique_id=1033264301]
 visible = false
 layout_mode = 2
 script = ExtResource("18")
 metadata/_tab_index = 1
 
-[node name="ModsManagementGroup" type="HBoxContainer" parent="MainLayout/TabbedLayout/ModsArea"]
+[node name="ModsManagementGroup" type="HBoxContainer" parent="MainLayout/TabbedLayout/ModsArea" unique_id=988834148]
 layout_mode = 2
 
-[node name="InstalledModsGroup" type="VBoxContainer" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup"]
+[node name="InstalledModsGroup" type="VBoxContainer" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup" unique_id=1170705458]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="InstalledModsLabel" type="Label" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/InstalledModsGroup"]
+[node name="InstalledModsLabel" type="Label" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/InstalledModsGroup" unique_id=1683733320]
 unique_name_in_owner = true
 layout_mode = 2
 text = "lbl_installed_mods"
 
-[node name="InstalledModsList" type="ItemList" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/InstalledModsGroup" groups=["disable_during_mod_operations"]]
+[node name="InstalledModsList" type="ItemList" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/InstalledModsGroup" unique_id=1648840585 groups=["disable_during_mod_operations"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 180)
 layout_mode = 2
@@ -343,14 +343,14 @@ item_2/text = "Item 2"
 item_3/text = "Item 3"
 script = ExtResource("17")
 
-[node name="ShowStockModsSwitch" type="CheckBox" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/InstalledModsGroup" groups=["disable_during_mod_operations"]]
+[node name="ShowStockModsSwitch" type="CheckBox" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/InstalledModsGroup" unique_id=1053366092 groups=["disable_during_mod_operations"]]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "tooltip_stock_mods"
 text = "cbtn_stock_mods"
 
-[node name="DeleteModsBtn" type="Button" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/InstalledModsGroup" groups=["disable_during_mod_operations"]]
+[node name="DeleteModsBtn" type="Button" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/InstalledModsGroup" unique_id=907764778 groups=["disable_during_mod_operations"]]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -358,19 +358,19 @@ tooltip_text = "tooltip_delete_mods"
 disabled = true
 text = "btn_delete_mods"
 
-[node name="VSeparator" type="VSeparator" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup"]
+[node name="VSeparator" type="VSeparator" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup" unique_id=1459912064]
 layout_mode = 2
 
-[node name="AvailableModsGroup" type="VBoxContainer" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup"]
+[node name="AvailableModsGroup" type="VBoxContainer" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup" unique_id=1497146406]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ModRepoLabel" type="Label" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup"]
+[node name="ModRepoLabel" type="Label" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup" unique_id=1147555607]
 unique_name_in_owner = true
 layout_mode = 2
 text = "lbl_mod_repo"
 
-[node name="AvailableModsList" type="ItemList" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup" groups=["disable_during_mod_operations"]]
+[node name="AvailableModsList" type="ItemList" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup" unique_id=53724999 groups=["disable_during_mod_operations"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 180)
 layout_mode = 2
@@ -385,40 +385,40 @@ item_2/text = "Item 2"
 item_3/text = "Item 3"
 script = ExtResource("17")
 
-[node name="ShowInstalledModsSwitch" type="CheckBox" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup" groups=["disable_during_mod_operations"]]
+[node name="ShowInstalledModsSwitch" type="CheckBox" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup" unique_id=2021656745 groups=["disable_during_mod_operations"]]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "tooltip_installed_mods"
 text = "cbtn_installed_mods"
 
-[node name="AddModsActionsBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup"]
+[node name="AddModsActionsBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup" unique_id=362925843]
 layout_mode = 2
 alignment = 1
 
-[node name="AddSelectedModsBtn" type="Button" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup/AddModsActionsBox" groups=["disable_during_mod_operations"]]
+[node name="AddSelectedModsBtn" type="Button" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup/AddModsActionsBox" unique_id=213234572 groups=["disable_during_mod_operations"]]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "tooltip_add_sel_mods"
 text = "btn_add_sel_mods"
 
-[node name="AddAllModsBtn" type="Button" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup/AddModsActionsBox" groups=["disable_during_mod_operations"]]
+[node name="AddAllModsBtn" type="Button" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup/AddModsActionsBox" unique_id=1114760842 groups=["disable_during_mod_operations"]]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_add_all_mods"
 text = "btn_add_all_mods"
 
-[node name="GetKenanModpackBtn" type="Button" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup" groups=["disable_during_mod_operations"]]
+[node name="GetKenanModpackBtn" type="Button" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup" unique_id=2133527005 groups=["disable_during_mod_operations"]]
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "tooltip_get_kenan_pack"
 text = "btn_get_kenan_pack"
 
-[node name="HSeparator" type="HSeparator" parent="MainLayout/TabbedLayout/ModsArea"]
+[node name="HSeparator" type="HSeparator" parent="MainLayout/TabbedLayout/ModsArea" unique_id=192501511]
 layout_mode = 2
 
-[node name="ModInfoText" type="RichTextLabel" parent="MainLayout/TabbedLayout/ModsArea"]
+[node name="ModInfoText" type="RichTextLabel" parent="MainLayout/TabbedLayout/ModsArea" unique_id=644044538]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
@@ -428,33 +428,33 @@ bbcode_enabled = true
 text = "Mod info will appear here."
 selection_enabled = true
 
-[node name="DeleteMultipleModsDlg" type="ConfirmationDialog" parent="MainLayout/TabbedLayout/ModsArea"]
+[node name="DeleteMultipleModsDlg" type="ConfirmationDialog" parent="MainLayout/TabbedLayout/ModsArea" unique_id=864653081]
 unique_name_in_owner = true
 dialog_text = "(this text is assigned at runtime)"
 dialog_autowrap = true
 
-[node name="ModReinstallDialog" parent="MainLayout/TabbedLayout/ModsArea" instance=ExtResource("20")]
+[node name="ModReinstallDialog" parent="MainLayout/TabbedLayout/ModsArea" unique_id=1712628389 instance=ExtResource("20")]
 unique_name_in_owner = true
 
-[node name="SoundArea" type="VBoxContainer" parent="MainLayout/TabbedLayout"]
+[node name="SoundArea" type="VBoxContainer" parent="MainLayout/TabbedLayout" unique_id=1653764024]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("15")
 metadata/_tab_index = 2
 
-[node name="SoundManagementGroup" type="HBoxContainer" parent="MainLayout/TabbedLayout/SoundArea"]
+[node name="SoundManagementGroup" type="HBoxContainer" parent="MainLayout/TabbedLayout/SoundArea" unique_id=1167133284]
 layout_mode = 2
 
-[node name="InstalledSoundsGroup" type="VBoxContainer" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup"]
+[node name="InstalledSoundsGroup" type="VBoxContainer" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup" unique_id=643952350]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="InstalledSoundsLabel" type="Label" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup/InstalledSoundsGroup"]
+[node name="InstalledSoundsLabel" type="Label" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup/InstalledSoundsGroup" unique_id=761771789]
 layout_mode = 2
 text = "lbl_installed_sound"
 
-[node name="InstalledSoundsList" type="ItemList" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup/InstalledSoundsGroup" groups=["disable_during_soundpack_operations"]]
+[node name="InstalledSoundsList" type="ItemList" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup/InstalledSoundsGroup" unique_id=1588530420 groups=["disable_during_soundpack_operations"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
@@ -485,14 +485,14 @@ item_20/text = "Item 20"
 item_21/text = "Item 21"
 script = ExtResource("17")
 
-[node name="ShowStockSoundsSwitch" type="CheckBox" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup/InstalledSoundsGroup" groups=["disable_during_soundpack_operations"]]
+[node name="ShowStockSoundsSwitch" type="CheckBox" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup/InstalledSoundsGroup" unique_id=663870578 groups=["disable_during_soundpack_operations"]]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "tooltip_stock_sound"
 text = "cbtn_stock_sound"
 
-[node name="DeleteSoundBtn" type="Button" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup/InstalledSoundsGroup" groups=["disable_during_soundpack_operations"]]
+[node name="DeleteSoundBtn" type="Button" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup/InstalledSoundsGroup" unique_id=493983696 groups=["disable_during_soundpack_operations"]]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -500,18 +500,18 @@ tooltip_text = "tooltip_delete_sound"
 disabled = true
 text = "btn_delete_sound"
 
-[node name="VSeparator" type="VSeparator" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup"]
+[node name="VSeparator" type="VSeparator" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup" unique_id=185586915]
 layout_mode = 2
 
-[node name="AvailableSoundsGroup" type="VBoxContainer" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup"]
+[node name="AvailableSoundsGroup" type="VBoxContainer" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup" unique_id=283316164]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="AvailableSoundsLabel" type="Label" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup/AvailableSoundsGroup"]
+[node name="AvailableSoundsLabel" type="Label" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup/AvailableSoundsGroup" unique_id=976429569]
 layout_mode = 2
 text = "lbl_avail_sound"
 
-[node name="AvailableSoundsList" type="ItemList" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup/AvailableSoundsGroup" groups=["disable_during_soundpack_operations"]]
+[node name="AvailableSoundsList" type="ItemList" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup/AvailableSoundsGroup" unique_id=455483644 groups=["disable_during_soundpack_operations"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
@@ -524,7 +524,7 @@ item_2/text = "Item 2"
 item_3/text = "Item 3"
 script = ExtResource("17")
 
-[node name="InstallSoundBtn" type="Button" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup/AvailableSoundsGroup" groups=["disable_during_soundpack_operations"]]
+[node name="InstallSoundBtn" type="Button" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup/AvailableSoundsGroup" unique_id=1436205477 groups=["disable_during_soundpack_operations"]]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -532,41 +532,41 @@ tooltip_text = "tooltip_install_sound"
 disabled = true
 text = "btn_install_sound"
 
-[node name="ConfirmDeleteSoundDlg" type="ConfirmationDialog" parent="MainLayout/TabbedLayout/SoundArea"]
+[node name="ConfirmDeleteSoundDlg" type="ConfirmationDialog" parent="MainLayout/TabbedLayout/SoundArea" unique_id=1508090700]
 unique_name_in_owner = true
 dialog_text = "dlg_sound_deletion_text"
 dialog_autowrap = true
 
-[node name="ManualSoundDownloadDlg" type="ConfirmationDialog" parent="MainLayout/TabbedLayout/SoundArea"]
+[node name="ManualSoundDownloadDlg" type="ConfirmationDialog" parent="MainLayout/TabbedLayout/SoundArea" unique_id=347805892]
 unique_name_in_owner = true
 dialog_text = "dlg_sound_manual_dl_text"
 dialog_autowrap = true
 
-[node name="InstallFromFileDialog" type="FileDialog" parent="MainLayout/TabbedLayout/SoundArea"]
+[node name="InstallFromFileDialog" type="FileDialog" parent="MainLayout/TabbedLayout/SoundArea" unique_id=1497669924]
 unique_name_in_owner = true
 access = 2
 filters = PackedStringArray("*.zip")
 
-[node name="FontsArea" type="VBoxContainer" parent="MainLayout/TabbedLayout"]
+[node name="FontsArea" type="VBoxContainer" parent="MainLayout/TabbedLayout" unique_id=1733513065]
 visible = false
 layout_mode = 2
 script = ExtResource("27")
 metadata/_tab_index = 3
 
-[node name="FontConfigMainGroup" type="HBoxContainer" parent="MainLayout/TabbedLayout/FontsArea"]
+[node name="FontConfigMainGroup" type="HBoxContainer" parent="MainLayout/TabbedLayout/FontsArea" unique_id=1197977050]
 layout_mode = 2
 
-[node name="FontConfigLeftGroup" type="VBoxContainer" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup"]
+[node name="FontConfigLeftGroup" type="VBoxContainer" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup" unique_id=1953564527]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="AvailableFontsLabel" type="Label" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigLeftGroup"]
+[node name="AvailableFontsLabel" type="Label" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigLeftGroup" unique_id=1943661790]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "lbl_avail_fonts"
 
-[node name="FontsList" type="ItemList" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigLeftGroup"]
+[node name="FontsList" type="ItemList" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigLeftGroup" unique_id=749455040]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 180)
 layout_mode = 2
@@ -578,105 +578,105 @@ item_1/text = "Item 1"
 item_2/text = "Item 2"
 item_3/text = "Item 3"
 
-[node name="FontfaceSettingBox" type="VBoxContainer" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigLeftGroup"]
+[node name="FontfaceSettingBox" type="VBoxContainer" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigLeftGroup" unique_id=708018793]
 layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 6
 
-[node name="SetFontUIBtn" type="Button" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigLeftGroup/FontfaceSettingBox"]
+[node name="SetFontUIBtn" type="Button" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigLeftGroup/FontfaceSettingBox" unique_id=1858316278]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 5
 tooltip_text = "tooltip_set_font_ui"
 text = "btn_set_font_ui"
 
-[node name="SetFontMapBtn" type="Button" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigLeftGroup/FontfaceSettingBox"]
+[node name="SetFontMapBtn" type="Button" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigLeftGroup/FontfaceSettingBox" unique_id=403399155]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 5
 tooltip_text = "tooltip_set_font_map"
 text = "btn_set_font_map"
 
-[node name="SetFontOvermapBtn" type="Button" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigLeftGroup/FontfaceSettingBox"]
+[node name="SetFontOvermapBtn" type="Button" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigLeftGroup/FontfaceSettingBox" unique_id=163026137]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 5
 tooltip_text = "tooltip_set_font_omap"
 text = "btn_set_font_omap"
 
-[node name="SetFontAllBtn" type="Button" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigLeftGroup/FontfaceSettingBox"]
+[node name="SetFontAllBtn" type="Button" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigLeftGroup/FontfaceSettingBox" unique_id=1516565194]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 5
 tooltip_text = "tooltip_set_font_all"
 text = "btn_set_font_all"
 
-[node name="ResetFontBtn" type="Button" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigLeftGroup/FontfaceSettingBox"]
+[node name="ResetFontBtn" type="Button" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigLeftGroup/FontfaceSettingBox" unique_id=895729979]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 5
 tooltip_text = "tooltip_reset_font"
 text = "btn_reset_font"
 
-[node name="VSeparator" type="VSeparator" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup"]
+[node name="VSeparator" type="VSeparator" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup" unique_id=451359595]
 layout_mode = 2
 
-[node name="FontConfigRightGroup" type="VBoxContainer" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup"]
+[node name="FontConfigRightGroup" type="VBoxContainer" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup" unique_id=757849845]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 size_flags_stretch_ratio = 3.0
 theme_override_constants/separation = 4
 
-[node name="FontPreviewLabel" type="Label" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup"]
+[node name="FontPreviewLabel" type="Label" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup" unique_id=522120954]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "lbl_font_preview"
 
-[node name="FontPreviewText" type="RichTextLabel" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup"]
+[node name="FontPreviewText" type="RichTextLabel" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup" unique_id=1076108298]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_constants/line_separation = -2
 bbcode_enabled = true
 
-[node name="PreviewCyrillicSwitch" type="CheckBox" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup"]
+[node name="PreviewCyrillicSwitch" type="CheckBox" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup" unique_id=745787049]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "tooltip_preview_cyrillics"
 text = "cbtn_preview_cyrillics"
 
-[node name="HSeparator" type="HSeparator" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup"]
+[node name="HSeparator" type="HSeparator" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup" unique_id=1283163579]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="OtherSettingsBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup"]
+[node name="OtherSettingsBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup" unique_id=1465074217]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="OtherSettingsLabel" type="Label" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup/OtherSettingsBox"]
+[node name="OtherSettingsLabel" type="Label" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup/OtherSettingsBox" unique_id=1137269217]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "lbl_other_settings"
 
-[node name="FontSettingsHelpBtn" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup/OtherSettingsBox" instance=ExtResource("26")]
+[node name="FontSettingsHelpBtn" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup/OtherSettingsBox" unique_id=1843040628 instance=ExtResource("26")]
 custom_minimum_size = Vector2(22, 22)
 layout_mode = 2
 tooltip_text = "View detailed description of these settings."
 texture_normal = ExtResource("19_rcpd3")
 
-[node name="FontSizeUIBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup"]
+[node name="FontSizeUIBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup" unique_id=819517017]
 layout_mode = 2
 size_flags_vertical = 6
 tooltip_text = "tooltip_font_sz_ui"
 
-[node name="FontSizeUILabel" type="Label" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup/FontSizeUIBox"]
+[node name="FontSizeUILabel" type="Label" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup/FontSizeUIBox" unique_id=1208544682]
 layout_mode = 2
 text = "lbl_font_sz_ui"
 
-[node name="FontSizeUIField" type="SpinBox" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup/FontSizeUIBox"]
+[node name="FontSizeUIField" type="SpinBox" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup/FontSizeUIBox" unique_id=946195929]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
@@ -684,17 +684,17 @@ min_value = 8.0
 max_value = 64.0
 value = 8.0
 
-[node name="FontSizeMapBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup"]
+[node name="FontSizeMapBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup" unique_id=600509595]
 layout_mode = 2
 size_flags_vertical = 6
 tooltip_text = "tooltip_font_sz_map"
 
-[node name="FontSizeMapLabel" type="Label" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup/FontSizeMapBox"]
+[node name="FontSizeMapLabel" type="Label" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup/FontSizeMapBox" unique_id=1683773319]
 layout_mode = 2
 tooltip_text = "tooltip_font_sz_map"
 text = "lbl_font_sz_map"
 
-[node name="FontSizeMapField" type="SpinBox" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup/FontSizeMapBox"]
+[node name="FontSizeMapField" type="SpinBox" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup/FontSizeMapBox" unique_id=1356048443]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
@@ -702,17 +702,17 @@ min_value = 8.0
 max_value = 64.0
 value = 8.0
 
-[node name="FontSizeOvermapBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup"]
+[node name="FontSizeOvermapBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup" unique_id=562090374]
 layout_mode = 2
 size_flags_vertical = 6
 tooltip_text = "tooltip_font_sz_overmap"
 
-[node name="FontSizeOvermapLabel" type="Label" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup/FontSizeOvermapBox"]
+[node name="FontSizeOvermapLabel" type="Label" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup/FontSizeOvermapBox" unique_id=882774515]
 layout_mode = 2
 tooltip_text = "tooltip_font_sz_overmap"
 text = "lbl_font_sz_overmap"
 
-[node name="FontSizeOvermapField" type="SpinBox" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup/FontSizeOvermapBox"]
+[node name="FontSizeOvermapField" type="SpinBox" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup/FontSizeOvermapBox" unique_id=1768943211]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
@@ -720,23 +720,23 @@ min_value = 8.0
 max_value = 64.0
 value = 8.0
 
-[node name="FontBlendingSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup"]
+[node name="FontBlendingSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup" unique_id=1654552245]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_font_blending"
 text = "cbtn_font_blending"
 
-[node name="SaveFontOptionsBtn" type="Button" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup"]
+[node name="SaveFontOptionsBtn" type="Button" parent="MainLayout/TabbedLayout/FontsArea/FontConfigMainGroup/FontConfigRightGroup" unique_id=1062404287]
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "tooltip_save_font"
 text = "btn_save_font"
 
-[node name="HSeparator" type="HSeparator" parent="MainLayout/TabbedLayout/FontsArea"]
+[node name="HSeparator" type="HSeparator" parent="MainLayout/TabbedLayout/FontsArea" unique_id=1975785532]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="CurrentFontConfigInfo" type="RichTextLabel" parent="MainLayout/TabbedLayout/FontsArea"]
+[node name="CurrentFontConfigInfo" type="RichTextLabel" parent="MainLayout/TabbedLayout/FontsArea" unique_id=378297746]
 unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
@@ -746,27 +746,27 @@ text = "Existing font configuration will be shown here.
 ..."
 fit_content = true
 
-[node name="FontSizeHelpDialog" parent="MainLayout/TabbedLayout/FontsArea" instance=ExtResource("29")]
+[node name="FontSizeHelpDialog" parent="MainLayout/TabbedLayout/FontsArea" unique_id=454575259 instance=ExtResource("29")]
 unique_name_in_owner = true
 position = Vector2i(0, 36)
 
-[node name="BackupsArea" type="VBoxContainer" parent="MainLayout/TabbedLayout"]
+[node name="BackupsArea" type="VBoxContainer" parent="MainLayout/TabbedLayout" unique_id=612165546]
 visible = false
 layout_mode = 2
 script = ExtResource("33")
 metadata/_tab_index = 4
 
-[node name="ExistingBackupsGroup" type="VBoxContainer" parent="MainLayout/TabbedLayout/BackupsArea"]
+[node name="ExistingBackupsGroup" type="VBoxContainer" parent="MainLayout/TabbedLayout/BackupsArea" unique_id=416110878]
 layout_mode = 2
 
-[node name="ExistingBackupsLabel" type="Label" parent="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup"]
+[node name="ExistingBackupsLabel" type="Label" parent="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup" unique_id=1875647835]
 layout_mode = 2
 text = "lbl_save_backups"
 
-[node name="BackupsDisplayBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup"]
+[node name="BackupsDisplayBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup" unique_id=1625879948]
 layout_mode = 2
 
-[node name="BackupsList" type="ItemList" parent="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup/BackupsDisplayBox" groups=["disable_during_backup_operations"]]
+[node name="BackupsList" type="ItemList" parent="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup/BackupsDisplayBox" unique_id=1881214143 groups=["disable_during_backup_operations"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
@@ -784,7 +784,7 @@ item_7/text = "Item 7"
 item_8/text = "Item 8"
 item_9/text = "Item 9"
 
-[node name="BackupInfo" type="RichTextLabel" parent="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup/BackupsDisplayBox"]
+[node name="BackupInfo" type="RichTextLabel" parent="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup/BackupsDisplayBox" unique_id=1447804134]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -793,66 +793,66 @@ bbcode_enabled = true
 text = "Backup details will appear here."
 selection_enabled = true
 
-[node name="BackupActionsBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup"]
+[node name="BackupActionsBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup" unique_id=1625937645]
 layout_mode = 2
 alignment = 1
 
-[node name="RestoreBackupBtn" type="Button" parent="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup/BackupActionsBox" groups=["disable_during_backup_operations"]]
+[node name="RestoreBackupBtn" type="Button" parent="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup/BackupActionsBox" unique_id=1513937068 groups=["disable_during_backup_operations"]]
 unique_name_in_owner = true
 layout_mode = 2
 text = "btn_restore_backup"
 
-[node name="DeleteBackupBtn" type="Button" parent="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup/BackupActionsBox" groups=["disable_during_backup_operations"]]
+[node name="DeleteBackupBtn" type="Button" parent="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup/BackupActionsBox" unique_id=4243808 groups=["disable_during_backup_operations"]]
 unique_name_in_owner = true
 layout_mode = 2
 text = "btn_delete_backup"
 
-[node name="RefreshBackupsBtn" type="Button" parent="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup/BackupActionsBox" groups=["disable_during_backup_operations"]]
+[node name="RefreshBackupsBtn" type="Button" parent="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup/BackupActionsBox" unique_id=1334466297 groups=["disable_during_backup_operations"]]
 layout_mode = 2
 text = "btn_refresh_backups"
 
-[node name="HSeparator" type="HSeparator" parent="MainLayout/TabbedLayout/BackupsArea"]
+[node name="HSeparator" type="HSeparator" parent="MainLayout/TabbedLayout/BackupsArea" unique_id=1860683369]
 layout_mode = 2
 
-[node name="ManualBackupGroup" type="VBoxContainer" parent="MainLayout/TabbedLayout/BackupsArea"]
+[node name="ManualBackupGroup" type="VBoxContainer" parent="MainLayout/TabbedLayout/BackupsArea" unique_id=223041298]
 layout_mode = 2
 
-[node name="ManualBackupLabel" type="Label" parent="MainLayout/TabbedLayout/BackupsArea/ManualBackupGroup"]
+[node name="ManualBackupLabel" type="Label" parent="MainLayout/TabbedLayout/BackupsArea/ManualBackupGroup" unique_id=1390368624]
 layout_mode = 2
 text = "lbl_manual_backup"
 
-[node name="CreateBackupGroup" type="HBoxContainer" parent="MainLayout/TabbedLayout/BackupsArea/ManualBackupGroup"]
+[node name="CreateBackupGroup" type="HBoxContainer" parent="MainLayout/TabbedLayout/BackupsArea/ManualBackupGroup" unique_id=402252933]
 layout_mode = 2
 
-[node name="BackupNameLabel" type="Label" parent="MainLayout/TabbedLayout/BackupsArea/ManualBackupGroup/CreateBackupGroup"]
+[node name="BackupNameLabel" type="Label" parent="MainLayout/TabbedLayout/BackupsArea/ManualBackupGroup/CreateBackupGroup" unique_id=15890013]
 layout_mode = 2
 text = "lbl_backup_name"
 
-[node name="BackupNameField" type="LineEdit" parent="MainLayout/TabbedLayout/BackupsArea/ManualBackupGroup/CreateBackupGroup"]
+[node name="BackupNameField" type="LineEdit" parent="MainLayout/TabbedLayout/BackupsArea/ManualBackupGroup/CreateBackupGroup" unique_id=2032230014]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Enter name for new backup"
 
-[node name="CreateBackupBtn" type="Button" parent="MainLayout/TabbedLayout/BackupsArea/ManualBackupGroup/CreateBackupGroup" groups=["disable_during_backup_operations"]]
+[node name="CreateBackupBtn" type="Button" parent="MainLayout/TabbedLayout/BackupsArea/ManualBackupGroup/CreateBackupGroup" unique_id=1578562564 groups=["disable_during_backup_operations"]]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "btn_create_backup"
 
-[node name="Spacer" type="Control" parent="MainLayout/TabbedLayout/BackupsArea/ManualBackupGroup"]
+[node name="Spacer" type="Control" parent="MainLayout/TabbedLayout/BackupsArea/ManualBackupGroup" unique_id=1098785425]
 layout_mode = 2
 
-[node name="SettingsArea" type="VBoxContainer" parent="MainLayout/TabbedLayout"]
+[node name="SettingsArea" type="VBoxContainer" parent="MainLayout/TabbedLayout" unique_id=908084488]
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 2
 script = ExtResource("8")
 metadata/_tab_index = 5
 
-[node name="ViewLicensesDialog" parent="MainLayout/TabbedLayout/SettingsArea" instance=ExtResource("24_cyylm")]
+[node name="ViewLicensesDialog" parent="MainLayout/TabbedLayout/SettingsArea" unique_id=41910159 instance=ExtResource("24_cyylm")]
 
-[node name="ViewLicensesLabel" type="RichTextLabel" parent="MainLayout/TabbedLayout/SettingsArea"]
+[node name="ViewLicensesLabel" type="RichTextLabel" parent="MainLayout/TabbedLayout/SettingsArea" unique_id=529503300]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("2")
@@ -862,14 +862,14 @@ fit_content = true
 scroll_active = false
 horizontal_alignment = 1
 
-[node name="LauncherLanguageBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/SettingsArea"]
+[node name="LauncherLanguageBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/SettingsArea" unique_id=1769246478]
 layout_mode = 2
 
-[node name="LauncherLanguageLabel" type="Label" parent="MainLayout/TabbedLayout/SettingsArea/LauncherLanguageBox"]
+[node name="LauncherLanguageLabel" type="Label" parent="MainLayout/TabbedLayout/SettingsArea/LauncherLanguageBox" unique_id=1586979352]
 layout_mode = 2
 text = "lbl_launcher_language"
 
-[node name="LauncherLanguageList" type="OptionButton" parent="MainLayout/TabbedLayout/SettingsArea/LauncherLanguageBox"]
+[node name="LauncherLanguageList" type="OptionButton" parent="MainLayout/TabbedLayout/SettingsArea/LauncherLanguageBox" unique_id=612779306]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
@@ -908,14 +908,14 @@ popup/item_9/text = "한국어"
 popup/item_9/icon = ExtResource("32_rcpd3")
 popup/item_9/id = 9
 
-[node name="LauncherThemeBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/SettingsArea"]
+[node name="LauncherThemeBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/SettingsArea" unique_id=19091557]
 layout_mode = 2
 
-[node name="LauncherThemeLabel" type="Label" parent="MainLayout/TabbedLayout/SettingsArea/LauncherThemeBox"]
+[node name="LauncherThemeLabel" type="Label" parent="MainLayout/TabbedLayout/SettingsArea/LauncherThemeBox" unique_id=1982481068]
 layout_mode = 2
 text = "lbl_launcher_theme"
 
-[node name="LauncherThemeList" type="OptionButton" parent="MainLayout/TabbedLayout/SettingsArea/LauncherThemeBox"]
+[node name="LauncherThemeList" type="OptionButton" parent="MainLayout/TabbedLayout/SettingsArea/LauncherThemeBox" unique_id=499043715]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
@@ -939,87 +939,87 @@ popup/item_4/text = "Solarized Light"
 popup/item_4/icon = ExtResource("38_65f1m")
 popup/item_4/id = 4
 
-[node name="ShowGameDescSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/SettingsArea"]
+[node name="ShowGameDescSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/SettingsArea" unique_id=1972753447]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_show_game_desc"
 text = "cbtn_show_game_desc"
 
-[node name="KeepLauncherOpenSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/SettingsArea"]
+[node name="KeepLauncherOpenSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/SettingsArea" unique_id=797822690]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_keep_launcher_open"
 text = "cbtn_keep_launcher_open"
 
-[node name="PrintTipsSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/SettingsArea"]
+[node name="PrintTipsSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/SettingsArea" unique_id=1175561963]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_print_tips"
 text = "cbtn_print_tips"
 
-[node name="UpdateToSameVerSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/SettingsArea"]
+[node name="UpdateToSameVerSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/SettingsArea" unique_id=905372598]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_updating_to_same_build"
 text = "cbtn_updating_to_same_build"
 
-[node name="ShortenNamesSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/SettingsArea"]
+[node name="ShortenNamesSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/SettingsArea" unique_id=965546812]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_shorten_release_names"
 text = "cbtn_shorten_release_names"
 
-[node name="AlwaysShowInstallsSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/SettingsArea"]
+[node name="AlwaysShowInstallsSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/SettingsArea" unique_id=877003064]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_always_show_installs"
 text = "cbtn_always_show_installs"
 
-[node name="ShowObsoleteModsSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/SettingsArea"]
+[node name="ShowObsoleteModsSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/SettingsArea" unique_id=907751112]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_show_obsolete_mods"
 text = "cbtn_show_obsolete_mods"
 
-[node name="InstallArchivedModsSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/SettingsArea"]
+[node name="InstallArchivedModsSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/SettingsArea" unique_id=23588020]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_install_archived_mods"
 text = "cbtn_install_archived_mods"
 
-[node name="KeepDownloadCacheSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/SettingsArea"]
+[node name="KeepDownloadCacheSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/SettingsArea" unique_id=1551100464]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_keep_cache"
 text = "cbtn_keep_cache"
 
-[node name="IgnoreDownloadCacheSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/SettingsArea"]
+[node name="IgnoreDownloadCacheSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/SettingsArea" unique_id=1051102096]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_ignore_cache"
 text = "cbtn_ignore_cache"
 
-[node name="CheckExternalStablesSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/SettingsArea"]
+[node name="CheckExternalStablesSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/SettingsArea" unique_id=251426452]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_check_external_stable_release_source"
 text = "cbtn_check_external_stable_release_source"
 
-[node name="DebugModeSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/SettingsArea"]
+[node name="DebugModeSwitch" type="CheckButton" parent="MainLayout/TabbedLayout/SettingsArea" unique_id=895117598]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_debug_mode"
 text = "cbtn_debug_mode"
 
-[node name="NumReleasesBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/SettingsArea"]
+[node name="NumReleasesBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/SettingsArea" unique_id=1874546141]
 layout_mode = 2
 tooltip_text = "tooltip_num_releases_to_request"
 
-[node name="NumReleasesLabel" type="Label" parent="MainLayout/TabbedLayout/SettingsArea/NumReleasesBox"]
+[node name="NumReleasesLabel" type="Label" parent="MainLayout/TabbedLayout/SettingsArea/NumReleasesBox" unique_id=2031381285]
 layout_mode = 2
 text = "lbl_num_releases_to_request"
 
-[node name="NumReleasesField" type="SpinBox" parent="MainLayout/TabbedLayout/SettingsArea/NumReleasesBox"]
+[node name="NumReleasesField" type="SpinBox" parent="MainLayout/TabbedLayout/SettingsArea/NumReleasesBox" unique_id=1970218018]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
@@ -1027,15 +1027,15 @@ min_value = 1.0
 value = 30.0
 rounded = true
 
-[node name="NumPrsBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/SettingsArea"]
+[node name="NumPrsBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/SettingsArea" unique_id=2003192902]
 layout_mode = 2
 tooltip_text = "tooltip_num_prs_to_request"
 
-[node name="NumPrsLabel" type="Label" parent="MainLayout/TabbedLayout/SettingsArea/NumPrsBox"]
+[node name="NumPrsLabel" type="Label" parent="MainLayout/TabbedLayout/SettingsArea/NumPrsBox" unique_id=177561741]
 layout_mode = 2
 text = "lbl_num_prs_to_request"
 
-[node name="NumPrsField" type="SpinBox" parent="MainLayout/TabbedLayout/SettingsArea/NumPrsBox"]
+[node name="NumPrsField" type="SpinBox" parent="MainLayout/TabbedLayout/SettingsArea/NumPrsBox" unique_id=1426043395]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
@@ -1044,50 +1044,50 @@ step = 10.0
 value = 100.0
 rounded = true
 
-[node name="ProxySettingsBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/SettingsArea"]
+[node name="ProxySettingsBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/SettingsArea" unique_id=305862145]
 layout_mode = 2
 tooltip_text = "tooltip_proxy_settings"
 
-[node name="ProxySettingsLabel" type="Label" parent="MainLayout/TabbedLayout/SettingsArea/ProxySettingsBox"]
+[node name="ProxySettingsLabel" type="Label" parent="MainLayout/TabbedLayout/SettingsArea/ProxySettingsBox" unique_id=1515609645]
 layout_mode = 2
 text = "lbl_proxy_settings"
 
-[node name="ProxyOptionList" type="OptionButton" parent="MainLayout/TabbedLayout/SettingsArea/ProxySettingsBox"]
+[node name="ProxyOptionList" type="OptionButton" parent="MainLayout/TabbedLayout/SettingsArea/ProxySettingsBox" unique_id=416754869]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_stretch_ratio = 20.0
 tooltip_text = "tooltip_proxy_options"
 
-[node name="ProxyHostField" type="LineEdit" parent="MainLayout/TabbedLayout/SettingsArea/ProxySettingsBox"]
+[node name="ProxyHostField" type="LineEdit" parent="MainLayout/TabbedLayout/SettingsArea/ProxySettingsBox" unique_id=1523350080]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 placeholder_text = "localhost"
 
-[node name="ProxyPortField" type="SpinBox" parent="MainLayout/TabbedLayout/SettingsArea/ProxySettingsBox"]
+[node name="ProxyPortField" type="SpinBox" parent="MainLayout/TabbedLayout/SettingsArea/ProxySettingsBox" unique_id=1406659154]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 max_value = 65535.0
 
-[node name="CustomScaleBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/SettingsArea"]
+[node name="CustomScaleBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/SettingsArea" unique_id=1887206705]
 layout_mode = 2
 tooltip_text = "tooltip_ui_scale_override"
 
-[node name="CustomScaleLabel" type="Label" parent="MainLayout/TabbedLayout/SettingsArea/CustomScaleBox"]
+[node name="CustomScaleLabel" type="Label" parent="MainLayout/TabbedLayout/SettingsArea/CustomScaleBox" unique_id=220221848]
 layout_mode = 2
 text = "lbl_ui_scale_override"
 
-[node name="CustomScaleEnableSwitch" type="CheckBox" parent="MainLayout/TabbedLayout/SettingsArea/CustomScaleBox"]
+[node name="CustomScaleEnableSwitch" type="CheckBox" parent="MainLayout/TabbedLayout/SettingsArea/CustomScaleBox" unique_id=607727288]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_stretch_ratio = 20.0
 text = "cbtn_enable_scale"
 
-[node name="CustomScaleValueField" type="SpinBox" parent="MainLayout/TabbedLayout/SettingsArea/CustomScaleBox"]
+[node name="CustomScaleValueField" type="SpinBox" parent="MainLayout/TabbedLayout/SettingsArea/CustomScaleBox" unique_id=283983537]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
@@ -1098,72 +1098,72 @@ value = 100.0
 editable = false
 suffix = "%"
 
-[node name="DebugArea" type="VBoxContainer" parent="MainLayout/TabbedLayout"]
+[node name="DebugArea" type="VBoxContainer" parent="MainLayout/TabbedLayout" unique_id=1313696285]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 script = ExtResource("14")
 metadata/_tab_index = 6
 
-[node name="Label" type="Label" parent="MainLayout/TabbedLayout/DebugArea"]
+[node name="Label" type="Label" parent="MainLayout/TabbedLayout/DebugArea" unique_id=991081896]
 layout_mode = 2
 text = "This tab contains functions helpful in debugging parts of the launcher during development. Useless for anything else."
 autowrap_mode = 2
 
-[node name="Button" type="Button" parent="MainLayout/TabbedLayout/DebugArea"]
+[node name="Button" type="Button" parent="MainLayout/TabbedLayout/DebugArea" unique_id=85568530]
 layout_mode = 2
 size_flags_horizontal = 6
 text = "Test mod directory parsing"
 
-[node name="Button2" type="Button" parent="MainLayout/TabbedLayout/DebugArea"]
+[node name="Button2" type="Button" parent="MainLayout/TabbedLayout/DebugArea" unique_id=1242754697]
 layout_mode = 2
 size_flags_horizontal = 6
 text = "Test sound directory parsing"
 
-[node name="Button3" type="Button" parent="MainLayout/TabbedLayout/DebugArea"]
+[node name="Button3" type="Button" parent="MainLayout/TabbedLayout/DebugArea" unique_id=1717404020]
 layout_mode = 2
 size_flags_horizontal = 6
 text = "Test passing of arguments to shell commands"
 
-[node name="Button4" type="Button" parent="MainLayout/TabbedLayout/DebugArea"]
+[node name="Button4" type="Button" parent="MainLayout/TabbedLayout/DebugArea" unique_id=1709546742]
 layout_mode = 2
 size_flags_horizontal = 6
 text = "Test different types of status messages"
 
-[node name="Button5" type="Button" parent="MainLayout/TabbedLayout/DebugArea"]
+[node name="Button5" type="Button" parent="MainLayout/TabbedLayout/DebugArea" unique_id=569667277]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Test recursive directory listing"
 
-[node name="Button6" type="Button" parent="MainLayout/TabbedLayout/DebugArea"]
+[node name="Button6" type="Button" parent="MainLayout/TabbedLayout/DebugArea" unique_id=241185037]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Print a random Tip of the Day"
 
-[node name="Button7" type="Button" parent="MainLayout/TabbedLayout/DebugArea"]
+[node name="Button7" type="Button" parent="MainLayout/TabbedLayout/DebugArea" unique_id=61049594]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Test path resolution in PathHelper"
 
-[node name="Button8" type="Button" parent="MainLayout/TabbedLayout/DebugArea"]
+[node name="Button8" type="Button" parent="MainLayout/TabbedLayout/DebugArea" unique_id=1338352341]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Test position retrieval"
 
-[node name="Button9" type="Button" parent="MainLayout/TabbedLayout/DebugArea"]
+[node name="Button9" type="Button" parent="MainLayout/TabbedLayout/DebugArea" unique_id=1788366180]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Print screen info"
 
-[node name="Button10" type="Button" parent="MainLayout/TabbedLayout/DebugArea"]
+[node name="Button10" type="Button" parent="MainLayout/TabbedLayout/DebugArea" unique_id=1254510945]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Browse internal filesystem"
 
-[node name="BrowseResourcesDialog" type="FileDialog" parent="MainLayout/TabbedLayout/DebugArea"]
+[node name="BrowseResourcesDialog" type="FileDialog" parent="MainLayout/TabbedLayout/DebugArea" unique_id=768225980]
 unique_name_in_owner = true
 
-[node name="LogText" type="RichTextLabel" parent="MainLayout"]
+[node name="LogText" type="RichTextLabel" parent="MainLayout" unique_id=1245036283]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
@@ -1172,37 +1172,37 @@ bbcode_enabled = true
 scroll_following = true
 selection_enabled = true
 
-[node name="ReleaseManager" type="Node" parent="."]
+[node name="ReleaseManager" type="Node" parent="." unique_id=603811981]
 unique_name_in_owner = true
 script = ExtResource("5")
 
-[node name="HTTPRequest_DDA" type="HTTPRequest" parent="ReleaseManager"]
+[node name="HTTPRequest_DDA" type="HTTPRequest" parent="ReleaseManager" unique_id=999345622]
 
-[node name="HTTPRequest_BN" type="HTTPRequest" parent="ReleaseManager"]
+[node name="HTTPRequest_BN" type="HTTPRequest" parent="ReleaseManager" unique_id=923358258]
 
-[node name="HTTPRequest_EOD" type="HTTPRequest" parent="ReleaseManager"]
+[node name="HTTPRequest_EOD" type="HTTPRequest" parent="ReleaseManager" unique_id=226176618]
 
-[node name="HTTPRequest_TISH" type="HTTPRequest" parent="ReleaseManager"]
+[node name="HTTPRequest_TISH" type="HTTPRequest" parent="ReleaseManager" unique_id=1633608804]
 
-[node name="HTTPRequest_TLG" type="HTTPRequest" parent="ReleaseManager"]
+[node name="HTTPRequest_TLG" type="HTTPRequest" parent="ReleaseManager" unique_id=1465329823]
 
-[node name="ReleaseInstaller" type="Node" parent="."]
+[node name="ReleaseInstaller" type="Node" parent="." unique_id=511199511]
 unique_name_in_owner = true
 script = ExtResource("9")
 
-[node name="ModManager" type="Node" parent="."]
+[node name="ModManager" type="Node" parent="." unique_id=720354390]
 unique_name_in_owner = true
 script = ExtResource("12")
 
-[node name="SoundpackManager" type="Node" parent="."]
+[node name="SoundpackManager" type="Node" parent="." unique_id=1842045925]
 unique_name_in_owner = true
 script = ExtResource("13")
 
-[node name="FontManager" type="Node" parent="."]
+[node name="FontManager" type="Node" parent="." unique_id=2109458168]
 unique_name_in_owner = true
 script = ExtResource("28")
 
-[node name="BackupManager" type="Node" parent="."]
+[node name="BackupManager" type="Node" parent="." unique_id=86161735]
 unique_name_in_owner = true
 script = ExtResource("34")
 
