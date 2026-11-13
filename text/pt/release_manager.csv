@@ -8,6 +8,7 @@
 "msg_fetching_releases_bn","Buscando versões para o BN Experimental..."
 "msg_fetching_releases_eod","Buscando versões para o EOD Experimental..."
 "msg_fetching_releases_tish","Buscando versões para o TISH Experimental..."
+"msg_fetching_releases_tlg","Buscando versões para o TLG Experimental..."
 "msg_invalid_fetch_func_param","ReleaseManager.fetch() passou %s"
 "msg_fetching_releases_stable","Verificando novas versões estáveis..."
 "msg_got_n_new_stables","Encontrada(s) %s nova(s) versão(ões) estável(is)."

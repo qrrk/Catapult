@@ -9,6 +9,7 @@
 "msg_invalid_fetch_func_param","ReleaseManager.fetch() przeszło %s"
 "msg_fetching_releases_eod","Pobieranie wydań dla EOD Experimental..."
 "msg_fetching_releases_tish","Pobieranie wydań dla TISH Experimental..."
+"msg_fetching_releases_tlg","Pobieranie wydań dla TLG Experimental..."
 "msg_fetching_releases_stable","Sprawdzanie nowych stabilnych wydań..."
 "msg_got_n_new_stables","Znaleziono %s nowych stabilnych wydań."
 "msg_no_new_stables","Nie znaleziono nowych stabilnych wydań."

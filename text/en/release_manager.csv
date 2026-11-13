@@ -8,6 +8,7 @@
 "msg_fetching_releases_bn","Fetching releases for BN Experimental..."
 "msg_fetching_releases_eod","Fetching releases for EOD Experimental..."
 "msg_fetching_releases_tish","Fetching releases for TISH Experimental..."
+"msg_fetching_releases_tlg","Fetching releases for TLG Experimental..."
 "msg_fetching_releases_stable","Checking for new stable releases..."
 "msg_got_n_new_stables","Found %s new stable release(s)."
 "msg_no_new_stables","No new stable releases found."
