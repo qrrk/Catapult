@@ -77,20 +77,7 @@ func process_pr_data(data):
 	var mon_str = PullRequest.format_two_digit(str(latest_month))
 	var day_str = PullRequest.format_two_digit(str(latest_day))
 	
-	var game_title = ""
-	match Settings.read("game"):
-		"dda":
-			game_title = "Cataclysm: Dark Days Ahead"
-		"bn":
-			game_title = "Cataclysm: Bright Nights"
-		"eod":
-			game_title = "Cataclysm: Era of Decay"
-		"tish":
-			game_title = "Cataclysm: There Is Still Hope"
-		"tlg":
-			game_title = "Cataclysm: The Last Generation"
-		_:
-			game_title = "{BUG!!}"
+	var game_title := GameRegistry.get_title(Settings.read("game"))
 	
 	var r_val = tr("str_changelog_intro") % [Settings.read("num_prs_to_request"), game_title]
 	

@@ -1,0 +1,32 @@
+[
+	{
+		"id": "dda",
+		"title": "Cataclysm: Dark Days Ahead",
+		"desc_key": "desc_dda",
+		"fetch_msg_key": "msg_fetching_releases_dda"
+	},
+	{
+		"id": "bn",
+		"title": "Cataclysm: Bright Nights",
+		"desc_key": "desc_bn",
+		"fetch_msg_key": "msg_fetching_releases_bn"
+	},
+	{
+		"id": "eod",
+		"title": "Cataclysm: Era of Decay",
+		"desc_key": "desc_eod",
+		"fetch_msg_key": "msg_fetching_releases_eod"
+	},
+	{
+		"id": "tish",
+		"title": "Cataclysm: There Is Still Hope",
+		"desc_key": "desc_tish",
+		"fetch_msg_key": "msg_fetching_releases_tish"
+	},
+	{
+		"id": "tlg",
+		"title": "Cataclysm: The Last Generation",
+		"desc_key": "desc_tlg",
+		"fetch_msg_key": "msg_fetching_releases_tlg"
+	}
+]

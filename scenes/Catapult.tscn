@@ -1176,16 +1176,6 @@ selection_enabled = true
 unique_name_in_owner = true
 script = ExtResource("5")
 
-[node name="HTTPRequest_DDA" type="HTTPRequest" parent="ReleaseManager" unique_id=999345622]
-
-[node name="HTTPRequest_BN" type="HTTPRequest" parent="ReleaseManager" unique_id=923358258]
-
-[node name="HTTPRequest_EOD" type="HTTPRequest" parent="ReleaseManager" unique_id=226176618]
-
-[node name="HTTPRequest_TISH" type="HTTPRequest" parent="ReleaseManager" unique_id=1633608804]
-
-[node name="HTTPRequest_TLG" type="HTTPRequest" parent="ReleaseManager" unique_id=1465329823]
-
 [node name="ReleaseInstaller" type="Node" parent="." unique_id=511199511]
 unique_name_in_owner = true
 script = ExtResource("9")
@@ -1299,11 +1289,6 @@ script = ExtResource("34")
 [connection signal="meta_clicked" from="MainLayout/LogText" to="." method="_on_Log_meta_clicked"]
 [connection signal="done_fetching_releases" from="ReleaseManager" to="." method="_on_Releases_done_fetching_releases"]
 [connection signal="started_fetching_releases" from="ReleaseManager" to="." method="_on_Releases_started_fetching_releases"]
-[connection signal="request_completed" from="ReleaseManager/HTTPRequest_DDA" to="ReleaseManager" method="_on_request_completed_dda"]
-[connection signal="request_completed" from="ReleaseManager/HTTPRequest_BN" to="ReleaseManager" method="_on_request_completed_bn"]
-[connection signal="request_completed" from="ReleaseManager/HTTPRequest_EOD" to="ReleaseManager" method="_on_request_completed_eod"]
-[connection signal="request_completed" from="ReleaseManager/HTTPRequest_TISH" to="ReleaseManager" method="_on_request_completed_tish"]
-[connection signal="request_completed" from="ReleaseManager/HTTPRequest_TLG" to="ReleaseManager" method="_on_request_completed_tlg"]
 [connection signal="operation_finished" from="ReleaseInstaller" to="." method="_on_ReleaseInstaller_operation_finished"]
 [connection signal="operation_started" from="ReleaseInstaller" to="." method="_on_ReleaseInstaller_operation_started"]
 [connection signal="mod_deletion_finished" from="ModManager" to="." method="_on_mod_operation_finished"]
