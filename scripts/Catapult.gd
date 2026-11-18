@@ -12,6 +12,11 @@ var _easter_egg_counter := 0
 
 func _ready() -> void:
 	
+	Status.message_posted.connect(_on_status_message_posted)
+	for bb_text in Status.consume_buffer():
+		%LogText.append_text(bb_text)
+	Settings.setting_changed.connect(_on_setting_changed)
+	
 	# Apply UI theme
 	var theme_file = Settings.read("launcher_theme")
 	load_ui_theme(theme_file)
@@ -30,6 +35,35 @@ func _ready() -> void:
 	Status.post(welcome_msg)
 	
 	_setup_ui()
+
+
+func _on_status_message_posted(bb_text: String) -> void:
+	
+	%LogText.append_text(bb_text)
+
+
+func _on_setting_changed(key: String, value: Variant) -> void:
+	
+	match key:
+		"launcher_locale":
+			TranslationServer.set_locale(value as String)
+			assign_localized_text()
+		"launcher_theme":
+			load_ui_theme(value as String)
+		"show_game_desc":
+			%GameInfoBox.visible = value as bool
+		"debug_mode":
+			_set_debug_tab_visible(value as bool)
+
+
+func _set_debug_tab_visible(show_debug: bool) -> void:
+	
+	if show_debug:
+		if %DebugArea.get_parent() != %TabbedLayout:
+			%DebugArea.reparent(%TabbedLayout)
+	elif %DebugArea.get_parent() == %TabbedLayout:
+		%DebugArea.hide()
+		%DebugArea.reparent(self)
 
 
 func _save_control_min_sizes() -> void:
@@ -58,17 +92,9 @@ func assign_localized_text() -> void:
 	
 	%ChangelogLinkLabel.text = tr("lbl_changelog")
 	
-	var game = Settings.read("game")
-	if game == "dda":
-		%GameDescText.text = tr("desc_dda")
-	elif game == "bn":
-		%GameDescText.text = tr("desc_bn")
-	elif game == "eod":
-		%GameDescText.text = tr("desc_eod")
-	elif game == "tish":
-		%GameDescText.text = tr("desc_tish")
-	elif game == "tlg":
-		%GameDescText.text = tr("desc_tlg")
+	var desc_key := GameRegistry.get_desc_key(Settings.read("game"))
+	if not desc_key.is_empty():
+		%GameDescText.text = tr(desc_key)
 
 
 func load_ui_theme(theme_file: String) -> void:
@@ -127,22 +153,11 @@ func _on_Tabs_tab_changed(tab: int) -> void:
 
 func _on_GamesList_item_selected(index: int) -> void:
 	
-	match index:
-		0:
-			Settings.store("game", "dda")
-			%GameDescText.text = tr("desc_dda")
-		1:
-			Settings.store("game", "bn")
-			%GameDescText.text = tr("desc_bn")
-		2:
-			Settings.store("game", "eod")
-			%GameDescText.text = tr("desc_eod")
-		3:
-			Settings.store("game", "tish")
-			%GameDescText.text = tr("desc_tish")
-		4:
-			Settings.store("game", "tlg")
-			%GameDescText.text = tr("desc_tlg")
+	var game := GameRegistry.get_by_index(index)
+	if game.is_empty():
+		return
+	Settings.store("game", game["id"])
+	%GameDescText.text = tr(game["desc_key"])
 	
 	%TabbedLayout.current_tab = 0
 	apply_game_choice()
@@ -153,11 +168,10 @@ func _on_GamesList_item_selected(index: int) -> void:
 
 
 func _on_RBtnStable_toggled(button_pressed: bool) -> void:
-	if (Settings.read("game") == "eod") or (Settings.read("game") == "tish") or (Settings.read("game") == "tlg"):
+	
+	if not %ReleaseManager.has_stable_releases(Settings.read("game")):
 		Settings.store("channel", "experimental")
-
-
-	if button_pressed:
+	elif button_pressed:
 		Settings.store("channel", "stable")
 	else:
 		Settings.store("channel", "experimental")
@@ -173,6 +187,7 @@ func _on_Releases_started_fetching_releases() -> void:
 func _on_Releases_done_fetching_releases() -> void:
 	
 	_smart_reenable_controls("disable_while_fetching_releases")
+	_update_channel_controls(Settings.read("game"))
 	reload_builds_list()
 	_refresh_currently_installed()
 
@@ -302,11 +317,12 @@ func _on_UserDir_pressed() -> void:
 
 func _setup_ui() -> void:
 
+	%GamesList.clear()
+	for game in GameRegistry.get_games():
+		%GamesList.add_item(game["title"])
+	
 	%GameInfoBox.visible = Settings.read("show_game_desc")
-	if not Settings.read("debug_mode"):
-		# %TabbedLayout.remove_child(%DebugArea)
-		%DebugArea.hide()
-		%DebugArea.reparent(self)
+	_set_debug_tab_visible(Settings.read("debug_mode"))
 	
 	%UpdateCurrentSwitch.button_pressed = Settings.read("update_current_when_installing")
 	
@@ -314,8 +330,6 @@ func _setup_ui() -> void:
 	
 	%GamesList.item_selected.connect(_on_GamesList_item_selected)
 	%StableSwitch.toggled.connect(_on_RBtnStable_toggled)
-	# Had to leave these signals unconnected in the editor and only connect
-	# them now from code to avoid cyclic calls of apply_game_choice.
 	
 	_refresh_currently_installed()
 
@@ -328,48 +342,42 @@ func reload_builds_list() -> void:
 	_refresh_currently_installed()
 
 
-func apply_game_choice() -> void:
+func _update_channel_controls(game: String) -> void:
 	
-	# TODO: Turn this mess into a more elegant mess.
-
-	var game = Settings.read("game")
-	var channel = Settings.read("channel")
+	var channel: String = Settings.read("channel")
 	
-	if (game == "dda") or (game == "bn"):
+	if %ReleaseManager.has_stable_releases(game):
 		%ExperimentalSwitch.disabled = false
 		%StableSwitch.disabled = false
 		if channel == "stable":
-			%StableSwitch.button_pressed = true
+			%ExperimentalSwitch.set_pressed_no_signal(false)
+			%StableSwitch.set_pressed_no_signal(true)
 			%RefreshReleasesBtn.disabled = not Settings.read("check_external_stable_release_source")
 		else:
-			%ExperimentalSwitch.button_pressed = true
+			%StableSwitch.set_pressed_no_signal(false)
+			%ExperimentalSwitch.set_pressed_no_signal(true)
 			%RefreshReleasesBtn.disabled = false
-	elif (game == "eod") or (game == "tish") or (game == "tlg"):
-		%ExperimentalSwitch.button_pressed = true
+	else:
+		if channel != "experimental":
+			Settings.store("channel", "experimental")
+		%StableSwitch.set_pressed_no_signal(false)
+		%ExperimentalSwitch.set_pressed_no_signal(true)
 		%ExperimentalSwitch.disabled = true
 		%StableSwitch.disabled = true
 		%RefreshReleasesBtn.disabled = false
 
-	match game:
-		"dda":
-			%GamesList.select(0)
-			%GameDescText.text = tr("desc_dda")
-				
-		"bn":
-			%GamesList.select(1)
-			%GameDescText.text = tr("desc_bn")
 
-		"eod":
-			%GamesList.select(2)
-			%GameDescText.text = tr("desc_eod")
+func apply_game_choice() -> void:
+	
+	var game: String = Settings.read("game")
+	_update_channel_controls(game)
 
-		"tish":
-			%GamesList.select(3)
-			%GameDescText.text = tr("desc_tish")
-			
-		"tlg":
-			%GamesList.select(4)
-			%GameDescText.text = tr("desc_tlg")
+	var game_idx := GameRegistry.index_of(game)
+	if game_idx >= 0:
+		%GamesList.select(game_idx)
+	var desc_key := GameRegistry.get_desc_key(game)
+	if not desc_key.is_empty():
+		%GameDescText.text = tr(desc_key)
 	
 	if len(%ReleaseManager.releases[_get_release_key()]) == 0:
 		%ReleaseManager.fetch(_get_release_key())

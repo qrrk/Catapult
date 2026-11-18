@@ -13,8 +13,6 @@ var _themes := [
 
 var _proxy_options := ["off", "on", "download"]
 
-@onready var _root = $"/root/Catapult"
-
 
 func _ready() -> void:
 	
@@ -62,25 +60,25 @@ func _ready() -> void:
 	%CustomScaleValueField.value = (Settings.read("ui_scale_override") as float) * 100.0
 
 
+func _notification(what: int) -> void:
+	
+	if what == NOTIFICATION_TRANSLATION_CHANGED and is_node_ready():
+		_populate_proxy_options()
+
+
 func _on_obtnLanguage_item_selected(index: int) -> void:
 	
-	var locale = _langs[index]
-	Settings.store("launcher_locale", locale)
-	TranslationServer.set_locale(locale)
-	_root.assign_localized_text()
-	_populate_proxy_options()
+	Settings.store("launcher_locale", _langs[index])
 
 
 func _on_obtnTheme_item_selected(index: int) -> void:
 	
 	Settings.store("launcher_theme", _themes[index])
-	_root.load_ui_theme(_themes[index])
 
 
 func _on_ShowGameDesc_toggled(button_pressed: bool) -> void:
 	
 	Settings.store("show_game_desc", button_pressed)
-	%GameInfoBox.visible = button_pressed
 
 
 func _on_KeepLauncherOpen_toggled(button_pressed: bool) -> void:
@@ -131,12 +129,6 @@ func _on_CheckExternalStables_toggled(button_pressed: bool) -> void:
 func _on_ShowDebug_toggled(button_pressed: bool) -> void:
 	
 	Settings.store("debug_mode", button_pressed)
-	
-	if button_pressed:
-		%DebugArea.reparent(%TabbedLayout)
-	elif %DebugArea.get_parent() == %TabbedLayout:
-		%DebugArea.hide()
-		%DebugArea.reparent(_root)
 
 
 func _on_sbNumReleases_value_changed(value: float) -> void:

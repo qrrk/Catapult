@@ -1,6 +1,8 @@
 extends Node
 
 
+signal setting_changed(key: String, value: Variant)
+
 const _SETTINGS_FILENAME = "catapult_settings.json"
 const _DEFAULTS_FILENAME = "res://data/default_settings.json"
 
@@ -77,6 +79,16 @@ func read(setting_name: String):
 	return _current[setting_name]
 
 
-func store(setting_name: String, setting_value) -> void:
+func store(setting_name: String, setting_value: Variant) -> void:
+	
+	if _current.is_empty():
+		_load()
+	
+	var changed := not _current.has(setting_name)
+	if not changed:
+		var prev: Variant = _current[setting_name]
+		changed = typeof(prev) != typeof(setting_value) or prev != setting_value
 	
 	_current[setting_name] = setting_value
+	if changed:
+		setting_changed.emit(setting_name, setting_value)
