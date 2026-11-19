@@ -4,19 +4,12 @@ extends VBoxContainer
 signal operation_started
 signal operation_finished
 
+@export var lockable_controls: Array[Control] = []
+
 var _installed_packs = []
-var _lock: ControlLock
 
 
 func _ready() -> void:
-	
-	_lock = ControlLock.new([
-		%InstalledSoundsList,
-		%ShowStockSoundsSwitch,
-		%DeleteSoundBtn,
-		%AvailableSoundsList,
-		%InstallSoundBtn,
-	])
 	
 	%SoundpackManager.soundpack_deletion_started.connect(_on_operation_started)
 	%SoundpackManager.soundpack_deletion_finished.connect(_on_operation_finished)
@@ -26,13 +19,13 @@ func _ready() -> void:
 
 func _on_operation_started() -> void:
 	
-	_lock.lock()
+	ControlLock.lock(lockable_controls)
 	operation_started.emit()
 
 
 func _on_operation_finished() -> void:
 	
-	_lock.unlock()
+	ControlLock.unlock(lockable_controls)
 	operation_finished.emit()
 
 

@@ -57,11 +57,12 @@ content_margin_bottom = 4.0
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_nlnc6"]
 
-[node name="Catapult" type="PanelContainer" unique_id=344876453]
+[node name="Catapult" type="PanelContainer" unique_id=344876453 node_paths=PackedStringArray("lockable_controls")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource("4")
+lockable_controls = [NodePath("MainLayout/GameChoiceBox/GamesList"), NodePath("MainLayout/TabbedLayout")]
 
 [node name="MainLayout" type="VBoxContainer" parent="." unique_id=558953761]
 layout_mode = 2
@@ -73,7 +74,7 @@ layout_mode = 2
 layout_mode = 2
 text = "lbl_game"
 
-[node name="GamesList" type="OptionButton" parent="MainLayout/GameChoiceBox" unique_id=142668540 groups=["disable_during_backup_operations", "disable_during_mod_operations", "disable_during_release_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases"]]
+[node name="GamesList" type="OptionButton" parent="MainLayout/GameChoiceBox" unique_id=142668540]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -117,17 +118,19 @@ fit_content = true
 [node name="Spacer" type="Control" parent="MainLayout" unique_id=596619454]
 layout_mode = 2
 
-[node name="TabbedLayout" type="TabContainer" parent="MainLayout" unique_id=1572574515 groups=["disable_during_backup_operations", "disable_during_mod_operations", "disable_during_release_operations", "disable_during_soundpack_operations", "disable_while_fetching_releases"]]
+[node name="TabbedLayout" type="TabContainer" parent="MainLayout" unique_id=1572574515]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 current_tab = 0
 script = ExtResource("16")
 
-[node name="GameArea" type="VBoxContainer" parent="MainLayout/TabbedLayout" unique_id=290305386]
+[node name="GameArea" type="VBoxContainer" parent="MainLayout/TabbedLayout" unique_id=290305386 node_paths=PackedStringArray("lock_on_fetch", "lock_on_release_ops")]
 unique_name_in_owner = true
 layout_mode = 2
 script = ExtResource("GameUI_script")
+lock_on_fetch = [NodePath("ChannelSelectGroup/ChannelSwitchesGroup/StableSwitch"), NodePath("ChannelSelectGroup/ChannelSwitchesGroup/ExperimentalSwitch"), NodePath("ReleaseSelectGroup/ReleasesList"), NodePath("ReleaseSelectGroup/RefreshReleasesBtn"), NodePath("InstallReleaseBtn"), NodePath("UpdateCurrentSwitch")]
+lock_on_release_ops = [NodePath("ChannelSelectGroup/ChannelSwitchesGroup/StableSwitch"), NodePath("ChannelSelectGroup/ChannelSwitchesGroup/ExperimentalSwitch"), NodePath("ReleaseSelectGroup/ReleasesList"), NodePath("ReleaseSelectGroup/RefreshReleasesBtn"), NodePath("InstallReleaseBtn"), NodePath("UpdateCurrentSwitch"), NodePath("ActiveInstallGroup/LaunchGameBox/LaunchGameBtn"), NodePath("ActiveInstallGroup/LaunchGameBox/QuickLoadBtn"), NodePath("GameInstallsGroup/GameInstallsMgmtGroup/GameInstallsList"), NodePath("GameInstallsGroup/GameInstallsMgmtGroup/GameInstallActionsBox/MakeInstallActiveBtn"), NodePath("GameInstallsGroup/GameInstallsMgmtGroup/GameInstallActionsBox/DeleteGameInstallBtn")]
 metadata/_tab_index = 0
 
 [node name="ChannelSelectGroup" type="VBoxContainer" parent="MainLayout/TabbedLayout/GameArea" unique_id=1174608383]
@@ -154,14 +157,14 @@ scroll_active = false
 [node name="ChannelSwitchesGroup" type="HBoxContainer" parent="MainLayout/TabbedLayout/GameArea/ChannelSelectGroup" unique_id=1335302617]
 layout_mode = 2
 
-[node name="StableSwitch" type="CheckBox" parent="MainLayout/TabbedLayout/GameArea/ChannelSelectGroup/ChannelSwitchesGroup" unique_id=31254995 groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
+[node name="StableSwitch" type="CheckBox" parent="MainLayout/TabbedLayout/GameArea/ChannelSelectGroup/ChannelSwitchesGroup" unique_id=31254995]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_stable"
 button_group = SubResource("ButtonGroup_nlnc6")
 text = "rbtn_stable"
 
-[node name="ExperimentalSwitch" type="CheckBox" parent="MainLayout/TabbedLayout/GameArea/ChannelSelectGroup/ChannelSwitchesGroup" unique_id=131726776 groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
+[node name="ExperimentalSwitch" type="CheckBox" parent="MainLayout/TabbedLayout/GameArea/ChannelSelectGroup/ChannelSwitchesGroup" unique_id=131726776]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_experimental"
@@ -175,21 +178,21 @@ layout_mode = 2
 layout_mode = 2
 text = "lbl_builds"
 
-[node name="ReleasesList" type="OptionButton" parent="MainLayout/TabbedLayout/GameArea/ReleaseSelectGroup" unique_id=886086064 groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
+[node name="ReleasesList" type="OptionButton" parent="MainLayout/TabbedLayout/GameArea/ReleaseSelectGroup" unique_id=886086064]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "tooltip_builds"
 clip_text = true
 
-[node name="RefreshReleasesBtn" type="Button" parent="MainLayout/TabbedLayout/GameArea/ReleaseSelectGroup" unique_id=656702003 groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
+[node name="RefreshReleasesBtn" type="Button" parent="MainLayout/TabbedLayout/GameArea/ReleaseSelectGroup" unique_id=656702003]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_refresh"
 text = "btn_refresh"
 icon = ExtResource("4_no8b7")
 
-[node name="InstallReleaseBtn" type="Button" parent="MainLayout/TabbedLayout/GameArea" unique_id=1776255929 groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
+[node name="InstallReleaseBtn" type="Button" parent="MainLayout/TabbedLayout/GameArea" unique_id=1776255929]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -197,7 +200,7 @@ tooltip_text = "tooltip_install"
 text = "btn_install"
 icon = ExtResource("4_rcpd3")
 
-[node name="UpdateCurrentSwitch" type="CheckBox" parent="MainLayout/TabbedLayout/GameArea" unique_id=1218191551 groups=["disable_during_release_operations", "disable_while_fetching_releases"]]
+[node name="UpdateCurrentSwitch" type="CheckBox" parent="MainLayout/TabbedLayout/GameArea" unique_id=1218191551]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -242,7 +245,7 @@ texture_normal = ExtResource("7_rcpd3")
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="LaunchGameBtn" type="Button" parent="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup/LaunchGameBox" unique_id=896121665 groups=["disable_during_release_operations"]]
+[node name="LaunchGameBtn" type="Button" parent="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup/LaunchGameBox" unique_id=896121665]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -250,7 +253,7 @@ tooltip_text = "tooltip_play"
 text = "btn_play"
 icon = ExtResource("8_no8b7")
 
-[node name="QuickLoadBtn" type="Button" parent="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup/LaunchGameBox" unique_id=839086089 groups=["disable_during_release_operations"]]
+[node name="QuickLoadBtn" type="Button" parent="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup/LaunchGameBox" unique_id=839086089]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -272,7 +275,7 @@ text = "lbl_installs"
 [node name="GameInstallsMgmtGroup" type="HBoxContainer" parent="MainLayout/TabbedLayout/GameArea/GameInstallsGroup" unique_id=710218868]
 layout_mode = 2
 
-[node name="GameInstallsList" type="ItemList" parent="MainLayout/TabbedLayout/GameArea/GameInstallsGroup/GameInstallsMgmtGroup" unique_id=1746976822 groups=["disable_during_release_operations"]]
+[node name="GameInstallsList" type="ItemList" parent="MainLayout/TabbedLayout/GameArea/GameInstallsGroup/GameInstallsMgmtGroup" unique_id=1746976822]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
@@ -289,7 +292,7 @@ script = ExtResource("6")
 [node name="GameInstallActionsBox" type="VBoxContainer" parent="MainLayout/TabbedLayout/GameArea/GameInstallsGroup/GameInstallsMgmtGroup" unique_id=1656300452]
 layout_mode = 2
 
-[node name="MakeInstallActiveBtn" type="Button" parent="MainLayout/TabbedLayout/GameArea/GameInstallsGroup/GameInstallsMgmtGroup/GameInstallActionsBox" unique_id=1559368420 groups=["disable_during_release_operations"]]
+[node name="MakeInstallActiveBtn" type="Button" parent="MainLayout/TabbedLayout/GameArea/GameInstallsGroup/GameInstallsMgmtGroup/GameInstallActionsBox" unique_id=1559368420]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_activate"
@@ -297,7 +300,7 @@ disabled = true
 text = "btn_activate"
 icon = ExtResource("11_rcpd3")
 
-[node name="DeleteGameInstallBtn" type="Button" parent="MainLayout/TabbedLayout/GameArea/GameInstallsGroup/GameInstallsMgmtGroup/GameInstallActionsBox" unique_id=330239878 groups=["disable_during_release_operations"]]
+[node name="DeleteGameInstallBtn" type="Button" parent="MainLayout/TabbedLayout/GameArea/GameInstallsGroup/GameInstallsMgmtGroup/GameInstallActionsBox" unique_id=330239878]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_delete"
@@ -313,11 +316,12 @@ position = Vector2i(0, 36)
 unique_name_in_owner = true
 visible = false
 
-[node name="ModsArea" type="VBoxContainer" parent="MainLayout/TabbedLayout" unique_id=1033264301]
+[node name="ModsArea" type="VBoxContainer" parent="MainLayout/TabbedLayout" unique_id=1033264301 node_paths=PackedStringArray("lockable_controls")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 script = ExtResource("18")
+lockable_controls = [NodePath("ModsManagementGroup/InstalledModsGroup/InstalledModsList"), NodePath("ModsManagementGroup/InstalledModsGroup/ShowStockModsSwitch"), NodePath("ModsManagementGroup/InstalledModsGroup/DeleteModsBtn"), NodePath("ModsManagementGroup/AvailableModsGroup/AvailableModsList"), NodePath("ModsManagementGroup/AvailableModsGroup/ShowInstalledModsSwitch"), NodePath("ModsManagementGroup/AvailableModsGroup/AddModsActionsBox/AddSelectedModsBtn"), NodePath("ModsManagementGroup/AvailableModsGroup/AddModsActionsBox/AddAllModsBtn"), NodePath("ModsManagementGroup/AvailableModsGroup/GetKenanModpackBtn")]
 metadata/_tab_index = 1
 
 [node name="ModsManagementGroup" type="HBoxContainer" parent="MainLayout/TabbedLayout/ModsArea" unique_id=988834148]
@@ -332,7 +336,7 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "lbl_installed_mods"
 
-[node name="InstalledModsList" type="ItemList" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/InstalledModsGroup" unique_id=1648840585 groups=["disable_during_mod_operations"]]
+[node name="InstalledModsList" type="ItemList" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/InstalledModsGroup" unique_id=1648840585]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 180)
 layout_mode = 2
@@ -347,14 +351,14 @@ item_2/text = "Item 2"
 item_3/text = "Item 3"
 script = ExtResource("17")
 
-[node name="ShowStockModsSwitch" type="CheckBox" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/InstalledModsGroup" unique_id=1053366092 groups=["disable_during_mod_operations"]]
+[node name="ShowStockModsSwitch" type="CheckBox" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/InstalledModsGroup" unique_id=1053366092]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "tooltip_stock_mods"
 text = "cbtn_stock_mods"
 
-[node name="DeleteModsBtn" type="Button" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/InstalledModsGroup" unique_id=907764778 groups=["disable_during_mod_operations"]]
+[node name="DeleteModsBtn" type="Button" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/InstalledModsGroup" unique_id=907764778]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -374,7 +378,7 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "lbl_mod_repo"
 
-[node name="AvailableModsList" type="ItemList" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup" unique_id=53724999 groups=["disable_during_mod_operations"]]
+[node name="AvailableModsList" type="ItemList" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup" unique_id=53724999]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 180)
 layout_mode = 2
@@ -389,7 +393,7 @@ item_2/text = "Item 2"
 item_3/text = "Item 3"
 script = ExtResource("17")
 
-[node name="ShowInstalledModsSwitch" type="CheckBox" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup" unique_id=2021656745 groups=["disable_during_mod_operations"]]
+[node name="ShowInstalledModsSwitch" type="CheckBox" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup" unique_id=2021656745]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -400,20 +404,20 @@ text = "cbtn_installed_mods"
 layout_mode = 2
 alignment = 1
 
-[node name="AddSelectedModsBtn" type="Button" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup/AddModsActionsBox" unique_id=213234572 groups=["disable_during_mod_operations"]]
+[node name="AddSelectedModsBtn" type="Button" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup/AddModsActionsBox" unique_id=213234572]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "tooltip_add_sel_mods"
 text = "btn_add_sel_mods"
 
-[node name="AddAllModsBtn" type="Button" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup/AddModsActionsBox" unique_id=1114760842 groups=["disable_during_mod_operations"]]
+[node name="AddAllModsBtn" type="Button" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup/AddModsActionsBox" unique_id=1114760842]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "tooltip_add_all_mods"
 text = "btn_add_all_mods"
 
-[node name="GetKenanModpackBtn" type="Button" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup" unique_id=2133527005 groups=["disable_during_mod_operations"]]
+[node name="GetKenanModpackBtn" type="Button" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup" unique_id=2133527005]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -441,12 +445,13 @@ dialog_autowrap = true
 [node name="ModReinstallDialog" parent="MainLayout/TabbedLayout/ModsArea" unique_id=1712628389 instance=ExtResource("20")]
 unique_name_in_owner = true
 
-[node name="SoundArea" type="VBoxContainer" parent="MainLayout/TabbedLayout" unique_id=1653764024]
+[node name="SoundArea" type="VBoxContainer" parent="MainLayout/TabbedLayout" unique_id=1653764024 node_paths=PackedStringArray("lockable_controls")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("15")
+lockable_controls = [NodePath("SoundManagementGroup/InstalledSoundsGroup/InstalledSoundsList"), NodePath("SoundManagementGroup/InstalledSoundsGroup/ShowStockSoundsSwitch"), NodePath("SoundManagementGroup/InstalledSoundsGroup/DeleteSoundBtn"), NodePath("SoundManagementGroup/AvailableSoundsGroup/AvailableSoundsList"), NodePath("SoundManagementGroup/AvailableSoundsGroup/InstallSoundBtn")]
 metadata/_tab_index = 2
 
 [node name="SoundManagementGroup" type="HBoxContainer" parent="MainLayout/TabbedLayout/SoundArea" unique_id=1167133284]
@@ -460,7 +465,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 text = "lbl_installed_sound"
 
-[node name="InstalledSoundsList" type="ItemList" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup/InstalledSoundsGroup" unique_id=1588530420 groups=["disable_during_soundpack_operations"]]
+[node name="InstalledSoundsList" type="ItemList" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup/InstalledSoundsGroup" unique_id=1588530420]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
@@ -491,14 +496,14 @@ item_20/text = "Item 20"
 item_21/text = "Item 21"
 script = ExtResource("17")
 
-[node name="ShowStockSoundsSwitch" type="CheckBox" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup/InstalledSoundsGroup" unique_id=663870578 groups=["disable_during_soundpack_operations"]]
+[node name="ShowStockSoundsSwitch" type="CheckBox" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup/InstalledSoundsGroup" unique_id=663870578]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "tooltip_stock_sound"
 text = "cbtn_stock_sound"
 
-[node name="DeleteSoundBtn" type="Button" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup/InstalledSoundsGroup" unique_id=493983696 groups=["disable_during_soundpack_operations"]]
+[node name="DeleteSoundBtn" type="Button" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup/InstalledSoundsGroup" unique_id=493983696]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -517,7 +522,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 text = "lbl_avail_sound"
 
-[node name="AvailableSoundsList" type="ItemList" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup/AvailableSoundsGroup" unique_id=455483644 groups=["disable_during_soundpack_operations"]]
+[node name="AvailableSoundsList" type="ItemList" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup/AvailableSoundsGroup" unique_id=455483644]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
@@ -530,7 +535,7 @@ item_2/text = "Item 2"
 item_3/text = "Item 3"
 script = ExtResource("17")
 
-[node name="InstallSoundBtn" type="Button" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup/AvailableSoundsGroup" unique_id=1436205477 groups=["disable_during_soundpack_operations"]]
+[node name="InstallSoundBtn" type="Button" parent="MainLayout/TabbedLayout/SoundArea/SoundManagementGroup/AvailableSoundsGroup" unique_id=1436205477]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -756,11 +761,12 @@ fit_content = true
 unique_name_in_owner = true
 position = Vector2i(0, 36)
 
-[node name="BackupsArea" type="VBoxContainer" parent="MainLayout/TabbedLayout" unique_id=612165546]
+[node name="BackupsArea" type="VBoxContainer" parent="MainLayout/TabbedLayout" unique_id=612165546 node_paths=PackedStringArray("lockable_controls")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 script = ExtResource("33")
+lockable_controls = [NodePath("ExistingBackupsGroup/BackupsDisplayBox/BackupsList"), NodePath("ExistingBackupsGroup/BackupActionsBox/RestoreBackupBtn"), NodePath("ExistingBackupsGroup/BackupActionsBox/DeleteBackupBtn"), NodePath("ExistingBackupsGroup/BackupActionsBox/RefreshBackupsBtn"), NodePath("ManualBackupGroup/CreateBackupGroup/CreateBackupBtn")]
 metadata/_tab_index = 4
 
 [node name="ExistingBackupsGroup" type="VBoxContainer" parent="MainLayout/TabbedLayout/BackupsArea" unique_id=416110878]
@@ -773,11 +779,12 @@ text = "lbl_save_backups"
 [node name="BackupsDisplayBox" type="HBoxContainer" parent="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup" unique_id=1625879948]
 layout_mode = 2
 
-[node name="BackupsList" type="ItemList" parent="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup/BackupsDisplayBox" unique_id=1881214143 groups=["disable_during_backup_operations"]]
+[node name="BackupsList" type="ItemList" parent="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup/BackupsDisplayBox" unique_id=1881214143]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 size_flags_horizontal = 3
+script = ExtResource("17")
 item_count = 10
 same_column_width = true
 item_0/text = "Item 0"
@@ -804,17 +811,17 @@ selection_enabled = true
 layout_mode = 2
 alignment = 1
 
-[node name="RestoreBackupBtn" type="Button" parent="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup/BackupActionsBox" unique_id=1513937068 groups=["disable_during_backup_operations"]]
+[node name="RestoreBackupBtn" type="Button" parent="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup/BackupActionsBox" unique_id=1513937068]
 unique_name_in_owner = true
 layout_mode = 2
 text = "btn_restore_backup"
 
-[node name="DeleteBackupBtn" type="Button" parent="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup/BackupActionsBox" unique_id=4243808 groups=["disable_during_backup_operations"]]
+[node name="DeleteBackupBtn" type="Button" parent="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup/BackupActionsBox" unique_id=4243808]
 unique_name_in_owner = true
 layout_mode = 2
 text = "btn_delete_backup"
 
-[node name="RefreshBackupsBtn" type="Button" parent="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup/BackupActionsBox" unique_id=1334466297 groups=["disable_during_backup_operations"]]
+[node name="RefreshBackupsBtn" type="Button" parent="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup/BackupActionsBox" unique_id=1334466297]
 unique_name_in_owner = true
 layout_mode = 2
 text = "btn_refresh_backups"
@@ -842,7 +849,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Enter name for new backup"
 
-[node name="CreateBackupBtn" type="Button" parent="MainLayout/TabbedLayout/BackupsArea/ManualBackupGroup/CreateBackupGroup" unique_id=1578562564 groups=["disable_during_backup_operations"]]
+[node name="CreateBackupBtn" type="Button" parent="MainLayout/TabbedLayout/BackupsArea/ManualBackupGroup/CreateBackupGroup" unique_id=1578562564]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4

@@ -1,9 +1,10 @@
 extends Node
 
 
+@export var lockable_controls: Array[Control] = []
+
 # For UI scaling on the fly
 var _base_min_sizes: Dictionary = {}
-var _shell_lock: ControlLock
 var _easter_egg_counter: int = 0
 
 
@@ -14,15 +15,10 @@ func _ready() -> void:
 		%LogText.append_text(bb_text)
 	Settings.setting_changed.connect(_on_setting_changed)
 	
-	_shell_lock = ControlLock.new([
-		%GamesList,
-		%TabbedLayout,
-	])
-	
 	%GameArea.installs_changed.connect(_on_game_installs_changed)
 	for tab in [%GameArea, %ModsArea, %SoundArea, %BackupsArea]:
-		tab.operation_started.connect(_shell_lock.lock)
-		tab.operation_finished.connect(_shell_lock.unlock)
+		tab.operation_started.connect(_on_tab_operation_started)
+		tab.operation_finished.connect(_on_tab_operation_finished)
 	
 	# Apply UI theme
 	var theme_file: String = Settings.read("launcher_theme")
@@ -163,6 +159,16 @@ func _on_game_installs_changed(has_installs: bool) -> void:
 	
 	for i in [1, 2, 3, 4]:
 		%TabbedLayout.set_individual_tab_disabled(i, not has_installs)
+
+
+func _on_tab_operation_started() -> void:
+	
+	ControlLock.lock(lockable_controls)
+
+
+func _on_tab_operation_finished() -> void:
+	
+	ControlLock.unlock(lockable_controls)
 
 
 func _on_Description_meta_clicked(meta: Variant) -> void:

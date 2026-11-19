@@ -4,6 +4,8 @@ extends VBoxContainer
 signal operation_started
 signal operation_finished
 
+@export var lockable_controls: Array[Control] = []
+
 var _installed_mods_view := []
 var _available_mods_view := []
 
@@ -12,21 +14,9 @@ var _mods_to_install := []
 var _ids_to_delete := []
 var _ids_to_install := []
 var _ids_to_reinstall := []
-var _lock: ControlLock
 
 
 func _ready() -> void:
-	
-	_lock = ControlLock.new([
-		%InstalledModsList,
-		%ShowStockModsSwitch,
-		%DeleteModsBtn,
-		%AvailableModsList,
-		%ShowInstalledModsSwitch,
-		%AddSelectedModsBtn,
-		%AddAllModsBtn,
-		%GetKenanModpackBtn,
-	])
 	
 	%ModManager.mod_deletion_started.connect(_on_operation_started)
 	%ModManager.mod_deletion_finished.connect(_on_operation_finished)
@@ -38,13 +28,13 @@ func _ready() -> void:
 
 func _on_operation_started() -> void:
 	
-	_lock.lock()
+	ControlLock.lock(lockable_controls)
 	operation_started.emit()
 
 
 func _on_operation_finished() -> void:
 	
-	_lock.unlock()
+	ControlLock.unlock(lockable_controls)
 	operation_finished.emit()
 
 

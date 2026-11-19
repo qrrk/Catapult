@@ -4,18 +4,10 @@ extends VBoxContainer
 signal operation_started
 signal operation_finished
 
-var _lock: ControlLock
+@export var lockable_controls: Array[Control] = []
 
 
 func _ready() -> void:
-	
-	_lock = ControlLock.new([
-		%BackupsList,
-		%RestoreBackupBtn,
-		%DeleteBackupBtn,
-		%RefreshBackupsBtn,
-		%CreateBackupBtn,
-	])
 	
 	%BackupManager.backup_creation_started.connect(_on_operation_started)
 	%BackupManager.backup_creation_finished.connect(_on_operation_finished)
@@ -27,13 +19,13 @@ func _ready() -> void:
 
 func _on_operation_started() -> void:
 	
-	_lock.lock()
+	ControlLock.lock(lockable_controls)
 	operation_started.emit()
 
 
 func _on_operation_finished() -> void:
 	
-	_lock.unlock()
+	ControlLock.unlock(lockable_controls)
 	operation_finished.emit()
 
 
