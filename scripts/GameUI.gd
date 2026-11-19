@@ -5,29 +5,14 @@ signal installs_changed(has_installs: bool)
 signal operation_started
 signal operation_finished
 
+@export var lock_on_fetch: Array[Control] = []
+@export var lock_on_release_ops: Array[Control] = []
+
 var _installs: Dictionary = {}
-var _release_lock: ControlLock
-var _install_lock: ControlLock
 var _fetching_releases: bool = false
 
 
 func _ready() -> void:
-	
-	_release_lock = ControlLock.new([
-		%StableSwitch,
-		%ExperimentalSwitch,
-		%ReleasesList,
-		%RefreshReleasesBtn,
-		%InstallReleaseBtn,
-		%UpdateCurrentSwitch,
-	])
-	_install_lock = ControlLock.new([
-		%LaunchGameBtn,
-		%QuickLoadBtn,
-		%GameInstallsList,
-		%MakeInstallActiveBtn,
-		%DeleteGameInstallBtn,
-	])
 	
 	%ReleaseManager.started_fetching_releases.connect(_on_Releases_started_fetching_releases)
 	%ReleaseManager.done_fetching_releases.connect(_on_Releases_done_fetching_releases)
@@ -178,7 +163,7 @@ func _on_Releases_started_fetching_releases() -> void:
 	
 	if not _fetching_releases:
 		_fetching_releases = true
-		_release_lock.lock()
+		ControlLock.lock(lock_on_fetch)
 		operation_started.emit()
 
 
@@ -186,24 +171,22 @@ func _on_Releases_done_fetching_releases() -> void:
 	
 	if _fetching_releases:
 		_fetching_releases = false
-		_release_lock.unlock()
+		ControlLock.unlock(lock_on_fetch)
 		operation_finished.emit()
-	if not _release_lock.is_locked() and not _install_lock.is_locked():
+	if not ControlLock.is_any_locked(lock_on_release_ops):
 		_update_channel_controls(Settings.read("game"))
 		reload_builds_list()
 
 
 func _on_ReleaseInstaller_operation_started() -> void:
 	
-	_release_lock.lock()
-	_install_lock.lock()
+	ControlLock.lock(lock_on_release_ops)
 	operation_started.emit()
 
 
 func _on_ReleaseInstaller_operation_finished() -> void:
 	
-	_install_lock.unlock()
-	_release_lock.unlock()
+	ControlLock.unlock(lock_on_release_ops)
 	operation_finished.emit()
 	refresh_currently_installed()
 
