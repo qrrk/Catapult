@@ -1,6 +1,42 @@
 extends VBoxContainer
 
 
+signal operation_started
+signal operation_finished
+
+var _lock: ControlLock
+
+
+func _ready() -> void:
+	
+	_lock = ControlLock.new([
+		%BackupsList,
+		%RestoreBackupBtn,
+		%DeleteBackupBtn,
+		%RefreshBackupsBtn,
+		%CreateBackupBtn,
+	])
+	
+	%BackupManager.backup_creation_started.connect(_on_operation_started)
+	%BackupManager.backup_creation_finished.connect(_on_operation_finished)
+	%BackupManager.backup_deletion_started.connect(_on_operation_started)
+	%BackupManager.backup_deletion_finished.connect(_on_operation_finished)
+	%BackupManager.backup_restoration_started.connect(_on_operation_started)
+	%BackupManager.backup_restoration_finished.connect(_on_operation_finished)
+
+
+func _on_operation_started() -> void:
+	
+	_lock.lock()
+	operation_started.emit()
+
+
+func _on_operation_finished() -> void:
+	
+	_lock.unlock()
+	operation_finished.emit()
+
+
 func _refresh_available() -> void:
 	
 	%BackupsList.clear()
