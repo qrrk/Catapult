@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://ma1wiy6trs4k" path="res://icons/tex_info.tres" id="2_rcpd3"]
 [ext_resource type="Script" uid="uid://drnrbqdw1iua4" path="res://scripts/Catapult.gd" id="4"]
+[ext_resource type="Script" path="res://scripts/GameUI.gd" id="GameUI_script"]
 [ext_resource type="Texture2D" uid="uid://cemdop8232nt1" path="res://icons/buttons/tex_refresh.tres" id="4_no8b7"]
 [ext_resource type="Texture2D" uid="uid://d0qh43un40sje" path="res://icons/buttons/tex_download.tres" id="4_rcpd3"]
 [ext_resource type="Script" uid="uid://ctewoab2y1ofp" path="res://scripts/ReleaseManager.gd" id="5"]
@@ -124,7 +125,9 @@ current_tab = 0
 script = ExtResource("16")
 
 [node name="GameArea" type="VBoxContainer" parent="MainLayout/TabbedLayout" unique_id=290305386]
+unique_name_in_owner = true
 layout_mode = 2
+script = ExtResource("GameUI_script")
 metadata/_tab_index = 0
 
 [node name="ChannelSelectGroup" type="VBoxContainer" parent="MainLayout/TabbedLayout/GameArea" unique_id=1174608383]
@@ -311,6 +314,7 @@ unique_name_in_owner = true
 visible = false
 
 [node name="ModsArea" type="VBoxContainer" parent="MainLayout/TabbedLayout" unique_id=1033264301]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 script = ExtResource("18")
@@ -410,6 +414,7 @@ tooltip_text = "tooltip_add_all_mods"
 text = "btn_add_all_mods"
 
 [node name="GetKenanModpackBtn" type="Button" parent="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/AvailableModsGroup" unique_id=2133527005 groups=["disable_during_mod_operations"]]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "tooltip_get_kenan_pack"
@@ -437,6 +442,7 @@ dialog_autowrap = true
 unique_name_in_owner = true
 
 [node name="SoundArea" type="VBoxContainer" parent="MainLayout/TabbedLayout" unique_id=1653764024]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
@@ -751,6 +757,7 @@ unique_name_in_owner = true
 position = Vector2i(0, 36)
 
 [node name="BackupsArea" type="VBoxContainer" parent="MainLayout/TabbedLayout" unique_id=612165546]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 script = ExtResource("33")
@@ -808,6 +815,7 @@ layout_mode = 2
 text = "btn_delete_backup"
 
 [node name="RefreshBackupsBtn" type="Button" parent="MainLayout/TabbedLayout/BackupsArea/ExistingBackupsGroup/BackupActionsBox" unique_id=1334466297 groups=["disable_during_backup_operations"]]
+unique_name_in_owner = true
 layout_mode = 2
 text = "btn_refresh_backups"
 
@@ -1203,19 +1211,19 @@ script = ExtResource("34")
 [connection signal="tab_changed" from="MainLayout/TabbedLayout" to="MainLayout/TabbedLayout/SoundArea" method="_on_Tabs_tab_changed"]
 [connection signal="tab_changed" from="MainLayout/TabbedLayout" to="MainLayout/TabbedLayout/FontsArea" method="_on_Tabs_tab_changed"]
 [connection signal="tab_changed" from="MainLayout/TabbedLayout" to="MainLayout/TabbedLayout/BackupsArea" method="_on_Tabs_tab_changed"]
-[connection signal="meta_clicked" from="MainLayout/TabbedLayout/GameArea/ChannelSelectGroup/ChannelTitleBox/ChangelogLinkLabel" to="." method="_on_ChangelogLink_meta_clicked"]
-[connection signal="item_selected" from="MainLayout/TabbedLayout/GameArea/ReleaseSelectGroup/ReleasesList" to="." method="_on_BuildsList_item_selected"]
-[connection signal="pressed" from="MainLayout/TabbedLayout/GameArea/ReleaseSelectGroup/RefreshReleasesBtn" to="." method="_on_BtnRefresh_pressed"]
-[connection signal="pressed" from="MainLayout/TabbedLayout/GameArea/InstallReleaseBtn" to="." method="_on_BtnInstall_pressed"]
-[connection signal="toggled" from="MainLayout/TabbedLayout/GameArea/UpdateCurrentSwitch" to="." method="_on_cbUpdateCurrent_toggled"]
-[connection signal="pressed" from="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup/ActiveInstallNameBox/GameDirBtn" to="." method="_on_GameDir_pressed"]
-[connection signal="pressed" from="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup/ActiveInstallNameBox/UserDirBtn" to="." method="_on_UserDir_pressed"]
-[connection signal="pressed" from="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup/LaunchGameBox/LaunchGameBtn" to="." method="_on_BtnPlay_pressed"]
-[connection signal="pressed" from="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup/LaunchGameBox/QuickLoadBtn" to="." method="_on_BtnResume_pressed"]
-[connection signal="item_activated" from="MainLayout/TabbedLayout/GameArea/GameInstallsGroup/GameInstallsMgmtGroup/GameInstallsList" to="." method="_on_InstallsList_item_activated"]
-[connection signal="item_selected" from="MainLayout/TabbedLayout/GameArea/GameInstallsGroup/GameInstallsMgmtGroup/GameInstallsList" to="." method="_on_InstallsList_item_selected"]
-[connection signal="pressed" from="MainLayout/TabbedLayout/GameArea/GameInstallsGroup/GameInstallsMgmtGroup/GameInstallActionsBox/MakeInstallActiveBtn" to="." method="_on_btnMakeActive_pressed"]
-[connection signal="pressed" from="MainLayout/TabbedLayout/GameArea/GameInstallsGroup/GameInstallsMgmtGroup/GameInstallActionsBox/DeleteGameInstallBtn" to="." method="_on_btnDelete_pressed"]
+[connection signal="meta_clicked" from="MainLayout/TabbedLayout/GameArea/ChannelSelectGroup/ChannelTitleBox/ChangelogLinkLabel" to="MainLayout/TabbedLayout/GameArea" method="_on_ChangelogLink_meta_clicked"]
+[connection signal="item_selected" from="MainLayout/TabbedLayout/GameArea/ReleaseSelectGroup/ReleasesList" to="MainLayout/TabbedLayout/GameArea" method="_on_BuildsList_item_selected"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/GameArea/ReleaseSelectGroup/RefreshReleasesBtn" to="MainLayout/TabbedLayout/GameArea" method="_on_BtnRefresh_pressed"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/GameArea/InstallReleaseBtn" to="MainLayout/TabbedLayout/GameArea" method="_on_BtnInstall_pressed"]
+[connection signal="toggled" from="MainLayout/TabbedLayout/GameArea/UpdateCurrentSwitch" to="MainLayout/TabbedLayout/GameArea" method="_on_cbUpdateCurrent_toggled"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup/ActiveInstallNameBox/GameDirBtn" to="MainLayout/TabbedLayout/GameArea" method="_on_GameDir_pressed"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup/ActiveInstallNameBox/UserDirBtn" to="MainLayout/TabbedLayout/GameArea" method="_on_UserDir_pressed"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup/LaunchGameBox/LaunchGameBtn" to="MainLayout/TabbedLayout/GameArea" method="_on_BtnPlay_pressed"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/GameArea/ActiveInstallGroup/LaunchGameBox/QuickLoadBtn" to="MainLayout/TabbedLayout/GameArea" method="_on_BtnResume_pressed"]
+[connection signal="item_activated" from="MainLayout/TabbedLayout/GameArea/GameInstallsGroup/GameInstallsMgmtGroup/GameInstallsList" to="MainLayout/TabbedLayout/GameArea" method="_on_InstallsList_item_activated"]
+[connection signal="item_selected" from="MainLayout/TabbedLayout/GameArea/GameInstallsGroup/GameInstallsMgmtGroup/GameInstallsList" to="MainLayout/TabbedLayout/GameArea" method="_on_InstallsList_item_selected"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/GameArea/GameInstallsGroup/GameInstallsMgmtGroup/GameInstallActionsBox/MakeInstallActiveBtn" to="MainLayout/TabbedLayout/GameArea" method="_on_btnMakeActive_pressed"]
+[connection signal="pressed" from="MainLayout/TabbedLayout/GameArea/GameInstallsGroup/GameInstallsMgmtGroup/GameInstallActionsBox/DeleteGameInstallBtn" to="MainLayout/TabbedLayout/GameArea" method="_on_btnDelete_pressed"]
 [connection signal="item_selected" from="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/InstalledModsGroup/InstalledModsList" to="MainLayout/TabbedLayout/ModsArea" method="_on_InstalledList_item_selected"]
 [connection signal="multi_selected" from="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/InstalledModsGroup/InstalledModsList" to="MainLayout/TabbedLayout/ModsArea" method="_on_InstalledList_multi_selected"]
 [connection signal="toggled" from="MainLayout/TabbedLayout/ModsArea/ModsManagementGroup/InstalledModsGroup/ShowStockModsSwitch" to="MainLayout/TabbedLayout/ModsArea" method="_on_ShowStock_toggled"]
@@ -1287,23 +1295,3 @@ script = ExtResource("34")
 [connection signal="pressed" from="MainLayout/TabbedLayout/DebugArea/Button9" to="MainLayout/TabbedLayout/DebugArea" method="_on_Button9_pressed"]
 [connection signal="pressed" from="MainLayout/TabbedLayout/DebugArea/Button10" to="MainLayout/TabbedLayout/DebugArea" method="_on_button_10_pressed"]
 [connection signal="meta_clicked" from="MainLayout/LogText" to="." method="_on_Log_meta_clicked"]
-[connection signal="done_fetching_releases" from="ReleaseManager" to="." method="_on_Releases_done_fetching_releases"]
-[connection signal="started_fetching_releases" from="ReleaseManager" to="." method="_on_Releases_started_fetching_releases"]
-[connection signal="operation_finished" from="ReleaseInstaller" to="." method="_on_ReleaseInstaller_operation_finished"]
-[connection signal="operation_started" from="ReleaseInstaller" to="." method="_on_ReleaseInstaller_operation_started"]
-[connection signal="mod_deletion_finished" from="ModManager" to="." method="_on_mod_operation_finished"]
-[connection signal="mod_deletion_started" from="ModManager" to="." method="_on_mod_operation_started"]
-[connection signal="mod_installation_finished" from="ModManager" to="." method="_on_mod_operation_finished"]
-[connection signal="mod_installation_started" from="ModManager" to="." method="_on_mod_operation_started"]
-[connection signal="modpack_retrieval_finished" from="ModManager" to="." method="_on_mod_operation_finished"]
-[connection signal="modpack_retrieval_started" from="ModManager" to="." method="_on_mod_operation_started"]
-[connection signal="soundpack_deletion_finished" from="SoundpackManager" to="." method="_on_soundpack_operation_finished"]
-[connection signal="soundpack_deletion_started" from="SoundpackManager" to="." method="_on_soundpack_operation_started"]
-[connection signal="soundpack_installation_finished" from="SoundpackManager" to="." method="_on_soundpack_operation_finished"]
-[connection signal="soundpack_installation_started" from="SoundpackManager" to="." method="_on_soundpack_operation_started"]
-[connection signal="backup_creation_finished" from="BackupManager" to="." method="_on_backup_operation_finished"]
-[connection signal="backup_creation_started" from="BackupManager" to="." method="_on_backup_operation_started"]
-[connection signal="backup_deletion_finished" from="BackupManager" to="." method="_on_backup_operation_finished"]
-[connection signal="backup_deletion_started" from="BackupManager" to="." method="_on_backup_operation_started"]
-[connection signal="backup_restoration_finished" from="BackupManager" to="." method="_on_backup_operation_finished"]
-[connection signal="backup_restoration_started" from="BackupManager" to="." method="_on_backup_operation_started"]

@@ -1,17 +1,39 @@
 extends VBoxContainer
 
 
-# @onready var %SoundpackManager = $"/root/Catapult/Sound"
-# @onready var %InstalledSoundsList = $HBox/Installed/InstalledList
-# @onready var %AvailableSoundsList = $HBox/Downloadable/AvailableList
-# @onready var %DeleteSoundBtn = $HBox/Installed/BtnDelete
-# @onready var %InstallSoundBtn = $HBox/Downloadable/BtnInstall
-# @onready var %ConfirmDeleteSoundDlg = $ConfirmDelete
-# @onready var %ManualSoundDownloadDlg = $ConfirmManualDownload
-# @onready var %InstallFromFileDialog = $InstallFromFileDialog
-# @onready var %ShowStockSoundsSwitch = $HBox/Installed/ShowStock
+signal operation_started
+signal operation_finished
 
 var _installed_packs = []
+var _lock: ControlLock
+
+
+func _ready() -> void:
+	
+	_lock = ControlLock.new([
+		%InstalledSoundsList,
+		%ShowStockSoundsSwitch,
+		%DeleteSoundBtn,
+		%AvailableSoundsList,
+		%InstallSoundBtn,
+	])
+	
+	%SoundpackManager.soundpack_deletion_started.connect(_on_operation_started)
+	%SoundpackManager.soundpack_deletion_finished.connect(_on_operation_finished)
+	%SoundpackManager.soundpack_installation_started.connect(_on_operation_started)
+	%SoundpackManager.soundpack_installation_finished.connect(_on_operation_finished)
+
+
+func _on_operation_started() -> void:
+	
+	_lock.lock()
+	operation_started.emit()
+
+
+func _on_operation_finished() -> void:
+	
+	_lock.unlock()
+	operation_finished.emit()
 
 
 func refresh_installed() -> void:
