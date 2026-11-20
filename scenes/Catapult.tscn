@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://j8v4j8uy58rl"]
 
 [ext_resource type="Texture2D" path="res://icons/tex_info.tres" id="2_rcpd3"]
-[ext_resource type="Script" path="res://scripts/Catapult.gd" id="4"]
+[ext_resource type="Script" path="res://scripts/catapult.gd" id="4"]
 [ext_resource type="PackedScene" path="res://scenes/GameTab.tscn" id="4_lpv1k"]
 [ext_resource type="PackedScene" path="res://scenes/ModsTab.tscn" id="5_8slm7"]
 [ext_resource type="PackedScene" path="res://scenes/SoundpacksTab.tscn" id="6_wh2et"]
@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" path="res://scenes/BackupsTab.tscn" id="8_g3pum"]
 [ext_resource type="PackedScene" path="res://scenes/SettingsTab.tscn" id="9_v565b"]
 [ext_resource type="PackedScene" path="res://scenes/DebugTab.tscn" id="10_dc6g0"]
-[ext_resource type="Script" path="res://scripts/Tabs.gd" id="16"]
+[ext_resource type="Script" path="res://scripts/tabs.gd" id="16"]
 
 [node name="Catapult" type="PanelContainer" unique_id=344876453 node_paths=PackedStringArray("lockable_controls")]
 anchors_preset = 15

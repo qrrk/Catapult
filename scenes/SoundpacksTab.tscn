@@ -1,8 +1,8 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://scripts/SoundpacksUI.gd" id="1_tbnlp"]
-[ext_resource type="Script" path="res://scripts/SoundpackManager.gd" id="soundpack_mgr"]
-[ext_resource type="Script" path="res://scripts/ItemList.gd" id="2_onwgc"]
+[ext_resource type="Script" path="res://scripts/soundpacks_ui.gd" id="1_tbnlp"]
+[ext_resource type="Script" path="res://scripts/soundpack_manager.gd" id="soundpack_mgr"]
+[ext_resource type="Script" path="res://scripts/item_list.gd" id="2_onwgc"]
 
 [node name="SoundArea" type="VBoxContainer" unique_id=1653764024 node_paths=PackedStringArray("lockable_controls")]
 size_flags_vertical = 3

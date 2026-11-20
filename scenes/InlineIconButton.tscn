@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://snuvrmmyvlwd"]
 
 [ext_resource type="Texture2D" uid="uid://2k40kivg410d" path="res://icons/tex_placeholder.tres" id="1_4hy50"]
-[ext_resource type="Script" uid="uid://cteujtsgpkt4p" path="res://scripts/InlineIconButton.gd" id="2"]
+[ext_resource type="Script" uid="uid://cteujtsgpkt4p" path="res://scripts/inline_icon_button.gd" id="2"]
 
 [node name="InlineIconButton" type="TextureButton"]
 texture_filter = 1

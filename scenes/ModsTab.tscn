@@ -1,8 +1,8 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://scripts/ModsUI.gd" id="1_oe1lp"]
-[ext_resource type="Script" path="res://scripts/ModManager.gd" id="mod_mgr"]
-[ext_resource type="Script" path="res://scripts/ItemList.gd" id="2_aaijv"]
+[ext_resource type="Script" path="res://scripts/mods_ui.gd" id="1_oe1lp"]
+[ext_resource type="Script" path="res://scripts/mod_manager.gd" id="mod_mgr"]
+[ext_resource type="Script" path="res://scripts/item_list.gd" id="2_aaijv"]
 [ext_resource type="PackedScene" path="res://scenes/ModReinstallDialog.tscn" id="3_hjvuk"]
 
 [node name="ModsArea" type="VBoxContainer" unique_id=1033264301 node_paths=PackedStringArray("lockable_controls")]
