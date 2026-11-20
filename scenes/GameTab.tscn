@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" path="res://icons/tex_folder_user.tres" id="6_xdphx"]
 [ext_resource type="Texture2D" path="res://icons/buttons/tex_play.tres" id="7_5nfln"]
 [ext_resource type="Texture2D" path="res://icons/buttons/tex_resume.tres" id="8_cgdid"]
-[ext_resource type="Script" path="res://scripts/installs_list.gd" id="9_1cj8f"]
+[ext_resource type="Script" path="res://scripts/item_list.gd" id="9_1cj8f"]
 [ext_resource type="Texture2D" path="res://icons/buttons/tex_activate.tres" id="10_tf220"]
 [ext_resource type="Texture2D" path="res://icons/buttons/tex_delete.tres" id="11_pnvt3"]
 [ext_resource type="PackedScene" path="res://scenes/ChangelogDialog.tscn" id="12_8fhug"]
@@ -184,6 +184,7 @@ item_3/text = "Item 3"
 item_4/text = "Item 4"
 item_5/text = "Item 5"
 script = ExtResource("9_1cj8f")
+deselect_on_disable = true
 
 [node name="GameInstallActionsBox" type="VBoxContainer" parent="GameInstallsGroup/GameInstallsMgmtGroup" unique_id=1656300452]
 layout_mode = 2
