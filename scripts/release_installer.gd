@@ -7,7 +7,7 @@ signal operation_finished
 
 func install_release(release_info: Dictionary, update_in: String = "") -> void:
 	
-	emit_signal("operation_started")
+	operation_started.emit()
 	
 	if update_in:
 		Status.post(tr("msg_updating_game") % release_info["name"])
@@ -31,8 +31,6 @@ func install_release(release_info: Dictionary, update_in: String = "") -> void:
 		
 			var extracted_root
 			match OS.get_name():
-				"X11":
-					extracted_root = Paths.tmp_dir.path_join(FS.list_dir(Paths.tmp_dir)[0])
 				"Linux":
 					extracted_root = Paths.tmp_dir.path_join(FS.list_dir(Paths.tmp_dir)[0])
 				"Windows":
@@ -57,12 +55,12 @@ func install_release(release_info: Dictionary, update_in: String = "") -> void:
 			else:
 				Status.post(tr("msg_game_installed"))
 	
-	emit_signal("operation_finished")
+	operation_finished.emit()
 
 
 func remove_release_by_name(release_name: String) -> void:
 	
-	emit_signal("operation_started")
+	operation_started.emit()
 	
 	var installs := Paths.installs_summary
 	var game = Settings.read("game")
@@ -76,7 +74,7 @@ func remove_release_by_name(release_name: String) -> void:
 	else:
 		Status.post(tr("msg_delete_not_found") % release_name, Enums.MSG_ERROR)
 	
-	emit_signal("operation_finished")
+	operation_finished.emit()
 
 
 func check_game_dir_for_userdata(release_name: String) -> Array[String]:

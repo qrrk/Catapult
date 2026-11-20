@@ -19,11 +19,11 @@ func open(num_mods: int) -> void:
 
 func _on_BtnYes_pressed() -> void:
 	
-	emit_signal("response_yes")
+	response_yes.emit()
 	hide()
 
 
 func _on_BtnNo_pressed() -> void:
 	
-	emit_signal("response_no")
+	response_no.emit()
 	hide()

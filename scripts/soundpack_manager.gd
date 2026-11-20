@@ -78,11 +78,11 @@ func delete_pack(pack_name: String) -> void:
 	
 	for pack in get_installed():
 		if pack["name"] == pack_name:
-			emit_signal("soundpack_deletion_started")
+			soundpack_deletion_started.emit()
 			Status.post(tr("msg_deleting_sound") % pack["location"])
 			FS.rm_dir(pack["location"])
 			await FS.rm_dir_done
-			emit_signal("soundpack_deletion_finished")
+			soundpack_deletion_finished.emit()
 			return
 			
 	Status.post(tr("msg_soundpack_not_found") % pack_name, Enums.MSG_ERROR)
@@ -95,7 +95,7 @@ func install_pack(soundpack_index: int, from_file = null, reinstall = false, kee
 	var tmp_dir = Paths.tmp_dir.path_join(pack["name"])
 	var archive = ""
 	
-	emit_signal("soundpack_installation_started")
+	soundpack_installation_started.emit()
 	
 	if reinstall:
 		Status.post(tr("msg_reinstalling_sound") % pack["name"])
@@ -111,7 +111,7 @@ func install_pack(soundpack_index: int, from_file = null, reinstall = false, kee
 			await Downloader.download_finished
 		if not FileAccess.file_exists(archive):
 			Status.post(tr("msg_sound_download_failed"), Enums.MSG_ERROR)
-			emit_signal("soundpack_installation_finished")
+			soundpack_installation_finished.emit()
 			return
 		
 	if reinstall:
@@ -128,4 +128,4 @@ func install_pack(soundpack_index: int, from_file = null, reinstall = false, kee
 	await FS.rm_dir_done
 	
 	Status.post(tr("msg_sound_installed"))
-	emit_signal("soundpack_installation_finished")
+	soundpack_installation_finished.emit()
