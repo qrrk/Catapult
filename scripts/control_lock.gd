@@ -8,6 +8,7 @@ const _META_LOCK_COUNT := &"control_lock_count"
 const _META_RESTORE_DISABLED := &"restore_disabled_to"
 
 
+## Increments each control's lock count, saving its current disabled state on the 0 -> 1 transition.
 static func lock(controls: Array[Control]) -> void:
 	for control in controls:
 		if not is_instance_valid(control) or not ("disabled" in control):
@@ -19,6 +20,7 @@ static func lock(controls: Array[Control]) -> void:
 		control.set_meta(_META_LOCK_COUNT, count + 1)
 
 
+## Decrements each control's lock count, restoring its saved disabled state and clearing metadata at 0.
 static func unlock(controls: Array[Control]) -> void:
 	for control in controls:
 		if not is_instance_valid(control):
@@ -35,6 +37,7 @@ static func unlock(controls: Array[Control]) -> void:
 			control.set_meta(_META_LOCK_COUNT, count)
 
 
+## Returns true if any control in the list currently has an active lock.
 static func is_any_locked(controls: Array[Control]) -> bool:
 	for control in controls:
 		if is_instance_valid(control) and control.get_meta(_META_LOCK_COUNT, 0) > 0:

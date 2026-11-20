@@ -1,4 +1,5 @@
 extends Node
+## Autoload singleton for HTTP file downloads with proxy support and periodic progress logging.
 
 
 signal download_started
@@ -23,11 +24,15 @@ func _enter_tree() -> void:
 	self.add_child(_http)
 	_http.request_completed.connect(_on_HTTPRequest_request_completed)
 
+## Configures HTTP/HTTPS proxy settings on the internal HTTPRequest (pass empty host and -1 to disable).
 func set_proxy(host: String, port: int) -> void:
 	
 	_http.set_http_proxy(host, port)
 	_http.set_https_proxy(host, port)
 
+
+## Downloads a file to the target directory, posting periodic progress updates and emitting
+## [signal download_started] and [signal download_finished].
 func download_file(url: String, target_dir: String, target_filename: String) -> void:
 	
 	if Settings.read("proxy_option") == "on" or Settings.read("proxy_option") == "download":

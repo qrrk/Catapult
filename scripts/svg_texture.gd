@@ -1,7 +1,10 @@
 @tool
 class_name SVGTexture
 extends DPITexture
+## DPITexture subclass exposing editable inline SVG source in the Inspector and
+## automatically re-scaling its base scale when the UI scale changes at runtime.
 
+## Inline SVG markup forwarded to DPITexture.set_source() (not duplicated in .tres storage).
 @export_multiline var svg_source: String:
 	set(value):
 		set_source(value)

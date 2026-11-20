@@ -1,7 +1,9 @@
 class_name Enums
+## Shared project-wide enumerations.
 
 
-enum {  # Status message types.
+## Severity levels for status log messages posted via Status.post().
+enum {
 	MSG_INFO = 0,
 	MSG_WARN = 1,
 	MSG_ERROR = 2,

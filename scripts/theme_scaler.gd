@@ -1,4 +1,6 @@
 class_name ThemeScaler
+## Duplicates a Godot Theme and scales its constants, DPI textures, font sizes, and StyleBox metrics
+## by an arbitrary UI scale factor.
 
 
 const _SCALABLE_CONSTANTS := {
@@ -204,6 +206,7 @@ const _SCALABLE_SBOX_PROPS := {
 }
 
 
+## Returns a deep-duplicated copy of the prototype theme scaled by the given factor.
 func make_scaled_theme(proto: Theme, scale_factor: float) -> Theme:
 	
 	var new_theme := proto.duplicate_deep(Resource.DEEP_DUPLICATE_INTERNAL)
