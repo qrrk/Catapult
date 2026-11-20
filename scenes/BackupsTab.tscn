@@ -1,8 +1,8 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://scripts/BackupsUI.gd" id="1_5cqfo"]
-[ext_resource type="Script" path="res://scripts/BackupManager.gd" id="backup_mgr"]
-[ext_resource type="Script" path="res://scripts/ItemList.gd" id="2_yyq1r"]
+[ext_resource type="Script" path="res://scripts/backups_ui.gd" id="1_5cqfo"]
+[ext_resource type="Script" path="res://scripts/backup_manager.gd" id="backup_mgr"]
+[ext_resource type="Script" path="res://scripts/item_list.gd" id="2_yyq1r"]
 
 [node name="BackupsArea" type="VBoxContainer" unique_id=612165546 node_paths=PackedStringArray("lockable_controls")]
 script = ExtResource("1_5cqfo")

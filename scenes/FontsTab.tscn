@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://scripts/FontsUI.gd" id="1_ysaov"]
-[ext_resource type="Script" path="res://scripts/FontManager.gd" id="font_mgr"]
+[ext_resource type="Script" path="res://scripts/fonts_ui.gd" id="1_ysaov"]
+[ext_resource type="Script" path="res://scripts/font_manager.gd" id="font_mgr"]
 [ext_resource type="PackedScene" path="res://scenes/InlineIconButton.tscn" id="2_tnc2e"]
 [ext_resource type="Texture2D" path="res://icons/tex_help.tres" id="3_whf6b"]
 [ext_resource type="PackedScene" path="res://scenes/FontSizeHelpDialog.tscn" id="4_yk5qf"]

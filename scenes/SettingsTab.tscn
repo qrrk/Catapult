@@ -1,6 +1,6 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://scripts/SettingsUI.gd" id="1_eo6y0"]
+[ext_resource type="Script" path="res://scripts/settings_ui.gd" id="1_eo6y0"]
 [ext_resource type="PackedScene" path="res://scenes/LicensesDialog.tscn" id="2_t84um"]
 [ext_resource type="Texture2D" path="res://icons/lang/tex_lang_en.tres" id="3_4774t"]
 [ext_resource type="Texture2D" path="res://icons/lang/tex_lang_fr.tres" id="4_j6fyy"]
