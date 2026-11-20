@@ -1,12 +1,13 @@
 extends Node
+## Autoload singleton managing DPI-aware UI scaling and window size/position persistence.
+## Configures window geometry on startup before decorations are shown to avoid visible resize flicker.
+# Thanks to github.com/Lauson1ex for helping figure out the borderless startup sequence.
 
-# This script makes it possible to set the correct size and position
-# for the window before it is shown.
 
-# Thanks to github.com/Lauson1ex for helping me figure this out.
-
+## Emitted whenever the active UI scale factor changes.
 signal scale_changed(new_scale: float)
 
+## Active UI scale factor. Assigning updates window size/min_size and emits [signal scale_changed].
 var scale: float: set = _set_scale
 var min_base_size := Vector2(
 		ProjectSettings.get("display/window/size/viewport_width"),
@@ -27,12 +28,14 @@ func _apply_scale() -> void:
 	get_window().size = base_size * scale
 
 
+## Computes an automatic UI scale factor from the current screen DPI, snapped to increments of 0.125.
 func calculate_scale_from_dpi() -> float:
 	
 	var ratio = DisplayServer.screen_get_dpi() / 96.0
 	return snapped(ratio, 0.125)
 
 
+## Persists the current unscaled window size and screen position to Settings.
 func save_window_state() -> void:
 	
 	var state := {
@@ -44,6 +47,7 @@ func save_window_state() -> void:
 	Settings.store("window_state", state)
 
 
+## Restores saved window size and position, clamping back on-screen and resetting auto-scale if it overflows.
 func recover_window_state() -> void:
 
 	var state: Dictionary = Settings.read("window_state")

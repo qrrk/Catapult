@@ -1,10 +1,11 @@
 extends TabContainer
-# A simple extension for TabContainer that allows it to be disabled as a whole
-# and in a way independent of its individual tabs being disabled or re-enabled.
+## TabContainer extension that supports disabling the entire tab bar via [member disabled]
+## independently of individually disabled tabs (e.g. tabs disabled when no game is installed).
 
 
 var _manually_disabled: Array[int] = []
 
+## Disables or re-enables all non-current tabs while preserving individually disabled tabs.
 @export var disabled: bool = false: set = _set_disabled
 
 
@@ -19,6 +20,7 @@ func _set_disabled(value: bool) -> void:
 	
 	disabled = value
 
+## Marks a tab as individually disabled or enabled, respecting the global lock state.
 func set_individual_tab_disabled(index: int, value: bool) -> void:
 	
 	if (value == true) and (not index in _manually_disabled):

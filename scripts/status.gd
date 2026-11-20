@@ -1,14 +1,17 @@
 extends Node
-## Singleton that simplifies posting of status messages from any place in the app.
+## Autoload singleton for timestamped, BBCode-formatted status log messages.
 
 
+## Emitted whenever a formatted message is posted and at least one listener is connected.
 signal message_posted(bb_text: String)
 
+## When true, newly posted messages are wrapped in a rainbow BBCode tag (easter egg).
 var rainbow_text := false
 
 var _buffer: Array[String] = []  # Holds messages posted before a log view connects.
 
 
+## Posts a message of the given severity level to the log (or buffers it until a view connects).
 func post(msg: String, type: int = Enums.MSG_INFO) -> void:
 	
 	if (type == Enums.MSG_DEBUG) and (not Settings.read("debug_mode")):
@@ -27,6 +30,7 @@ func post(msg: String, type: int = Enums.MSG_INFO) -> void:
 		push_error(msg)
 
 
+## Returns and clears any formatted messages buffered before a log view connected.
 func consume_buffer() -> Array[String]:
 	
 	var pending: Array[String] = []

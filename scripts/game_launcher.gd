@@ -3,10 +3,12 @@ extends RefCounted
 ## Launches the active Cataclysm installation (new game or resume last world).
 
 
+## Returns true if lastworld.json exists in the active game's config directory.
 static func has_last_world() -> bool:
 	return FileAccess.file_exists(Paths.config.path_join("lastworld.json"))
 
 
+## Reads lastworld.json and launches directly into the last played world, returning true if started.
 static func resume_last_world() -> bool:
 	var lastworld: String = Paths.config.path_join("lastworld.json")
 	var info: Variant = Helpers.load_json_file(lastworld)
@@ -15,6 +17,8 @@ static func resume_last_world() -> bool:
 	return false
 
 
+## Spawns the active game executable with [code]--userdir[/code] (and optional [code]--world[/code]),
+## returning true if the process was started.
 static func launch(world: String = "") -> bool:
 	match OS.get_name():
 		"Linux":

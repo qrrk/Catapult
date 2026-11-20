@@ -1,11 +1,18 @@
 extends Node
-# This is a cetralized place for all path resolution logic.
+## Autoload singleton that resolves all launcher, game installation and userdata paths
+## dynamically for the currently selected game and active installation.
 
+## Directory containing the Catapult executable.
 var own_dir: String: get = _get_own_dir
+## Nested dictionary mapping game IDs to installation names and absolute paths.
 var installs_summary: Dictionary: get = _get_installs_summary
+## Download archive cache directory.
 var cache_dir: String: get = _get_cache_dir
+## Root directory of the currently active installation for the selected game.
 var game_dir: String: get = _get_game_dir
+## Next unused [code]gameN[/code] installation directory path for the selected game.
 var next_install_dir: String: get = _get_next_install_dir
+## Shared userdata root directory for the selected game.
 var userdata: String: get = _get_userdata_dir
 var config: String: get = _get_config_dir
 var savegames: String: get = _get_savegame_dir

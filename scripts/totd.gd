@@ -17,6 +17,7 @@ const _TOTD: Array[String] = [
 ]
 
 
+## Returns a randomly selected, translated tip of the day.
 static func get_tip() -> String:
 	
 	var index := Time.get_ticks_usec() % _TOTD.size()
