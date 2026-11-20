@@ -1,3 +1,4 @@
+class_name ModManager
 extends Node
 
 
@@ -37,7 +38,7 @@ func _get_available() -> Dictionary:
 	return available
 
 
-func parse_mods_dir(mods_dir: String) -> Dictionary:
+static func parse_mods_dir(mods_dir: String) -> Dictionary:
 	
 	if not DirAccess.dir_exists_absolute(mods_dir):
 		return {}
@@ -53,7 +54,7 @@ func parse_mods_dir(mods_dir: String) -> Dictionary:
 			var json := JSON.new()
 			var error := json.parse(f.get_as_text())
 			if error != OK:
-				Status.post(tr("msg_mod_json_parsing_failed") % modinfo, Enums.MSG_ERROR)
+				Status.post(TranslationServer.translate("msg_mod_json_parsing_failed") % modinfo, Enums.MSG_ERROR)
 				continue
 			
 			var json_result = json.data
@@ -84,7 +85,7 @@ func parse_mods_dir(mods_dir: String) -> Dictionary:
 	return result
 
 
-func _strip_html_tags(text: String) -> String:
+static func _strip_html_tags(text: String) -> String:
 	
 	var s = text
 	var regex = RegEx.new()

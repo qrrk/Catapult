@@ -1,0 +1,153 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ModsUI.gd" id="1_oe1lp"]
+[ext_resource type="Script" path="res://scripts/ModManager.gd" id="mod_mgr"]
+[ext_resource type="Script" path="res://scripts/ItemList.gd" id="2_aaijv"]
+[ext_resource type="PackedScene" path="res://scenes/ModReinstallDialog.tscn" id="3_hjvuk"]
+
+[node name="ModsArea" type="VBoxContainer" unique_id=1033264301 node_paths=PackedStringArray("lockable_controls")]
+script = ExtResource("1_oe1lp")
+lockable_controls = [NodePath("ModsManagementGroup/InstalledModsGroup/InstalledModsList"), NodePath("ModsManagementGroup/InstalledModsGroup/ShowStockModsSwitch"), NodePath("ModsManagementGroup/InstalledModsGroup/DeleteModsBtn"), NodePath("ModsManagementGroup/AvailableModsGroup/AvailableModsList"), NodePath("ModsManagementGroup/AvailableModsGroup/ShowInstalledModsSwitch"), NodePath("ModsManagementGroup/AvailableModsGroup/AddModsActionsBox/AddSelectedModsBtn"), NodePath("ModsManagementGroup/AvailableModsGroup/AddModsActionsBox/AddAllModsBtn"), NodePath("ModsManagementGroup/AvailableModsGroup/GetKenanModpackBtn")]
+
+[node name="ModsManagementGroup" type="HBoxContainer" parent="." unique_id=988834148]
+layout_mode = 2
+
+[node name="InstalledModsGroup" type="VBoxContainer" parent="ModsManagementGroup" unique_id=1170705458]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InstalledModsLabel" type="Label" parent="ModsManagementGroup/InstalledModsGroup" unique_id=1683733320]
+unique_name_in_owner = true
+layout_mode = 2
+text = "lbl_installed_mods"
+
+[node name="InstalledModsList" type="ItemList" parent="ModsManagementGroup/InstalledModsGroup" unique_id=1648840585]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 2
+size_flags_horizontal = 3
+select_mode = 1
+allow_reselect = true
+item_count = 4
+same_column_width = true
+item_0/text = "Item 0"
+item_1/text = "Item 1"
+item_2/text = "Item 2"
+item_3/text = "Item 3"
+script = ExtResource("2_aaijv")
+
+[node name="ShowStockModsSwitch" type="CheckBox" parent="ModsManagementGroup/InstalledModsGroup" unique_id=1053366092]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "tooltip_stock_mods"
+text = "cbtn_stock_mods"
+
+[node name="DeleteModsBtn" type="Button" parent="ModsManagementGroup/InstalledModsGroup" unique_id=907764778]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "tooltip_delete_mods"
+disabled = true
+text = "btn_delete_mods"
+
+[node name="VSeparator" type="VSeparator" parent="ModsManagementGroup" unique_id=1459912064]
+layout_mode = 2
+
+[node name="AvailableModsGroup" type="VBoxContainer" parent="ModsManagementGroup" unique_id=1497146406]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ModRepoLabel" type="Label" parent="ModsManagementGroup/AvailableModsGroup" unique_id=1147555607]
+unique_name_in_owner = true
+layout_mode = 2
+text = "lbl_mod_repo"
+
+[node name="AvailableModsList" type="ItemList" parent="ModsManagementGroup/AvailableModsGroup" unique_id=53724999]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 2
+size_flags_horizontal = 3
+select_mode = 1
+allow_reselect = true
+item_count = 4
+same_column_width = true
+item_0/text = "Item 0"
+item_1/text = "Item 1"
+item_2/text = "Item 2"
+item_3/text = "Item 3"
+script = ExtResource("2_aaijv")
+
+[node name="ShowInstalledModsSwitch" type="CheckBox" parent="ModsManagementGroup/AvailableModsGroup" unique_id=2021656745]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "tooltip_installed_mods"
+text = "cbtn_installed_mods"
+
+[node name="AddModsActionsBox" type="HBoxContainer" parent="ModsManagementGroup/AvailableModsGroup" unique_id=362925843]
+layout_mode = 2
+alignment = 1
+
+[node name="AddSelectedModsBtn" type="Button" parent="ModsManagementGroup/AvailableModsGroup/AddModsActionsBox" unique_id=213234572]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "tooltip_add_sel_mods"
+text = "btn_add_sel_mods"
+
+[node name="AddAllModsBtn" type="Button" parent="ModsManagementGroup/AvailableModsGroup/AddModsActionsBox" unique_id=1114760842]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "tooltip_add_all_mods"
+text = "btn_add_all_mods"
+
+[node name="GetKenanModpackBtn" type="Button" parent="ModsManagementGroup/AvailableModsGroup" unique_id=2133527005]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "tooltip_get_kenan_pack"
+text = "btn_get_kenan_pack"
+
+[node name="HSeparator" type="HSeparator" parent="." unique_id=192501511]
+layout_mode = 2
+
+[node name="ModInfoText" type="RichTextLabel" parent="." unique_id=644044538]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+focus_mode = 2
+theme_override_constants/line_separation = 4
+bbcode_enabled = true
+text = "Mod info will appear here."
+selection_enabled = true
+
+[node name="DeleteMultipleModsDlg" type="ConfirmationDialog" parent="." unique_id=864653081]
+unique_name_in_owner = true
+dialog_text = "(this text is assigned at runtime)"
+dialog_autowrap = true
+
+[node name="ModReinstallDialog" parent="." unique_id=1712628389 instance=ExtResource("3_hjvuk")]
+unique_name_in_owner = true
+
+[node name="ModManager" type="Node" parent="." unique_id=720354390]
+unique_name_in_owner = true
+script = ExtResource("mod_mgr")
+
+[connection signal="multi_selected" from="ModsManagementGroup/InstalledModsGroup/InstalledModsList" to="." method="_on_InstalledList_multi_selected"]
+[connection signal="toggled" from="ModsManagementGroup/InstalledModsGroup/ShowStockModsSwitch" to="." method="_on_ShowStock_toggled"]
+[connection signal="pressed" from="ModsManagementGroup/InstalledModsGroup/DeleteModsBtn" to="." method="_on_BtnDelete_pressed"]
+[connection signal="multi_selected" from="ModsManagementGroup/AvailableModsGroup/AvailableModsList" to="." method="_on_AvailableList_multi_selected"]
+[connection signal="toggled" from="ModsManagementGroup/AvailableModsGroup/ShowInstalledModsSwitch" to="." method="_on_ShowInstalled_toggled"]
+[connection signal="pressed" from="ModsManagementGroup/AvailableModsGroup/AddModsActionsBox/AddSelectedModsBtn" to="." method="_on_BtnAddSelectedMod_pressed"]
+[connection signal="pressed" from="ModsManagementGroup/AvailableModsGroup/AddModsActionsBox/AddAllModsBtn" to="." method="_on_BtnAddAllMods_pressed"]
+[connection signal="pressed" from="ModsManagementGroup/AvailableModsGroup/GetKenanModpackBtn" to="." method="_on_BtnDownloadKenan_pressed"]
+[connection signal="confirmed" from="DeleteMultipleModsDlg" to="." method="_on_DeleteMultipleDialog_confirmed"]
+[connection signal="response_no" from="ModReinstallDialog" to="." method="_on_ModReinstallDialog_response_no"]
+[connection signal="response_yes" from="ModReinstallDialog" to="." method="_on_ModReinstallDialog_response_yes"]
+[connection signal="mod_deletion_finished" from="ModManager" to="." method="_on_operation_finished"]
+[connection signal="mod_deletion_started" from="ModManager" to="." method="_on_operation_started"]
+[connection signal="mod_installation_finished" from="ModManager" to="." method="_on_operation_finished"]
+[connection signal="mod_installation_started" from="ModManager" to="." method="_on_operation_started"]
+[connection signal="modpack_retrieval_finished" from="ModManager" to="." method="_on_operation_finished"]
+[connection signal="modpack_retrieval_started" from="ModManager" to="." method="_on_operation_started"]

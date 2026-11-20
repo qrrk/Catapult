@@ -15,11 +15,6 @@ func _ready() -> void:
 		%LogText.append_text(bb_text)
 	Settings.setting_changed.connect(_on_setting_changed)
 	
-	%GameArea.installs_changed.connect(_on_game_installs_changed)
-	for tab in [%GameArea, %ModsArea, %SoundArea, %BackupsArea]:
-		tab.operation_started.connect(_on_tab_operation_started)
-		tab.operation_finished.connect(_on_tab_operation_finished)
-	
 	# Apply UI theme
 	var theme_file: String = Settings.read("launcher_theme")
 	load_ui_theme(theme_file)
@@ -124,7 +119,6 @@ func _setup_ui() -> void:
 		%GamesList.select(game_idx)
 	
 	%GameArea.setup()
-	%GamesList.item_selected.connect(_on_GamesList_item_selected)
 
 
 func _on_ui_scale_changed(new_scale: float) -> void:
@@ -135,8 +129,16 @@ func _on_ui_scale_changed(new_scale: float) -> void:
 
 func _on_Tabs_tab_changed(tab: int) -> void:
 	
-	%LogText.visible = (tab != 5)
+	var active_tab: Control = %TabbedLayout.get_tab_control(tab)
+	%LogText.visible = (active_tab != %SettingsArea)
 	%GameArea.refresh_currently_installed()
+	if active_tab and active_tab.has_method("on_tab_activated"):
+		active_tab.call("on_tab_activated")
+
+
+func _on_tab_unavailable() -> void:
+	
+	%TabbedLayout.set_deferred("current_tab", 0)
 
 
 func _on_GamesList_item_selected(index: int) -> void:
@@ -151,8 +153,7 @@ func _on_GamesList_item_selected(index: int) -> void:
 	%GameArea.apply_game_choice()
 	%GameArea.refresh_currently_installed()
 	
-	%ModManager.refresh_installed()
-	%ModManager.refresh_available()
+	%ModsArea.refresh_data()
 
 
 func _on_game_installs_changed(has_installs: bool) -> void:

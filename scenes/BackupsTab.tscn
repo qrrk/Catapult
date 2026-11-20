@@ -1,0 +1,117 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/BackupsUI.gd" id="1_5cqfo"]
+[ext_resource type="Script" path="res://scripts/BackupManager.gd" id="backup_mgr"]
+[ext_resource type="Script" path="res://scripts/ItemList.gd" id="2_yyq1r"]
+
+[node name="BackupsArea" type="VBoxContainer" unique_id=612165546 node_paths=PackedStringArray("lockable_controls")]
+script = ExtResource("1_5cqfo")
+lockable_controls = [NodePath("ExistingBackupsGroup/BackupsDisplayBox/BackupsList"), NodePath("ExistingBackupsGroup/BackupActionsBox/RestoreBackupBtn"), NodePath("ExistingBackupsGroup/BackupActionsBox/DeleteBackupBtn"), NodePath("ExistingBackupsGroup/BackupActionsBox/RefreshBackupsBtn"), NodePath("ManualBackupGroup/CreateBackupGroup/CreateBackupBtn")]
+
+[node name="ExistingBackupsGroup" type="VBoxContainer" parent="." unique_id=416110878]
+layout_mode = 2
+
+[node name="ExistingBackupsLabel" type="Label" parent="ExistingBackupsGroup" unique_id=1875647835]
+layout_mode = 2
+text = "lbl_save_backups"
+
+[node name="BackupsDisplayBox" type="HBoxContainer" parent="ExistingBackupsGroup" unique_id=1625879948]
+layout_mode = 2
+
+[node name="BackupsList" type="ItemList" parent="ExistingBackupsGroup/BackupsDisplayBox" unique_id=1881214143]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 10
+same_column_width = true
+item_0/text = "Item 0"
+item_1/text = "Item 1"
+item_2/text = "Item 2"
+item_3/text = "Item 3"
+item_4/text = "Item 4"
+item_5/text = "Item 5"
+item_6/text = "Item 6"
+item_7/text = "Item 7"
+item_8/text = "Item 8"
+item_9/text = "Item 9"
+script = ExtResource("2_yyq1r")
+
+[node name="BackupInfo" type="RichTextLabel" parent="ExistingBackupsGroup/BackupsDisplayBox" unique_id=1447804134]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 2
+bbcode_enabled = true
+text = "Backup details will appear here."
+selection_enabled = true
+
+[node name="BackupActionsBox" type="HBoxContainer" parent="ExistingBackupsGroup" unique_id=1625937645]
+layout_mode = 2
+alignment = 1
+
+[node name="RestoreBackupBtn" type="Button" parent="ExistingBackupsGroup/BackupActionsBox" unique_id=1513937068]
+unique_name_in_owner = true
+layout_mode = 2
+text = "btn_restore_backup"
+
+[node name="DeleteBackupBtn" type="Button" parent="ExistingBackupsGroup/BackupActionsBox" unique_id=4243808]
+unique_name_in_owner = true
+layout_mode = 2
+text = "btn_delete_backup"
+
+[node name="RefreshBackupsBtn" type="Button" parent="ExistingBackupsGroup/BackupActionsBox" unique_id=1334466297]
+unique_name_in_owner = true
+layout_mode = 2
+text = "btn_refresh_backups"
+
+[node name="HSeparator" type="HSeparator" parent="." unique_id=1860683369]
+layout_mode = 2
+
+[node name="ManualBackupGroup" type="VBoxContainer" parent="." unique_id=223041298]
+layout_mode = 2
+
+[node name="ManualBackupLabel" type="Label" parent="ManualBackupGroup" unique_id=1390368624]
+layout_mode = 2
+text = "lbl_manual_backup"
+
+[node name="CreateBackupGroup" type="HBoxContainer" parent="ManualBackupGroup" unique_id=402252933]
+layout_mode = 2
+
+[node name="BackupNameLabel" type="Label" parent="ManualBackupGroup/CreateBackupGroup" unique_id=15890013]
+layout_mode = 2
+text = "lbl_backup_name"
+
+[node name="BackupNameField" type="LineEdit" parent="ManualBackupGroup/CreateBackupGroup" unique_id=2032230014]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Enter name for new backup"
+
+[node name="CreateBackupBtn" type="Button" parent="ManualBackupGroup/CreateBackupGroup" unique_id=1578562564]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "btn_create_backup"
+
+[node name="Spacer" type="Control" parent="ManualBackupGroup" unique_id=1098785425]
+layout_mode = 2
+
+[node name="BackupManager" type="Node" parent="." unique_id=86161735]
+unique_name_in_owner = true
+script = ExtResource("backup_mgr")
+
+[connection signal="item_selected" from="ExistingBackupsGroup/BackupsDisplayBox/BackupsList" to="." method="_on_BackupsList_item_selected"]
+[connection signal="meta_clicked" from="ExistingBackupsGroup/BackupsDisplayBox/BackupInfo" to="." method="_on_BackupInfo_meta_clicked"]
+[connection signal="pressed" from="ExistingBackupsGroup/BackupActionsBox/RestoreBackupBtn" to="." method="_on_BtnRestore_pressed"]
+[connection signal="pressed" from="ExistingBackupsGroup/BackupActionsBox/DeleteBackupBtn" to="." method="_on_BtnDelete_pressed"]
+[connection signal="pressed" from="ExistingBackupsGroup/BackupActionsBox/RefreshBackupsBtn" to="." method="_on_BtnRefresh_pressed"]
+[connection signal="text_changed" from="ManualBackupGroup/CreateBackupGroup/BackupNameField" to="." method="_on_EditName_text_changed"]
+[connection signal="text_submitted" from="ManualBackupGroup/CreateBackupGroup/BackupNameField" to="." method="_on_EditName_text_entered"]
+[connection signal="pressed" from="ManualBackupGroup/CreateBackupGroup/CreateBackupBtn" to="." method="_on_BtnCreate_pressed"]
+[connection signal="backup_creation_finished" from="BackupManager" to="." method="_on_operation_finished"]
+[connection signal="backup_creation_started" from="BackupManager" to="." method="_on_operation_started"]
+[connection signal="backup_deletion_finished" from="BackupManager" to="." method="_on_operation_finished"]
+[connection signal="backup_deletion_started" from="BackupManager" to="." method="_on_operation_started"]
+[connection signal="backup_restoration_finished" from="BackupManager" to="." method="_on_operation_finished"]
+[connection signal="backup_restoration_started" from="BackupManager" to="." method="_on_operation_started"]

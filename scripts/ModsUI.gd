@@ -16,14 +16,10 @@ var _ids_to_install := []
 var _ids_to_reinstall := []
 
 
-func _ready() -> void:
+func refresh_data() -> void:
 	
-	%ModManager.mod_deletion_started.connect(_on_operation_started)
-	%ModManager.mod_deletion_finished.connect(_on_operation_finished)
-	%ModManager.mod_installation_started.connect(_on_operation_started)
-	%ModManager.mod_installation_finished.connect(_on_operation_finished)
-	%ModManager.modpack_retrieval_started.connect(_on_operation_started)
-	%ModManager.modpack_retrieval_finished.connect(_on_operation_finished)
+	%ModManager.refresh_installed()
+	%ModManager.refresh_available()
 
 
 func _on_operation_started() -> void:
@@ -210,10 +206,7 @@ func _on_ShowInstalled_toggled(button_pressed: bool) -> void:
 	reload_available()
 
 
-func _on_Tabs_tab_changed(tab: int) -> void:
-	
-	if tab != 1:
-		return
+func on_tab_activated() -> void:
 	
 	%ShowStockModsSwitch.button_pressed = Settings.read("show_stock_mods")
 	%ShowInstalledModsSwitch.button_pressed = Settings.read("show_installed_mods_in_available")

@@ -1,0 +1,221 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/FontsUI.gd" id="1_ysaov"]
+[ext_resource type="Script" path="res://scripts/FontManager.gd" id="font_mgr"]
+[ext_resource type="PackedScene" path="res://scenes/InlineIconButton.tscn" id="2_tnc2e"]
+[ext_resource type="Texture2D" path="res://icons/tex_help.tres" id="3_whf6b"]
+[ext_resource type="PackedScene" path="res://scenes/FontSizeHelpDialog.tscn" id="4_yk5qf"]
+
+[node name="FontsArea" type="VBoxContainer" unique_id=1733513065]
+script = ExtResource("1_ysaov")
+
+[node name="FontConfigMainGroup" type="HBoxContainer" parent="." unique_id=1197977050]
+layout_mode = 2
+
+[node name="FontConfigLeftGroup" type="VBoxContainer" parent="FontConfigMainGroup" unique_id=1953564527]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="AvailableFontsLabel" type="Label" parent="FontConfigMainGroup/FontConfigLeftGroup" unique_id=1943661790]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "lbl_avail_fonts"
+
+[node name="FontsList" type="ItemList" parent="FontConfigMainGroup/FontConfigLeftGroup" unique_id=749455040]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 2
+size_flags_stretch_ratio = 2.0
+allow_reselect = true
+item_count = 4
+item_0/text = "Item 0"
+item_1/text = "Item 1"
+item_2/text = "Item 2"
+item_3/text = "Item 3"
+
+[node name="FontfaceSettingBox" type="VBoxContainer" parent="FontConfigMainGroup/FontConfigLeftGroup" unique_id=708018793]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 6
+
+[node name="SetFontUIBtn" type="Button" parent="FontConfigMainGroup/FontConfigLeftGroup/FontfaceSettingBox" unique_id=1858316278]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 5
+tooltip_text = "tooltip_set_font_ui"
+text = "btn_set_font_ui"
+
+[node name="SetFontMapBtn" type="Button" parent="FontConfigMainGroup/FontConfigLeftGroup/FontfaceSettingBox" unique_id=403399155]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 5
+tooltip_text = "tooltip_set_font_map"
+text = "btn_set_font_map"
+
+[node name="SetFontOvermapBtn" type="Button" parent="FontConfigMainGroup/FontConfigLeftGroup/FontfaceSettingBox" unique_id=163026137]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 5
+tooltip_text = "tooltip_set_font_omap"
+text = "btn_set_font_omap"
+
+[node name="SetFontAllBtn" type="Button" parent="FontConfigMainGroup/FontConfigLeftGroup/FontfaceSettingBox" unique_id=1516565194]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 5
+tooltip_text = "tooltip_set_font_all"
+text = "btn_set_font_all"
+
+[node name="ResetFontBtn" type="Button" parent="FontConfigMainGroup/FontConfigLeftGroup/FontfaceSettingBox" unique_id=895729979]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 5
+tooltip_text = "tooltip_reset_font"
+text = "btn_reset_font"
+
+[node name="VSeparator" type="VSeparator" parent="FontConfigMainGroup" unique_id=451359595]
+layout_mode = 2
+
+[node name="FontConfigRightGroup" type="VBoxContainer" parent="FontConfigMainGroup" unique_id=757849845]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+size_flags_stretch_ratio = 3.0
+theme_override_constants/separation = 4
+
+[node name="FontPreviewLabel" type="Label" parent="FontConfigMainGroup/FontConfigRightGroup" unique_id=522120954]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "lbl_font_preview"
+
+[node name="FontPreviewText" type="RichTextLabel" parent="FontConfigMainGroup/FontConfigRightGroup" unique_id=1076108298]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_constants/line_separation = -2
+bbcode_enabled = true
+
+[node name="PreviewCyrillicSwitch" type="CheckBox" parent="FontConfigMainGroup/FontConfigRightGroup" unique_id=745787049]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "tooltip_preview_cyrillics"
+text = "cbtn_preview_cyrillics"
+
+[node name="HSeparator" type="HSeparator" parent="FontConfigMainGroup/FontConfigRightGroup" unique_id=1283163579]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="OtherSettingsBox" type="HBoxContainer" parent="FontConfigMainGroup/FontConfigRightGroup" unique_id=1465074217]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="OtherSettingsLabel" type="Label" parent="FontConfigMainGroup/FontConfigRightGroup/OtherSettingsBox" unique_id=1137269217]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "lbl_other_settings"
+
+[node name="FontSettingsHelpBtn" parent="FontConfigMainGroup/FontConfigRightGroup/OtherSettingsBox" unique_id=1843040628 instance=ExtResource("2_tnc2e")]
+custom_minimum_size = Vector2(22, 22)
+layout_mode = 2
+tooltip_text = "View detailed description of these settings."
+texture_normal = ExtResource("3_whf6b")
+
+[node name="FontSizeUIBox" type="HBoxContainer" parent="FontConfigMainGroup/FontConfigRightGroup" unique_id=819517017]
+layout_mode = 2
+size_flags_vertical = 6
+tooltip_text = "tooltip_font_sz_ui"
+
+[node name="FontSizeUILabel" type="Label" parent="FontConfigMainGroup/FontConfigRightGroup/FontSizeUIBox" unique_id=1208544682]
+layout_mode = 2
+text = "lbl_font_sz_ui"
+
+[node name="FontSizeUIField" type="SpinBox" parent="FontConfigMainGroup/FontConfigRightGroup/FontSizeUIBox" unique_id=946195929]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+min_value = 8.0
+max_value = 64.0
+value = 8.0
+
+[node name="FontSizeMapBox" type="HBoxContainer" parent="FontConfigMainGroup/FontConfigRightGroup" unique_id=600509595]
+layout_mode = 2
+size_flags_vertical = 6
+tooltip_text = "tooltip_font_sz_map"
+
+[node name="FontSizeMapLabel" type="Label" parent="FontConfigMainGroup/FontConfigRightGroup/FontSizeMapBox" unique_id=1683773319]
+layout_mode = 2
+tooltip_text = "tooltip_font_sz_map"
+text = "lbl_font_sz_map"
+
+[node name="FontSizeMapField" type="SpinBox" parent="FontConfigMainGroup/FontConfigRightGroup/FontSizeMapBox" unique_id=1356048443]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+min_value = 8.0
+max_value = 64.0
+value = 8.0
+
+[node name="FontSizeOvermapBox" type="HBoxContainer" parent="FontConfigMainGroup/FontConfigRightGroup" unique_id=562090374]
+layout_mode = 2
+size_flags_vertical = 6
+tooltip_text = "tooltip_font_sz_overmap"
+
+[node name="FontSizeOvermapLabel" type="Label" parent="FontConfigMainGroup/FontConfigRightGroup/FontSizeOvermapBox" unique_id=882774515]
+layout_mode = 2
+tooltip_text = "tooltip_font_sz_overmap"
+text = "lbl_font_sz_overmap"
+
+[node name="FontSizeOvermapField" type="SpinBox" parent="FontConfigMainGroup/FontConfigRightGroup/FontSizeOvermapBox" unique_id=1768943211]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+min_value = 8.0
+max_value = 64.0
+value = 8.0
+
+[node name="FontBlendingSwitch" type="CheckButton" parent="FontConfigMainGroup/FontConfigRightGroup" unique_id=1654552245]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "tooltip_font_blending"
+text = "cbtn_font_blending"
+
+[node name="SaveFontOptionsBtn" type="Button" parent="FontConfigMainGroup/FontConfigRightGroup" unique_id=1062404287]
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "tooltip_save_font"
+text = "btn_save_font"
+
+[node name="HSeparator" type="HSeparator" parent="." unique_id=1975785532]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="CurrentFontConfigInfo" type="RichTextLabel" parent="." unique_id=378297746]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+text = "Existing font configuration will be shown here.
+...
+...
+..."
+fit_content = true
+
+[node name="FontSizeHelpDialog" parent="." unique_id=454575259 instance=ExtResource("4_yk5qf")]
+unique_name_in_owner = true
+position = Vector2i(0, 36)
+
+[node name="FontManager" type="Node" parent="." unique_id=2109458168]
+unique_name_in_owner = true
+script = ExtResource("font_mgr")
+
+[connection signal="item_selected" from="FontConfigMainGroup/FontConfigLeftGroup/FontsList" to="." method="_on_FontsList_item_selected"]
+[connection signal="pressed" from="FontConfigMainGroup/FontConfigLeftGroup/FontfaceSettingBox/SetFontUIBtn" to="." method="_on_BtnSetFontX_pressed" binds= [true, false, false]]
+[connection signal="pressed" from="FontConfigMainGroup/FontConfigLeftGroup/FontfaceSettingBox/SetFontMapBtn" to="." method="_on_BtnSetFontX_pressed" binds= [false, true, false]]
+[connection signal="pressed" from="FontConfigMainGroup/FontConfigLeftGroup/FontfaceSettingBox/SetFontOvermapBtn" to="." method="_on_BtnSetFontX_pressed" binds= [false, false, true]]
+[connection signal="pressed" from="FontConfigMainGroup/FontConfigLeftGroup/FontfaceSettingBox/SetFontAllBtn" to="." method="_on_BtnSetFontX_pressed" binds= [true, true, true]]
+[connection signal="pressed" from="FontConfigMainGroup/FontConfigLeftGroup/FontfaceSettingBox/ResetFontBtn" to="." method="_on_BtnResetFont_pressed"]
+[connection signal="toggled" from="FontConfigMainGroup/FontConfigRightGroup/PreviewCyrillicSwitch" to="." method="_on_PreviewCyrillic_toggled"]
+[connection signal="pressed" from="FontConfigMainGroup/FontConfigRightGroup/OtherSettingsBox/FontSettingsHelpBtn" to="." method="_on_HelpIcon_pressed"]
+[connection signal="pressed" from="FontConfigMainGroup/FontConfigRightGroup/SaveFontOptionsBtn" to="." method="_on_BtnSaveFontOptions_pressed"]
