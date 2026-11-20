@@ -6,9 +6,9 @@ signal setting_changed(key: String, value: Variant)
 const _SETTINGS_FILENAME = "catapult_settings.json"
 const _DEFAULTS_FILENAME = "res://data/default_settings.json"
 
-var _defaults := {}
-var _settings_file = ""
-var _current = {}
+var _defaults: Dictionary = {}
+var _settings_file: String = ""
+var _current: Dictionary = {}
 
 
 func _exit_tree() -> void:
@@ -60,7 +60,7 @@ func _write_to_file(data: Dictionary, path: String) -> void:
 	f.close()
 
 
-func read(setting_name: String):
+func read(setting_name: String) -> Variant:
 	
 	if len(_current) == 0:
 		_load()
