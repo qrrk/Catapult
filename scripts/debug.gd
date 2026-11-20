@@ -53,7 +53,7 @@ func _on_Button3_pressed():
 	match OS.get_name():
 		"Linux":
 			command = command_linux
-		"X11":
+		"Linux":
 			command = command_linux
 		"Windows":
 			command = command_windows

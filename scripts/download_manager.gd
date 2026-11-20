@@ -42,11 +42,11 @@ func download_file(url: String, target_dir: String, target_filename: String) -> 
 		var err := DirAccess.make_dir_recursive_absolute(target_dir)
 		if err:
 			Status.post(tr("msg_download_failed") % target_filename, Enums.MSG_ERROR)
-			emit_signal("download_finished")
+			download_finished.emit()
 			return
 	
 	Status.post(tr("msg_downloading_file") % target_filename)
-	emit_signal("download_started")
+	download_started.emit()
 	_current_filename = target_filename
 	_current_file_path = target_dir.path_join(target_filename)
 	_http.download_file = target_dir + "/" + target_filename
@@ -111,4 +111,4 @@ func _on_HTTPRequest_request_completed(_result: int, _response_code: int,
 	else:
 		Status.post(tr("msg_download_failed") % _current_filename, Enums.MSG_ERROR)
 	
-	emit_signal("download_finished")
+	download_finished.emit()

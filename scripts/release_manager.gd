@@ -48,7 +48,7 @@ func _ready() -> void:
 	
 	var p = OS.get_name()
 	match p:
-		"X11", "Linux":
+		"Linux":
 			_platform = "linux"
 		"Windows":
 			_platform = "win"
@@ -192,7 +192,7 @@ func check_external_stable_releases(silent: bool = false) -> void:
 	if source_address.begins_with("http://") or source_address.begins_with("https://"):
 		_checking_external_stables = true
 		if not silent:
-			emit_signal("started_fetching_releases")
+			started_fetching_releases.emit()
 		_ensure_http_stable()
 		_update_proxy(_http_stable)
 		var err := _http_stable.request(source_address)
@@ -200,7 +200,7 @@ func check_external_stable_releases(silent: bool = false) -> void:
 			_checking_external_stables = false
 			Status.post(tr("msg_check_stables_failed"), Enums.MSG_WARN)
 			if not silent:
-				emit_signal("done_fetching_releases")
+				done_fetching_releases.emit()
 		return
 	
 	# Local file path
@@ -228,14 +228,14 @@ func _on_request_completed_stable(result: int, response_code: int,
 	
 	if result != HTTPRequest.RESULT_SUCCESS or response_code < 200 or response_code >= 300:
 		Status.post(tr("msg_check_stables_failed"), Enums.MSG_WARN)
-		emit_signal("done_fetching_releases")
+		done_fetching_releases.emit()
 		return
 	
 	var json_conv := JSON.new()
 	var parse_err := json_conv.parse(body.get_string_from_utf8())
 	if parse_err != OK or not (json_conv.data is Dictionary):
 		Status.post(tr("msg_check_stables_failed"), Enums.MSG_WARN)
-		emit_signal("done_fetching_releases")
+		done_fetching_releases.emit()
 		return
 	
 	_process_and_merge_stables(json_conv.data, false)
@@ -254,7 +254,7 @@ func _process_and_merge_stables(incoming: Dictionary, silent: bool = false) -> v
 	else:
 		Status.post(tr("msg_no_new_stables"), Enums.MSG_DEBUG)
 	
-	emit_signal("done_fetching_releases")
+	done_fetching_releases.emit()
 
 
 func _get_asset_filter(release_type: String) -> Dictionary:

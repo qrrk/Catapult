@@ -170,7 +170,7 @@ func _delete_mod(mod_id: String) -> void:
 	else:
 		Status.post(tr("msg_mod_not_found") % mod_id, Enums.MSG_ERROR)
 	
-	emit_signal("_done_deleting_mod")
+	_done_deleting_mod.emit()
 
 
 func delete_mods(mod_ids: Array) -> void:
@@ -181,7 +181,7 @@ func delete_mods(mod_ids: Array) -> void:
 	if len(mod_ids) > 1:
 		Status.post(tr("msg_deleting_n_mods") % len(mod_ids))
 	
-	emit_signal("mod_deletion_started")
+	mod_deletion_started.emit()
 	
 	for id in mod_ids:
 		if mod_status(id) == 4:
@@ -191,7 +191,7 @@ func delete_mods(mod_ids: Array) -> void:
 		await self._done_deleting_mod
 	
 	refresh_installed()
-	emit_signal("mod_deletion_finished")
+	mod_deletion_finished.emit()
 
 
 func _install_mod(mod_id: String) -> void:
@@ -219,7 +219,7 @@ func _install_mod(mod_id: String) -> void:
 	else:
 		Status.post(tr("msg_mod_not_found") % mod_id, Enums.MSG_ERROR)
 	
-	emit_signal("_done_installing_mod")
+	_done_installing_mod.emit()
 
 
 func install_mods(mod_ids: Array) -> void:
@@ -230,14 +230,14 @@ func install_mods(mod_ids: Array) -> void:
 	if len(mod_ids) > 1:
 		Status.post(tr("msg_installing_n_mods") % len(mod_ids))
 	
-	emit_signal("mod_installation_started")
+	mod_installation_started.emit()
 	
 	for id in mod_ids:
 		_install_mod(id)
 		await self._done_installing_mod
 	
 	refresh_installed()
-	emit_signal("mod_installation_finished")
+	mod_installation_finished.emit()
 
 
 func retrieve_kenan_pack() -> void:
@@ -253,7 +253,7 @@ func retrieve_kenan_pack() -> void:
 		return
 	var pack = _modpacks[pack_key]
 	
-	emit_signal("modpack_retrieval_started")
+	modpack_retrieval_started.emit()
 	Status.post(tr("msg_getting_kenan_pack") % game.to_upper())
 	
 	var archive = Paths.cache_dir.path_join(pack["filename"])
@@ -290,4 +290,4 @@ func retrieve_kenan_pack() -> void:
 		Status.post(tr("msg_kenan_install_done"))
 	
 	refresh_available()
-	emit_signal("modpack_retrieval_finished")
+	modpack_retrieval_finished.emit()
