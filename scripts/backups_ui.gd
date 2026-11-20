@@ -56,7 +56,7 @@ func _notification(what: int) -> void:
 		_populate_default_new_name()
 
 
-func _on_BtnCreate_pressed():
+func _on_BtnCreate_pressed() -> void:
 
 	var target_file = %BackupNameField.text
 	if target_file.is_valid_filename():
@@ -65,17 +65,17 @@ func _on_BtnCreate_pressed():
 		_refresh_available()
 
 
-func _on_EditName_text_entered():
+func _on_EditName_text_entered(_new_text: String = "") -> void:
 	
 	_on_BtnCreate_pressed()
 
 
-func _on_BtnRefresh_pressed():
+func _on_BtnRefresh_pressed() -> void:
 
 	_refresh_available()
 
 
-func _on_BtnRestore_pressed():
+func _on_BtnRestore_pressed() -> void:
 
 	if not %BackupsList.is_anything_selected():
 		return
@@ -84,7 +84,7 @@ func _on_BtnRestore_pressed():
 	%BackupManager.restore(idx)
 
 
-func _on_BtnDelete_pressed():
+func _on_BtnDelete_pressed() -> void:
 	
 	if not %BackupsList.is_anything_selected():
 		return
@@ -97,7 +97,7 @@ func _on_BtnDelete_pressed():
 		_refresh_available()
 
 
-func _on_EditName_text_changed(new_text: String):
+func _on_EditName_text_changed(new_text: String) -> void:
 	
 	# This disallows Windows' invalid characters as well as text that is empty or has leading or
 	# trailing whitespace. These rules are used regardless of the active OS.
@@ -110,7 +110,7 @@ func _on_EditName_text_changed(new_text: String):
 		%BackupNameField.add_theme_color_override("font_color", Color.RED)
 
 
-func _on_BackupsList_item_selected(index):
+func _on_BackupsList_item_selected(index: int) -> void:
 	
 	%RestoreBackupBtn.disabled = false
 	%DeleteBackupBtn.disabled = false
@@ -133,6 +133,6 @@ func _make_backup_info_string(index: int) -> String:
 	return text
 
 
-func _on_BackupInfo_meta_clicked(meta) -> void:
+func _on_BackupInfo_meta_clicked(meta: Variant) -> void:
 	
-	OS.shell_open(meta)
+	OS.shell_open(str(meta))

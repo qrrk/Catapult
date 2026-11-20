@@ -19,16 +19,17 @@ func _get_font_config() -> Dictionary:
 	return font_config
 
 
-func get_game_option(option_name: String):
+func get_game_option(option_name: String) -> Variant:
 	
 	for item in _game_options:
 		if item["name"] == option_name:
 			return item["value"]
 	
 	Status.post(tr("msg_game_option_not_found_get") % option_name, Enums.MSG_ERROR)
+	return null
 
 
-func set_game_option(option_name: String, value: String):
+func set_game_option(option_name: String, value: String) -> void:
 	
 	for item in _game_options:
 		if item["name"] == option_name:

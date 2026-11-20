@@ -27,7 +27,7 @@ func _update_proxy(http: HTTPRequest) -> void:
 		http.set_https_proxy("", -1)
 
 
-func download_pull_requests():
+func download_pull_requests() -> void:
 	if _pr_urls.is_empty():
 		_pr_urls = Helpers.load_json_file(_PR_ENDPOINTS_PATH)
 		if _pr_urls == null:
@@ -48,7 +48,7 @@ func download_pull_requests():
 	_changelogTextBox.append_text(_pr_data)
 
 
-func _on_PullRequests_request_completed(_result, response_code, _headers, body):
+func _on_PullRequests_request_completed(_result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
 	var test_json_conv = JSON.new()
 	test_json_conv.parse(body.get_string_from_utf8())
 	var json = test_json_conv.get_data()
@@ -64,7 +64,7 @@ func _on_PullRequests_request_completed(_result, response_code, _headers, body):
 	_changelogTextBox.append_text(_pr_data)
 
 
-func process_pr_data(data):
+func process_pr_data(data: Dictionary) -> String:
 	var pr_array = []
 	for json in data["items"]:
 		var pr = PullRequest.pullrequest_from_datestring(json["closed_at"], json["title"], json["html_url"])
@@ -97,7 +97,7 @@ func process_pr_data(data):
 	return r_val
 
 
-func _on_ChangelogText_meta_clicked(meta):
+func _on_ChangelogText_meta_clicked(meta: Variant) -> void:
 	OS.shell_open(str(meta))
 
 

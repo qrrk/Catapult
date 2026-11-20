@@ -3,7 +3,7 @@ extends TabContainer
 # and in a way independent of its individual tabs being disabled or re-enabled.
 
 
-var _manually_disabled = []
+var _manually_disabled: Array[int] = []
 
 @export var disabled: bool = false: set = _set_disabled
 

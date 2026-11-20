@@ -1,9 +1,9 @@
 extends VBoxContainer
 
 
-var _langs := ["en", "fr", "ru", "zh", "cs", "es", "pl", "tr", "pt", "ko"]
+var _langs: Array[String] = ["en", "fr", "ru", "zh", "cs", "es", "pl", "tr", "pt", "ko"]
 
-var _themes := [
+var _themes: Array[String] = [
 	"Godot_4.tres",
 	"Light.tres",
 	"Gray.tres",
@@ -11,7 +11,7 @@ var _themes := [
 	"Solarized_Light.tres",
 ]
 
-var _proxy_options := ["off", "on", "download"]
+var _proxy_options: Array[String] = ["off", "on", "download"]
 
 
 func _ready() -> void:
@@ -140,13 +140,13 @@ func _on_sbNumPRs_value_changed(value: float) -> void:
 	Settings.store("num_prs_to_request", str(value))
 
 
-func _on_obtnProxyOption_item_selected(index):
+func _on_obtnProxyOption_item_selected(index: int) -> void:
 	Settings.store("proxy_option", _proxy_options[index])
 
-func _on_leProxyHost_text_changed(new_text):
+func _on_leProxyHost_text_changed(new_text: String) -> void:
 	Settings.store("proxy_host", new_text)
 
-func _on_sbProxyPort_value_changed(value):
+func _on_sbProxyPort_value_changed(value: float) -> void:
 	Settings.store("proxy_port", value)
 
 

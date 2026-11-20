@@ -59,7 +59,7 @@ func get_save_summary(path: String) -> Dictionary:
 	return summary
 
 
-func refresh_available():
+func refresh_available() -> void:
 
 	_available_backups = []
 	

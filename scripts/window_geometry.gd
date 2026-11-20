@@ -83,7 +83,7 @@ func recover_window_state() -> void:
 			_set_scale(1.0)
 			get_window().move_to_center.call_deferred()
 
-func _on_SceneTree_idle():
+func _on_SceneTree_idle() -> void:
 	
 	await get_tree().process_frame
 	get_window().set_deferred("borderless", false)
@@ -93,7 +93,7 @@ func _on_SceneTree_idle():
 	get_window().size_changed.connect(self._on_window_resized)
 
 
-func _ready():
+func _ready() -> void:
 	
 	if Settings.read("ui_scale_override_enabled"):
 		_set_scale(Settings.read("ui_scale_override") as float)
