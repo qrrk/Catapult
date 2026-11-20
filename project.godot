@@ -35,10 +35,8 @@ Status="*res://scripts/status.gd"
 Settings="*res://scripts/settings_manager.gd"
 Geom="*res://scripts/window_geometry.gd"
 Paths="*res://scripts/path_helper.gd"
-Helpers="*res://scripts/helpers.gd"
 FS="*res://scripts/filesystem_helper.gd"
 Downloader="*res://scripts/download_manager.gd"
-TOTD="*res://scripts/totd.gd"
 ThreadedExec="*res://scripts/threaded_exec.gd"
 
 [display]
