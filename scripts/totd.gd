@@ -1,10 +1,9 @@
-extends Node
-# This node stores tips of the day and picks one at random when asked.
+class_name TOTD
+extends RefCounted
+## Stores tips of the day (as translation keys) and picks one at random.
 
 
-const _TOTD = [
-	# These used to be hardcoded, but now it is just a list of translation keys.
-	
+const _TOTD: Array[String] = [
 	"tip_os_hopping",
 	"tip_dual_install",
 	"tip_downgrading",
@@ -18,7 +17,7 @@ const _TOTD = [
 ]
 
 
-func get_tip() -> String:
+static func get_tip() -> String:
 	
-	var index = Time.get_ticks_usec() % len(_TOTD)
-	return tr(_TOTD[index])
+	var index := Time.get_ticks_usec() % _TOTD.size()
+	return TranslationServer.translate(_TOTD[index])
