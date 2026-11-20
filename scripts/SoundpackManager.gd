@@ -1,3 +1,4 @@
+class_name SoundpackManager
 extends Node
 
 
@@ -25,10 +26,10 @@ func load_soundpacks() -> void:
 
 
 
-func parse_sound_dir(sound_dir: String) -> Array:
+static func parse_sound_dir(sound_dir: String) -> Array:
 	
 	if not DirAccess.dir_exists_absolute(sound_dir):
-		Status.post(tr("msg_no_sound_dir") % sound_dir, Enums.MSG_ERROR)
+		Status.post(TranslationServer.translate("msg_no_sound_dir") % sound_dir, Enums.MSG_ERROR)
 		return []
 	
 	var result = []

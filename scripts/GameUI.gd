@@ -12,14 +12,6 @@ var _installs: Dictionary = {}
 var _fetching_releases: bool = false
 
 
-func _ready() -> void:
-	
-	%ReleaseManager.started_fetching_releases.connect(_on_Releases_started_fetching_releases)
-	%ReleaseManager.done_fetching_releases.connect(_on_Releases_done_fetching_releases)
-	%ReleaseInstaller.operation_started.connect(_on_ReleaseInstaller_operation_started)
-	%ReleaseInstaller.operation_finished.connect(_on_ReleaseInstaller_operation_finished)
-
-
 func _notification(what: int) -> void:
 	
 	if what == NOTIFICATION_TRANSLATION_CHANGED and is_node_ready():
@@ -31,7 +23,6 @@ func setup() -> void:
 	update_localized_text()
 	%UpdateCurrentSwitch.button_pressed = Settings.read("update_current_when_installing")
 	apply_game_choice()
-	%StableSwitch.toggled.connect(_on_RBtnStable_toggled)
 	refresh_currently_installed()
 	%QuickLoadBtn.grab_focus()
 

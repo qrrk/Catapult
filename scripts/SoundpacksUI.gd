@@ -9,14 +9,6 @@ signal operation_finished
 var _installed_packs = []
 
 
-func _ready() -> void:
-	
-	%SoundpackManager.soundpack_deletion_started.connect(_on_operation_started)
-	%SoundpackManager.soundpack_deletion_finished.connect(_on_operation_finished)
-	%SoundpackManager.soundpack_installation_started.connect(_on_operation_started)
-	%SoundpackManager.soundpack_installation_finished.connect(_on_operation_finished)
-
-
 func _on_operation_started() -> void:
 	
 	ControlLock.lock(lockable_controls)
@@ -77,11 +69,8 @@ func _is_pack_installed(pack_name: String) -> bool:
 	return false
 
 
-func _on_Tabs_tab_changed(tab: int) -> void:
+func on_tab_activated() -> void:
 	
-	if tab != 2:
-		return
-		
 	%ShowStockSoundsSwitch.button_pressed = Settings.read("show_stock_sound")
 	
 	%DeleteSoundBtn.disabled = true

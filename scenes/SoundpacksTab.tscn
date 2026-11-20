@@ -1,0 +1,131 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/SoundpacksUI.gd" id="1_tbnlp"]
+[ext_resource type="Script" path="res://scripts/SoundpackManager.gd" id="soundpack_mgr"]
+[ext_resource type="Script" path="res://scripts/ItemList.gd" id="2_onwgc"]
+
+[node name="SoundArea" type="VBoxContainer" unique_id=1653764024 node_paths=PackedStringArray("lockable_controls")]
+size_flags_vertical = 3
+script = ExtResource("1_tbnlp")
+lockable_controls = [NodePath("SoundManagementGroup/InstalledSoundsGroup/InstalledSoundsList"), NodePath("SoundManagementGroup/InstalledSoundsGroup/ShowStockSoundsSwitch"), NodePath("SoundManagementGroup/InstalledSoundsGroup/DeleteSoundBtn"), NodePath("SoundManagementGroup/AvailableSoundsGroup/AvailableSoundsList"), NodePath("SoundManagementGroup/AvailableSoundsGroup/InstallSoundBtn")]
+
+[node name="SoundManagementGroup" type="HBoxContainer" parent="." unique_id=1167133284]
+layout_mode = 2
+
+[node name="InstalledSoundsGroup" type="VBoxContainer" parent="SoundManagementGroup" unique_id=643952350]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InstalledSoundsLabel" type="Label" parent="SoundManagementGroup/InstalledSoundsGroup" unique_id=761771789]
+layout_mode = 2
+text = "lbl_installed_sound"
+
+[node name="InstalledSoundsList" type="ItemList" parent="SoundManagementGroup/InstalledSoundsGroup" unique_id=1588530420]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 22
+same_column_width = true
+item_0/text = "Item 0"
+item_1/text = "Item 1"
+item_2/text = "Item 2"
+item_3/text = "Item 3"
+item_4/text = "Item 4"
+item_5/text = "Item 5"
+item_6/text = "Item 6"
+item_7/text = "Item 7"
+item_8/text = "Item 8"
+item_9/text = "Item 9"
+item_10/text = "Item 10"
+item_11/text = "Item 11"
+item_12/text = "Item 12"
+item_13/text = "Item 13"
+item_14/text = "Item 14"
+item_15/text = "Item 15"
+item_16/text = "Item 16"
+item_17/text = "Item 17"
+item_18/text = "Item 18"
+item_19/text = "Item 19"
+item_20/text = "Item 20"
+item_21/text = "Item 21"
+script = ExtResource("2_onwgc")
+
+[node name="ShowStockSoundsSwitch" type="CheckBox" parent="SoundManagementGroup/InstalledSoundsGroup" unique_id=663870578]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "tooltip_stock_sound"
+text = "cbtn_stock_sound"
+
+[node name="DeleteSoundBtn" type="Button" parent="SoundManagementGroup/InstalledSoundsGroup" unique_id=493983696]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "tooltip_delete_sound"
+disabled = true
+text = "btn_delete_sound"
+
+[node name="VSeparator" type="VSeparator" parent="SoundManagementGroup" unique_id=185586915]
+layout_mode = 2
+
+[node name="AvailableSoundsGroup" type="VBoxContainer" parent="SoundManagementGroup" unique_id=283316164]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AvailableSoundsLabel" type="Label" parent="SoundManagementGroup/AvailableSoundsGroup" unique_id=976429569]
+layout_mode = 2
+text = "lbl_avail_sound"
+
+[node name="AvailableSoundsList" type="ItemList" parent="SoundManagementGroup/AvailableSoundsGroup" unique_id=455483644]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 4
+same_column_width = true
+item_0/text = "Item 0"
+item_1/text = "Item 1"
+item_2/text = "Item 2"
+item_3/text = "Item 3"
+script = ExtResource("2_onwgc")
+
+[node name="InstallSoundBtn" type="Button" parent="SoundManagementGroup/AvailableSoundsGroup" unique_id=1436205477]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "tooltip_install_sound"
+disabled = true
+text = "btn_install_sound"
+
+[node name="ConfirmDeleteSoundDlg" type="ConfirmationDialog" parent="." unique_id=1508090700]
+unique_name_in_owner = true
+dialog_text = "dlg_sound_deletion_text"
+dialog_autowrap = true
+
+[node name="ManualSoundDownloadDlg" type="ConfirmationDialog" parent="." unique_id=347805892]
+unique_name_in_owner = true
+dialog_text = "dlg_sound_manual_dl_text"
+dialog_autowrap = true
+
+[node name="InstallFromFileDialog" type="FileDialog" parent="." unique_id=1497669924]
+unique_name_in_owner = true
+access = 2
+filters = PackedStringArray("*.zip")
+
+[node name="SoundpackManager" type="Node" parent="." unique_id=1842045925]
+unique_name_in_owner = true
+script = ExtResource("soundpack_mgr")
+
+[connection signal="item_selected" from="SoundManagementGroup/InstalledSoundsGroup/InstalledSoundsList" to="." method="_on_InstalledList_item_selected"]
+[connection signal="toggled" from="SoundManagementGroup/InstalledSoundsGroup/ShowStockSoundsSwitch" to="." method="_on_ShowStock_toggled"]
+[connection signal="pressed" from="SoundManagementGroup/InstalledSoundsGroup/DeleteSoundBtn" to="." method="_on_BtnDelete_pressed"]
+[connection signal="item_selected" from="SoundManagementGroup/AvailableSoundsGroup/AvailableSoundsList" to="." method="_on_AvailableList_item_selected"]
+[connection signal="pressed" from="SoundManagementGroup/AvailableSoundsGroup/InstallSoundBtn" to="." method="_on_BtnInstall_pressed"]
+[connection signal="confirmed" from="ConfirmDeleteSoundDlg" to="." method="_on_ConfirmDelete_confirmed"]
+[connection signal="confirmed" from="ManualSoundDownloadDlg" to="." method="_on_ConfirmManualDownload_confirmed"]
+[connection signal="file_selected" from="InstallFromFileDialog" to="." method="_on_InstallFromFileDialog_file_selected"]
+[connection signal="soundpack_deletion_finished" from="SoundpackManager" to="." method="_on_operation_finished"]
+[connection signal="soundpack_deletion_started" from="SoundpackManager" to="." method="_on_operation_started"]
+[connection signal="soundpack_installation_finished" from="SoundpackManager" to="." method="_on_operation_finished"]
+[connection signal="soundpack_installation_started" from="SoundpackManager" to="." method="_on_operation_started"]

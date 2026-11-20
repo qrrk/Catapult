@@ -7,16 +7,6 @@ signal operation_finished
 @export var lockable_controls: Array[Control] = []
 
 
-func _ready() -> void:
-	
-	%BackupManager.backup_creation_started.connect(_on_operation_started)
-	%BackupManager.backup_creation_finished.connect(_on_operation_finished)
-	%BackupManager.backup_deletion_started.connect(_on_operation_started)
-	%BackupManager.backup_deletion_finished.connect(_on_operation_finished)
-	%BackupManager.backup_restoration_started.connect(_on_operation_started)
-	%BackupManager.backup_restoration_finished.connect(_on_operation_finished)
-
-
 func _on_operation_started() -> void:
 	
 	ControlLock.lock(lockable_controls)
@@ -53,10 +43,7 @@ func _populate_default_new_name() -> void:
 	]
 
 
-func _on_Tabs_tab_changed(tab: int) -> void:
-	
-	if tab != 4:
-		return
+func on_tab_activated() -> void:
 	
 	_refresh_available()
 	_populate_default_new_name()

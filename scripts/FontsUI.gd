@@ -1,6 +1,8 @@
 extends VBoxContainer
 
 
+signal tab_unavailable
+
 const _PREVIEW_TEXT_EN := [
 	"A quick brown fox jumps over the lazy dog.",
 	"A quart jar of oil mixed with zinc oxide makes a very bright paint.",
@@ -103,19 +105,16 @@ func _load_font_options() -> void:
 	%FontBlendingSwitch.button_pressed = (%FontManager.get_game_option("FONT_BLENDING").to_lower() == "true")
 
 
-func _on_Tabs_tab_changed(tab: int) -> void:
-	
-	if tab != 3:
-		return
+func on_tab_activated() -> void:
 	
 	if not %FontManager.font_config_file_exists():
 		Status.post(tr("msg_no_font_config_file"), Enums.MSG_WARN)
-		%TabbedLayout.current_tab = 0
+		tab_unavailable.emit()
 		return
 	
 	if not %FontManager.options_file_exists():
 		Status.post(tr("msg_no_game_options_file"), Enums.MSG_WARN)
-		%TabbedLayout.current_tab = 0
+		tab_unavailable.emit()
 		return
 		
 	%FontManager.load_available_fonts()
