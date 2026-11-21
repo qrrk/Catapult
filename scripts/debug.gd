@@ -1,4 +1,5 @@
 extends VBoxContainer
+## UI controller for the hidden Debug tab (enabled via Settings) containing developer diagnostics.
 
 
 func _on_Button_pressed() -> void:
@@ -10,7 +11,7 @@ func _on_Button_pressed() -> void:
 	
 	Status.post("Looking for mods in %s" % mods_dir)
 	
-	var mods: Dictionary = %ModManager.parse_mods_dir(mods_dir)
+	var mods: Dictionary = ModManager.parse_mods_dir(mods_dir)
 	for mod in mods:
 		message += "\n" + mods[mod]["modinfo"]["name"]
 		message += "\n(%s)" % mods[mod]["location"]
@@ -27,7 +28,7 @@ func _on_Button2_pressed() -> void:
 	
 	Status.post("Looking for soundpacks in %s" % sound_dir)
 	
-	for pack in %SoundpackManager.parse_sound_dir(sound_dir):
+	for pack in SoundpackManager.parse_sound_dir(sound_dir):
 		message += "\nName: %s" % pack["name"]
 		message += "\nDescription: %s" % pack["description"]
 		message += "\nLocation: %s" % pack["location"]
@@ -53,7 +54,7 @@ func _on_Button3_pressed():
 	match OS.get_name():
 		"Linux":
 			command = command_linux
-		"X11":
+		"Linux":
 			command = command_linux
 		"Windows":
 			command = command_windows

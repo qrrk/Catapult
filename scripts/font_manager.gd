@@ -1,34 +1,31 @@
 extends Node
+## Manages bundled in-game fonts, the game's fonts.json configuration, and font-related entries
+## in options.json.
 
 
 const _DEFAULT_FONTS = ["data/font/Terminus.ttf", "data/font/unifont.ttf"]
 
 var _game_options: Array = []
 
-var available_fonts: Array = []: get = _get_available_fonts
-var font_config: Dictionary = {}: get = _get_font_config
+## Bundled font entries loaded from res://fonts/ingame/font_info.json.
+var available_fonts: Array = []
+## Parsed contents of the active game's config/fonts.json.
+var font_config: Dictionary = {}
 
 
-func _get_available_fonts() -> Array:
-	
-	return available_fonts
-
-
-func _get_font_config() -> Dictionary:
-	
-	return font_config
-
-
-func get_game_option(option_name: String):
+## Returns the value of a named option from the loaded options.json array, or null if not found.
+func get_game_option(option_name: String) -> Variant:
 	
 	for item in _game_options:
 		if item["name"] == option_name:
 			return item["value"]
 	
 	Status.post(tr("msg_game_option_not_found_get") % option_name, Enums.MSG_ERROR)
+	return null
 
 
-func set_game_option(option_name: String, value: String):
+## Updates a named option in the in-memory options.json array (call [method write_game_options] to persist).
+func set_game_option(option_name: String, value: String) -> void:
 	
 	for item in _game_options:
 		if item["name"] == option_name:
@@ -38,6 +35,7 @@ func set_game_option(option_name: String, value: String):
 	Status.post(tr("msg_game_option_not_found_set") % option_name, Enums.MSG_ERROR)
 
 
+## Loads bundled font metadata from res://fonts/ingame/font_info.json into [member available_fonts].
 func load_available_fonts() -> void:
 	
 	var f := FileAccess.open("res://fonts/ingame/font_info.json", FileAccess.READ)
@@ -64,6 +62,7 @@ func font_config_file_exists() -> bool:  # TODO: This does not need to be a sepa
 	return FileAccess.file_exists(config_file)
 
 
+## Reads the active game's config/fonts.json into [member font_config].
 func load_font_config() -> void:
 	
 	var result: Dictionary = {}
@@ -93,6 +92,7 @@ func options_file_exists() -> bool:  # TODO: This does not need to be a separate
 	return FileAccess.file_exists(options_file)
 
 
+## Reads the active game's config/options.json into memory.
 func load_game_options() -> void:
 	
 	var options_file: String = Paths.config.path_join("options.json")
@@ -127,6 +127,7 @@ func _write_font_config() -> void:
 		Status.post(tr("msg_font_config_not_writable") % config_file, Enums.MSG_ERROR)
 
 
+## Writes the in-memory game options back to config/options.json.
 func write_game_options() -> void:
 	
 	var options_file: String = Paths.config.path_join("options.json")
@@ -156,6 +157,8 @@ func _install_font(font_index: int) -> bool:
 		return true
 
 
+## Copies the selected bundled font into the user font directory and assigns it as the primary
+## typeface for the requested game layers (UI, map, overmap), saving fonts.json.
 func set_font(font_index: int, ui: bool, map: bool, overmap: bool) -> void:
 	
 	if (font_index < 0) or (font_index >= len(available_fonts)):
@@ -185,6 +188,7 @@ func set_font(font_index: int, ui: bool, map: bool, overmap: bool) -> void:
 	_write_font_config()
 
 
+## Resets all typeface lists in fonts.json back to the game's default fallback fonts.
 func reset_font() -> void:
 	
 	for field in ["typeface", "map_typeface", "overmap_typeface"]:
@@ -211,6 +215,7 @@ func _get_current_font_indices() -> Dictionary:
 	return result
 
 
+## Updates UI, map, and overmap font size/width/height options in memory using each active font's aspect ratios.
 func set_font_sizes(ui: int, map: int, overmap: int) -> void:
 	
 	var current_indices := _get_current_font_indices()

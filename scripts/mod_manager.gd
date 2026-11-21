@@ -1,4 +1,6 @@
+class_name ModManager
 extends Node
+## Discovers, installs, deletes, and downloads modpacks for the currently selected game.
 
 
 signal mod_installation_started
@@ -17,27 +19,24 @@ const _MODPACKS_PATH = "res://data/modpacks.json"
 var _modpacks := {}
 
 
-var installed: Dictionary = {}: get = _get_installed
-var available: Dictionary = {}: get = _get_available
+## Map of mod IDs to metadata dicts for all installed stock and user mods (lazily loaded).
+var installed: Dictionary = {}:
+	get:
+		if installed.is_empty():
+			refresh_installed()
+		return installed
+
+## Map of mod IDs to metadata dicts for all mods in the local mod repository (lazily loaded).
+var available: Dictionary = {}:
+	get:
+		if available.is_empty():
+			refresh_available()
+		return available
 
 
-func _get_installed() -> Dictionary:
-	
-	if len(installed) == 0:
-		refresh_installed()
-		
-	return installed
-
-
-func _get_available() -> Dictionary:
-	
-	if len(available) == 0:
-		refresh_available()
-	
-	return available
-
-
-func parse_mods_dir(mods_dir: String) -> Dictionary:
+## Scans immediate subdirectories of a mods folder and parses each mod's modinfo.json into a
+## dictionary keyed by mod ID.
+static func parse_mods_dir(mods_dir: String) -> Dictionary:
 	
 	if not DirAccess.dir_exists_absolute(mods_dir):
 		return {}
@@ -53,7 +52,7 @@ func parse_mods_dir(mods_dir: String) -> Dictionary:
 			var json := JSON.new()
 			var error := json.parse(f.get_as_text())
 			if error != OK:
-				Status.post(tr("msg_mod_json_parsing_failed") % modinfo, Enums.MSG_ERROR)
+				Status.post(TranslationServer.translate("msg_mod_json_parsing_failed") % modinfo, Enums.MSG_ERROR)
 				continue
 			
 			var json_result = json.data
@@ -84,7 +83,7 @@ func parse_mods_dir(mods_dir: String) -> Dictionary:
 	return result
 
 
-func _strip_html_tags(text: String) -> String:
+static func _strip_html_tags(text: String) -> String:
 	
 	var s = text
 	var regex = RegEx.new()
@@ -98,14 +97,10 @@ func _strip_html_tags(text: String) -> String:
 	return s
 
 
+## Returns the installation status code for a mod ID:
+## 0 = not installed, 1 = user-installed, 2 = stock mod,
+## 3 = obsolete stock mod, 4 = user-installed with a "__" suffix to avoid colliding with an obsolete stock mod.
 func mod_status(id: String) -> int:
-	
-	# Returns mod installed status:
-	# 0 - not installed;
-	# 1 - installed;
-	# 2 - stock mod;
-	# 3 - stock mod but obsolete;
-	# 4 - installed with modified ID.
 	
 	if id + "__" in installed:
 		return 4
@@ -121,6 +116,7 @@ func mod_status(id: String) -> int:
 		return 0
 
 
+## Rescans both user and stock mod directories and updates [member installed].
 func refresh_installed():
 	
 	var _installed = {}
@@ -150,6 +146,7 @@ func refresh_installed():
 	installed = _installed
 
 
+## Rescans the local mod repository directory and updates [member available].
 func refresh_available():
 	
 	available = parse_mods_dir(Paths.mod_repo)
@@ -169,9 +166,10 @@ func _delete_mod(mod_id: String) -> void:
 	else:
 		Status.post(tr("msg_mod_not_found") % mod_id, Enums.MSG_ERROR)
 	
-	emit_signal("_done_deleting_mod")
+	_done_deleting_mod.emit()
 
 
+## Deletes each mod in [param mod_ids] sequentially, then refreshes [member installed].
 func delete_mods(mod_ids: Array) -> void:
 	
 	if len(mod_ids) == 0:
@@ -180,7 +178,7 @@ func delete_mods(mod_ids: Array) -> void:
 	if len(mod_ids) > 1:
 		Status.post(tr("msg_deleting_n_mods") % len(mod_ids))
 	
-	emit_signal("mod_deletion_started")
+	mod_deletion_started.emit()
 	
 	for id in mod_ids:
 		if mod_status(id) == 4:
@@ -190,7 +188,7 @@ func delete_mods(mod_ids: Array) -> void:
 		await self._done_deleting_mod
 	
 	refresh_installed()
-	emit_signal("mod_deletion_finished")
+	mod_deletion_finished.emit()
 
 
 func _install_mod(mod_id: String) -> void:
@@ -218,9 +216,11 @@ func _install_mod(mod_id: String) -> void:
 	else:
 		Status.post(tr("msg_mod_not_found") % mod_id, Enums.MSG_ERROR)
 	
-	emit_signal("_done_installing_mod")
+	_done_installing_mod.emit()
 
 
+## Copies each mod in [param mod_ids] from the local repository into the user mods directory,
+## renaming its ID with a "__" suffix if it collides with an obsolete stock mod.
 func install_mods(mod_ids: Array) -> void:
 	
 	if len(mod_ids) == 0:
@@ -229,16 +229,17 @@ func install_mods(mod_ids: Array) -> void:
 	if len(mod_ids) > 1:
 		Status.post(tr("msg_installing_n_mods") % len(mod_ids))
 	
-	emit_signal("mod_installation_started")
+	mod_installation_started.emit()
 	
 	for id in mod_ids:
 		_install_mod(id)
 		await self._done_installing_mod
 	
 	refresh_installed()
-	emit_signal("mod_installation_finished")
+	mod_installation_finished.emit()
 
 
+## Downloads and unpacks the Kenan modpack for the currently selected game into the local mod repository.
 func retrieve_kenan_pack() -> void:
 	
 	if _modpacks.is_empty():
@@ -252,7 +253,7 @@ func retrieve_kenan_pack() -> void:
 		return
 	var pack = _modpacks[pack_key]
 	
-	emit_signal("modpack_retrieval_started")
+	modpack_retrieval_started.emit()
 	Status.post(tr("msg_getting_kenan_pack") % game.to_upper())
 	
 	var archive = Paths.cache_dir.path_join(pack["filename"])
@@ -289,4 +290,4 @@ func retrieve_kenan_pack() -> void:
 		Status.post(tr("msg_kenan_install_done"))
 	
 	refresh_available()
-	emit_signal("modpack_retrieval_finished")
+	modpack_retrieval_finished.emit()

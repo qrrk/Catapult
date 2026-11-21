@@ -1,0 +1,75 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/debug.gd" id="1_40rc4"]
+
+[node name="DebugArea" type="VBoxContainer" unique_id=1313696285]
+script = ExtResource("1_40rc4")
+
+[node name="Label" type="Label" parent="." unique_id=991081896]
+layout_mode = 2
+text = "This tab contains functions helpful in debugging parts of the launcher during development. Useless for anything else."
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="." unique_id=85568530]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Test mod directory parsing"
+
+[node name="Button2" type="Button" parent="." unique_id=1242754697]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Test sound directory parsing"
+
+[node name="Button3" type="Button" parent="." unique_id=1717404020]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Test passing of arguments to shell commands"
+
+[node name="Button4" type="Button" parent="." unique_id=1709546742]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Test different types of status messages"
+
+[node name="Button5" type="Button" parent="." unique_id=569667277]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Test recursive directory listing"
+
+[node name="Button6" type="Button" parent="." unique_id=241185037]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Print a random Tip of the Day"
+
+[node name="Button7" type="Button" parent="." unique_id=61049594]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Test path resolution in PathHelper"
+
+[node name="Button8" type="Button" parent="." unique_id=1338352341]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Test position retrieval"
+
+[node name="Button9" type="Button" parent="." unique_id=1788366180]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Print screen info"
+
+[node name="Button10" type="Button" parent="." unique_id=1254510945]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Browse internal filesystem"
+
+[node name="BrowseResourcesDialog" type="FileDialog" parent="." unique_id=768225980]
+unique_name_in_owner = true
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_Button2_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_Button3_pressed"]
+[connection signal="pressed" from="Button4" to="." method="_on_Button4_pressed"]
+[connection signal="pressed" from="Button5" to="." method="_on_Button5_pressed"]
+[connection signal="pressed" from="Button6" to="." method="_on_Button6_pressed"]
+[connection signal="pressed" from="Button7" to="." method="_on_Button7_pressed"]
+[connection signal="pressed" from="Button8" to="." method="_on_Button8_pressed"]
+[connection signal="pressed" from="Button9" to="." method="_on_Button9_pressed"]
+[connection signal="pressed" from="Button10" to="." method="_on_button_10_pressed"]

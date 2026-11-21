@@ -1,4 +1,5 @@
 extends Node
+## Autoload singleton providing threaded directory operations and archive extraction/zipping.
 
 
 signal copy_dir_done
@@ -10,29 +11,19 @@ signal zip_done
 
 var _platform: String = ""
 
-var last_extract_result: int = 0: get = _get_last_extract_result
-# Stores the exit code of the last extract operation (0 if successful).
-var last_zip_result: int = 0: get = _get_last_zip_result
-# Stores the exit code of the last zip operation (0 if successful).
+## Exit/error code of the last extract operation (0 if successful).
+var last_extract_result: int = 0
+## Exit/error code of the last zip operation (0 if successful).
+var last_zip_result: int = 0
 
 
 func _enter_tree() -> void:
 	
 	_platform = OS.get_name()
-
-
-func _get_last_extract_result() -> int:
-	
-	return last_extract_result
-
-
-func _get_last_zip_result() -> int:
-	return last_zip_result
 	
 
+## Lists files and subdirectories within a directory, optionally recursing and filtering relative paths by regex.
 func list_dir(path: String, recursive := false, filter_pattern: String = "") -> Array:
-	# Lists the files and subdirectories within a directory.
-	# Optionally filters results using a regex pattern string matched against full relative paths.
 	
 	var result := []
 	var filter_regex: RegEx = null
@@ -102,15 +93,15 @@ func _copy_dir_internal(abs_path: String, dest_dir: String) -> void:
 			
 
 
+## Recursively copies a directory [i]into[/i] a new location on a worker thread, then emits [signal copy_dir_done].
 func copy_dir(abs_path: String, dest_dir: String) -> void:
-	# Recursively copies a directory *into* a new location.
 	
 	var thread := Thread.new()
 	thread.start(_copy_dir_internal.bind(abs_path, dest_dir))
 	while thread.is_alive():
 		await get_tree().process_frame
 	thread.wait_to_finish()
-	emit_signal("copy_dir_done")
+	copy_dir_done.emit()
 
 
 func _rm_dir_internal(abs_path: String) -> void:
@@ -131,15 +122,15 @@ func _rm_dir_internal(abs_path: String) -> void:
 		Status.post(tr("msg_rm_dir_failed") % [abs_path, error], Enums.MSG_ERROR)
 
 
+## Recursively removes a directory on a worker thread, then emits [signal rm_dir_done].
 func rm_dir(abs_path: String) -> void:
-	# Recursively removes a directory.
 	
 	var thread := Thread.new()
 	thread.start(_rm_dir_internal.bind(abs_path))
 	while thread.is_alive():
 		await get_tree().process_frame
 	thread.wait_to_finish()
-	emit_signal("rm_dir_done")
+	rm_dir_done.emit()
 
 
 func _move_dir_internal(abs_path: String, abs_dest: String) -> void:
@@ -165,16 +156,16 @@ func _move_dir_internal(abs_path: String, abs_dest: String) -> void:
 		Status.post(tr("msg_move_rmdir_failed") % [abs_path, error], Enums.MSG_ERROR)
 
 
+## Moves a directory to a new path (with rename, so the final segment of the destination is the new name)
+## on a worker thread, then emits [signal move_dir_done].
 func move_dir(abs_path: String, abs_dest: String) -> void:
-	# Moves the specified directory (this is move with rename, so the last
-	# part of dest is the new item for the directory).
 	
 	var thread := Thread.new()
 	thread.start(_move_dir_internal.bind(abs_path, abs_dest))
 	while thread.is_alive():
 		await get_tree().process_frame
 	thread.wait_to_finish()
-	emit_signal("move_dir_done")
+	move_dir_done.emit()
 
 
 func _extract_zip_internal(archive_path: String, dest_dir: String) -> int:
@@ -259,14 +250,14 @@ func _worker_extract_files(archive_path: String, dest_dir: String, files: Array)
 	return OK
 
 
+## Extracts a .zip archive (multi-threaded via ZIPReader) or .tar.gz archive
+## (via system tar on Linux) into the destination directory, then emits [signal extract_done].
 func extract(path: String, dest_dir: String) -> void:
-	# Extracts a .zip archive natively using Godot's ZIPReader,
-	# or a .tar.gz archive using system tar on Linux.
 	
 	if not DirAccess.dir_exists_absolute(dest_dir):
 		DirAccess.make_dir_recursive_absolute(dest_dir)
 	
-	if (_platform == "X11" || _platform == "Linux") and (path.to_lower().ends_with(".tar.gz")):
+	if (_platform == "Linux") and (path.to_lower().ends_with(".tar.gz")):
 		var command_linux_gz = {
 			"item": "/bin/bash",
 			"args": ["-c", "tar -xzf \"%s\" -C \"%s\" && find \"%s\" -type l -delete" % [path, dest_dir, dest_dir]]
@@ -280,7 +271,7 @@ func extract(path: String, dest_dir: String) -> void:
 			Status.post(tr("msg_extract_error") % last_extract_result, Enums.MSG_ERROR)
 			Status.post(tr("msg_extract_failed_cmd") % str(command_linux_gz), Enums.MSG_DEBUG)
 			Status.post(tr("msg_extract_fail_output") % ThreadedExec.output[0], Enums.MSG_DEBUG)
-		emit_signal("extract_done")
+		extract_done.emit()
 		return
 	
 	if path.to_lower().ends_with(".zip"):
@@ -292,12 +283,12 @@ func extract(path: String, dest_dir: String) -> void:
 		last_extract_result = thread.wait_to_finish()
 		if last_extract_result != OK:
 			Status.post(tr("msg_extract_error") % last_extract_result, Enums.MSG_ERROR)
-		emit_signal("extract_done")
+		extract_done.emit()
 		return
 	
 	Status.post(tr("msg_extract_unsupported") % path.get_file(), Enums.MSG_ERROR)
 	last_extract_result = ERR_FILE_UNRECOGNIZED
-	emit_signal("extract_done")
+	extract_done.emit()
 
 
 func _zip_dir_internal(parent: String, dir_to_zip: String, dest_zip: String) -> int:
@@ -334,16 +325,13 @@ func _zip_dir_internal(parent: String, dir_to_zip: String, dest_zip: String) -> 
 	return OK
 
 
+## Packs a subdirectory into a .zip archive on a worker thread, then emits [signal zip_done].
 func zip(parent: String, dir_to_zip: String, dest_zip: String) -> void:
-	# Creates a .zip archive natively using Godot's ZIPPacker.
-	# parent: directory that contains dir_to_zip (e.g. Paths.savegames)
-	# dir_to_zip: relative folder to zip up (e.g. world_name)
-	# dest_zip: full path to destination zip file
 	
 	if not dest_zip.to_lower().ends_with(".zip"):
 		Status.post(tr("msg_extract_unsupported") % dest_zip.get_file(), Enums.MSG_ERROR)
 		last_zip_result = ERR_FILE_UNRECOGNIZED
-		emit_signal("zip_done")
+		zip_done.emit()
 		return
 	
 	var dest_parent := dest_zip.get_base_dir()
@@ -359,5 +347,5 @@ func zip(parent: String, dir_to_zip: String, dest_zip: String) -> void:
 	last_zip_result = thread.wait_to_finish()
 	if last_zip_result != OK:
 		Status.post(tr("msg_zip_error") % last_zip_result, Enums.MSG_ERROR)
-	emit_signal("zip_done")
+	zip_done.emit()
 	

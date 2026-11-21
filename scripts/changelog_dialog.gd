@@ -1,4 +1,5 @@
 extends Window
+## Popup dialog that fetches and displays recently merged GitHub pull requests for the active game.
 
 
 const _PR_ENDPOINTS_PATH = "res://data/pr_endpoints.json"
@@ -10,6 +11,7 @@ var _pr_urls := {}
 var _pr_data = ""
 
 
+## Opens the dialog centered and initiates a fresh pull-request fetch for the current game.
 func open() -> void:
 	
 	download_pull_requests()
@@ -27,7 +29,8 @@ func _update_proxy(http: HTTPRequest) -> void:
 		http.set_https_proxy("", -1)
 
 
-func download_pull_requests():
+## Queries the GitHub search API for recently merged PRs of the currently selected game.
+func download_pull_requests() -> void:
 	if _pr_urls.is_empty():
 		_pr_urls = Helpers.load_json_file(_PR_ENDPOINTS_PATH)
 		if _pr_urls == null:
@@ -48,7 +51,7 @@ func download_pull_requests():
 	_changelogTextBox.append_text(_pr_data)
 
 
-func _on_PullRequests_request_completed(_result, response_code, _headers, body):
+func _on_PullRequests_request_completed(_result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
 	var test_json_conv = JSON.new()
 	test_json_conv.parse(body.get_string_from_utf8())
 	var json = test_json_conv.get_data()
@@ -64,7 +67,8 @@ func _on_PullRequests_request_completed(_result, response_code, _headers, body):
 	_changelogTextBox.append_text(_pr_data)
 
 
-func process_pr_data(data):
+## Formats a GitHub PR search response into BBCode grouped by merge date.
+func process_pr_data(data: Dictionary) -> String:
 	var pr_array = []
 	for json in data["items"]:
 		var pr = PullRequest.pullrequest_from_datestring(json["closed_at"], json["title"], json["html_url"])
@@ -77,95 +81,52 @@ func process_pr_data(data):
 	var mon_str = PullRequest.format_two_digit(str(latest_month))
 	var day_str = PullRequest.format_two_digit(str(latest_day))
 	
-	var game_title = ""
-	match Settings.read("game"):
-		"dda":
-			game_title = "Cataclysm: Dark Days Ahead"
-		"bn":
-			game_title = "Cataclysm: Bright Nights"
-		"eod":
-			game_title = "Cataclysm: Era of Decay"
-		"tish":
-			game_title = "Cataclysm: There Is Still Hope"
-		"tlg":
-			game_title = "Cataclysm: The Last Generation"
-		_:
-			game_title = "{BUG!!}"
+	var game_title := GameRegistry.get_title(Settings.read("game"))
 	
 	var r_val = tr("str_changelog_intro") % [Settings.read("num_prs_to_request"), game_title]
 	
 	for pr in pr_array:
 		var switch_date = false
-		switch_date = switch_date or (pr.get_year() < latest_year)
-		switch_date = switch_date or (pr.get_month() < latest_month)
-		switch_date = switch_date or (pr.get_day() < latest_day)
+		switch_date = switch_date or (pr.year < latest_year)
+		switch_date = switch_date or (pr.month < latest_month)
+		switch_date = switch_date or (pr.day < latest_day)
 		if switch_date:
-			latest_year = pr.get_year()
-			latest_month = pr.get_month()
-			latest_day = pr.get_day()
+			latest_year = pr.year
+			latest_month = pr.month
+			latest_day = pr.day
 			mon_str = PullRequest.format_two_digit(latest_month)
 			day_str = PullRequest.format_two_digit(latest_day)
 			r_val = r_val + "\n[b]" + str(latest_year) + "-" + mon_str+ "-" + day_str + "[/b]\n"
-		r_val = r_val + "[indent]• [url=" + pr.get_link() + "]" + pr.get_summary() + "[/url][/indent]\n"
+		r_val = r_val + "[indent]• [url=" + pr.link + "]" + pr.summary + "[/url][/indent]\n"
 	return r_val
 
 
-func _on_ChangelogText_meta_clicked(meta):
+func _on_ChangelogText_meta_clicked(meta: Variant) -> void:
 	OS.shell_open(str(meta))
 
 
 class PullRequest:
-	var timestring : get = get_timestring, set = set_timestring
-	var year : get = get_year
-	var month : get = get_month
-	var day : get = get_day
-	var hour : get = get_hour
-	var minute : get = get_minute
-	var second : get = get_second
-	var summary : get = get_summary
-	var link : get = get_link
+	var timestring: String = ""
+	var year: int
+	var month: int
+	var day: int
+	var hour: int
+	var minute: int
+	var second: int
+	var summary: String
+	var link: String
 	
-	func get_year():
-		return year
-	
-	func get_month():
-		return month
-	
-	func get_day():
-		return day
-	
-	func get_hour():
-		return hour
-		
-	func get_minute():
-		return minute
-	
-	func get_second():
-		return second
-		
-	func get_summary():
-		return summary
-		
-	func get_link():
-		return link
-	
-	func set_timestring(t):
-		timestring = t
-	
-	func get_timestring():
-		return timestring
-	
-	static func format_two_digit(time):
+	static func format_two_digit(time: Variant) -> String:
 		if (str(time).length() == 1):
 			return "0" + str(time)
 		return str(time)
 	
 	# Sorts dates in descending order (that is, the latest date comes first).
-	static func compare_to(a, b):
+	static func compare_to(a: PullRequest, b: PullRequest) -> bool:
 		return a.timestring > b.timestring
 	
 	# We just need to get Github API strings. Nothing else.
-	static func pullrequest_from_datestring(date, sum, lnk):
+	static func pullrequest_from_datestring(date: String, sum: String, lnk: String) -> PullRequest:
 		var r_val = PullRequest.new(
 			int(date.substr(0,4)),
 			int(date.substr(5,2)),
@@ -175,10 +136,10 @@ class PullRequest:
 			int(date.substr(16,2)),
 			sum,
 			lnk)
-		r_val.set_timestring(date)
+		r_val.timestring = date
 		return r_val
 
-	func _init(y, mo, d, h, mi, s, sum, url):
+	func _init(y: int, mo: int, d: int, h: int, mi: int, s: int, sum: String, url: String) -> void:
 		year = y
 		month = mo
 		day = d
@@ -188,5 +149,5 @@ class PullRequest:
 		summary = sum
 		link = url
 
-	func print_date():
+	func print_date() -> String:
 		return str(year) + "-" + str(month) + "-" + str(day)

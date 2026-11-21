@@ -1,5 +1,10 @@
 extends VBoxContainer
+## UI controller for the Fonts tab: previewing bundled fonts, assigning typefaces to UI/map/overmap,
+## and editing font size and blending options.
 
+
+## Emitted when required game config files (fonts.json or options.json) do not exist yet.
+signal tab_unavailable
 
 const _PREVIEW_TEXT_EN := [
 	"A quick brown fox jumps over the lazy dog.",
@@ -103,19 +108,18 @@ func _load_font_options() -> void:
 	%FontBlendingSwitch.button_pressed = (%FontManager.get_game_option("FONT_BLENDING").to_lower() == "true")
 
 
-func _on_Tabs_tab_changed(tab: int) -> void:
-	
-	if tab != 3:
-		return
+## Called by the main shell when the Fonts tab becomes active; emits [signal tab_unavailable]
+## if the active game has not yet generated fonts.json or options.json.
+func on_tab_activated() -> void:
 	
 	if not %FontManager.font_config_file_exists():
 		Status.post(tr("msg_no_font_config_file"), Enums.MSG_WARN)
-		%TabbedLayout.current_tab = 0
+		tab_unavailable.emit()
 		return
 	
 	if not %FontManager.options_file_exists():
 		Status.post(tr("msg_no_game_options_file"), Enums.MSG_WARN)
-		%TabbedLayout.current_tab = 0
+		tab_unavailable.emit()
 		return
 		
 	%FontManager.load_available_fonts()

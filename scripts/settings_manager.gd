@@ -1,12 +1,17 @@
 extends Node
+## Autoload singleton managing persistent launcher settings (catapult_settings.json)
+## with fallback defaults loaded from res://data/default_settings.json.
 
+
+## Emitted whenever a setting's value changes.
+signal setting_changed(key: String, value: Variant)
 
 const _SETTINGS_FILENAME = "catapult_settings.json"
 const _DEFAULTS_FILENAME = "res://data/default_settings.json"
 
-var _defaults := {}
-var _settings_file = ""
-var _current = {}
+var _defaults: Dictionary = {}
+var _settings_file: String = ""
+var _current: Dictionary = {}
 
 
 func _exit_tree() -> void:
@@ -58,7 +63,8 @@ func _write_to_file(data: Dictionary, path: String) -> void:
 	f.close()
 
 
-func read(setting_name: String):
+## Returns the value of a setting, lazily loading settings and falling back to defaults if absent.
+func read(setting_name: String) -> Variant:
 	
 	if len(_current) == 0:
 		_load()
@@ -77,6 +83,17 @@ func read(setting_name: String):
 	return _current[setting_name]
 
 
-func store(setting_name: String, setting_value) -> void:
+## Stores a setting value and emits [signal setting_changed] if it changed.
+func store(setting_name: String, setting_value: Variant) -> void:
+	
+	if _current.is_empty():
+		_load()
+	
+	var changed := not _current.has(setting_name)
+	if not changed:
+		var prev: Variant = _current[setting_name]
+		changed = typeof(prev) != typeof(setting_value) or prev != setting_value
 	
 	_current[setting_name] = setting_value
+	if changed:
+		setting_changed.emit(setting_name, setting_value)

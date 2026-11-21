@@ -1,5 +1,8 @@
 extends Window
+## Safety confirmation dialog shown before deleting or overwriting a game installation that
+## contains misplaced userdata folders.
 
+## Emitted when the user confirms or cancels deletion.
 signal response_given(delete_confirmed: bool)
 
 
@@ -19,6 +22,7 @@ func _ready() -> void:
 			self.size = %MainPanel.size
 		)
 
+## Populates the warning list with the detected userdata folder paths and opens the dialog.
 func open(folders_list: Array[String]) -> void:
 	
 	%SafetyField.clear()
@@ -36,6 +40,7 @@ func open(folders_list: Array[String]) -> void:
 	popup_centered()
 
 
+## Hides the dialog and emits [signal response_given] with the user's decision.
 func close(delete_confirmed: bool) -> void:
 	hide()
 	response_given.emit(delete_confirmed)

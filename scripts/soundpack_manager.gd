@@ -1,4 +1,6 @@
+class_name SoundpackManager
 extends Node
+## Manages catalog loading, discovery, installation, and removal of soundpacks.
 
 
 signal soundpack_installation_started
@@ -9,6 +11,7 @@ signal soundpack_deletion_finished
 
 const _SOUNDPACKS_PATH = "res://data/soundpacks.json"
 
+## Catalog of downloadable soundpacks loaded from res://data/soundpacks.json.
 var soundpacks: Array = []
 
 
@@ -16,6 +19,7 @@ func _ready() -> void:
 	load_soundpacks()
 
 
+## Reloads the downloadable soundpack catalog from disk.
 func load_soundpacks() -> void:
 	var loaded = Helpers.load_json_file(_SOUNDPACKS_PATH)
 	if loaded is Array:
@@ -24,11 +28,11 @@ func load_soundpacks() -> void:
 		soundpacks = []
 
 
-
-func parse_sound_dir(sound_dir: String) -> Array:
+## Scans immediate subdirectories of a sound folder and parses each soundpack.txt metadata file.
+static func parse_sound_dir(sound_dir: String) -> Array:
 	
 	if not DirAccess.dir_exists_absolute(sound_dir):
-		Status.post(tr("msg_no_sound_dir") % sound_dir, Enums.MSG_ERROR)
+		Status.post(TranslationServer.translate("msg_no_sound_dir") % sound_dir, Enums.MSG_ERROR)
 		return []
 	
 	var result = []
@@ -55,6 +59,7 @@ func parse_sound_dir(sound_dir: String) -> Array:
 	return result
 
 
+## Returns metadata dictionaries for installed user soundpacks, optionally including stock packs.
 func get_installed(include_stock = false) -> Array:
 	
 	var packs = []
@@ -73,20 +78,23 @@ func get_installed(include_stock = false) -> Array:
 	return packs
 
 
+## Deletes the installed user soundpack matching pack_name.
 func delete_pack(pack_name: String) -> void:
 	
 	for pack in get_installed():
 		if pack["name"] == pack_name:
-			emit_signal("soundpack_deletion_started")
+			soundpack_deletion_started.emit()
 			Status.post(tr("msg_deleting_sound") % pack["location"])
 			FS.rm_dir(pack["location"])
 			await FS.rm_dir_done
-			emit_signal("soundpack_deletion_finished")
+			soundpack_deletion_finished.emit()
 			return
 			
 	Status.post(tr("msg_soundpack_not_found") % pack_name, Enums.MSG_ERROR)
 
 
+## Installs (or reinstalls) a soundpack by catalog index, either downloading its archive
+## or extracting a manually downloaded local file if from_file is provided.
 func install_pack(soundpack_index: int, from_file = null, reinstall = false, keep_archive = false) -> void:
 	
 	var pack = soundpacks[soundpack_index]
@@ -94,7 +102,7 @@ func install_pack(soundpack_index: int, from_file = null, reinstall = false, kee
 	var tmp_dir = Paths.tmp_dir.path_join(pack["name"])
 	var archive = ""
 	
-	emit_signal("soundpack_installation_started")
+	soundpack_installation_started.emit()
 	
 	if reinstall:
 		Status.post(tr("msg_reinstalling_sound") % pack["name"])
@@ -110,7 +118,7 @@ func install_pack(soundpack_index: int, from_file = null, reinstall = false, kee
 			await Downloader.download_finished
 		if not FileAccess.file_exists(archive):
 			Status.post(tr("msg_sound_download_failed"), Enums.MSG_ERROR)
-			emit_signal("soundpack_installation_finished")
+			soundpack_installation_finished.emit()
 			return
 		
 	if reinstall:
@@ -127,4 +135,4 @@ func install_pack(soundpack_index: int, from_file = null, reinstall = false, kee
 	await FS.rm_dir_done
 	
 	Status.post(tr("msg_sound_installed"))
-	emit_signal("soundpack_installation_finished")
+	soundpack_installation_finished.emit()

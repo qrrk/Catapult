@@ -1,5 +1,13 @@
 extends VBoxContainer
+## UI controller for the Mods tab: browsing installed/repository mods, installing, deleting,
+## and downloading the Kenan modpack.
 
+
+signal operation_started
+signal operation_finished
+
+## Controls to lock during mod installation, deletion, or modpack download operations.
+@export var lockable_controls: Array[Control] = []
 
 var _installed_mods_view := []
 var _available_mods_view := []
@@ -9,6 +17,25 @@ var _mods_to_install := []
 var _ids_to_delete := []
 var _ids_to_install := []
 var _ids_to_reinstall := []
+
+
+## Refreshes ModManager's cached installed and repository mod lists (called on game switch).
+func refresh_data() -> void:
+	
+	%ModManager.refresh_installed()
+	%ModManager.refresh_available()
+
+
+func _on_operation_started() -> void:
+	
+	ControlLock.lock(lockable_controls)
+	operation_started.emit()
+
+
+func _on_operation_finished() -> void:
+	
+	ControlLock.unlock(lockable_controls)
+	operation_finished.emit()
 
 
 func _populate_list_with_mods(mods_array: Array, list: ItemList) -> void:
@@ -21,6 +48,7 @@ func _populate_list_with_mods(mods_array: Array, list: ItemList) -> void:
 			list.set_item_tooltip(list.get_item_count() - 1, tooltip)
 
 
+## Rebuilds and sorts the installed mods list view according to current visibility filters.
 func reload_installed() -> void:
 	
 	var hidden_mods = 0
@@ -75,6 +103,7 @@ func reload_installed() -> void:
 			# TODO: Get color from the theme instead.
 
 
+## Rebuilds and sorts the available repository mods list view according to current visibility filters.
 func reload_available() -> void:
 	
 	var include_installed = Settings.read("show_installed_mods_in_available")
@@ -183,10 +212,8 @@ func _on_ShowInstalled_toggled(button_pressed: bool) -> void:
 	reload_available()
 
 
-func _on_Tabs_tab_changed(tab: int) -> void:
-	
-	if tab != 1:
-		return
+## Called by the main shell when the Mods tab becomes active.
+func on_tab_activated() -> void:
 	
 	%ShowStockModsSwitch.button_pressed = Settings.read("show_stock_mods")
 	%ShowInstalledModsSwitch.button_pressed = Settings.read("show_installed_mods_in_available")

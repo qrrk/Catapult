@@ -1,0 +1,241 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/game_ui.gd" id="1_dpsjs"]
+[ext_resource type="Script" path="res://scripts/release_manager.gd" id="release_mgr"]
+[ext_resource type="Script" path="res://scripts/release_installer.gd" id="release_inst"]
+[ext_resource type="Texture2D" path="res://icons/buttons/tex_refresh.tres" id="2_804sm"]
+[ext_resource type="Texture2D" path="res://icons/buttons/tex_download.tres" id="3_52ijp"]
+[ext_resource type="PackedScene" path="res://scenes/InlineIconButton.tscn" id="4_17s4e"]
+[ext_resource type="Texture2D" path="res://icons/tex_folder_game.tres" id="5_v2qrd"]
+[ext_resource type="Texture2D" path="res://icons/tex_folder_user.tres" id="6_xdphx"]
+[ext_resource type="Texture2D" path="res://icons/buttons/tex_play.tres" id="7_5nfln"]
+[ext_resource type="Texture2D" path="res://icons/buttons/tex_resume.tres" id="8_cgdid"]
+[ext_resource type="Script" path="res://scripts/item_list.gd" id="9_1cj8f"]
+[ext_resource type="Texture2D" path="res://icons/buttons/tex_activate.tres" id="10_tf220"]
+[ext_resource type="Texture2D" path="res://icons/buttons/tex_delete.tres" id="11_pnvt3"]
+[ext_resource type="PackedScene" path="res://scenes/ChangelogDialog.tscn" id="12_8fhug"]
+[ext_resource type="PackedScene" path="res://scenes/UserDataDeletionDialog.tscn" id="13_3hfqd"]
+
+[sub_resource type="StyleBoxEmpty" id="2"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_nlnc6"]
+
+[node name="GameArea" type="VBoxContainer" unique_id=290305386 node_paths=PackedStringArray("lock_on_fetch", "lock_on_release_ops")]
+script = ExtResource("1_dpsjs")
+lock_on_fetch = [NodePath("ChannelSelectGroup/ChannelSwitchesGroup/StableSwitch"), NodePath("ChannelSelectGroup/ChannelSwitchesGroup/ExperimentalSwitch"), NodePath("ReleaseSelectGroup/ReleasesList"), NodePath("ReleaseSelectGroup/RefreshReleasesBtn"), NodePath("InstallReleaseBtn"), NodePath("UpdateCurrentSwitch")]
+lock_on_release_ops = [NodePath("ChannelSelectGroup/ChannelSwitchesGroup/StableSwitch"), NodePath("ChannelSelectGroup/ChannelSwitchesGroup/ExperimentalSwitch"), NodePath("ReleaseSelectGroup/ReleasesList"), NodePath("ReleaseSelectGroup/RefreshReleasesBtn"), NodePath("InstallReleaseBtn"), NodePath("UpdateCurrentSwitch"), NodePath("ActiveInstallGroup/LaunchGameBox/LaunchGameBtn"), NodePath("ActiveInstallGroup/LaunchGameBox/QuickLoadBtn"), NodePath("GameInstallsGroup/GameInstallsMgmtGroup/GameInstallsList"), NodePath("GameInstallsGroup/GameInstallsMgmtGroup/GameInstallActionsBox/MakeInstallActiveBtn"), NodePath("GameInstallsGroup/GameInstallsMgmtGroup/GameInstallActionsBox/DeleteGameInstallBtn")]
+
+[node name="ChannelSelectGroup" type="VBoxContainer" parent="." unique_id=1174608383]
+layout_mode = 2
+
+[node name="ChannelTitleBox" type="HBoxContainer" parent="ChannelSelectGroup" unique_id=564679603]
+layout_mode = 2
+
+[node name="ChannelLabel" type="Label" parent="ChannelSelectGroup/ChannelTitleBox" unique_id=556617793]
+layout_mode = 2
+text = "lbl_channel"
+
+[node name="ChangelogLinkLabel" type="RichTextLabel" parent="ChannelSelectGroup/ChannelTitleBox" unique_id=1008745106]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "tooltip_changelog"
+theme_override_styles/normal = SubResource("2")
+bbcode_enabled = true
+text = "lbl_changelog"
+scroll_active = false
+
+[node name="ChannelSwitchesGroup" type="HBoxContainer" parent="ChannelSelectGroup" unique_id=1335302617]
+layout_mode = 2
+
+[node name="StableSwitch" type="CheckBox" parent="ChannelSelectGroup/ChannelSwitchesGroup" unique_id=31254995]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "tooltip_stable"
+button_group = SubResource("ButtonGroup_nlnc6")
+text = "rbtn_stable"
+
+[node name="ExperimentalSwitch" type="CheckBox" parent="ChannelSelectGroup/ChannelSwitchesGroup" unique_id=131726776]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "tooltip_experimental"
+button_group = SubResource("ButtonGroup_nlnc6")
+text = "rbtn_experimental"
+
+[node name="ReleaseSelectGroup" type="HBoxContainer" parent="." unique_id=1476265493]
+layout_mode = 2
+
+[node name="ReleasesLabel" type="Label" parent="ReleaseSelectGroup" unique_id=1118820989]
+layout_mode = 2
+text = "lbl_builds"
+
+[node name="ReleasesList" type="OptionButton" parent="ReleaseSelectGroup" unique_id=886086064]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "tooltip_builds"
+clip_text = true
+
+[node name="RefreshReleasesBtn" type="Button" parent="ReleaseSelectGroup" unique_id=656702003]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "tooltip_refresh"
+text = "btn_refresh"
+icon = ExtResource("2_804sm")
+
+[node name="InstallReleaseBtn" type="Button" parent="." unique_id=1776255929]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "tooltip_install"
+text = "btn_install"
+icon = ExtResource("3_52ijp")
+
+[node name="UpdateCurrentSwitch" type="CheckBox" parent="." unique_id=1218191551]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "tooltip_update"
+text = "cb_update_active"
+
+[node name="HSeparator" type="HSeparator" parent="." unique_id=318550366]
+layout_mode = 2
+
+[node name="ActiveInstallGroup" type="VBoxContainer" parent="." unique_id=1808504430]
+layout_mode = 2
+
+[node name="ActiveInstallLabel" type="Label" parent="ActiveInstallGroup" unique_id=530214591]
+layout_mode = 2
+text = "lbl_active_install"
+
+[node name="ActiveInstallNameBox" type="HBoxContainer" parent="ActiveInstallGroup" unique_id=1799574466]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 4
+
+[node name="ActiveInstallNameLabel" type="Label" parent="ActiveInstallGroup/ActiveInstallNameBox" unique_id=335923734]
+unique_name_in_owner = true
+layout_mode = 2
+text = "lbl_build_none"
+
+[node name="GameDirBtn" parent="ActiveInstallGroup/ActiveInstallNameBox" unique_id=1226808202 instance=ExtResource("4_17s4e")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+tooltip_text = "tooltip_game_dir"
+texture_normal = ExtResource("5_v2qrd")
+
+[node name="UserDirBtn" parent="ActiveInstallGroup/ActiveInstallNameBox" unique_id=320321661 instance=ExtResource("4_17s4e")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+tooltip_text = "tooltip_user_dir"
+texture_normal = ExtResource("6_xdphx")
+
+[node name="LaunchGameBox" type="HBoxContainer" parent="ActiveInstallGroup" unique_id=201330262]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="LaunchGameBtn" type="Button" parent="ActiveInstallGroup/LaunchGameBox" unique_id=896121665]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "tooltip_play"
+text = "btn_play"
+icon = ExtResource("7_5nfln")
+
+[node name="QuickLoadBtn" type="Button" parent="ActiveInstallGroup/LaunchGameBox" unique_id=839086089]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "tooltip_resume"
+text = "btn_resume"
+icon = ExtResource("8_cgdid")
+
+[node name="GameInstallsGroup" type="VBoxContainer" parent="." unique_id=1679105239]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="GameInstallsGroup" unique_id=122763308]
+layout_mode = 2
+
+[node name="GameInstallsLabel" type="Label" parent="GameInstallsGroup" unique_id=2090301243]
+layout_mode = 2
+text = "lbl_installs"
+
+[node name="GameInstallsMgmtGroup" type="HBoxContainer" parent="GameInstallsGroup" unique_id=710218868]
+layout_mode = 2
+
+[node name="GameInstallsList" type="ItemList" parent="GameInstallsGroup/GameInstallsMgmtGroup" unique_id=1746976822]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 6
+item_0/text = "Item 0"
+item_1/text = "Item 1"
+item_2/text = "Item 2"
+item_3/text = "Item 3"
+item_4/text = "Item 4"
+item_5/text = "Item 5"
+script = ExtResource("9_1cj8f")
+deselect_on_disable = true
+
+[node name="GameInstallActionsBox" type="VBoxContainer" parent="GameInstallsGroup/GameInstallsMgmtGroup" unique_id=1656300452]
+layout_mode = 2
+
+[node name="MakeInstallActiveBtn" type="Button" parent="GameInstallsGroup/GameInstallsMgmtGroup/GameInstallActionsBox" unique_id=1559368420]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "tooltip_activate"
+disabled = true
+text = "btn_activate"
+icon = ExtResource("10_tf220")
+
+[node name="DeleteGameInstallBtn" type="Button" parent="GameInstallsGroup/GameInstallsMgmtGroup/GameInstallActionsBox" unique_id=330239878]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "tooltip_delete"
+disabled = true
+text = "btn_delete"
+icon = ExtResource("11_pnvt3")
+
+[node name="ChangelogDialog" parent="." unique_id=834789439 instance=ExtResource("12_8fhug")]
+unique_name_in_owner = true
+position = Vector2i(0, 36)
+
+[node name="UserDataDeletionDlg" parent="." unique_id=519582338 instance=ExtResource("13_3hfqd")]
+unique_name_in_owner = true
+visible = false
+
+[node name="ReleaseManager" type="Node" parent="." unique_id=603811981]
+unique_name_in_owner = true
+script = ExtResource("release_mgr")
+
+[node name="ReleaseInstaller" type="Node" parent="." unique_id=511199511]
+unique_name_in_owner = true
+script = ExtResource("release_inst")
+
+[connection signal="meta_clicked" from="ChannelSelectGroup/ChannelTitleBox/ChangelogLinkLabel" to="." method="_on_ChangelogLink_meta_clicked"]
+[connection signal="toggled" from="ChannelSelectGroup/ChannelSwitchesGroup/StableSwitch" to="." method="_on_RBtnStable_toggled"]
+[connection signal="item_selected" from="ReleaseSelectGroup/ReleasesList" to="." method="_on_BuildsList_item_selected"]
+[connection signal="pressed" from="ReleaseSelectGroup/RefreshReleasesBtn" to="." method="_on_BtnRefresh_pressed"]
+[connection signal="pressed" from="InstallReleaseBtn" to="." method="_on_BtnInstall_pressed"]
+[connection signal="toggled" from="UpdateCurrentSwitch" to="." method="_on_cbUpdateCurrent_toggled"]
+[connection signal="pressed" from="ActiveInstallGroup/ActiveInstallNameBox/GameDirBtn" to="." method="_on_GameDir_pressed"]
+[connection signal="pressed" from="ActiveInstallGroup/ActiveInstallNameBox/UserDirBtn" to="." method="_on_UserDir_pressed"]
+[connection signal="pressed" from="ActiveInstallGroup/LaunchGameBox/LaunchGameBtn" to="." method="_on_BtnPlay_pressed"]
+[connection signal="pressed" from="ActiveInstallGroup/LaunchGameBox/QuickLoadBtn" to="." method="_on_BtnResume_pressed"]
+[connection signal="item_activated" from="GameInstallsGroup/GameInstallsMgmtGroup/GameInstallsList" to="." method="_on_InstallsList_item_activated"]
+[connection signal="item_selected" from="GameInstallsGroup/GameInstallsMgmtGroup/GameInstallsList" to="." method="_on_InstallsList_item_selected"]
+[connection signal="pressed" from="GameInstallsGroup/GameInstallsMgmtGroup/GameInstallActionsBox/MakeInstallActiveBtn" to="." method="_on_btnMakeActive_pressed"]
+[connection signal="pressed" from="GameInstallsGroup/GameInstallsMgmtGroup/GameInstallActionsBox/DeleteGameInstallBtn" to="." method="_on_btnDelete_pressed"]
+[connection signal="done_fetching_releases" from="ReleaseManager" to="." method="_on_Releases_done_fetching_releases"]
+[connection signal="started_fetching_releases" from="ReleaseManager" to="." method="_on_Releases_started_fetching_releases"]
+[connection signal="operation_finished" from="ReleaseInstaller" to="." method="_on_ReleaseInstaller_operation_finished"]
+[connection signal="operation_started" from="ReleaseInstaller" to="." method="_on_ReleaseInstaller_operation_started"]

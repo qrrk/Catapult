@@ -1,4 +1,5 @@
 extends Node
+## Autoload singleton for HTTP file downloads with proxy support and periodic progress logging.
 
 
 signal download_started
@@ -23,11 +24,15 @@ func _enter_tree() -> void:
 	self.add_child(_http)
 	_http.request_completed.connect(_on_HTTPRequest_request_completed)
 
+## Configures HTTP/HTTPS proxy settings on the internal HTTPRequest (pass empty host and -1 to disable).
 func set_proxy(host: String, port: int) -> void:
 	
 	_http.set_http_proxy(host, port)
 	_http.set_https_proxy(host, port)
 
+
+## Downloads a file to the target directory, posting periodic progress updates and emitting
+## [signal download_started] and [signal download_finished].
 func download_file(url: String, target_dir: String, target_filename: String) -> void:
 	
 	if Settings.read("proxy_option") == "on" or Settings.read("proxy_option") == "download":
@@ -42,11 +47,11 @@ func download_file(url: String, target_dir: String, target_filename: String) -> 
 		var err := DirAccess.make_dir_recursive_absolute(target_dir)
 		if err:
 			Status.post(tr("msg_download_failed") % target_filename, Enums.MSG_ERROR)
-			emit_signal("download_finished")
+			download_finished.emit()
 			return
 	
 	Status.post(tr("msg_downloading_file") % target_filename)
-	emit_signal("download_started")
+	download_started.emit()
 	_current_filename = target_filename
 	_current_file_path = target_dir.path_join(target_filename)
 	_http.download_file = target_dir + "/" + target_filename
@@ -111,4 +116,4 @@ func _on_HTTPRequest_request_completed(_result: int, _response_code: int,
 	else:
 		Status.post(tr("msg_download_failed") % _current_filename, Enums.MSG_ERROR)
 	
-	emit_signal("download_finished")
+	download_finished.emit()

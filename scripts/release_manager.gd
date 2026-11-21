@@ -1,4 +1,5 @@
 extends Node
+## Fetches, caches, and merges stable and experimental release metadata for all registered games.
 
 
 signal started_fetching_releases
@@ -16,21 +17,17 @@ var _stable_releases: Dictionary = {}
 var _builtin_stables: Dictionary = {}
 
 var _http_stable: HTTPRequest
+var _http_experimental: HTTPRequest
+var _active_experimental_key: String = ""
 var _checking_external_stables: bool = false
 
+## Map of release keys (e.g. "dda-stable", "bn-experimental") to arrays of release dictionaries.
+var releases: Dictionary = {}
 
-var releases = {
-	"dda-stable": [],
-	"dda-experimental": [],
-	"bn-stable": [],
-	"bn-experimental": [],
-	"eod-stable": [],
-	"eod-experimental": [],
-	"tish-stable": [],
-	"tish-experimental": [],
-	"tlg-stable": [],
-	"tlg-experimental": [],
-}
+
+func _init() -> void:
+	for key in GameRegistry.get_all_release_keys():
+		releases[key] = []
 
 
 func _ensure_http_stable() -> void:
@@ -40,19 +37,27 @@ func _ensure_http_stable() -> void:
 		_http_stable.request_completed.connect(_on_request_completed_stable)
 
 
+func _ensure_http_experimental() -> void:
+	if _http_experimental == null:
+		_http_experimental = HTTPRequest.new()
+		add_child(_http_experimental)
+		_http_experimental.request_completed.connect(_on_request_completed_experimental)
+
+
 func _ready() -> void:
 	_ensure_http_stable()
-	
-	_load_sources()
+	_ensure_http_experimental()
 	
 	var p = OS.get_name()
 	match p:
-		"X11", "Linux":
+		"Linux":
 			_platform = "linux"
 		"Windows":
 			_platform = "win"
 		_:
 			Status.post(tr("msg_unsupported_platform") % p, Enums.MSG_ERROR)
+	
+	_load_sources()
 	
 	if Settings.read("check_external_stable_release_source"):
 		check_external_stable_releases(true)
@@ -85,10 +90,20 @@ func _load_sources() -> void:
 
 
 func _update_stable_releases_arrays() -> void:
-	releases["dda-stable"] = _stable_releases.get("dda-stable", {}).get(_platform, [])
-	releases["bn-stable"] = _stable_releases.get("bn-stable", {}).get(_platform, [])
+	for game_id in GameRegistry.get_ids():
+		var key := game_id + "-stable"
+		releases[key] = _stable_releases.get(key, {}).get(_platform, [])
 
 
+## Returns true if the given game has at least one stable release available for the current platform.
+func has_stable_releases(game_id: String) -> bool:
+	if _stable_releases.is_empty():
+		_load_sources()
+	return not releases.get(game_id + "-stable", []).is_empty()
+
+
+## Merges two stable-release dictionaries by channel and platform, deduplicating by release name
+## with entries from higher_priority taking precedence.
 func _merge_stable_releases(higher_priority: Dictionary, lower_priority: Dictionary) -> Dictionary:
 	var result := {}
 	
@@ -166,6 +181,8 @@ func _count_stable_releases(stables: Dictionary) -> int:
 	return total
 
 
+## Fetches external stable release info from the configured URL or local file and merges it into
+## the local cache. When silent is true, suppresses [signal started_fetching_releases].
 func check_external_stable_releases(silent: bool = false) -> void:
 	if _checking_external_stables:
 		return
@@ -182,7 +199,7 @@ func check_external_stable_releases(silent: bool = false) -> void:
 	if source_address.begins_with("http://") or source_address.begins_with("https://"):
 		_checking_external_stables = true
 		if not silent:
-			emit_signal("started_fetching_releases")
+			started_fetching_releases.emit()
 		_ensure_http_stable()
 		_update_proxy(_http_stable)
 		var err := _http_stable.request(source_address)
@@ -190,7 +207,7 @@ func check_external_stable_releases(silent: bool = false) -> void:
 			_checking_external_stables = false
 			Status.post(tr("msg_check_stables_failed"), Enums.MSG_WARN)
 			if not silent:
-				emit_signal("done_fetching_releases")
+				done_fetching_releases.emit()
 		return
 	
 	# Local file path
@@ -218,14 +235,14 @@ func _on_request_completed_stable(result: int, response_code: int,
 	
 	if result != HTTPRequest.RESULT_SUCCESS or response_code < 200 or response_code >= 300:
 		Status.post(tr("msg_check_stables_failed"), Enums.MSG_WARN)
-		emit_signal("done_fetching_releases")
+		done_fetching_releases.emit()
 		return
 	
 	var json_conv := JSON.new()
 	var parse_err := json_conv.parse(body.get_string_from_utf8())
 	if parse_err != OK or not (json_conv.data is Dictionary):
 		Status.post(tr("msg_check_stables_failed"), Enums.MSG_WARN)
-		emit_signal("done_fetching_releases")
+		done_fetching_releases.emit()
 		return
 	
 	_process_and_merge_stables(json_conv.data, false)
@@ -244,7 +261,7 @@ func _process_and_merge_stables(incoming: Dictionary, silent: bool = false) -> v
 	else:
 		Status.post(tr("msg_no_new_stables"), Enums.MSG_DEBUG)
 	
-	emit_signal("done_fetching_releases")
+	done_fetching_releases.emit()
 
 
 func _get_asset_filter(release_type: String) -> Dictionary:
@@ -271,80 +288,43 @@ func _update_proxy(http: HTTPRequest) -> void:
 		http.set_http_proxy("", -1)
 		http.set_https_proxy("", -1)
 
-func _request_releases(http: HTTPRequest, release: String) -> void:
+func _request_experimental_releases(release_key: String) -> void:
 	if _release_sources.is_empty():
 		_load_sources()
-	emit_signal("started_fetching_releases")
-	_update_proxy(http)
-	var urls = _release_sources.get("urls", {})
-	http.request(urls[release] + _get_query_string())
+	var urls: Dictionary = _release_sources.get("urls", {})
+	if not release_key in urls:
+		Status.post(tr("msg_invalid_fetch_func_param") % release_key, Enums.MSG_ERROR)
+		return
+	
+	_ensure_http_experimental()
+	var was_active := not _active_experimental_key.is_empty()
+	_http_experimental.cancel_request()
+	_active_experimental_key = release_key
+	if not was_active:
+		started_fetching_releases.emit()
+	_update_proxy(_http_experimental)
+	var err := _http_experimental.request(urls[release_key] + _get_query_string())
+	if err != OK:
+		_active_experimental_key = ""
+		Status.post(tr("msg_releases_request_failed"), Enums.MSG_WARN)
+		done_fetching_releases.emit()
 
 
-func _on_request_completed_dda(result: int, response_code: int,
+func _on_request_completed_experimental(result: int, response_code: int,
 		headers: PackedStringArray, body: PackedByteArray) -> void:
+	
+	var release_key := _active_experimental_key
+	_active_experimental_key = ""
 	
 	Status.post(tr("msg_http_request_info") %
 			[result, response_code, headers], Enums.MSG_DEBUG)
 	
-	if result:
+	if result or release_key.is_empty():
 		Status.post(tr("msg_releases_request_failed"), Enums.MSG_WARN)
 	else:
-		_parse_builds(body, releases["dda-experimental"], _get_asset_filter("dda-experimental"))
+		_parse_builds(body, releases[release_key], _get_asset_filter(release_key))
 	
-	emit_signal("done_fetching_releases")
-
-
-func _on_request_completed_bn(result: int, response_code: int,
-		headers: PackedStringArray, body: PackedByteArray) -> void:
-	
-	Status.post(tr("msg_http_request_info") %
-			[result, response_code, headers], Enums.MSG_DEBUG)
-	
-	if result:
-		Status.post(tr("msg_releases_request_failed"), Enums.MSG_WARN)
-	else:
-		_parse_builds(body, releases["bn-experimental"], _get_asset_filter("bn-experimental"))
-	
-	emit_signal("done_fetching_releases")
-
-func _on_request_completed_eod(result: int, response_code: int,
-		headers: PackedStringArray, body: PackedByteArray) -> void:
-	
-	Status.post(tr("msg_http_request_info") %
-			[result, response_code, headers], Enums.MSG_DEBUG)
-	
-	if result:
-		Status.post(tr("msg_releases_request_failed"), Enums.MSG_WARN)
-	else:
-		_parse_builds(body, releases["eod-experimental"], _get_asset_filter("eod-experimental"))
-	
-	emit_signal("done_fetching_releases")
-
-func _on_request_completed_tish(result: int, response_code: int,
-		headers: PackedStringArray, body: PackedByteArray) -> void:
-	
-	Status.post(tr("msg_http_request_info") %
-			[result, response_code, headers], Enums.MSG_DEBUG)
-	
-	if result:
-		Status.post(tr("msg_releases_request_failed"), Enums.MSG_WARN)
-	else:
-		_parse_builds(body, releases["tish-experimental"], _get_asset_filter("tish-experimental"))
-	
-	emit_signal("done_fetching_releases")
-
-func _on_request_completed_tlg(result: int, response_code: int,
-		headers: PackedStringArray, body: PackedByteArray) -> void:
-	
-	Status.post(tr("msg_http_request_info") %
-			[result, response_code, headers], Enums.MSG_DEBUG)
-	
-	if result:
-		Status.post(tr("msg_releases_request_failed"), Enums.MSG_WARN)
-	else:
-		_parse_builds(body, releases["tlg-experimental"], _get_asset_filter("tlg-experimental"))
-	
-	emit_signal("done_fetching_releases")
+	done_fetching_releases.emit()
 
 func _parse_builds(data: PackedByteArray, write_to: Array, filter: Dictionary) -> void:
 	
@@ -380,31 +360,29 @@ func _parse_builds(data: PackedByteArray, write_to: Array, filter: Dictionary) -
 		Status.post(tr("msg_got_n_releases") % len(tmp_arr))
 
 
+## Refreshes the release list for a key such as "dda-stable" or "bn-experimental".
 func fetch(release_key: String) -> void:
 	if _stable_releases.is_empty():
 		_load_sources()
 	
-	match release_key:
-		"dda-stable", "bn-stable":
-			if Settings.read("check_external_stable_release_source"):
-				check_external_stable_releases(false)
-			else:
-				_update_stable_releases_arrays()
-				emit_signal("done_fetching_releases")
-		"dda-experimental":
-			Status.post(tr("msg_fetching_releases_dda"))
-			_request_releases($HTTPRequest_DDA, "dda-experimental")
-		"bn-experimental":
-			Status.post(tr("msg_fetching_releases_bn"))
-			_request_releases($HTTPRequest_BN, "bn-experimental")
-		"eod-experimental":
-			Status.post(tr("msg_fetching_releases_eod"))
-			_request_releases($HTTPRequest_EOD, "eod-experimental")
-		"tish-experimental":
-			Status.post(tr("msg_fetching_releases_tish"))
-			_request_releases($HTTPRequest_TISH, "tish-experimental")
-		"tlg-experimental":
-			Status.post(tr("msg_fetching_releases_tlg"))
-			_request_releases($HTTPRequest_TLG, "tlg-experimental")
-		_:
+	var parts := release_key.split("-")
+	if parts.size() != 2 or not GameRegistry.has_game(parts[0]):
+		Status.post(tr("msg_invalid_fetch_func_param") % release_key, Enums.MSG_ERROR)
+		return
+	
+	var game_id: String = parts[0]
+	var channel: String = parts[1]
+	
+	if channel == "stable":
+		if Settings.read("check_external_stable_release_source"):
+			check_external_stable_releases(false)
+		elif has_stable_releases(game_id):
+			_update_stable_releases_arrays()
+			done_fetching_releases.emit()
+		else:
 			Status.post(tr("msg_invalid_fetch_func_param") % release_key, Enums.MSG_ERROR)
+	elif channel == "experimental":
+		Status.post(tr(GameRegistry.get_fetch_msg_key(game_id)))
+		_request_experimental_releases(release_key)
+	else:
+		Status.post(tr("msg_invalid_fetch_func_param") % release_key, Enums.MSG_ERROR)

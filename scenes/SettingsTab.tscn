@@ -1,0 +1,300 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/settings_ui.gd" id="1_eo6y0"]
+[ext_resource type="PackedScene" path="res://scenes/LicensesDialog.tscn" id="2_t84um"]
+[ext_resource type="Texture2D" path="res://icons/lang/tex_lang_en.tres" id="3_4774t"]
+[ext_resource type="Texture2D" path="res://icons/lang/tex_lang_fr.tres" id="4_j6fyy"]
+[ext_resource type="Texture2D" path="res://icons/lang/tex_lang_ru.tres" id="5_m06j6"]
+[ext_resource type="Texture2D" path="res://icons/lang/tex_lang_zh.tres" id="6_fd8ch"]
+[ext_resource type="Texture2D" path="res://icons/lang/tex_lang_cs.tres" id="7_p7g3v"]
+[ext_resource type="Texture2D" path="res://icons/lang/tex_lang_es.tres" id="8_ye6oi"]
+[ext_resource type="Texture2D" path="res://icons/lang/tex_lang_pl.tres" id="9_d1p0a"]
+[ext_resource type="Texture2D" path="res://icons/lang/tex_lang_tr.tres" id="10_02mdn"]
+[ext_resource type="Texture2D" path="res://icons/lang/tex_lang_pt.tres" id="11_k4gsi"]
+[ext_resource type="Texture2D" path="res://icons/lang/tex_lang_ko.tres" id="12_b2ahb"]
+[ext_resource type="Texture2D" path="res://icons/theme/tex_godot4.tres" id="13_d2wtn"]
+[ext_resource type="Texture2D" path="res://icons/theme/tex_light.tres" id="14_r3j76"]
+[ext_resource type="Texture2D" path="res://icons/theme/tex_gray.tres" id="15_tj06q"]
+[ext_resource type="Texture2D" path="res://icons/theme/tex_solarized_dark.tres" id="16_jfs50"]
+[ext_resource type="Texture2D" path="res://icons/theme/tex_solzrized_light.tres" id="17_kci0i"]
+
+[sub_resource type="StyleBoxEmpty" id="2"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+
+[node name="SettingsArea" type="VBoxContainer" unique_id=908084488]
+theme_override_constants/separation = 2
+script = ExtResource("1_eo6y0")
+
+[node name="ViewLicensesDialog" parent="." unique_id=41910159 instance=ExtResource("2_t84um")]
+
+[node name="ViewLicensesLabel" type="RichTextLabel" parent="." unique_id=529503300]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("2")
+bbcode_enabled = true
+text = "lbl_licenses"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="LauncherLanguageBox" type="HBoxContainer" parent="." unique_id=1769246478]
+layout_mode = 2
+
+[node name="LauncherLanguageLabel" type="Label" parent="LauncherLanguageBox" unique_id=1586979352]
+layout_mode = 2
+text = "lbl_launcher_language"
+
+[node name="LauncherLanguageList" type="OptionButton" parent="LauncherLanguageBox" unique_id=612779306]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+expand_icon = true
+selected = 0
+item_count = 10
+popup/item_0/text = "English"
+popup/item_0/icon = ExtResource("3_4774t")
+popup/item_0/id = 0
+popup/item_1/text = "Français"
+popup/item_1/icon = ExtResource("4_j6fyy")
+popup/item_1/id = 1
+popup/item_2/text = "Русский"
+popup/item_2/icon = ExtResource("5_m06j6")
+popup/item_2/id = 2
+popup/item_3/text = "简体字"
+popup/item_3/icon = ExtResource("6_fd8ch")
+popup/item_3/id = 3
+popup/item_4/text = "Čeština"
+popup/item_4/icon = ExtResource("7_p7g3v")
+popup/item_4/id = 4
+popup/item_5/text = "Español"
+popup/item_5/icon = ExtResource("8_ye6oi")
+popup/item_5/id = 5
+popup/item_6/text = "Polski"
+popup/item_6/icon = ExtResource("9_d1p0a")
+popup/item_6/id = 6
+popup/item_7/text = "Türkçe"
+popup/item_7/icon = ExtResource("10_02mdn")
+popup/item_7/id = 7
+popup/item_8/text = "Português (BR)"
+popup/item_8/icon = ExtResource("11_k4gsi")
+popup/item_8/id = 8
+popup/item_9/text = "한국어"
+popup/item_9/icon = ExtResource("12_b2ahb")
+popup/item_9/id = 9
+
+[node name="LauncherThemeBox" type="HBoxContainer" parent="." unique_id=19091557]
+layout_mode = 2
+
+[node name="LauncherThemeLabel" type="Label" parent="LauncherThemeBox" unique_id=1982481068]
+layout_mode = 2
+text = "lbl_launcher_theme"
+
+[node name="LauncherThemeList" type="OptionButton" parent="LauncherThemeBox" unique_id=499043715]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+expand_icon = true
+selected = 0
+item_count = 5
+popup/item_0/text = "Godot 4"
+popup/item_0/icon = ExtResource("13_d2wtn")
+popup/item_0/id = 0
+popup/item_1/text = "Light"
+popup/item_1/icon = ExtResource("14_r3j76")
+popup/item_1/id = 1
+popup/item_2/text = "Gray"
+popup/item_2/icon = ExtResource("15_tj06q")
+popup/item_2/id = 2
+popup/item_3/text = "Solarized Dark"
+popup/item_3/icon = ExtResource("16_jfs50")
+popup/item_3/id = 3
+popup/item_4/text = "Solarized Light"
+popup/item_4/icon = ExtResource("17_kci0i")
+popup/item_4/id = 4
+
+[node name="ShowGameDescSwitch" type="CheckButton" parent="." unique_id=1972753447]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "tooltip_show_game_desc"
+text = "cbtn_show_game_desc"
+
+[node name="KeepLauncherOpenSwitch" type="CheckButton" parent="." unique_id=797822690]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "tooltip_keep_launcher_open"
+text = "cbtn_keep_launcher_open"
+
+[node name="PrintTipsSwitch" type="CheckButton" parent="." unique_id=1175561963]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "tooltip_print_tips"
+text = "cbtn_print_tips"
+
+[node name="UpdateToSameVerSwitch" type="CheckButton" parent="." unique_id=905372598]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "tooltip_updating_to_same_build"
+text = "cbtn_updating_to_same_build"
+
+[node name="ShortenNamesSwitch" type="CheckButton" parent="." unique_id=965546812]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "tooltip_shorten_release_names"
+text = "cbtn_shorten_release_names"
+
+[node name="AlwaysShowInstallsSwitch" type="CheckButton" parent="." unique_id=877003064]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "tooltip_always_show_installs"
+text = "cbtn_always_show_installs"
+
+[node name="ShowObsoleteModsSwitch" type="CheckButton" parent="." unique_id=907751112]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "tooltip_show_obsolete_mods"
+text = "cbtn_show_obsolete_mods"
+
+[node name="InstallArchivedModsSwitch" type="CheckButton" parent="." unique_id=23588020]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "tooltip_install_archived_mods"
+text = "cbtn_install_archived_mods"
+
+[node name="KeepDownloadCacheSwitch" type="CheckButton" parent="." unique_id=1551100464]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "tooltip_keep_cache"
+text = "cbtn_keep_cache"
+
+[node name="IgnoreDownloadCacheSwitch" type="CheckButton" parent="." unique_id=1051102096]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "tooltip_ignore_cache"
+text = "cbtn_ignore_cache"
+
+[node name="CheckExternalStablesSwitch" type="CheckButton" parent="." unique_id=251426452]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "tooltip_check_external_stable_release_source"
+text = "cbtn_check_external_stable_release_source"
+
+[node name="DebugModeSwitch" type="CheckButton" parent="." unique_id=895117598]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "tooltip_debug_mode"
+text = "cbtn_debug_mode"
+
+[node name="NumReleasesBox" type="HBoxContainer" parent="." unique_id=1874546141]
+layout_mode = 2
+tooltip_text = "tooltip_num_releases_to_request"
+
+[node name="NumReleasesLabel" type="Label" parent="NumReleasesBox" unique_id=2031381285]
+layout_mode = 2
+text = "lbl_num_releases_to_request"
+
+[node name="NumReleasesField" type="SpinBox" parent="NumReleasesBox" unique_id=1970218018]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+min_value = 1.0
+value = 30.0
+rounded = true
+
+[node name="NumPrsBox" type="HBoxContainer" parent="." unique_id=2003192902]
+layout_mode = 2
+tooltip_text = "tooltip_num_prs_to_request"
+
+[node name="NumPrsLabel" type="Label" parent="NumPrsBox" unique_id=177561741]
+layout_mode = 2
+text = "lbl_num_prs_to_request"
+
+[node name="NumPrsField" type="SpinBox" parent="NumPrsBox" unique_id=1426043395]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+min_value = 10.0
+step = 10.0
+value = 100.0
+rounded = true
+
+[node name="ProxySettingsBox" type="HBoxContainer" parent="." unique_id=305862145]
+layout_mode = 2
+tooltip_text = "tooltip_proxy_settings"
+
+[node name="ProxySettingsLabel" type="Label" parent="ProxySettingsBox" unique_id=1515609645]
+layout_mode = 2
+text = "lbl_proxy_settings"
+
+[node name="ProxyOptionList" type="OptionButton" parent="ProxySettingsBox" unique_id=416754869]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_stretch_ratio = 20.0
+tooltip_text = "tooltip_proxy_options"
+
+[node name="ProxyHostField" type="LineEdit" parent="ProxySettingsBox" unique_id=1523350080]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+placeholder_text = "localhost"
+
+[node name="ProxyPortField" type="SpinBox" parent="ProxySettingsBox" unique_id=1406659154]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+max_value = 65535.0
+
+[node name="CustomScaleBox" type="HBoxContainer" parent="." unique_id=1887206705]
+layout_mode = 2
+tooltip_text = "tooltip_ui_scale_override"
+
+[node name="CustomScaleLabel" type="Label" parent="CustomScaleBox" unique_id=220221848]
+layout_mode = 2
+text = "lbl_ui_scale_override"
+
+[node name="CustomScaleEnableSwitch" type="CheckBox" parent="CustomScaleBox" unique_id=607727288]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_stretch_ratio = 20.0
+text = "cbtn_enable_scale"
+
+[node name="CustomScaleValueField" type="SpinBox" parent="CustomScaleBox" unique_id=283983537]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+min_value = 75.0
+max_value = 300.0
+step = 12.5
+value = 100.0
+editable = false
+suffix = "%"
+
+[connection signal="meta_clicked" from="ViewLicensesLabel" to="ViewLicensesDialog" method="_on_lbl_licenses_meta_clicked"]
+[connection signal="item_selected" from="LauncherLanguageBox/LauncherLanguageList" to="." method="_on_obtnLanguage_item_selected"]
+[connection signal="item_selected" from="LauncherThemeBox/LauncherThemeList" to="." method="_on_obtnTheme_item_selected"]
+[connection signal="toggled" from="ShowGameDescSwitch" to="." method="_on_ShowGameDesc_toggled"]
+[connection signal="toggled" from="KeepLauncherOpenSwitch" to="." method="_on_KeepLauncherOpen_toggled"]
+[connection signal="toggled" from="PrintTipsSwitch" to="." method="_on_PrintTips_toggled"]
+[connection signal="toggled" from="UpdateToSameVerSwitch" to="." method="_on_UpdateToSame_toggled"]
+[connection signal="toggled" from="ShortenNamesSwitch" to="." method="_on_ShortenNames_toggled"]
+[connection signal="toggled" from="AlwaysShowInstallsSwitch" to="." method="_on_AlwaysShowInstalls_toggled"]
+[connection signal="toggled" from="ShowObsoleteModsSwitch" to="." method="_on_ShowObsoleteMods_toggled"]
+[connection signal="toggled" from="InstallArchivedModsSwitch" to="." method="_on_InstallArchivedMods_toggled"]
+[connection signal="toggled" from="KeepDownloadCacheSwitch" to="." method="_on_KeepCache_toggled"]
+[connection signal="toggled" from="IgnoreDownloadCacheSwitch" to="." method="_on_IgnoreCache_toggled"]
+[connection signal="toggled" from="CheckExternalStablesSwitch" to="." method="_on_CheckExternalStables_toggled"]
+[connection signal="toggled" from="DebugModeSwitch" to="." method="_on_ShowDebug_toggled"]
+[connection signal="value_changed" from="NumReleasesBox/NumReleasesField" to="." method="_on_sbNumReleases_value_changed"]
+[connection signal="value_changed" from="NumPrsBox/NumPrsField" to="." method="_on_sbNumPRs_value_changed"]
+[connection signal="item_selected" from="ProxySettingsBox/ProxyOptionList" to="." method="_on_obtnProxyOption_item_selected"]
+[connection signal="text_changed" from="ProxySettingsBox/ProxyHostField" to="." method="_on_leProxyHost_text_changed"]
+[connection signal="value_changed" from="ProxySettingsBox/ProxyPortField" to="." method="_on_sbProxyPort_value_changed"]
+[connection signal="toggled" from="CustomScaleBox/CustomScaleEnableSwitch" to="." method="_on_cbScaleOverrideEnable_toggled"]
+[connection signal="value_changed" from="CustomScaleBox/CustomScaleValueField" to="." method="_on_sbScaleOverride_value_changed"]

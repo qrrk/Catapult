@@ -1,9 +1,10 @@
 extends VBoxContainer
+## UI controller for the Settings tab: initializes controls from Settings and writes user changes back.
 
 
-var _langs := ["en", "fr", "ru", "zh", "cs", "es", "pl", "tr", "pt", "ko"]
+var _langs: Array[String] = ["en", "fr", "ru", "zh", "cs", "es", "pl", "tr", "pt", "ko"]
 
-var _themes := [
+var _themes: Array[String] = [
 	"Godot_4.tres",
 	"Light.tres",
 	"Gray.tres",
@@ -11,9 +12,7 @@ var _themes := [
 	"Solarized_Light.tres",
 ]
 
-var _proxy_options := ["off", "on", "download"]
-
-@onready var _root = $"/root/Catapult"
+var _proxy_options: Array[String] = ["off", "on", "download"]
 
 
 func _ready() -> void:
@@ -62,25 +61,25 @@ func _ready() -> void:
 	%CustomScaleValueField.value = (Settings.read("ui_scale_override") as float) * 100.0
 
 
+func _notification(what: int) -> void:
+	
+	if what == NOTIFICATION_TRANSLATION_CHANGED and is_node_ready():
+		_populate_proxy_options()
+
+
 func _on_obtnLanguage_item_selected(index: int) -> void:
 	
-	var locale = _langs[index]
-	Settings.store("launcher_locale", locale)
-	TranslationServer.set_locale(locale)
-	_root.assign_localized_text()
-	_populate_proxy_options()
+	Settings.store("launcher_locale", _langs[index])
 
 
 func _on_obtnTheme_item_selected(index: int) -> void:
 	
 	Settings.store("launcher_theme", _themes[index])
-	_root.load_ui_theme(_themes[index])
 
 
 func _on_ShowGameDesc_toggled(button_pressed: bool) -> void:
 	
 	Settings.store("show_game_desc", button_pressed)
-	%GameInfoBox.visible = button_pressed
 
 
 func _on_KeepLauncherOpen_toggled(button_pressed: bool) -> void:
@@ -131,12 +130,6 @@ func _on_CheckExternalStables_toggled(button_pressed: bool) -> void:
 func _on_ShowDebug_toggled(button_pressed: bool) -> void:
 	
 	Settings.store("debug_mode", button_pressed)
-	
-	if button_pressed:
-		%DebugArea.reparent(%TabbedLayout)
-	elif %DebugArea.get_parent() == %TabbedLayout:
-		%DebugArea.hide()
-		%DebugArea.reparent(_root)
 
 
 func _on_sbNumReleases_value_changed(value: float) -> void:
@@ -148,13 +141,13 @@ func _on_sbNumPRs_value_changed(value: float) -> void:
 	Settings.store("num_prs_to_request", str(value))
 
 
-func _on_obtnProxyOption_item_selected(index):
+func _on_obtnProxyOption_item_selected(index: int) -> void:
 	Settings.store("proxy_option", _proxy_options[index])
 
-func _on_leProxyHost_text_changed(new_text):
+func _on_leProxyHost_text_changed(new_text: String) -> void:
 	Settings.store("proxy_host", new_text)
 
-func _on_sbProxyPort_value_changed(value):
+func _on_sbProxyPort_value_changed(value: float) -> void:
 	Settings.store("proxy_port", value)
 
 
