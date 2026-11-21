@@ -1,10 +1,13 @@
 extends Node
+## Downloads, extracts, installs, updates, and removes game releases on disk.
 
 
 signal operation_started
 signal operation_finished
 
 
+## Downloads (unless cached) and installs a release. If update_in is non-empty, replaces that
+## existing installation directory in-place and keeps it active.
 func install_release(release_info: Dictionary, update_in: String = "") -> void:
 	
 	operation_started.emit()
@@ -58,6 +61,7 @@ func install_release(release_info: Dictionary, update_in: String = "") -> void:
 	operation_finished.emit()
 
 
+## Deletes the installed directory matching release_name for the currently selected game.
 func remove_release_by_name(release_name: String) -> void:
 	
 	operation_started.emit()
@@ -77,6 +81,8 @@ func remove_release_by_name(release_name: String) -> void:
 	operation_finished.emit()
 
 
+## Scans an installation directory for non-empty userdata subdirectories (saves, config, mods, etc.)
+## and returns their names so the user can be warned before deletion.
 func check_game_dir_for_userdata(release_name: String) -> Array[String]:
 	
 	var installs := Paths.installs_summary

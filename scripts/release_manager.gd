@@ -1,4 +1,5 @@
 extends Node
+## Fetches, caches, and merges stable and experimental release metadata for all registered games.
 
 
 signal started_fetching_releases
@@ -20,6 +21,7 @@ var _http_experimental: HTTPRequest
 var _active_experimental_key: String = ""
 var _checking_external_stables: bool = false
 
+## Map of release keys (e.g. "dda-stable", "bn-experimental") to arrays of release dictionaries.
 var releases: Dictionary = {}
 
 
@@ -93,12 +95,15 @@ func _update_stable_releases_arrays() -> void:
 		releases[key] = _stable_releases.get(key, {}).get(_platform, [])
 
 
+## Returns true if the given game has at least one stable release available for the current platform.
 func has_stable_releases(game_id: String) -> bool:
 	if _stable_releases.is_empty():
 		_load_sources()
 	return not releases.get(game_id + "-stable", []).is_empty()
 
 
+## Merges two stable-release dictionaries by channel and platform, deduplicating by release name
+## with entries from higher_priority taking precedence.
 func _merge_stable_releases(higher_priority: Dictionary, lower_priority: Dictionary) -> Dictionary:
 	var result := {}
 	
@@ -176,6 +181,8 @@ func _count_stable_releases(stables: Dictionary) -> int:
 	return total
 
 
+## Fetches external stable release info from the configured URL or local file and merges it into
+## the local cache. When silent is true, suppresses [signal started_fetching_releases].
 func check_external_stable_releases(silent: bool = false) -> void:
 	if _checking_external_stables:
 		return
@@ -353,6 +360,7 @@ func _parse_builds(data: PackedByteArray, write_to: Array, filter: Dictionary) -
 		Status.post(tr("msg_got_n_releases") % len(tmp_arr))
 
 
+## Refreshes the release list for a key such as "dda-stable" or "bn-experimental".
 func fetch(release_key: String) -> void:
 	if _stable_releases.is_empty():
 		_load_sources()
