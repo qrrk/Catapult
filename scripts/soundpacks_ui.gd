@@ -1,9 +1,12 @@
 extends VBoxContainer
+## UI controller for the Soundpacks tab: viewing installed packs, installing from the catalog,
+## and removing user soundpacks.
 
 
 signal operation_started
 signal operation_finished
 
+## Controls to lock during soundpack installation or deletion operations.
 @export var lockable_controls: Array[Control] = []
 
 var _installed_packs = []
@@ -21,6 +24,7 @@ func _on_operation_finished() -> void:
 	operation_finished.emit()
 
 
+## Repopulates the installed soundpacks list with tooltips and stock-pack styling.
 func refresh_installed() -> void:
 	
 	_installed_packs = %SoundpackManager.get_installed(Settings.read("show_stock_sound"))
@@ -69,6 +73,7 @@ func _is_pack_installed(pack_name: String) -> bool:
 	return false
 
 
+## Called by the main shell when the Soundpacks tab becomes active.
 func on_tab_activated() -> void:
 	
 	%ShowStockSoundsSwitch.button_pressed = Settings.read("show_stock_sound")

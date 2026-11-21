@@ -1,4 +1,5 @@
 extends Window
+## Popup dialog displaying license texts for Catapult, Godot Engine, and bundled fonts.
 
 
 func _on_about_to_popup() -> void:

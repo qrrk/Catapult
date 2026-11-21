@@ -1,9 +1,11 @@
 extends Window
+## Help popup explaining Cataclysm's UI, map, and overmap font size settings.
 
 
 @onready var _label := $Panel/Margin/VBox/Help
 
 
+## Populates localized help text with DPI-scaled inline diagrams and opens the dialog.
 func open() -> void:
 	
 	var text := tr("dlg_font_config_help")

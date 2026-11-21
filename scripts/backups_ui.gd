@@ -1,9 +1,11 @@
 extends VBoxContainer
+## UI controller for the Backups tab: creating, listing, restoring, and deleting savegame backups.
 
 
 signal operation_started
 signal operation_finished
 
+## Controls to lock during backup creation, restoration, or deletion operations.
 @export var lockable_controls: Array[Control] = []
 
 
@@ -43,6 +45,7 @@ func _populate_default_new_name() -> void:
 	]
 
 
+## Called by the main shell when the Backups tab becomes active.
 func on_tab_activated() -> void:
 	
 	_refresh_available()
