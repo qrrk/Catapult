@@ -8,19 +8,9 @@ const _DEFAULT_FONTS = ["data/font/Terminus.ttf", "data/font/unifont.ttf"]
 var _game_options: Array = []
 
 ## Bundled font entries loaded from res://fonts/ingame/font_info.json.
-var available_fonts: Array = []: get = _get_available_fonts
+var available_fonts: Array = []
 ## Parsed contents of the active game's config/fonts.json.
-var font_config: Dictionary = {}: get = _get_font_config
-
-
-func _get_available_fonts() -> Array:
-	
-	return available_fonts
-
-
-func _get_font_config() -> Dictionary:
-	
-	return font_config
+var font_config: Dictionary = {}
 
 
 ## Returns the value of a named option from the loaded options.json array, or null if not found.
