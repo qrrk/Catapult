@@ -8,18 +8,16 @@ extends Node
 signal scale_changed(new_scale: float)
 
 ## Active UI scale factor. Assigning updates window size/min_size and emits [signal scale_changed].
-var scale: float: set = _set_scale
+var scale: float:
+	set(new_scale):
+		scale = new_scale + 0.0004
+		_apply_scale()
+		scale_changed.emit(scale)
+
 var min_base_size := Vector2(
 		ProjectSettings.get("display/window/size/viewport_width"),
 		ProjectSettings.get("display/window/size/viewport_height"))
 var base_size := min_base_size
-
-
-func _set_scale(new_scale: float) -> void:
-	
-	scale = new_scale + 0.0004
-	_apply_scale()
-	scale_changed.emit(scale)
 
 
 func _apply_scale() -> void:
@@ -84,7 +82,7 @@ func recover_window_state() -> void:
 			Status.post(tr("msg_auto_scale_failsafe_triggered") % snapped(scale, 0.01), Enums.MSG_WARN)
 			Settings.store("ui_scale_override_enabled", true)
 			Settings.store("ui_scale_override", 1.0)
-			_set_scale(1.0)
+			scale = 1.0
 			get_window().move_to_center.call_deferred()
 
 func _on_SceneTree_idle() -> void:
@@ -100,9 +98,9 @@ func _on_SceneTree_idle() -> void:
 func _ready() -> void:
 	
 	if Settings.read("ui_scale_override_enabled"):
-		_set_scale(Settings.read("ui_scale_override") as float)
+		scale = Settings.read("ui_scale_override") as float
 	else:
-		_set_scale(calculate_scale_from_dpi())
+		scale = calculate_scale_from_dpi()
 
 	_on_SceneTree_idle()
 

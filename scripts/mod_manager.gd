@@ -20,25 +20,18 @@ var _modpacks := {}
 
 
 ## Map of mod IDs to metadata dicts for all installed stock and user mods (lazily loaded).
-var installed: Dictionary = {}: get = _get_installed
+var installed: Dictionary = {}:
+	get:
+		if installed.is_empty():
+			refresh_installed()
+		return installed
+
 ## Map of mod IDs to metadata dicts for all mods in the local mod repository (lazily loaded).
-var available: Dictionary = {}: get = _get_available
-
-
-func _get_installed() -> Dictionary:
-	
-	if len(installed) == 0:
-		refresh_installed()
-		
-	return installed
-
-
-func _get_available() -> Dictionary:
-	
-	if len(available) == 0:
-		refresh_available()
-	
-	return available
+var available: Dictionary = {}:
+	get:
+		if available.is_empty():
+			refresh_available()
+		return available
 
 
 ## Scans immediate subdirectories of a mods folder and parses each mod's modinfo.json into a

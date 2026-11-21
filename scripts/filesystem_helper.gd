@@ -12,23 +12,14 @@ signal zip_done
 var _platform: String = ""
 
 ## Exit/error code of the last extract operation (0 if successful).
-var last_extract_result: int = 0: get = _get_last_extract_result
+var last_extract_result: int = 0
 ## Exit/error code of the last zip operation (0 if successful).
-var last_zip_result: int = 0: get = _get_last_zip_result
+var last_zip_result: int = 0
 
 
 func _enter_tree() -> void:
 	
 	_platform = OS.get_name()
-
-
-func _get_last_extract_result() -> int:
-	
-	return last_extract_result
-
-
-func _get_last_zip_result() -> int:
-	return last_zip_result
 	
 
 ## Lists files and subdirectories within a directory, optionally recursing and filtering relative paths by regex.
