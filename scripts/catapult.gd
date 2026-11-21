@@ -1,6 +1,9 @@
 extends Node
+## Main application shell coordinating the game selector, tab container, log view,
+## UI theme/scaling, localization, and global control locking.
 
 
+## Shell-level controls locked whenever any tab starts an asynchronous operation.
 @export var lockable_controls: Array[Control] = []
 
 # For UI scaling on the fly
@@ -75,6 +78,7 @@ func _scale_control_min_sizes(factor: float) -> void:
 		node.custom_minimum_size = _base_min_sizes[node] * factor
 
 
+## Updates window title, tab titles, and game description for the active locale.
 func assign_localized_text() -> void:
 	
 	get_window().set_title(tr("window_title"))
@@ -91,6 +95,7 @@ func assign_localized_text() -> void:
 		%GameDescText.text = tr(desc_key)
 
 
+## Loads a theme from res://themes, scales it to the current UI scale, and applies it to the root.
 func load_ui_theme(theme_file: String) -> void:
 	
 	var ts := ThemeScaler.new()

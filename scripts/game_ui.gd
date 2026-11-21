@@ -1,11 +1,18 @@
 extends VBoxContainer
+## UI controller for the Game tab: release channel selection, release installation/updates,
+## multi-install management, and launching the active game.
 
 
+## Emitted whenever the list of installations is refreshed, indicating whether any install exists.
 signal installs_changed(has_installs: bool)
+## Emitted when a release fetch or install/delete operation begins (locks shell controls).
 signal operation_started
+## Emitted when a release fetch or install/delete operation finishes (unlocks shell controls).
 signal operation_finished
 
+## Controls to lock while fetching release metadata from the network.
 @export var lock_on_fetch: Array[Control] = []
+## Controls to lock while installing, updating, or deleting a game release.
 @export var lock_on_release_ops: Array[Control] = []
 
 var _installs: Dictionary = {}
@@ -18,6 +25,7 @@ func _notification(what: int) -> void:
 		update_localized_text()
 
 
+## Initializes tab state on startup, applies the saved game/channel selection.
 func setup() -> void:
 	
 	update_localized_text()
@@ -27,11 +35,13 @@ func setup() -> void:
 	%QuickLoadBtn.grab_focus()
 
 
+## Updates localized rich-text labels inside the Game tab.
 func update_localized_text() -> void:
 	
 	%ChangelogLinkLabel.text = tr("lbl_changelog")
 
 
+## Repopulates the available releases dropdown from ReleaseManager and refreshes install state.
 func reload_builds_list() -> void:
 	
 	%ReleasesList.clear()
@@ -40,6 +50,7 @@ func reload_builds_list() -> void:
 	refresh_currently_installed()
 
 
+## Syncs channel controls for the currently selected game and fetches releases if not yet cached.
 func apply_game_choice() -> void:
 	
 	var game: String = Settings.read("game")
@@ -51,6 +62,7 @@ func apply_game_choice() -> void:
 		reload_builds_list()
 
 
+## Scans installed versions of the selected game, updates launch/install buttons, and emits [signal installs_changed].
 func refresh_currently_installed() -> void:
 	
 	var releases: Array = %ReleaseManager.releases[_get_release_key()]

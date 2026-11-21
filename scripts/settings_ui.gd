@@ -1,4 +1,5 @@
 extends VBoxContainer
+## UI controller for the Settings tab: initializes controls from Settings and writes user changes back.
 
 
 var _langs: Array[String] = ["en", "fr", "ru", "zh", "cs", "es", "pl", "tr", "pt", "ko"]

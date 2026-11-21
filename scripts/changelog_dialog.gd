@@ -1,4 +1,5 @@
 extends Window
+## Popup dialog that fetches and displays recently merged GitHub pull requests for the active game.
 
 
 const _PR_ENDPOINTS_PATH = "res://data/pr_endpoints.json"
@@ -10,6 +11,7 @@ var _pr_urls := {}
 var _pr_data = ""
 
 
+## Opens the dialog centered and initiates a fresh pull-request fetch for the current game.
 func open() -> void:
 	
 	download_pull_requests()
@@ -27,6 +29,7 @@ func _update_proxy(http: HTTPRequest) -> void:
 		http.set_https_proxy("", -1)
 
 
+## Queries the GitHub search API for recently merged PRs of the currently selected game.
 func download_pull_requests() -> void:
 	if _pr_urls.is_empty():
 		_pr_urls = Helpers.load_json_file(_PR_ENDPOINTS_PATH)
@@ -64,6 +67,7 @@ func _on_PullRequests_request_completed(_result: int, response_code: int, _heade
 	_changelogTextBox.append_text(_pr_data)
 
 
+## Formats a GitHub PR search response into BBCode grouped by merge date.
 func process_pr_data(data: Dictionary) -> String:
 	var pr_array = []
 	for json in data["items"]:

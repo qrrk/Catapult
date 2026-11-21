@@ -1,4 +1,5 @@
 extends VBoxContainer
+## UI controller for the hidden Debug tab (enabled via Settings) containing developer diagnostics.
 
 
 func _on_Button_pressed() -> void:
