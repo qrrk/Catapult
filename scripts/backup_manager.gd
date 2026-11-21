@@ -1,4 +1,5 @@
 extends Node
+## Creates, lists, restores, and deletes zipped savegame backups for the currently selected game.
 
 
 signal backup_creation_started
@@ -8,6 +9,7 @@ signal backup_restoration_finished
 signal backup_deletion_started
 signal backup_deletion_finished
 
+## List of backup summary dictionaries (name, path, worlds), lazily populated on first access.
 var available: Array:
 	get:
 		if not _available_backups:
@@ -16,8 +18,8 @@ var available: Array:
 
 var _available_backups = null
 
+## Creates a named backup of the current game's save directory, zipping each world folder.
 func backup_current(backup_name: String) -> void:
-	# Create a backup of the save dir for the current game.
 
 	Status.post(tr("msg_backing_up_saves") % backup_name)
 	backup_creation_started.emit()
@@ -41,8 +43,8 @@ func backup_current(backup_name: String) -> void:
 	backup_creation_finished.emit()
 
 
+## Returns a summary dictionary (name, path, worlds) for a save or backup directory.
 func get_save_summary(path: String) -> Dictionary:
-	# Get information about a game save directory (any directory containing one or more game worlds)
 	
 	if not DirAccess.dir_exists_absolute(path):
 		return {}
@@ -59,6 +61,7 @@ func get_save_summary(path: String) -> Dictionary:
 	return summary
 
 
+## Rescans the save backups folder for the current game and updates [member available].
 func refresh_available() -> void:
 
 	_available_backups = []
@@ -71,8 +74,8 @@ func refresh_available() -> void:
 		_available_backups.append(get_save_summary(path))
 
 
+## Replaces the current game's save directory with the contents of the backup at backup_index.
 func restore(backup_index: int) -> void:
-	# Replace the save dir in the current game with the named backup
 	
 	var backup_name: String = available[backup_index]["name"]
 	Status.post(tr("msg_restoring_backup") % backup_name)
@@ -103,8 +106,8 @@ func restore(backup_index: int) -> void:
 	backup_restoration_finished.emit()
 
 
+## Deletes the named backup directory from disk.
 func delete(backup_name: String) -> void:
-	# Delete a backup.
 	
 	var target_dir = Paths.save_backups.path_join(backup_name)
 	backup_deletion_started.emit()

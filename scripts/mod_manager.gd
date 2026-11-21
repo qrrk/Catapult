@@ -1,5 +1,6 @@
 class_name ModManager
 extends Node
+## Discovers, installs, deletes, and downloads modpacks for the currently selected game.
 
 
 signal mod_installation_started
@@ -18,7 +19,9 @@ const _MODPACKS_PATH = "res://data/modpacks.json"
 var _modpacks := {}
 
 
+## Map of mod IDs to metadata dicts for all installed stock and user mods (lazily loaded).
 var installed: Dictionary = {}: get = _get_installed
+## Map of mod IDs to metadata dicts for all mods in the local mod repository (lazily loaded).
 var available: Dictionary = {}: get = _get_available
 
 
@@ -38,6 +41,8 @@ func _get_available() -> Dictionary:
 	return available
 
 
+## Scans immediate subdirectories of a mods folder and parses each mod's modinfo.json into a
+## dictionary keyed by mod ID.
 static func parse_mods_dir(mods_dir: String) -> Dictionary:
 	
 	if not DirAccess.dir_exists_absolute(mods_dir):
@@ -99,14 +104,10 @@ static func _strip_html_tags(text: String) -> String:
 	return s
 
 
+## Returns the installation status code for a mod ID:
+## 0 = not installed, 1 = user-installed, 2 = stock mod,
+## 3 = obsolete stock mod, 4 = user-installed with a "__" suffix to avoid colliding with an obsolete stock mod.
 func mod_status(id: String) -> int:
-	
-	# Returns mod installed status:
-	# 0 - not installed;
-	# 1 - installed;
-	# 2 - stock mod;
-	# 3 - stock mod but obsolete;
-	# 4 - installed with modified ID.
 	
 	if id + "__" in installed:
 		return 4
@@ -122,6 +123,7 @@ func mod_status(id: String) -> int:
 		return 0
 
 
+## Rescans both user and stock mod directories and updates [member installed].
 func refresh_installed():
 	
 	var _installed = {}
@@ -151,6 +153,7 @@ func refresh_installed():
 	installed = _installed
 
 
+## Rescans the local mod repository directory and updates [member available].
 func refresh_available():
 	
 	available = parse_mods_dir(Paths.mod_repo)
@@ -173,6 +176,7 @@ func _delete_mod(mod_id: String) -> void:
 	_done_deleting_mod.emit()
 
 
+## Deletes each mod in [param mod_ids] sequentially, then refreshes [member installed].
 func delete_mods(mod_ids: Array) -> void:
 	
 	if len(mod_ids) == 0:
@@ -222,6 +226,8 @@ func _install_mod(mod_id: String) -> void:
 	_done_installing_mod.emit()
 
 
+## Copies each mod in [param mod_ids] from the local repository into the user mods directory,
+## renaming its ID with a "__" suffix if it collides with an obsolete stock mod.
 func install_mods(mod_ids: Array) -> void:
 	
 	if len(mod_ids) == 0:
@@ -240,6 +246,7 @@ func install_mods(mod_ids: Array) -> void:
 	mod_installation_finished.emit()
 
 
+## Downloads and unpacks the Kenan modpack for the currently selected game into the local mod repository.
 func retrieve_kenan_pack() -> void:
 	
 	if _modpacks.is_empty():
