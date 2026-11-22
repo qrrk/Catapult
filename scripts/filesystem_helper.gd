@@ -64,7 +64,7 @@ func list_dir(path: String, recursive := false, filter_pattern: String = "") -> 
 			if (filter_regex == null) or (filter_regex.search(item_rel_path) != null):
 				result.append(item_rel_path)
 			
-			if recursive and dir.current_is_dir():
+			if recursive and dir.current_is_dir() and not dir.is_link(item):
 				stack.append(item_rel_path)
 		
 		dir.list_dir_end()
@@ -81,15 +81,26 @@ func _copy_dir_internal(abs_path: String, dest_dir: String) -> void:
 		Status.post(tr("msg_cannot_create_target_dir") % [dest_dir.path_join(dir), error], Enums.MSG_ERROR)
 		return
 	
+	var src_dir := DirAccess.open(abs_path)
 	for item in list_dir(abs_path):
 		var path = abs_path.path_join(item)
-		if FileAccess.file_exists(path):
-			error = DirAccess.copy_absolute(path, dest_dir.path_join(dir).path_join(item))
-			if error:
-				Status.post(tr("msg_copy_file_failed") % [item, error], Enums.MSG_ERROR)
-				Status.post(tr("msg_copy_file_failed_details") % [path, dest_dir.path_join(dir).path_join(item)])
+		var dest = dest_dir.path_join(dir).path_join(item)
+		error = OK
+		if src_dir.is_link(item):
+			# create_link() fails if dest exists; remove it first and recreate the link verbatim.
+			if src_dir.is_link(dest) or FileAccess.file_exists(dest):
+				DirAccess.remove_absolute(dest)
+			error = src_dir.create_link(src_dir.read_link(item), dest)
+		elif FileAccess.file_exists(path):
+			# Remove a symlink at dest so copy_absolute() replaces it rather than writing through it.
+			if src_dir.is_link(dest):
+				DirAccess.remove_absolute(dest)
+			error = DirAccess.copy_absolute(path, dest)
 		elif DirAccess.dir_exists_absolute(path):
 			_copy_dir_internal(path, dest_dir.path_join(dir))
+		if error:
+			Status.post(tr("msg_copy_file_failed") % [item, error], Enums.MSG_ERROR)
+			Status.post(tr("msg_copy_file_failed_details") % [path, dest])
 			
 
 
@@ -107,9 +118,10 @@ func copy_dir(abs_path: String, dest_dir: String) -> void:
 func _rm_dir_internal(abs_path: String) -> void:
 	
 	var error
+	var dir := DirAccess.open(abs_path)
 	for item in list_dir(abs_path):
 		var path = abs_path.path_join(item)
-		if FileAccess.file_exists(path):
+		if dir.is_link(item) or FileAccess.file_exists(path):
 			error = DirAccess.remove_absolute(path)
 			if error:
 				Status.post(tr("msg_remove_file_failed") % [item, error], Enums.MSG_ERROR)
@@ -140,16 +152,17 @@ func _move_dir_internal(abs_path: String, abs_dest: String) -> void:
 		Status.post(tr("msg_create_dir_failed") % [abs_dest, error], Enums.MSG_ERROR)
 		return
 	
+	var dir := DirAccess.open(abs_path)
 	for item in list_dir(abs_path):
 		var path = abs_path.path_join(item)
 		var dest = abs_dest.path_join(item)
-		if FileAccess.file_exists(path):
-			error = DirAccess.rename_absolute(path, abs_dest.path_join(item))
+		if dir.is_link(item) or FileAccess.file_exists(path):
+			error = DirAccess.rename_absolute(path, dest)
 			if error:
 				Status.post(tr("msg_move_file_failed") % [item, error], Enums.MSG_ERROR)
 				Status.post(tr("msg_move_file_failed_details") % [path, dest])
 		elif DirAccess.dir_exists_absolute(path):
-			_move_dir_internal(path, abs_dest.path_join(item))
+			_move_dir_internal(path, dest)
 	
 	error = DirAccess.remove_absolute(abs_path)
 	if error:
@@ -259,9 +272,8 @@ func extract(path: String, dest_dir: String) -> void:
 	
 	if (_platform == "Linux") and (path.to_lower().ends_with(".tar.gz")):
 		var command_linux_gz = {
-			"item": "/bin/bash",
-			"args": ["-c", "tar -xzf \"%s\" -C \"%s\" && find \"%s\" -type l -delete" % [path, dest_dir, dest_dir]]
-			# Godot can't operate on symlinks, so we have to clean them up with find.
+			"item": "tar",
+			"args": ["-xzf", path, "-C", dest_dir]
 		}
 		Status.post(tr("msg_extracting_file") % path.get_file())
 		ThreadedExec.execute(command_linux_gz["item"], command_linux_gz["args"])
