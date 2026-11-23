@@ -41,12 +41,15 @@ func update_localized_text() -> void:
 	%ChangelogLinkLabel.text = tr("lbl_changelog")
 
 
-## Repopulates the available releases dropdown from ReleaseManager and refreshes install state.
+## Repopulates the available releases dropdown from ReleaseManager, selects the newest build,
+## and refreshes install state.
 func reload_builds_list() -> void:
 	
 	%ReleasesList.clear()
 	for rec in %ReleaseManager.releases[_get_release_key()]:
 		%ReleasesList.add_item(rec["name"])
+	if %ReleasesList.item_count > 0:
+		%ReleasesList.select(0)
 	refresh_currently_installed()
 
 
@@ -57,6 +60,7 @@ func apply_game_choice() -> void:
 	_update_channel_controls(game)
 	
 	if len(%ReleaseManager.releases[_get_release_key()]) == 0:
+		%ReleasesList.clear()
 		%ReleaseManager.fetch(_get_release_key())
 	else:
 		reload_builds_list()
@@ -64,8 +68,6 @@ func apply_game_choice() -> void:
 
 ## Scans installed versions of the selected game, updates launch/install buttons, and emits [signal installs_changed].
 func refresh_currently_installed() -> void:
-	
-	var releases: Array = %ReleaseManager.releases[_get_release_key()]
 	
 	%GameInstallsList.clear()
 	var game: String = Settings.read("game")
@@ -77,7 +79,6 @@ func refresh_currently_installed() -> void:
 			var curr_idx: int = %GameInstallsList.get_item_count() - 1
 			%GameInstallsList.set_item_tooltip(curr_idx, tr("tooltip_installs_item") % _installs[game][inst_name])
 	
-	%ReleasesList.select(-1)
 	%MakeInstallActiveBtn.disabled = true
 	%DeleteGameInstallBtn.disabled = true
 	
@@ -88,25 +89,41 @@ func refresh_currently_installed() -> void:
 		%QuickLoadBtn.disabled = not GameLauncher.has_last_world()
 		%GameDirBtn.visible = true
 		%UserDirBtn.visible = true
-		if (%ReleasesList.selected != -1) and (%ReleasesList.selected < len(releases)):
-			if not Settings.read("update_to_same_build_allowed"):
-				%InstallReleaseBtn.disabled = (releases[%ReleasesList.selected]["name"] in _installs[game])
-				%UpdateCurrentSwitch.disabled = %InstallReleaseBtn.disabled
-		else:
-			%InstallReleaseBtn.disabled = true
 	else:
 		%ActiveInstallNameLabel.text = tr("lbl_none")
-		%InstallReleaseBtn.disabled = false
-		%UpdateCurrentSwitch.disabled = true
 		%LaunchGameBtn.disabled = true
 		%QuickLoadBtn.disabled = true
 		%GameDirBtn.visible = false
 		%UserDirBtn.visible = false
 	
+	if not _fetching_releases:
+		_update_install_controls()
+	
 	%GameInstallsGroup.visible = (has_installs and _installs[game].size() > 1) \
 			or (Settings.read("always_show_installs") == true)
 	
 	installs_changed.emit(has_installs)
+
+
+func _update_install_controls() -> void:
+	
+	var releases: Array = %ReleaseManager.releases[_get_release_key()]
+	var selected_idx: int = %ReleasesList.selected
+	var has_valid_selection: bool = (selected_idx >= 0) and (selected_idx < releases.size())
+	var game: String = Settings.read("game")
+	var has_installs: bool = game in _installs
+	
+	if not has_valid_selection:
+		%InstallReleaseBtn.disabled = true
+		%UpdateCurrentSwitch.disabled = true
+	elif not has_installs:
+		%InstallReleaseBtn.disabled = false
+		%UpdateCurrentSwitch.disabled = true
+	else:
+		var same_build_blocked: bool = (not Settings.read("update_to_same_build_allowed")) \
+				and (releases[selected_idx]["name"] in _installs[game])
+		%InstallReleaseBtn.disabled = same_build_blocked
+		%UpdateCurrentSwitch.disabled = same_build_blocked
 
 
 func _update_channel_controls(game: String) -> void:
@@ -204,19 +221,10 @@ func _on_BtnRefresh_pressed() -> void:
 	%ReleaseManager.fetch(_get_release_key())
 
 
-func _on_BuildsList_item_selected(index: int) -> void:
+func _on_BuildsList_item_selected(_index: int) -> void:
 	
-	var info := Paths.installs_summary
-	var game: String = Settings.read("game")
-	
-	if (not Settings.read("update_to_same_build_allowed")) \
-			and (game in info) \
-			and (%ReleaseManager.releases[_get_release_key()][index]["name"] in info[game]):
-		%InstallReleaseBtn.disabled = true
-		%UpdateCurrentSwitch.disabled = true
-	else:
-		%InstallReleaseBtn.disabled = false
-		%UpdateCurrentSwitch.disabled = false
+	_installs = Paths.installs_summary
+	_update_install_controls()
 
 
 func _on_BtnInstall_pressed() -> void:
