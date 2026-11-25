@@ -316,7 +316,7 @@ tooltip_text = "tooltip_proxy_options"
 
 [node name="ProxyHostField" type="LineEdit" parent="SettingsScrollArea/SettingsListGroup/NetworkGroup/ProxySettingsBox" unique_id=1523350080]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(170, 0)
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 placeholder_text = "localhost"

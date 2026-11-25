@@ -55,6 +55,7 @@ func _ready() -> void:
 		%ProxyOptionList.selected = 0
 	%ProxyHostField.text = Settings.read("proxy_host")
 	%ProxyPortField.value = Settings.read("proxy_port") as int
+	_update_proxy_fields_editable()
 	
 	%CustomScaleEnableSwitch.button_pressed = Settings.read("ui_scale_override_enabled")
 	%CustomScaleValueField.editable = Settings.read("ui_scale_override_enabled")
@@ -143,6 +144,13 @@ func _on_sbNumPRs_value_changed(value: float) -> void:
 
 func _on_obtnProxyOption_item_selected(index: int) -> void:
 	Settings.store("proxy_option", _proxy_options[index])
+	_update_proxy_fields_editable()
+
+
+func _update_proxy_fields_editable() -> void:
+	var proxy_enabled := _proxy_options[%ProxyOptionList.selected] != "off"
+	%ProxyHostField.editable = proxy_enabled
+	%ProxyPortField.editable = proxy_enabled
 
 func _on_leProxyHost_text_changed(new_text: String) -> void:
 	Settings.store("proxy_host", new_text)
