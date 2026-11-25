@@ -72,7 +72,6 @@ const _SCALABLE_CONSTANTS := {
 	],
 	"LineEdit": [
 		"caret_width",
-		"minimum_character_width",
 		"outline_size",
 	],
 	"LinkButton": [
