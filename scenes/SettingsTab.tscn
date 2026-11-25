@@ -321,11 +321,21 @@ layout_mode = 2
 size_flags_horizontal = 10
 placeholder_text = "localhost"
 
-[node name="ProxyPortField" type="SpinBox" parent="SettingsScrollArea/SettingsListGroup/NetworkGroup/ProxySettingsBox" unique_id=1406659154]
-unique_name_in_owner = true
+[node name="ProxyPortSeparatorLabel" type="Label" parent="SettingsScrollArea/SettingsListGroup/NetworkGroup/ProxySettingsBox" unique_id=1603769314]
+custom_maximum_size = Vector2(0, -1)
 layout_mode = 2
-size_flags_horizontal = 10
-max_value = 65535.0
+size_flags_horizontal = 4
+text = ":"
+horizontal_alignment = 1
+
+[node name="ProxyPortField" type="LineEdit" parent="SettingsScrollArea/SettingsListGroup/NetworkGroup/ProxySettingsBox" unique_id=1406659154]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_constants/minimum_character_width = 0
+placeholder_text = "8080"
+max_length = 5
+virtual_keyboard_type = 2
 
 [node name="HSeparator4" type="HSeparator" parent="SettingsScrollArea/SettingsListGroup" unique_id=1159008309]
 layout_mode = 2
@@ -365,5 +375,5 @@ text = "cbtn_debug_mode"
 [connection signal="toggled" from="SettingsScrollArea/SettingsListGroup/NetworkGroup/IgnoreDownloadCacheSwitch" to="." method="_on_IgnoreCache_toggled"]
 [connection signal="item_selected" from="SettingsScrollArea/SettingsListGroup/NetworkGroup/ProxySettingsBox/ProxyOptionList" to="." method="_on_obtnProxyOption_item_selected"]
 [connection signal="text_changed" from="SettingsScrollArea/SettingsListGroup/NetworkGroup/ProxySettingsBox/ProxyHostField" to="." method="_on_leProxyHost_text_changed"]
-[connection signal="value_changed" from="SettingsScrollArea/SettingsListGroup/NetworkGroup/ProxySettingsBox/ProxyPortField" to="." method="_on_sbProxyPort_value_changed"]
+[connection signal="text_changed" from="SettingsScrollArea/SettingsListGroup/NetworkGroup/ProxySettingsBox/ProxyPortField" to="." method="_on_leProxyPort_text_changed"]
 [connection signal="toggled" from="SettingsScrollArea/SettingsListGroup/AdvancedGroup/DebugModeSwitch" to="." method="_on_ShowDebug_toggled"]
