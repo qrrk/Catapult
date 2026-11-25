@@ -43,3 +43,8 @@
 "lbl_licenses","[color=#3b93f7][url]查看开源许可证[/url][/color]"
 "cbtn_check_external_stable_release_source","联网检查游戏的新稳定版本"
 "tooltip_check_external_stable_release_source","启动时，检查配置的外部源（默认是Catapult仓库），\n以获取在此启动器版本构建之后发布的新稳定版本。"
+"lbl_section_interface","界面"
+"lbl_section_releases","发布与安装"
+"lbl_section_mods","模组"
+"lbl_section_network","网络与缓存"
+"lbl_section_advanced","高级"

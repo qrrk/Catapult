@@ -42,3 +42,8 @@
 "tooltip_proxy_settings","Configurar um servidor proxy para download."
 "cbtn_check_external_stable_release_source","Verificar online por novas versões estáveis do jogo"
 "tooltip_check_external_stable_release_source","Ao iniciar, verifica a fonte externa configurada\n(repositório do Catapult por padrão) por versões\nestáveis mais recentes do jogo que possam ter sido\nlançadas após a compilação desta versão do inicializador."
+"lbl_section_interface","Interface"
+"lbl_section_releases","Versões e Instalações"
+"lbl_section_mods","Mods"
+"lbl_section_network","Rede e Cache"
+"lbl_section_advanced","Avançado"

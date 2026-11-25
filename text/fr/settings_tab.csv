@@ -46,3 +46,8 @@ Pour téléchargement uniquement - Utiliser le proxy uniquement lors du téléch
 "tooltip_proxy_settings","Configurer un serveur proxy pour le téléchargement."
 "cbtn_check_external_stable_release_source","Vérifier en ligne les nouvelles versions stables du jeu"
 "tooltip_check_external_stable_release_source","Au démarrage, vérifie la source externe configurée\n(dépôt Catapult par défaut) pour les nouvelles versions\nstables du jeu parues après la compilation de cette\nversion du lanceur."
+"lbl_section_interface","Interface"
+"lbl_section_releases","Versions et installations"
+"lbl_section_mods","Mods"
+"lbl_section_network","Réseau et cache"
+"lbl_section_advanced","Avancé"
