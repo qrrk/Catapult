@@ -86,7 +86,7 @@ func refresh_currently_installed() -> void:
 	if has_installs:
 		%ActiveInstallNameLabel.text = active_name
 		%LaunchGameBtn.disabled = false
-		%QuickLoadBtn.disabled = not GameLauncher.has_last_world()
+		%QuickLoadBtn.disabled = not %GameLauncher.has_last_world()
 		%GameDirBtn.visible = true
 		%UserDirBtn.visible = true
 	else:
@@ -266,13 +266,13 @@ func _on_UserDir_pressed() -> void:
 
 func _on_BtnPlay_pressed() -> void:
 	
-	if GameLauncher.launch() and not Settings.read("keep_open_after_starting_game"):
+	if %GameLauncher.launch() and not Settings.read("keep_open_after_starting_game"):
 		get_tree().quit()
 
 
 func _on_BtnResume_pressed() -> void:
 	
-	if GameLauncher.resume_last_world() and not Settings.read("keep_open_after_starting_game"):
+	if %GameLauncher.resume_last_world() and not Settings.read("keep_open_after_starting_game"):
 		get_tree().quit()
 
 
