@@ -20,26 +20,22 @@ static func resume_last_world() -> bool:
 ## Spawns the active game executable with [code]--userdir[/code] (and optional [code]--world[/code]),
 ## returning true if the process was started.
 static func launch(world: String = "") -> bool:
+	var params := ["--userdir", Paths.userdata + "/"]
+	if not world.is_empty():
+		params.append_array(["--world", world])
+	
+	var exe_path := ""
 	match OS.get_name():
 		"Linux":
-			var params := ["--userdir", Paths.userdata + "/"]
-			if not world.is_empty():
-				params.append_array(["--world", world])
-			OS.create_process(Paths.game_dir.path_join("cataclysm-launcher"), params, false)
-			return true
+			exe_path = Paths.game_dir.path_join("cataclysm-launcher")
 		"Windows":
-			var world_str := ""
-			if not world.is_empty():
-				world_str = "--world \"%s\"" % world
-			
 			var matches := FS.list_dir(Paths.game_dir, false, "(?i).*cataclysm.*\\.exe$")
 			Status.post(str(matches), Enums.MSG_DEBUG)
 			if matches.is_empty():
 				return false
-			var exe_file: String = matches[0]
-			
-			var command := "cd /d %s && start %s --userdir \"%s/\" %s" % [Paths.game_dir, exe_file, Paths.userdata, world_str]
-			OS.execute_with_pipe("cmd", ["/C", command])
-			return true
+			exe_path = Paths.game_dir.path_join(matches[0])
+			params.append_array(["--basepath", Paths.game_dir + "/"])
 		_:
 			return false
+	
+	return OS.create_process(exe_path, params, false) != -1
