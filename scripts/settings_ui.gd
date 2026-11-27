@@ -54,7 +54,9 @@ func _ready() -> void:
 	else:
 		%ProxyOptionList.selected = 0
 	%ProxyHostField.text = Settings.read("proxy_host")
-	%ProxyPortField.value = Settings.read("proxy_port") as int
+	var proxy_port := Settings.read("proxy_port") as int
+	%ProxyPortField.text = str(proxy_port) if proxy_port > 0 else ""
+	_update_proxy_fields_editable()
 	
 	%CustomScaleEnableSwitch.button_pressed = Settings.read("ui_scale_override_enabled")
 	%CustomScaleValueField.editable = Settings.read("ui_scale_override_enabled")
@@ -143,12 +145,29 @@ func _on_sbNumPRs_value_changed(value: float) -> void:
 
 func _on_obtnProxyOption_item_selected(index: int) -> void:
 	Settings.store("proxy_option", _proxy_options[index])
+	_update_proxy_fields_editable()
+
+
+func _update_proxy_fields_editable() -> void:
+	var proxy_enabled := _proxy_options[%ProxyOptionList.selected] != "off"
+	%ProxyHostField.editable = proxy_enabled
+	%ProxyPortField.editable = proxy_enabled
 
 func _on_leProxyHost_text_changed(new_text: String) -> void:
 	Settings.store("proxy_host", new_text)
 
-func _on_sbProxyPort_value_changed(value: float) -> void:
-	Settings.store("proxy_port", value)
+func _on_leProxyPort_text_changed(new_text: String) -> void:
+	if new_text.is_empty():
+		Settings.store("proxy_port", 0)
+		return
+	if new_text.is_valid_int():
+		var port := new_text.to_int()
+		if port >= 0 and port <= 65535:
+			Settings.store("proxy_port", port)
+			return
+	var last_port := Settings.read("proxy_port") as int
+	%ProxyPortField.text = str(last_port) if last_port > 0 else ""
+	%ProxyPortField.caret_column = %ProxyPortField.text.length()
 
 
 func _populate_proxy_options() -> void:

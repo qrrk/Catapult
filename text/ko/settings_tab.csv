@@ -46,3 +46,8 @@ tooltip_updating_to_same_build,선택한 릴리스가 현재 설치된 것과 �
 "tooltip_proxy_settings","다운로드용 프록시 서버를 구성합니다."
 "cbtn_check_external_stable_release_source","새로운 안정 버전 게임 릴리스를 온라인으로 확인"
 "tooltip_check_external_stable_release_source","시작 시 구성된 외부 소스(기본값: Catapult 저장소)를\n확인하여 이 런처 버전이 빌드된 이후에 출시되었을 수 있는\n최신 안정 버전 게임 릴리스를 확인합니다."
+"lbl_section_interface","인터페이스"
+"lbl_section_releases","릴리스 및 설치"
+"lbl_section_mods","모드"
+"lbl_section_network","네트워크 및 캐시"
+"lbl_section_advanced","고급"

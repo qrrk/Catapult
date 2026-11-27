@@ -1,20 +1,21 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://b48a2u31diocf"]
 
-[ext_resource type="Script" path="res://scripts/game_ui.gd" id="1_dpsjs"]
-[ext_resource type="Script" path="res://scripts/release_manager.gd" id="release_mgr"]
-[ext_resource type="Script" path="res://scripts/release_installer.gd" id="release_inst"]
-[ext_resource type="Texture2D" path="res://icons/buttons/tex_refresh.tres" id="2_804sm"]
-[ext_resource type="Texture2D" path="res://icons/buttons/tex_download.tres" id="3_52ijp"]
-[ext_resource type="PackedScene" path="res://scenes/InlineIconButton.tscn" id="4_17s4e"]
-[ext_resource type="Texture2D" path="res://icons/tex_folder_game.tres" id="5_v2qrd"]
-[ext_resource type="Texture2D" path="res://icons/tex_folder_user.tres" id="6_xdphx"]
-[ext_resource type="Texture2D" path="res://icons/buttons/tex_play.tres" id="7_5nfln"]
-[ext_resource type="Texture2D" path="res://icons/buttons/tex_resume.tres" id="8_cgdid"]
-[ext_resource type="Script" path="res://scripts/item_list.gd" id="9_1cj8f"]
-[ext_resource type="Texture2D" path="res://icons/buttons/tex_activate.tres" id="10_tf220"]
-[ext_resource type="Texture2D" path="res://icons/buttons/tex_delete.tres" id="11_pnvt3"]
-[ext_resource type="PackedScene" path="res://scenes/ChangelogDialog.tscn" id="12_8fhug"]
-[ext_resource type="PackedScene" path="res://scenes/UserDataDeletionDialog.tscn" id="13_3hfqd"]
+[ext_resource type="Script" uid="uid://42uddcswb8w7" path="res://scripts/game_ui.gd" id="1_dpsjs"]
+[ext_resource type="Texture2D" uid="uid://cemdop8232nt1" path="res://icons/buttons/tex_refresh.tres" id="2_804sm"]
+[ext_resource type="Texture2D" uid="uid://d0qh43un40sje" path="res://icons/buttons/tex_download.tres" id="3_52ijp"]
+[ext_resource type="PackedScene" uid="uid://snuvrmmyvlwd" path="res://scenes/InlineIconButton.tscn" id="4_17s4e"]
+[ext_resource type="Texture2D" uid="uid://qxwxismomgkm" path="res://icons/tex_folder_game.tres" id="5_v2qrd"]
+[ext_resource type="Texture2D" uid="uid://brhwrcsh73jvf" path="res://icons/tex_folder_user.tres" id="6_xdphx"]
+[ext_resource type="Texture2D" uid="uid://b0jpa8dfc0a24" path="res://icons/buttons/tex_play.tres" id="7_5nfln"]
+[ext_resource type="Texture2D" uid="uid://hewqi4dmaa7g" path="res://icons/buttons/tex_resume.tres" id="8_cgdid"]
+[ext_resource type="Script" uid="uid://bcxy21m818jf1" path="res://scripts/item_list.gd" id="9_1cj8f"]
+[ext_resource type="Texture2D" uid="uid://b8dk0p0gt16n2" path="res://icons/buttons/tex_activate.tres" id="10_tf220"]
+[ext_resource type="Texture2D" uid="uid://dcr7g2lehmtk5" path="res://icons/buttons/tex_delete.tres" id="11_pnvt3"]
+[ext_resource type="PackedScene" uid="uid://b476fjhyidej5" path="res://scenes/ChangelogDialog.tscn" id="12_8fhug"]
+[ext_resource type="PackedScene" uid="uid://c1axg2lq1dhit" path="res://scenes/UserDataDeletionDialog.tscn" id="13_3hfqd"]
+[ext_resource type="Script" uid="uid://6wdkqqiq8cq3" path="res://scripts/game_launcher.gd" id="game_launcher"]
+[ext_resource type="Script" uid="uid://bytuv427hgvxg" path="res://scripts/release_installer.gd" id="release_inst"]
+[ext_resource type="Script" uid="uid://ctewoab2y1ofp" path="res://scripts/release_manager.gd" id="release_mgr"]
 
 [sub_resource type="StyleBoxEmpty" id="2"]
 content_margin_left = 4.0
@@ -221,6 +222,13 @@ script = ExtResource("release_mgr")
 unique_name_in_owner = true
 script = ExtResource("release_inst")
 
+[node name="GameLauncher" type="Node" parent="." unique_id=1847293610]
+unique_name_in_owner = true
+script = ExtResource("game_launcher")
+
+[node name="PollTimer" type="Timer" parent="GameLauncher" unique_id=1928374651]
+wait_time = 3.0
+
 [connection signal="meta_clicked" from="ChannelSelectGroup/ChannelTitleBox/ChangelogLinkLabel" to="." method="_on_ChangelogLink_meta_clicked"]
 [connection signal="toggled" from="ChannelSelectGroup/ChannelSwitchesGroup/StableSwitch" to="." method="_on_RBtnStable_toggled"]
 [connection signal="item_selected" from="ReleaseSelectGroup/ReleasesList" to="." method="_on_BuildsList_item_selected"]
@@ -239,3 +247,4 @@ script = ExtResource("release_inst")
 [connection signal="started_fetching_releases" from="ReleaseManager" to="." method="_on_Releases_started_fetching_releases"]
 [connection signal="operation_finished" from="ReleaseInstaller" to="." method="_on_ReleaseInstaller_operation_finished"]
 [connection signal="operation_started" from="ReleaseInstaller" to="." method="_on_ReleaseInstaller_operation_started"]
+[connection signal="timeout" from="GameLauncher/PollTimer" to="GameLauncher" method="_on_poll_timer_timeout"]

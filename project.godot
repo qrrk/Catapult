@@ -22,7 +22,6 @@ run/low_processor_mode=true
 boot_splash/bg_color=Color(0, 0, 0, 0)
 boot_splash/show_image=false
 config/icon="res://icons/appicon.svg"
-config/windows_native_icon="res://icons/appicon.ico"
 
 [audio]
 

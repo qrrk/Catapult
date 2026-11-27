@@ -89,7 +89,7 @@ func _show_current_config_info() -> void:
 		for i in len(list):
 			if i > 0:
 				fonts += "  =>"
-			fonts += "  [i]%s[/i]" % list[i].get_file().get_basename()
+			fonts += "  [i]%s[/i]" % %FontManager.get_entry_path(list[i]).get_file().get_basename()
 		row += "[cell]%s[/cell]" % fonts
 		text += row
 	

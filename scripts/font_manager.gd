@@ -197,6 +197,14 @@ func reset_font() -> void:
 	_write_font_config()
 
 
+## Extracts the font file path from a fonts.json typeface entry (a String or a {"path": ...} Dictionary).
+func get_entry_path(entry: Variant) -> String:
+	
+	if entry is Dictionary:
+		return str(entry.get("path", ""))
+	return str(entry)
+
+
 func _get_current_font_indices() -> Dictionary:
 	# Finds out which bundled fonts from available_fonts are currently
 	# set in fonts.json (if any).
@@ -204,7 +212,7 @@ func _get_current_font_indices() -> Dictionary:
 	var result := {}
 	
 	for field in ["typeface", "map_typeface", "overmap_typeface"]:
-		var file: String = font_config[field][0]
+		var file: String = get_entry_path(font_config[field][0])
 		var index := -1
 		for i in len(available_fonts):
 			if available_fonts[i]["file"] == file:
